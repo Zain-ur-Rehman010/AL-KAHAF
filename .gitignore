@@ -50,6 +50,9 @@ logs/
 # Uncomment below if you auto-generate CSS
 # css/**/*.css
 
+# Images & Large Assets
+frontend/assets/img/
+
 # Local Development
 .cache/
 .env.development.local
