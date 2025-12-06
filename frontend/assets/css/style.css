@@ -24,6 +24,13 @@
   --light-700: #F6F8FA;
   --light-800: #F5F7FA;
   --light-900: #F4F6F9;
+  
+  /* Logo Colors */
+  /* --primary-purple: #55406c;
+  --secondary-teal: #00A699;
+  --accent-gold: #FDB913;
+  --primary-dark: #4A1F7A;
+  --primary-light: #8B4CC9; */
 }
 
 .dark-mode {
@@ -7055,10 +7062,13 @@ header.fixed .header__hamburger .sidebar-menu {
 }
 header .header-logo .logo a {
   float: left;
+  
+  
 }
 header .header-logo .logo a img {
   float: left;
   max-height: 32px;
+ 
 }
 header .header-logo.logo-dark {
   display: none;
@@ -9308,12 +9318,13 @@ table.table.dataTable > thead > tr th {
 /*=============================
     Banner
 ===============================*/
+
 .banner-section {
-  position: relative;
-  background-color: #392C7D;
-  padding: 155px 0 80px;
-  z-index: 0;
-  overflow: hidden;
+    position: relative;
+    background-color: #522811;/*#522811 new color*/
+    padding: 155px 0 80px;
+    z-index: 0;
+    overflow: hidden;
 }
 @media (max-width: 991.98px) {
   .banner-section {
@@ -9378,10 +9389,11 @@ table.table.dataTable > thead > tr th {
     font-size: 26px;
   }
 }
+
 .banner-section .banner-content h1 span {
-  color: #FF4667;
-  text-decoration: underline;
-  margin-bottom: 16px;
+    color: #ffd846;/*#ffd846 color change*/
+    text-decoration: underline;
+    margin-bottom: 16px;
 }
 .banner-section .banner-content p {
   color: var(--light);
