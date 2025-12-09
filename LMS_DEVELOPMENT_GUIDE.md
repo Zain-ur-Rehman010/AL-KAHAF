@@ -346,5 +346,6 @@ Before starting development:
 - PostgreSQL: https://www.postgresql.org/
 
 ---
-
+## command to run scss file
+sass "frontend\assets\scss\main.scss" "frontend\assets\css\style.css"
 **Last Updated**: December 12/6/2025 

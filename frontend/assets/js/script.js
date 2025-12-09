@@ -1920,9 +1920,14 @@ Version      : 1.0
 
 		if($('.swiper-slider-banner').length > 0) {
 			var swiper = new Swiper(".swiper-slider-banner", {
-				effect: "cards",
-      			grabCursor: true,
-			  });
+        effect: "cards",
+        grabCursor: true,
+        /**banner autoplay add***/
+        autoplay: {
+          delay: 3000,
+          disableOnInteraction: false,
+        },
+      });
 		}
 
 		// Feature Courses Slider
