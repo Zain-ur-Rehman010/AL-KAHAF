@@ -54,6 +54,9 @@
 
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="assets/css/style.css">
+		
+		<!-- Hero Slider CSS -->
+		<link rel="stylesheet" href="assets/css/hero-slider.css">
 	
 	</head>
 	<body>
@@ -428,8 +431,14 @@
 			</header>
 			<!-- /Header -->
 
+			<!-- Cursor Follower -->
+<div class="cursor-follower"></div>
+
+<!-- Modern Hero Slider -->
+<div id="hero-slider-container"></div>
+
 			<!-- banner -->
-            <section class="banner-section">
+            <section class="banner-section" style="display: none;">
 				<!-- <img class="img-fluid d-none d-lg-flex banner-bg1" src="./assets/img/bg/bg-15.png" alt="img"> -->
 				<img class="img-fluid d-none d-lg-flex banner-bg2" src="./assets/img/bg/bg-16.png" alt="img">
 				<img class="img-fluid d-none d-lg-flex banner-bg3" src="./assets/img/bg/bg-17.png" alt="img">
@@ -1757,6 +1766,18 @@
 		
 		<!-- Custom JS -->
 		<script src="assets/js/script.js"></script>
-		
+		<!-- Load Hero Slider Component -->
+<script>
+    fetch('hero-slider.html')
+        .then(response => response.text())
+        .then(html => {
+            document.getElementById('hero-slider-container').innerHTML = html;
+            const script = document.createElement('script');
+            script.src = 'assets/js/hero-slider.js';
+            document.body.appendChild(script);
+        })
+        .catch(error => console.error('Error loading hero slider:', error));
+</script>
 	</body>
+	
 </html>
