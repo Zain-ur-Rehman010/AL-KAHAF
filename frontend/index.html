@@ -86,7 +86,7 @@
 						<div class="main-menu-wrapper">								
 							<div class="menu-header">
 								<a href="index.html" class="menu-logo">
-									<img src="assets/img/white-logo.png" style="width: 150px;height: 110px;" class="img-fluid" alt="Logo">
+									<img src="assets/img/logo.svg" class="img-fluid" alt="Logo">
 								</a>
 								<a id="menu_close" class="menu-close" href="javascript:void(0);">
 									<i class="fas fa-times"></i>
@@ -372,39 +372,69 @@
 								<a href="register.html" class="btn btn-secondary w-100"><i class="isax isax-user-edit me-2"></i>Register</a>
 							</div>
 						</div>
-						<div class="header-btn d-flex align-items-center">							
-							<div class="dropdown flag-dropdown icon-btn">
-								<a href="javascript:void(0);" class="d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="assets/img/flags/us-flag.svg" alt="flag">
+						<div class="header-btn d-flex align-items-center">
+							<!-------Language changer-------->							
+							<div class="dropdown language-dropdown">
+								<a href="javascript:void(0);" class="dropdown-toggle lang-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="assets/img/flags/us-flag.svg" class="lang-flag" alt="flag">
+									<span class="lang-text">EN</span>
+									<!-- <i class="isax isax-arrow-down-15 lang-arrow"></i> -->
 								</a>
-								<ul class="dropdown-menu p-2 mt-2">
+								<ul class="dropdown-menu lang-menu">
 									<li>
-										<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-											<img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
+										<a class="dropdown-item lang-item active" href="javascript:void(0);">
+											<img src="assets/img/flags/us-flag.svg" alt="flag">
+											<span>English</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
 										</a>
 									</li>
 									<li>
-										<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-											<img src="assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA
+										<a class="dropdown-item lang-item" href="javascript:void(0);">
+											<img src="assets/img/flags/arab-flag.svg" alt="flag">
+											<span>العربية</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
 										</a>
 									</li>
 									<li>
-										<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-											<img src="assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRE
+										<a class="dropdown-item lang-item" href="javascript:void(0);">
+											<img src="assets/img/flags/france-flag.svg" alt="flag">
+											<span>Français</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
 										</a>
 									</li>
 								</ul>
 							</div>
-							<div class="dropdown icon-btn">
-								<a href="javascript:void(0);" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="isax isax-dollar-circle4"></i>
+							<!-------Currency changer-------->
+							<div class="dropdown currency-dropdown">
+								<a href="javascript:void(0);" class="dropdown-toggle currency-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="isax isax-dollar-circle4 currency-icon"></i>
+									<span class="currency-text">USD</span>
 								</a>
-								<ul class="dropdown-menu p-2 mt-2">
-									<li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
-									<li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
-									<li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
+								<ul class="dropdown-menu currency-menu">
+									<li>
+										<a class="dropdown-item currency-item active" href="javascript:void(0);">
+											<span class="currency-symbol">$</span>
+											<span>USD - US Dollar</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item currency-item" href="javascript:void(0);">
+											<span class="currency-symbol">¥</span>
+											<span>YEN - Japanese Yen</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item currency-item" href="javascript:void(0);">
+											<span class="currency-symbol">€</span>
+											<span>EUR - Euro</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
 								</ul>
 							</div>
+							<!-------Light Mode || Dark Mode--------->
 							<div class="icon-btn">
 								<a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle activate">
 									<i class="isax isax-sun-15"></i>
@@ -413,17 +443,19 @@
 									<i class="isax isax-moon"></i>
 								</a>
 							</div>
+							<!--Cart-->
 							<div class="icon-btn">
 								<a href="cart.html" class="position-relative">
 									<i class="isax isax-shopping-cart5"></i>
 									<span class="count-icon bg-success p-1 rounded-pill text-white fs-10 fw-bold">1</span>
 								</a>
 							</div>
+							<!--SigIn || Register-->
 							<a href="login.html" class="btn btn-primary d-inline-flex align-items-center me-2">
-								Sign In
+								<i class="fa fa-paper-plane me-2"></i>Enroll Now
 							</a>
-							<a href="register.html" class="btn btn-secondary me-0">
-								Register
+							<a href="register.html" class="btn btn-secondary btn-donate me-0">
+								<i class="isax isax-heart5 me-1"></i>Donate
 							</a>
 						</div>
 					</div>

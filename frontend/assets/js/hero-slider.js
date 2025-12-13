@@ -6,7 +6,7 @@
 	const modernSwiper = new Swiper('.modern-swiper', {
 		// Basic Options
 		loop: true,
-		speed: 1200,
+		speed: 800,
 		effect: 'fade',
 		fadeEffect: {
 			crossFade: true
@@ -14,7 +14,7 @@
 		 
 		// Autoplay
 		autoplay: {
-			delay: 6000,
+			delay: 9000,
 			disableOnInteraction: false,
 			pauseOnMouseEnter: true
 		},

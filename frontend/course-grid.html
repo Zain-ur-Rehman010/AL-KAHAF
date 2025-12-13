@@ -48,84 +48,14 @@
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
 
-			<!-- Header Topbar-->
-			<div class="header-topbar text-center">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="d-flex align-items-center justify-content-center justify-content-lg-start">
-								<p class="d-flex align-items-center fw-medium fs-14 mb-2 me-3"><i class="isax isax-location5 me-2"></i>1442 Crosswind Drive Madisonville</p>
-								<p class="d-flex align-items-center fw-medium fs-14 mb-2"><i class="isax isax-call-calling5 me-2"></i>+1 45887 77874</p>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="d-flex align-items-center justify-content-center justify-content-lg-end">
-								<div class="dropdown flag-dropdown mb-2 me-3">
-									<a href="javascript:void(0);" class="dropdown-toggle d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-										<img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-									</a>
-									<ul class="dropdown-menu p-2 mt-2">
-										<li>
-											<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-												<img src="assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-											</a>
-										</li>
-										<li>
-											<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-												<img src="assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA
-											</a>
-										</li>
-										<li>
-											<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-												<img src="assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRE
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="dropdown mb-2 me-3">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-										USD
-									</a>
-									<ul class="dropdown-menu p-2 mt-2">
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
-									</ul>
-								</div>
-								<ul class="social-icon d-flex align-items-center mb-2">
-									<li class="me-2">
-										<a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
-									</li>
-									<li class="me-2">
-										<a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a>
-									</li>
-									<li class="me-2">
-										<a href="javascript:void(0);"><i class="fa-brands fa-x-twitter"></i></a>
-									</li>
-									<li class="me-2">
-										<a href="javascript:void(0);"><i class="fa-brands fa-youtube"></i></a>
-									</li>
-									<li>
-										<a href="javascript:void(0);"><i class="fa-brands fa-linkedin"></i></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /Header Topbar-->
-	
 			<!-- Header -->
-			<header class="header-two">
+			<header class="header-one">
 				<div class="container">
 					<div class="header-nav">
 						<div class="navbar-header">
 							<a id="mobile_btn" href="javascript:void(0);">
 								<span class="bar-icon">
-									<span></span>
-									<span></span>
-									<span></span>
+									<i class="isax isax-menu"></i>
 								</span>
 							</a>
 							<div class="navbar-logo">
@@ -427,7 +357,68 @@
 							</div>
 						</div>
 						<div class="header-btn d-flex align-items-center">
-							<div class="icon-btn me-2">
+							<!-------Language changer-------->							
+							<div class="dropdown language-dropdown">
+								<a href="javascript:void(0);" class="dropdown-toggle lang-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="assets/img/flags/us-flag.svg" class="lang-flag" alt="flag">
+									<span class="lang-text">EN</span>
+								</a>
+								<ul class="dropdown-menu lang-menu">
+									<li>
+										<a class="dropdown-item lang-item active" href="javascript:void(0);">
+											<img src="assets/img/flags/us-flag.svg" alt="flag">
+											<span>English</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item lang-item" href="javascript:void(0);">
+											<img src="assets/img/flags/arab-flag.svg" alt="flag">
+											<span>العربية</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item lang-item" href="javascript:void(0);">
+											<img src="assets/img/flags/france-flag.svg" alt="flag">
+											<span>Français</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<!-------Currency changer-------->
+							<div class="dropdown currency-dropdown">
+								<a href="javascript:void(0);" class="dropdown-toggle currency-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="isax isax-dollar-circle4 currency-icon"></i>
+									<span class="currency-text">USD</span>
+								</a>
+								<ul class="dropdown-menu currency-menu">
+									<li>
+										<a class="dropdown-item currency-item active" href="javascript:void(0);">
+											<span class="currency-symbol">$</span>
+											<span>USD - US Dollar</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item currency-item" href="javascript:void(0);">
+											<span class="currency-symbol">¥</span>
+											<span>YEN - Japanese Yen</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item currency-item" href="javascript:void(0);">
+											<span class="currency-symbol">€</span>
+											<span>EUR - Euro</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+							<!-------Light Mode || Dark Mode--------->
+							<div class="icon-btn">
 								<a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle activate">
 									<i class="isax isax-sun-15"></i>
 								</a>
@@ -435,17 +426,19 @@
 									<i class="isax isax-moon"></i>
 								</a>
 							</div>
-							<div class="icon-btn me-3">
+							<!--Cart-->
+							<div class="icon-btn">
 								<a href="cart.html" class="position-relative">
 									<i class="isax isax-shopping-cart5"></i>
 									<span class="count-icon bg-success p-1 rounded-pill text-white fs-10 fw-bold">1</span>
 								</a>
 							</div>
-							<a href="login.html" class="btn btn-light d-inline-flex align-items-center me-2">
-								<i class="isax isax-lock-circle me-2"></i>Sign In
+							<!--SigIn || Register-->
+							<a href="login.html" class="btn btn-primary d-inline-flex align-items-center me-2">
+								<i class="fa fa-paper-plane me-2"></i>Enroll Now
 							</a>
-							<a href="register.html" class="btn btn-secondary me-0">
-								<i class="isax isax-user-edit me-2"></i>Register
+							<a href="register.html" class="btn btn-secondary btn-donate me-0">
+								<i class="isax isax-heart5 me-1"></i>Donate
 							</a>
 						</div>
 					</div>
@@ -1186,7 +1179,7 @@
                     <div class="row row-gap-2">
                         <div class="col-md-6">
                             <div class="text-center text-md-start">
-                                <p class="text-white">Copyright &copy; 2025 DreamsLMS. All rights reserved.</p>
+                                <p class="text-white">Copyright 2025  <span class="text-secondary">Al-KahafOnlineAcademy</span>. All rights reserved.</p>
                             </div>
                         </div>
                         <div class="col-md-6">

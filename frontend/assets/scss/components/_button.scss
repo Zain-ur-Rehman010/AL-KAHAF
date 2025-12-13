@@ -21,7 +21,7 @@ button {
     }
 }
 .btn {
-    border-radius: utils.$rounded-pill;
+    border-radius: 5px;
     padding: 0.4rem 0.85rem;
     font-size: utils.$font-size-14;
     transition: all 0.5s;
@@ -657,5 +657,82 @@ button {
   &:hover {
     background: utils.$primary !important;
     color: utils.$white !important;
+  }
+}
+
+// Donate Button Animation - Attention-grabbing pulse effect
+.btn-donate {
+  position: relative;
+  animation: donate-pulse 2s ease-in-out infinite;
+  
+  i {
+    animation: heart-beat 1.2s ease-in-out infinite;
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    background: utils.$secondary;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    animation: donate-glow 2s ease-in-out infinite;
+  }
+  
+  &:hover {
+    animation: none;
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(utils.$secondary, 0.4);
+    
+    i {
+      animation: none;
+      transform: scale(1.2);
+    }
+    
+    &::before {
+      animation: none;
+    }
+  }
+}
+
+@keyframes donate-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@keyframes heart-beat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.25);
+  }
+  30% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.15);
+  }
+  60% {
+    transform: scale(1);
+  }
+}
+
+@keyframes donate-glow {
+  0%, 100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(1.1);
   }
 }

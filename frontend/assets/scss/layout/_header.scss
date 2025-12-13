@@ -693,7 +693,7 @@ header {
             }
         }
         .btn {
-            @include utils.rounded(55px);
+            @include utils.rounded(5px);
             padding: 7px 16px;
             margin-right: 12px;
             &.btn-white {
@@ -724,6 +724,19 @@ header {
 	}
     
     &.header-two {
+        background: linear-gradient(135deg, #522811 0%, #8B4513 100%);
+        &.fixed {
+            background: linear-gradient(135deg, #522811 0%, #8B4513 100%);
+            .main-menu-wrapper {
+                .main-nav {
+                    & > li {
+                        & > a {
+                            color: utils.$white;
+                        }
+                    }
+                }
+            }
+        }
         .header-nav {
             -webkit-box-align: center;
             -ms-flex-align: center;
@@ -757,6 +770,49 @@ header {
                 }
             }
         }
+        .main-menu-wrapper {
+            .main-nav {
+                @include utils.respond-above(lg) {
+                    display: inline-flex;
+                    padding: 8px;
+                    border-radius: 50px;
+                    justify-content: center;
+                    & > li{
+                        margin-right: 0 !important;
+                        padding: 0 !important;
+                        & > a {
+                            padding: 4px 16px;                
+                            border-radius: 50px;
+                            display: block;
+                            &:hover {
+                                color: utils.$secondary !important;
+                            }
+                            @include utils.respond-below(xxl){
+                                padding: 4px 13px; 
+                            }
+                        }
+                        &.active {
+                            & > a{
+                                color: utils.$secondary !important;
+                            }
+                        }
+                        i{
+                            font-size: utils.$font-size-8;
+                            margin-left: 2px;
+                            vertical-align: middle;
+                        }
+                    }
+                }
+                & > li {
+                    & > a {
+                        font-size: utils.$font-size-15;
+                        @include utils.respond-above(lg) {
+                            color: utils.$white;
+                        }
+                    }
+                }
+            }
+        }
         .header-btn {
          .icon-btn {
              margin-right: 12px;
@@ -769,11 +825,20 @@ header {
              }
          }
         }
+        .navbar-header #mobile_btn .bar-icon span {
+            background: utils.$white;
+        }
+        &.fixed {
+            .navbar-header #mobile_btn .bar-icon span {
+                background: utils.$primary;
+            }
+        }
     }
     &.header-one {
         position: fixed;
+        background: linear-gradient(135deg, #522811 0%, #8B4513 100%);
         &.fixed {
-            background: utils.$primary;
+            background: linear-gradient(135deg, #522811 0%, #8B4513 100%);
             .main-menu-wrapper {
                 .main-nav {
                     & > li {
@@ -993,6 +1058,283 @@ header {
         @include utils.rounded(50%);
     }
 }
+
+// Language Dropdown - Modern User-Friendly Design
+.language-dropdown {
+    margin-right: 12px;
+    
+    .lang-toggle {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 50px;
+        padding: 6px 12px;
+        color: utils.$white;
+        font-weight: utils.$font-weight-medium;
+        font-size: utils.$font-size-14;
+        @include utils.transition(all 0.3s ease);
+        gap: 8px;
+        
+        &:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        &::after {
+            display: none; // Remove default dropdown arrow
+        }
+        
+        .lang-flag {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .lang-text {
+            font-size: utils.$font-size-13;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .lang-arrow {
+            font-size: 10px;
+            @include utils.transition(transform 0.3s ease);
+        }
+    }
+    
+    &.show .lang-toggle .lang-arrow {
+        transform: rotate(180deg);
+    }
+    
+    .lang-menu {
+        min-width: 180px;
+        padding: 8px;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        margin-top: 10px;
+        
+        li {
+            margin-bottom: 4px;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        
+        .lang-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            border-radius: 8px;
+            @include utils.transition(all 0.2s ease);
+            
+            img {
+                width: 24px;
+                height: 24px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 12px;
+                border: 2px solid utils.$gray-100;
+            }
+            
+            span {
+                flex: 1;
+                font-weight: utils.$font-weight-medium;
+                color: utils.$gray-900;
+            }
+            
+            .check-icon {
+                font-size: 16px;
+                color: utils.$secondary;
+                opacity: 0;
+                @include utils.transition(opacity 0.2s ease);
+            }
+            
+            &:hover {
+                background: utils.$light;
+            }
+            
+            &.active {
+                background: rgba(utils.$secondary, 0.1);
+                
+                span {
+                    color: utils.$primary;
+                }
+                
+                .check-icon {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+// Adjust for header-one and header-two
+header.header-one, header.header-two {
+    .language-dropdown {
+        .lang-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            
+            &:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+    
+    .currency-dropdown {
+        .currency-toggle {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            
+            &:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+        }
+    }
+    
+    &.fixed {
+        .language-dropdown {
+            .lang-toggle {
+                background: utils.$light;
+                border-color: utils.$gray-100;
+                color: utils.$gray-900;
+                
+                .lang-flag {
+                    border-color: utils.$gray-200;
+                }
+                
+                &:hover {
+                    background: utils.$gray-100;
+                }
+            }
+        }
+        
+        .currency-dropdown {
+            .currency-toggle {
+                background: utils.$light;
+                border-color: utils.$gray-100;
+                color: utils.$gray-900;
+                
+                &:hover {
+                    background: utils.$gray-100;
+                }
+            }
+        }
+    }
+}
+
+// Currency Dropdown - Matching Language Dropdown Design
+.currency-dropdown {
+    margin-right: 12px;
+    
+    .currency-toggle {
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        border-radius: 50px;
+        padding: 6px 12px;
+        color: utils.$white;
+        font-weight: utils.$font-weight-medium;
+        font-size: utils.$font-size-14;
+        @include utils.transition(all 0.3s ease);
+        gap: 8px;
+        
+        &:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+        
+        &::after {
+            display: none;
+        }
+        
+        .currency-icon {
+            font-size: 18px;
+        }
+        
+        .currency-text {
+            font-size: utils.$font-size-13;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+    }
+    
+    .currency-menu {
+        min-width: 200px;
+        padding: 8px;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        margin-top: 10px;
+        
+        li {
+            margin-bottom: 4px;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        
+        .currency-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 14px;
+            border-radius: 8px;
+            @include utils.transition(all 0.2s ease);
+            
+            .currency-symbol {
+                width: 32px;
+                height: 32px;
+                border-radius: 50%;
+                background: utils.$light;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-weight: utils.$font-weight-bold;
+                font-size: utils.$font-size-16;
+                color: utils.$primary;
+                margin-right: 12px;
+            }
+            
+            span:not(.currency-symbol) {
+                flex: 1;
+                font-weight: utils.$font-weight-medium;
+                color: utils.$gray-900;
+            }
+            
+            .check-icon {
+                font-size: 16px;
+                color: utils.$secondary;
+                opacity: 0;
+                @include utils.transition(opacity 0.2s ease);
+            }
+            
+            &:hover {
+                background: utils.$light;
+            }
+            
+            &.active {
+                background: rgba(utils.$secondary, 0.1);
+                
+                .currency-symbol {
+                    background: utils.$primary;
+                    color: utils.$white;
+                }
+                
+                span:not(.currency-symbol) {
+                    color: utils.$primary;
+                }
+                
+                .check-icon {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
 .count-icon {
     width: 14px;
     height: 14px;

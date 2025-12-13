@@ -2,7 +2,8 @@
 
 .footer {
     position: relative;
-    border-top: 1px solid utils.$gray-100;
+    border-top: none;
+    background: linear-gradient(135deg, #522811 0%, #8B4513 100%);
     .footer-top {
         padding: 50px 0;
         @include utils.respond-below(lg) {
@@ -15,11 +16,15 @@
         }
         p {
             margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.85);
         }
     }
     .footer-contact-info {
         .footer-address {
             margin-bottom: 16px;
+            p {
+                color: rgba(255, 255, 255, 0.85);
+            }
             &:last-child {
                 margin-bottom: 0;
             }
@@ -32,11 +37,13 @@
             height: 42px;
             border-radius: 45px;
             padding-right: 100px;
-            border: 1px solid utils.$border-color;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: utils.$white;
             font-size: utils.$font-size-14;
             padding-left: 16px;
-            &:placeholder {
-                color: utils.$gray-300;
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.6);
             }
         }
         button {
@@ -68,6 +75,7 @@
 .footer-widget {
     .footer-title {
         margin-bottom: 15px;
+        color: utils.$white;
     }
     ul {
         li {
@@ -76,7 +84,7 @@
                 margin-bottom: 0;
             }
             a {
-                color: utils.$gray-500;
+                color: rgba(255, 255, 255, 0.8);
                 font-size: utils.$font-size-15;
                 &:hover {
                     color: utils.$secondary;
@@ -89,13 +97,13 @@
     }
 }
 .footer-bottom {
-    background: utils.$primary-900 ;
+    background: rgba(0, 0, 0, 0.2);
     padding: 1.5rem 0;
     .footer-link {
         li {
             position: relative;
             a {
-                color: utils.$white;
+                color: rgba(255, 255, 255, 0.9);
                 &:hover {
                     color: utils.$secondary;
                 }
@@ -119,7 +127,7 @@
 }
 .footer {
     &.footer-one {
-        background: utils.$dark;
+        background: linear-gradient(135deg, #522811 0%, #8B4513 100%);
         .footer-top {
             padding: 60px 0;
             @include utils.respond-below(lg) {
@@ -128,7 +136,7 @@
         }
         .footer-about {
             p {
-                color: utils.$light;
+                color: rgba(255, 255, 255, 0.85);
             }
         }
         .footer-widget {
@@ -144,7 +152,7 @@
                         margin-bottom: 0;
                     }
                     a {
-                        color: utils.$light;
+                        color: rgba(255, 255, 255, 0.8);
                         &:hover {
                             color: utils.$secondary;
                         }
@@ -160,15 +168,18 @@
                 top: 50%;
                 left: 32px;
                 @include utils.transform(translateY(-50%));
-                color: utils.$gray-500;
+                color: rgba(255, 255, 255, 0.6);
                 display: flex;
             }
             .form-control {
                 height: 54px;
                 @include utils.rounded(70px);
                 padding-left: 56px;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                color: utils.$white;
                 &::placeholder {
-                    color: utils.$gray-500;
+                    color: rgba(255, 255, 255, 0.6);
                 }
                 @include utils.respond-below(md) {
                     height: 50px;
@@ -177,23 +188,23 @@
         }
         .footer-newsletter {
             p {
-                color: utils.$light;
+                color: rgba(255, 255, 255, 0.85);
                 font-size: utils.$font-size-14;
                 margin-bottom: 16px;
             }
         }
         .footer-bottom {
-            background: utils.$dark;
-            border-top: 1px solid utils.$gray-800;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             p {
-                color: utils.$light;
+                color: rgba(255, 255, 255, 0.85);
                 font-size: utils.$font-size-14;
             }
             .footer-link {
                 li {
                     a {
                         font-size: utils.$font-size-14;
-                        color: utils.$light;
+                        color: rgba(255, 255, 255, 0.85);
                         &:hover {
                             color: utils.$secondary;
                         }
@@ -205,7 +216,7 @@
                             content: "";
                             width: 1px;
                             height: 10px;
-                            background: utils.$white;
+                            background: rgba(255, 255, 255, 0.5);
                             position: absolute;
                             left: 0;
                             top: 50%;
@@ -223,9 +234,9 @@
                 a {
                     width: 20px;
                     height: 20px;
-                    background: utils.$light;
+                    background: rgba(255, 255, 255, 0.15);
                     @include utils.rounded(50%);
-                    color: utils.$dark;
+                    color: utils.$white;
                     font-size: utils.$font-size-12;
                     display: flex;
                     align-items: center;
