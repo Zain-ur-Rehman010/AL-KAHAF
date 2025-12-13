@@ -1,3 +1,5 @@
+@use "../utils";
+
 /*============================
   24.header
 ============================*/
@@ -10,15 +12,15 @@ header {
     width: 100%;
     z-index: 1050;
     @extend %animation-effect;
-    @include transition(all 0.9s);
+    @include utils.transition(all 0.9s);
     &.fixed {
         position: fixed !important;
         top: 0 !important;
         left: 0;
         width: 100%;
         z-index: 1050;
-        @include transition(all 0.9s);
-        background-color: $white;
+        @include utils.transition(all 0.9s);
+        background-color: utils.$white;
         -webkit-animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
         animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
         box-shadow: 0px 4px 34px 0px rgba(0, 0, 0, 0.15);
@@ -27,11 +29,11 @@ header {
                 .main-nav {
                     & > li {
                         & > a {
-                            color: $gray-900;
+                            color: utils.$gray-900;
                         }
                         &.active {
                             & > a {
-                                color: $secondary;
+                                color: utils.$secondary;
                             }
                         }
                     }
@@ -40,11 +42,11 @@ header {
         }   
         .header-btn {
             .theme-toggle {
-                color: $gray-900;
+                color: utils.$gray-900;
             }
         }     
         .header__hamburger .sidebar-menu {
-            color: $gray-900;
+            color: utils.$gray-900;
         }
     }
     .header-logo {
@@ -72,14 +74,14 @@ header {
         -webkit-justify-content: space-between;
         -ms-flex-pack: space-between;
         position: relative;
-        @include respond-below(lg) {
+        @include utils.respond-below(lg) {
             height: 55px;
         }        
-        @include respond-below(sm) {
+        @include utils.respond-below(sm) {
             display: block;
         }
         .navbar-logo {
-            @include respond-below(sm) {
+            @include utils.respond-below(sm) {
                 width: auto;
             }
         }
@@ -100,15 +102,15 @@ header {
             padding: 15px 0;
             margin-bottom: 0;    
             display: block;    
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 order: 3;
                 width: 260px;
                 overflow-x: hidden;
                 overflow-y: auto;
                 z-index: 1060;
-                @include transform(translateX(-260px));
-                @include transition(all 0.4s);
-                background-color:$white;
+                @include utils.transform(translateX(-260px));
+                @include utils.transition(all 0.4s);
+                background-color:utils.$white;
                 position: fixed;
                 top: 0;
                 bottom: 0;
@@ -116,12 +118,12 @@ header {
                 padding: 0;
             }
             .navbar-logo {
-                @include respond-below(lg) {
+                @include utils.respond-below(lg) {
                     display: none;
                 }
             }
         .main-nav {
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
 				-ms-flex-direction: column;
 				flex-direction: column;
 				margin-bottom: 0;
@@ -132,19 +134,19 @@ header {
 			}
             >li {
                 padding: 8px 0;
-                @include respond-below(lg) {
+                @include utils.respond-below(lg) {
                     width: 100%;
                     padding: 0;
                 }
                 >a {
-                    font-size: $font-size-15;
-                    font-weight: $font-weight-medium;
+                    font-size: utils.$font-size-15;
+                    font-weight: utils.$font-weight-medium;
                     position: relative;
                     &:hover {
-                        color: $secondary;
+                        color: utils.$secondary;
                     }
-                    @include respond-below(lg) {
-                        color: $gray-500;
+                    @include utils.respond-below(lg) {
+                        color: utils.$gray-500;
                         padding: 16px 0;
                     }
                 }
@@ -161,9 +163,9 @@ header {
                     li {
                         position: relative;
                         &.active {
-                            color: $secondary;
+                            color: utils.$secondary;
                             >a {
-                                color: $secondary;
+                                color: utils.$secondary;
                             }
                         }
                         a {
@@ -175,14 +177,14 @@ header {
                             transition: all .35s ease;
                             width: 100%;
                             position: relative;
-                            font-weight: $font-weight-medium;
-                            @include respond-below(lg) { 
+                            font-weight: utils.$font-weight-medium;
+                            @include utils.respond-below(lg) { 
                                 padding: 8px 20px;
-                                font-size: $font-size-14;
-                                color: $gray-500;
+                                font-size: utils.$font-size-14;
+                                color: utils.$gray-500;
                             }
                             &:hover {
-                                color: $secondary;
+                                color: utils.$secondary;
                                 padding-left: 20px;
                             }
                         }
@@ -196,7 +198,7 @@ header {
     }
     }
     .navbar-header {
-        @include respond-below(sm) {
+        @include utils.respond-below(sm) {
 				width: 100%;
                 height: inherit;
                 text-align: center;
@@ -205,13 +207,13 @@ header {
             display: inline-block;
             padding: 0;
             line-height: 0;
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 margin-right: 0;
             }
         }
         .logo-small {
             display: none;
-            @include respond-below(sm) {
+            @include utils.respond-below(sm) {
                 display: block;
                 width: 100%;
                 text-align: center;
@@ -220,11 +222,11 @@ header {
         #mobile_btn {
             display: none;
             margin-right: 30px;            
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 display: inline-block;
                 line-height: 0;
             }
-            @include respond-below(sm) {
+            @include utils.respond-below(sm) {
                 right: 0;
                 margin-right: 0;
                 padding: 0 0px;
@@ -234,10 +236,10 @@ header {
             .bar-icon {
                 display: inline-block;
                 width: 31px;
-                color: $secondary;
-                font-size: $font-size-20;
+                color: utils.$secondary;
+                font-size: utils.$font-size-20;
                 span {
-                    background-color: $primary;
+                    background-color: utils.$primary;
                     display: block;
                     float: left;
                     height: 3px;
@@ -256,13 +258,13 @@ header {
             }
         }
         
-        @include respond-below(lg) {
+        @include utils.respond-below(lg) {
             display: -webkit-box;
             display: -ms-flexbox;
             display: inline-flex;
             align-items: center;
         } 
-        @include respond-below(sm) {
+        @include utils.respond-below(sm) {
             width: 100%;
             height: inherit;
         }       
@@ -270,7 +272,7 @@ header {
     .main-menu-wrapper {
         margin: 0;
         &.active {
-            @include respond-above(lg) {
+            @include utils.respond-above(lg) {
                 position: unset;
             }
         }
@@ -284,18 +286,18 @@ header {
             -webkit-justify-content: space-between;
             -ms-flex-pack: space-between;
             display: none;
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 display: -webkit-box;
                 display: -ms-flexbox;
                 display: flex;
                 height: 65px;
                 align-items: center;
-                background: $white;                
+                background: utils.$white;                
                 width: 100%;
             }
             .menu-logo {
                 img {
-                    @include respond-below(lg) {
+                    @include utils.respond-below(lg) {
                         width: 140px;
                     }
                 }
@@ -303,7 +305,7 @@ header {
                 
             .menu-close {
                 font-size: 18px;
-                color: $primary;
+                color: utils.$primary;
             }
         }
         .main-nav {
@@ -311,7 +313,7 @@ header {
                 .submenu {
                     >li {
                         .submenu {
-                            @include respond-above(lg) {
+                            @include utils.respond-above(lg) {
                                 left: 0;
                                 top: 10%;
                                 margin-top: 10px;
@@ -323,14 +325,14 @@ header {
                                 position: absolute;
                                 -webkit-transition: all .2s ease;
                                 transition: all .2s ease;
-                                @include transform(scale(1, 0));
+                                @include utils.transform(scale(1, 0));
                                 transform-origin: 0 0;
                                 visibility: hidden;
                                 z-index: 1000;
                                 border-top: 0;
                                 display: unset;
                             }
-                            @include respond-below(lg) {
+                            @include utils.respond-below(lg) {
                                 left: 0;
                             }
 
@@ -347,7 +349,7 @@ header {
                                                 &.has-submenu {
                                                     &:hover {
                                                         .submenu {
-                                                            @include respond-above(lg) {
+                                                            @include utils.respond-above(lg) {
                                                               
                                                             }
                                                         }
@@ -378,8 +380,8 @@ header {
                                 position: absolute;
                                 right: 15px;
                                 top: 50%;
-                                @include transform(translateY(-50%));
-                                font-size: $font-size-12;
+                                @include utils.transform(translateY(-50%));
+                                font-size: utils.$font-size-12;
                             }
                         }
                     }
@@ -396,11 +398,11 @@ header {
             align-items: center;
             margin: 0;
             padding: 8px;            
-            @include respond-above(lg) {
+            @include utils.respond-above(lg) {
                 position: relative;
             }
             &.active {
-                @include respond-above(lg) {
+                @include utils.respond-above(lg) {
                     position: unset;
                 }
             }
@@ -408,20 +410,20 @@ header {
                 margin-right: 0;
             }
             > li {                
-                @include respond-below(xxl) {
+                @include utils.respond-below(xxl) {
                     margin-right: 12px !important;
                     &:last-child {
                         margin-right: 0;
                     }
                 }
-                @include respond-below(xl) {
+                @include utils.respond-below(xl) {
                     margin-right: 10px !important;
                     &:last-child {
                         margin-right: 0;
                         border: 0;
                     }
                 }
-                @include respond-below(lg) {
+                @include utils.respond-below(lg) {
                     margin-right: 0 !important;
                     &:last-child {
                         margin-right: 0;
@@ -430,32 +432,32 @@ header {
                 }
                 &.active, &:hover  {
                     >a {
-                        color: $secondary;
+                        color: utils.$secondary;
                     }  
                 }
                 a  {              
                     i {
-                        font-size: $font-size-12;
+                        font-size: utils.$font-size-12;
                         margin-left: 4px;
                     }              
-                        @include respond-below(lg) {
+                        @include utils.respond-below(lg) {
                             display: block;
                             line-height: 20px;
                             padding: 12px 15px;
-                            font-size: $font-size-14;
-                            font-weight: $font-weight-medium;   
+                            font-size: utils.$font-size-14;
+                            font-weight: utils.$font-weight-medium;   
                             i {
-                                font-size: $font-size-14;
-                                @include respond-below(lg) {
+                                font-size: utils.$font-size-14;
+                                @include utils.respond-below(lg) {
                                     float: right;
                                     margin-top: 5px;
-                                    font-size: $font-size-14;
+                                    font-size: utils.$font-size-14;
                                 }
                             }
                         }
                     &:hover {
-                        @include respond-below(lg) {
-                            color: $secondary;
+                        @include utils.respond-below(lg) {
+                            color: utils.$secondary;
                         }
                     }
                 }
@@ -463,11 +465,11 @@ header {
                 &:last-child {
                     margin-right: 0;
                 }
-                    @include respond-below(lg) {
-                        border-bottom: 1px solid $border-color;
+                    @include utils.respond-below(lg) {
+                        border-bottom: 1px solid utils.$border-color;
                         padding: 0;
                     }
-                    @include respond-above(lg) {
+                    @include utils.respond-above(lg) {
                         display: block;
                         position: relative;
                         margin-right: 30px;
@@ -475,16 +477,16 @@ header {
                             margin-right: 0;
                         }
                     }
-                    @include respond-below(xl) { 
+                    @include utils.respond-below(xl) { 
                         margin-right: 20px;
                     }                 
                 & > ul {
-                    @include respond-above(lg) {
-                        background-color: $white;
+                    @include utils.respond-above(lg) {
+                        background-color: utils.$white;
                         border-radius: 5px;
-                        box-shadow: $box-shadow;
+                        box-shadow: utils.$box-shadow;
                         display: block;
-                        font-size: $font-size-14;
+                        font-size: utils.$font-size-14;
                         left: 0;
                         margin: 0;
                         min-width: 200px;
@@ -493,23 +495,23 @@ header {
                         position: absolute;
                         -webkit-transition: all .2s ease;
                         transition: all .2s ease;
-                        @include transform(scale(1, 0));
+                        @include utils.transform(scale(1, 0));
                         transform-origin: 0 0;
                         top: 100%;
                         visibility: hidden;
                         z-index: 1000;
                         padding: 5px 0;
-                        @include rounded(0 0 10px 10px);
+                        @include utils.rounded(0 0 10px 10px);
                     }
                 }
                 &.megamenu {
-                    @include respond-above(lg) {
+                    @include utils.respond-above(lg) {
                         position: unset;
                     }
                 }
                 & > ul {
                     &.mega-submenu {
-                        @include respond-above(lg) {
+                        @include utils.respond-above(lg) {
                             width: 100%;
                             padding: 0;
                             border: 0;
@@ -539,7 +541,7 @@ header {
                     }
                 }
                 &.mega-innermenu {  
-                    @include respond-above(lg) {
+                    @include utils.respond-above(lg) {
                         position: unset;
                     } 
                     & > ul {
@@ -572,16 +574,16 @@ header {
                                     }
                                     a {
                                         padding: 0 0 0 14px;
-                                        font-weight: $font-weight-normal;
-                                        color: $gray-600;
+                                        font-weight: utils.$font-weight-normal;
+                                        color: utils.$gray-600;
                                         &::before {
-                                            font-family: $font-awesome;
+                                            font-family: utils.$font-awesome;
                                             content: "\f054";
                                             position: absolute;
                                             left: 0;
                                             top: 50%;
-                                            @include transform(translateY(-50%));
-                                            font-size: $font-size-12;
+                                            @include utils.transform(translateY(-50%));
+                                            font-size: utils.$font-size-12;
                                         }
                                         &:hover {
                                             padding-left: 15px;
@@ -589,12 +591,12 @@ header {
                                     }
                                     &.active {
                                         a {
-                                            color: $secondary;
+                                            color: utils.$secondary;
                                         }
                                     }
                                 }
                             }                        
-                            @include respond-above(lg) {
+                            @include utils.respond-above(lg) {
                                 min-width: 600px;
                                 width: auto;
                             }
@@ -602,14 +604,14 @@ header {
                     }
                 }
             }            
-            @include respond-above(lg) {
+            @include utils.respond-above(lg) {
                 li.has-submenu {
                     &:hover {
                         & >.submenu {
                             visibility: visible;
                             opacity: 1;
                             margin-top: 0;
-                            @include transform(scale(1));
+                            @include utils.transform(scale(1));
                             border-radius: 2px;
                             & >.has-submenu {
                                 .submenu {
@@ -621,10 +623,10 @@ header {
                                     margin-top: 10px;
                                     top: 0;
                                     position: absolute;
-                                    @include transition(all .2s ease);
-                                    @include transform(scale(1, 0));
+                                    @include utils.transition(all .2s ease);
+                                    @include utils.transform(scale(1, 0));
                                     transform-origin: 0 0;
-                                    background: $white;
+                                    background: utils.$white;
                                     left: 100%;
                                     box-shadow: 0px 4px 54px 0px rgba(224, 224, 224, 0.2509803922);
                                 }
@@ -632,7 +634,7 @@ header {
                                     & > .submenu {
                                         visibility: visible;
                                         opacity: 1;
-                                        @include transform(scale(1));
+                                        @include utils.transform(scale(1));
                                         margin-top: 0;
                                     }
                                 }
@@ -650,7 +652,7 @@ header {
                     }
                 }
             }
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 .has-submenu {
                     ul {
                         display: none;
@@ -659,14 +661,14 @@ header {
             }
             li.login-link {
                 display: none;
-                @include respond-below(lg) {
+                @include utils.respond-below(lg) {
                     display: block;
                 }
             }
         }
     }    
     .header-btn {
-        @include respond-below(sm) {
+        @include utils.respond-below(sm) {
             display: none !important;
         }
         .icon-btn {
@@ -677,37 +679,37 @@ header {
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                border: 1px solid $gray-100;
-                background: $white;
-                font-size: $font-size-16;
+                border: 1px solid utils.$gray-100;
+                background: utils.$white;
+                font-size: utils.$font-size-16;
                 &:hover {
-                    background: $light;
+                    background: utils.$light;
                 }
             }
             &:last-child {
-                @include respond-below(lg) {
+                @include utils.respond-below(lg) {
                     margin-right: 0 !important;
                 }
             }
         }
         .btn {
-            @include rounded(55px);
+            @include utils.rounded(55px);
             padding: 7px 16px;
             margin-right: 12px;
             &.btn-white {
                 &:hover {
-                    background: $primary;
-                    border-color: $primary;
-                    color: $white;
+                    background: utils.$primary;
+                    border-color: utils.$primary;
+                    color: utils.$white;
                     a {
-                        color: $white;
+                        color: utils.$white;
                     }
                 }
             }
             &:last-child {
                 margin-right: 0;
             }
-            @include respond-below(xl) {
+            @include utils.respond-below(xl) {
                 display: none !important;
             }
         }
@@ -734,7 +736,7 @@ header {
             -ms-flex-pack: space-between;
             position: relative;
             
-            @include respond-below(sm) {
+            @include utils.respond-below(sm) {
                 display: block;
             }
             .main-navbar {
@@ -744,13 +746,13 @@ header {
                 display: -webkit-box;
                 display: -ms-flexbox;
                 display: flex;
-                @include respond-below(sm) {
+                @include utils.respond-below(sm) {
                     height: inherit;
                 }
             }
             
             .navbar-logo {
-                @include respond-below(sm) {
+                @include utils.respond-below(sm) {
                     width: auto;
                 }
             }
@@ -762,8 +764,8 @@ header {
                  margin-right: 24px;
              }
              & > a {
-                 background: $white;
-                 border-color: $white;
+                 background: utils.$white;
+                 border-color: utils.$white;
              }
          }
         }
@@ -771,12 +773,12 @@ header {
     &.header-one {
         position: fixed;
         &.fixed {
-            background: $primary;
+            background: utils.$primary;
             .main-menu-wrapper {
                 .main-nav {
                     & > li {
                         & > a {
-                            color: $white;
+                            color: utils.$white;
                         }
                     }
                 }
@@ -791,7 +793,7 @@ header {
         }
        .main-menu-wrapper {
             .main-nav {
-                @include respond-above(lg) {
+                @include utils.respond-above(lg) {
                     display: inline-flex;
                     padding: 8px;
                     border-radius: 50px;
@@ -804,19 +806,19 @@ header {
                             border-radius: 50px;
                             display: block;
                             &:hover {
-                                color: $secondary !important;
+                                color: utils.$secondary !important;
                             }
-                            @include respond-below(xxl){
+                            @include utils.respond-below(xxl){
                                 padding: 4px 13px; 
                             }
                         }
                         &.active {
                             & > a{
-                                color: $secondary !important;
+                                color: utils.$secondary !important;
                             }
                         }
                         i{
-                            font-size: $font-size-8;
+                            font-size: utils.$font-size-8;
                             margin-left: 2px;
                             vertical-align: middle;
                         }
@@ -824,9 +826,9 @@ header {
                 }
                 & > li {
                     & > a {
-                        font-size: $font-size-15;
-                        @include respond-above(lg) {
-                            color: $white;
+                        font-size: utils.$font-size-15;
+                        @include utils.respond-above(lg) {
+                            color: utils.$white;
                         }
                     }
                 }
@@ -839,17 +841,17 @@ header {
                 margin-right: 24px;
             }
             & > a {
-                background: $white;
-                border-color: $white;
+                background: utils.$white;
+                border-color: utils.$white;
             }
         }
        }
        .navbar-header #mobile_btn .bar-icon span {
-        background: $white;
+        background: utils.$white;
        }
        &.fixed {
         .navbar-header #mobile_btn .bar-icon span {
-            background: $primary;
+            background: utils.$primary;
            }
        }
     }
@@ -865,27 +867,27 @@ header {
         }
     }
     .dropdown-menu {
-        border: 1px solid $border-color;
-        @include rounded(10px);
+        border: 1px solid utils.$border-color;
+        @include utils.rounded(10px);
         padding: 0;
         .profile-header {
             padding: 15px 20px;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid utils.$border-color;
             .avatar {
                 margin-right: 10px;
             }
             h6 {
-                font-size: $font-size-16;
-                font-weight: $font-weight-semibold;
+                font-size: utils.$font-size-16;
+                font-weight: utils.$font-weight-semibold;
                 margin-bottom: 4px;
             }
             p {
-                font-size: $font-size-12;
+                font-size: utils.$font-size-12;
             }
         }
         .profile-body {
             padding: 15px 20px;
-            border-bottom: 1px solid $border-color;
+            border-bottom: 1px solid utils.$border-color;
             li {
                 margin-bottom: 8px;
                 &:last-child {
@@ -900,26 +902,26 @@ header {
             }
         }
         .dropdown-item {
-            color: $gray-900;
+            color: utils.$gray-900;
             padding: 0;
             i {
-                color: $gray-500;
+                color: utils.$gray-500;
             }
             &:hover {
-                color: $secondary;
+                color: utils.$secondary;
                 background: transparent;
                 i {
-                    color: $secondary;
+                    color: utils.$secondary;
                 }
             }
         }
         .message-count {
             width: 16px;
             height: 16px;
-            @include rounded(50%);
-            color: $white;
-            background: $primary;
-            font-size: $font-size-10;
+            @include utils.rounded(50%);
+            color: utils.$white;
+            background: utils.$primary;
+            font-size: utils.$font-size-10;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -938,34 +940,34 @@ header {
 .header-topbar {
     padding: 8px 0 0;
     position: relative;
-    background: $dark;
+    background: utils.$dark;
     p {
-        color: $white;
+        color: utils.$white;
         i {
-            color: $gray-500;
+            color: utils.$gray-500;
         }
     }
     .social-icon {
         a {
             width: 15px;
             height: 15px;
-            background: $light;
+            background: utils.$light;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: $font-size-10;
-            color: $dark;
+            font-size: utils.$font-size-10;
+            color: utils.$dark;
             border-radius: 50%;
             &:hover {
-                background: $primary;
-                color: $white;
+                background: utils.$primary;
+                color: utils.$white;
             }
         }
     }
     .dropdown {
         & > a {
-            color: $white;
-            font-weight: $font-weight-medium;
+            color: utils.$white;
+            font-weight: utils.$font-weight-medium;
         }
         &.flag-dropdown {
             img {
@@ -978,23 +980,23 @@ header {
     }
     .cart-dropdown, .fav-dropdown {
         a {
-            color: $white;
+            color: utils.$white;
         }
     }
-    @include respond-below(md) {
+    @include utils.respond-below(md) {
         display: none;
     }
 }
 .flag-dropdown {
     img {
         height: 12px;
-        @include rounded(50%);
+        @include utils.rounded(50%);
     }
 }
 .count-icon {
     width: 14px;
     height: 14px;
-    @include rounded(50%);
+    @include utils.rounded(50%);
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
@@ -1004,25 +1006,25 @@ header {
     justify-content: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
-    font-size: $font-size-10;
-    font-weight: $font-weight-medium;
+    font-size: utils.$font-size-10;
+    font-weight: utils.$font-weight-medium;
     position: absolute;
     top: -4px;
     right: -4px;
 }
 .header__hamburger {
     .sidebar-menu {
-        color: $gray-900;
+        color: utils.$gray-900;
     }
 }
 .offcanvas-info {
-	background: $white none repeat scroll 0 0;
+	background: utils.$white none repeat scroll 0 0;
 	position: fixed;
 	right: 0;
 	top: 0;
 	width: 350px;
 	height: 100%;
-    @include transform(translateX(calc(100% + 80px)));
+    @include utils.transform(translateX(calc(100% + 80px)));
 	-webkit-transition: transform 0.45s ease-in-out, opacity 0.45s ease-in-out;
 	-moz-transition: transform 0.45s ease-in-out, opacity 0.45s ease-in-out;
 	transition: transform 0.45s ease-in-out, opacity 0.45s ease-in-out;
@@ -1036,7 +1038,7 @@ header {
 }
 .offcanvas-info.show {
 	opacity: 1;
-    @include transform(translateX(0));
+    @include utils.transform(translateX(0));
 }
 .offcanvas-wrap {
 	position: relative;
@@ -1046,12 +1048,12 @@ header {
 	.offcanvas-detail {
 		.offcanvas-close {
 			text-align: center;
-			color: $gray-600;
+			color: utils.$gray-600;
 			position: relative;
 			z-index: 9;
 			cursor: pointer;
             &:hover {
-                color: $danger;
+                color: utils.$danger;
             }
 		}
 
@@ -1098,36 +1100,36 @@ header {
     top: 0;
     left: 0;
     width: 100%;
-    @include transition(all 0.3s ease 0s);    
-    @include respond-below(lg) {
+    @include utils.transition(all 0.3s ease 0s);    
+    @include utils.respond-below(lg) {
         position: absolute;
     }
 }
 .wishlist-info {
-    background: $light-200;
-    @include rounded(10px);
+    background: utils.$light-200;
+    @include utils.rounded(10px);
     padding: 20px;
     .cart-dropdown, .fav-dropdown {
         a {
-            font-size: $font-size-20;
-            color: $gray-900;
+            font-size: utils.$font-size-20;
+            color: utils.$gray-900;
         }
     }
 }
 .header-dropdown {
-    background: $light-200;
-    @include rounded(10px);
+    background: utils.$light-200;
+    @include utils.rounded(10px);
     padding: 20px;
     .dropdown {
         .dropdown-toggle {
-            @include rounded(4px);
+            @include utils.rounded(4px);
             padding: 7px 12px;
-            color: $gray-600;
+            color: utils.$gray-600;
             &::after {
                 position: absolute;
                 right: 12px;
                 top: 50%;
-                @include transform(translateY(-50%));
+                @include utils.transform(translateY(-50%));
             }
         }
     }
@@ -1152,45 +1154,45 @@ header {
 }
 .megamenu-wrapper {
 	padding: 24px 24px 0;
-    box-shadow: $box-shadow;
-    @include respond-below(lg) {
+    box-shadow: utils.$box-shadow;
+    @include utils.respond-below(lg) {
         padding: 0;
         box-shadow: none;
     }
     h6 {
-        @include respond-below(lg) {
+        @include utils.respond-below(lg) {
             display: none;
         }
     }
     .single-demo {
         padding: 15px;
         transition: 0.4s;
-        @include rounded(10px);
-        box-shadow: $box-shadow;
+        @include utils.rounded(10px);
+        box-shadow: utils.$box-shadow;
         text-align: center;
         margin-bottom: 20px;
         a {
             padding: 0 !important;
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 padding: 8px 20px !important;
             }
         }
         .demo-img {
             margin-bottom: 10px;
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 display: none;
             }
         }
         .demo-info {
             a {
-                font-size: $font-size-14;
-                font-weight: $font-weight-medium;
+                font-size: utils.$font-size-14;
+                font-weight: utils.$font-weight-medium;
             }
         }
         &:hover {
             transform: translateY(-2px);
         }
-        @include respond-below(lg) {
+        @include utils.respond-below(lg) {
             box-shadow: none;
             padding: 0;
             border: 0;
@@ -1207,30 +1209,30 @@ header {
 .single-demo.active {
 	.demo-info {
 		a {
-			color: $secondary !important;
+			color: utils.$secondary !important;
 		}
 	}
 }
 .menu-img {
-    @include rounded(10px);
+    @include utils.rounded(10px);
     max-width: 205px;
     margin-left: auto;
     overflow: hidden;
-    @include transition(all 0.9s);
+    @include utils.transition(all 0.9s);
     img {
-        @include rounded(10px);
-        border: 4px solid $white;
-        box-shadow: $box-shadow;
-        @include transform(scale(1.0));
-        @include transition(all 0.9s);
+        @include utils.rounded(10px);
+        border: 4px solid utils.$white;
+        box-shadow: utils.$box-shadow;
+        @include utils.transform(scale(1.0));
+        @include utils.transition(all 0.9s);
     }
     &:hover {
         img {            
-            @include transform(scale(1.12));
-            @include transition(all 0.9s);
+            @include utils.transform(scale(1.12));
+            @include utils.transition(all 0.9s);
         }
     }
-    @include respond-below(lg) {
+    @include utils.respond-below(lg) {
         display: none;
     }
 }
@@ -1268,7 +1270,7 @@ header {
                     >li.active {
                         >a {
                             &::after {
-                                color: $secondary;
+                                color: utils.$secondary;
                             }
                         }
                     }
@@ -1283,7 +1285,7 @@ header {
                     >li.active {
                         >a {
                             &::after {
-                                color: $white;
+                                color: utils.$white;
                             }
                         }
                     }
@@ -1346,11 +1348,11 @@ header {
     }
 }
 .header-six {
-    @include respond-below(xl) {
+    @include utils.respond-below(xl) {
         .header__hamburger {
             margin-left: auto;
             .sidebar-menu {
-                color: $white !important;
+                color: utils.$white !important;
             }
         }
         .header-btn {
@@ -1368,52 +1370,52 @@ header {
     top: 0;
     left: 0;
 	&.opened {
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			display: block;
 		}
 	}
 }
 .menu-opened .main-menu-wrapper {
-	@include transform(translateX(0) !important);
+	@include utils.transform(translateX(0) !important);
 }
 
 html.menu-opened body {
 	overflow: hidden;
 }
 #mobile-menu {
-    @include respond-below(lg) {
+    @include utils.respond-below(lg) {
         display: none;
     }
 }
 .menu-dropdown {
-    @include respond-above(lg) {
+    @include utils.respond-above(lg) {
         display: none;
     }
     padding: 20px;
     .dropdown {
         & > a {
-            border: 1px solid $border-color;
-            @include rounded(5px);
+            border: 1px solid utils.$border-color;
+            @include utils.rounded(5px);
             padding: 6px 12px;
             display: flex;
         }
         .dropdown-toggle:after {
             position: absolute;
             top: 50%;
-            @include transform(translateY(-50%));
+            @include utils.transform(translateY(-50%));
             right: 12px;
         }
     }
     .cart-item {
-        border: 1px solid $border-color;
-        @include rounded(10px);
+        border: 1px solid utils.$border-color;
+        @include utils.rounded(10px);
         padding: 20px;
         margin-bottom: 24px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         h6 {
-            font-weight: $font-weight-medium;
+            font-weight: utils.$font-weight-medium;
         }
     }
     .icon-btn {
@@ -1424,17 +1426,17 @@ html.menu-opened body {
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid $gray-100;
-            background: $white;
-            font-size: $font-size-16;
+            border: 1px solid utils.$gray-100;
+            background: utils.$white;
+            font-size: utils.$font-size-16;
             &:hover {
-                background: $light;
+                background: utils.$light;
             }
         }
     }
 }
 .menu-login {
-    @include respond-above(lg) {
+    @include utils.respond-above(lg) {
         display: none;
     }
     padding: 0 20px 20px;

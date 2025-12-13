@@ -1,3 +1,5 @@
+@use "../utils";
+
 h1,
 h2,
 h3,
@@ -10,95 +12,95 @@ h6,
 .h4,
 .h5,
 .h6 {
-  color: $gray-900;
-  font-family: $font-family-primary;
-  font-weight: $font-weight-bold;
+  color: utils.$gray-900;
+  font-family: utils.$font-family-primary;
+  font-weight: utils.$font-weight-bold;
   margin-bottom: 0;
 }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
   color: inherit;
 }
 p{
-  color: $gray-500;
+  color: utils.$gray-500;
 }
 h1,
 .h1 {
-  font-size: $font-size-50;
-  font-weight: $font-weight-bold;
-  @include respond-below(lg) {
-    font-size: $font-size-32;
+  font-size: utils.$font-size-50;
+  font-weight: utils.$font-weight-bold;
+  @include utils.respond-below(lg) {
+    font-size: utils.$font-size-32;
   }
-  @include respond-below(md) {
-    font-size: $font-size-26;
+  @include utils.respond-below(md) {
+    font-size: utils.$font-size-26;
   }
 }
 h2,
 .h2 {
-  font-size: $font-size-36;
-  font-weight: $font-weight-bold;
-  @include respond-below(lg) {
-    font-size: $font-size-28;
+  font-size: utils.$font-size-36;
+  font-weight: utils.$font-weight-bold;
+  @include utils.respond-below(lg) {
+    font-size: utils.$font-size-28;
   }
-  @include respond-below(md) {
-    font-size: $font-size-24;
+  @include utils.respond-below(md) {
+    font-size: utils.$font-size-24;
   }
 }
 h3,
 .h3 {
-  font-size: $font-size-28;
-  font-weight: $font-weight-bold;
-  @include respond-below(lg) {
-    font-size: $font-size-24;
+  font-size: utils.$font-size-28;
+  font-weight: utils.$font-weight-bold;
+  @include utils.respond-below(lg) {
+    font-size: utils.$font-size-24;
   }
-  @include respond-below(md) {
-    font-size: $font-size-22;
+  @include utils.respond-below(md) {
+    font-size: utils.$font-size-22;
   }
 }
 h4,
 .h4 {
-  font-size: $font-size-24;
-  @include respond-below(md) {
-    font-size: $font-size-22;
+  font-size: utils.$font-size-24;
+  @include utils.respond-below(md) {
+    font-size: utils.$font-size-22;
   }
 }
 h5,
 .h5 {
-  font-size: $font-size-20;
-  @include respond-below(md) {
-    font-size: $font-size-18;
+  font-size: utils.$font-size-20;
+  @include utils.respond-below(md) {
+    font-size: utils.$font-size-18;
   }
 }
 h6,
 .h6 {
-  font-size: $font-size-16;
-  font-weight: $font-weight-semibold;
-  @include respond-below(md) {
-    font-size: $font-size-16;
+  font-size: utils.$font-size-16;
+  font-weight: utils.$font-weight-semibold;
+  @include utils.respond-below(md) {
+    font-size: utils.$font-size-16;
   }
 }
 .display-1 {
   font-size: 40px;
-  font-weight: $font-weight-bold;
-  @include respond-below(xxl) {
+  font-weight: utils.$font-weight-bold;
+  @include utils.respond-below(xxl) {
     font-size: 36px;
   }
-  @include respond-below(xl) {
+  @include utils.respond-below(xl) {
     font-size: 36px;
   }
-  @include respond-below(lg) {
+  @include utils.respond-below(lg) {
     font-size: 32px;
   }
-  @include respond-below(md) {
+  @include utils.respond-below(md) {
     font-size: 26px;
   }
 }
 .display-4 {
   font-size: 20px;
-  font-weight: $font-weight-bold;
-  @include respond-below(lg) {
+  font-weight: utils.$font-weight-bold;
+  @include utils.respond-below(lg) {
     font-size: 18px;
   }
-  @include respond-below(md) {
+  @include utils.respond-below(md) {
     font-size: 16px;
   }
 }
@@ -112,7 +114,7 @@ h6,
   font-size: 1.125rem; //18px
 }
 .text-xl {
-  font-size: $font-size-16;
+  font-size: utils.$font-size-16;
 }
 // (1px-30px are linear, above 30px are step increment of 1)
 .fs-1 {
@@ -237,224 +239,224 @@ h6,
 }
 
 .text-default {
-  color: $text-color !important;
+  color: utils.$text-color !important;
 }
 .heading-color {
-  color: $title-color !important;
+  color: utils.$title-color !important;
 }
 .text-muted {
-  color: $text-muted !important;
+  color: utils.$text-muted !important;
 }
 .text-primary {
-  color: $primary !important;
+  color: utils.$primary !important;
   opacity: 1;
   &.text-opacity-75 {
-    color: rgba($primary, 0.75) !important;
+    color: rgba(utils.$primary, 0.75) !important;
   }
   &.text-opacity-25 {
-    color: rgba($primary, 0.25) !important;
+    color: rgba(utils.$primary, 0.25) !important;
   }
   &.text-opacity-50 {
-    color: rgba($primary, 0.50) !important;
+    color: rgba(utils.$primary, 0.50) !important;
   }
 }
 .text-secondary {
-  color: $secondary !important;
+  color: utils.$secondary !important;
   opacity: 1;
 }
 .text-info {
-  color: $info !important;
+  color: utils.$info !important;
   opacity: 1;
 }
 .text-success {
-  color: $success !important;
+  color: utils.$success !important;
   opacity: 1;
 }
 .text-warning {
-  color: $warning !important;
+  color: utils.$warning !important;
   opacity: 1;
 }
 .text-danger {
-  color: $danger !important;
+  color: utils.$danger !important;
   opacity: 1;
 }
 .text-skyblue {
-  color: $skyblue !important;
+  color: utils.$skyblue !important;
   opacity: 1;
 }
 .text-pink {
-  color: $pink !important;
+  color: utils.$pink !important;
 }
 .text-purple {
-  color: $purple !important;
+  color: utils.$purple !important;
 }
 .text-dark {
-  color: $dark !important;
+  color: utils.$dark !important;
 }
 .text-light {
-  color: $light !important;
+  color: utils.$light !important;
 }
 .text-gray {
-  color: $gray-500 !important;
+  color: utils.$gray-500 !important;
 }
 .text-black {
-  color: $black !important;
+  color: utils.$black !important;
 }
 .text-white {
-  color: $white !important;
+  color: utils.$white !important;
 }
 .text-purple {
-  color: $purple !important;
+  color: utils.$purple !important;
 }
 .text-primary-soft {
-  color: $primary-300;
+  color: utils.$primary-300;
 }
 .text-secondary-soft {
-  color: $secondary-300;
+  color: utils.$secondary-300;
 }
 .text-gray-1 {
-  color: $gray-100;
+  color: utils.$gray-100;
 }
 .text-gray-2 {
-  color: $gray-200;
+  color: utils.$gray-200;
 }
 .text-gray-3 {
-  color: $gray-300;
+  color: utils.$gray-300;
 }
 .text-gray-4 {
-  color: $gray-400;
+  color: utils.$gray-400;
 }
 .text-gray-5 {
-  color: $gray-500;
+  color: utils.$gray-500;
 }
 .text-gray-6 {
-  color: $gray-600;
+  color: utils.$gray-600;
 }
 .text-gray-7 {
-  color: $gray-700;
+  color: utils.$gray-700;
 }
 .text-gray-8 {
-  color: $gray-800;
+  color: utils.$gray-800;
 }
 .text-gray-9 {
-  color: $gray-900 !important;
+  color: utils.$gray-900 !important;
 }
 .text-title {
-  color: $gray-900 !important;
+  color: utils.$gray-900 !important;
 }
 .text-dark-transparent {
-  color: $dark-transparent;
+  color: utils.$dark-transparent;
 }
 .text-chromeyellow{
-  color: $chromeyellow;
+  color: utils.$chromeyellow;
 }
 .text-lightgreen{
-  color: $ligh-green;
+  color: utils.$ligh-green;
 }
 .text-purple {
-  color: $purple !important;
+  color: utils.$purple !important;
 }
 a {
-  color: $gray-900;
+  color: utils.$gray-900;
   cursor: pointer;
   text-decoration: none;
-  @include transition(all 0.5s ease);
+  @include utils.transition(all 0.5s ease);
   &:hover {
-    color: $secondary;
-    @include transition(all 0.5s ease);
+    color: utils.$secondary;
+    @include utils.transition(all 0.5s ease);
   }
   &:focus {
     outline: 0;
   }
 }
 .link-primary {
-  color: $primary !important;
+  color: utils.$primary !important;
   &:hover,
   &:focus,
   &:active {
-    color: $primary-hover !important;
+    color: utils.$primary-hover !important;
   }
 }
 .link-secondary {
-  color: $secondary !important;
+  color: utils.$secondary !important;
   &:hover,
   &:focus,
   &:active {
-    color: $secondary !important;
+    color: utils.$secondary !important;
   }
 }
 .link-success {
-  color: $success !important;
+  color: utils.$success !important;
   &:hover,
   &:focus,
   &:active {
-    color: $success !important;
+    color: utils.$success !important;
   }
 }
 .link-danger {
-  color: $danger !important;
+  color: utils.$danger !important;
   &:hover,
   &:focus,
   &:active {
-    color: $danger !important;
+    color: utils.$danger !important;
   }
 }
 .link-warning {
-  color: $warning !important;
+  color: utils.$warning !important;
   &:hover,
   &:focus,
   &:active {
-    color: $warning !important;
+    color: utils.$warning !important;
   }
 }
 .link-info {
-  color: $info !important;
+  color: utils.$info !important;
   &:hover,
   &:focus,
   &:active {
-    color: $info !important;
+    color: utils.$info !important;
   }
 }
 .link-light {
-  color: $light !important;
+  color: utils.$light !important;
   &:hover,
   &:focus,
   &:active {
-    color: $light !important;
+    color: utils.$light !important;
   }
 }
 .link-dark {
-  color: $dark !important;
+  color: utils.$dark !important;
   &:hover,
   &:focus,
   &:active {
-    color: $dark !important;
+    color: utils.$dark !important;
   }
 }
 hr {
   &.text-danger {
-    border-color: $danger !important;
+    border-color: utils.$danger !important;
   }
 }
 
 .blockquote-container {
   padding: 1.25rem;
-  border-left: 4px solid $default-border;
+  border-left: 4px solid utils.$default-border;
   position: relative;
   &.text-end {
-    border-right: 4px solid $default-border;
+    border-right: 4px solid utils.$default-border;
     border-left: 0;
   }
 }
 .blockquote.custom-blockquote {
   font-size: 0.85rem;
-  font-weight: $font-weight-semibold;
+  font-weight: utils.$font-weight-semibold;
   padding: 1rem;
-  border-radius: $border-radius;
+  border-radius: utils.$border-radius;
   position: relative;
   &:before {
     content: "\f10d";
-    font-family: $font-awesome;
+    font-family: utils.$font-awesome;
     z-index: 0;
     font-size: 2rem;
     position: absolute;
@@ -462,45 +464,45 @@ hr {
     inset-inline-start: 0.5rem;
   }
   &.primary {
-    background-color: rgba($primary, 0.1);
-    border-inline-start: 2px solid $primary;
+    background-color: rgba(utils.$primary, 0.1);
+    border-inline-start: 2px solid utils.$primary;
     &:before {
-      color: rgba($primary, 0.1);
+      color: rgba(utils.$primary, 0.1);
     }
   }
   &.secondary {
-    background-color: rgba($secondary, 0.1);
-    border-inline-start: 2px solid $secondary;
+    background-color: rgba(utils.$secondary, 0.1);
+    border-inline-start: 2px solid utils.$secondary;
     &:before {
-      color: rgba($secondary, 0.1);
+      color: rgba(utils.$secondary, 0.1);
     }
   }
   &.info {
-    background-color: rgba($info, 0.1);
-    border-inline-start: 2px solid $info;
+    background-color: rgba(utils.$info, 0.1);
+    border-inline-start: 2px solid utils.$info;
     &:before {
-      color: rgba($info, 0.1);
+      color: rgba(utils.$info, 0.1);
     }
   }
   &.warning {
-    background-color: rgba($warning, 0.1);
-    border-inline-start: 2px solid $warning;
+    background-color: rgba(utils.$warning, 0.1);
+    border-inline-start: 2px solid utils.$warning;
     &:before {
-      color: rgba($warning, 0.1);
+      color: rgba(utils.$warning, 0.1);
     }
   }
   &.success {
-    background-color: rgba($success, 0.1);
-    border-inline-start: 2px solid $success;
+    background-color: rgba(utils.$success, 0.1);
+    border-inline-start: 2px solid utils.$success;
     &:before {
-      color: rgba($success, 0.1);
+      color: rgba(utils.$success, 0.1);
     }
   }
   &.danger {
-    background-color: rgba($danger, 0.1);
-    border-inline-start: 2px solid $danger;
+    background-color: rgba(utils.$danger, 0.1);
+    border-inline-start: 2px solid utils.$danger;
     &:before {
-      color: rgba($danger, 0.1);
+      color: rgba(utils.$danger, 0.1);
     }
   }
 }

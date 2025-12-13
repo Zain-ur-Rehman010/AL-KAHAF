@@ -1,8 +1,10 @@
+@use "../utils";
+
 
 .faq-sec{
     position: relative;
     padding: 80px 0;
-    @include respond-below(lg){
+    @include utils.respond-below(lg){
     padding: 50px 0;
     }
     .faq-img{
@@ -11,21 +13,21 @@
     }
     .accordion-item{
         margin-top: 16px;
-        border: 1px solid $gray-100;
-        border-radius: $border-radius-xl;
-        background-color: $white;
-        box-shadow: $box-shadow-xs-2;
+        border: 1px solid utils.$gray-100;
+        border-radius: utils.$border-radius-xl;
+        background-color: utils.$white;
+        box-shadow: utils.$box-shadow-xs-2;
     }
     .accordion-button{
-      font-size: $font-size-18;
-      font-weight: $font-weight-semibold;
+      font-size: utils.$font-size-18;
+      font-weight: utils.$font-weight-semibold;
       box-shadow: none;
       display: flex;
       justify-content: space-between;
-      color: $gray-900;
+      color: utils.$gray-900;
       background-color: transparent;
-      @include respond-below(sm){
-        font-size: $font-size-16;
+      @include utils.respond-below(sm){
+        font-size: utils.$font-size-16;
       }
       &::after{
         display: none;
@@ -48,11 +50,11 @@
         content: '';
         width: 42.45%;
         height: 100%;
-        background-color: $primary;
+        background-color: utils.$primary;
         z-index: -1;
         top: 0;
         left: 0;
-        @include respond-below(lg){
+        @include utils.respond-below(lg){
             background-color: transparent;
         }
     }
@@ -60,8 +62,8 @@
 
 
 .faq-card {
-	background: $white;
-	border: 1px solid $gray-100;
+	background: utils.$white;
+	border: 1px solid utils.$gray-100;
 	border-radius: 10px;
 	margin-bottom: 20px;
 }
@@ -69,9 +71,9 @@
 	margin-bottom: 0;
 	a {
 		padding: 15px;
-		font-weight: $font-weight-semibold;
-		font-size: $font-size-16;
-		color: $gray-900;
+		font-weight: utils.$font-weight-semibold;
+		font-size: utils.$font-size-16;
+		color: utils.$gray-900;
 		position: relative;
 		display: block;
 		padding-right: 60px;
@@ -84,22 +86,22 @@
 			top: 50%;
 			transform: translateY(-50%);
 			right: 15px;
-			color: $gray-900;
+			color: utils.$gray-900;
             width: 16px;
             height: 16px;
-            border: 1px solid $gray-900;
+            border: 1px solid utils.$gray-900;
             border-radius: 50px;
-            font-size: $font-size-10;
+            font-size: utils.$font-size-10;
             display: flex;
             justify-content: center;
             align-items: center;
 		}
 		&:not(.collapsed) {
-			color: $secondary;
+			color: utils.$secondary;
 			&::after {
 				content: "\f068";
-                color: $secondary;
-                border: 1px solid $secondary;
+                color: utils.$secondary;
+                border: 1px solid utils.$secondary;
 			}
 		}
 	}
@@ -107,7 +109,7 @@
 .faq-detail {
         padding: 0 15px 15px;
 	p {
-        font-size: $font-size-14;
+        font-size: utils.$font-size-14;
 	}
 }
 
@@ -144,11 +146,11 @@
         }
     }
     h2 {
-        @include respond-below(md) {
+        @include utils.respond-below(md) {
             font-size: 24px;
             line-height: 30px;
         }
-        @include respond-below(sm) {
+        @include utils.respond-below(sm) {
             font-size: 20px;
             line-height: 26px;
         }
@@ -160,16 +162,16 @@
         position: relative;
         z-index: 1;
         .accordion-item {
-            border: 1px solid $border-color;
+            border: 1px solid utils.$border-color;
             border-radius: 16px;
             overflow: hidden;
             padding: 20px;
             margin-bottom: 16px;
-            box-shadow: $box-shadow-xs-2;
+            box-shadow: utils.$box-shadow-xs-2;
             &:last-child {
                 margin-bottom: 0;
             }
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 padding: 16px;
             }
             .accordion-body{
@@ -188,16 +190,16 @@
         }
     }
     .accordion-button {
-        background-color: $white;
-        color: $gray-900;
+        background-color: utils.$white;
+        color: utils.$gray-900;
         padding: 0;
-        font-size: $font-size-18;
-        font-weight: $font-weight-bold;
-        @include respond-below(md) {
-            font-size: $font-size-16;
+        font-size: utils.$font-size-18;
+        font-weight: utils.$font-weight-bold;
+        @include utils.respond-below(md) {
+            font-size: utils.$font-size-16;
         }
         &:not(.collapsed) {
-            color: $gray-900;
+            color: utils.$gray-900;
             background: transparent;
             font-size: 18px;
             box-shadow: none;
@@ -216,9 +218,9 @@
     }
     .accordion-body {
         padding: 0;
-        font-size: $font-size-16;
-        @include respond-below(md) {
-            font-size: $font-size-14;
+        font-size: utils.$font-size-16;
+        @include utils.respond-below(md) {
+            font-size: utils.$font-size-14;
         }
     }
 }

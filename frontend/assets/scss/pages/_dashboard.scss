@@ -1,7 +1,9 @@
+@use "../utils";
+
 .profile-card {
     position: relative;
     overflow: hidden;
-    background-color: $white;
+    background-color: utils.$white;
     transition: all .5s ease-in-out;
     position: relative;
     border-radius: 10px;
@@ -21,10 +23,10 @@
         position: absolute;
         right: 0;
         bottom: 0;
-        color: $success;
+        color: utils.$success;
         width: 24px;
         height: 24px;
-        background: $white;
+        background: utils.$white;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -44,10 +46,10 @@
 .settings-sidebar {
     position: relative;
     border-radius: 10px;
-    border:1px solid $gray-100;  
+    border:1px solid utils.$gray-100;  
     padding: 20px;
     margin-bottom: 1.5rem;
-    @include respond-below(md) {
+    @include utils.respond-below(md) {
         padding: 16px;
     }
     ul {
@@ -57,15 +59,15 @@
                 margin-bottom: 0;
             }
             a {
-                color: $gray-500;
+                color: utils.$gray-500;
                 &.active, &:hover {
-                    color: $secondary;
+                    color: utils.$secondary;
                     i{
-                        color:  $secondary;
+                        color:  utils.$secondary;
                     }
                 }
                 i{
-                    color: $gray-900;
+                    color: utils.$gray-900;
                 }
             }
         }
@@ -86,10 +88,10 @@
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: $white;
+    background: utils.$white;
     &:hover{
-        background-color: $light;
-        color: $gray-900;
+        background-color: utils.$light;
+        color: utils.$gray-900;
     }
 }
 .circle-progress {
@@ -105,7 +107,7 @@
         width: 100%;
         height: 100%;
         border-radius: 50%;
-        border: 4px solid  $light-900;
+        border: 4px solid  utils.$light-900;
         position: absolute;
         top: 0;
         left: 0;
@@ -117,7 +119,7 @@
         width: 90%;
         height: 90%;
         font-size: 10px;
-        color: $gray-700;
+        color: utils.$gray-700;
         line-height: 38px;
         text-align: center;
     }
@@ -182,16 +184,16 @@
                 margin-right: 0;
             }
             a {
-                color: $gray-900;
-                @include rounded(100px);
-                background: $light;
+                color: utils.$gray-900;
+                @include utils.rounded(100px);
+                background: utils.$light;
                 padding: 12px 15px;
-                font-size: $font-size-14;
+                font-size: utils.$font-size-14;
                 display: inline-flex;
                 &.active,
                 &:hover {
-                    background: $secondary;
-                    color: $white;
+                    background: utils.$secondary;
+                    color: utils.$white;
                 }
             }
         }
@@ -202,7 +204,7 @@
         display: none;
     }
     &.selected {
-        color: $secondary;
+        color: utils.$secondary;
         .filled-heart {
             display: block;
         }
@@ -213,9 +215,9 @@
 }
 .rating {
     i {
-        color: $gray-100;
+        color: utils.$gray-100;
         &.filled {
-            color: $warning;
+            color: utils.$warning;
         }
     }
 }
@@ -223,15 +225,15 @@
     direction: rtl !important;
     label {
         display: inline-block;
-        color: $gray-100;
+        color: utils.$gray-100;
         cursor: pointer;
-        font-size: $font-size-16;
+        font-size: utils.$font-size-16;
         transition: color 0.2s;
         &:hover {
-            color: $warning;
+            color: utils.$warning;
 
             ~label {
-                color: $warning;
+                color: utils.$warning;
             }
         }
     }
@@ -239,7 +241,7 @@
         display: none;
         &:checked {
             ~label {
-                color: $warning;
+                color: utils.$warning;
             }
         }
     }
@@ -247,15 +249,15 @@
 .arrow-next {
     width: 24px;
     height: 24px;
-    background: $gray-400;
-    color: $white;
+    background: utils.$gray-400;
+    color: utils.$white;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     &:hover {
-        background: $secondary;
-        color: $white;
+        background: utils.$secondary;
+        color: utils.$white;
     }
 }
 .quiz-img {
@@ -288,7 +290,7 @@ fieldset {
         .progress-value {
             top: 30%;
             left: 10%;
-            font-size: $font-size-22;
+            font-size: utils.$font-size-22;
         }
     }
 }
@@ -311,7 +313,7 @@ fieldset {
 .referral-card {
     border: 0;
     h4 {
-        color: $gray-700;
+        color: utils.$gray-700;
     }
     .referral-icon {
         width: 76px;
@@ -321,17 +323,17 @@ fieldset {
         align-items: center;
         justify-content: center;
         flex-shrink: 0;
-        @include respond-below(xxl){
+        @include utils.respond-below(xxl){
             width: 75px;
             height: 75px;
         }
     }
 }
 .card.withdraw-item {
-    background: $light-200;
+    background: utils.$light-200;
 }
 .file-upload {
-	border: 1px dashed $gray-100;
+	border: 1px dashed utils.$gray-100;
 	border-radius: 5px;
 	text-align: center;
 	position: relative;
@@ -349,49 +351,49 @@ fieldset {
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background: $light;
+        background: utils.$light;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: $gray-900;
+        color: utils.$gray-900;
     }
 }
 .settings-nav {
-    border-bottom: 1px solid $gray-100;
-    background-color: $light-900;
+    border-bottom: 1px solid utils.$gray-100;
+    background-color: utils.$light-900;
     margin-bottom: 20px;
     border-radius: 4px 4px 0 0;
     li {
         a {
-            font-size: $font-size-16;
-            color: $gray-500;
+            font-size: utils.$font-size-16;
+            color: utils.$gray-500;
             font-weight: 500;
             padding: 15px 18px;
             display: inline-flex;
             position: relative;
-            @include respond-below(xl){
-                font-size: $font-size-15;
+            @include utils.respond-below(xl){
+                font-size: utils.$font-size-15;
                 padding: 15px 11px;
             }
-            @include respond-below(md){
-                font-size: $font-size-14;
+            @include utils.respond-below(md){
+                font-size: utils.$font-size-14;
                 padding: 10px 10px;
             }
             &:after {
                 content: "";
                 width: 100%;
                 height: 3px;
-                background: $gray-100;
+                background: utils.$gray-100;
                 position: absolute;
                 left: 0;
                 bottom: 0;
                 opacity: 0;
             }
             &.active {
-                color: $secondary;
+                color: utils.$secondary;
                 &:after {
                     opacity: 1;
-                    background: $secondary;
+                    background: utils.$secondary;
                 }
             }
         }
@@ -399,12 +401,12 @@ fieldset {
 }
 .profile-upload-group {
     padding:  0 0 20px;
-    border-bottom: 1px solid $gray-100;
+    border-bottom: 1px solid utils.$gray-100;
     margin-bottom: 20px;
 }
 .edit-profile-info{
     p{
-        font-size: $font-size-14;
+        font-size: utils.$font-size-14;
     }
 }
 .image-upload {
@@ -432,7 +434,7 @@ fieldset {
 	span {
 		width: 100%;
 		height: 5px;
-		background: $gray-100;
+		background: utils.$gray-100;
 		margin-right: 10px;
 		border-radius: 5px;
 		&:last-child {
@@ -443,25 +445,25 @@ fieldset {
 .weak-pass {
 	.password-strength {
 		span {
-			background: $danger;
+			background: utils.$danger;
 		}
 	}
 }
 .poor-active span.active#poor, 
 .poor-active span.active#poors {
-	background: $danger;
+	background: utils.$danger;
 }
 .avg-active span.active#poor, .avg-active span.active#weak,
 .avg-active span.active#poors, .avg-active span.active#weaks {
-	background: $warning;
+	background: utils.$warning;
 }
 .strong-active span.active#poor, .strong-active span.active#weak, .strong-active span.active#strong,
 .strong-active span.active#poors, .strong-active span.active#weaks, .strong-active span.active#strongs {
-	background: $info;
+	background: utils.$info;
 }
 .heavy-active span.active#poor, .heavy-active span.active#weak, .heavy-active span.active#strong, .heavy-active span.active#heavy,
 .heavy-active span.active#poors, .heavy-active span.active#weaks, .heavy-active span.active#strongs, .heavy-active span.active#heavys {
-	background: $success;
+	background: utils.$success;
 }
 .input-icon-start {
     .social-icon {
@@ -478,7 +480,7 @@ fieldset {
     }
 }
 .link-light:hover{
-    color: $secondary !important;
+    color: utils.$secondary !important;
 }
 @keyframes fadeInDown {
     0% {
@@ -495,7 +497,7 @@ fieldset {
     overflow: hidden;
     z-index: 0;
     p{
-        font-size: $font-size-14;
+        font-size: utils.$font-size-14;
     }
     .quiz-ans-bg1{
         position: absolute;
@@ -517,25 +519,25 @@ fieldset {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: $gray-500;
+    color: utils.$gray-500;
     &:hover{
-      background-color: $light-900;
-      color: $gray-500;
+      background-color: utils.$light-900;
+      color: utils.$gray-500;
     }
 }
 .students-profile-body{
     span{
-        font-size: $font-size-14;
+        font-size: utils.$font-size-14;
     }
 }
 .chat-two-card{
  .chat-footer{
-    border-color: $gray-100;
+    border-color: utils.$gray-100;
     background: transparent;
     padding: 1rem 1.25rem 1rem;
  }
  p{
-    font-size: $font-size-14;
+    font-size: utils.$font-size-14;
  }
 }
 
@@ -545,10 +547,10 @@ fieldset {
             li {
                 margin: 0;
                 a{
-                    background: $light-900;
+                    background: utils.$light-900;
                     padding: 8px 16px;
                     &:hover, &.active{
-                        background-color: $secondary;
+                        background-color: utils.$secondary;
                     }
                 }
             }
@@ -556,15 +558,15 @@ fieldset {
     }
 }
 .edit-review, .delete-review{
-    font-size: $font-size-14;
-    color: $gray-500;
+    font-size: utils.$font-size-14;
+    color: utils.$gray-500;
 }
 .quiz-attempt-body{
     .btn{
         &.bg-gray-100{
             &:hover{
-                background-color: $gray-200;
-                color: $gray-900;
+                background-color: utils.$gray-200;
+                color: utils.$gray-900;
             }
         }
     }
@@ -572,15 +574,15 @@ fieldset {
 .student-courses {
     position: relative;
     border-radius: 10px;
-    border:1px solid $gray-100;  
+    border:1px solid utils.$gray-100;  
     padding: 20px;
     margin-bottom: 1.5rem;
-    @include respond-below(md) {
+    @include utils.respond-below(md) {
         padding: 16px;
     }
     p{
         a{
-            color: $gray-500;
+            color: utils.$gray-500;
         }
     }
    .view-course-btn{
@@ -593,20 +595,20 @@ fieldset {
         padding: 4px 8px;
         border-radius: 40px;
         font-weight: 500;
-        font-size: $font-size-12;
-        @include respond-below(xxl){
+        font-size: utils.$font-size-12;
+        @include utils.respond-below(xxl){
             padding: 4px 6px;
-            font-size: $font-size-11;
+            font-size: utils.$font-size-11;
         }
    }
 }
 .student-info{
     position: relative;
     border-radius: 10px;
-    border:1px solid $gray-100;  
+    border:1px solid utils.$gray-100;  
     padding: 20px;
     margin-bottom: 1.5rem;
-    @include respond-below(md) {
+    @include utils.respond-below(md) {
         padding: 16px;
     }
 }
@@ -624,14 +626,14 @@ fieldset {
     }
 }
 .note-toolbar {
-    background: $light;
-    border-color: $border-color;
+    background: utils.$light;
+    border-color: utils.$border-color;
 }
 .note-btn {
-    background: $white;
-    color: $gray-900;
-    border-color: $border-color;
+    background: utils.$white;
+    color: utils.$gray-900;
+    border-color: utils.$border-color;
 }
 .progress, .progress-stacked {
-    background: $light-700;
+    background: utils.$light-700;
 }

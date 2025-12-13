@@ -1,9 +1,11 @@
+@use "../utils";
+
 
 .error-page {
 	align-items: center;
 	color: #1f1f1f;
 	display: flex;
-	background: $primary-gradient;
+	background: utils.$primary-gradient;
 	.main-wrapper {
 		display: flex;
 		flex-wrap: wrap;
@@ -73,7 +75,7 @@
 	}
 	p {
 		margin-bottom: 30px;
-		color: $gray-700;
+		color: utils.$gray-700;
 		font-size: 16px;
         font-weight: 400;
 	}
@@ -96,10 +98,10 @@
 		border-bottom: 1px solid #F2F2F2;
 	}
     .back-to-home-btn {
-        background: $secondary;
-        color: $white;
+        background: utils.$secondary;
+        color: utils.$white;
         &:hover {
-            background: $primary;
+            background: utils.$primary;
         }
     }
 }
@@ -129,7 +131,7 @@
 			i {
 				font-size: 24px;
 				&:hover {
-					color: $secondary;
+					color: utils.$secondary;
 				}
 			}
 			list-style: none;
@@ -199,10 +201,10 @@
         height: 30px;
         width: 30px;
         border-radius: 50px;
-        background: $primary;
-        color: $white;
+        background: utils.$primary;
+        color: utils.$white;
         &:hover {
-            background: $secondary;
+            background: utils.$secondary;
         }
     }
     .subscribe-section {
@@ -225,9 +227,9 @@
                 right: 16px;
                 font-size: 14px;
                 line-height: 24px;
-                background: $secondary;
+                background: utils.$secondary;
                 &:hover {
-                    background: $primary;
+                    background: utils.$primary;
                  }
              }
         }
@@ -244,13 +246,13 @@
         -webkit-justify-content: center;
         -ms-flex-pack: center;
         margin: 30px 0 53px;
-        @include respond-below(xl) {
+        @include utils.respond-below(xl) {
             margin: 20px 0;
         }
         li {
-            border: 1px solid $gray-200;
+            border: 1px solid utils.$gray-200;
             background: #000000CC;
-            font-size: $font-size-16;
+            font-size: utils.$font-size-16;
             width: 120px;
             height: 120px;
             border-radius: 8px;
@@ -263,30 +265,30 @@
             justify-content: center;
             -webkit-justify-content: center;
             -ms-flex-pack: center;
-            font-size: $font-size-16;
-            font-weight: $font-weight-medium;
+            font-size: utils.$font-size-16;
+            font-weight: utils.$font-weight-medium;
             flex-direction: column;
             margin-right: 14px;
-            color: $white;
-            @include respond-below(sm) {
+            color: utils.$white;
+            @include utils.respond-below(sm) {
                 width: 50px;
                 height: 50px;
                 margin-right: 5px;
             }
             span {
-                color: $white;
-                font-size: $font-size-32;
+                color: utils.$white;
+                font-size: utils.$font-size-32;
                 line-height: normal;
                 padding-bottom: 8px;
                 margin-bottom: 8px;
                 border-bottom: 1px solid #FFFFFF;
-                font-weight: $font-weight-bold;
-                @include respond-below(sm) {
-                    font-size: $font-size-20;
+                font-weight: utils.$font-weight-bold;
+                @include utils.respond-below(sm) {
+                    font-size: utils.$font-size-20;
                 }
             }
             &.seperate-dot {
-                color: $secondary;
+                color: utils.$secondary;
                 width: auto;
                 height: auto;
                 border: 0;

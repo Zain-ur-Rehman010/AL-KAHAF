@@ -1,36 +1,38 @@
+@use "../utils";
+
 
 .pricing-plan-sec{
     position: relative;
     padding: 60px 0;
-    @include respond-below(lg){
+    @include utils.respond-below(lg){
         padding: 50px 0;
     }
     h2 {
-        font-size: $font-size-32;
+        font-size: utils.$font-size-32;
     }
     .pricing-cover {
         margin: 40px 0 60px;
     }
     .pricing-item {
         padding: 20px;
-        border: 1px solid $border-color;
+        border: 1px solid utils.$border-color;
         box-shadow: 0px 4px 4px 0px #D4D4D440;
         border-radius: 10px;
         h1 {
-            font-size: $font-size-38;
+            font-size: utils.$font-size-38;
         }
         p {
-            font-size: $font-size-14;
-            color: $gray-500;
+            font-size: utils.$font-size-14;
+            color: utils.$gray-500;
         }
     }
     .form-check-input{
-        background-color: $gray-100;
+        background-color: utils.$gray-100;
         border: none;
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e") !important;
     }
     .form-check-input:checked {
-        background-color: $primary;
+        background-color: utils.$primary;
         background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e") !important;
     }
     .form-check-input:focus {
@@ -39,40 +41,40 @@
      table{
         tr{
             th{
-                font-size: $font-size-18;
+                font-size: utils.$font-size-18;
                 border: none;
                 padding: 12px 15px;
-                @include respond-below(lg){
-                    font-size: $font-size-16;
+                @include utils.respond-below(lg){
+                    font-size: utils.$font-size-16;
                 }
             }
             td{
-                border: 1px solid $gray-100;
+                border: 1px solid utils.$gray-100;
                 padding: 12px 15px;
-                color: $gray-900;
-                font-size: $font-size-16;
-                font-weight: $font-weight-medium;
-                @include respond-below(lg){
-                    font-size: $font-size-14;
+                color: utils.$gray-900;
+                font-size: utils.$font-size-16;
+                font-weight: utils.$font-weight-medium;
+                @include utils.respond-below(lg){
+                    font-size: utils.$font-size-14;
                 }
             }
             &.basic{
                 td{
-                    font-size: $font-size-18;
-                    color: $gray-900;
-                    @include respond-below(lg){
-                        font-size: $font-size-16;
+                    font-size: utils.$font-size-18;
+                    color: utils.$gray-900;
+                    @include utils.respond-below(lg){
+                        font-size: utils.$font-size-16;
                     }
                 }
             }
         }
      }
      .btn-start-free{
-        color: $gray-900;
-        background-color: $light;
+        color: utils.$gray-900;
+        background-color: utils.$light;
         &:hover{
-            background-color: $secondary;
-            color: $white;
+            background-color: utils.$secondary;
+            color: utils.$white;
         }
      }
 }

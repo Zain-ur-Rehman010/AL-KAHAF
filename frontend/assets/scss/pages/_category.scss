@@ -1,3 +1,5 @@
+@use "../utils";
+
 /*=============================
     Category
 ===============================*/
@@ -5,12 +7,12 @@
 
 .categories {
     &-item {
-        border: 1px solid $border-color;
+        border: 1px solid utils.$border-color;
         padding: 16px;
         text-align: center;
-        @include rounded(10px);
+        @include utils.rounded(10px);
         margin-bottom: 24px;
-        background: $white;
+        background: utils.$white;
         .categories-img {
             width: 68px;
             height: 68px;
@@ -18,12 +20,12 @@
             align-items: center;
             justify-content: center;
             border-radius: 20px;
-            background: $light-900;
+            background: utils.$light-900;
             margin-bottom: 16px;
-            border: 1px solid $white;
+            border: 1px solid utils.$white;
         }
         h6 {
-            font-size: $font-size-16;
+            font-size: utils.$font-size-16;
         }
         &:hover {
             cursor: pointer;
@@ -32,11 +34,11 @@
             }        
         }
         p {
-            font-size: $font-size-14;
+            font-size: utils.$font-size-14;
         }
         &-two {
             padding: 20px;
-            @include transition(all 0.3s ease 0s);    
+            @include utils.transition(all 0.3s ease 0s);    
             .categories-icon {
                 display: block;
                 margin-bottom: 24px;
@@ -48,30 +50,30 @@
                 margin-bottom: 4px;
             }
             p {
-                font-size: $font-size-14;
-                font-weight: $font-weight-medium;
+                font-size: utils.$font-size-14;
+                font-weight: utils.$font-weight-medium;
             }
             &:hover {
-                background: $primary;
-                @include transition(all 0.3s ease 0s);    
+                background: utils.$primary;
+                @include utils.transition(all 0.3s ease 0s);    
                 h5 {
                     a {
-                        color: $white;
+                        color: utils.$white;
                     }
                 }
                 p {
-                    color: $white;
+                    color: utils.$white;
                 }
             }
         }
         &-three {
             padding: 20px;
-            border: 1px solid $gray-100;
+            border: 1px solid utils.$gray-100;
             img {
                 margin-bottom: 20px;
             }
             .title {
-                font-weight: $font-weight-medium;
+                font-weight: utils.$font-weight-medium;
                 text-align: center;
             }
             &:hover {
@@ -81,10 +83,10 @@
             }
         }
         &-four {
-            box-shadow: $box-shadow;
+            box-shadow: utils.$box-shadow;
             padding: 24px;
             margin-bottom: 24px;
-            @include transition(0.7s);	
+            @include utils.transition(0.7s);	
             position: relative;	
             text-align: left;
             z-index: 1;
@@ -105,30 +107,30 @@
                 }
             }	
             .title {
-                font-size: $font-size-20;
-                @include transition(0.7s);	
+                font-size: utils.$font-size-20;
+                @include utils.transition(0.7s);	
                 margin-bottom: 4px;
-                @include respond-below(lg) {
-                    font-size: $font-size-18;
+                @include utils.respond-below(lg) {
+                    font-size: utils.$font-size-18;
                 }
-                @include respond-below(md) {
-                    font-size: $font-size-16;
+                @include utils.respond-below(md) {
+                    font-size: utils.$font-size-16;
                 }
             }
             &:hover {
-                background: $gray-400;
+                background: utils.$gray-400;
                 cursor: pointer;
-                border: 1px solid $gray-400;
-                @include transition(0.7s);	
+                border: 1px solid utils.$gray-400;
+                @include utils.transition(0.7s);	
                 .title {
                     a {
-                        color: $white;
-                        @include transition(0.7s);	
+                        color: utils.$white;
+                        @include utils.transition(0.7s);	
                     }
                 }
                 p {
-                    color: $white;
-                    @include transition(0.7s);	
+                    color: utils.$white;
+                    @include utils.transition(0.7s);	
                 }
             }
         }
@@ -136,7 +138,7 @@
             display: flex;
             padding: 20px;
             align-items: center;
-            @include transition(0.7s);
+            @include utils.transition(0.7s);
             text-align: center;
             margin-bottom: 40px;
             .categories-icon {
@@ -145,31 +147,31 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background: $light-900;
+                background: utils.$light-900;
                 border-radius: 5px;
                 margin: 0 auto 12px;
             }
             h3 {
-                font-weight: $font-weight-bold;
-			    font-size: $font-size-18;
+                font-weight: utils.$font-weight-bold;
+			    font-size: utils.$font-size-18;
             }
             &:hover {
-                background: $primary;
+                background: utils.$primary;
                 cursor: pointer;
-                border: 1px solid $primary;
+                border: 1px solid utils.$primary;
                 box-shadow: 0px 1px 4px rgb(0 0 0 / 20%);
-                @include transition(0.7s);
+                @include utils.transition(0.7s);
                 h3 {
-                    color: $white;
-                    @include transition(0.7s);
+                    color: utils.$white;
+                    @include utils.transition(0.7s);
                     a {
-                        color: $white;
+                        color: utils.$white;
                     }
                 }
                 .instructors-info {
                     p {
-                        color: $white;
-                        @include transition(0.7s);
+                        color: utils.$white;
+                        @include utils.transition(0.7s);
                     }
                 }
             }
@@ -182,17 +184,17 @@
                     font-weight: 500;
                     font-size: 14px;
                     margin-bottom: 0;
-                    @include transition(0.7s);
+                    @include utils.transition(0.7s);
                 }
             }
             .category-info {
-                border-bottom: 1px solid $border-color;
+                border-bottom: 1px solid utils.$border-color;
                 margin-bottom: 15px;
                 padding-bottom: 15px;
             }
         }
         &-six {            
-            background: $light-900;
+            background: utils.$light-900;
             border: 1px solid transparent;
             padding: 24px;
             margin-bottom: 0;
@@ -201,13 +203,13 @@
                 text-align: center;
                 .icon-bg {
                     position: relative;
-                    background: $primary;
+                    background: utils.$primary;
                     border-radius: 75px 30px 75px 30px;
                     width: 90px;
                     margin: auto auto 0;
                 }
                 img {
-                    background: $white;
+                    background: utils.$white;
                     padding: 20px;
                     align-items: center;
                     justify-content: center;
@@ -216,9 +218,9 @@
                 }
             }
             .title {
-                font-size: $font-size-20;
-                @include respond-below(md) {
-                    font-size: $font-size-18;
+                font-size: utils.$font-size-20;
+                @include utils.respond-below(md) {
+                    font-size: utils.$font-size-18;
                 }
             }
             p {
@@ -231,32 +233,32 @@
                 transition: all 0.4s ease 0s;
                 width: 30px;
                 height: 30px;
-                background: $primary;
+                background: utils.$primary;
                 border-radius: 50%;
                 -webkit-transition: 0.7s;
                 -moz-transition: 0.7s;
                 -o-transition: 0.7s;
                 transition: 0.7s;
                 margin: 0 auto;
-                color: $white;
-                font-size: $font-size-12;
+                color: utils.$white;
+                font-size: utils.$font-size-12;
             }
             &:hover {
-                border: 1px solid $primary;
-                background: $primary;
+                border: 1px solid utils.$primary;
+                background: utils.$primary;
                 border-radius: 10px;
                 transition-duration: 0s;
                 .icon-bg {
-                    background: $secondary;
+                    background: utils.$secondary;
                 }
                 h3 {
-                    color: $white;
+                    color: utils.$white;
                 }
                 p{
-                    color: $light;
+                    color: utils.$light;
                 }
                 .view-icon {
-                    background: $secondary;
+                    background: utils.$secondary;
                 }
             }
         }

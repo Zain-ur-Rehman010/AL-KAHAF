@@ -1,77 +1,79 @@
+@use "../utils";
+
 .badge {
     &.badge-primary {
-        background: rgba($primary, 0.1);
-        box-shadow: 0 1px 1px rgba($primary, 0.5);
-        color: $primary;        
+        background: rgba(utils.$primary, 0.1);
+        box-shadow: 0 1px 1px rgba(utils.$primary, 0.5);
+        color: utils.$primary;        
     }
     &.badge-skyblue{
-        background-color: $skyblue;
-        color: $white;
+        background-color: utils.$skyblue;
+        color: utils.$white;
     }
     &.badge-pink{
-        background-color: $pink;
-        color: $white;
+        background-color: utils.$pink;
+        color: utils.$white;
     }
     &.badge-dark-transparent {
-        background: $dark-transparent;
-        color: $gray-900;
+        background: utils.$dark-transparent;
+        color: utils.$gray-900;
     }
     &.badge-secondary-transparent {
-        background: $secondary-transparent;
-        color: $secondary;
+        background: utils.$secondary-transparent;
+        color: utils.$secondary;
     }
     &.badge-pink-transparent {
-        background: $pink-transparent;
-        color: $pink;
+        background: utils.$pink-transparent;
+        color: utils.$pink;
     }
     &.badge-secondary-transparent {
-        background: $secondary-transparent;
-        color: $secondary;
+        background: utils.$secondary-transparent;
+        color: utils.$secondary;
     }
     &.badge-success-transparent {
-        background: $success-100;
-        color: $success;
+        background: utils.$success-100;
+        color: utils.$success;
     }
     &.badge-purple-transparent {
-        background:$purple-transparent;
-        color: $purple;
+        background:utils.$purple-transparent;
+        color: utils.$purple;
     }
     &.badge-warning-transparent {
-        background:$warning-transparent;
-        color: $warning;
+        background:utils.$warning-transparent;
+        color: utils.$warning;
     }
     &.badge-danger-transparent {
-        background:$danger-transparent;
-        color: $danger;
+        background:utils.$danger-transparent;
+        color: utils.$danger;
     }
     &.badge-info-transparent {
-        background:$info-transparent;
-        color: $info;
+        background:utils.$info-transparent;
+        color: utils.$info;
     }
 }
-@each $color, $value in $theme-colors {
+@each $color, $value in utils.$theme-colors {
     .badge {
         &.badge-#{$color} {
             background: #{$value};
-            color: $white;
+            color: utils.$white;
         }
         &.badge-soft-#{$color} {
             background: rgba($value, 0.1);
             color: $value;
         }
         &.badge-light {
-            color: $gray-900 !important;
+            color: utils.$gray-900 !important;
         }
     }
 }
 .badge{
     padding: .25rem .45rem;
-    font-weight: $font-weight-semibold;
+    font-weight: utils.$font-weight-semibold;
     letter-spacing: 0.5px;
-    border-radius: $border-radius;
+    border-radius: utils.$border-radius;
     &.badge-xs {
         font-size: 10px;
-        font-weight: $font-weight-medium;
+        font-weight: utils.$font-weight-medium;
         padding: 0px 5px;
         line-height: 18px;
     }
@@ -86,44 +88,44 @@
         line-height: 1.5;
     }
     &.badge-lg {
-        font-size: $font-size-14;
+        font-size: utils.$font-size-14;
         padding: 0px 10px;
         line-height: 30px;
     }
     &.badge-xl {
-        font-size: $font-size-16;
+        font-size: utils.$font-size-16;
         padding: 0px 15px;
         line-height: 35px;
     }
     &.badge-soft-skyblue {
-        background: $skyblue-100;
-        color: $skyblue;
+        background: utils.$skyblue-100;
+        color: utils.$skyblue;
     }
 }
 .badge.arrow {
     width: 20px;
     height: 20px;
-    background: $light-200;
-    color: $dark;
+    background: utils.$light-200;
+    color: utils.$dark;
     &:hover {
-        background: $primary;
-        color: $white;
+        background: utils.$primary;
+        color: utils.$white;
     }
 }
 .badge.bg-light.arrow:hover {
-    background: $dark !important;
+    background: utils.$dark !important;
 }
 .badge-primary-hover:hover {
-    background: $primary !important;
-    border-color: $primary !important;
-    color: $white !important;
+    background: utils.$primary !important;
+    border-color: utils.$primary !important;
+    color: utils.$white !important;
 }
 .badge-danger-hover:hover {
-    background: $danger !important;
-    border-color: $danger !important;
-    color: $white !important;
+    background: utils.$danger !important;
+    border-color: utils.$danger !important;
+    color: utils.$white !important;
 }
 .badge.badge-soft-purple {
-    background: $purple-100 !important;
-    color: $purple !important;
+    background: utils.$purple-100 !important;
+    color: utils.$purple !important;
 }

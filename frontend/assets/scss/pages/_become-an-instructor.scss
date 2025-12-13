@@ -1,39 +1,41 @@
+@use "../utils";
+
 h2.main-title{
-    font-size: $font-size-32;
-    @include respond-below(lg){
-    font-size: $font-size-28;
+    font-size: utils.$font-size-32;
+    @include utils.respond-below(lg){
+    font-size: utils.$font-size-28;
     }
-    @include respond-below(md){
-        font-size: $font-size-26;
+    @include utils.respond-below(md){
+        font-size: utils.$font-size-26;
     }
 }
 .share-your-knowledge {
     position: relative;
     padding: 80px 0;
-    @include respond-below(lg) {
+    @include utils.respond-below(lg) {
         padding: 50px 0;
     }
     .share-knowledge-content {
         padding: 133px 0 100px;
-        @include respond-below(lg) {
+        @include utils.respond-below(lg) {
             padding: 0;
         }
         .register-btn-1 {
             padding: 6px 16px;
-            background: $secondary;
-            color: $white;
+            background: utils.$secondary;
+            color: utils.$white;
             &:hover {
-                background: $primary;
-                color: $white;
+                background: utils.$primary;
+                color: utils.$white;
             }
         }
     }
     .btn-register {
-        background-color: $secondary;
-        color: $white;
+        background-color: utils.$secondary;
+        color: utils.$white;
         padding: 8px 16px;
         &:hover{
-            background-color: $primary;
+            background-color: utils.$primary;
         }
     }
 }
@@ -88,14 +90,14 @@ h2.main-title{
     position: relative;
     padding: 80px 0;
     text-align: center;
-    background: $light-900;
-    @include respond-below(lg){
+    background: utils.$light-900;
+    @include utils.respond-below(lg){
         padding: 50px 0 35px;
     }
     .share-knowledge-item-2{
-        background: $white;
-        border: 1px solid $border-color;
-        box-shadow: $box-shadow-xs-2;
+        background: utils.$white;
+        border: 1px solid utils.$border-color;
+        box-shadow: utils.$box-shadow-xs-2;
         padding: 1.5rem;
         border-radius: 10px;
     }
@@ -107,14 +109,14 @@ h2.main-title{
     .become-instructor-item-3 {
         padding: 20px;
         border-radius: 10px;
-        background: $white;
+        background: utils.$white;
         height: 113px;
     }
 }
 .register-sec{
     position: relative;
     padding: 80px 0 60px;
-    @include respond-below(lg){
+    @include utils.respond-below(lg){
         padding: 50px 0;
     }
    .toggle-passwords {
@@ -128,7 +130,7 @@ h2.main-title{
     }
     .register-section {
         padding: 20px;
-        background: $light-900;
+        background: utils.$light-900;
         border-radius: 10px;
     }
 }

@@ -1,3 +1,5 @@
+@use "../utils";
+
 /*============================
  12.dropdown
 ============================*/
@@ -10,9 +12,9 @@
 }
 .dropdown {
 	.dropdown-toggle {
-    font-weight: $font-weight-normal;
-    font-size: $font-size-14;
-    color: $gray-900;
+    font-weight: utils.$font-weight-normal;
+    font-size: utils.$font-size-14;
+    color: utils.$gray-900;
 		&:after {
       display: inline-block;
       margin-inline-start: 0.5rem;
@@ -21,70 +23,70 @@
       font-family: "Font Awesome 5 Free";
       border: 0;
       font-size: 0.75rem;
-      font-weight: $font-weight-semibold;
+      font-weight: utils.$font-weight-semibold;
 		}
 
 		&.btn-primary {
-			color: $white;
+			color: utils.$white;
 		}
     &.text-gray-6 {
       &.show {
-        color: $white !important;
-        background: $secondary !important;
+        color: utils.$white !important;
+        background: utils.$secondary !important;
         i {
-          color: $white !important;
+          color: utils.$white !important;
         }
         &::after {
-          color: $white !important;
+          color: utils.$white !important;
         }
       }
     }
 	}
 	.dropdown-menu {
     padding: 20px;
-		font-family: $font-family-primary;
+		font-family: utils.$font-family-primary;
 	}
 }
 .dropdown-menu {
-  border-color: $border-color;
-  box-shadow: $box-shadow-lg;
+  border-color: utils.$border-color;
+  box-shadow: utils.$box-shadow-lg;
   font-size: 0.875rem;
-  color: $gray-900;
-  background-color: $white;
+  color: utils.$gray-900;
+  background-color: utils.$white;
   padding: 0;
   z-index: 10;
-  @include rounded(10px);
+  @include utils.rounded(10px);
 }
 .dropdown-divider {
-  border-color: $border-color;
+  border-color: utils.$border-color;
 }
 .dropdown-item-text {
-  color: $text-color;
+  color: utils.$text-color;
 }
 .dropdown-header {
-  color: $text-color;
+  color: utils.$text-color;
 }
 .dropdown-item {
-  color: $gray-600;
+  color: utils.$gray-600;
   padding: 0.594rem 0.9375rem;
-  font-size: $font-size-14;
+  font-size: utils.$font-size-14;
 
   &.disabled,
   &:disabled {
-    color: $text-color;
+    color: utils.$text-color;
     opacity: 0.5;
   }
   &:not(.active) {
     &:hover,
     &:focus,
     &:active {
-      color: $white;
-      background-color: $secondary;
+      color: utils.$white;
+      background-color: utils.$secondary;
       border-radius: 5px;
     }
   }
   &.active {
-    background-color: $light-500;
+    background-color: utils.$light-500;
   }
 }
 .dropdown-toggle::after {
@@ -95,7 +97,7 @@
   font-family: "Font Awesome 5 Free";
   border: 0;
   font-size: 0.6rem;
-  font-weight: $font-weight-semibold;
+  font-weight: utils.$font-weight-semibold;
 }
 .dropup .dropdown-toggle::after {
   display: inline-block;
@@ -105,7 +107,7 @@
   font-family: "Font Awesome 5 Free";
   border: 0;
   font-size: 0.6rem;
-  font-weight: $font-weight-semibold;
+  font-weight: utils.$font-weight-semibold;
 }
 
 .dropup .dropdown-toggle::after {
@@ -116,7 +118,7 @@
   font-family: "Font Awesome 5 Free";
   border: 0;
   font-size: 0.6rem;
-  font-weight: $font-weight-semibold;
+  font-weight: utils.$font-weight-semibold;
 }
 .dropend .dropdown-toggle::after {
   display: inline-block;
@@ -126,7 +128,7 @@
   font-family: "Font Awesome 5 Free";
   border: 0;
   font-size: 0.6rem;
-  font-weight: $font-weight-semibold;
+  font-weight: utils.$font-weight-semibold;
 }
 .dropstart .dropdown-toggle::before {
   display: inline-block;
@@ -136,17 +138,17 @@
   font-family: "Font Awesome 5 Free";
   border: 0;
   font-size: 0.6rem;
-  font-weight: $font-weight-semibold;
+  font-weight: utils.$font-weight-semibold;
 }
 .btn.dropdown-toggle-split {
   opacity: 0.85;
 }
 
 .dropdown-menu-dark {
-  background-color: $dark;
+  background-color: utils.$dark;
   border-color: rgba(255, 255, 255, 0.1);
   li a {
-    color: $white;
+    color: utils.$white;
   }
 }
 .btn-list {
@@ -179,27 +181,27 @@
       &:focus,
       &:active,
       &.active {
-        color: $white;
+        color: utils.$white;
       }
     }
   }
   &.dropdown-menu-primary {
-    @include dropdown-menu-color($primary);
+    @include dropdown-menu-color(utils.$primary);
   }
   &.dropdown-menu-secondary {
-    @include dropdown-menu-color($secondary);
+    @include dropdown-menu-color(utils.$secondary);
   }
   &.dropdown-menu-warning {
-    @include dropdown-menu-color($warning);
+    @include dropdown-menu-color(utils.$warning);
   }
   &.dropdown-menu-info {
-    @include dropdown-menu-color($info);
+    @include dropdown-menu-color(utils.$info);
   }
   &.dropdown-menu-success {
-    @include dropdown-menu-color($success);
+    @include dropdown-menu-color(utils.$success);
   }
   &.dropdown-menu-danger {
-    @include dropdown-menu-color($danger);
+    @include dropdown-menu-color(utils.$danger);
   }
 }
 .dropdown-menu {
@@ -209,8 +211,8 @@
       &:focus,
       &:active,
       &.active {
-        background-color: rgba($primary, 0.1) !important;
-        color: $primary;
+        background-color: rgba(utils.$primary, 0.1) !important;
+        color: utils.$primary;
       }
     }
   }
@@ -220,8 +222,8 @@
       &:focus,
       &:active,
       &.active {
-        background-color: rgba($secondary, 0.1) !important;
-        color: $secondary;
+        background-color: rgba(utils.$secondary, 0.1) !important;
+        color: utils.$secondary;
       }
     }
   }
@@ -231,8 +233,8 @@
       &:focus,
       &:active,
       &.active {
-        background-color: rgba($warning, 0.1) !important;
-        color: $warning;
+        background-color: rgba(utils.$warning, 0.1) !important;
+        color: utils.$warning;
       }
     }
   }
@@ -242,8 +244,8 @@
       &:focus,
       &:active,
       &.active {
-        background-color: rgba($info, 0.1) !important;
-        color: $info;
+        background-color: rgba(utils.$info, 0.1) !important;
+        color: utils.$info;
       }
     }
   }
@@ -253,8 +255,8 @@
       &:focus,
       &:active,
       &.active {
-        background-color: rgba($success, 0.1) !important;
-        color: $success;
+        background-color: rgba(utils.$success, 0.1) !important;
+        color: utils.$success;
       }
     }
   }
@@ -264,8 +266,8 @@
       &:focus,
       &:active,
       &.active {
-        background-color: rgba($danger, 0.1) !important;
-        color: $danger;
+        background-color: rgba(utils.$danger, 0.1) !important;
+        color: utils.$danger;
       }
     }
   }
@@ -278,34 +280,34 @@
       &:focus,
       &:active,
       &.active {
-        color: $white;
+        color: utils.$white;
         background-color: $color !important;
       }
     }
   }
   &.dropmenu-light-primary {
-    background-color: rgba($secondary, 0.1);
-    @include dropmenu-light-color($primary);
+    background-color: rgba(utils.$secondary, 0.1);
+    @include dropmenu-light-color(utils.$primary);
   }
   &.dropmenu-light-secondary {
-    background-color: rgba($secondary, 0.1);
-    @include dropmenu-light-color($secondary);
+    background-color: rgba(utils.$secondary, 0.1);
+    @include dropmenu-light-color(utils.$secondary);
   }
   &.dropmenu-light-info {
-    background-color: rgba($info, 0.1);
-    @include dropmenu-light-color($info);
+    background-color: rgba(utils.$info, 0.1);
+    @include dropmenu-light-color(utils.$info);
   }
   &.dropmenu-light-warning {
-    background-color: rgba($warning, 0.1);
-    @include dropmenu-light-color($warning);
+    background-color: rgba(utils.$warning, 0.1);
+    @include dropmenu-light-color(utils.$warning);
   }
   &.dropmenu-light-success {
-    background-color: rgba($success, 0.1);
-    @include dropmenu-light-color($success);
+    background-color: rgba(utils.$success, 0.1);
+    @include dropmenu-light-color(utils.$success);
   }
   &.dropmenu-light-danger {
-    background-color: rgba($danger, 0.1);
-    @include dropmenu-light-color($danger);
+    background-color: rgba(utils.$danger, 0.1);
+    @include dropmenu-light-color(utils.$danger);
   }
 }
 .dropdown-divider {
@@ -317,9 +319,9 @@
 }
 .card-dropdown {
   & > a {
-      background: $white;
+      background: utils.$white;
       border-radius: 6px;
-      font-weight: $font-weight-normal;
+      font-weight: utils.$font-weight-normal;
       box-shadow: 0px 4.4px 20px -1px #1310220D;
       border: 0;
       display: -webkit-inline-box;
@@ -328,7 +330,7 @@
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
-      color: $gray-700;
+      color: utils.$gray-700;
       padding:10px 10px 10px 30px;
       position: relative;
       .cal-icon {
@@ -339,19 +341,19 @@
           z-index: 10;
       }
       i {
-          font-size: $font-size-16;
+          font-size: utils.$font-size-16;
           margin-right: 5px;
       }
       &[aria-expanded=true] {
           &::after {
-              @include transition(all 0.2s ease);
-              @include transform(rotate(180deg));
+              @include utils.transition(all 0.2s ease);
+              @include utils.transform(rotate(180deg));
           }
       }
   }
   .dropdown-menu {
       border: 0;
-      @include rounded(6px);
+      @include utils.rounded(6px);
       padding: 15px;
       box-shadow: 0px 4px 9px -1px #13102208;   
       li {
@@ -364,14 +366,14 @@
               align-items: center;
               padding: 10px;
               border-radius: 6px;
-              font-size: $font-size-14;
+              font-size: utils.$font-size-14;
               i {
-                  font-size: $font-size-16;
+                  font-size: utils.$font-size-16;
                   margin-right: 8px;
               }
               &:hover {
-                  background: $light-800;
-                  color:  $gray-800;;
+                  background: utils.$light-800;
+                  color:  utils.$gray-800;;
               }
           }
       }
@@ -388,9 +390,9 @@
         z-index: 99999;
         a {
             &.dropdown-item {
-                color: $gray-900;
-                font-size: $font-size-14;
-                font-weight: $font-weight-normal;
+                color: utils.$gray-900;
+                font-size: utils.$font-size-14;
+                font-weight: utils.$font-weight-normal;
                 display: flex;
                 align-items: center; 
                 padding: 8px 15px;                             
@@ -403,7 +405,7 @@
         svg {
             width: 14px;
             height: 14px;
-            color: $text-color;
+            color: utils.$text-color;
         }
     } 
 }

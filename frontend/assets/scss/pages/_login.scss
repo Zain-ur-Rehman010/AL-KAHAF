@@ -1,3 +1,5 @@
+@use "../utils";
+
 .login-content {
 	.login-bg {
 		background: #FEEEF0;
@@ -39,7 +41,7 @@
 			}
 		}
 		p {
-			font-size: $font-size-14;
+			font-size: utils.$font-size-14;
 		}
 	}
 	.slick-dots {
@@ -47,13 +49,13 @@
 			width: 10px;
 			height: 10px;
 			border-radius: 50px;
-			background: $gray-100;
+			background: utils.$gray-100;
 		}
 		.slick-active {
 			width: 50px;
 			height: 10px;
 			border-radius: 50px;
-			background: $secondary;
+			background: utils.$secondary;
 			button {
 				background: transparent;
 			}
@@ -99,27 +101,27 @@
 		}
 		.login-header {
 			margin-bottom: 80px;
-			@include respond-below(md) {
+			@include utils.respond-below(md) {
 				margin-bottom: 50px;
 			}
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				margin-bottom: 30px;
 			}
 
 		}
 		.topic {
 			margin-bottom: 40px;
-			@include respond-below(md) {
+			@include utils.respond-below(md) {
 				margin-bottom: 30px;
 			}
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				margin-bottom: 20px;
 			}
 		}
 
 		.form-control {
 			&:focus {
-				border-color: $secondary;
+				border-color: utils.$secondary;
 			}
 		}
 		.email-input {
@@ -143,7 +145,7 @@
 			margin-right: 8px;
 		}
 		.form-check-label {
-			font-weight: $font-weight-normal;
+			font-weight: utils.$font-weight-normal;
 		}
 
 		.form-control.otp {
@@ -171,7 +173,7 @@
 				content: "";
 				width: 180px;
 				height: 1px;
-				background: $gray-100;
+				background: utils.$gray-100;
 				left: 0;
 			}
 			&::before {
@@ -179,7 +181,7 @@
 				content: "";
 				width: 180px;
 				height: 1px;
-				background: $gray-100;
+				background: utils.$gray-100;
 				right: 0;
 			}
 		}
@@ -223,20 +225,20 @@
 	}
 
 	.link-1 {
-		font-size: $font-size-14;
-		color: $secondary;
-		font-weight: $font-weight-normal;
+		font-size: utils.$font-size-14;
+		color: utils.$secondary;
+		font-weight: utils.$font-weight-normal;
 		text-decoration: underline;
 		&:hover {
-			color: $primary;
+			color: utils.$primary;
 		}
 	}
 	.link-2 {
-		color: $secondary;
-		font-weight: $font-weight-normal;
-		font-size: $font-size-14;
+		color: utils.$secondary;
+		font-weight: utils.$font-weight-normal;
+		font-size: utils.$font-size-14;
 		&:hover {
-			color: $primary;
+			color: utils.$primary;
 		}
 	}
 
@@ -282,10 +284,10 @@
 		width: 100%;
 		.lock-header {
 			margin-bottom: 80px;
-			@include respond-below(md) {
+			@include utils.respond-below(md) {
 				margin-bottom: 50px;
 			}
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				margin-bottom: 30px;
 			}
 		}
@@ -296,7 +298,7 @@
 		}
 		input {
 			&:focus {
-				border-color: $secondary;
+				border-color: utils.$secondary;
 			}
 		}
 	}

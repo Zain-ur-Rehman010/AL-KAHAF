@@ -1,3 +1,5 @@
+@use "../utils";
+
 .avatar {
     position: relative;
     height: 2.625rem;
@@ -5,16 +7,16 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: $border-radius;
-    color: $white;
-    font-weight: $font-weight-medium;
+    border-radius: utils.$border-radius;
+    color: utils.$white;
+    font-weight: utils.$font-weight-medium;
     a.badge:hover {
-        color: $white;
+        color: utils.$white;
     }
     img {
         width: 100%;
         height: 100%;
-        border-radius: $border-radius;
+        border-radius: utils.$border-radius;
     }
     &.avatar-rounded {
         border-radius: 50%;
@@ -35,7 +37,7 @@
         width: 1.4rem;
         height: 1.4rem;
         font-size: 0.625rem;
-        border: 2px solid $white;
+        border: 2px solid utils.$white;
         border-radius: 50% !important;
         display: flex;
         align-items: center;
@@ -50,15 +52,15 @@
             border-radius: 50%;
             inset-inline-end: 0;
             inset-block-end: 0;
-            border: 2px solid $white !important;
+            border: 2px solid utils.$white !important;
             z-index: 1;
         }
     }
     &.online:before {
-        background-color: $success;
+        background-color: utils.$success;
     }
     &.offline:before {
-        background-color: $gray-500;
+        background-color: utils.$gray-500;
     }
     &.avatar-xs {
         width: 1.25rem;
@@ -262,7 +264,7 @@
 		height: 2.625rem;
 		.avatar-img,
 		>.initial-wrap {
-			border:2px solid $white;
+			border:2px solid utils.$white;
 			font-size: .9rem;
 		}
 	}

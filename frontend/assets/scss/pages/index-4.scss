@@ -1,18 +1,20 @@
+@use "../utils";
+
 .home-4 {
 	.banner-form {
 		margin-bottom: 30px;
 		.input-group {
-			background: $white;
+			background: utils.$white;
 			padding-left: 0;
 			align-items: center;
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				display: block;
 			}
 		}
 		.form-inner1 {
-			background: $white;
-			border: 1px solid $border-color;
-			box-shadow: $drop-shadow;
+			background: utils.$white;
+			border: 1px solid utils.$border-color;
+			box-shadow: utils.$drop-shadow;
 			border-radius: 10px;
 			max-width: 856px;
 			padding: 10px;
@@ -23,11 +25,11 @@
 				border: 0;
 				align-items: center;
 				display: flex;
-				background: $white;
+				background: utils.$white;
 				height: 40px;
-				border-right: 1px solid $border-color;
+				border-right: 1px solid utils.$border-color;
 				border-radius: 0;
-				@include respond-below(sm) {
+				@include utils.respond-below(sm) {
 					border: 0;
 				}
 				
@@ -44,7 +46,7 @@
 			border: 0;
 			background: transparent;
 			margin-right: 10px;
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				width: 100%;
 				margin: 0 0 5px 0;
 			}
@@ -53,35 +55,35 @@
 			border-radius: 5px !important;
 			min-width: 105px;
 			padding: 12px 15px;
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				width: 100%;
 				padding: 10px;
-				font-size: $font-size-14;
+				font-size: utils.$font-size-14;
 			}
 		}
 	}
 	.banner-content {
 		h1 {
-			color: $primary;
+			color: utils.$primary;
 			max-width: 627px;
 			margin-bottom: 15px;
-			@include respond-below(xxl) {
-				font-size: $font-size-54;
+			@include utils.respond-below(xxl) {
+				font-size: utils.$font-size-54;
 			}
-			@include respond-below(xl) {
-				font-size: $font-size-40;
+			@include utils.respond-below(xl) {
+				font-size: utils.$font-size-40;
 			}
-			@include respond-below(lg) {
-				font-size: $font-size-36;
+			@include utils.respond-below(lg) {
+				font-size: utils.$font-size-36;
 			}
-			@include respond-below(md) {
-				font-size: $font-size-28;
+			@include utils.respond-below(md) {
+				font-size: utils.$font-size-28;
 			}
 		}
 		h6 {
-			font-size: $font-size-18;
-			font-weight: $font-weight-bold;
-			color: $secondary;
+			font-size: utils.$font-size-18;
+			font-weight: utils.$font-weight-bold;
+			color: utils.$secondary;
 			margin-bottom: 15px;
 			text-decoration: underline;
 		}
@@ -94,24 +96,24 @@
 			margin-bottom: 4px;
 			font-weight: 500;
 			font-size: 16px;
-			color: $gray-900;
+			color: utils.$gray-900;
 		}
 		.rating {
 			i {
-				font-size: $font-size-14;
+				font-size: utils.$font-size-14;
 				margin-right: 4px;
 				&.filled {
-					color: $warning;
+					color: utils.$warning;
 				}
 			}
 			span {
-				font-size: $font-size-14;
-				font-weight: $font-weight-medium;
+				font-size: utils.$font-size-14;
+				font-weight: utils.$font-weight-medium;
 			}
 		}
 	}
 	.shapes {		
-		@include respond-below(sm) {
+		@include utils.respond-below(sm) {
 			display: none;
 		}
 	}
@@ -163,8 +165,8 @@
 		}
 	}
 	.about-image {
-		background: $white;
-		box-shadow: $box-shadow;
+		background: utils.$white;
+		box-shadow: utils.$box-shadow;
 		border-radius: 10px;
 		padding: 20px;
 		-webkit-transition: all 1.5s;
@@ -187,7 +189,7 @@
 			li {
 				position: relative;
 				padding-left: 28px;
-				font-weight: $font-weight-medium;
+				font-weight: utils.$font-weight-medium;
 				margin-bottom: 16px;
 				&:last-child {
 					margin-bottom: 0;
@@ -197,10 +199,10 @@
 					font-family: 'iconsax' !important;
 					position: absolute;
 					top: 50%;
-					@include transform(translateY(-50%));
+					@include utils.transform(translateY(-50%));
 					left: 0;
-					color: $success;
-					font-size: $font-size-20;
+					color: utils.$success;
+					font-size: utils.$font-size-20;
 				}
 			}
 		}
@@ -213,7 +215,7 @@
 		position: relative;
 		padding: 60px 0 60px;
 		width: 100%;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 		.section-header {
@@ -227,7 +229,7 @@
 	}
 	.trending-course-sec {
 		padding: 60px 0 60px;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 	}
@@ -237,7 +239,7 @@
 	.about-section {
 		padding: 60px 0 60px;
 		position: relative;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 		.about-bg {
@@ -253,7 +255,7 @@
 				position: absolute;
 				left: 50%;
 				top: 50%;
-				@include transform(translate(-50%, -50%));
+				@include utils.transform(translate(-50%, -50%));
 				width: 350px;
 				height: 350px;
 				z-index: -1;
@@ -270,7 +272,7 @@
 		.stylist-gallery {
 			position: relative;
 			padding-left: 24px;
-			@include respond-below(lg) {
+			@include utils.respond-below(lg) {
 				padding-left: 0;
 			}
 			.image-1 {
@@ -296,28 +298,28 @@
 	.about-image {
 		&.count-one {
 			h4 {
-				color: $success;
+				color: utils.$success;
 			}
 		}
 		&.count-two {
 			h4 {
-				color: $secondary;
+				color: utils.$secondary;
 			}
 		}
 		&.count-three {
 			h4 {
-				color: $warning;
+				color: utils.$warning;
 			}
 		}
 		&.count-four {
 			h4 {
-				color: $primary;
+				color: utils.$primary;
 			}
 		}
 	}
 	.count-content-three {
 		p {
-			font-weight: $font-weight-medium;
+			font-weight: utils.$font-weight-medium;
 		}
 	}
 	.about-content {
@@ -327,7 +329,7 @@
 		.about-img {
 			margin-bottom: 24px;
 			img {
-				@include rounded(10px);
+				@include utils.rounded(10px);
 			}
 		}
 	}
@@ -341,7 +343,7 @@
 	.featured-courses-sec {
 		padding: 60px 0px 60px;
 		position: relative;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 	}
@@ -352,7 +354,7 @@
 	}
 	.skills-item {
 		margin-bottom: 40px;
-		border-bottom: 1px solid $border-color;
+		border-bottom: 1px solid utils.$border-color;
 		padding-bottom: 40px;
 		&:last-child {
 			padding: 0;
@@ -361,8 +363,8 @@
 		}
 	}
 	.skills-wrap {
-		background: $light-900;
-		@include rounded(10px);
+		background: utils.$light-900;
+		@include utils.rounded(10px);
 		padding: 50px;
 		h3 {
 			margin-bottom: 8px;
@@ -372,7 +374,7 @@
 		}
 		ul {
 			li {
-				font-weight: $font-weight-medium;
+				font-weight: utils.$font-weight-medium;
 				margin-bottom: 16px;
 			}
 		}
@@ -380,7 +382,7 @@
 			position: relative;
 			margin-left: 50px;
 			& > img {
-				@include rounded(10px);
+				@include utils.rounded(10px);
 			}
 			.joing-icon-award {
 				width: 100px;
@@ -388,16 +390,16 @@
 				position: absolute;
 				bottom: 25px;
 				left: -50px;
-				@include rounded(10px);
+				@include utils.rounded(10px);
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				@include respond-below(sm) {
+				@include utils.respond-below(sm) {
 					width: 60px;
 					height: 60px;
 				}
 				img {
-					@include respond-below(sm) {
+					@include utils.respond-below(sm) {
 						width: 24px;
 					}
 				}
@@ -425,34 +427,34 @@
 	}
 	.master-skills-sec {
 		padding: 60px 0 60px;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 	}
 	.course-count-two {
 		margin-left: 0 !important;
 		box-shadow: 0px 4px 24px 0px #DCDCDC40;
-		@include rounded(10px);
+		@include utils.rounded(10px);
 		padding: 24px;
-		background: $white;
+		background: utils.$white;
 		h4 {
-			font-size: $font-size-28;
-			font-weight: $font-weight-bold;
+			font-size: utils.$font-size-28;
+			font-weight: utils.$font-weight-bold;
 			margin-bottom: 10px;
 		}
 		p {
-			font-weight: $font-weight-medium;
+			font-weight: utils.$font-weight-medium;
 			margin-bottom: 0;
 		}
 	}
 	.feature-instructors-sec {
-		background: $white;
+		background: utils.$white;
 		padding: 60px 0 60px;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 		.featured-img {
-			background: $white;
+			background: utils.$white;
 			box-shadow: 0px 4px 4px rgba(159, 159, 159, 0.25);
 			border-radius: 50%;
 			padding: 10px;
@@ -464,14 +466,14 @@
 			}
 		}
 		.course-info {
-			border-bottom: 1px solid $border-color;
+			border-bottom: 1px solid utils.$border-color;
 			padding: 0;
 			margin: 0;
 		}
 		.student-count {
 			padding: 20px 0 0;
 			i {
-				color: $secondary;
+				color: utils.$secondary;
 			}
 		}
 	}
@@ -485,36 +487,36 @@
 	}
 	.knowledge-sec {
 		width: 100%;
-		background: $light-700;
+		background: utils.$light-700;
 		.joing-content {
 			margin-left: 24px;
-			@include respond-below(md) {
+			@include utils.respond-below(md) {
 				margin-left: 16px;
 			}
 		}
 		.joing-group {
 			padding: 30px;
-			@include respond-below(xl) {
+			@include utils.respond-below(xl) {
 				padding: 24px;
 			}
-			@include respond-below(lg) {
+			@include utils.respond-below(lg) {
 				padding: 40px;
 			}
-			@include respond-below(md) {
+			@include utils.respond-below(md) {
 				padding: 30px;
 			}
 		}
 		.section-header {
 			h2 {
 				max-width: 520px;
-				@include respond-below(xl) {
-					font-size: $font-size-30;
+				@include utils.respond-below(xl) {
+					font-size: utils.$font-size-30;
 				}
-				@include respond-below(lg) {
-					font-size: $font-size-28;
+				@include utils.respond-below(lg) {
+					font-size: utils.$font-size-28;
 				}
-				@include respond-below(md) {
-					font-size: $font-size-24;
+				@include utils.respond-below(md) {
+					font-size: utils.$font-size-24;
 				}
 			}
 		}
@@ -525,7 +527,7 @@
 			height: 777px;
 			background-size: cover;
 			background-position: center center;			
-			@include respond-below(lg) {
+			@include utils.respond-below(lg) {
 				display: none;
 			}
 		}
@@ -540,7 +542,7 @@
 				display: flex;
 				display: -ms-flexbox;
 				margin-bottom: 45px;
-				@include respond-below(xl) {
+				@include utils.respond-below(xl) {
 					margin-bottom: 20px;
 				}
 			}
@@ -561,7 +563,7 @@
 				width: 80px;
 				height: 80px;
 				flex-shrink: 0;
-				@include respond-below(lg) {
+				@include utils.respond-below(lg) {
 					width: 55px;
 					height: 55px;
 				}
@@ -573,10 +575,10 @@
 	}
 	.real-reviews-sec {
 		position: relative;
-		background: $light-300;
+		background: utils.$light-300;
 		padding: 60px 0 60px;		
 		z-index: 1;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 		.review-bg {
@@ -586,7 +588,7 @@
 			z-index: -1;
 			width: 350px;
 			height: 350px;
-			@include respond-below(lg) {
+			@include utils.respond-below(lg) {
 				display: none;
 			}
 		}
@@ -594,7 +596,7 @@
 	.reviews-img {
 		position: relative;
 		padding-right: 50px;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			display: none;
 		}
 		.review-icon {
@@ -618,7 +620,7 @@
 	}
 	.real-reviews-group {
 		padding: 0 0 60px;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding-bottom: 50px;
 		}
 	}
@@ -630,14 +632,14 @@
 		margin-top: 0;
 		cursor: pointer;
 		border: 0;
-		color: $gray-700;
+		color: utils.$gray-700;
 		margin-bottom: 0px;
 		transform: rotate(0deg);
 		font-size: 20px;
 	}
 	.slide-nav-8 button.owl-next:hover,
 	.slide-nav-8 button.owl-prev:hover {
-		color: $secondary;
+		color: utils.$secondary;
 	}
 	.real-reviews .owl-nav button.owl-next span,
 	.real-reviews .owl-nav button.owl-prev span {
@@ -659,7 +661,7 @@
 	}
 	.real-reviews-grid {
 		margin-bottom: 60px;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			margin-bottom: 24px;
 		}
 		.review-content {
@@ -672,13 +674,13 @@
 		}
 		.review-info {
 			h5 {
-				font-weight: $font-weight-semibold;
+				font-weight: utils.$font-weight-semibold;
 				margin-bottom: 10px;
 			}
 			h6 {
-				font-weight: $font-weight-semibold;
-				font-size: $font-size-16;
-				color: $secondary;
+				font-weight: utils.$font-weight-semibold;
+				font-size: utils.$font-size-16;
+				color: utils.$secondary;
 			}
 		}
 	}
@@ -686,10 +688,10 @@
 		margin-bottom: 50px;
 	}
 	.latest-blog-sec {
-		background: $white;
+		background: utils.$white;
 		padding: 60px 0 60px;		
 		z-index: 1;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 		.blog-bg {
@@ -697,7 +699,7 @@
 			right: 0;
 			bottom: 60px;
 			z-index: -1;
-			@include respond-below(lg) {
+			@include utils.respond-below(lg) {
 				display: none;
 			}
 		}
@@ -766,41 +768,41 @@
 		-o-transition: 0.7s;
 		transition: 0.7s;
 		.category-name {
-			font-weight: $font-weight-semibold;
-			background: $success;
+			font-weight: utils.$font-weight-semibold;
+			background: utils.$success;
 			margin-bottom: 17px;
 			padding: 4px 10px;
-			@include rounded(4px);
+			@include utils.rounded(4px);
 			display: inline-block;
-			color: $white;
+			color: utils.$white;
 		}
 		.title {
-			font-size: $font-size-24;
+			font-size: utils.$font-size-24;
 			margin-bottom: 17px;
-			color: $white;
+			color: utils.$white;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
             text-overflow: ellipsis;
-			@include respond-below(lg) {
-				font-size: $font-size-18;
+			@include utils.respond-below(lg) {
+				font-size: utils.$font-size-18;
 			}
-			@include respond-below(md) {
-				font-size: $font-size-16;
+			@include utils.respond-below(md) {
+				font-size: utils.$font-size-16;
 			}
 		}
 		.blog-date {
 			display: flex;
 			align-items: center;
-			color: $white;
+			color: utils.$white;
 			i {
 				margin-right: 5px;
 			}
 		}
 	}
 	.blog-student-count {
-		color: $white;
+		color: utils.$white;
 	}
 	.more-details {
 		margin-top: 16px;
@@ -815,30 +817,30 @@
 }
 .topcategory-sec {
 	padding: 60px 0px 60px;
-	background: $light-300;
+	background: utils.$light-300;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
 	position: relative;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 }
 .vision-section {
-	background: $primary;
+	background: utils.$primary;
 	padding: 60px 0;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 	.vision-item {
-		background: $white;
-		@include rounded(10px);
+		background: utils.$white;
+		@include utils.rounded(10px);
 		padding: 24px;
 		display: flex;
 		align-items: center;
 		.vision-icon {
-			background: $light;
-			@include rounded(10px);
+			background: utils.$light;
+			@include utils.rounded(10px);
 			display: flex;
 			align-items: center;
 			justify-content: center;
@@ -848,11 +850,11 @@
 			flex-shrink: 0;
 		}
 		p {
-			font-weight: $font-weight-medium;
+			font-weight: utils.$font-weight-medium;
 		}
 	}
 }
 .accordion-item {
-	background: $white;
-	border-color: $border-color;
+	background: utils.$white;
+	border-color: utils.$border-color;
 }

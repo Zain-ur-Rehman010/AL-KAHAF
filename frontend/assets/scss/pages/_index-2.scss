@@ -1,3 +1,5 @@
+@use "../utils";
+
 
 .section-header {
     margin-bottom: 40px;
@@ -5,9 +7,9 @@
         display: inline-flex;
         padding: 5px 20px;
         border-radius: 40px;
-        background: $secondary-transparent;
-        color: $secondary;
-        font-weight: $font-weight-medium;
+        background: utils.$secondary-transparent;
+        color: utils.$secondary;
+        font-weight: utils.$font-weight-medium;
         margin-bottom: 15px;
     }
     h2 {
@@ -15,11 +17,11 @@
     }
 }
 .favorite-course {
-    background: $white;
+    background: utils.$white;
     padding: 60px 0;
     position: relative;
     z-index: 1;
-    @include respond-below(md) {
+    @include utils.respond-below(md) {
         padding: 40px 0;
     }  
     .bg-01 {
@@ -29,7 +31,7 @@
         width: 400px;
     height: 400px;
     z-index: -1;
-        @include respond-below(lg) {
+        @include utils.respond-below(lg) {
             display: none;
         }
     }
@@ -44,32 +46,32 @@
                 width: 7px;
                 height: 7px;
                 border-radius: 10px;
-                background: $light;
+                background: utils.$light;
                 margin-right: 4px;
             }
             .owl-dot.active {
                 width: 7px;
                 height: 7px;
                 border-radius: 10px;
-                background: $secondary;
+                background: utils.$secondary;
             }
         }
     }
 }
 .benefits-section {
-    background: url('../img/bg/benefit-bg.png') $dark;
+    background: url('../img/bg/benefit-bg.png') utils.$dark;
     background-size: cover;
     background-repeat: no-repeat;
     padding: 60px 0;
-    @include respond-below(md) {
+    @include utils.respond-below(md) {
         padding: 40px 0;
     }
     .section-badge {
-        background: $gray-800;
+        background: utils.$gray-800;
     }
     .section-header {
         margin-bottom: 60px;
-        @include respond-below(lg) {
+        @include utils.respond-below(lg) {
             margin-bottom: 40px;
         }
     }
@@ -83,8 +85,8 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        background: $gray-800;
-        color: $white;
+        background: utils.$gray-800;
+        color: utils.$white;
         border-radius: 80px;
         margin-bottom: 16px;
         img {
@@ -93,20 +95,20 @@
     }
     .title {
         margin-bottom: 16px;
-        color: $white;
+        color: utils.$white;
     }
     &:hover {
         .benefits-img {
-            background: $secondary;
+            background: utils.$secondary;
             animation: verticalRotate 0.5s linear 1;
         }
     }
 }
 .feature-section {
-    background: $white;
+    background: utils.$white;
     overflow: hidden;
     padding: 60px 0;
-    @include respond-below(md) {
+    @include utils.respond-below(md) {
         padding: 40px 0;
     }
     .bg-star-01 {
@@ -140,24 +142,24 @@
                 display: inline-flex;
                 justify-content: center;
                 font-weight: 500;
-                color: $gray-900;
+                color: utils.$gray-900;
                 border-width: 0 0 1px;
-                @include respond-below(md) {
+                @include utils.respond-below(md) {
                     width: 150px;
                     margin-bottom: 10px;
                 }
-                @include respond-below(sm) {
+                @include utils.respond-below(sm) {
                     width: 120px;
                     margin-bottom: 10px;
                 }
                 &.active, &:hover {
                     border-radius: 0;
                     padding-bottom: 10px;
-                    color: $secondary !important;
+                    color: utils.$secondary !important;
                 }
                 &.active {
                     border-width: 0 0 2px;
-                    border-bottom-color: $secondary !important;
+                    border-bottom-color: utils.$secondary !important;
                     background: transparent;
                 }
             }
@@ -174,14 +176,14 @@
                 width: 7px;
                 height: 7px;
                 border-radius: 10px;
-                background: $light;
+                background: utils.$light;
                 margin-right: 4px;
             }
             .owl-dot.active {
                 width: 7px;
                 height: 7px;
                 border-radius: 10px;
-                background: $secondary;
+                background: utils.$secondary;
             }
         }
     }
@@ -201,14 +203,14 @@
                 width: 15px;
                 height: 7px;
                 border-radius: 10px;
-                background: $secondary;
+                background: utils.$secondary;
             }
         }
     }
 }
 
 .counter-trending-cover {
-    background: $white;
+    background: utils.$white;
     padding-bottom: 60px;
     position: relative;
     z-index: 1;
@@ -219,20 +221,20 @@
         width: 330px;
         height: 429px;
         z-index: -1;
-        @include respond-below(lg) {
+        @include utils.respond-below(lg) {
             display: none;
         }
     }
-    @include respond-below(md) {
+    @include utils.respond-below(md) {
         padding-bottom: 40px;
     }
     .counter-section {
-        background: $dark;
+        background: utils.$dark;
         position: relative;
         border-radius: 20px;
         padding: 60px;
         margin-bottom: 60px;
-        @include respond-below(md) {
+        @include utils.respond-below(md) {
             padding: 40px;
             margin-bottom: 40px;
         }
@@ -266,11 +268,11 @@
                     top: 0;
                     right: 0;
                     background: linear-gradient(90deg, #5C28D4 0%, #392C7D 100%);
-                    @include respond-below(lg) {
+                    @include utils.respond-below(lg) {
                         content: none;
                     }
                  }
-                 @include respond-below(md) {
+                 @include utils.respond-below(md) {
                     &::after {
                         width: 0;
                         height: 0;
@@ -284,14 +286,14 @@
 
     .trending-instruction {
         .instructor-card {
-            box-shadow: $box-shadow-100;
+            box-shadow: utils.$box-shadow-100;
             text-align: center;
             .instructor-image {
                 position: relative;
                 img {
                     width: 180px;
                     height: 180px;
-                    @include rounded(50%);
+                    @include utils.rounded(50%);
                     margin: 0 auto;
                 }
                 margin: 0 auto 16px;
@@ -299,11 +301,11 @@
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
-                    @include rounded(50%);
+                    @include utils.rounded(50%);
                     position: absolute;
                     bottom: 0;
                     right: 20px;
-                    background: $white;
+                    background: utils.$white;
                     width: 32px;
                     height: 32px;
                     img {
@@ -319,17 +321,17 @@
                     position: absolute;
                     top: 0;
                     right: 0;
-                    font-size: $font-size-16;
-                    color: $gray-900;
+                    font-size: utils.$font-size-16;
+                    color: utils.$gray-900;
                     &:hover, &.selected {
-                        color: $secondary;
+                        color: utils.$secondary;
                     }
                 }
             }
             .instructor-content {
                 text-align: center;
                 p {
-                    font-size: $font-size-14;
+                    font-size: utils.$font-size-14;
                     margin-bottom: 8px;
                 }
             }
@@ -349,14 +351,14 @@
     a {
         width: 20px;
         height: 20px;
-        background: $light;
-        @include rounded(50%);
-        color: $dark;
+        background: utils.$light;
+        @include utils.rounded(50%);
+        color: utils.$dark;
         margin-right: 8px;
-        font-size: $font-size-10;
+        font-size: utils.$font-size-10;
         &:hover {
-            background: $dark;
-            color: $white;
+            background: utils.$dark;
+            color: utils.$white;
         }
         &:last-child {
             margin-right: 0;
@@ -364,7 +366,7 @@
     }
 }
 .subsribe-section {
-    background: url('../img/bg/subscribe-bg.png') $dark;
+    background: url('../img/bg/subscribe-bg.png') utils.$dark;
     background-repeat: no-repeat;
     background-position: left bottom;
     position: relative;
@@ -376,29 +378,29 @@
     }
     .contact-section {
         padding: 78px 0;
-        @include respond-below(md) {
+        @include utils.respond-below(md) {
             padding: 40px 0;
         }
         .subcribe-form {
             position: relative;
-            background: $white;
-            @include rounded(70px);
+            background: utils.$white;
+            @include utils.rounded(70px);
             span {
                 position: absolute;
                 top: 50%;
-                @include transform(translateY(-50%));
+                @include utils.transform(translateY(-50%));
                 left: 32px;
-                font-size: $font-size-16;
-                color: $gray-500;
+                font-size: utils.$font-size-16;
+                color: utils.$gray-500;
             }
             .form-control {
                 height: 72px;
                 border: 0;
                 padding: 10px 125px 10px 54px;
                 background: transparent;
-                font-size: $font-size-16;
-                @include respond-below(lg) {
-                    font-size: $font-size-14;
+                font-size: utils.$font-size-16;
+                @include utils.respond-below(lg) {
+                    font-size: utils.$font-size-14;
                     height: 60px;
                 }
             }
@@ -406,10 +408,10 @@
                 position: absolute;
                 right: 15px;
                 top: 50%;
-                @include transform(translateY(-50%));
-                font-size: $font-size-16;
-                @include respond-below(md) {
-                    font-size: $font-size-14;
+                @include utils.transform(translateY(-50%));
+                font-size: utils.$font-size-16;
+                @include utils.respond-below(md) {
+                    font-size: utils.$font-size-14;
                 }
             }
              
@@ -440,9 +442,9 @@
     }
 }
 .skill-section {
-    background: $white;
+    background: utils.$white;
     padding: 60px 0;
-    @include respond-below(md) {
+    @include utils.respond-below(md) {
         padding: 40px 0;
     }
     .img-01 {
@@ -450,7 +452,7 @@
         width: 100%;
         border-radius: 10px;
         object-fit: cover;
-        @include respond-below(sm) {
+        @include utils.respond-below(sm) {
             margin-bottom: 20px;
         }
     }
@@ -463,7 +465,7 @@
         height: 100%;
         width: 100%;
         border-radius: 10px;
-        @include respond-below(sm) {
+        @include utils.respond-below(sm) {
             margin-bottom: 20px;
         }
     }
@@ -474,7 +476,7 @@
         top: 50%;
         left: 50%;
         z-index: 1;
-        @include transform(translate(-50%, -50%));
+        @include utils.transform(translate(-50%, -50%));
     }
     .img-05 {
         position: absolute;
@@ -482,30 +484,30 @@
         height: 78px;
         top: 50%;
         left: 50%;
-        @include transform(translate(-50%, -50%));
+        @include utils.transform(translate(-50%, -50%));
         z-index: 1;
     }
     
 }
 .skill-image {
     padding-right: 35px;
-    @include respond-below(xl) {
+    @include utils.respond-below(xl) {
         padding-left: 0;
     }
-    @include respond-below(lg) {
+    @include utils.respond-below(lg) {
         display: none;
     }
 }
 .skill-content {
     h2 {
-        font-size: $font-size-44;
+        font-size: utils.$font-size-44;
         margin-bottom: 24px;
         max-width: 470px;
-        @include respond-below(xl) {
-            font-size: $font-size-36;
+        @include utils.respond-below(xl) {
+            font-size: utils.$font-size-36;
         }
-        @include respond-below(md) {
-            font-size: $font-size-28;
+        @include utils.respond-below(md) {
+            font-size: utils.$font-size-28;
         }
     }
     p {
@@ -513,7 +515,7 @@
     }
     .skill-list {
         p {
-            font-weight: $font-weight-medium;
+            font-weight: utils.$font-weight-medium;
             margin-bottom: 16px;
             &:last-child {
                 margin-bottom: 0;
@@ -522,7 +524,7 @@
     }
 }
 .cliets-section {
-    background: $dark;
+    background: utils.$dark;
     padding: 23px 0;
     img {
         height: 30px;
@@ -532,7 +534,7 @@
     }
 }
 .about-us {
-    background: $white;
+    background: utils.$white;
     padding: 60px 0;
     position: relative;
     z-index: 1; 
@@ -550,13 +552,13 @@
         right: 0;
         z-index: -1;
     }
-    @include respond-below(md) {
+    @include utils.respond-below(md) {
         padding: 40px 0;
     }
     .about-us-content {
         position: relative;
         margin-bottom: 60px;
-        @include respond-below(md) {
+        @include utils.respond-below(md) {
             margin-bottom: 40px;
         }
 
@@ -567,17 +569,17 @@
                 font-weight: 700;
                 line-height: 48px;
                 text-align: start;
-                @include respond-below(md) {
+                @include utils.respond-below(md) {
                     font-size: 28px;
                     line-height: 38px;
                 }
-                @include respond-below(sm) {
+                @include utils.respond-below(sm) {
                     font-size: 24px;
                     line-height: 34px;
                 }
             }
             p {
-                font-weight: $font-weight-medium;
+                font-weight: utils.$font-weight-medium;
             }
     
         }
@@ -593,14 +595,14 @@
         .img-section {
             position: relative;
             padding-left: 70px;
-            @include respond-below(xl) {
+            @include utils.respond-below(xl) {
                 padding-left: 0;
             }
             .enrolled-list-cover {
                 display: inline-flex;
-                box-shadow: $box-shadow;
+                box-shadow: utils.$box-shadow;
                 border-radius: 30px 30px 0px 30px;
-                background: $dark;
+                background: utils.$dark;
                 position: absolute;
                 left: 0;
                 top: 10px;
@@ -612,12 +614,12 @@
                         margin-bottom: 10px;
                     }
                     p {
-                        font-size: $font-size-14;
+                        font-size: utils.$font-size-14;
                     }
                 }
             }
             .about-img {
-                @include rounded(10px);
+                @include utils.rounded(10px);
             }
             .arrow {
                 position: absolute;
@@ -625,24 +627,24 @@
                 left: -100px;
                 z-index: 0;
             }
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 display: none;
             }
         }
     }
     .apply-role-section {
         .role-item {
-            box-shadow: $box-shadow-100;
-            border: 1px solid $border-color;
-            @include rounded(10px);
+            box-shadow: utils.$box-shadow-100;
+            border: 1px solid utils.$border-color;
+            @include utils.rounded(10px);
             overflow: hidden;
             position: relative;
             overflow: hidden;
             padding: 40px;
-            @include respond-below(md) {
+            @include utils.respond-below(md) {
                 padding: 30px;
             }
-            @include respond-below(sm) {
+            @include utils.respond-below(sm) {
                 padding: 20px;
             }
             .btn {
@@ -673,7 +675,7 @@
                 right: 0;
                 bottom: 0;    
                 z-index: -1;
-                @include respond-below(xl) {
+                @include utils.respond-below(xl) {
                     width: 55%;
                     height: 55%;
                     background-size: contain;
@@ -685,7 +687,7 @@
                 }
                 &::before {
                     background-image: url('../img/bg/role-bg-02.png');
-                    @include respond-below(md) {
+                    @include utils.respond-below(md) {
                         display: none;
                     }
                 }
@@ -702,10 +704,10 @@
 }
 .review-item {
     position: relative;
-    border: 1px solid $border-color;
-    @include rounded(10px);
+    border: 1px solid utils.$border-color;
+    @include utils.rounded(10px);
     padding: 20px;
-    background: $white;
+    background: utils.$white;
     margin-bottom: 24px;
     .rating {        
         display: flex;
@@ -713,9 +715,9 @@
         margin-bottom: 16px;
         gap: 4px;
         i {
-            color: $gray-500;
+            color: utils.$gray-500;
             &.selected {
-                color: $warning;
+                color: utils.$warning;
             }
         }
     }
@@ -729,10 +731,10 @@
         img {
             width: 45px;
             height: 45px;
-            @include rounded(50%);
+            @include utils.rounded(50%);
         }
         p {
-            font-size: $font-size-14;
+            font-size: utils.$font-size-14;
         }
     }
 }
@@ -806,7 +808,7 @@
                 width: 15px;
                 height: 7px;
                 border-radius: 10px;
-                background: $secondary;
+                background: utils.$secondary;
             }
         }
     }

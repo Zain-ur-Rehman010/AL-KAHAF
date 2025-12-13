@@ -1,21 +1,23 @@
+@use "../utils";
+
 .contact-sec {
     position: relative;
     padding: 60px 0;
-    @include respond-below(lg){
+    @include utils.respond-below(lg){
         padding: 50px 0;
     }
     .contact-info {
         margin-bottom: 26px;
     }
     .contact-form {
-        background: $primary-gradient;
+        background: utils.$primary-gradient;
     }
     .contact-icon {
         span {
             display: block;
             width: 60px;
             height: 60px;
-            color: $primary-300;
+            color: utils.$primary-300;
         }
     }
     .contact-map {

@@ -1,53 +1,55 @@
+@use "../utils";
+
 .home-3 {
 	.botton-1 {
-		font-size: $font-size-16;
-		font-weight: $font-weight-medium;
+		font-size: utils.$font-size-16;
+		font-weight: utils.$font-weight-medium;
 		padding: 9px 16px;
 		border-radius: 40px;
-		background: $secondary;
-		color: $white;
-		@include respond-below (md) {
-			font-size: $font-size-14;
-			font-weight: $font-weight-normal;
+		background: utils.$secondary;
+		color: utils.$white;
+		@include utils.respond-below (md) {
+			font-size: utils.$font-size-14;
+			font-weight: utils.$font-weight-normal;
 			padding: 6px 12px;
 		}
 		&:hover {
-			background: $primary;
+			background: utils.$primary;
 		}
 	}
 
 	.section-header-1 {
 		display: flex;
 		margin-bottom: 40px;
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			margin-bottom: 30px;
 		}
-		@include respond-below(sm) {
+		@include utils.respond-below(sm) {
 			margin-bottom: 24px;
 			display: block;
 		}
 		.section-sub-head {
 			h2 {
-				font-size: $font-size-32;
+				font-size: utils.$font-size-32;
 				margin-bottom: 0;
-				font-weight: $font-weight-bold;
-				color: $gray-900;
+				font-weight: utils.$font-weight-bold;
+				color: utils.$gray-900;
 				line-height: 48px;
-				@include respond-below(md) {
-					font-size: $font-size-28;
+				@include utils.respond-below(md) {
+					font-size: utils.$font-size-28;
 				}
-				@include respond-below(sm) {
-					font-size: $font-size-24;
+				@include utils.respond-below(sm) {
+					font-size: utils.$font-size-24;
 				}
 			}
 			span {
-				color: $secondary;
-				font-size: $font-size-18;
-				font-weight: $font-weight-bold;
+				color: utils.$secondary;
+				font-size: utils.$font-size-18;
+				font-weight: utils.$font-weight-bold;
 				display: block;
 				line-height: 24px;
 			}
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				margin-bottom: 24px;
 				display: block;
 			}
@@ -62,14 +64,14 @@
 		position: relative;
 		z-index: 1;
 		h5 {
-			color: $gray-500;
-			font-size: $font-size-18;
-			font-weight: $font-weight-bold;
+			color: utils.$gray-500;
+			font-size: utils.$font-size-18;
+			font-weight: utils.$font-weight-bold;
 			margin-bottom: 10px;
 		}
 		p {
 			margin-bottom: 30px;
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				font-size: 14px;
 				margin-bottom: 2px;
 			}
@@ -79,7 +81,7 @@
 		img {
 			width: 100%;
 		}
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			display: none;
 		}
 		
@@ -94,7 +96,7 @@
 		border: 1px solid #6255a4;
 		color: #fff;
 		a {
-			font-size: $font-size-14;
+			font-size: utils.$font-size-14;
 			color: #fff;
 		}
 		&:hover {
@@ -107,7 +109,7 @@
 		position: relative;
 		z-index: 1;
 		h5 {
-			color: $gray-500;
+			color: utils.$gray-500;
 			margin-bottom: 10px;
 		}
 	}
@@ -117,34 +119,34 @@
 		z-index: 1;
 		.form-inner {
 			padding: 10px;
-			background-color: $white;
+			background-color: utils.$white;
 			border-radius: 35px;
 			width: 100%;
 			border: 0;
 			max-width: 740px;
-			@include respond-below(sm) {
-				@include rounded(10px);
+			@include utils.respond-below(sm) {
+				@include utils.rounded(10px);
 			}
 		}
 		.input-group {
-			background: $white;
+			background: utils.$white;
 			border-radius: 130px;
 			padding-left: 12px;
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				display: block;
 				padding: 0;
 			}
 			.search-icon {
 				display: flex;
 				align-items: center;
-				color: $secondary;
-				@include respond-below(sm) {
+				color: utils.$secondary;
+				@include utils.respond-below(sm) {
 					display: none;
 				}
 			}
 			.form-control {
 				&::placeholder {
-					color: $gray-400;
+					color: utils.$gray-400;
 				}
 			}
 			.input-group-prepend {
@@ -152,32 +154,32 @@
 			}
 		}
 		.form-control {
-			background: $white;
+			background: utils.$white;
 			border-radius: 40px;
 			border: 0;
 			height: 44px;
-			color: $gray-900;
-			font-size: $font-size-14;
+			color: utils.$gray-900;
+			font-size: utils.$font-size-14;
 			margin-right: 10px;
 			&.catecory-mentor {
-				background: $secondary-100;
+				background: utils.$secondary-100;
 				margin: 0px 10px;
-				font-size: $font-size-14;
+				font-size: utils.$font-size-14;
 				color: #22100D;
 			}
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				width: 100%;
 				margin: 0;
 			}
 		}
 		.select2-container--focus {
 			.select2-selection--single {
-				background-color: $secondary-100 !important;
+				background-color: utils.$secondary-100 !important;
 			}
 		}
 		.select2-container {
 			border-radius: 50px !important;
-			background-color: $secondary-100;
+			background-color: utils.$secondary-100;
 			z-index: unset;
 			.select2-selection--single {
 				border: 0;
@@ -185,11 +187,11 @@
 				display: flex;
 				background: transparent;
 				height: 44px;
-				@include respond-below(sm) {
+				@include utils.respond-below(sm) {
 					width: 100%;
 				}
 				.select2-selection__rendered {
-					font-size: $font-size-14;
+					font-size: utils.$font-size-14;
 					padding-left: 15px;
 				}
 			}
@@ -208,21 +210,21 @@
 			}
 		}
 		.sub-btn {
-			background: $secondary;
+			background: utils.$secondary;
 			border-radius: 50px !important;
 			font-weight: bold;
-			border-color: $secondary;
+			border-color: utils.$secondary;
 			margin: 0px;
-			font-size: $font-size-16;
+			font-size: utils.$font-size-16;
 			line-height: 18px;
 			padding: 10px 15px;
 			color: #fff;
 			width: 44px;
 			&:hover {
-				background: $primary !important;
-				border-color: $primary !important;
+				background: utils.$primary !important;
+				border-color: utils.$primary !important;
 			}
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				width: 100%;
 			}
 		}
@@ -231,13 +233,13 @@
 		h2 {
 			margin-right: 20px;
 			font-size: 48px;
-			font-weight: $font-weight-bold;
+			font-weight: utils.$font-weight-bold;
 			margin-bottom: 0;
-			@include respond-below(md) {
+			@include utils.respond-below(md) {
 				font-size: 36px;
 				line-height: 38px;
 			}
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				font-size: 28px;
 				line-height: 32px;
 			}
@@ -258,13 +260,13 @@
 		width: 100%;
 		h2 {
 			font-size: 48px;
-			font-weight: $font-weight-bold;
+			font-weight: utils.$font-weight-bold;
 			margin: 0 8px 0 0;
-			@include respond-below(md) {
+			@include utils.respond-below(md) {
 				font-size: 36px;
 				line-height: 38px;
 			}
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				font-size: 28px;
 				line-height: 32px;
 			}
@@ -286,19 +288,19 @@
 		.form-select {
 			border: 0;
 			border-radius: 50px;
-			background-color: $secondary-100;
-			font-size: $font-size-14;
+			background-color: utils.$secondary-100;
+			font-size: utils.$font-size-14;
 			&:focus {
 				box-shadow: none;
 			}
 		}
-		@include respond-below(sm) {
+		@include utils.respond-below(sm) {
 			width: 100%;
 			margin: 0 0 5px;
 		}
 	}
 	.select2-dropdown {
-		border: 1px solid $secondary-100;
+		border: 1px solid utils.$secondary-100;
 	}
 	.select2-container--default {
 		.select2-selection--single {
@@ -328,13 +330,13 @@
 			}
 		}
 		.select2-results__option--highlighted[aria-selected] {
-			background-color: $secondary-100;
+			background-color: utils.$secondary-100;
 			color: #22100D;
-			font-size: $font-size-14;
+			font-size: utils.$font-size-14;
 		}
 	}
 	.select2-results__option {
-		font-size: $font-size-14;
+		font-size: utils.$font-size-14;
 	}
 	.banner-content .sub-btn:hover, 
 	.banner-content .sub-btn:focus {
@@ -343,16 +345,16 @@
 	}
 	.section-sub-head {
 		h2 {
-			font-size: $font-size-32;
+			font-size: utils.$font-size-32;
 			margin-bottom: 0;
-			font-weight: $font-weight-bold;
-			color: $gray-900;
+			font-weight: utils.$font-weight-bold;
+			color: utils.$gray-900;
 			letter-spacing: 0.9px;
 		}
 		span {
-			color: $secondary;
-			font-size: $font-size-16;
-			font-weight: $font-weight-bold;
+			color: utils.$secondary;
+			font-size: utils.$font-size-16;
+			font-weight: utils.$font-weight-bold;
 			padding-bottom: 18px;
 			display: block;
 			letter-spacing: 0.9px;
@@ -360,31 +362,31 @@
 	}
 	.section-text {
 		max-width: 700px;
-		color: $gray-500;
-		font-size: $font-size-16;
-		font-weight: $font-weight-medium;
+		color: utils.$gray-500;
+		font-size: utils.$font-size-16;
+		font-weight: utils.$font-weight-medium;
 	}
 	.online-course {
 		border-radius: 20px;
 		padding: 25px;
 		position: relative;
-		background: $white;
+		background: utils.$white;
 		h4 {
 			margin-bottom: 0;
-			font-size: $font-size-24;
-			font-weight: $font-weight-bold;
+			font-size: utils.$font-size-24;
+			font-weight: utils.$font-weight-bold;
 		}
 	}
 	.course-inner-content {
 		margin-left: 20px;
 		h4 {
 			margin-bottom: 8px;
-			font-weight: $font-weight-bold;
-			color: $gray-900;
+			font-weight: utils.$font-weight-bold;
+			color: utils.$gray-900;
 		}
 		p {
-			color: $gray-500;
-			font-size: $font-size-16;
+			color: utils.$gray-500;
+			font-size: utils.$font-size-16;
 			margin-bottom: 0;
 		}
 	}
@@ -419,10 +421,10 @@
 		margin-top: -60px;
 	}
 	.how-it-works {
-		background: $white;
+		background: utils.$white;
 		padding: 80px 0;
 		position: relative;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 	}
@@ -456,8 +458,8 @@
 			-webkit-transition: all 0.5s ease;
 		}
 		p {
-			color: $gray-500;
-			font-size: $font-size-14;
+			color: utils.$gray-500;
+			font-size: utils.$font-size-14;
 			transition: all 0.5s ease;
 			-moz-transition: all 0.5s ease;
 			-o-transition: all 0.5s ease;
@@ -471,13 +473,13 @@
 			width: 15px;
 			height: 8px;
 			border-radius: 50px;
-			background: $gray-100;
+			background: utils.$gray-100;
 		}
 		.slick-active {
 			width: 50px;
 			height: 8px;
 			border-radius: 50px;
-			background: $secondary;
+			background: utils.$secondary;
 			button {
 				background: transparent;
 			}
@@ -485,7 +487,7 @@
 	}
 	.slick-slide {
 		margin-right: 24px;
-		@include respond-below(sm) {
+		@include utils.respond-below(sm) {
 			margin-right: 0;
 		}
 	}
@@ -527,13 +529,13 @@
 	}
 	.feature-heading {
 		text-transform: uppercase;
-		font-size: $font-size-14;
-		font-weight: $font-weight-bold;
+		font-size: utils.$font-size-14;
+		font-weight: utils.$font-weight-bold;
 	}
 	.feature-text {
-		font-size: $font-size-20;
-		color: $gray-900;
-		font-weight: $font-weight-bold;
+		font-size: utils.$font-size-20;
+		color: utils.$gray-900;
+		font-weight: utils.$font-weight-bold;
 		margin-top: 24px;
 		transition: all 0.5s ease;
 		-moz-transition: all 0.5s ease;
@@ -555,7 +557,7 @@
 			top: 0;
 			background-repeat: no-repeat;
 		}
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0 26px;
 		}
 		.home-three-sec-bg {
@@ -574,13 +576,13 @@
 		}
 		.course-item {
 			.btn-xl {
-				@include respond-below(xl) {
+				@include utils.respond-below(xl) {
 					padding: 9px 9px;
-					font-size: $font-size-14;
+					font-size: utils.$font-size-14;
 				} 
 			}
 		}
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			padding-bottom: 0;
 		}
 	}
@@ -593,17 +595,17 @@
 	}
 	.color-active {
 		color: red;
-		font-weight: $font-weight-bold;
+		font-weight: utils.$font-weight-bold;
 	}
 	.average-rating {
 		span {
-			color: $gray-500;
+			color: utils.$gray-500;
 		}
 	}
 	.master-skill {
 		padding: 80px 0px 0px;		
 		overflow: hidden;
-        @include respond-below(lg) {
+        @include utils.respond-below(lg) {
 			padding: 50px 0 0;
 		}
 	}
@@ -612,14 +614,14 @@
 		transform: rotate(30deg);
 	}
 	.certified-item {
-		border: 1px solid $border-color;
-		@include rounded(5px);
+		border: 1px solid utils.$border-color;
+		@include utils.rounded(5px);
 		padding: 20px;
 		p {
 			margin-bottom: 0;
-			color: $gray-900;
+			color: utils.$gray-900;
 			margin-left: 10px;
-			font-weight: $font-weight-medium;
+			font-weight: utils.$font-weight-medium;
 		}
 	}
 	.certified-group {
@@ -634,7 +636,7 @@
 		}
 	}
 	.certified-img {
-		background: $secondary-transparent;
+		background: utils.$secondary-transparent;
 		border-radius: 50%;
 		width: 60px;
 		height: 60px;
@@ -650,15 +652,15 @@
 		flex-shrink: 0;
 	}
 	.get-certified {
-		background: $white;
+		background: utils.$white;
 		padding: 20px;
 		border-radius: 5px;
 		p {
 			margin-bottom: 0;
-			color: $gray-900;
-			font-size: $font-size-16;
+			color: utils.$gray-900;
+			font-size: utils.$font-size-16;
 			margin-left: 10px;
-			font-weight: $font-weight-medium;
+			font-weight: utils.$font-weight-medium;
 		}
 	}
 	.career-img {
@@ -688,13 +690,13 @@
 			bottom: 0;
 			right: -35px;
 		}
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			display: none;
 		}
 	}
 	.career-group {
 		margin-bottom: 80px;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			margin-bottom: 50px;
 		}
 	}
@@ -703,7 +705,7 @@
 		position: relative;
 		z-index: 1;
 		overflow: hidden;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 		.home-three-sec-bg {
@@ -733,7 +735,7 @@
 	}
 	.feature-instructors {
 		padding-top: 80px;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding-top: 50px;
 		}
 		.instructor-item.instructor-item-two {
@@ -762,8 +764,8 @@
 			margin-right: 17px;
 		}
 		span {
-			color: $gray-500;
-			font-size: $font-size-16;
+			color: utils.$gray-500;
+			font-size: utils.$font-size-16;
 		}
 	}
 	.lead-companies {
@@ -777,7 +779,7 @@
 				justify-content: center;
 				-webkit-justify-content: center;
 			}
-		}@include respond-below(lg) {
+		}@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 	}
@@ -806,7 +808,7 @@
 		position: relative;
 		z-index: 1;
 		overflow: hidden;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 		.home-three-sec-bg {
@@ -825,7 +827,7 @@
 		}
 		.knowledge-img {
 			padding-right: 24px;
-			@include respond-below(lg) {
+			@include utils.respond-below(lg) {
 				padding-right: 0;
 			}
 		}
@@ -843,7 +845,7 @@
 		position: relative;
 		z-index: 1;
 		overflow: hidden;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 		.home-three-sec-bg {
@@ -885,40 +887,40 @@
 		border-radius: 20px;
 		padding: 24px;
 		margin: 80px 0px 50px;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			margin: 50px 0;
 		}
 		.enroll-course {
 			margin-bottom: 0px;
 			.enroll-img {
-				background: $white;
-				@include rounded(10px);
+				background: utils.$white;
+				@include utils.rounded(10px);
 				width: 60px;
 				height: 60px;
-				border: 4px solid $gray-100;
+				border: 4px solid utils.$gray-100;
 				margin-right: 20px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 			}
-			@include respond-below(md) {
+			@include utils.respond-below(md) {
 				justify-content: center;
 			}
 		}
 	}
 	.course-count {
-		color: $gray-500;
+		color: utils.$gray-500;
 		p {
 			margin-bottom: 0;
-			font-size: $font-size-18;
-			font-weight: $font-weight-semibold;
-			color: $gray-500;
+			font-size: utils.$font-size-18;
+			font-weight: utils.$font-weight-semibold;
+			color: utils.$gray-500;
 		}
 		h3 {
-			font-weight: $font-weight-bold;
-			font-size: $font-size-32;
+			font-weight: utils.$font-weight-bold;
+			font-size: utils.$font-size-32;
 			margin-bottom: 4px;
-			color: $primary-900;
+			color: utils.$primary-900;
 		}
 	}
 	.icon-group {
@@ -939,16 +941,16 @@
 	}
 	.user-love {
 		padding: 80px 0px;
-		background: $gray-900;
+		background: utils.$gray-900;
 		min-height: 500px;
 		.section-sub-head {
 			span {
-				color: $white;
+				color: utils.$white;
 				padding-bottom: 0;
 				margin-bottom: 8px;
 			}
 			h2 {
-				color: $white;
+				color: utils.$white;
 			}
 		}
 	}
@@ -970,7 +972,7 @@
 			bottom: 0;
 			right: 0;
 		}
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
 	}
@@ -978,34 +980,34 @@
 		background: #392C7D;
 		padding: 40px 40px 0;
 		border-radius: 20px;
-		color: $gray-500;
+		color: utils.$gray-500;
 		position: relative;
 		h4 {
-			font-size: $font-size-24;
-			font-weight: $font-weight-bold;
+			font-size: utils.$font-size-24;
+			font-weight: utils.$font-weight-bold;
 			margin-bottom: 4px;
-			color: $white;
+			color: utils.$white;
 		}
 	}
 	.top-instructors {
 		padding-bottom: 40px;
 		p {
 			margin-bottom: 20px;
-			color: $light;
+			color: utils.$light;
 		}
 	}
 	.yellow-mentor {
-		background: $dark;
+		background: utils.$dark;
 	}
 	.testimonial-four {
 		padding: 80px 0 0;
 		position: relative;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0 0;
 		}
 		&::before {
 			content: "";
-			background: $gray-900;
+			background: utils.$gray-900;
 			height: 500px;
 			width: 100%;
 			position: absolute;
@@ -1019,9 +1021,9 @@
 			border-radius: 45px;
 			background-image: linear-gradient(142.13deg, rgba(255, 255, 255, 0.28) 1.8%, rgba(255, 255, 255, 0.31) 99.75%);
 			backdrop-filter: blur(151.39px);
-			@include respond-below (md) {
+			@include utils.respond-below (md) {
 				max-width: 100%;
-				@include rounded(20px);
+				@include utils.rounded(20px);
 				border-width: 10px;
 			}
 		}
@@ -1031,13 +1033,13 @@
 			background: none;
 			margin: 0 auto;
 			p {
-				font-size: $font-size-20;
-				color: $white;
-				font-weight: $font-weight-medium;
+				font-size: utils.$font-size-20;
+				color: utils.$white;
+				font-weight: utils.$font-weight-medium;
 				font-style: italic;
 				margin-bottom: 43px;
-				@include respond-below(lg) {
-					font-size: $font-size-16;
+				@include utils.respond-below(lg) {
+					font-size: utils.$font-size-16;
 					margin-bottom: 24px;
 				}
 			}
@@ -1055,41 +1057,41 @@
 		.slick-prev {
 			left: 20%;
 			z-index: 99;
-			background: $white;
+			background: utils.$white;
 			width: 60px;
 			height: 60px;
 			border-radius: 0;
 			&:before {
 				font-family: "Font Awesome 5 Free";
 				content: "\f060";
-				color: $primary;
-				font-weight: $font-weight-semibold;
+				color: utils.$primary;
+				font-weight: utils.$font-weight-semibold;
 			}
-			@include respond-below(lg) {
+			@include utils.respond-below(lg) {
 				width: 40px;
 				height: 40px;
 			}
-			@include respond-below (md) {
+			@include utils.respond-below (md) {
 				left: 6%;
 			}
 		}
 		.slick-next {
 			right: 22%;
-			background: $white;
+			background: utils.$white;
 			width: 60px;
 			height: 60px;
 			border-radius: 0;
 			&:before {
 				font-family: "Font Awesome 5 Free";
 				content: "\f061";
-				color: $primary;
-				font-weight: $font-weight-semibold;
+				color: utils.$primary;
+				font-weight: utils.$font-weight-semibold;
 			}
-			@include respond-below(lg) {
+			@include utils.respond-below(lg) {
 				width: 40px;
 				height: 40px;
 			}
-			@include respond-below (md) {
+			@include utils.respond-below (md) {
 				right: 6%;
 			}
 		}
@@ -1145,11 +1147,11 @@
 			border-radius: 50px;
 			width: 80px;
 			height: 80px;
-			border: 3px solid $white;
+			border: 3px solid utils.$white;
 		}
 		h6 {
-			font-size: $font-size-18;
-			font-weight: $font-weight-bold;
+			font-size: utils.$font-size-18;
+			font-weight: utils.$font-weight-bold;
 			margin-bottom: 5px;
 		}
 	}
@@ -1159,10 +1161,10 @@
 		z-index: 99;
 		top: 0;
 		margin-bottom: 15px;		
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			width: 60px;
 		}
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			width: 40px;
 			left: 0;
 		}
@@ -1177,7 +1179,7 @@
 	.testimonial-four .swiper-button-prev:hover, 
 	.testimonial-four .swiper-button-next:hover {
 		color: #fff;
-		background: $secondary;
+		background: utils.$secondary;
 		opacity: 1;
 	}
 	.testimonial-four .slick-prev:hover:before, 
@@ -1191,7 +1193,7 @@
 	}
 	.testimonial-four .slick-next:focus, 
 	.testimonial-four .slick-prev:focus {
-		background: $secondary;
+		background: utils.$secondary;
 	}
 	[dir='rtl'] {
 		.testimonial-four {
@@ -1210,7 +1212,7 @@
 	.testimonial-all {
 		padding: 40px;
 		position: relative;
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			padding: 24px;
 		}
 	}
@@ -1225,13 +1227,13 @@
 	.testimonial-user {
 		h6 {
 			margin-bottom: 5px;
-			font-size: $font-size-18;
-			font-weight: $font-weight-bold;
+			font-size: utils.$font-size-18;
+			font-weight: utils.$font-weight-bold;
 		}
 		span {
-			color: $gray-500;
-			@include respond-below(md) {
-				color: $white;
+			color: utils.$gray-500;
+			@include utils.respond-below(md) {
+				color: utils.$white;
 			}
 		}
 	}
@@ -1245,12 +1247,12 @@
 	}
 }
 .expert-item {
-	border: 1px solid $border-color;
-	@include rounded(20px);
+	border: 1px solid utils.$border-color;
+	@include utils.rounded(20px);
 	padding: 24px;
 	display: flex;
 	align-items: center;
-	background: $white;
+	background: utils.$white;
 	position: relative;
 	top: 0;
     transition: 0.5 	ease all;
@@ -1263,13 +1265,13 @@
 		}
 	}
 	&:hover {
-		@include transform(translateY(10px));
+		@include utils.transform(translateY(10px));
 		transition: 0.5 ease all;
 	}
 }
 .blog-wrap {	
-	background: $white;
-	@include rounded(10px);
+	background: utils.$white;
+	@include utils.rounded(10px);
 	margin-bottom: 50px;
 	.blog-img {
 		position: relative;
@@ -1300,14 +1302,14 @@
 			margin-bottom: 8px;
 		}
 		.blog-category {
-			font-weight: $font-weight-medium;
-			color: $primary;
+			font-weight: utils.$font-weight-medium;
+			color: utils.$primary;
 			text-decoration: underline;
 		}
 		.blog-date {
 			i {
 				margin-right: 8px;
-				color: $secondary;
+				color: utils.$secondary;
 			}
 		}
 	}
@@ -1323,13 +1325,13 @@
 }
 
 .footer.footer-three {
-	background: $primary;
+	background: utils.$primary;
 	p {
-		color: $white;
-		font-size: $font-size-16;
+		color: utils.$white;
+		font-size: utils.$font-size-16;
 	}
 	.footer-title {
-		color: $white;
+		color: utils.$white;
 		position: relative;
 		margin-bottom: 24px;
 		&::before {
@@ -1337,7 +1339,7 @@
 			content: "";
 			height: 2px;
 			width: 20px;
-			background: $secondary;
+			background: utils.$secondary;
 			bottom: -8px;
 			border-radius: 10px;
 			left: 0;
@@ -1347,45 +1349,45 @@
 			content: "";
 			height: 2px;
 			width: 9px;
-			background: $secondary;
+			background: utils.$secondary;
 			bottom: -8px;
 			border-radius: 10px;
 			left: 23px;
 		}
 	}
 	a {
-		color: $light;
+		color: utils.$light;
 	}
 	.contact-infos {
 		span {
-			font-size: $font-size-14;
-			font-weight: $font-weight-semibold;
-			color: $light;
+			font-size: utils.$font-size-14;
+			font-weight: utils.$font-weight-semibold;
+			color: utils.$light;
 			margin-bottom: 4px;    
 			display: block;
 		}
 		p {
-			font-size: $font-size-14;
-			color: $white;
+			font-size: utils.$font-size-14;
+			color: utils.$white;
 		}
 	}
 	
 .footer-bottom {
-	background: $primary;
-	border-top: 1px solid $primary-800;
+	background: utils.$primary;
+	border-top: 1px solid utils.$primary-800;
 	.copyright-text {
 		p {
-			font-size: $font-size-14;
-			color: $light;
+			font-size: utils.$font-size-14;
+			color: utils.$light;
 			
 			a  {
-				color: $secondary;
+				color: utils.$secondary;
 				&:hover {
-					color: $white;
+					color: utils.$white;
 				}
 			}
 		}
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			text-align: center;
 		}
 	}
@@ -1393,28 +1395,28 @@
 		display: flex;
 		align-items: center;
 		justify-content: end;
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			justify-content: center;
 		}
 		a {
 			display: block;
-			font-size: $font-size-14;
+			font-size: utils.$font-size-14;
 			position: relative;
 			margin: 0 8px 0 0;
 			padding: 0 14px 0 0;
-			color: $light;
+			color: utils.$light;
 			&:hover {
-				color: $secondary;
+				color: utils.$secondary;
 			}
 			&::after {
 				content: "";
 				width: 6px;
 				height: 6px;
 				border-radius: 50px;
-				background: $secondary;
+				background: utils.$secondary;
 				position: absolute;
 				top: 50%;
-				@include transform(translateY(-50%));
+				@include utils.transform(translateY(-50%));
 				right: 0;
 			}
 			&:last-child {
@@ -1431,7 +1433,7 @@
 }
 
 
-@include respond-below (lg) {
+@include utils.respond-below (lg) {
 	.home-3 .rate-head h2 {
 		font-size: 36px;
 	}

@@ -1,3 +1,5 @@
+@use "../utils";
+
 .home-five-slide-face {
 	display: flex;
     justify-content: center;
@@ -6,7 +8,7 @@
 .banner-slide-img {
 	display: flex;
     align-items: end;
-	@include respond-below (lg) {
+	@include utils.respond-below (lg) {
 		display: none;
 	}
 }
@@ -15,18 +17,18 @@
     font-size: 52px;
 	letter-spacing: 0.02em;
 	margin-bottom: 15px;
-	@include respond-below (xxl) {
+	@include utils.respond-below (xxl) {
 		font-size: 46px;
 	}
-	@include respond-below (xl) {
+	@include utils.respond-below (xl) {
 		font-size: 36px;
 	}
-	@include respond-below (lg) {
+	@include utils.respond-below (lg) {
 		font-size: 30px;
 	}
 }
 .home-five-slide-face h1 span {
-    color: $secondary;
+    color: utils.$secondary;
 }
 .home-five .drop-detail-three {
     width: 164px;
@@ -35,17 +37,17 @@
     border-radius: 50px !important;
     border: 0;
     height: 44px;
-	background-color: $light;
+	background-color: utils.$light;
 }
 .home-five-slide-text h5 {
-    background: $secondary;
+    background: utils.$secondary;
     border-radius: 30px;
     display: inline-flex;
     padding: 12px;
     font-weight: 500;
     font-size: 14px;
     align-items: center;
-    color: $white;
+    color: utils.$white;
 	margin-bottom: 15px;
 }
 .home-five-slide-text p {
@@ -58,14 +60,14 @@
 .search-icon5{
 	padding: 10px 10px 10px 20px;
 	font-size: 24px;
-	border-left: 1px solid $gray-100;
-	@include respond-below(sm){
+	border-left: 1px solid utils.$gray-100;
+	@include utils.respond-below(sm){
      border: none;
 	 padding: 10px 10px 10px 1px;
 	}
 }
 .banner-three-content .form-inner-three {
-    background: $white;
+    background: utils.$white;
     box-shadow: 0px 4px 4px rgb(216 216 216 / 25%);
     border-radius: 10px;
     padding: 10px;
@@ -79,19 +81,19 @@
     text-align: center;
     font-size: 14px;
     display: flex;
-    background: $light;
+    background: utils.$light;
     height: 56px;
 }
 .banner-three-content .form-control {
-    background: $white;
+    background: utils.$white;
     border: 0;
 	padding: 0;
     height: 56px;
     color: #000;
     font-size: 15px;
-	font-size: $font-size-14;
+	font-size: utils.$font-size-14;
     margin-right: 10px;
-	@include respond-below (sm){
+	@include utils.respond-below (sm){
 		margin-right: 0;
 	}
 }
@@ -102,7 +104,7 @@
 }
 .form-three-select .select2-container--default .select2-results__option--highlighted[aria-selected] {
     background-color: red!important;
-    color: $white;
+    color: utils.$white;
     font-size: 14px;
 }
 .banner-three-content {
@@ -113,7 +115,7 @@
 			}
 		}
 		.select2-results__option--highlighted[aria-selected] {
-			background-color: $primary;
+			background-color: utils.$primary;
 			color: #585858;
 			font-size: 14px;
 		}
@@ -122,9 +124,9 @@
 		border: 1px solid #ffdeda;
 	}
 	.sub-btn {
-		background: $primary;
+		background: utils.$primary;
 		border-radius: 10px;
-		border: 1px solid $primary;
+		border: 1px solid utils.$primary;
 		margin: 0px;
 		font-size: 18px;
 		line-height: 18px;
@@ -138,9 +140,9 @@
 		-o-transition: all 0.5s;
 		transition: all 0.5s;
 		&:hover {
-			background: $secondary;
+			background: utils.$secondary;
 			border-radius: 10px;
-			border: 1px solid $secondary;
+			border: 1px solid utils.$secondary;
 			margin: 0px;
 			font-size: 18px;
 			line-height: 18px;
@@ -151,7 +153,7 @@
 			border-top-left-radius: 10px !important;
 			border-bottom-left-radius: 10px !important;
 		}
-		@include respond-below (sm){
+		@include utils.respond-below (sm){
 			width: 100%;
 		}
 	}
@@ -172,7 +174,7 @@
 			&::placeholder {
 				font-weight: 400;
 				font-size: 14px;
-				color: $gray-300;
+				color: utils.$gray-300;
 			}
 		}
 	}
@@ -191,7 +193,7 @@
 }
 .student-course-five{
 	.course-details-three{
-		border-color: $border-color;
+		border-color: utils.$border-color;
 	}
 }
 .course-details-three {
@@ -199,7 +201,7 @@
 	box-shadow: 0px 4px 14px rgba(231, 231, 231, 0.25);
 	border-radius: 10px;
 	padding: 24px;
-	background: $white;
+	background: utils.$white;
 	width: 100%;
 	display: -ms-flexbox;
 	align-items: center;
@@ -224,7 +226,7 @@
 			font-size: 24px;
 		}
 		p {
-			color: $gray-600;
+			color: utils.$gray-600;
 			margin-bottom: 0;
 		}
 	}
@@ -249,11 +251,11 @@
 	position: relative;
 	max-width: 513px;
 
-	@include respond-below(lg){
+	@include utils.respond-below(lg){
 	 margin: 0 auto 24px;
 	}
 	.master-img {
-		@include respond-below(lg){
+		@include utils.respond-below(lg){
 			margin-bottom: 0;
 		}
 	}
@@ -262,7 +264,7 @@
 	animation: up-down 3s ease-in-out infinite alternate-reverse both;
 	position: relative;
 	padding: 0 0 50px 35px;
-	@include respond-below(sm) {
+	@include utils.respond-below(sm) {
 		padding: 0 0 30px 20px;
 	}
 	&::before{
@@ -270,12 +272,12 @@
 		content: '';
 		width: 231px;
 		height: 231px;
-		background-color: $ligh-green;
+		background-color: utils.$ligh-green;
 		border-radius: 50%;
 		right: 8px;
 		top: 80px;
 		z-index: -1;
-		@include respond-below(sm){
+		@include utils.respond-below(sm){
 			right: 6%;
 			top: 53px;
 			width: 100px;
@@ -285,7 +287,7 @@
 	.master-skill-image1 {
 		border-radius: 30px;
 		width: 400px;
-		@include respond-below(sm){
+		@include utils.respond-below(sm){
 			width: 70%;
 		}	
 	}
@@ -294,7 +296,7 @@
 		margin-top: -60%;
 		z-index: 1;
 		position: relative;
-		@include respond-below(sm){
+		@include utils.respond-below(sm){
 			width: 50%;
 		}	
 	}
@@ -303,7 +305,7 @@
 		z-index: -1;
 		left: 0;
 		bottom: 0;
-		@include respond-below(sm){
+		@include utils.respond-below(sm){
 			width: 50%;
 			left: 0;
 		}
@@ -312,7 +314,7 @@
 		position: absolute;
 		right: 39px;
 		top: 18%;
-		@include respond-below(sm){
+		@include utils.respond-below(sm){
 			width: 80px;
 		}
 	}
@@ -321,7 +323,7 @@
 		bottom: 0;
 		left: 5px;
 		z-index: -1;
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			width: 55%;
 		}
 	}
@@ -330,14 +332,14 @@
 		bottom: 35px;
 		left: 95px;
 		z-index: -2;
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			width: 45%;
 		}
 	}
 }
 .master-skill-content{
 	padding-left: 40px;
-	@include respond-below(xl){
+	@include utils.respond-below(xl){
      padding-left: 0;
 	}
 }
@@ -387,9 +389,9 @@
 	background-repeat: no-repeat;
 }
 .skils-icon {
-	background: $white;
-	border: 1px solid $border-color;
-	box-shadow: $drop-shadow;
+	background: utils.$white;
+	border: 1px solid utils.$border-color;
+	box-shadow: utils.$drop-shadow;
 	align-items: center;
 	display: inline-flex;
 	justify-content: center;
@@ -416,9 +418,9 @@
 	.see-all {
 		a {
 			font-weight: 500;
-			color: $secondary;
+			color: utils.$secondary;
 			&:hover {
-				color: $primary;
+				color: utils.$primary;
 			}
 		}
 	}
@@ -457,28 +459,28 @@
 		position: relative;
 		z-index: 11111;
 		h2 {
-			color: $white;
+			color: utils.$white;
 			margin-bottom: 20px;
 		}
 		h4 {
 			font-weight: 500;
 			font-size: 20px;
-			color: $white;
+			color: utils.$white;
 		}
 		p {
-			color: $light;
+			color: utils.$light;
 			font-size: 16px;
 		}
 	}
 	.testimonial-item-five {
-		background: $white;
+		background: utils.$white;
 		box-shadow: 0px 4px 24px rgb(100 100 100 / 25%);
 		border-radius: 10px;
 		background-position: center;
 		background-size: cover;
 		width: 455px;
 		padding: 20px;
-		@include respond-below(sm){
+		@include utils.respond-below(sm){
          width: 300px;
 		}
 		.testimonial-users {
@@ -517,7 +519,7 @@
 		}
 	}
 	.testimonial-ratings {
-		border-bottom: 1px solid $border-color;
+		border-bottom: 1px solid utils.$border-color;
 		font-size: 14px;
 		padding-bottom: 20px;
 		.rating {
@@ -548,7 +550,7 @@
 		color: #fff;
 		font-size: 12px;
 		font-weight: 500;
-		background: $primary;
+		background: utils.$primary;
 		border-radius: 5px;
 		min-width: 159px;
 		height: 44px;
@@ -561,10 +563,10 @@
 		-o-transition: all 0.5s;
 		transition: all 0.5s;
 		&:hover {
-			background-color: $white;
-			border-color: $primary;
-			color: $white !important;
-			box-shadow: inset 0 50px 0 0 $primary;
+			background-color: utils.$white;
+			border-color: utils.$primary;
+			color: utils.$white !important;
+			box-shadow: inset 0 50px 0 0 utils.$primary;
 			-webkit-transition: all 0.5s;
 			-moz-transition: all 0.5s;
 			-o-transition: all 0.5s;
@@ -602,13 +604,13 @@
 	position: relative;
 	.category-sec {
 		padding: 80px 0;
-		border-top: 1px solid $border-color;
-		@include respond-below(lg){
+		border-top: 1px solid utils.$border-color;
+		@include utils.respond-below(lg){
 			padding: 50px 0;
 		}
 	}
 	.slick-dots li{
-		@include respond-below(lg){
+		@include utils.respond-below(lg){
 			margin: 0 2px;
 		}
 	}
@@ -618,7 +620,7 @@
 		display: block;
 		width: 100%;
 		height: 230px;
-		background: $light-900;
+		background: utils.$light-900;
 		text-align: center;
 		left: 0;
 		right: 0;
@@ -627,7 +629,7 @@
 	}
 	.more-set{
 		a{
-			background-color: $primary;
+			background-color: utils.$primary;
 		}
 	}
 	.categories-content {
@@ -655,8 +657,8 @@
 	}
 }
 .favourite-box {
-	background: $white;
-	border: 1px solid $gray-100;
+	background: utils.$white;
+	border: 1px solid utils.$gray-100;
 	box-shadow: 0px 4px 14px 0px #E7E7E740;
 	border-radius: 10px;
 	display: flex;
@@ -674,14 +676,14 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		background: $light-900;
+		background: utils.$light-900;
 		border-radius: 5px;
 		margin: 0 auto 12px;
 	}
 	&:hover {
-		background: $primary;
+		background: utils.$primary;
 		cursor: pointer;
-		border: 1px solid $primary;
+		border: 1px solid utils.$primary;
 		box-shadow: 0px 1px 4px rgb(0 0 0 / 20%);
 		-webkit-transition: 0.7s;
 		-moz-transition: 0.7s;
@@ -689,19 +691,19 @@
 		transition: 0.7s;
 		.categories-content {
 			h3 {
-				color: $white;
+				color: utils.$white;
 				-webkit-transition: 0.7s;
 				-moz-transition: 0.7s;
 				-o-transition: 0.7s;
 				transition: 0.7s;
 				a {
-					color: $white;
+					color: utils.$white;
 				}
 			}
 		}
 		.instructors-info {
 			p {
-				color: $white;
+				color: utils.$white;
 				-webkit-transition: 0.7s;
 				-moz-transition: 0.7s;
 				-o-transition: 0.7s;
@@ -732,8 +734,8 @@
 .home-five .owl-theme .owl-dots .owl-dot:hover .home-five span {
 	width: 8px;
 	height: 8px;
-	background: $primary;
-	box-shadow: 0px 0px 0px 3px $primary;
+	background: utils.$primary;
+	box-shadow: 0px 0px 0px 3px utils.$primary;
 	transition: all 0.5s ease;
 	-moz-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
@@ -754,18 +756,18 @@
 }
 .home-five-courses {
 	padding: 80px 0;
-	background: $white;
+	background: utils.$white;
 	.heart-three{
 		.fa-heart{
           &:hover{
-			background-color: $secondary;
-			color: $white;
+			background-color: utils.$secondary;
+			color: utils.$white;
 		  }
 		}
 	} 
 	.price-three-time{
 		i{
-			font-size: $font-size-14;
+			font-size: utils.$font-size-14;
 		}
 	}
 }
@@ -778,11 +780,11 @@
 		border-radius: 5px;
 		&.active {
 			font-weight: 500;
-			color: $secondary;
-			border-color: $gray-100;
+			color: utils.$secondary;
+			border-color: utils.$gray-100;
 		}
 		&:hover {
-			color: $primary;
+			color: utils.$primary;
 		}
 	}
 }
@@ -811,7 +813,7 @@
 .course-box-three {
 	position: relative;
 	overflow: hidden;
-	background: $white;
+	background: utils.$white;
 	box-shadow: -3px 5px 16px rgb(0 0 0 / 7%);
 	border-radius: 10px;
 	margin-bottom: 24px;
@@ -826,8 +828,8 @@
 	p {
 		font-weight: 500;
 		font-size: 14px;
-		color: $secondary;
-		border-bottom: 1px solid $secondary;
+		color: utils.$secondary;
+		border-bottom: 1px solid utils.$secondary;
 		display: inline-flex;
 		-webkit-transition: 0.7s;
 		-moz-transition: 0.7s;
@@ -842,7 +844,7 @@
 		-moz-transition: 0.7s;
 		-o-transition: 0.7s;
 		transition: 0.7s;
-		@include respond-below(xxl){
+		@include utils.respond-below(xxl){
 			font-size: 18px;
 		}
 	}
@@ -877,8 +879,8 @@
 		-o-transition: 0.7s;
 		transition: 0.7s;
 		&:hover{
-			background-color: $secondary;
-			color: $white;
+			background-color: utils.$secondary;
+			color: utils.$white;
 		  }
 	}
 }
@@ -904,7 +906,7 @@
 	img {
 		width: 40px;
 		height: 40px;
-		border: 3px solid $white;
+		border: 3px solid utils.$white;
 		border-radius: 50%;
 	}
 }
@@ -929,27 +931,27 @@
 }
 .home-five-transform {
 	padding: 80px 0;
-	background-color: $primary;
+	background-color: utils.$primary;
 	background-image: url(../img/bg/benefit-bg.png);
 	background-repeat: repeat;
 	background-position: top right;
-	@include respond-below(lg) {
+	@include utils.respond-below(lg) {
 		padding: 50px 0;
 	}
 	.cta-content {
 		h2 {
 			font-weight: 700;
 			font-size: 32px;
-			color: $white;
+			color: utils.$white;
 			margin-bottom: 8px;
 		}
 		p {
-			color: $white;
+			color: utils.$white;
 		}
 	}
 }
 .btn-action {
-	background: $warning;
+	background: utils.$warning;
 	border-radius: 10px;
 	padding: 12px 30px;
 	font-weight: 600;
@@ -967,10 +969,10 @@
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
 	&:hover {
-		background-color: $primary;
-		border-color: $primary;
-		color: $primary !important;
-		box-shadow: inset 0 50px 0 0 $white;
+		background-color: utils.$primary;
+		border-color: utils.$primary;
+		color: utils.$primary !important;
+		box-shadow: inset 0 50px 0 0 utils.$white;
 		-webkit-transition: all 0.5s;
 		-moz-transition: all 0.5s;
 		-o-transition: all 0.5s;
@@ -979,7 +981,7 @@
 }
 .transform-button-three {
 	text-align: end;
-	@include respond-below(md) {
+	@include utils.respond-below(md) {
 		text-align: left;
 	}
 }
@@ -996,7 +998,7 @@
 				width: 35px !important;
 				height: 35px !important;
 				border-radius: 50px;
-				border: 3px solid $white;
+				border: 3px solid utils.$white;
 			}
 		}
 	}
@@ -1011,7 +1013,7 @@
 		justify-content: center;
 		border-radius: 50px;
 		font-size: 12px;
-		color: $white;
+		color: utils.$white;
 		line-height: 0;
 	}
 }
@@ -1024,14 +1026,14 @@
 	background: #071136;
 	padding: 80px 0;
 	position: relative;
-	@include respond-below(lg) {
+	@include utils.respond-below(lg) {
 		padding: 50px 0;
 	}
 	.home-five-head {
 		h1 {
 			width: 656px;
 			font-weight: 700;
-			color: $white;
+			color: utils.$white;
 			font-size: 28px;
 		}
 	}
@@ -1068,10 +1070,10 @@
 	}
 }
 p.accelerate-three-business {
-	color: $white;
+	color: utils.$white;
 	margin-bottom: 40px;
 	padding-left: 70px;
-	@include respond-below(xl) {
+	@include utils.respond-below(xl) {
 		padding-left: 0;
 	}
 }
@@ -1102,14 +1104,14 @@ p.accelerate-three-business {
 	}
 }
 .award-one {
-	border-bottom: 1px solid $primary;
+	border-bottom: 1px solid utils.$primary;
 	padding-bottom: 40px;
 	margin-bottom: 40px;
 }
 .learn-anything {
 	padding-bottom: 40px;
 	margin-bottom: 40px;
-	border-bottom: 1px solid $primary;
+	border-bottom: 1px solid utils.$primary;
 	h2 {
 		font-weight: 600;
 		margin-bottom: 20px;
@@ -1123,13 +1125,13 @@ p.accelerate-three-business {
 .development-carrer {
 	h2 {
 		font-weight: 600;
-		color: $success;
+		color: utils.$success;
 	}
 }
 .home-five-goals {
 	padding: 80px 0;
-	background-color: $white;
-	@include respond-below(lg) {
+	background-color: utils.$white;
+	@include utils.respond-below(lg) {
 		padding: 50px 0;
 	}
 }
@@ -1146,18 +1148,18 @@ p.accelerate-three-business {
 		font-weight: 700;
 		font-size: 32px;
 		&:hover {
-			color: $primary;
+			color: utils.$primary;
 		}
 	}
 	span {
 		font-weight: 700;
 		font-size: 32px;
-		color: $dark;
+		color: utils.$dark;
 	}
 	p {
 		font-weight: 500;
 		font-size: 16px;
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			text-align: center;
 		}
 	}
@@ -1167,10 +1169,10 @@ p.accelerate-three-business {
 		transform: translateZ(0);
 		transition-timing-function: ease-in-out;
 	}
-	@include respond-below(xl) {
+	@include utils.respond-below(xl) {
 		margin: 0;
 	}
-	@include respond-below(md) {
+	@include utils.respond-below(md) {
 		text-align: center;        
 		max-width: 100%;
 	}
@@ -1179,7 +1181,7 @@ p.accelerate-three-business {
 	h4 {
 		margin-bottom: 20px;
 		text-align: left;
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			text-align: center;
 		}
 	}
@@ -1189,7 +1191,7 @@ p.accelerate-three-business {
 	right: 10px;
 	z-index: -1;
 	top: -18px;
-	@include  respond-below(md) {
+	@include  utils.respond-below(md) {
 		right: 44%;
 	}
 }
@@ -1198,13 +1200,13 @@ p.accelerate-three-business {
 	top: 0;
 	transition: top ease 0.5s;
 	transition-timing-function: ease-in-out;
-	@include respond-below (xl) {
+	@include utils.respond-below (xl) {
 		margin-bottom: 30px;
 	}
 	h2 {
 		font-weight: 700;
 		font-size: 32px;
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			text-align: center;
 		}
 	}
@@ -1214,7 +1216,7 @@ p.accelerate-three-business {
 	right: 80px;
 	z-index: -1;
 	top: -18px;
-	@include  respond-below(md) {
+	@include  utils.respond-below(md) {
 		right: 44%;
 	}
 }
@@ -1223,7 +1225,7 @@ p.accelerate-three-business {
 	right: 38px;
 	z-index: -1;
 	top: -18px;
-	@include  respond-below(md) {
+	@include  utils.respond-below(md) {
 		right: 44%;
 	}
 }
@@ -1238,20 +1240,20 @@ p.accelerate-three-business {
 }
 .home-five-trending {
 	padding: 80px 0;
-	background: $light-500;
+	background: utils.$light-500;
 	overflow: hidden;
-	@include respond-below(lg) {
+	@include utils.respond-below(lg) {
 		padding: 50px 0;
 	}
 	.price-three-time{
 		i{
-			font-size: $font-size-14;
+			font-size: utils.$font-size-14;
 		}
 	}
 }
 .trending-bg-one {
 	background: #FFE57A;
-	border: 1px solid $border-color;
+	border: 1px solid utils.$border-color;
 	border-radius: 10px 10px 0 0;
 	padding: 20px;
 	transition: all 0.4s ease;
@@ -1277,10 +1279,10 @@ p.accelerate-three-business {
 		-webkit-transition: all 0.4s ease;
 		border-radius: 10px;
 		.course-title-one {
-			background-color: $primary;
-			border-color: $primary;
-			color: $white !important;
-			box-shadow: inset 0 50px 0 0 $primary;
+			background-color: utils.$primary;
+			border-color: utils.$primary;
+			color: utils.$white !important;
+			box-shadow: inset 0 50px 0 0 utils.$primary;
 			-webkit-transition: all 0.5s;
 			-moz-transition: all 0.5s;
 			-o-transition: all 0.5s;
@@ -1290,7 +1292,7 @@ p.accelerate-three-business {
 }
 .trending-bg-two {
 	background: #69FFDB;
-	border: 1px solid $border-color;
+	border: 1px solid utils.$border-color;
 	border-radius: 10px 10px 0 0;
 	padding: 20px;
 	transition: all 0.4s ease;
@@ -1301,13 +1303,13 @@ p.accelerate-three-business {
 }
 .trending-bg-three {
 	background: #EBE3FF;
-	border: 1px solid $border-color;
+	border: 1px solid utils.$border-color;
 	border-radius: 10px 10px 0 0;
 	padding: 20px;
 }
 .trending-bg-four {
 	background: #ABEEFF;
-	border: 1px solid $border-color;
+	border: 1px solid utils.$border-color;
 	border-radius: 10px 10px 0 0;
 	padding: 20px;
 	transition: all 0.4s ease;
@@ -1317,7 +1319,7 @@ p.accelerate-three-business {
 	-webkit-transition: all 0.4s ease;
 }
 .course-title-one {
-	background: $gray-900;
+	background: utils.$gray-900;
 	border-radius: 4px;
 	padding: 7px 10px;
 	margin-bottom: 25px;
@@ -1326,7 +1328,7 @@ p.accelerate-three-business {
 	z-index: 1;
 	overflow: hidden;
 	text-transform: initial;
-	box-shadow: inset 0 0 0 0 $white;
+	box-shadow: inset 0 0 0 0 utils.$white;
 	-webkit-transition: all 0.5s;
 	-moz-transition: all 0.5s;
 	-o-transition: all 0.5s;
@@ -1335,9 +1337,9 @@ p.accelerate-three-business {
 		font-weight: 500;
 		font-size: 14px;
 		text-align: center;
-		color: $white;
+		color: utils.$white;
 		&:hover {
-			color: $white;
+			color: utils.$white;
 		}
 	}
 }
@@ -1380,8 +1382,8 @@ p.accelerate-three-business {
 }
 .trending-content-footer {
 	padding: 20px;
-	background: $white;
-	border: 1px solid $border-color;
+	background: utils.$white;
+	border: 1px solid utils.$border-color;
 	border-radius: 0px 0px 10px 10px;
 }
 .trending-footer-img {
@@ -1389,7 +1391,7 @@ p.accelerate-three-business {
 		width: 45px !important;
 		height: 45px !important;
 		border-radius: 50px;
-		border: 2px solid $primary;
+		border: 2px solid utils.$primary;
 	}
 }
 .trending-price-three {
@@ -1438,8 +1440,8 @@ p.accelerate-three-business {
 .gallery-three {
 	padding: 80px 0 56px;
 	position: relative;
-	background: $white;
-	@include respond-below(lg) {
+	background: utils.$white;
+	@include utils.respond-below(lg) {
 		padding: 50px 0 26px;
 	}
 	.gallery-bg{
@@ -1473,19 +1475,19 @@ p.accelerate-three-business {
 		h6 {
 			font-weight: 700;
 			font-size: 16px;
-			color: $white;
+			color: utils.$white;
 			margin-bottom: 0;
 		}
 		p {
 			font-weight: 400;
 			font-size: 16px;
-			color: $white;
+			color: utils.$white;
 		}
 	}
 	.service-link {
 		i {
 			font-size: 25px;
-			color: $white;
+			color: utils.$white;
 		}
 	}
 }
@@ -1508,26 +1510,26 @@ p.accelerate-three-business {
 	align-items: center;
 	justify-content: space-between;
 	z-index: 1;
-	@include respond-below(lg){
+	@include utils.respond-below(lg){
 		padding: 10px;
 	}
 	h6 {
 		font-weight: 700;
 		font-size: 16px;
-		color: $white;
+		color: utils.$white;
 	}
 	p {
 		font-weight: 400;
 		font-size: 16px;
-		color: $white;
+		color: utils.$white;
 	}
 }
 .content-three-arrows {
-	color: $white;
+	color: utils.$white;
 	font-size: 18px;
 	&:hover {
 		i {
-			color: $secondary;
+			color: utils.$secondary;
 			-webkit-transition: 0.7s;
 			-moz-transition: 0.7s;
 			-o-transition: 0.7s;
@@ -1535,7 +1537,7 @@ p.accelerate-three-business {
 		}
 	}
 	i {
-		color: $white;
+		color: utils.$white;
 		-webkit-transition: 0.7s;
 		-moz-transition: 0.7s;
 		-o-transition: 0.7s;
@@ -1548,19 +1550,19 @@ p.accelerate-three-business {
 	justify-content: space-between;
 }
 .home-five-become {
-	background: $secondary;
+	background: utils.$secondary;
 	padding: 50px 0;
-	@include respond-below(lg) {
+	@include utils.respond-below(lg) {
 		padding: 30px 0;
 	}
 }
 .become-content-three {
 	h2 {
-		color: $white;
+		color: utils.$white;
 		margin-bottom: 10px;
 	}
 	p {
-		color: $white;
+		color: utils.$white;
 		margin-bottom: 0;
 	}
 }
@@ -1580,23 +1582,23 @@ p.accelerate-three-business {
 	display: flex;
 	float: right;
 	margin-right: 60px;
-	@include respond-below(xl){
+	@include utils.respond-below(xl){
 		float: none;
 		margin-right: 0;
 		justify-content: center;
 	}
 }
 .testimonial-next-pre {
-	background: $white;
+	background: utils.$white;
 	border-radius: 50px !important;
 	font-size: 16px;
 	padding: 10px 15px;
-	color: $gray-500;
+	color: utils.$gray-500;
 	cursor: pointer;
 	margin-right: 20px;
 	&:hover {
-		background: $primary;
-		color: $white;
+		background: utils.$primary;
+		color: utils.$white;
 	}
 }
 .become-content {
@@ -1612,10 +1614,10 @@ p.accelerate-three-business {
 	}
 }
 .btn-become {
-	border: 1px solid $primary;
+	border: 1px solid utils.$primary;
 	font-weight: 700 !important;
-	color: $white !important;
-	background: $primary;
+	color: utils.$white !important;
+	background: utils.$primary;
 	border-radius: 10px;
 	text-align: center;
 	padding: 15px 35px;
@@ -1629,10 +1631,10 @@ p.accelerate-three-business {
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
 	&:hover {
-		background-color: $primary;
-		border-color: $primary;
-		color: $primary !important;
-		box-shadow: inset 0 55px 0 0 $white;
+		background-color: utils.$primary;
+		border-color: utils.$primary;
+		color: utils.$primary !important;
+		box-shadow: inset 0 55px 0 0 utils.$white;
 		-webkit-transition: all 0.5s;
 		-moz-transition: all 0.5s;
 		-o-transition: all 0.5s;
@@ -1641,7 +1643,7 @@ p.accelerate-three-business {
 }
 .lead-companies-three {
 	padding: 80px 0;
-	@include respond-below(lg) {
+	@include utils.respond-below(lg) {
 		padding: 50px 0;
 	}
 }
@@ -1654,7 +1656,7 @@ p.accelerate-three-business {
 	position: relative;
 	width: 100%;
 	overflow: hidden;
-	@include respond-below(lg) {
+	@include utils.respond-below(lg) {
 		padding: 50px 0;
 	}
 }
@@ -1669,7 +1671,7 @@ p.accelerate-three-business {
 	}
 }
 .box-form-newsletter {
-	background: $white;
+	background: utils.$white;
 	max-width: 635px;
 	border-radius: 5px;
 	padding: 10px 10px 10px 14px;
@@ -1686,7 +1688,7 @@ p.accelerate-three-business {
 			background-repeat: no-repeat;
 			background-position: left 10px center;
 			padding: 10px 10px 10px 40px;
-			font-size: $font-size-14;
+			font-size: utils.$font-size-14;
 			background: transparent;
 		}
 	}
@@ -1702,37 +1704,37 @@ textarea:focus {
 	box-shadow: none;
 }
 .latest-blog-three {
-	background: $white;
+	background: utils.$white;
 	padding: 80px 0 60px;
 	.section-header-title {
 		padding-bottom: 48px;
 	}
-	@include respond-below(lg) {
+	@include utils.respond-below(lg) {
 		padding: 50px 0 30px;
 	}
 }
 .event-three-title {
 	h5 {
 		font-weight: 600;
-		font-size: $font-size-22;
-		color: $white;
+		font-size: utils.$font-size-22;
+		color: utils.$white;
 		-webkit-transition: all 0.5s;
 		-moz-transition: all 0.5s;
 		-o-transition: all 0.5s;
 		transition: all 0.5s;
 		&:hover{
-			color: $secondary;
+			color: utils.$secondary;
 		}
-		@include respond-below(xxl){
-			font-size: $font-size-22;
+		@include utils.respond-below(xxl){
+			font-size: utils.$font-size-22;
 		}
-		@include respond-below(xl){
-			font-size: $font-size-18;
+		@include utils.respond-below(xl){
+			font-size: utils.$font-size-18;
 		}
 	}
 	p {
 		font-weight: 400;
-		font-size: $font-size-14;
+		font-size: utils.$font-size-14;
 		color: #DEDEDE;
 	}
 }
@@ -1746,7 +1748,7 @@ textarea:focus {
 }
 .blog-user-top {
 	padding: 8px;
-	background: $info;
+	background: utils.$info;
 	border-radius: 40px;
 	display: inline-flex;
 	align-items: center;
@@ -1754,7 +1756,7 @@ textarea:focus {
 	left: 20px;
 	top: 20px;
 	z-index: 2;
-	@include respond-below(sm){
+	@include utils.respond-below(sm){
 		left: 15px;
 	}
 	img {
@@ -1765,22 +1767,22 @@ textarea:focus {
 		flex-shrink: 0;
 	}
 	a {
-		color: $white;
+		color: utils.$white;
 		display: inline-flex;
 		align-items: center;
-		font-size: $font-size-14;
+		font-size: utils.$font-size-14;
 	}
 }
 .span-name-three {
-	border: 1px solid $white;
-	color: $white;
+	border: 1px solid utils.$white;
+	color: utils.$white;
 	padding: 4px 12px;
 	border-radius: 40px;
 	margin-right: 15px;
-	font-size: $font-size-14;
-	@include respond-below(xl){
+	font-size: utils.$font-size-14;
+	@include utils.respond-below(xl){
 		padding: 3px 10px;
-		font-size: $font-size-13;
+		font-size: utils.$font-size-13;
 	}
 }
 .blog-widget-three {
@@ -1800,7 +1802,7 @@ textarea:focus {
 		.span-name-three {
 			background: #21B477;
 			border-radius: 4px;
-			color: $white;
+			color: utils.$white;
 			padding: 6px;
 		}
 	}
@@ -1816,15 +1818,15 @@ textarea:focus {
     -moz-transition: 0.7s;
     -o-transition: 0.7s;
     transition: 0.7s;
-	@include respond-below(sm){
+	@include utils.respond-below(sm){
 		padding: 20px 15px;
 	}
 }
 .blog-student-count {
     color: #ffffff;
 	span{
-		@include respond-below(xl){
-			font-size: $font-size-14;
+		@include utils.respond-below(xl){
+			font-size: utils.$font-size-14;
 		}
 	}
 }
@@ -1899,7 +1901,7 @@ textarea:focus {
 	.span-name {
 		background: #21B477;
 		border-radius: 4px;
-		color: $white;
+		color: utils.$white;
 		font-weight: 700;
 		font-size: 16px;
 		justify-content: center;
@@ -1923,15 +1925,15 @@ textarea:focus {
 		a {
 			font-weight: 700;
 			font-size: 22px;
-			color: $white;
+			color: utils.$white;
 		}
 	}
 }
 .blog-student-count {
-	color: $white;
+	color: utils.$white;
 }
 .footer-five {
-	background: $dark;
+	background: utils.$dark;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -1941,28 +1943,28 @@ textarea:focus {
 		h6 {
 			font-weight: 500;
 			font-size: 20px;
-			color: $white;
+			color: utils.$white;
 			margin-bottom: 18px;
 		}
 	}
 	.footer-three-top {
 		padding: 67px 0;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 50px 0;
 		}
-		@include respond-below(md) {
+		@include utils.respond-below(md) {
 			padding: 40px 0;
 		}
 	}
 	.footer-bottom-five {
-		border-top: 1px solid $gray-800;
+		border-top: 1px solid utils.$gray-800;
 		padding: 1.5rem 0;
 		.social-icon{
 			display: flex;
 			align-items: center;
 			justify-content: end;
 			gap: 8px;
-			@include respond-below(lg){
+			@include utils.respond-below(lg){
 				justify-content: center;
 			}
 			a{
@@ -1976,19 +1978,19 @@ textarea:focus {
 				align-items: center;
 				justify-content: center;
 				&:hover{
-					background-color: $secondary;
-					color: $white;
+					background-color: utils.$secondary;
+					color: utils.$white;
 				}
 			}
 		}
 		.copyright-text {
 			p {
-				color: $gray-100;
-				font-size: $font-size-14;
+				color: utils.$gray-100;
+				font-size: utils.$font-size-14;
 				a {
-					color: $secondary;
+					color: utils.$secondary;
 				}
-				@include respond-below (lg) {
+				@include utils.respond-below (lg) {
 					text-align: center;
 				}
 			}
@@ -1997,22 +1999,22 @@ textarea:focus {
 			display: flex;
 			align-items: center;
 			justify-content: end;
-			@include respond-below (lg) {
+			@include utils.respond-below (lg) {
 				justify-content: center;
 			}
 			a {
-				color: $gray-100;
+				color: utils.$gray-100;
 				position: relative;
-				font-size: $font-size-14;
+				font-size: utils.$font-size-14;
 				&:hover{
-					color: $secondary;
+					color: utils.$secondary;
 				}
 				& + a {
 					padding-left: 12px;
 					margin-left: 8px;
 					&::before {
 						content: "/";
-						color: $gray-700;
+						color: utils.$gray-700;
 						position: absolute;
 						left: 0;
 						top: 50%;
@@ -2036,7 +2038,7 @@ textarea:focus {
 				margin-bottom: 0;
 			}
 			a {
-				color: $gray-100;
+				color: utils.$gray-100;
 				font-weight: 400;
 				font-size: 14px;
 				margin-left: 18px;
@@ -2051,7 +2053,7 @@ textarea:focus {
 					float: left;
 					margin-right: 10px;
 					font-size: 6px;
-					color: $secondary;
+					color: utils.$secondary;
 					transition: all 0.5s ease-in-out;
 					font-family: 'FontAwesome';
 				}
@@ -2070,13 +2072,13 @@ textarea:focus {
 	p {
 		font-weight: 400;
 		font-size: 16px;
-		color: $gray-100;
+		color: utils.$gray-100;
 		margin-bottom: 50px;
 	}
 }
 .footer-three-title {
 	font-weight: 600;
-	color: $white;
+	color: utils.$white;
 	margin-bottom: 20px;
 }
 .privacy-policy-three {
@@ -2101,9 +2103,9 @@ textarea:focus {
 			a {
 				font-weight: 400;
 				font-size: 14px;
-				color: $white;
+				color: utils.$white;
 				&:hover {
-					color: $warning;
+					color: utils.$warning;
 				}
 			}
 		}
@@ -2129,7 +2131,7 @@ textarea:focus {
 		li {
 			margin-right: 15px;
 			.feather-facebook-icon {
-				color: $white;
+				color: utils.$white;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -2137,11 +2139,11 @@ textarea:focus {
 				background: #066AC9;
 				border-radius: 50%;
 				&:hover {
-					background: $primary;
+					background: utils.$primary;
 				}
 			}
 			.feather-twitter-icon {
-				color: $white;
+				color: utils.$white;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -2149,11 +2151,11 @@ textarea:focus {
 				background: #2BB7E5;
 				border-radius: 50%;
 				&:hover {
-					background: $primary;
+					background: utils.$primary;
 				}
 			}
 			.feather-linkedin-icon {
-				color: $white;
+				color: utils.$white;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -2161,11 +2163,11 @@ textarea:focus {
 				background: #066AC9;
 				border-radius: 50%;
 				&:hover {
-					background: $primary;
+					background: utils.$primary;
 				}
 			}
 			.feather-youtube-icon {
-				color: $white;
+				color: utils.$white;
 				display: flex;
 				align-items: center;
 				justify-content: center;
@@ -2173,7 +2175,7 @@ textarea:focus {
 				background: #FF2D20;
 				border-radius: 50%;
 				&:hover {
-					background: $primary;
+					background: utils.$primary;
 				}
 			}
 		}
@@ -2181,7 +2183,7 @@ textarea:focus {
 	h6 {
 		font-weight: 500;
 		font-size: 20px;
-		color: $white;
+		color: utils.$white;
 		margin-bottom: 0;
 	}
 }
@@ -2192,7 +2194,7 @@ textarea:focus {
 	p {
 		font-weight: 400;
 		font-size: 14px;
-		color: $white;
+		color: utils.$white;
 	}
 }
 .home-five .header-four {
@@ -2333,10 +2335,10 @@ textarea:focus {
 	-o-transition: all 0.5s;
 	transition: all 0.5s;
 	&:hover {
-		background-color: $white;
+		background-color: utils.$white;
 		border: 1px solid #EE009C;
 		color: #EE009C !important;
-		box-shadow: inset 0 50px 0 0 $white;
+		box-shadow: inset 0 50px 0 0 utils.$white;
 		-webkit-transition: all 0.5s;
 		-moz-transition: all 0.5s;
 		-o-transition: all 0.5s;
@@ -2367,7 +2369,7 @@ textarea:focus {
 	.select2-container--default {
 		.select2-results__option--highlighted[aria-selected] {
 			background-color: #EE009C;
-			color: $white;
+			color: utils.$white;
 			font-size: 14px;
 		}
 	}
@@ -2433,7 +2435,7 @@ textarea:focus {
 	}
 }
 .search-box-four {
-	background: $white;
+	background: utils.$white;
 	border: 1px solid #EE009C;
 	box-shadow: 0px 16px 106px rgba(196, 196, 196, 0.16);
 	border-radius: 40px;
@@ -2586,7 +2588,7 @@ textarea:focus {
 	}
 }
 .development-course {
-	background: $white;
+	background: utils.$white;
 	border: 1px solid #E0EBFF;
 	box-shadow: 0px 4px 34px rgba(57, 44, 125, 0.02);
 	border-radius: 10px;
@@ -2662,7 +2664,7 @@ textarea:focus {
 .card-body-group {
 	position: relative;
 	overflow: hidden;
-	background: $white;
+	background: utils.$white;
 	box-shadow: -3px 5px 16px rgb(0 0 0 / 7%);
 	border-radius: 15px;
 	margin-bottom: 20px;
@@ -2681,7 +2683,7 @@ textarea:focus {
 		transition: 0.7s;
 		.web-developer-name {
 			a {
-				color: $white;
+				color: utils.$white;
 				-webkit-transition: 0.7s;
 				-moz-transition: 0.7s;
 				-o-transition: 0.7s;
@@ -2690,7 +2692,7 @@ textarea:focus {
 		}
 		.course-caste {
 			span {
-				color: $white;
+				color: utils.$white;
 				-webkit-transition: 0.7s;
 				-moz-transition: 0.7s;
 				-o-transition: 0.7s;
@@ -2699,7 +2701,7 @@ textarea:focus {
 		}
 		.php-course {
 			a {
-				color: $white;
+				color: utils.$white;
 				-webkit-transition: 0.7s;
 				-moz-transition: 0.7s;
 				-o-transition: 0.7s;
@@ -2707,7 +2709,7 @@ textarea:focus {
 			}
 		}
 		.book-img {
-			background: $white;
+			background: utils.$white;
 			-webkit-transition: 0.7s;
 			-moz-transition: 0.7s;
 			-o-transition: 0.7s;
@@ -2715,7 +2717,7 @@ textarea:focus {
 		}
 		.course-lesson {
 			span {
-				color: $white;
+				color: utils.$white;
 				-webkit-transition: 0.7s;
 				-moz-transition: 0.7s;
 				-o-transition: 0.7s;
@@ -2854,7 +2856,7 @@ textarea:focus {
 		a {
 			font-weight: 700;
 			font-size: 16px;
-			color: $white;
+			color: utils.$white;
 			background: #EE009C;
 			border-radius: 32px;
 			padding: 15px 50px;
@@ -2935,7 +2937,7 @@ textarea:focus {
 		a {
 			font-weight: 700;
 			font-size: 16px;
-			color: $white;
+			color: utils.$white;
 			background: #EE009C;
 			border-radius: 32px;
 			padding: 15px 50px;
@@ -2962,7 +2964,7 @@ textarea:focus {
 		}
 	}
 	.card {
-		background: $white;
+		background: utils.$white;
 		box-shadow: 2px 8px 20px rgba(0, 0, 0, 0.06);
 		border-radius: 20px;
 		border: 1px solid #fff;
@@ -3152,7 +3154,7 @@ textarea:focus {
 .latest-blog-slider {
 	.card {
 		border: none;
-		background: $white;
+		background: utils.$white;
 		box-shadow: -3px 5px 16px rgba(0, 0, 0, 0.07);
 		border-radius: 30px;
 		margin-bottom: 20px;
@@ -3206,12 +3208,12 @@ textarea:focus {
 	h2 {
 		font-weight: 700;
 		font-size: 34px;
-		color: $white;
+		color: utils.$white;
 	}
 	p {
 		font-weight: 700;
 		font-size: 16px;
-		color: $white;
+		color: utils.$white;
 		max-width: 350px;
 		text-align: center;
 	}
@@ -3232,7 +3234,7 @@ textarea:focus {
 		h2 {
 			font-weight: 700;
 			font-size: 40px;
-			color: $white;
+			color: utils.$white;
 			padding-bottom: 30px;
 		}
 	}
@@ -3298,7 +3300,7 @@ textarea:focus {
 		&::placeholder {
 			font-weight: 400;
 			font-size: 16px;
-			color: $white;
+			color: utils.$white;
 		}
 		&:focus {
 			outline: none;
@@ -3437,7 +3439,7 @@ textarea:focus {
 			button {
 				width: 8px;
 				height: 8px;
-				background: $dark;
+				background: utils.$dark;
 				border-radius: 50%;
 
 			}
@@ -3445,7 +3447,7 @@ textarea:focus {
 				button {
 					width: 14px;
 					height: 14px;
-					background: $secondary;
+					background: utils.$secondary;
 				}
 			}
 		}
@@ -3463,7 +3465,7 @@ textarea:focus {
 			button {
 				width: 8px;
 				height: 8px;
-				background: $dark;
+				background: utils.$dark;
 				border-radius: 50%;
 
 			}
@@ -3471,13 +3473,13 @@ textarea:focus {
 				button {
 					width: 14px;
 					height: 14px;
-					background: $secondary;
+					background: utils.$secondary;
 				}
 			}
 		}
 	}
 }
-@include respond-below (lg) {
+@include utils.respond-below (lg) {
 	.master-img {
 		margin-bottom: 24px;
 	}
@@ -3491,7 +3493,7 @@ textarea:focus {
 		padding: 50px 0;
 	}
 }
-@include respond-below (md) {
+@include utils.respond-below (md) {
 	.home-five-slide-text h1 {
 		font-size: 32px;
 	}

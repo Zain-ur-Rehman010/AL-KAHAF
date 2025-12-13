@@ -1,14 +1,16 @@
+@use "../utils";
+
 /*=============================
     Banner
 ===============================*/
 
 .banner-section {
     position: relative;
-    background-color: $primary;
+    background-color: utils.$primary;
     padding: 155px 0 80px;
     z-index: 0;
     overflow: hidden;
-    @include respond-below(lg) {
+    @include utils.respond-below(lg) {
         padding: 105px 0 50px;
     }
     .banner-bg1{
@@ -45,48 +47,48 @@
         }
         .hero-title{
             display: inline-block;
-            background-color: $primary-900;
+            background-color: utils.$primary-900;
             padding: 4px 16px;
-            color: $white;
-            font-size: $font-size-14;
-            font-weight: $font-weight-medium;
+            color: utils.$white;
+            font-size: utils.$font-size-14;
+            font-weight: utils.$font-weight-medium;
             margin-bottom: 16px;
-            @include rounded(30px);
+            @include utils.rounded(30px);
         }
         h1{
-            @include respond-below(lg) {
-                font-size: $font-size-34;
+            @include utils.respond-below(lg) {
+                font-size: utils.$font-size-34;
             }
-            @include respond-below(md) {
-                font-size: $font-size-28;
+            @include utils.respond-below(md) {
+                font-size: utils.$font-size-28;
             }
-            @include respond-below(sm) {
-                font-size: $font-size-26;
+            @include utils.respond-below(sm) {
+                font-size: utils.$font-size-26;
             }
             span {
-                color: $secondary;
+                color: utils.$secondary;
                 text-decoration: underline;
                 margin-bottom: 16px;
             }
         }
         p {
-            color: $light;
+            color: utils.$light;
             margin-bottom: 24px;
         }
         .banner-search {
-            background: $white;
-            @include rounded(10px);
+            background: utils.$white;
+            @include utils.rounded(10px);
             display: flex;
             align-items: center;
             padding: 10px;
             margin-bottom: 40px;
-            @include respond-below(sm) {
+            @include utils.respond-below(sm) {
                 display: block;
             }
             .dropdown {
                 flex-shrink: 0;
                 margin-right: 20px;
-                @include respond-below(sm) {
+                @include utils.respond-below(sm) {
                     margin-right: 0;
                 }
             }
@@ -95,22 +97,22 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
-                background: $light;
-                @include rounded(10px);
-                font-size: $font-size-14;
-                font-weight: $font-weight-medium;
+                background: utils.$light;
+                @include utils.rounded(10px);
+                font-size: utils.$font-size-14;
+                font-weight: utils.$font-weight-medium;
                 padding: 10px 20px;
                 i {
                     margin-left: 29px;
                 }
                 &:hover {
-                    color: $gray-900;
+                    color: utils.$gray-900;
                 }
            }
            input{
                 height: 48px;
                 width: 100%;
-                @include respond-below(sm) {
+                @include utils.respond-below(sm) {
                     width: 100%;
                 }
            }
@@ -120,9 +122,9 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                @include rounded(10px);
-                font-size: $font-size-16;
-                @include respond-below(sm) {
+                @include utils.rounded(10px);
+                font-size: utils.$font-size-16;
+                @include utils.respond-below(sm) {
                     width: 100%;
                 }
            }
@@ -131,7 +133,7 @@
             display: flex;
             align-items: center;
             transition: all 0.3s ease-in-out;
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 width: 47%;
             }
             .counter-icon {
@@ -139,11 +141,11 @@
             }
             .count-content {
                 p {
-                    font-weight: $font-weight-medium;
+                    font-weight: utils.$font-weight-medium;
                     margin-bottom: 0;
                 }
             }
-            @include respond-below(sm) {
+            @include utils.respond-below(sm) {
                 justify-content: center;
             }
         }
@@ -160,13 +162,13 @@
             width: 100%;
             height: 318px;
         }
-        @include respond-below(lg) {
+        @include utils.respond-below(lg) {
             display: none;
         }
     }
     &-two {
         position: relative;
-        background: $light-100;
+        background: utils.$light-100;
         max-height: 578px;
         overflow: hidden;
     
@@ -245,36 +247,36 @@
     
         .banner-badge {
             padding: 4px 12px;
-            background: $secondary;
+            background: utils.$secondary;
             border-radius: 10px;
-            color: $white;
+            color: utils.$white;
         }
         .banner-content {
             padding: 118px 0;
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 padding: 80px 0;
                 display: block !important;
             }
-            @include respond-below(md) {
+            @include utils.respond-below(md) {
                 padding: 60px 0;
             }
-            @include respond-below(sm) {
+            @include utils.respond-below(sm) {
                 padding: 20px 0;
             }
             .banner-info {
                 margin-bottom: 40px;
-                @include respond-below(md) {
+                @include utils.respond-below(md) {
                     margin-bottom: 30px;
                 }
                 p {
-                    font-weight: $font-weight-semibold;
+                    font-weight: utils.$font-weight-semibold;
                 }
             }
         }
         h1 {
             .banner-title {
                 z-index: 1;
-                color: $white;
+                color: utils.$white;
                 .title-bg {
                     z-index: -1;
                     top: 4px;
@@ -284,21 +286,21 @@
         }
         .banner-form {
             position: relative;
-            border: 1px solid $border-color;
+            border: 1px solid utils.$border-color;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: $white;
-            @include rounded(80px);
-            box-shadow: $drop-shadow;
+            background: utils.$white;
+            @include utils.rounded(80px);
+            box-shadow: utils.$drop-shadow;
             padding: 15px;
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 height: 70px;
             }
-            @include respond-below(sm) {
+            @include utils.respond-below(sm) {
                 display: block;
                 height: auto;
-                @include rounded(10px);
+                @include utils.rounded(10px);
                 box-shadow: 0px 4px 4px 0px rgba(212, 212, 212, 0.25);
             }
             .form-control {
@@ -311,21 +313,21 @@
                 &:focus-visible{
                     outline: none;
                 }
-                @include respond-below(sm) {
+                @include utils.respond-below(sm) {
                     padding-left: 0;
                     height: 56px;
-                    border: 1px solid $light !important;
-                    @include rounded(80px);
+                    border: 1px solid utils.$light !important;
+                    @include utils.rounded(80px);
                     margin-bottom: 10px;
                     padding: 10px 20px;
                 }
              }
              .btn {
-                font-size: $font-size-16;
+                font-size: utils.$font-size-16;
              }
              button {
                 right: 16px;
-                @include respond-below(sm) {
+                @include utils.respond-below(sm) {
                     width: 100%;
                     height: 42px;
                 }
@@ -335,9 +337,9 @@
         .dropdown {
             padding: 0 16px 0 10px;
             margin-right: 16px;
-            @include respond-below(sm) {
-                border: 1px solid $light;
-                @include rounded(80px);
+            @include utils.respond-below(sm) {
+                border: 1px solid utils.$light;
+                @include utils.rounded(80px);
                 margin-bottom: 10px;
                 padding: 15px 20px;
             }
@@ -346,13 +348,13 @@
                 padding: 0;
                 width: 100%;
                 i {
-                    color: $gray-600;
+                    color: utils.$gray-600;
                 }
-                @include respond-below(sm) {
+                @include utils.respond-below(sm) {
                     padding-right: 15px;
                 }
                 &::after {
-                    @include respond-below(sm) {
+                    @include utils.respond-below(sm) {
                         position: absolute;
                         right: 20px;
                     }
@@ -363,9 +365,9 @@
             }
         }
         .btn.show, .btn.show:hover, .btn:first-child:active, :not(.btn-check) + .btn:active {
-            background: $white;
-            border-color: $white;
-            color:$gray-900;
+            background: utils.$white;
+            border-color: utils.$white;
+            color:utils.$gray-900;
         }
     
         .banner-img-section {
@@ -373,18 +375,18 @@
             text-align: right;
             padding-right: 50px;
             margin-left: 40px;
-            @include respond-below(lg) {
+            @include utils.respond-below(lg) {
                 display: none;
             }
             .about-img {
-                @include rounded(10px);
+                @include utils.rounded(10px);
             }
             .banner-bg-01 {
                 position: absolute;
                 bottom: 0;
                 z-index: 0;
                 left: 70px;
-                @include respond-below(xxl) {
+                @include utils.respond-below(xxl) {
                     left: 10px;
                 }
             }
@@ -396,27 +398,27 @@
             }
             .enrolled-list-cover {
                 display: inline-flex;
-                box-shadow: $box-shadow;
-                border: 1px solid $light-900;
+                box-shadow: utils.$box-shadow;
+                border: 1px solid utils.$light-900;
                 border-radius: 30px 30px 0px 30px;
-                background: $white;
+                background: utils.$white;
                 position: absolute;
                 left: 20px;
                 top: 85px;
                 z-index: 1;
                 padding: 10px;
-                @include respond-below(xl) {
+                @include utils.respond-below(xl) {
                     top: 20px;
                     left: -80px;
                 }
                 .enrolled-list {
                     padding: 15px;
-                    border: 1px solid $light;
+                    border: 1px solid utils.$light;
                     border-radius: 30px 30px 0px 30px;
                     p {
-                        color: $gray-900;
-                        font-size: $font-size-14;
-                        font-weight: $font-weight-medium;
+                        color: utils.$gray-900;
+                        font-size: utils.$font-size-14;
+                        font-weight: utils.$font-weight-medium;
                     }
                     .avatar-list-stacked {
                         margin-bottom: 10px;
@@ -424,9 +426,9 @@
                 }
             }
             .course-count {
-                box-shadow: $box-shadow;
+                box-shadow: utils.$box-shadow;
                 padding: 10px;
-                background: $primary;
+                background: utils.$primary;
                 border-radius: 30px 30px 30px 0;
                 position: absolute;
                 z-index: 1;
@@ -439,9 +441,9 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    @include rounded(50%);
-                    background: $secondary;
-                    color: $white;
+                    @include utils.rounded(50%);
+                    background: utils.$secondary;
+                    color: utils.$white;
                 }
                 &:hover {
                     h4 {
@@ -480,7 +482,7 @@
 				padding: 0px;
 			}
 		}
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 115px 0 120px;
 		}
 	}
@@ -489,7 +491,7 @@
 		background: linear-gradient(349.22deg, #FBFCFF 25.7%, #F3EDFF 129.76%);
 		padding: 165px 0 80px;
 		z-index: 1;
-		@include respond-below(lg) {
+		@include utils.respond-below(lg) {
 			padding: 105px 0 50px;
 		}
 		.drop-detail {
@@ -499,11 +501,11 @@
 			border-radius: 50px !important;
 			border: 0;
 			height: 44px;
-			@include respond-below(sm) {
+			@include utils.respond-below(sm) {
 				width: 100%;
 			}
 			.select2-container--default .select2-selection--single .select2-selection__rendered {
-				font-weight: $font-weight-semibold;
+				font-weight: utils.$font-weight-semibold;
 			}
 			.select2-container--default .select2-selection--single .select2-selection__arrow b {
 				margin-top: 0;
@@ -512,7 +514,7 @@
 		.banner-content {
 			.form-inner {
 				padding: 10px;
-				background-color: $white;
+				background-color: utils.$white;
 				border-radius: 35px;
 				width: 100%;
 				border: 0;
@@ -521,14 +523,14 @@
 		}
 		.banner-image {
 			margin-left: 24px;
-			@include respond-below(xxl) {
+			@include utils.respond-below(xxl) {
 				margin-left: 0;
 			}
-			@include respond-below(lg) {
+			@include utils.respond-below(lg) {
 				display: none;
 			}
 			.img-01, .img-02, .img-03 {
-				@include rounded(10px);
+				@include utils.rounded(10px);
 				width: 100%;
 			}
 		}
@@ -538,13 +540,13 @@
 			height: 118px;
 			top: 50%;
 			left: 50%;
-			@include transform(translate(-50%, -50%));
-			background: $white;
+			@include utils.transform(translate(-50%, -50%));
+			background: utils.$white;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			z-index: 1;
-			@include rounded(50%);
+			@include utils.rounded(50%);
 			img {
 				width: 70px;
 			}
@@ -566,15 +568,15 @@
 	
 .banner-five {
 	position: relative;
-	background-color: $light-900;
+	background-color: utils.$light-900;
     background-image: url(../img/bg/bg-1.png);
     background-repeat: no-repeat;
     background-position: right bottom;
     padding-top: 100px;
-	@include respond-below (lg){
+	@include utils.respond-below (lg){
 		background-size: 40%;
 	}
-	@include respond-below (sm){
+	@include utils.respond-below (sm){
 		background-image: none;
 	}
 }

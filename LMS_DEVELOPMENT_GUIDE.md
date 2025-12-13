@@ -346,6 +346,69 @@ Before starting development:
 - PostgreSQL: https://www.postgresql.org/
 
 ---
-## command to run scss file
-sass "frontend\assets\scss\main.scss" "frontend\assets\css\style.css"
-**Last Updated**: December 12/6/2025 
+
+# AlKahaf Frontend
+
+**Last Updated**: December 13, 2025
+
+## Local Development Server
+
+### Prerequisites
+Make sure you have Node.js installed and run:
+```bash
+cd frontend
+npm install
+```
+
+### Start Development Server
+```bash
+npm start
+```
+This will start a local server at **http://localhost:3000** with live-reload enabled.
+
+### Available Scripts
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start live-server on port 3000 |
+| `npm run sass` | Watch SCSS and compile to assets/css/style.css |
+| `npm run dev` | Run live-server and Sass watch together |
+
+---
+
+## Frontend Commands
+
+### Start everything (recommended during development)
+```bash
+cd frontend
+npm run dev
+```
+
+### Start only the web server
+```bash
+cd frontend
+npm start
+```
+
+### Watch SCSS to the CSS file used by HTML
+```bash
+cd frontend
+npm run sass
+```
+
+---
+
+## SCSS Compilation
+
+### Compile SCSS (One-time)
+```bash
+npx sass assets/scss/main.scss assets/css/style.css
+```
+
+### Watch SCSS (Auto-compile on changes)
+```bash
+npx sass --watch assets/scss/main.scss assets/css/style.css
+```
+
+### Compile with Minification (Production)
+```bash
+npx sass assets/scss/main.scss assets/css/style.css --style=compressed

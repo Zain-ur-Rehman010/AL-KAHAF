@@ -1,3 +1,5 @@
+@use "../utils";
+
 /*============================
   60.meanmenu
 ============================*/
@@ -7,16 +9,16 @@
         display: none !important;
     }
     .mean-bar {
-        background: $white;
+        background: utils.$white;
     }
     .mean-nav {
-        background: $white;
+        background: utils.$white;
         margin-top: 0;
         ul {
             li {
                 &.active {
                     & > a {
-                        color: $primary;
+                        color: utils.$primary;
                     }
                 }
                 .submenu {
@@ -25,8 +27,8 @@
                             margin-bottom: 12px;
                         }
                         a {
-                            font-size: $font-size-14;
-                            font-weight: $font-weight-normal;
+                            font-size: utils.$font-size-14;
+                            font-weight: utils.$font-weight-normal;
                             padding: 4px 4px 4px 16px;
                             width: 100%;
                         }
@@ -37,12 +39,12 @@
         & > ul {
             display: block !important;
             & > li {
-                border-bottom: 1px solid $border-color;
+                border-bottom: 1px solid utils.$border-color;
             }
             li {
                 a {
-                    color: $gray-600;
-                    font-weight: $font-weight-medium;
+                    color: utils.$gray-600;
+                    font-weight: utils.$font-weight-medium;
                     padding: 16px 0;
                     border: 0;
                 }

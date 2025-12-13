@@ -1,31 +1,33 @@
+@use "../utils";
+
 .cart-cover {
     margin: 0 60px;
-    @include respond-below(md) {
+    @include utils.respond-below(md) {
         margin: 0 20px;
     }
-    @include respond-below(sm) {
+    @include utils.respond-below(sm) {
         margin: 0;
     }
     .cart-items {
-        border: 1px solid $border-color;
+        border: 1px solid utils.$border-color;
         box-shadow: 0px 4px 4px 0px #D4D4D440;
         border-radius: 10px;
         padding: 20px;
         margin-bottom: 0;
         .items-count {
-            background: $light-900;
+            background: utils.$light-900;
             padding: 10px;
             border-radius: 10px;
-            font-size: $font-size-16;
-            font-weight: $font-weight-medium;
-            color: $gray-900;
+            font-size: utils.$font-size-16;
+            font-weight: utils.$font-weight-medium;
+            color: utils.$gray-900;
             margin-bottom: 20px;
         }
         .cart-head {
             margin-bottom: 20px;
         }
         .cart-item {
-            border: 1px solid $border-color;
+            border: 1px solid utils.$border-color;
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 0;
@@ -34,7 +36,7 @@
             }
         }
         p {
-            font-size: $font-size-14;
+            font-size: utils.$font-size-14;
         }
     }
     .cart-img {
@@ -55,41 +57,41 @@
         height: 6px;
     }
     .star {
-        color: $warning;
+        color: utils.$warning;
     }
     .trash-btn {
         width: 30px;
         height: 30px;
         padding: 4px;
         border-radius: 18px;
-        border: 1px solid $border-color;
+        border: 1px solid utils.$border-color;
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        color: $danger;
+        color: utils.$danger;
         &:hover {
-            background: $danger;
-            color: $white;
-            border-color: $danger;
+            background: utils.$danger;
+            color: utils.$white;
+            border-color: utils.$danger;
         }
     }
     .btn.continue-shopping-btn {
-        background: $secondary;
-        color: $white;
+        background: utils.$secondary;
+        color: utils.$white;
         padding: 7px 16px;
         &:hover {
-            background: $primary;
+            background: utils.$primary;
         }
     }
     .btn.checkout-btn {
-        background: $primary;
-        color: $white;
+        background: utils.$primary;
+        color: utils.$white;
         &:hover {
-            background: $secondary;
+            background: utils.$secondary;
         }
     }
     .cart-trash {
-        @include respond-below(md) {
+        @include utils.respond-below(md) {
             margin-top: 10px;
         }
     }

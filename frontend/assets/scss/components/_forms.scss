@@ -1,18 +1,20 @@
+@use "../utils";
+
 /*============================
   15.forms
 ============================*/
 
 .form-control {
-  border-color: $input-border;
-  color: $gray-900;
-  background-color: $form-control-bg;
-  font-size: $font-size-14;
+  border-color: utils.$input-border;
+  color: utils.$gray-900;
+  background-color: utils.$form-control-bg;
+  font-size: utils.$font-size-14;
   padding: 0.5rem 1rem;
   min-height: 40px;
   &:focus {
     box-shadow: none;
-    border-color: $input-border;
-    background: $white;
+    border-color: utils.$input-border;
+    background: utils.$white;
   }
 }
 textarea {
@@ -32,30 +34,30 @@ textarea {
   }
 }
 .form-text {
-  color: $text-muted;
+  color: utils.$text-muted;
 }
 .form-control-light {
-  background-color: $light;
+  background-color: utils.$light;
   border: 0;
 
   &:focus {
-    background-color: $light;
+    background-color: utils.$light;
   }
 }
 .form-control-primary {
-  background-color: rgba($primary, 0.1);
+  background-color: rgba(utils.$primary, 0.1);
   border: 0;
-  color: $primary;
+  color: utils.$primary;
 
   &:focus {
-    background-color: rgba($primary, 0.1);
-    color: $primary;
+    background-color: rgba(utils.$primary, 0.1);
+    color: utils.$primary;
   }
 }
 .form-input-color {
   height: 2.25rem;
   width: 2.25rem;
-  border-radius: $border-radius;
+  border-radius: utils.$border-radius;
   overflow: hidden;
   padding: 0;
 }
@@ -63,22 +65,22 @@ textarea {
 .form-floating > .form-control:focus ~ label,
 .form-floating > .form-control:not(:placeholder-shown) ~ label,
 .form-floating > .form-select ~ label {
-  color: $text-muted;
+  color: utils.$text-muted;
 
 }
 .form-floating > .form-control:not(:placeholder-shown) ~ label::after {
   background-color: transparent;
 }
 .form-select {
-  background-color: $form-control-bg;
-  border: 1px solid $input-border;
-  color: $text-color;
-  font-size: $font-size-base;
+  background-color: utils.$form-control-bg;
+  border: 1px solid utils.$input-border;
+  color: utils.$text-color;
+  font-size: utils.$font-size-base;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
   background-size: 1.25rem;
   line-height: 2;
   option {
-    background-color: $white;
+    background-color: utils.$white;
     padding: 0.35rem 0.75rem;
     border-radius: 0.25rem;
     margin-block-end: 0.25rem;
@@ -87,84 +89,84 @@ textarea {
     }
   }
   option:checked {
-    background-color: rgba(var($primary), 0.2);
-    color: $primary;
+    background-color: rgba(var(utils.$primary), 0.2);
+    color: utils.$primary;
   }
   option:select {
-    background-color: rgba(var($primary), 0.2);
-    color: $primary;
+    background-color: rgba(var(utils.$primary), 0.2);
+    color: utils.$primary;
   }
   option:hover {
-    background-color: rgba(var($primary), 0.2);
-    color: $primary;
+    background-color: rgba(var(utils.$primary), 0.2);
+    color: utils.$primary;
   }
   option:focus {
-    background-color: rgba(var($primary), 0.2);
-    color: $primary;
+    background-color: rgba(var(utils.$primary), 0.2);
+    color: utils.$primary;
   }
 }
 .form-check-label {
-  font-size: $font-size-14;
-  color: $gray-600;
+  font-size: utils.$font-size-14;
+  color: utils.$gray-600;
 }
 .form-check-input {
   width: 0.9rem;
   height: 0.9rem;
-  background-color: $white;
-  border: 1px solid $input-border;
+  background-color: utils.$white;
+  border: 1px solid utils.$input-border;
   &:checked {
-    background-color: $secondary;
-    border-color: $secondary;
+    background-color: utils.$secondary;
+    border-color: utils.$secondary;
     ~ .form-check-label {
-      color: $gray-900;
+      color: utils.$gray-900;
     }
   }
   &.form-checked-outline {
     &:checked {
       background-color: transparent;
-      border-color: $primary;
+      border-color: utils.$primary;
     }
   }
   &.form-checked-secondary {
     &:checked {
-      background-color: $secondary;
-      border-color: $secondary;
+      background-color: utils.$secondary;
+      border-color: utils.$secondary;
     }
   }
   &.form-checked-warning {
     &:checked {
-      background-color: $warning;
-      border-color: $warning;
+      background-color: utils.$warning;
+      border-color: utils.$warning;
     }
   }
   &.form-checked-info {
     &:checked {
-      background-color: $info;
-      border-color: $info;
+      background-color: utils.$info;
+      border-color: utils.$info;
     }
   }
   &.form-checked-success {
     &:checked {
-      background-color: $success;
-      border-color: $success;
+      background-color: utils.$success;
+      border-color: utils.$success;
     }
   }
   &.form-checked-danger {
     &:checked {
-      background-color: $danger;
-      border-color: $danger;
+      background-color: utils.$danger;
+      border-color: utils.$danger;
     }
   }
   &.form-checked-light {
     &:checked {
-      background-color: $light;
-      border-color: $light;
+      background-color: utils.$light;
+      border-color: utils.$light;
     }
   }
   &.form-checked-dark {
     &:checked {
-      background-color: $dark;
-      border-color: $dark;
+      background-color: utils.$dark;
+      border-color: utils.$dark;
     }
   }
   &:focus {
@@ -180,7 +182,7 @@ textarea {
     content: "\F633";
     font-family: bootstrap-icons !important;
     position: absolute;
-    color: $primary;
+    color: utils.$primary;
     width: 0.625rem;
     height: 0.625rem;
     inset-block-start: -1px;
@@ -190,37 +192,37 @@ textarea {
 
   &.form-checked-secondary {
     &:before {
-      color: $secondary;
+      color: utils.$secondary;
     }
   }
   &.form-checked-warning {
     &:before {
-      color: $warning;
+      color: utils.$warning;
     }
   }
   &.form-checked-info {
     &:before {
-      color: $info;
+      color: utils.$info;
     }
   }
   &.form-checked-success {
     &:before {
-      color: $success;
+      color: utils.$success;
     }
   }
   &.form-checked-danger {
     &:before {
-      color: $danger;
+      color: utils.$danger;
     }
   }
   &.form-checked-light {
     &:before {
-      color: $light;
+      color: utils.$light;
     }
   }
   &.form-checked-dark {
     &:before {
-      color: $dark;
+      color: utils.$dark;
     }
   }
 }
@@ -232,7 +234,7 @@ textarea {
     content: "\F309";
     font-family: bootstrap-icons !important;
     position: absolute;
-    color: $primary;
+    color: utils.$primary;
     width: 0.625rem;
     height: 0.625rem;
     inset-block-start: -1.13rem;
@@ -241,47 +243,47 @@ textarea {
   }
   &.form-checked-secondary {
     &:before {
-      color: $secondary;
+      color: utils.$secondary;
     }
   }
   &.form-checked-warning {
     &:before {
-      color: $warning;
+      color: utils.$warning;
     }
   }
   &.form-checked-info {
     &:before {
-      color: $info;
+      color: utils.$info;
     }
   }
   &.form-checked-success {
     &:before {
-      color: $success;
+      color: utils.$success;
     }
   }
   &.form-checked-danger {
     &:before {
-      color: $danger;
+      color: utils.$danger;
     }
   }
   &.form-checked-light {
     &:before {
-      color: $light;
+      color: utils.$light;
     }
   }
   &.form-checked-dark {
     &:before {
-      color: $dark;
+      color: utils.$dark;
     }
   }
 }
 fieldset:disabled .btn {
-  color: $white;
-  background-color: $primary;
-  border-color: $primary;
+  color: utils.$white;
+  background-color: utils.$primary;
+  border-color: utils.$primary;
 }
 .form-select:focus {
-  border-color: rgba(var($primary), 0.5);
+  border-color: rgba(var(utils.$primary), 0.5);
   outline: 0;
   box-shadow: none;
 }
@@ -301,42 +303,42 @@ fieldset:disabled .btn {
 .form-control,
 .form-select {
     &:disabled {
-      background-color: $light;
-      color: $text-color;
+      background-color: utils.$light;
+      color: utils.$text-color;
   }
 }
 .form-control-plaintext {
-  color: $text-color;
+  color: utils.$text-color;
 }
 .form-control::-webkit-file-upload-button {
-  color: $text-color;
-  background-color: $default-background;
+  color: utils.$text-color;
+  background-color: utils.$default-background;
 }
 .form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
-  background-color: $default-background;
+  background-color: utils.$default-background;
 }
 .form-control {
   &:focus {
-      color: $gray-900;
+      color: utils.$gray-900;
     &::-webkit-input-placeholder,
     &::placeholder {
-      color: $gray-300;
+      color: utils.$gray-300;
       padding-inline-start: 0;
     }
   }
   &::-webkit-input-placeholder {
-    color: $gray-300;
+    color: utils.$gray-300;
     padding-inline-start: 0px;
     transition: padding-inline-start 0.1s ease-in;
   }
   &:-moz-placeholder {
-    color: $gray-300;
+    color: utils.$gray-300;
   }
   &::-moz-placeholder {
-    color: $gray-300;
+    color: utils.$gray-300;
   }
   &:-ms-input-placeholder {
-    color: $gray-300;
+    color: utils.$gray-300;
   }
 }
 .form-control-sm {
@@ -386,36 +388,36 @@ fieldset:disabled .btn {
   }
 }
 .label-primary {
-  background: $primary;
-  color: $white;
+  background: utils.$primary;
+  color: utils.$white;
 }
 .label-secondary {
-  background: $secondary;
-  color: $white;
+  background: utils.$secondary;
+  color: utils.$white;
 }
 .label-warning {
-  background: $warning;
-  color: $white;
+  background: utils.$warning;
+  color: utils.$white;
 }
 .label-info {
-  background: $info;
-  color: $white;
+  background: utils.$info;
+  color: utils.$white;
 }
 .label-success {
-  background: $success;
-  color: $white;
+  background: utils.$success;
+  color: utils.$white;
 }
 .label-danger {
-  background: $danger;
-  color: $white;
+  background: utils.$danger;
+  color: utils.$white;
 }
 .label-light {
-  background: $light;
-  color: $white;
+  background: utils.$light;
+  color: utils.$white;
 }
 .label-dark {
-  background: $dark;
-  color: $white;
+  background: utils.$dark;
+  color: utils.$white;
 }
 .form-floating > {
   .form-control-plaintext,
@@ -433,85 +435,85 @@ fieldset:disabled .btn {
 .form-floating {
   &.floating-primary {
     label {
-      color: $primary;
+      color: utils.$primary;
       opacity: 1;
     }
 
     input {
-      border: 1px solid $primary;
+      border: 1px solid utils.$primary;
     }
     & > .form-control:focus ~ label {
-      color: $primary !important;
+      color: utils.$primary !important;
     }
   }
 
   &.floating-secondary {
     label {
-      color: $secondary;
+      color: utils.$secondary;
       opacity: 1;
     }
 
     input {
-      border: 1px solid $secondary;
+      border: 1px solid utils.$secondary;
     }
     & > .form-control:focus ~ label {
-      color: $secondary !important;
+      color: utils.$secondary !important;
     }
   }
 
   &.floating-warning {
     label {
-      color: $warning;
+      color: utils.$warning;
       opacity: 1;
     }
 
     input {
-      border: 1px solid $warning;
+      border: 1px solid utils.$warning;
     }
     & > .form-control:focus ~ label {
-      color: $warning !important;
+      color: utils.$warning !important;
     }
   }
 
   &.floating-info {
     label {
-      color: $info;
+      color: utils.$info;
       opacity: 1;
     }
 
     input {
-      border: 1px solid $info;
+      border: 1px solid utils.$info;
     }
     & > .form-control:focus ~ label {
-      color: $info !important;
+      color: utils.$info !important;
     }
   }
 
   &.floating-success {
     label {
-      color: $success;
+      color: utils.$success;
       opacity: 1;
     }
 
     input {
-      border: 1px solid $success;
+      border: 1px solid utils.$success;
     }
     & > .form-control:focus ~ label {
-      color: $success !important;
+      color: utils.$success !important;
     }
   }
 
   &.floating-danger {
     label {
-      color: $danger;
+      color: utils.$danger;
       opacity: 1;
     }
 
     input {
-      border: 1px solid $danger;
+      border: 1px solid utils.$danger;
     }
     & > .form-control:focus ~ label {
-      color: $danger !important;
+      color: utils.$danger !important;
     }
   }
 }
@@ -519,17 +521,17 @@ fieldset:disabled .btn {
 .form-floating > .form-control:focus ~ label::after,
 .form-floating > .form-control:not(:placeholder-shown) ~ label::after,
 .form-floating > .form-select ~ label::after {
-  background-color: $white;
-  border-radius: $border-radius;
+  background-color: utils.$white;
+  border-radius: utils.$border-radius;
 }
 .form-control.is-valid:focus,
 .was-validated .form-control:valid:focus {
-  border-color: $success;
+  border-color: utils.$success;
   box-shadow: none;
 }
 .form-control.is-valid,
 .was-validated .form-control:valid {
-  border-color: $success;
+  border-color: utils.$success;
 }
 .form-control-color {
   width: 1.75rem;
@@ -538,11 +540,11 @@ fieldset:disabled .btn {
   padding: 0;
 }
 .bootstrap-tagsinput {
-  border-color: $input-border;
-  color: $text-color;
-  background-color: $form-control-bg;
-  font-size: $font-size-15;
-  font-weight: $font-weight-normal;
+  border-color: utils.$input-border;
+  color: utils.$text-color;
+  background-color: utils.$form-control-bg;
+  font-size: utils.$font-size-15;
+  font-weight: utils.$font-weight-normal;
   border-radius: 5px;
   padding: 0.45rem 0.625rem;
   height: 40px;
@@ -550,17 +552,17 @@ fieldset:disabled .btn {
   overflow-y: auto;
   width: 100%;
   .tag {
-    background: $light;
-    border: 1px solid $border-color;
+    background: utils.$light;
+    border: 1px solid utils.$border-color;
     border-radius: 3px;
     padding: 0 5px;
-    font-size: $font-size-14;
-    color: $gray-700;
+    font-size: utils.$font-size-14;
+    color: utils.$gray-700;
     display: inline-flex;
     align-items: center;
     span {
         &::after {
-            color: $gray-900;
+            color: utils.$gray-900;
         }
     }
     [data-role="remove"]:hover {
@@ -584,7 +586,7 @@ fieldset:disabled .btn {
   background-size: 16px 28px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
 input[type="range"]::-webkit-slider-runnable-track {
-  background-color: $light;
+  background-color: utils.$light;
 }
 [dir="rtl"] {
   .form-checked-outline:checked[type="checkbox"]:before {
@@ -597,21 +599,21 @@ input[type="range"]::-webkit-slider-runnable-track {
 .col-form-label-lg,
 .col-form-label-sm,
 .col-form-label {
-  font-weight: $font-weight-semibold;
+  font-weight: utils.$font-weight-semibold;
 }
 .col-form-label {
-    font-size: $font-size-15;
-    font-weight: $font-weight-medium;
-    color: $title-color;
+    font-size: utils.$font-size-15;
+    font-weight: utils.$font-weight-medium;
+    color: utils.$title-color;
 }
 .form-label {
-  font-size: $font-size-14;
-  font-weight: $font-weight-medium;
-  color: $gray-900;
+  font-size: utils.$font-size-14;
+  font-weight: utils.$font-weight-medium;
+  color: utils.$gray-900;
   margin-bottom: 5px;
 }
 .input-group-text {
-  border-radius: $border-radius;
+  border-radius: utils.$border-radius;
 }
 [data-theme-mode="dark"] {
   input {
@@ -638,31 +640,31 @@ input[type="range"]::-webkit-slider-runnable-track {
   }
 }
 .input-group-text {
-  border-color: $light-900;
+  border-color: utils.$light-900;
 }
         /**
 Form help
  */
  .form-help {
   display: inline-flex;
-  font-weight: $font-weight-bold;
+  font-weight: utils.$font-weight-bold;
   align-items: center;
   justify-content: center;
   width: 1.125rem;
   height: 1.125rem;
   font-size: .75rem;
-  color: $white;
+  color: utils.$white;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   user-select: none;
-  background: $secondary;
+  background: utils.$secondary;
   border-radius: 4px;
 
   &:hover,
   &[aria-describedby] {
-    color: $white;
-    background: $primary;
+    color: utils.$white;
+    background: utils.$primary;
   }
 }
  .input-icon {
@@ -677,15 +679,15 @@ Form help
 /* Input Group */
 
 .input-group-link {
-  font-size: $font-size-12;
+  font-size: utils.$font-size-12;
 }
 .input-group-flat {
   &:focus-within {
-    border-radius: $border-radius;
+    border-radius: utils.$border-radius;
 
     .form-control,
     .input-group-text {
-      border-color: $border-color !important;
+      border-color: utils.$border-color !important;
     }
   }
 
@@ -718,8 +720,8 @@ Form help
   position: relative;
   padding-left: 25px;
   cursor: pointer;
-  font-size: $font-size-15;
-  color: $gray-700;
+  font-size: utils.$font-size-15;
+  color: utils.$gray-700;
   text-transform: capitalize;
   input {
       position: absolute;
@@ -729,8 +731,8 @@ Form help
       width: 0;
       &:checked {
           ~ .checkmark {
-              border-color: $primary;
-              background: $primary;
+              border-color: utils.$primary;
+              background: utils.$primary;
               &::after {
                   opacity: 1;
                   visibility: visible;
@@ -741,7 +743,7 @@ Form help
   .checkmark {
       width: 20px;
       height: 20px;
-      border: 1px solid $light-900;
+      border: 1px solid utils.$light-900;
       border-radius: 50%;
       -webkit-transition: all 0.3s;
       -ms-transition: all 0.3s;
@@ -754,7 +756,7 @@ Form help
           content: "";
           width: 8px;
           height: 8px;
-          background-color: $white;
+          background-color: utils.$white;
           opacity: 0;
           visibility: hidden;
           border-radius: 50%;
@@ -801,12 +803,12 @@ Form help
 .status-toggle.modal-status label {
   height: 16px;
   width: 30px;
-  background-color: $white;
-  border: 1px solid $light-900;
+  background-color: utils.$white;
+  border: 1px solid utils.$light-900;
   margin-bottom: 0;
 }
 .check:checked + .checktoggle {
-  background-color: $white;
+  background-color: utils.$white;
 }
 .checktoggle:after {
   content: " ";
@@ -814,7 +816,7 @@ Form help
   transform: translate(2px, -50%);
   width: 10px;
   height: 10px;
-  background-color: $gray-300;
+  background-color: utils.$gray-300;
   transition: left 300ms ease, transform 300ms ease;
   border-radius: 50%;
   transform: translate(2px, -50%);
@@ -825,7 +827,7 @@ Form help
   left: 0;
 }
 .check:checked + .checktoggle:after {
-  background-color: $primary;
+  background-color: utils.$primary;
   left: 100%;
   transform: translate(calc(-90% - 4px), -50%);
 }
@@ -841,7 +843,7 @@ Form help
   align-items: center;
   justify-content: center;
   min-width: 2.5rem;
-  color: $gray-700;
+  color: utils.$gray-700;
   pointer-events: none;
   font-size: 1.2em;
   &:last-child {
@@ -863,7 +865,7 @@ Form help
   align-items: center;
   justify-content: center;
   min-width: 2rem;
-  color: $gray-700;
+  color: utils.$gray-700;
   pointer-events: none;
   font-size: 1.2em;
 }
@@ -888,7 +890,7 @@ input-icon {
   align-items: center;
   justify-content: center;
   min-width: 2.5rem;
-  color: $text-color;
+  color: utils.$text-color;
   pointer-events: none;
   font-size: 16px;
 }
@@ -901,7 +903,7 @@ input-icon {
     .form-wrap-icon {
         position: relative;
         i {
-            font-size: $font-size-18;
+            font-size: utils.$font-size-18;
             position: absolute;
             top: 50%;
             right: 15px;
@@ -913,8 +915,8 @@ input-icon {
     cursor: pointer;
     width: 30px;
     height: 30px;
-    color: $gray-900;
-    font-size: $font-size-18;
+    color: utils.$gray-900;
+    font-size: utils.$font-size-18;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -924,14 +926,14 @@ input-icon {
     justify-content: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
-    @include rounded(50%);
-    @include transform(translateY(-50%));
+    @include utils.rounded(50%);
+    @include utils.transform(translateY(-50%));
     position: absolute;
     top: 50%;
     right: 10px;
     pointer-events: auto;
     &:hover{
-        color: $primary;
+        color: utils.$primary;
     }
 }
 .pass-group {
@@ -941,8 +943,8 @@ input-icon {
     cursor: pointer;
     width: 30px;
     height: 30px;
-    color: $gray-900;
-    font-size: $font-size-18;
+    color: utils.$gray-900;
+    font-size: utils.$font-size-18;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -952,21 +954,21 @@ input-icon {
     justify-content: center;
     -webkit-justify-content: center;
     -ms-flex-pack: center;
-    @include rounded(50%);
-    @include transform(translateY(-50%));
+    @include utils.rounded(50%);
+    @include utils.transform(translateY(-50%));
     position: absolute;
     top: 50%;
     right: 10px;
     &:hover{
-        color:$primary;
+        color:utils.$primary;
     }
 }
 .drag-upload-btn {
-  font-size: $font-size-12;
-  font-weight: $font-weight-semibold;
-  background: $white;
-  border: 1px dashed $light-900;
-  @include rounded(54px);
+  font-size: utils.$font-size-12;
+  font-weight: utils.$font-weight-semibold;
+  background: utils.$white;
+  border: 1px dashed utils.$light-900;
+  @include utils.rounded(54px);
   padding:6px 16px ;
   position: relative;
   transition: all 0.5s;
@@ -980,9 +982,9 @@ input-icon {
       cursor: pointer;
   }
   &:hover {
-      background: $primary;
-      border-color: $primary;
-      color: $white;
+      background: utils.$primary;
+      border-color: utils.$primary;
+      color: utils.$white;
       transition: all 0.5s;
   }
 }

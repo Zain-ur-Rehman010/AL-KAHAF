@@ -1,3 +1,5 @@
+@use "../utils";
+
 .dark-mode {
     .logo-white {
         display: none;
@@ -10,44 +12,44 @@
     }
     .latest-blog-five.latest-blog-three {
         .category {
-            color: $darkmode-dark;
-            border-color: $darkmode-dark;
+            color: utils.$darkmode-dark;
+            border-color: utils.$darkmode-dark;
         }
         .blog-date {
-            color: $darkmode-dark;
+            color: utils.$darkmode-dark;
         }
     } 
     .event-three-title h5 {
-        color: $darkmode-dark;
+        color: utils.$darkmode-dark;
     }
     .testimonials-section {
         .section-header {
             h2 {
-                color: $darkmode-white;
+                color: utils.$darkmode-white;
             }
         }
     }
     .home-4 {
         .blog-content {
             .title {
-                color: $darkmode-dark;
+                color: utils.$darkmode-dark;
             }
             .blog-date {
-                color: $darkmode-dark;
+                color: utils.$darkmode-dark;
             }
         }
     }
     .award-one, .learn-anything, .development-carrer {
         .text-white {
-            color: $darkmode-dark !important;
+            color: utils.$darkmode-dark !important;
         }
     }
     .trending-three-text  {
         h3 {
             a {
-                color: $darkmode-white;
+                color: utils.$darkmode-white;
                 &:hover {
-                    color: $secondary;
+                    color: utils.$secondary;
                 }
             }
         }
@@ -64,21 +66,21 @@
             display: none;
         }
         &.header-four {
-            background: $darkmode-white;
+            background: utils.$darkmode-white;
             .header-logo.logo-white {
                 display: none;
             }
         }
         &.header-one .header-nav .main-menu-wrapper .main-nav > li > a {
-            @include respond-above(lg) {
-                color: $darkmode-dark;
+            @include utils.respond-above(lg) {
+                color: utils.$darkmode-dark;
             }
         }
     }
     .home-five {
         .become-content {
             h2, h4 {
-                color: $darkmode-dark;
+                color: utils.$darkmode-dark;
             }
         }
     }
@@ -87,17 +89,17 @@
             .main-menu-wrapper {
                 .main-nav > li {
                     > a {
-                        color: $darkmode-dark;
+                        color: utils.$darkmode-dark;
                     }
                     &.active, &:hover {
                         > a {
-                            color: $secondary;
+                            color: utils.$secondary;
                         }
                     }
                 }
             }
             .navbar-header #mobile_btn .bar-icon span {
-                background: $darkmode-dark;
+                background: utils.$darkmode-dark;
             }
             &.fixed {
                 .logo-white {
@@ -111,7 +113,7 @@
     }
     .banner-section-three {
         .select2-container--default .select2-selection--single .select2-selection__rendered {
-            color: $darkmode-white !important;
+            color: utils.$darkmode-white !important;
         }
     }
     .home-3 {
@@ -124,38 +126,38 @@
             display: none;
         }
         .testimonial-user span {
-            color: $darkmode-dark;
+            color: utils.$darkmode-dark;
         }
     }
     .footer-three-about p {
-        color: $darkmode-dark;
+        color: utils.$darkmode-dark;
     }
     .footer-five {
-        background: $darkmode-white;
+        background: utils.$darkmode-white;
         .newsletter-title {
             h6 {
-                color: $darkmode-dark;
+                color: utils.$darkmode-dark;
             }
         }
         .footer-bottom-five {
-            border-top: 1px solid $border-color;
+            border-top: 1px solid utils.$border-color;
             .copyright-text {
                 p {
-                    color: $darkmode-dark;
+                    color: utils.$darkmode-dark;
                     a {
-                        color: $secondary;
+                        color: utils.$secondary;
                     }
                 }
             }
             .privacy-link {
                 a {
-                    color: $darkmode-dark;
+                    color: utils.$darkmode-dark;
                     &:hover{
-                        color: $secondary;
+                        color: utils.$secondary;
                     }
                     & + a {
                         &::before {
-                            color: $gray-700;
+                            color: utils.$gray-700;
                         }
                     }
                 }
@@ -166,32 +168,32 @@
         ul {
             li {
                 a {
-                    color: $darkmode-dark;
+                    color: utils.$darkmode-dark;
                 }
             }
         }
     }
     .footer-three-title {
-        color: $darkmode-dark;
+        color: utils.$darkmode-dark;
     }
     .footer {
         &.footer-one {
-            background:  $darkmode-white;
+            background:  utils.$darkmode-white;
             .footer-about {
                 p {
-                    color:  $darkmode-dark;
+                    color:  utils.$darkmode-dark;
                 }
             }
             .footer-widget {
                 .footer-title {
-                    color:  $darkmode-dark;
+                    color:  utils.$darkmode-dark;
                 }
                 ul {
                     li {
                         a {
-                            color:  $darkmode-dark;
+                            color:  utils.$darkmode-dark;
                             &:hover {
-                                color: $secondary;
+                                color: utils.$secondary;
                             }
                         }
                     }
@@ -199,87 +201,87 @@
             }
             .subscribe-form {
                 span {
-                    color: $gray-500;
+                    color: utils.$gray-500;
                 }
                 .form-control {
                     &::placeholder {
-                        color: $gray-500;
+                        color: utils.$gray-500;
                     }
                 }
             }
             .footer-newsletter {
                 p {
-                    color:  $darkmode-dark;
+                    color:  utils.$darkmode-dark;
                 }
             }
             .footer-bottom {
-                background:  $darkmode-white;
-                border-top: 1px solid $border-color;
+                background:  utils.$darkmode-white;
+                border-top: 1px solid utils.$border-color;
                 p {
-                    color:  $darkmode-dark;
+                    color:  utils.$darkmode-dark;
                 }
                 .footer-link {
                     li {
                         a {
-                            color: $darkmode-dark;
+                            color: utils.$darkmode-dark;
                             &:hover {
-                                color: $secondary;
+                                color: utils.$secondary;
                             }
                         }
                         & + li {
                             &::before {
-                                background: $border-color;
+                                background: utils.$border-color;
                             }
                         }
                     }
                 }                
                 .social-icon {
                     a {
-                        background: $light;
-                        color: $dark;
+                        background: utils.$light;
+                        color: utils.$dark;
                         &:hover {
-                            background: $secondary;
-                            color: $white;
+                            background: utils.$secondary;
+                            color: utils.$white;
                         }
                     }
                 }
             }
         }
         &.footer-six {
-            background:  $darkmode-white;
+            background:  utils.$darkmode-white;
             .footer-top-five {
                 .footer-contact {
                     .footer-title-five {
-                        color: $darkmode-dark;                        
+                        color: utils.$darkmode-dark;                        
                     }
-                    color: $darkmode-dark;
+                    color: utils.$darkmode-dark;
                     .footer-address {
                         h6,p {
-                            color: $darkmode-dark;
+                            color: utils.$darkmode-dark;
                         }
                     }
                 }
                 .footer-menu {
                     .footer-title-five {
-                        color: $darkmode-dark;
+                        color: utils.$darkmode-dark;
                     }
                     ul {
                         li {
                             a {
-                                color: $darkmode-dark;
+                                color: utils.$darkmode-dark;
                             }
                         }
                     }
                 }
             }
             .box-form-newsletter {
-                border: 1px solid $border-color;
+                border: 1px solid utils.$border-color;
             }
            .footer-bottom-six {            
-            background:  $darkmode-white;
+            background:  utils.$darkmode-white;
             .copyright-text {
                 p {
-                    color: $darkmode-dark;
+                    color: utils.$darkmode-dark;
                 }
             }
            }
@@ -287,22 +289,22 @@
     }
     .breadcrumb-bar {
         .breadcrumb-title {
-            color: $darkmode-light;
+            color: utils.$darkmode-light;
         }
     }
     .breadcrumb {
         .breadcrumb-item {
             a {
-                color: $darkmode-light;
+                color: utils.$darkmode-light;
                 &:hover {
-                    color: $secondary;
+                    color: utils.$secondary;
                 }
             }
         }
     }
     .btn {
         &.btn-primary, &.btn-secondary {
-            color: $darkmode-dark;
+            color: utils.$darkmode-dark;
         }
     }
 }
@@ -339,21 +341,21 @@
             margin-bottom: 40px;
             .categories-item-three {
                 padding: 20px;
-                border: 1px solid $gray-100;
+                border: 1px solid utils.$gray-100;
                 box-shadow: 0px 4px 4px 0px #D4D4D440;
                 border-radius: 10px;
-                background: $white;
+                background: utils.$white;
                 margin: 0 12px;
                 img {
                     margin-bottom: 20px;
                 }
                 h6 {
-                    font-size: $font-size-16;
-                    font-weight: $font-weight-medium;
+                    font-size: utils.$font-size-16;
+                    font-weight: utils.$font-weight-medium;
                     text-align: center;
                     a {
                         &:hover {
-                            color: $secondary;
+                            color: utils.$secondary;
                         }
                     }
                 }
@@ -374,8 +376,8 @@
             margin-bottom: 44px;
             .feature-course-item {
                 padding: 20px;
-                border: 1px solid $gray-100; 
-                box-shadow: $box-shadow-xs-2;
+                border: 1px solid utils.$gray-100; 
+                box-shadow: utils.$box-shadow-xs-2;
                 border-radius: 10px;
                 margin: 0 12px;
         
@@ -387,11 +389,11 @@
                         object-fit: cover;
                     }
                     .price-badge {
-                        font-size: $font-size-14;
-                        font-weight: $font-weight-medium;
-                        color: $gray-900;
-                        background: $white;
-                        border: 1px solid $gray-900;
+                        font-size: utils.$font-size-14;
+                        font-weight: utils.$font-weight-medium;
+                        color: utils.$gray-900;
+                        background: utils.$white;
+                        border: 1px solid utils.$gray-900;
                         padding: 4px 10px;
                         border-radius: 20px;
                         position: absolute;
@@ -406,14 +408,14 @@
                 .fav-icon {
                     padding: 5px;
                     border-radius: 30px;
-                    background: $light-500;
+                    background: utils.$light-500;
                     display: inline-flex;
                     align-items: center;
                     justify-content: center;
                     margin-bottom: 10px;
                 }
                 h5 {
-                    font-size: $font-size-18;
+                    font-size: utils.$font-size-18;
                 }
                 .feature-course-rating {
                     display: flex;
@@ -428,27 +430,27 @@
                         }
                     }
                     a {
-                        color: $info;
+                        color: utils.$info;
                         text-decoration: underline;
                         &:hover {
-                            color: $secondary;
+                            color: utils.$secondary;
                         }
                     }
                 }
                 .buy-course-btn {
-                    font-size: $font-size-14;
-                    color: $gray-900;
-                    font-weight: $font-weight-medium;
+                    font-size: utils.$font-size-14;
+                    color: utils.$gray-900;
+                    font-weight: utils.$font-weight-medium;
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    background: $light;
+                    background: utils.$light;
                 }
                 &:hover {
                     border: 1px solid #392C7D4D;
                     .buy-course-btn {
-                        background: $secondary;
-                        color: $white;
+                        background: utils.$secondary;
+                        color: utils.$white;
                     }
                 }
             }
@@ -511,7 +513,7 @@
             padding-left: 0;
             padding-right: 16px;
         }
-        @include respond-below (lg) {
+        @include utils.respond-below (lg) {
             header .header-nav .main-menu-wrapper {
                 right: 0;
                 left: unset;
@@ -593,7 +595,7 @@
         margin-left: 0;
     }
     header .navbar-header #mobile_btn {
-        @include respond-below(sm) {
+        @include utils.respond-below(sm) {
             right: unset;
             left: 0;
         }

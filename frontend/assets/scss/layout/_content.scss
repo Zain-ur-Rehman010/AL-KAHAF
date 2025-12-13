@@ -1,14 +1,16 @@
+@use "../utils";
+
 /*============================
   23.content
 ============================*/
 .content {
     padding: 60px 0;
-    @include respond-below(lg) {
+    @include utils.respond-below(lg) {
         padding: 40px 0;
     }
     &.content-two {
         padding-bottom: 36px;
-        @include respond-below(md) {
+        @include utils.respond-below(md) {
             padding-bottom: 16px;
         }
     }
@@ -28,7 +30,7 @@
     .breadcrumb {
         margin-bottom: 0;
     }
-    @include respond-below(sm) {
+    @include utils.respond-below(sm) {
         flex-direction: column;
         align-items: self-start;
     }
@@ -36,31 +38,31 @@
         margin-bottom: 10px;
     }
     h3{
-        font-weight: $font-weight-bold;
-        color: $gray-900;
-        font-size: $font-size-18;
-        @include respond-below(lg) {
-            font-size: $font-size-base;
+        font-weight: utils.$font-weight-bold;
+        color: utils.$gray-900;
+        font-size: utils.$font-size-18;
+        @include utils.respond-below(lg) {
+            font-size: utils.$font-size-base;
         }
     }
     h4 {
-        font-weight: $font-weight-semibold;
-        color: $gray-900;
-        font-size: $font-size-18;
+        font-weight: utils.$font-weight-semibold;
+        color: utils.$gray-900;
+        font-size: utils.$font-size-18;
         margin-bottom: 5px;
-        @include respond-below(lg) {
-            font-size: $font-size-18;
+        @include utils.respond-below(lg) {
+            font-size: utils.$font-size-18;
         }
     }
     h6 {
-        font-size: $font-size-base;
-        color: $gray-700;
-        font-weight: $font-weight-normal;
-        @include respond-below(lg) {
-            font-size: $font-size-12;
+        font-size: utils.$font-size-base;
+        color: utils.$gray-700;
+        font-weight: utils.$font-weight-normal;
+        @include utils.respond-below(lg) {
+            font-size: utils.$font-size-12;
         }
-        @include respond-below(sm) {
-            font-size: $font-size-12;
+        @include utils.respond-below(sm) {
+            font-size: utils.$font-size-12;
             margin-bottom: 20px;
         }
     }
@@ -74,20 +76,20 @@
     height: 36px;
     text-align: center;
 	border-radius: 0 10px 0 10px;
-	background: $primary;
-    color: $white;
+	background: utils.$primary;
+    color: utils.$white;
     cursor: pointer;
     border: 0;
     text-decoration: none;
     transition: opacity 0.2s ease-out;
     opacity: 0;
-    @include transition(all 0.5s ease);
+    @include utils.transition(all 0.5s ease);
     &:hover {
-        color: $white;
-        background: $primary;
+        color: utils.$white;
+        background: utils.$primary;
     }
     &.show {
         opacity: 1;
-        @include transition(all 0.5s ease);
+        @include utils.transition(all 0.5s ease);
     }
 }

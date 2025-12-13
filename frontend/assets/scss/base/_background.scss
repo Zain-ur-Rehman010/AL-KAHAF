@@ -1,404 +1,406 @@
+@use "../utils";
+
 .bg-primary {
-    background-color: $primary !important;
+    background-color: utils.$primary !important;
 }
 .bg-secondary {
-    background-color: $secondary !important;
+    background-color: utils.$secondary !important;
 }
 .bg-info {
-    background-color: $info !important;
+    background-color: utils.$info !important;
 }
 .bg-success {
-    background-color: $success !important;
-    border-color: $success !important;
+    background-color: utils.$success !important;
+    border-color: utils.$success !important;
 }
 .bg-warning {
-    background-color: $warning !important;
+    background-color: utils.$warning !important;
 }
 .bg-danger {
-    background-color: $danger !important;
+    background-color: utils.$danger !important;
 }
 .bg-dark {
-    background-color: $dark !important;
+    background-color: utils.$dark !important;
 }
 .bg-light {
-    background-color: $light !important;
+    background-color: utils.$light !important;
 }
 .bg-white {
-    background-color: $white !important;
+    background-color: utils.$white !important;
 }
 .bg-pink {
-    background-color: $pink !important;
+    background-color: utils.$pink !important;
 }
 .bg-purple {
-    background-color: $purple !important;
-    border-color: $purple !important;;
+    background-color: utils.$purple !important;
+    border-color: utils.$purple !important;;
 }
 .bg-darkgreen {
-    background-color: $dark-green !important;
+    background-color: utils.$dark-green !important;
 }
 .bg-nightblue {
-    background-color: $night-blue !important;
+    background-color: utils.$night-blue !important;
 }
 .bg-royalblue {
-    background-color: $royal-blue !important;
+    background-color: utils.$royal-blue !important;
 }
 .bg-darkgray {
-    background-color: $dark-gray !important;
+    background-color: utils.$dark-gray !important;
 }
 .bg-indigo {
-    background-color: $indigo !important;
+    background-color: utils.$indigo !important;
 }
 
 .bg-gray {
-    background: $light-500;
+    background: utils.$light-500;
 }
 .bg-primary {
-    background-color: $primary !important;
+    background-color: utils.$primary !important;
     &.bg-opacity-10 {
-        background-color: rgba($primary,0.1) !important;
+        background-color: rgba(utils.$primary,0.1) !important;
     }
     &.bg-opacity-25 {
-        background-color: rgba($primary,0.25) !important;
+        background-color: rgba(utils.$primary,0.25) !important;
     }
     &.bg-opacity-50 {
-        background-color: rgba($primary,0.50) !important;
+        background-color: rgba(utils.$primary,0.50) !important;
     }
     &.bg-opacity-75 {
-        background-color: rgba($primary,0.75) !important;
+        background-color: rgba(utils.$primary,0.75) !important;
     }
     &.bg-opacity-100 {
-        background-color: rgba($primary,1) !important;
+        background-color: rgba(utils.$primary,1) !important;
     }
 }
 .bg-secondary {
-    background-color: $secondary !important;
+    background-color: utils.$secondary !important;
     &.bg-opacity-10 {
-        background-color: rgba($secondary,0.1) !important;
+        background-color: rgba(utils.$secondary,0.1) !important;
     }
     &.bg-opacity-25 {
-        background-color: rgba($secondary,0.25) !important;
+        background-color: rgba(utils.$secondary,0.25) !important;
     }
     &.bg-opacity-50 {
-        background-color: rgba($secondary,0.50) !important;
+        background-color: rgba(utils.$secondary,0.50) !important;
     }
     &.bg-opacity-75 {
-        background-color: rgba($secondary,0.75) !important;
+        background-color: rgba(utils.$secondary,0.75) !important;
     }
     &.bg-opacity-100 {
-        background-color: rgba($secondary,1) !important;
+        background-color: rgba(utils.$secondary,1) !important;
     }
 }
 .bg-info {
-    background-color: $info !important;
+    background-color: utils.$info !important;
     &.bg-opacity-10 {
-        background-color: rgba($info,0.1) !important;
+        background-color: rgba(utils.$info,0.1) !important;
     }
     &.bg-opacity-25 {
-        background-color: rgba($info,0.25) !important;
+        background-color: rgba(utils.$info,0.25) !important;
     }
     &.bg-opacity-50 {
-        background-color: rgba($info,0.50) !important;
+        background-color: rgba(utils.$info,0.50) !important;
     }
     &.bg-opacity-75 {
-        background-color: rgba($info,0.75) !important;
+        background-color: rgba(utils.$info,0.75) !important;
     }
     &.bg-opacity-100 {
-        background-color: rgba($info,1) !important;
+        background-color: rgba(utils.$info,1) !important;
     }
 }
 .bg-success {
-    background-color: $success !important;
+    background-color: utils.$success !important;
     &.bg-opacity-10 {
-        background-color: rgba($success,0.1) !important;
+        background-color: rgba(utils.$success,0.1) !important;
     }
     &.bg-opacity-25 {
-        background-color: rgba($success,0.25) !important;
+        background-color: rgba(utils.$success,0.25) !important;
     }
     &.bg-opacity-50 {
-        background-color: rgba($success,0.50) !important;
+        background-color: rgba(utils.$success,0.50) !important;
     }
     &.bg-opacity-75 {
-        background-color: rgba($success,0.75) !important;
+        background-color: rgba(utils.$success,0.75) !important;
     }
     &.bg-opacity-100 {
-        background-color: rgba($success,1) !important;
+        background-color: rgba(utils.$success,1) !important;
     }
 }
 .bg-warning {
-    background-color: $warning !important;
+    background-color: utils.$warning !important;
     &.bg-opacity-10 {
-        background-color: rgba($warning,0.1) !important;
+        background-color: rgba(utils.$warning,0.1) !important;
     }
     &.bg-opacity-25 {
-        background-color: rgba($warning,0.25) !important;
+        background-color: rgba(utils.$warning,0.25) !important;
     }
     &.bg-opacity-50 {
-        background-color: rgba($warning,0.50) !important;
+        background-color: rgba(utils.$warning,0.50) !important;
     }
     &.bg-opacity-75 {
-        background-color: rgba($warning,0.75) !important;
+        background-color: rgba(utils.$warning,0.75) !important;
     }
     &.bg-opacity-100 {
-        background-color: rgba($warning,1) !important;
+        background-color: rgba(utils.$warning,1) !important;
     }
 }
 .bg-danger {
-    background-color: $danger !important;
+    background-color: utils.$danger !important;
     &.bg-opacity-10 {
-        background-color: rgba($danger,0.1) !important;
+        background-color: rgba(utils.$danger,0.1) !important;
     }
     &.bg-opacity-25 {
-        background-color: rgba($danger,0.25) !important;
+        background-color: rgba(utils.$danger,0.25) !important;
     }
     &.bg-opacity-50 {
-        background-color: rgba($danger,0.50) !important;
+        background-color: rgba(utils.$danger,0.50) !important;
     }
     &.bg-opacity-75 {
-        background-color: rgba($danger,0.75) !important;
+        background-color: rgba(utils.$danger,0.75) !important;
     }
     &.bg-opacity-100 {
-        background-color: rgba($danger,1) !important;
+        background-color: rgba(utils.$danger,1) !important;
     }
 }
 .bg-dark {
-    background-color: $dark !important;
+    background-color: utils.$dark !important;
     &.bg-opacity-10 {
-        background-color: rgba($dark,0.1) !important;
+        background-color: rgba(utils.$dark,0.1) !important;
     }
     &.bg-opacity-25 {
-        background-color: rgba($dark,0.25) !important;
+        background-color: rgba(utils.$dark,0.25) !important;
     }
     &.bg-opacity-50 {
-        background-color: rgba($dark,0.50) !important;
+        background-color: rgba(utils.$dark,0.50) !important;
     }
     &.bg-opacity-75 {
-        background-color: rgba($dark,0.75) !important;
+        background-color: rgba(utils.$dark,0.75) !important;
     }
     &.bg-opacity-100 {
-        background-color: rgba($dark,1) !important;
+        background-color: rgba(utils.$dark,1) !important;
     }
 }
 .bg-light {
-    background-color: $light !important;
+    background-color: utils.$light !important;
     &.bg-opacity-10 {
-        background-color: rgba($light,0.1) !important;
+        background-color: rgba(utils.$light,0.1) !important;
     }
     &.bg-opacity-25 {
-        background-color: rgba($light,0.25) !important;
+        background-color: rgba(utils.$light,0.25) !important;
     }
     &.bg-opacity-50 {
-        background-color: rgba($light,0.50) !important;
+        background-color: rgba(utils.$light,0.50) !important;
     }
     &.bg-opacity-75 {
-        background-color: rgba($light,0.75) !important;
+        background-color: rgba(utils.$light,0.75) !important;
     }
     &.bg-opacity-100 {
-        background-color: rgba($light,1) !important;
+        background-color: rgba(utils.$light,1) !important;
     }
 }
 .bg-skyblue {
-    background-color: $skyblue !important;
-    border-color: $skyblue !important;
+    background-color: utils.$skyblue !important;
+    border-color: utils.$skyblue !important;
 }
 @each $color,
-$value in $theme-colors {
+$value in utils.$theme-colors {
     .bg-#{$color} {
         background-color: #{$value} !important;
         border: 1px solid #{$value} !important;
-        color: $white;
+        color: utils.$white;
     }
 }
 .bg-soft-primary {
-    background-color: $primary-100;
-    color: $primary;
+    background-color: utils.$primary-100;
+    color: utils.$primary;
 }
 .bg-soft-secondary {
-    background-color: $secondary-100;
-    color: $secondary;
+    background-color: utils.$secondary-100;
+    color: utils.$secondary;
 }
 .bg-soft-success {
-    background-color: $success-100;
-    color: $success;
+    background-color: utils.$success-100;
+    color: utils.$success;
 }
 .bg-soft-danger {
-    background-color: $danger-100;
-    color: $danger;
+    background-color: utils.$danger-100;
+    color: utils.$danger;
 }
 .bg-soft-warning {
-    background-color: $warning-100;
-    color: $warning;
+    background-color: utils.$warning-100;
+    color: utils.$warning;
 }
 .bg-soft-info {
-    background-color: $info-100;
-    color: $info;
+    background-color: utils.$info-100;
+    color: utils.$info;
 }
 .bg-soft-purple {
-    background-color: $purple-100;
-    color: $purple;
+    background-color: utils.$purple-100;
+    color: utils.$purple;
 }
 .bg-soft-light {
-    background-color: rgba($light, 0.9);
-    color: $text-color;
+    background-color: rgba(utils.$light, 0.9);
+    color: utils.$text-color;
 }
 .bg-soft-dark {
-    background-color: rgba($dark, 0.3);
-    color: $white;
+    background-color: rgba(utils.$dark, 0.3);
+    color: utils.$white;
 }
 .bg-light {
-  color: $text-color;
+  color: utils.$text-color;
 }
 
 .bg-primary-gradient {
-  background: $primary-gradient !important;
-  color: $white;
+  background: utils.$primary-gradient !important;
+  color: utils.$white;
 }
 .bg-secondary-gradient {
-  background: $secondary-gradient !important;
-  color: $white;
+  background: utils.$secondary-gradient !important;
+  color: utils.$white;
 }
 .bg-warning-gradient {
-  background: $warning-gradient !important;
-  color: $white;
+  background: utils.$warning-gradient !important;
+  color: utils.$white;
 }
 .bg-info-gradient {
-  background: $info-gradient !important;
-  color: $white;
+  background: utils.$info-gradient !important;
+  color: utils.$white;
 }
 .bg-success-gradient {
-  background: $success-gradient !important;
-  color: $white;
+  background: utils.$success-gradient !important;
+  color: utils.$white;
 }
 .bg-danger-gradient {
-  background: $danger-gradient !important;
-  color: $white;
+  background: utils.$danger-gradient !important;
+  color: utils.$white;
 }
 .bg-purple-gradient {
-  background: $purple-gradient !important;
-  color: $white;
+  background: utils.$purple-gradient !important;
+  color: utils.$white;
 }
 .bg-light-gradient {
-  background: $light-gradient !important;
-  color: $black;
+  background: utils.$light-gradient !important;
+  color: utils.$black;
 }
 .bg-dark-gradient {
-  background: $dark-gradient !important;
-  color: $white;
+  background: utils.$dark-gradient !important;
+  color: utils.$white;
 }
 
 .bg-purple-gradient2 {
-    background: $purple-gradient2 !important;
-    color: $white;
+    background: utils.$purple-gradient2 !important;
+    color: utils.$white;
 }
 .bg-blue-gradient2 {
-    background: $blue-gradient2 !important;
-    color: $white;
+    background: utils.$blue-gradient2 !important;
+    color: utils.$white;
 }
 .bg-outline-primary {
-  background-color: $white;
-  border: 1px solid $primary;
-  color: $primary;
+  background-color: utils.$white;
+  border: 1px solid utils.$primary;
+  color: utils.$primary;
 }
 .bg-outline-secondary {
-  background-color: $white;
-  border: 1px solid $secondary;
-  color: $secondary;
+  background-color: utils.$white;
+  border: 1px solid utils.$secondary;
+  color: utils.$secondary;
 }
 .bg-outline-warning {
-  background-color: $white;
-  border: 1px solid $warning;
-  color: $warning;
+  background-color: utils.$white;
+  border: 1px solid utils.$warning;
+  color: utils.$warning;
 }
 .bg-outline-info {
-  background-color: $white;
-  border: 1px solid $info;
-  color: $info;
+  background-color: utils.$white;
+  border: 1px solid utils.$info;
+  color: utils.$info;
 }
 .bg-outline-success {
-  background-color: $white;
-  border: 1px solid $success;
-  color: $success;
+  background-color: utils.$white;
+  border: 1px solid utils.$success;
+  color: utils.$success;
 }
 .bg-outline-danger {
-  background-color: $white;
-  border: 1px solid $danger;
-  color: $danger;
+  background-color: utils.$white;
+  border: 1px solid utils.$danger;
+  color: utils.$danger;
 }
 .bg-outline-dark {
-  background-color: $white;
-  border: 1px solid $dark;
-  color: $dark;
+  background-color: utils.$white;
+  border: 1px solid utils.$dark;
+  color: utils.$dark;
 }
 .bg-outline-light {
-  background-color: $white;
-  border: 1px solid $light !important;
-  color: $black !important;
+  background-color: utils.$white;
+  border: 1px solid utils.$light !important;
+  color: utils.$black !important;
 }
 .bg-primary-transparent {
-    background-color: $primary-transparent !important;
-    color: $primary !important;
+    background-color: utils.$primary-transparent !important;
+    color: utils.$primary !important;
     &:hover {
-        background-color: $primary-transparent !important;
-        color: $primary !important;
+        background-color: utils.$primary-transparent !important;
+        color: utils.$primary !important;
     }
 }
 .bg-secondary-transparent {
-    background-color: $secondary-transparent !important;
-    color: $secondary !important;
+    background-color: utils.$secondary-transparent !important;
+    color: utils.$secondary !important;
     &:hover {
-        background-color: $secondary-transparent !important;
-        color: $secondary !important;
+        background-color: utils.$secondary-transparent !important;
+        color: utils.$secondary !important;
     }
 }
 .bg-info-transparent {
-    background-color: $info-transparent !important;
-    color: $info !important;
+    background-color: utils.$info-transparent !important;
+    color: utils.$info !important;
 }
 .bg-success-transparent {
-    background-color: $success-100 !important;
-    color: $success !important;
+    background-color: utils.$success-100 !important;
+    color: utils.$success !important;
     &:hover {
-        background-color: $success-100 !important;
-        color: $success !important;
+        background-color: utils.$success-100 !important;
+        color: utils.$success !important;
     }
 }
 .bg-warning-transparent {
-    background-color: $warning-100 !important;
-    color: $warning !important;
+    background-color: utils.$warning-100 !important;
+    color: utils.$warning !important;
     &:hover {
-        background-color: $warning-100 !important;
-        color: $warning !important;
+        background-color: utils.$warning-100 !important;
+        color: utils.$warning !important;
     }
 }
 .bg-danger-transparent {
-    background-color: $danger-100 !important;
-    color: $danger !important;
+    background-color: utils.$danger-100 !important;
+    color: utils.$danger !important;
     &:hover {
-        background-color: $danger-100 !important;
-        color: $danger !important;
+        background-color: utils.$danger-100 !important;
+        color: utils.$danger !important;
     }
 }
 .bg-light-transparent {
-    background-color: rgba($light, 0.5) !important;
-    color: $light !important;
+    background-color: rgba(utils.$light, 0.5) !important;
+    color: utils.$light !important;
     &:hover {
-        background-color: rgba($light, 0.5) !important;
-        color: $text-color !important;
+        background-color: rgba(utils.$light, 0.5) !important;
+        color: utils.$text-color !important;
     }
 }
 .bg-skyblue-transparent {
-    background-color: $skyblue-transparent !important;
-    color: $skyblue !important;
+    background-color: utils.$skyblue-transparent !important;
+    color: utils.$skyblue !important;
     &:hover {
-        background-color: $skyblue-transparent !important;
-        color: $skyblue !important;
+        background-color: utils.$skyblue-transparent !important;
+        color: utils.$skyblue !important;
     }
 }
 .bg-pink-transparent {
-    background-color: $pink-100 !important;
-    color: $pink !important;
+    background-color: utils.$pink-100 !important;
+    color: utils.$pink !important;
     &:hover {
-        background-color: $pink-100 !important;
-        color: $pink !important;
+        background-color: utils.$pink-100 !important;
+        color: utils.$pink !important;
     }
 }
 .bg-lightdanger-gradient {
@@ -414,93 +416,93 @@ $value in $theme-colors {
     background: linear-gradient(180deg, #FFFFFF 0%, #FCE8FF 100%);
 }
 .bg-primary-100 {
-    background-color: $primary-100 !important; 
+    background-color: utils.$primary-100 !important; 
 }
 .bg-gray-100 {
-    background-color: $gray-100; 
+    background-color: utils.$gray-100; 
 }
 .bg-gray-200 {
-    background-color: $gray-200;
+    background-color: utils.$gray-200;
 }
 .bg-gray-300 {
-    background-color: $gray-300;
+    background-color: utils.$gray-300;
 }
 .bg-gray-400 {
-    background-color: $gray-400;
+    background-color: utils.$gray-400;
 }
 .bg-gray-500 {
-    background-color: $gray-500;
+    background-color: utils.$gray-500;
 }
 .bg-gray-600 {
-    background-color: $gray-600;
+    background-color: utils.$gray-600;
 }
 .bg-gray-700 {
-    background-color: $gray-700;
+    background-color: utils.$gray-700;
 }
 .bg-gray-800 {
-    background-color: $gray-800;
+    background-color: utils.$gray-800;
 }
 .bg-gray-900 {
-    background-color: $gray-900 !important;
+    background-color: utils.$gray-900 !important;
 }
 .bg-light-100 {
-    background-color: $light-100 !important;
+    background-color: utils.$light-100 !important;
 }
 .bg-light-300 {
-    background-color: $light-300 !important;
+    background-color: utils.$light-300 !important;
 }
 .bg-light-400 {
-    background-color: $light-400 !important;
+    background-color: utils.$light-400 !important;
 }
 .bg-light-500 {
-    background-color: $light-500 !important;
+    background-color: utils.$light-500 !important;
 }
 .bg-success-800 {
-    background-color: $success-800 !important;
+    background-color: utils.$success-800 !important;
 }
 .svg-primary {
-    fill: $primary;
+    fill: utils.$primary;
 }
 .svg-secondary {
-    fill: $secondary;
+    fill: utils.$secondary;
 }
 .svg-success {
-    fill: $success;
+    fill: utils.$success;
 }
 .svg-danger {
-    fill: $danger;
+    fill: utils.$danger;
 }
 .svg-warning {
-    fill: $warning;
+    fill: utils.$warning;
 }
 .svg-white {
-    fill: $white;
+    fill: utils.$white;
 }
 .svg-black {
-    fill: $black;
+    fill: utils.$black;
 }
 .svg-pink {
-    fill: $pink;
+    fill: utils.$pink;
 }
 .svg-purple {
-    fill: $purple;
+    fill: utils.$purple;
 }
 .svg-info {
-    fill: $info;
+    fill: utils.$info;
 }
 .svg-light {
-  fill: $light;
+  fill: utils.$light;
 }
 .svg-dark {
-  fill: $dark;
+  fill: utils.$dark;
 }
 .svg-default {
-  fill: $text-color;
+  fill: utils.$text-color;
 }
 .color-container {
   width: 5rem;
   height: 5rem;
-  border-radius: $border-radius;
+  border-radius: utils.$border-radius;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -508,96 +510,96 @@ $value in $theme-colors {
 }
 .text-container {
   padding: 0.25rem 0.5rem;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
+  border-radius: utils.$border-radius;
+  box-shadow: utils.$box-shadow;
 }
 .color-box {
     width: 80px;
     height: 80px;
-    border-radius: $border-radius;
+    border-radius: utils.$border-radius;
     margin-right: 0.75rem;
     margin-bottom: 0.75rem;
 }
 .bg-light-200 {
-    background: $light-200;
+    background: utils.$light-200;
 }
 .bg-light-300 {
-    background: $light-300;
+    background: utils.$light-300;
 }
 .bg-transparent-primary {
-    background: $primary-transparent;
+    background: utils.$primary-transparent;
 }
 .bg-transparent-dark {
-    background: $dark-transparent;
+    background: utils.$dark-transparent;
 }
 .bg-transparent-warning {
-    background: $warning-100 !important;
+    background: utils.$warning-100 !important;
 }
 .bg-transparent-light {
-    background: $light !important;
+    background: utils.$light !important;
 }
 .bg-transparent-danger {
-    background: $danger-100 !important;
+    background: utils.$danger-100 !important;
 }
 .bg-transparent-success {
-    background: $success-100 !important;
+    background: utils.$success-100 !important;
 }
 .bg-transparent-info {
-    background: $info-100 !important;
+    background: utils.$info-100 !important;
 }
 .bg-transparent-purple {
-    background: $purple-transparent !important;
-    color: $purple !important;
+    background: utils.$purple-transparent !important;
+    color: utils.$purple !important;
 }
 .bg-transparent-secondary {
-    background: $secondary-transparent !important;
+    background: utils.$secondary-transparent !important;
 }
 .bg-transparent-skyblue {
-    background: $skyblue-transparent !important;
+    background: utils.$skyblue-transparent !important;
 }
 .bg-light-gray {
-    background: $light-500;
+    background: utils.$light-500;
 }
 .bg-soft-pink {
-   background: $pink-100;
-   color: $pink;
+   background: utils.$pink-100;
+   color: utils.$pink;
 }
 .bg-soft-skyblue {
-    background: $skyblue-100;
-    color: $skyblue;
+    background: utils.$skyblue-100;
+    color: utils.$skyblue;
 }
 .bg-danger-transparent {
-    background: $danger-transparent;
-    border-color: $danger-transparent !important;
+    background: utils.$danger-transparent;
+    border-color: utils.$danger-transparent !important;
 }
 .bg-pink-transparent {
-    background: $pink-transparent !important;
-    color: $pink !important;
+    background: utils.$pink-transparent !important;
+    color: utils.$pink !important;
 }
 .bg-blue-transparent {
-    background: $skyblue-transparent !important;
-    color: $skyblue !important;
+    background: utils.$skyblue-transparent !important;
+    color: utils.$skyblue !important;
 }
 .bg-purple-transparent {
-    background: $purple-transparent !important;
-    color: $purple !important;
+    background: utils.$purple-transparent !important;
+    color: utils.$purple !important;
 }
 .bg-outline-pink {
-    border: 1px solid $pink !important;
-    color: $pink !important;
+    border: 1px solid utils.$pink !important;
+    color: utils.$pink !important;
 }
 .bg-outline-purple {
-    border: 1px solid $purple !important;
-    color: $purple !important;
+    border: 1px solid utils.$purple !important;
+    color: utils.$purple !important;
 }
 .bg-outline-skyblue {
-    border: 1px solid $skyblue !important;
-    color: $skyblue !important;
+    border: 1px solid utils.$skyblue !important;
+    color: utils.$skyblue !important;
 }
 .bg-light-900 {
-    background: $light-900 !important;
-    border-color: $light-900 !important;
+    background: utils.$light-900 !important;
+    border-color: utils.$light-900 !important;
 }
 .bg-light-500 {
-    background: $light-500 !important;
+    background: utils.$light-500 !important;
 }

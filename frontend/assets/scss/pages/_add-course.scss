@@ -1,11 +1,13 @@
+@use "../utils";
+
 .add-course-item {
 	padding: 1.5rem;
-	border: 1px solid $border-color;
-	box-shadow: $box-shadow-xs-2;
+	border: 1px solid utils.$border-color;
+	box-shadow: utils.$box-shadow-xs-2;
 	border-radius: 10px;
 	.wizard {
 		padding: 20px;
-		border-bottom: 1px solid $border-color;
+		border-bottom: 1px solid utils.$border-color;
 		p {
 			font-size: 14px;
 		}
@@ -26,8 +28,8 @@
 				span.dot-active {
 					width: 34px;
 					height: 34px;
-					border: 1px solid $border-color;
-					background-color: $light;
+					border: 1px solid utils.$border-color;
+					background-color: utils.$light;
 					display: flex;
 					align-items: center;
 					justify-content: center;
@@ -36,7 +38,7 @@
 					margin: auto;
 					margin-bottom: 0;
 					z-index: 1;
-					color: $gray-900;
+					color: utils.$gray-900;
 					font-size: 12px;
 					font-weight: 600;
 					.number {
@@ -50,7 +52,7 @@
 					content: "";
 					width: 50%;
 					height: 1px;
-					background: $gray-100;
+					background: utils.$gray-100;
 					position: absolute;
 					top: 17px;
 					left: 0;
@@ -59,7 +61,7 @@
 					content: "";
 					width: 100%;
 					height: 1px;
-					background: $gray-100;
+					background: utils.$gray-100;
 					position: absolute;
 					top: 17px;
 					right: 0;
@@ -80,40 +82,40 @@
 			}
 			li.progress-activated {
 				&::after {
-					background: $success;
+					background: utils.$success;
 				}
 				&::before {
-					background: $success;
+					background: utils.$success;
 				}
 				span.dot-active {
-					border-color: $success;
-					background-color: $success;
+					border-color: utils.$success;
+					background-color: utils.$success;
 					.number {
 						display: none;
 					}
 					.tickmark {
 						display: block;
-						color: $white;
+						color: utils.$white;
 						font-size: 12px;
 					}
 				}
 			}
 			li.progress-active {
 				&::after {
-					background: $success;
+					background: utils.$success;
 				}
 				span.dot-active {
-					background-color: $gray-900;
-					color: $white;
-					border-color: $gray-900;
+					background-color: utils.$gray-900;
+					color: utils.$white;
+					border-color: utils.$gray-900;
 				}
 			}
 		}
 	}
-	@include respond-below(xl) {
+	@include utils.respond-below(xl) {
 		.wizard {
 			padding: 20px;
-			border-bottom: 1px solid $border-color;
+			border-bottom: 1px solid utils.$border-color;
 			p {
 				font-size: 13px;
 			}
@@ -134,8 +136,8 @@
 					span.dot-active {
 						width: 34px;
 						height: 34px;
-						border: 1px solid $light;
-						background-color: $light;
+						border: 1px solid utils.$light;
+						background-color: utils.$light;
 						display: flex;
 						align-items: center;
 						justify-content: center;
@@ -144,7 +146,7 @@
 						margin: auto;
 						margin-bottom: 0;
 						z-index: 1;
-						color: $gray-900;
+						color: utils.$gray-900;
 						font-size: 12px;
 						font-weight: 600;
 						.number {
@@ -158,7 +160,7 @@
 						content: "";
 						width: 50%;
 						height: 2px;
-						background: $gray-100;
+						background: utils.$gray-100;
 						position: absolute;
 						top: 17px;
 						left: 0;
@@ -167,7 +169,7 @@
 						content: "";
 						width: 100%;
 						height: 2px;
-						background: $gray-100;
+						background: utils.$gray-100;
 						position: absolute;
 						top: 17px;
 						right: 0;
@@ -188,41 +190,41 @@
 				}
 				li.progress-activated {
 					&::after {
-						background: $success;
+						background: utils.$success;
 					}
 					&::before {
-						background: $success;
+						background: utils.$success;
 					}
 					span.dot-active {
-						border-color: $success;
-						background-color: $success;
+						border-color: utils.$success;
+						background-color: utils.$success;
 						.number {
 							display: none;
 						}
 						.tickmark {
 							display: block;
-							color: $white;
+							color: utils.$white;
 							font-size: 12px;
 						}
 					}
 				}
 				li.progress-active {
 					&::after {
-						background: $success;
+						background: utils.$success;
 					}
 					span.dot-active {
-						background-color: $gray-900;
-						color: $white;
-						border-color: $gray-900;
+						background-color: utils.$gray-900;
+						color: utils.$white;
+						border-color: utils.$gray-900;
 					}
 				}
 			}
 		}
 	}
-	@include respond-below(lg) {
+	@include utils.respond-below(lg) {
 		.wizard {
 			padding: 20px;
-			border-bottom: 1px solid $border-color;
+			border-bottom: 1px solid utils.$border-color;
 			p {
 				font-size: 11px;
 			}
@@ -243,8 +245,8 @@
 					span.dot-active {
 						width: 34px;
 						height: 34px;
-						border: 1px solid $light;
-						background-color: $light;
+						border: 1px solid utils.$light;
+						background-color: utils.$light;
 						display: flex;
 						align-items: center;
 						justify-content: center;
@@ -253,7 +255,7 @@
 						margin: auto;
 						margin-bottom: 0;
 						z-index: 1;
-						color: $gray-900;
+						color: utils.$gray-900;
 						font-size: 12px;
 						font-weight: 600;
 						.number {
@@ -267,7 +269,7 @@
 						content: "";
 						width: 50%;
 						height: 2px;
-						background: $gray-100;
+						background: utils.$gray-100;
 						position: absolute;
 						top: 17px;
 						left: 0;
@@ -276,7 +278,7 @@
 						content: "";
 						width: 100%;
 						height: 2px;
-						background: $gray-100;
+						background: utils.$gray-100;
 						position: absolute;
 						top: 17px;
 						right: 0;
@@ -297,38 +299,38 @@
 				}
 				li.progress-activated {
 					&::after {
-						background: $success;
+						background: utils.$success;
 					}
 					&::before {
-						background: $success;
+						background: utils.$success;
 					}
 					span.dot-active {
-						border-color: $success;
-						background-color: $success;
+						border-color: utils.$success;
+						background-color: utils.$success;
 						.number {
 							display: none;
 						}
 						.tickmark {
 							display: block;
-							color: $white;
+							color: utils.$white;
 							font-size: 12px;
 						}
 					}
 				}
 				li.progress-active {
 					&::after {
-						background: $success;
+						background: utils.$success;
 					}
 					span.dot-active {
-						background-color: $gray-900;
-						color: $white;
-						border-color: $gray-900;
+						background-color: utils.$gray-900;
+						color: utils.$white;
+						border-color: utils.$gray-900;
 					}
 				}
 			}
 		}
 	}
-	@include respond-below(sm) {
+	@include utils.respond-below(sm) {
 		.wizard {
 			ul {
 				li {
@@ -342,13 +344,13 @@
 				&::after {
 					display: none;
 				}
-					border-bottom: 2px solid $border-color;
+					border-bottom: 2px solid utils.$border-color;
 					padding-bottom: 6px;
 				}
 					flex-direction: column;
 					row-gap: 10px;
 				li.progress-activated {
-					border-color: $primary;
+					border-color: utils.$primary;
 				}
 			}
 		}
@@ -362,7 +364,7 @@
 }
 .wizard-form-card {
 	padding-top: 20px;
-	background: $white;
+	background: utils.$white;
 	.title {
 		margin-bottom: 20px;
 	}
@@ -375,7 +377,7 @@
 		background: #E8E8E8;
 		border-color: #E8E8E8;
 		box-shadow: none;
-		color: $white;
+		color: utils.$white;
 	}
 }
 .initialization-form-set {
@@ -386,26 +388,26 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 2px;
-		background: $secondary;
-		border-color: $secondary;
-		color: $white;
+		background: utils.$secondary;
+		border-color: utils.$secondary;
+		color: utils.$white;
 		&:hover {
-			background: $primary;
-			border-color: $primary;
-			color: $white;
+			background: utils.$primary;
+			border-color: utils.$primary;
+			color: utils.$white;
 		}
 	}
 	.main-btn.prev_btns {
 		display: inline-flex;
 		align-items: center;
 		gap: 2px;
-		background: $light;
-		border-color: $light;
-		color: $gray-900;
+		background: utils.$light;
+		border-color: utils.$light;
+		color: utils.$gray-900;
 		&:hover {
-			background: $primary;
-			border-color: $primary;
-			color: $white;
+			background: utils.$primary;
+			border-color: utils.$primary;
+			color: utils.$white;
 		}
 	}
 	fieldset {
@@ -424,7 +426,7 @@
 	}
 }
 .installation-header {
-	background: $white;
+	background: utils.$white;
 	padding: 20px 0;
 	text-align: center;
 }
@@ -438,7 +440,7 @@
 			display: none;
 			margin-left: 8px;
 			&:hover {
-				color: $danger;
+				color: utils.$danger;
 			}
 		}
 		&:hover {
@@ -448,26 +450,26 @@
 		}
 	}
 	span {
-		font-size: $font-size-13;
-		color: $gray-500;
+		font-size: utils.$font-size-13;
+		color: utils.$gray-500;
 	}
 }
 .file-upload-btn {
 	display: inline-block;
 	padding: 11px 16px;
-	font-size: $font-size-14;
-	color: $white;
-	background: $primary;
+	font-size: utils.$font-size-14;
+	color: utils.$white;
+	background: utils.$primary;
 	border: none;
-	font-weight: $font-weight-medium;
+	font-weight: utils.$font-weight-medium;
 	border-radius: 5px;
 	cursor: pointer;
 	border-radius: 40px;
-	@include respond-below(sm) {
+	@include utils.respond-below(sm) {
 		margin-top: 20px;
 	}
 	&:hover {
-		background: $secondary;
+		background: utils.$secondary;
 	  }
   }
   input[type="file"] {
@@ -476,17 +478,17 @@
 
 .note-toolbar {
     color: #333;
-    background-color: $white;
+    background-color: utils.$white;
     border-bottom: 1px solid;
-    border-color: $gray-100;
+    border-color: utils.$gray-100;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
 }
 .note-btn {
-	border-color: $border-color;
+	border-color: utils.$border-color;
 }
 .note-editor.note-frame {
-    border: 1px solid $gray-100;
+    border: 1px solid utils.$gray-100;
 	border-radius: 4px;
 }
 .note-editor.note-frame .note-statusbar .note-resizebar {
@@ -494,11 +496,11 @@
     height: 9px;
     width: 100%;
     cursor: ns-resize;
-	background: $white;
+	background: utils.$white;
 }
 
     .check:checked + .checktoggle:after {
-        background-color: $white;
+        background-color: utils.$white;
         left: 100%;
         transform: translate(calc(-90% - 3px), -45%);
     }
@@ -514,13 +516,13 @@
         position: absolute;
         &:checked + {
             .checktoggle {
-                background-color:$success;
+                background-color:utils.$success;
             }
         }
     }
     .relative-form {
-        background: $white;
-        border: 1px solid $border-color;
+        background: utils.$white;
+        border: 1px solid utils.$border-color;
         border-radius: 5px;
         color: #6e82a3;
         min-height: 40px;
@@ -530,9 +532,9 @@
         justify-content: space-between;
     }
     .relative-file-upload {
-        color: $white;
-        background: $primary;
-        border: 1px solid $primary;
+        color: utils.$white;
+        background: utils.$primary;
+        border: 1px solid utils.$primary;
         border-radius: 40px;
         padding: 6px 16px;
         font-size: 14px;
@@ -550,26 +552,26 @@
         filter: alpha(opacity=0);
         opacity: 0;
         outline: none;
-        background: $white;
+        background: utils.$white;
         cursor: inherit;
         display: block;
     }
     
     .upload-img-section {
         height: 120px;
-        background: $light;
-        border: 1px dashed $border-color;
+        background: utils.$light;
+        border: 1px dashed utils.$border-color;
         border-radius: 6px;
 		p {
-			font-size: $font-size-14;
-			font-weight: $font-weight-medium;
-			color: $gray-900;
+			font-size: utils.$font-size-14;
+			font-weight: utils.$font-weight-medium;
+			color: utils.$gray-900;
 			&:hover {
-				color: $secondary;
+				color: utils.$secondary;
 			}
 		}
 		span {
-			font-size: $font-size-14;
+			font-size: utils.$font-size-14;
 		}
     }
 
@@ -580,17 +582,17 @@
 		left: 50%;
     }
     .accordion-button {
-        background-color: $light;
-        color: $gray-900;
+        background-color: utils.$light;
+        color: utils.$gray-900;
         padding: 16px;
-        font-size: $font-size-15;
+        font-size: utils.$font-size-15;
         &:not(.collapsed) {
-            color: $gray-900;
-            background-color: $light;
+            color: utils.$gray-900;
+            background-color: utils.$light;
             box-shadow: none;
         }
         &:focus {
-            border-color: rgba($primary, 0.3);
+            border-color: rgba(utils.$primary, 0.3);
             box-shadow: none;
         }
         &:after,&:not(.collapsed)::after {
@@ -598,11 +600,11 @@
         }
         &:after {
             content: "\f13a";
-            font-family: $font-awesome;
-            font-size: $font-size-14;
+            font-family: utils.$font-awesome;
+            font-size: utils.$font-size-14;
             line-height: 1;
-            color: $white;
-            background-color: $white;
+            color: utils.$white;
+            background-color: utils.$white;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -613,20 +615,20 @@
     .accordion-body {
         padding: 1rem;
         font-size: 0.8125rem;
-        color: $text-muted;
-        background-color: $light;
+        color: utils.$text-muted;
+        background-color: utils.$light;
     }
     .accordion-item {
-        color: $text-color;
-        background-color: $white;
-        border: 1px solid $light-900;
+        color: utils.$text-color;
+        background-color: utils.$white;
+        border: 1px solid utils.$light-900;
     }
     .accordions-items-seperate {
         .accordion-item:not(:first-of-type) {
             margin-block-start: 1rem;
         }
         .accordion-item {
-            border: 1px solid $border-color;
+            border: 1px solid utils.$border-color;
             border-radius: 10px;
             overflow: hidden;
         }
@@ -638,14 +640,14 @@
 		cursor: pointer;
 	}
 	  .custom_check {
-		color: $gray-500 !important;
+		color: utils.$gray-500 !important;
 		display: inline-block;
 		position: relative;
-		font-size: $font-size-14 !important;
+		font-size: utils.$font-size-14 !important;
 		margin-bottom: 15px;
 		padding-left: 28px;
 		cursor: pointer;
-		font-weight: $font-weight-normal !important;
+		font-weight: utils.$font-weight-normal !important;
 		-webkit-user-select: none;
 		-moz-user-select: none;
 		-ms-user-select: none;
@@ -659,8 +661,8 @@
 		left: 0;
 		height: 20px;
 		width: 20px;
-		border: 1px solid $gray-100;
-		background-color: $white;
+		border: 1px solid utils.$gray-100;
+		background-color: utils.$white;
 		border-radius: 2px;
 		-moz-transition: all 0.3s ease-in-out;
 		-o-transition: all 0.3s ease-in-out;
@@ -671,33 +673,33 @@
 	.custom_check .checkmark::after {
 		content: "\e92b";
 		font-family: 'feather' !important;
-		font-weight: $font-weight-normal;
+		font-weight: utils.$font-weight-normal;
 		position: absolute;
 		display: none;
 		left: 2px;
 		top: -1px;
-		color: $white;
+		color: utils.$white;
 	}
 	.custom_check input:checked ~ .checkmark:after {
 		display: block;
 	}
 	.custom_check input:checked ~ .checkmark {
-		background-color: $secondary;
-		border-color: $secondary;
+		background-color: utils.$secondary;
+		border-color: utils.$secondary;
 	}
 
 	.add-new-topic {
-		color: $secondary;
-		font-size: $font-size-14;
+		color: utils.$secondary;
+		font-size: utils.$font-size-14;
 		&:hover {
-			color: $primary;
+			color: utils.$primary;
 		}
 	}
 	.btn.add-edit-btn {
-		background: $primary;
-		color: $white;
+		background: utils.$primary;
+		color: utils.$white;
 		&:hover {
-			background: $secondary;
+			background: utils.$secondary;
 		}
 	}
 	.input-block-link {
@@ -712,11 +714,11 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%,-50%);
-        color: $white;
+        color: utils.$white;
         display: flex;
         justify-content: center;
         align-items: center;
-        @include respond-below(sm){
+        @include utils.respond-below(sm){
             width: 25px;
             height: 25px;
 			i {
@@ -751,29 +753,29 @@
 
   .edit-btn1 {
 	padding: 4px;
-	background: $white;
-	color: $primary;
+	background: utils.$white;
+	color: utils.$primary;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	border-radius: 50px;
 	margin-right: 8px;
 	&:hover {
-		background: $primary;
-		color: $white;
+		background: utils.$primary;
+		color: utils.$white;
 	}
   }
   .delete-btn1 {
 	padding: 4px;
-	background: $white;
-	color: $danger;
+	background: utils.$white;
+	color: utils.$danger;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	border-radius: 50px;
 	&:hover {
-		background: $danger;
-		color: $white;
+		background: utils.$danger;
+		color: utils.$white;
 	}
   }
 }
