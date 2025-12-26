@@ -1,63 +1,215 @@
-// Enrollment Controller
+const { Enrollment, Course, User, Payment, Certificate } = require('../models');
+const crypto = require('crypto');
 
-const enrollmentService = require('../services/enrollmentService');
+exports.enrollCourse = async (req, res) => {
+  try {
+    const { courseId } = req.body;
 
-const enrollmentController = {
-  enrollCourse: async (req, res, next) => {
-    try {
-      const { courseId } = req.body;
-      const studentId = req.user.id;
-      
-      const enrollment = await enrollmentService.enrollCourse(studentId, courseId);
-      
-      res.status(201).json({
-        success: true,
-        message: 'Enrolled in course successfully',
-        data: enrollment
-      });
-    } catch (error) {
-      next(error);
+    const course = await Course.findByPk(courseId);
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
     }
-  },
 
-  getStudentEnrollments: async (req, res, next) => {
-    try {
-      const enrollments = await enrollmentService.getStudentEnrollments(req.user.id);
-      
-      res.json({
-        success: true,
-        data: enrollments
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
+    const existingEnrollment = await Enrollment.findOne({
+      where: { studentId: req.user.id, courseId },
+    });
 
-  getCourseStudents: async (req, res, next) => {
-    try {
-      const students = await enrollmentService.getCourseStudents(req.params.courseId);
-      
-      res.json({
-        success: true,
-        data: students
-      });
-    } catch (error) {
-      next(error);
+    if (existingEnrollment) {
+      return res.status(400).json({ message: 'Already enrolled in this course' });
     }
-  },
 
-  unenrollCourse: async (req, res, next) => {
-    try {
-      await enrollmentService.unenrollCourse(req.params.id);
-      
-      res.json({
-        success: true,
-        message: 'Unenrolled from course successfully'
-      });
-    } catch (error) {
-      next(error);
-    }
+    const enrollment = await Enrollment.create({
+      studentId: req.user.id,
+      courseId,
+      status: 'enrolled',
+      paymentStatus: course.price === 0 ? 'completed' : 'pending',
+    });
+
+    await course.increment('enrollmentCount');
+
+    res.status(201).json({
+      message: 'Enrolled successfully',
+      enrollment,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
-module.exports = enrollmentController;
+exports.getMyEnrollments = async (req, res) => {
+  try {
+    const { page = 1, limit = 10, status } = req.query;
+    const offset = (page - 1) * limit;
+
+    const where = { studentId: req.user.id };
+    if (status) where.status = status;
+
+    const { count, rows } = await Enrollment.findAndCountAll({
+      where,
+      include: [
+        { model: Course, as: 'course' },
+        { model: User, as: 'student' },
+      ],
+      limit: parseInt(limit),
+      offset,
+      order: [['createdAt', 'DESC']],
+    });
+
+    res.json({
+      enrollments: rows,
+      pagination: {
+        total: count,
+        page: parseInt(page),
+        limit: parseInt(limit),
+        pages: Math.ceil(count / limit),
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getEnrollmentById = async (req, res) => {
+  try {
+    const enrollment = await Enrollment.findByPk(req.params.enrollmentId, {
+      include: [
+        { model: Course, as: 'course' },
+        { model: User, as: 'student' },
+        { model: Certificate, as: 'certificate' },
+      ],
+    });
+
+    if (!enrollment) {
+      return res.status(404).json({ message: 'Enrollment not found' });
+    }
+
+    if (enrollment.studentId !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    res.json(enrollment);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.updateProgress = async (req, res) => {
+  try {
+    const { progress } = req.body;
+    const enrollment = await Enrollment.findByPk(req.params.enrollmentId);
+
+    if (!enrollment) {
+      return res.status(404).json({ message: 'Enrollment not found' });
+    }
+
+    if (enrollment.studentId !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    let newStatus = enrollment.status;
+    if (progress >= 100) {
+      newStatus = 'completed';
+    } else if (progress > 0) {
+      newStatus = 'in_progress';
+    }
+
+    await enrollment.update({
+      progress: Math.min(progress, 100),
+      status: newStatus,
+      completionDate: newStatus === 'completed' ? new Date() : null,
+    });
+
+    res.json({
+      message: 'Progress updated',
+      enrollment,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.dropCourse = async (req, res) => {
+  try {
+    const enrollment = await Enrollment.findByPk(req.params.enrollmentId);
+
+    if (!enrollment) {
+      return res.status(404).json({ message: 'Enrollment not found' });
+    }
+
+    if (enrollment.studentId !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    await enrollment.update({ status: 'dropped' });
+
+    res.json({ message: 'Dropped course successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getCourseEnrollments = async (req, res) => {
+  try {
+    const course = await Course.findByPk(req.params.courseId);
+
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    if (course.instructorId !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    const enrollments = await Enrollment.findAll({
+      where: { courseId: req.params.courseId },
+      include: [{ model: User, as: 'student' }],
+    });
+
+    res.json(enrollments);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.issueCertificate = async (req, res) => {
+  try {
+    const enrollment = await Enrollment.findByPk(req.params.enrollmentId, {
+      include: { model: Course, as: 'course' },
+    });
+
+    if (!enrollment) {
+      return res.status(404).json({ message: 'Enrollment not found' });
+    }
+
+    if (enrollment.status !== 'completed') {
+      return res.status(400).json({ message: 'Course not completed' });
+    }
+
+    const existingCertificate = await Certificate.findOne({
+      where: { enrollmentId: req.params.enrollmentId },
+    });
+
+    if (existingCertificate) {
+      return res.status(400).json({ message: 'Certificate already issued' });
+    }
+
+    const verificationCode = crypto.randomBytes(16).toString('hex');
+
+    const certificate = await Certificate.create({
+      enrollmentId: enrollment.id,
+      studentId: enrollment.studentId,
+      courseId: enrollment.courseId,
+      verificationCode,
+      status: 'issued',
+    });
+
+    await enrollment.update({ certificateIssued: true });
+
+    res.status(201).json({
+      message: 'Certificate issued',
+      certificate,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

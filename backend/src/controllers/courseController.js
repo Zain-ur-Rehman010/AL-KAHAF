@@ -1,105 +1,193 @@
-// Course Controller - Business logic for course operations
+const { Course, User, Enrollment } = require('../models');
+const { Op } = require('sequelize');
 
-const courseService = require('../services/courseService');
+exports.createCourse = async (req, res) => {
+  try {
+    const { title, description, category, price, level } = req.body;
 
-const courseController = {
-  getAllCourses: async (req, res, next) => {
-    try {
-      const { category, level, page = 1, limit = 10 } = req.query;
-      const courses = await courseService.getAllCourses({ 
-        category, 
-        level, 
-        page, 
-        limit 
-      });
-      
-      res.json({
-        success: true,
-        data: courses
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
+    const course = await Course.create({
+      instructorId: req.user.id,
+      title,
+      description,
+      category,
+      price,
+      level,
+      status: 'draft',
+    });
 
-  getCourseById: async (req, res, next) => {
-    try {
-      const course = await courseService.getCourseById(req.params.id);
-      
-      if (!course) {
-        return res.status(404).json({
-          success: false,
-          message: 'Course not found'
-        });
-      }
-      
-      res.json({
-        success: true,
-        data: course
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
-
-  createCourse: async (req, res, next) => {
-    try {
-      const courseData = {
-        ...req.body,
-        instructorId: req.user.id
-      };
-      
-      const course = await courseService.createCourse(courseData);
-      
-      res.status(201).json({
-        success: true,
-        message: 'Course created successfully',
-        data: course
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
-
-  updateCourse: async (req, res, next) => {
-    try {
-      const course = await courseService.updateCourse(req.params.id, req.body);
-      
-      res.json({
-        success: true,
-        message: 'Course updated successfully',
-        data: course
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
-
-  deleteCourse: async (req, res, next) => {
-    try {
-      await courseService.deleteCourse(req.params.id);
-      
-      res.json({
-        success: true,
-        message: 'Course deleted successfully'
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
-
-  getCourseLessons: async (req, res, next) => {
-    try {
-      const lessons = await courseService.getCourseLessons(req.params.id);
-      
-      res.json({
-        success: true,
-        data: lessons
-      });
-    } catch (error) {
-      next(error);
-    }
+    res.status(201).json({
+      message: 'Course created successfully',
+      course,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
-module.exports = courseController;
+exports.getCourses = async (req, res) => {
+  try {
+    const { page = 1, limit = 10, category, level, status } = req.query;
+    const offset = (page - 1) * limit;
+
+    const where = status === 'published' ? { status: 'published' } : {};
+    if (category) where.category = category;
+    if (level) where.level = level;
+
+    const { count, rows } = await Course.findAndCountAll({
+      where,
+      include: [{ model: User, as: 'instructor', attributes: ['id', 'firstName', 'lastName'] }],
+      limit: parseInt(limit),
+      offset,
+      order: [['createdAt', 'DESC']],
+    });
+
+    res.json({
+      courses: rows,
+      pagination: {
+        total: count,
+        page: parseInt(page),
+        limit: parseInt(limit),
+        pages: Math.ceil(count / limit),
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getCourseById = async (req, res) => {
+  try {
+    const course = await Course.findByPk(req.params.id, {
+      include: [
+        { model: User, as: 'instructor' },
+        { model: Enrollment, as: 'enrollments' },
+      ],
+    });
+
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    res.json(course);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.updateCourse = async (req, res) => {
+  try {
+    const course = await Course.findByPk(req.params.id);
+
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    if (course.instructorId !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    await course.update(req.body);
+    res.json({
+      message: 'Course updated successfully',
+      course,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.deleteCourse = async (req, res) => {
+  try {
+    const course = await Course.findByPk(req.params.id);
+
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    if (course.instructorId !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    await course.destroy();
+    res.json({ message: 'Course deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.publishCourse = async (req, res) => {
+  try {
+    const course = await Course.findByPk(req.params.id);
+
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    if (course.instructorId !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    await course.update({ status: 'published' });
+    res.json({
+      message: 'Course published successfully',
+      course,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getCourseStats = async (req, res) => {
+  try {
+    const course = await Course.findByPk(req.params.id);
+
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    if (course.instructorId !== req.user.id && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    const enrollmentCount = await Enrollment.count({
+      where: { courseId: req.params.id },
+    });
+
+    const completedCount = await Enrollment.count({
+      where: { courseId: req.params.id, status: 'completed' },
+    });
+
+    res.json({
+      totalEnrollments: enrollmentCount,
+      completedEnrollments: completedCount,
+      completionRate: ((completedCount / enrollmentCount) * 100).toFixed(2),
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.searchCourses = async (req, res) => {
+  try {
+    const { query, category } = req.query;
+
+    const where = {
+      status: 'published',
+      [Op.or]: [
+        { title: { [Op.iLike]: `%${query}%` } },
+        { description: { [Op.iLike]: `%${query}%` } },
+      ],
+    };
+
+    if (category) where.category = category;
+
+    const courses = await Course.findAll({
+      where,
+      include: [{ model: User, as: 'instructor', attributes: ['id', 'firstName', 'lastName'] }],
+    });
+
+    res.json(courses);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

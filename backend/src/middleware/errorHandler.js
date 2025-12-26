@@ -1,21 +1,11 @@
-// Global error handling middleware
-
-const errorHandler = (err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
+module.exports = (err, req, res, next) => {
+  const status = err.status || err.statusCode || 500;
   const message = err.message || 'Internal Server Error';
 
-  console.error(`[${new Date().toISOString()}] Error:`, {
-    statusCode,
-    message,
-    stack: err.stack
-  });
+  console.error(`[${status}] ${message}`, err);
 
-  res.status(statusCode).json({
-    success: false,
-    statusCode,
+  res.status(status).json({
     message,
-    ...(process.env.NODE_ENV === 'development' && { stack: err.stack })
+    error: process.env.NODE_ENV === 'production' ? {} : err,
   });
 };
-
-module.exports = errorHandler;

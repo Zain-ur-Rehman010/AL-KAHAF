@@ -1,60 +1,185 @@
-// User Controller
+const { User, Course, Enrollment } = require('../models');
 
-const userService = require('../services/userService');
+exports.getUserProfile = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.params.userId, {
+      attributes: { exclude: ['password'] },
+    });
 
-const userController = {
-  getUserById: async (req, res, next) => {
-    try {
-      const user = await userService.getUserById(req.params.id);
-      
-      res.json({
-        success: true,
-        data: user
-      });
-    } catch (error) {
-      next(error);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
     }
-  },
 
-  updateUser: async (req, res, next) => {
-    try {
-      const user = await userService.updateUser(req.params.id, req.body);
-      
-      res.json({
-        success: true,
-        message: 'User updated successfully',
-        data: user
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
-
-  getUserProfile: async (req, res, next) => {
-    try {
-      const profile = await userService.getUserProfile(req.params.id);
-      
-      res.json({
-        success: true,
-        data: profile
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
-
-  getUserCourses: async (req, res, next) => {
-    try {
-      const courses = await userService.getUserCourses(req.params.id);
-      
-      res.json({
-        success: true,
-        data: courses
-      });
-    } catch (error) {
-      next(error);
-    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
   }
 };
 
-module.exports = userController;
+exports.getInstructors = async (req, res) => {
+  try {
+    const { page = 1, limit = 10 } = req.query;
+    const offset = (page - 1) * limit;
+
+    const { count, rows } = await User.findAndCountAll({
+      where: { role: 'instructor', status: 'active' },
+      attributes: { exclude: ['password'] },
+      include: [{ model: Course, as: 'instructedCourses' }],
+      limit: parseInt(limit),
+      offset,
+    });
+
+    res.json({
+      instructors: rows,
+      pagination: {
+        total: count,
+        page: parseInt(page),
+        limit: parseInt(limit),
+        pages: Math.ceil(count / limit),
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getUserStats = async (req, res) => {
+  try {
+    const user = await User.findByPk(req.user.id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const enrollmentCount = await Enrollment.count({
+      where: { studentId: req.user.id },
+    });
+
+    const completedCount = await Enrollment.count({
+      where: { studentId: req.user.id, status: 'completed' },
+    });
+
+    const instructedCourses = user.role === 'instructor'
+      ? await Course.count({ where: { instructorId: req.user.id } })
+      : 0;
+
+    res.json({
+      totalEnrollments: enrollmentCount,
+      completedEnrollments: completedCount,
+      instructedCourses,
+      role: user.role,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getMyInstructedCourses = async (req, res) => {
+  try {
+    if (req.user.role !== 'instructor' && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Only instructors can view taught courses' });
+    }
+
+    const { page = 1, limit = 10 } = req.query;
+    const offset = (page - 1) * limit;
+
+    const where = req.user.role === 'admin' ? {} : { instructorId: req.user.id };
+
+    const { count, rows } = await Course.findAndCountAll({
+      where,
+      limit: parseInt(limit),
+      offset,
+      order: [['createdAt', 'DESC']],
+    });
+
+    res.json({
+      courses: rows,
+      pagination: {
+        total: count,
+        page: parseInt(page),
+        limit: parseInt(limit),
+        pages: Math.ceil(count / limit),
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    const { page = 1, limit = 10, role, status } = req.query;
+    const offset = (page - 1) * limit;
+
+    const where = {};
+    if (role) where.role = role;
+    if (status) where.status = status;
+
+    const { count, rows } = await User.findAndCountAll({
+      where,
+      attributes: { exclude: ['password'] },
+      limit: parseInt(limit),
+      offset,
+    });
+
+    res.json({
+      users: rows,
+      pagination: {
+        total: count,
+        page: parseInt(page),
+        limit: parseInt(limit),
+        pages: Math.ceil(count / limit),
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.updateUserStatus = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    const { status } = req.body;
+    const user = await User.findByPk(req.params.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    await user.update({ status });
+
+    res.json({
+      message: 'User status updated',
+      user: user.toJSON(),
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.deleteUser = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    const user = await User.findByPk(req.params.userId);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    await user.destroy();
+
+    res.json({ message: 'User deleted successfully' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

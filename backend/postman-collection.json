@@ -1,0 +1,216 @@
+{
+  "info": {
+    "name": "Al-Kahaf LMS API",
+    "description": "Complete Learning Management System API",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{base_url}}/auth/register", "path": ["auth", "register"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\"firstName\":\"John\",\"lastName\":\"Doe\",\"email\":\"john@example.com\",\"password\":\"Password123\",\"role\":\"student\"}"
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{base_url}}/auth/login", "path": ["auth", "login"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\"email\":\"john@example.com\",\"password\":\"Password123\"}"
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{base_url}}/auth/me", "path": ["auth", "me"]}
+          }
+        },
+        {
+          "name": "Update Profile",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{base_url}}/auth/profile", "path": ["auth", "profile"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\"firstName\":\"John\",\"lastName\":\"Doe\",\"phone\":\"1234567890\",\"bio\":\"Student\"}"
+            }
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{base_url}}/auth/change-password", "path": ["auth", "change-password"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\"currentPassword\":\"Password123\",\"newPassword\":\"NewPassword456\"}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "Create Course",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{base_url}}/courses", "path": ["courses"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\":\"Learn React\",\"description\":\"Complete React course\",\"category\":\"Web Development\",\"price\":49.99,\"level\":\"beginner\"}"
+            }
+          }
+        },
+        {
+          "name": "Get All Courses",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/courses?page=1&limit=10", "path": ["courses"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "10"}]}
+          }
+        },
+        {
+          "name": "Get Course By ID",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/courses/{{course_id}}", "path": ["courses", "{{course_id}}"]}
+          }
+        },
+        {
+          "name": "Update Course",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{base_url}}/courses/{{course_id}}", "path": ["courses", "{{course_id}}"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\"title\":\"Advanced React\",\"price\":79.99}"
+            }
+          }
+        },
+        {
+          "name": "Publish Course",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{base_url}}/courses/{{course_id}}/publish", "path": ["courses", "{{course_id}}", "publish"]}
+          }
+        },
+        {
+          "name": "Search Courses",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/courses/search?query=react&category=Web%20Development", "path": ["courses", "search"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Enrollments",
+      "item": [
+        {
+          "name": "Enroll in Course",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{base_url}}/enrollments", "path": ["enrollments"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\"courseId\":\"{{course_id}}\"}"
+            }
+          }
+        },
+        {
+          "name": "Get My Enrollments",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{base_url}}/enrollments/my-enrollments", "path": ["enrollments", "my-enrollments"]}
+          }
+        },
+        {
+          "name": "Update Progress",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}, {"key": "Content-Type", "value": "application/json"}],
+            "url": {"raw": "{{base_url}}/enrollments/{{enrollment_id}}/progress", "path": ["enrollments", "{{enrollment_id}}", "progress"]},
+            "body": {
+              "mode": "raw",
+              "raw": "{\"progress\":50}"
+            }
+          }
+        },
+        {
+          "name": "Issue Certificate",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{base_url}}/enrollments/{{enrollment_id}}/certificate", "path": ["enrollments", "{{enrollment_id}}", "certificate"]}
+          }
+        }
+      ]
+    },
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Get User Profile",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/users/{{user_id}}/profile", "path": ["users", "{{user_id}}", "profile"]}
+          }
+        },
+        {
+          "name": "Get Instructors",
+          "request": {
+            "method": "GET",
+            "url": {"raw": "{{base_url}}/users/instructors", "path": ["users", "instructors"]}
+          }
+        },
+        {
+          "name": "Get User Stats",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{base_url}}/users/stats", "path": ["users", "stats"]}
+          }
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [{"key": "Authorization", "value": "Bearer {{token}}"}],
+            "url": {"raw": "{{base_url}}/users?page=1&limit=10", "path": ["users"], "query": [{"key": "page", "value": "1"}, {"key": "limit", "value": "10"}]}
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {"key": "base_url", "value": "http://localhost:5000/api/v1"},
+    {"key": "token", "value": ""},
+    {"key": "course_id", "value": ""},
+    {"key": "enrollment_id", "value": ""},
+    {"key": "user_id", "value": ""}
+  ]
+}
