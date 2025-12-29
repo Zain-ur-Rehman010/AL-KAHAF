@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="AlKahaf LMS - Add Instructor">
+	<meta name="keywords" content="LMS, Add Instructor">
+	<meta name="author" content="AlKahaf Academy">
+	<meta name="robots" content="noindex, nofollow">
+
+	<title>Add Instructor | AlKahaf LMS Admin</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/assets/img/favicon.png">
+	<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+
+	<!-- Theme Settings Js -->
+	<script src="/assets/js/theme-script.js"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Feather CSS -->
+	<link rel="stylesheet" href="/assets/css/feather.css">
+
+	<!-- Iconsax CSS -->
+	<link rel="stylesheet" href="/assets/css/iconsax.css">
+
+	<!-- Select2 CSS -->
+	<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/assets/css/style.css">
+
+	<style>
+		.image-preview {
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 3px solid #f0f0f0;
+		}
+		.upload-area {
+			border: 2px dashed #ddd;
+			border-radius: 10px;
+			padding: 30px;
+			text-align: center;
+			cursor: pointer;
+			transition: all 0.3s;
+		}
+		.upload-area:hover {
+			border-color: #FF6F28;
+			background-color: #fff5f0;
+		}
+		.required-field::after {
+			content: " *";
+			color: red;
+		}
+	</style>
+
+</head>
+<body>
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header (Admin Navigation) -->
+		<header class="header">
+			<div class="header-fixed">
+				<nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a id="mobile_btn" href="javascript:void(0);">
+								<span class="bar-icon">
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
+							</a>
+							<a href="/index.html" class="navbar-brand logo">
+								<img src="/assets/img/white-logo.png" class="img-fluid" alt="Logo" style="width: 120px;">
+							</a>
+						</div>
+						<div class="main-menu-wrapper">
+							<div class="menu-header">
+								<a href="/index.html" class="menu-logo">
+									<img src="/assets/img/logo.svg" class="img-fluid" alt="Logo">
+								</a>
+								<a id="menu_close" class="menu-close" href="javascript:void(0);">
+									<i class="fas fa-times"></i>
+								</a>
+							</div>
+							<ul class="main-nav">
+								<li>
+									<a href="admin-dashboard.html"><i class="isax isax-home me-2"></i>Dashboard</a>
+								</li>
+								<li class="has-submenu active">
+									<a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
+									<ul class="submenu">
+										<li><a href="users-list.html">All Users</a></li>
+										<li><a href="instructors-list.html">Instructors</a></li>
+										<li><a href="students-list.html">Students</a></li>
+										<li class="active"><a href="user-add.html">Add New User</a></li>
+									</ul>
+								</li>
+								<li class="has-submenu">
+									<a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
+									<ul class="submenu">
+										<li><a href="courses-list.html">All Courses</a></li>
+										<li><a href="course-add.html">Add Course</a></li>
+										<li><a href="categories-list.html">Categories</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="enrollments-list.html"><i class="isax isax-note-2 me-2"></i>Enrollments</a>
+								</li>
+								<li>
+									<a href="payments-list.html"><i class="isax isax-wallet me-2"></i>Payments</a>
+								</li>
+								<li>
+									<a href="admin-settings.html"><i class="isax isax-setting-2 me-2"></i>Settings</a>
+								</li>
+							</ul>
+						</div>
+						<ul class="nav header-navbar-rht">
+							<li class="nav-item dropdown user-dropdown">
+								<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+									<span class="user-img">
+										<img class="rounded-circle" src="/assets/img/instructor/instructor-01.jpg" alt="Admin">
+										<span class="status online"></span>
+									</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end">
+									<div class="user-header">
+										<div class="user-text">
+											<h6 id="admin-name">Administrator</h6>
+											<p class="text-muted mb-0">Admin</p>
+										</div>
+									</div>
+									<a class="dropdown-item" href="admin-profile.html"><i class="isax isax-user me-2"></i>My Profile</a>
+									<a class="dropdown-item" href="admin-settings.html"><i class="isax isax-setting-2 me-2"></i>Settings</a>
+									<a class="dropdown-item" href="/src/pages/auth/login.html" id="logout-btn"><i class="isax isax-logout me-2"></i>Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!-- /Header -->
+
+		<!-- Breadcrumb -->
+		<div class="breadcrumb-bar text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-12">
+						<h2 class="breadcrumb-title">Add New Instructor</h2>
+						<nav aria-label="breadcrumb" class="page-breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+								<li class="breadcrumb-item"><a href="admin-dashboard.html">Admin</a></li>
+								<li class="breadcrumb-item"><a href="instructors-list.html">Instructors</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Add Instructor</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Breadcrumb -->
+
+		<!-- Page Content -->
+		<div class="content">
+			<div class="container">
+
+				<form id="instructor-form">
+					<!-- Basic Information -->
+					<div class="card bg-white rounded-3 shadow-sm mb-4">
+						<div class="card-header bg-primary text-white">
+							<h5 class="mb-0"><i class="isax isax-user me-2"></i>Basic Information</h5>
+						</div>
+						<div class="card-body">
+							<div class="row g-3">
+								<div class="col-md-6">
+									<label class="form-label required-field">First Name</label>
+									<input type="text" class="form-control" id="firstName" name="firstName" required placeholder="Enter first name">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label required-field">Last Name</label>
+									<input type="text" class="form-control" id="lastName" name="lastName" required placeholder="Enter last name">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label required-field">Email Address</label>
+									<input type="email" class="form-control" id="email" name="email" required placeholder="instructor@example.com">
+									<div class="form-text">This will be used for login</div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label required-field">Password</label>
+									<div class="position-relative">
+										<input type="password" class="form-control" id="password" name="password" required placeholder="Enter password">
+										<span class="toggle-password position-absolute top-50 end-0 translate-middle-y me-3" onclick="togglePassword()">
+											<i class="isax isax-eye-slash" id="password-icon"></i>
+										</span>
+									</div>
+									<div class="form-text">Minimum 8 characters</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Professional Information -->
+					<div class="card bg-white rounded-3 shadow-sm mb-4">
+						<div class="card-header bg-success text-white">
+							<h5 class="mb-0"><i class="isax isax-briefcase me-2"></i>Professional Information</h5>
+						</div>
+						<div class="card-body">
+							<div class="row g-3">
+								<div class="col-md-6">
+									<label class="form-label required-field">Designation/Title</label>
+									<input type="text" class="form-control" id="designation" name="designation" required placeholder="e.g., Lead Designer, Accountant">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label">Phone Number</label>
+									<input type="tel" class="form-control" id="phone" name="phone" placeholder="+1 234 567 8900">
+								</div>
+								<div class="col-12">
+									<label class="form-label">Bio/Description</label>
+									<textarea class="form-control" id="bio" name="bio" rows="4" placeholder="Write a brief bio about the instructor..."></textarea>
+									<div class="form-text">This will be displayed on instructor profile</div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label">Specialization</label>
+									<select class="form-select" id="specialization" name="specialization" multiple>
+										<option value="Web Development">Web Development</option>
+										<option value="Mobile Development">Mobile Development</option>
+										<option value="Data Science">Data Science</option>
+										<option value="UI/UX Design">UI/UX Design</option>
+										<option value="Digital Marketing">Digital Marketing</option>
+										<option value="Business">Business</option>
+										<option value="Photography">Photography</option>
+										<option value="Programming">Programming</option>
+									</select>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label">Years of Experience</label>
+									<input type="number" class="form-control" id="experience" name="experience" min="0" placeholder="5">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Profile Image -->
+					<div class="card bg-white rounded-3 shadow-sm mb-4">
+						<div class="card-header bg-info text-white">
+							<h5 class="mb-0"><i class="isax isax-image me-2"></i>Profile Image</h5>
+						</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="upload-area" onclick="document.getElementById('profileImage').click()">
+										<i class="isax isax-gallery-add fs-1 text-muted mb-3 d-block"></i>
+										<h6>Click to upload profile image</h6>
+										<p class="text-muted mb-0">Recommended: 500x500px, Max 2MB</p>
+										<input type="file" id="profileImage" name="profileImage" accept="image/*" class="d-none" onchange="previewImage(event)">
+									</div>
+								</div>
+								<div class="col-md-6 text-center">
+									<p class="text-muted mb-3">Preview</p>
+									<img id="image-preview" src="/assets/img/instructor/instructor-01.jpg" alt="Preview" class="image-preview">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Account Settings -->
+					<div class="card bg-white rounded-3 shadow-sm mb-4">
+						<div class="card-header bg-warning text-dark">
+							<h5 class="mb-0"><i class="isax isax-setting-2 me-2"></i>Account Settings</h5>
+						</div>
+						<div class="card-body">
+							<div class="row g-3">
+								<div class="col-md-4">
+									<label class="form-label">Account Status</label>
+									<select class="form-select" id="status" name="status">
+										<option value="active" selected>Active</option>
+										<option value="inactive">Inactive</option>
+										<option value="banned">Banned</option>
+									</select>
+								</div>
+								<div class="col-md-4">
+									<label class="form-label">Verification Status</label>
+									<div class="form-check form-switch mt-2">
+										<input class="form-check-input" type="checkbox" id="isVerified" name="isVerified" checked>
+										<label class="form-check-label" for="isVerified">
+											Verified Instructor
+										</label>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<label class="form-label">Initial Rating</label>
+									<input type="number" class="form-control" id="rating" name="rating" min="0" max="5" step="0.1" value="5.0">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Social Links (Optional) -->
+					<div class="card bg-white rounded-3 shadow-sm mb-4">
+						<div class="card-header">
+							<h5 class="mb-0"><i class="isax isax-link me-2"></i>Social Links (Optional)</h5>
+						</div>
+						<div class="card-body">
+							<div class="row g-3">
+								<div class="col-md-6">
+									<label class="form-label"><i class="fab fa-linkedin me-2"></i>LinkedIn</label>
+									<input type="url" class="form-control" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/username">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label"><i class="fab fa-twitter me-2"></i>Twitter</label>
+									<input type="url" class="form-control" id="twitter" name="twitter" placeholder="https://twitter.com/username">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label"><i class="fab fa-facebook me-2"></i>Facebook</label>
+									<input type="url" class="form-control" id="facebook" name="facebook" placeholder="https://facebook.com/username">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label"><i class="fas fa-globe me-2"></i>Website</label>
+									<input type="url" class="form-control" id="website" name="website" placeholder="https://yourwebsite.com">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Form Actions -->
+					<div class="card bg-white rounded-3 shadow-sm">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-12 text-end">
+									<a href="instructors-list.html" class="btn btn-secondary me-2">
+										<i class="isax isax-arrow-left me-2"></i>Cancel
+									</a>
+									<button type="button" class="btn btn-outline-primary me-2" onclick="resetForm()">
+										<i class="isax isax-refresh me-2"></i>Reset
+									</button>
+									<button type="submit" class="btn btn-primary" id="submit-btn">
+										<i class="isax isax-add-circle me-2"></i>Create Instructor
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+		<!-- /Page Content -->
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="text-center">
+								<p class="mb-0">© 2025 AlKahaf Academy. All rights reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- /Footer -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="/assets/js/jquery-3.7.1.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Select2 JS -->
+	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="/assets/js/script.js"></script>
+
+	<!-- API Configuration -->
+	<script src="/assets/js/api-config.js"></script>
+
+	<!-- Add Instructor JS -->
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			// Check if user is admin
+			const user = JSON.parse(localStorage.getItem('user') || '{}');
+			if (!user || user.role !== 'admin') {
+				window.location.href = '/src/pages/auth/login.html';
+				return;
+			}
+
+			// Set admin name
+			if (user.firstName && user.lastName) {
+				document.getElementById('admin-name').textContent = user.firstName + ' ' + user.lastName;
+			}
+
+			// Logout functionality
+			document.getElementById('logout-btn').addEventListener('click', function(e) {
+				e.preventDefault();
+				localStorage.removeItem('accessToken');
+				localStorage.removeItem('refreshToken');
+				localStorage.removeItem('user');
+				window.location.href = '/src/pages/auth/login.html';
+			});
+
+			// Initialize Select2
+			$('#specialization').select2({
+				placeholder: 'Select specializations',
+				allowClear: true
+			});
+
+			// Form submission
+			document.getElementById('instructor-form').addEventListener('submit', handleSubmit);
+		});
+
+		async function handleSubmit(e) {
+			e.preventDefault();
+
+			const submitBtn = document.getElementById('submit-btn');
+			const originalText = submitBtn.innerHTML;
+			submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Creating...';
+			submitBtn.disabled = true;
+
+			try {
+				const formData = new FormData(e.target);
+				const data = {
+					firstName: formData.get('firstName'),
+					lastName: formData.get('lastName'),
+					email: formData.get('email'),
+					password: formData.get('password'),
+					role: 'instructor',
+					designation: formData.get('designation'),
+					phone: formData.get('phone'),
+					bio: formData.get('bio'),
+					specialization: $('#specialization').val(),
+					experience: formData.get('experience'),
+					status: formData.get('status'),
+					isVerified: document.getElementById('isVerified').checked,
+					rating: parseFloat(formData.get('rating')),
+					socialLinks: {
+						linkedin: formData.get('linkedin'),
+						twitter: formData.get('twitter'),
+						facebook: formData.get('facebook'),
+						website: formData.get('website')
+					}
+				};
+
+				// TODO: Handle image upload
+				const imageFile = formData.get('profileImage');
+				if (imageFile && imageFile.size > 0) {
+					// Upload image and get URL
+					// data.profileImage = uploadedImageUrl;
+				}
+
+				const token = localStorage.getItem('accessToken');
+				const response = await fetch(API_CONFIG.BASE_URL + '/auth/register', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${token}`
+					},
+					body: JSON.stringify(data)
+				});
+
+				const result = await response.json();
+
+				if (result.success) {
+					showAlert('success', 'Instructor created successfully!');
+					setTimeout(() => {
+						window.location.href = 'instructors-list.html';
+					}, 1500);
+				} else {
+					throw new Error(result.message || 'Failed to create instructor');
+				}
+
+			} catch (error) {
+				console.error('Error creating instructor:', error);
+				showAlert('error', error.message || 'Failed to create instructor');
+				submitBtn.innerHTML = originalText;
+				submitBtn.disabled = false;
+			}
+		}
+
+		function previewImage(event) {
+			const file = event.target.files[0];
+			if (file) {
+				// Check file size (2MB)
+				if (file.size > 2 * 1024 * 1024) {
+					showAlert('error', 'Image size must be less than 2MB');
+					event.target.value = '';
+					return;
+				}
+
+				const reader = new FileReader();
+				reader.onload = function(e) {
+					document.getElementById('image-preview').src = e.target.result;
+				};
+				reader.readAsDataURL(file);
+			}
+		}
+
+		function togglePassword() {
+			const passwordInput = document.getElementById('password');
+			const passwordIcon = document.getElementById('password-icon');
+
+			if (passwordInput.type === 'password') {
+				passwordInput.type = 'text';
+				passwordIcon.className = 'isax isax-eye';
+			} else {
+				passwordInput.type = 'password';
+				passwordIcon.className = 'isax isax-eye-slash';
+			}
+		}
+
+		function resetForm() {
+			document.getElementById('instructor-form').reset();
+			document.getElementById('image-preview').src = '/assets/img/instructor/instructor-01.jpg';
+			$('#specialization').val(null).trigger('change');
+		}
+
+		function showAlert(type, message) {
+			const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+			const alertHtml = `
+				<div class="alert ${alertClass} alert-dismissible fade show position-fixed top-0 end-0 m-3" role="alert" style="z-index: 9999;">
+					${message}
+					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+				</div>
+			`;
+			document.body.insertAdjacentHTML('beforeend', alertHtml);
+
+			setTimeout(() => {
+				const alerts = document.querySelectorAll('.alert');
+				alerts.forEach(alert => alert.remove());
+			}, 3000);
+		}
+	</script>
+
+</body>
+</html>

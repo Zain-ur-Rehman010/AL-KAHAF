@@ -1,0 +1,32 @@
+const express = require('express');
+const router = express.Router();
+const adminController = require('../controllers/adminController');
+const authMiddleware = require('../middleware/authMiddleware');
+
+// All admin routes require authentication
+router.use(authMiddleware);
+
+// Dashboard Statistics
+router.get('/statistics', adminController.getDashboardStatistics);
+router.get('/recent-enrollments', adminController.getRecentEnrollments);
+
+// Instructor Management
+router.get('/instructors', adminController.getAllInstructors);
+router.get('/instructors/:id', adminController.getInstructorById);
+router.put('/instructors/:id', adminController.updateInstructor);
+router.delete('/instructors/:id', adminController.deleteInstructor);
+
+// Course Management
+router.get('/courses', adminController.getAllCourses);
+router.get('/courses/statistics', adminController.getCourseStatistics);
+router.patch('/courses/:id/status', adminController.updateCourseStatus);
+
+// Enrollment Management
+router.get('/enrollments', adminController.getAllEnrollments);
+router.get('/enrollments/statistics', adminController.getEnrollmentStatistics);
+router.get('/enrollments/:id', adminController.getEnrollmentById);
+router.post('/enrollments', adminController.createEnrollment);
+router.put('/enrollments/:id', adminController.updateEnrollment);
+router.delete('/enrollments/:id', adminController.deleteEnrollment);
+
+module.exports = router;

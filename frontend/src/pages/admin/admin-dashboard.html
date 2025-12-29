@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="AlKahaf LMS - Admin Dashboard">
+	<meta name="keywords" content="LMS, Admin Dashboard, Learning Management System">
+	<meta name="author" content="AlKahaf Academy">
+	<meta name="robots" content="noindex, nofollow">
+
+	<title>Admin Dashboard | AlKahaf LMS</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/assets/img/favicon.png">
+	<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+
+	<!-- Theme Settings Js -->
+	<script src="/assets/js/theme-script.js"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Feather CSS -->
+	<link rel="stylesheet" href="/assets/css/feather.css">
+
+	<!-- Iconsax CSS -->
+	<link rel="stylesheet" href="/assets/css/iconsax.css">
+
+	<!-- Select2 CSS -->
+	<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+
+	<!-- Apexcharts CSS -->
+	<link rel="stylesheet" href="/assets/plugins/apexchart/apexcharts.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+<body>
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header (Admin Navigation) -->
+		<header class="header">
+			<div class="header-fixed">
+				<nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a id="mobile_btn" href="javascript:void(0);">
+								<span class="bar-icon">
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
+							</a>
+							<a href="/index.html" class="navbar-brand logo">
+								<img src="/assets/img/white-logo.png" class="img-fluid" alt="Logo" style="width: 120px;">
+							</a>
+						</div>
+						<div class="main-menu-wrapper">
+							<div class="menu-header">
+								<a href="/index.html" class="menu-logo">
+									<img src="/assets/img/logo.svg" class="img-fluid" alt="Logo">
+								</a>
+								<a id="menu_close" class="menu-close" href="javascript:void(0);">
+									<i class="fas fa-times"></i>
+								</a>
+							</div>
+							<ul class="main-nav">
+								<li class="active">
+									<a href="admin-dashboard.html"><i class="isax isax-home me-2"></i>Dashboard</a>
+								</li>
+								<li class="has-submenu">
+									<a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
+									<ul class="submenu">
+										<li><a href="users-list.html">All Users</a></li>
+										<li><a href="instructors-list.html">Instructors</a></li>
+										<li><a href="students-list.html">Students</a></li>
+										<li><a href="user-add.html">Add New User</a></li>
+									</ul>
+								</li>
+								<li class="has-submenu">
+									<a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
+									<ul class="submenu">
+										<li><a href="courses-list.html">All Courses</a></li>
+										<li><a href="course-add.html">Add Course</a></li>
+										<li><a href="categories-list.html">Categories</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="enrollments-list.html"><i class="isax isax-note-2 me-2"></i>Enrollments</a>
+								</li>
+								<li>
+									<a href="payments-list.html"><i class="isax isax-wallet me-2"></i>Payments</a>
+								</li>
+								<li>
+									<a href="admin-settings.html"><i class="isax isax-setting-2 me-2"></i>Settings</a>
+								</li>
+							</ul>
+						</div>
+						<ul class="nav header-navbar-rht">
+							<li class="nav-item dropdown noti-dropdown">
+								<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+									<i class="isax isax-notification"></i>
+									<span class="badge badge-pill">3</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end notifications">
+									<div class="topnav-dropdown-header">
+										<span class="notification-title">Notifications</span>
+									</div>
+									<div class="noti-content">
+										<ul class="notification-list">
+											<li class="notification-message">
+												<a href="#">
+													<div class="media d-flex">
+														<div class="media-body">
+															<p class="noti-details">New enrollment in "Web Development"</p>
+															<p class="noti-time">5 mins ago</p>
+														</div>
+													</div>
+												</a>
+											</li>
+											<li class="notification-message">
+												<a href="#">
+													<div class="media d-flex">
+														<div class="media-body">
+															<p class="noti-details">New instructor registration</p>
+															<p class="noti-time">10 mins ago</p>
+														</div>
+													</div>
+												</a>
+											</li>
+											<li class="notification-message">
+												<a href="#">
+													<div class="media d-flex">
+														<div class="media-body">
+															<p class="noti-details">Payment received $99.00</p>
+															<p class="noti-time">20 mins ago</p>
+														</div>
+													</div>
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="nav-item dropdown user-dropdown">
+								<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+									<!-- <span class="user-img">
+										<img class="rounded-circle" src="/assets/img/instructor/instructor-01.jpg" alt="Admin">
+										<span class="status online"></span> -->
+									</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end">
+									<div class="user-header">
+										<div class="user-text">
+											<h6 id="admin-name">Administrator</h6>
+											<p class="text-muted mb-0">Admin</p>
+										</div>
+									</div>
+									<a class="dropdown-item" href="admin-profile.html"><i class="isax isax-user me-2"></i>My Profile</a>
+									<a class="dropdown-item" href="admin-settings.html"><i class="isax isax-setting-2 me-2"></i>Settings</a>
+									<a class="dropdown-item" href="/src/pages/auth/login.html" id="logout-btn"><i class="isax isax-logout me-2"></i>Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!-- /Header -->
+
+		<!-- Breadcrumb -->
+		<div class="breadcrumb-bar text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-12">
+						<h2 class="breadcrumb-title">Admin Dashboard</h2>
+						<nav aria-label="breadcrumb" class="page-breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Admin Dashboard</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Breadcrumb -->
+
+		<!-- Page Content -->
+		<div class="content">
+			<div class="container">
+
+				<!-- Welcome Card -->
+				<div class="profile-card overflow-hidden bg-blue-gradient2 mb-5 p-5">
+					<div class="profile-card-bg">
+						<img src="/assets/img/bg/card-bg-01.png" class="profile-card-bg-1" alt="">
+					</div>
+					<div class="row align-items-center row-gap-3">
+						<div class="col-lg-8">
+							<div class="d-flex align-items-center">
+								<div class="profile-img me-3">
+									<img src="/assets/img/instructor/instructor-01.jpg" alt="Admin" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
+								</div>
+								<div>
+									<h3 class="text-white mb-1">Welcome back, <span id="welcome-admin-name">Administrator</span>!</h3>
+									<p class="text-white-50 mb-0">Here's what's happening with your platform today</p>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-4">
+							<div class="text-lg-end">
+								<p class="text-white-50 mb-1">Last Login</p>
+								<h5 class="text-white" id="last-login">Today, 10:30 AM</h5>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Statistics Cards -->
+				<div class="row mb-4">
+					<!-- Total Users -->
+					<div class="col-xl-3 col-lg-6 col-md-6 d-flex">
+						<div class="card flex-fill bg-white rounded-3 shadow-sm">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-muted mb-2">Total Users</p>
+										<h3 class="mb-0" id="total-users">1,234</h3>
+										<p class="text-success mb-0 mt-2"><i class="isax isax-arrow-up me-1"></i>+12% this month</p>
+									</div>
+									<div class="stat-icon bg-primary-light rounded-circle p-3">
+										<i class="isax isax-user fs-3 text-primary"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Total Courses -->
+					<div class="col-xl-3 col-lg-6 col-md-6 d-flex">
+						<div class="card flex-fill bg-white rounded-3 shadow-sm">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-muted mb-2">Total Courses</p>
+										<h3 class="mb-0" id="total-courses">156</h3>
+										<p class="text-success mb-0 mt-2"><i class="isax isax-arrow-up me-1"></i>+8% this month</p>
+									</div>
+									<div class="stat-icon bg-success-light rounded-circle p-3">
+										<i class="isax isax-book fs-3 text-success"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Total Enrollments -->
+					<div class="col-xl-3 col-lg-6 col-md-6 d-flex">
+						<div class="card flex-fill bg-white rounded-3 shadow-sm">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-muted mb-2">Total Enrollments</p>
+										<h3 class="mb-0" id="total-enrollments">3,567</h3>
+										<p class="text-success mb-0 mt-2"><i class="isax isax-arrow-up me-1"></i>+15% this month</p>
+									</div>
+									<div class="stat-icon bg-warning-light rounded-circle p-3">
+										<i class="isax isax-note-2 fs-3 text-warning"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Total Revenue -->
+					<div class="col-xl-3 col-lg-6 col-md-6 d-flex">
+						<div class="card flex-fill bg-white rounded-3 shadow-sm">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-muted mb-2">Total Revenue</p>
+										<h3 class="mb-0" id="total-revenue">$45,678</h3>
+										<p class="text-success mb-0 mt-2"><i class="isax isax-arrow-up me-1"></i>+20% this month</p>
+									</div>
+									<div class="stat-icon bg-info-light rounded-circle p-3">
+										<i class="isax isax-wallet fs-3 text-info"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Charts Row -->
+				<div class="row mb-4">
+					<!-- Enrollment Chart -->
+					<div class="col-lg-8">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 pb-0">
+								<div class="d-flex align-items-center justify-content-between">
+									<h5 class="mb-0">Enrollment Overview</h5>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Last 7 Days
+										</button>
+										<ul class="dropdown-menu dropdown-menu-end">
+											<li><a class="dropdown-item" href="#">Last 7 Days</a></li>
+											<li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+											<li><a class="dropdown-item" href="#">Last 90 Days</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<div id="enrollment-chart"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- User Distribution -->
+					<div class="col-lg-4">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 pb-0">
+								<h5 class="mb-0">User Distribution</h5>
+							</div>
+							<div class="card-body">
+								<div id="user-distribution-chart"></div>
+								<div class="mt-4">
+									<div class="d-flex align-items-center justify-content-between mb-3">
+										<div class="d-flex align-items-center">
+											<span class="badge bg-primary me-2" style="width: 12px; height: 12px;"></span>
+											<span>Students</span>
+										</div>
+										<strong id="students-count">980</strong>
+									</div>
+									<div class="d-flex align-items-center justify-content-between mb-3">
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success me-2" style="width: 12px; height: 12px;"></span>
+											<span>Instructors</span>
+										</div>
+										<strong id="instructors-count">234</strong>
+									</div>
+									<div class="d-flex align-items-center justify-content-between">
+										<div class="d-flex align-items-center">
+											<span class="badge bg-warning me-2" style="width: 12px; height: 12px;"></span>
+											<span>Admins</span>
+										</div>
+										<strong id="admins-count">20</strong>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tables Row -->
+				<div class="row">
+					<!-- Recent Enrollments -->
+					<div class="col-lg-8">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 d-flex align-items-center justify-content-between">
+								<h5 class="mb-0">Recent Enrollments</h5>
+								<a href="enrollments-list.html" class="btn btn-sm btn-primary">View All</a>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Student</th>
+												<th>Course</th>
+												<th>Date</th>
+												<th>Status</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody id="recent-enrollments">
+											<tr>
+												<td>
+													<div class="d-flex align-items-center">
+														<img src="/assets/img/instructor/instructor-09.jpg" class="rounded-circle me-2" style="width: 32px; height: 32px;" alt="">
+														<span>John Doe</span>
+													</div>
+												</td>
+												<td>Web Development</td>
+												<td>2 hours ago</td>
+												<td><span class="badge bg-success-light text-success">Active</span></td>
+												<td>
+													<a href="#" class="btn btn-sm btn-outline-primary">View</a>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div class="d-flex align-items-center">
+														<img src="/assets/img/instructor/instructor-10.jpg" class="rounded-circle me-2" style="width: 32px; height: 32px;" alt="">
+														<span>Jane Smith</span>
+													</div>
+												</td>
+												<td>Data Science</td>
+												<td>5 hours ago</td>
+												<td><span class="badge bg-success-light text-success">Active</span></td>
+												<td>
+													<a href="#" class="btn btn-sm btn-outline-primary">View</a>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div class="d-flex align-items-center">
+														<img src="/assets/img/instructor/instructor-11.jpg" class="rounded-circle me-2" style="width: 32px; height: 32px;" alt="">
+														<span>Mike Johnson</span>
+													</div>
+												</td>
+												<td>UI/UX Design</td>
+												<td>1 day ago</td>
+												<td><span class="badge bg-warning-light text-warning">In Progress</span></td>
+												<td>
+													<a href="#" class="btn btn-sm btn-outline-primary">View</a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Quick Actions & Recent Activity -->
+					<div class="col-lg-4">
+						<!-- Quick Actions -->
+						<div class="card bg-white rounded-3 shadow-sm mb-4">
+							<div class="card-header border-0">
+								<h5 class="mb-0">Quick Actions</h5>
+							</div>
+							<div class="card-body">
+								<div class="d-grid gap-2">
+									<a href="user-add.html" class="btn btn-primary">
+										<i class="isax isax-user-add me-2"></i>Add New User
+									</a>
+									<a href="course-add.html" class="btn btn-success">
+										<i class="isax isax-add-circle me-2"></i>Add New Course
+									</a>
+									<a href="instructors-list.html" class="btn btn-warning">
+										<i class="isax isax-teacher me-2"></i>Manage Instructors
+									</a>
+									<a href="admin-settings.html" class="btn btn-info">
+										<i class="isax isax-setting-2 me-2"></i>Site Settings
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- System Status -->
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0">
+								<h5 class="mb-0">System Status</h5>
+							</div>
+							<div class="card-body">
+								<div class="mb-3">
+									<div class="d-flex align-items-center justify-content-between mb-2">
+										<span>Storage Used</span>
+										<strong>45%</strong>
+									</div>
+									<div class="progress" style="height: 6px;">
+										<div class="progress-bar bg-primary" style="width: 45%"></div>
+									</div>
+								</div>
+								<div class="mb-3">
+									<div class="d-flex align-items-center justify-content-between mb-2">
+										<span>Bandwidth</span>
+										<strong>67%</strong>
+									</div>
+									<div class="progress" style="height: 6px;">
+										<div class="progress-bar bg-success" style="width: 67%"></div>
+									</div>
+								</div>
+								<div>
+									<div class="d-flex align-items-center justify-content-between mb-2">
+										<span>Database</span>
+										<strong>32%</strong>
+									</div>
+									<div class="progress" style="height: 6px;">
+										<div class="progress-bar bg-warning" style="width: 32%"></div>
+									</div>
+								</div>
+								<hr>
+								<div class="d-flex align-items-center justify-content-between">
+									<span class="text-muted">Server Status</span>
+									<span class="badge bg-success-light text-success">Online</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- /Page Content -->
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="text-center">
+								<p class="mb-0">© 2025 AlKahaf Academy. All rights reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- /Footer -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="/assets/js/jquery-3.7.1.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Select2 JS -->
+	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+
+	<!-- Apexcharts JS -->
+	<script src="/assets/plugins/apexchart/apexcharts.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="/assets/js/script.js"></script>
+
+	<!-- API Configuration -->
+	<script src="/assets/js/api-config.js"></script>
+
+	<!-- Admin Dashboard JS -->
+	<script>
+		// Initialize charts and load data
+		document.addEventListener('DOMContentLoaded', function() {
+			// Check if user is admin
+			const user = JSON.parse(localStorage.getItem('user') || '{}');
+			if (!user || user.role !== 'admin') {
+				window.location.href = '/src/pages/auth/login.html';
+				return;
+			}
+
+			// Set admin name
+			if (user.firstName && user.lastName) {
+				const fullName = user.firstName + ' ' + user.lastName;
+				document.getElementById('admin-name').textContent = fullName;
+				document.getElementById('welcome-admin-name').textContent = fullName;
+			}
+
+			// Logout functionality
+			document.getElementById('logout-btn').addEventListener('click', function(e) {
+				e.preventDefault();
+				localStorage.removeItem('accessToken');
+				localStorage.removeItem('refreshToken');
+				localStorage.removeItem('user');
+				window.location.href = '/src/pages/auth/login.html';
+			});
+
+			// Initialize Enrollment Chart
+			var enrollmentOptions = {
+				series: [{
+					name: 'Enrollments',
+					data: [31, 40, 28, 51, 42, 82, 56]
+				}],
+				chart: {
+					height: 300,
+					type: 'area',
+					toolbar: {
+						show: false
+					}
+				},
+				dataLabels: {
+					enabled: false
+				},
+				stroke: {
+					curve: 'smooth',
+					width: 2
+				},
+				colors: ['#FF6F28'],
+				fill: {
+					type: 'gradient',
+					gradient: {
+						shadeIntensity: 1,
+						opacityFrom: 0.4,
+						opacityTo: 0.1,
+					}
+				},
+				xaxis: {
+					categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+				},
+				tooltip: {
+					theme: 'dark'
+				}
+			};
+			var enrollmentChart = new ApexCharts(document.querySelector("#enrollment-chart"), enrollmentOptions);
+			enrollmentChart.render();
+
+			// Initialize User Distribution Chart
+			var userDistOptions = {
+				series: [980, 234, 20],
+				chart: {
+					type: 'donut',
+					height: 200
+				},
+				labels: ['Students', 'Instructors', 'Admins'],
+				colors: ['#FF6F28', '#28a745', '#ffc107'],
+				legend: {
+					show: false
+				},
+				plotOptions: {
+					pie: {
+						donut: {
+							size: '70%'
+						}
+					}
+				}
+			};
+			var userDistChart = new ApexCharts(document.querySelector("#user-distribution-chart"), userDistOptions);
+			userDistChart.render();
+
+			// Load dashboard data from API
+			loadDashboardData();
+		});
+
+		async function loadDashboardData() {
+			try {
+				const token = localStorage.getItem('accessToken');
+				if (!token) {
+					window.location.href = '/src/pages/auth/login.html';
+					return;
+				}
+
+				// TODO: Replace with actual API calls
+				// const response = await fetch(API_CONFIG.BASE_URL + '/admin/statistics', {
+				//     headers: API_CONFIG.getHeaders(true)
+				// });
+				// const data = await response.json();
+				// updateDashboard(data);
+
+			} catch (error) {
+				console.error('Error loading dashboard data:', error);
+			}
+		}
+
+		function updateDashboard(data) {
+			// Update statistics
+			document.getElementById('total-users').textContent = data.totalUsers || '0';
+			document.getElementById('total-courses').textContent = data.totalCourses || '0';
+			document.getElementById('total-enrollments').textContent = data.totalEnrollments || '0';
+			document.getElementById('total-revenue').textContent = '$' + (data.totalRevenue || '0');
+
+			// Update user distribution
+			document.getElementById('students-count').textContent = data.studentsCount || '0';
+			document.getElementById('instructors-count').textContent = data.instructorsCount || '0';
+			document.getElementById('admins-count').textContent = data.adminsCount || '0';
+		}
+	</script>
+
+</body>
+</html>

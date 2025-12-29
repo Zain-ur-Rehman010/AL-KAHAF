@@ -1,0 +1,35 @@
+# AlKahaf LMS - Frontend & Backend Routing Configuration
+# This file ensures proper routing between static frontend files and backend API
+
+# Enable Rewrite Engine
+RewriteEngine On
+
+# Set default index file
+DirectoryIndex index.html
+
+# ========================================
+# BACKEND API ROUTING
+# ========================================
+# Route all /api/ requests to the backend Node.js app on port 5000
+RewriteCond %{REQUEST_URI} ^/api/
+RewriteRule ^(.*)$ http://localhost:5000/$1 [P,L]
+
+# ========================================
+# FRONTEND STATIC FILE SERVING
+# ========================================
+# Serve static files directly if they exist
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# ========================================
+# DEFAULT HOMEPAGE
+# ========================================
+# Redirect root domain to index.html
+RewriteRule ^$ /index.html [L]
+
+# ========================================
+# ERROR HANDLING
+# ========================================
+# Custom error pages (optional)
+ErrorDocument 404 /index.html

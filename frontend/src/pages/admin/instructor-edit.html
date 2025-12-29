@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Edit Instructor - Admin Dashboard - AlKahaf LMS</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="../../../assets/img/favicon.svg">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="../../../assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="../../../assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Iconsax CSS -->
+    <link rel="stylesheet" href="../../../assets/plugins/iconsax/css/style.css">
+
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="../../../assets/plugins/select2/css/select2.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="../../../assets/css/style.css">
+
+    <style>
+        .form-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid #E9ECEF;
+        }
+
+        .form-card-header {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1D2026;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #FF6F28;
+        }
+
+        .image-preview-wrapper {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .image-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #E9ECEF;
+        }
+
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .upload-btn {
+            border: 2px solid #FF6F28;
+            color: #FF6F28;
+            background-color: white;
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .upload-btn:hover {
+            background-color: #FFF5F0;
+        }
+
+        .upload-btn-wrapper input[type=file] {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .required-label::after {
+            content: " *";
+            color: #DC3545;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #FF6F28;
+            box-shadow: 0 0 0 0.2rem rgba(255, 111, 40, 0.15);
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #FF6F28 0%, #FF8A4D 100%);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 111, 40, 0.3);
+            color: white;
+        }
+
+        .stats-badge {
+            background: #E3F2FD;
+            color: #0D47A1;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading-overlay.show {
+            display: flex;
+        }
+
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+
+        <!-- Header -->
+        <header class="header header-page">
+            <div class="header-fixed">
+                <nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a id="mobile_btn" href="javascript:void(0);">
+                                <span class="bar-icon">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </a>
+                            <a href="../../../index.html" class="navbar-brand logo">
+                                <img src="../../../assets/img/logo.svg" class="img-fluid" alt="Logo">
+                            </a>
+                        </div>
+                        <div class="main-menu-wrapper">
+                            <div class="menu-header">
+                                <a href="../../../index.html" class="menu-logo">
+                                    <img src="../../../assets/img/logo.svg" class="img-fluid" alt="Logo">
+                                </a>
+                                <a id="menu_close" class="menu-close" href="javascript:void(0);">
+                                    <i class="fas fa-times"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <ul class="nav header-navbar-rht">
+                            <li class="nav-item">
+                                <a class="nav-link" href="admin-dashboard.html">
+                                    <i class="iconsax" data-icon="home-2"></i> Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown has-arrow main-drop">
+                                <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                                    <span class="user-img">
+                                        <img src="../../../assets/img/user/user1.jpg" alt="">
+                                    </span>
+                                    <span class="user-text" id="adminName">Admin User</span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <a class="dropdown-item" href="admin-dashboard.html">
+                                        <i class="iconsax me-2" data-icon="grid-4"></i>Dashboard
+                                    </a>
+                                    <a class="dropdown-item" href="admin-settings.html">
+                                        <i class="iconsax me-2" data-icon="setting-2"></i>Settings
+                                    </a>
+                                    <a class="dropdown-item" href="#" id="logoutBtn">
+                                        <i class="iconsax me-2" data-icon="logout-2"></i>Logout
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- /Header -->
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-bar breadcrumb-bar-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <div class="breadcrumb-list">
+                            <h2 class="breadcrumb-title">Edit Instructor</h2>
+                            <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="../../../index.html">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="admin-dashboard.html">Admin</a></li>
+                                    <li class="breadcrumb-item"><a href="instructors-list.html">Instructors</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Edit Instructor</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Breadcrumb -->
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Main Form -->
+                    <div class="col-lg-8">
+
+                        <!-- Basic Information -->
+                        <div class="form-card">
+                            <h3 class="form-card-header">
+                                <i class="iconsax me-2" data-icon="user"></i> Basic Information
+                            </h3>
+                            <form id="editInstructorForm">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label required-label">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label required-label">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label required-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <small class="form-text text-muted">Used for login</small>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Professional Information -->
+                        <div class="form-card">
+                            <h3 class="form-card-header">
+                                <i class="iconsax me-2" data-icon="briefcase"></i> Professional Information
+                            </h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Designation</label>
+                                    <input type="text" class="form-control" id="designation" name="designation" placeholder="e.g., Lead Designer">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">Years of Experience</label>
+                                    <input type="number" class="form-control" id="experience" name="experience" min="0">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Specialization</label>
+                                    <select class="form-select" id="specialization" name="specialization" multiple>
+                                        <option value="Web Development">Web Development</option>
+                                        <option value="Mobile Development">Mobile Development</option>
+                                        <option value="Data Science">Data Science</option>
+                                        <option value="UI/UX Design">UI/UX Design</option>
+                                        <option value="Digital Marketing">Digital Marketing</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Photography">Photography</option>
+                                        <option value="Programming">Programming</option>
+                                        <option value="Graphic Design">Graphic Design</option>
+                                        <option value="Video Editing">Video Editing</option>
+                                    </select>
+                                    <small class="form-text text-muted">Hold Ctrl/Cmd to select multiple</small>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label class="form-label">Bio</label>
+                                    <textarea class="form-control" id="bio" name="bio" rows="4" placeholder="Brief description about the instructor..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="form-card">
+                            <h3 class="form-card-header">
+                                <i class="iconsax me-2" data-icon="link"></i> Social Links
+                            </h3>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        <i class="fab fa-linkedin me-2"></i> LinkedIn
+                                    </label>
+                                    <input type="url" class="form-control" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/username">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        <i class="fab fa-twitter me-2"></i> Twitter
+                                    </label>
+                                    <input type="url" class="form-control" id="twitter" name="twitter" placeholder="https://twitter.com/username">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        <i class="fab fa-facebook me-2"></i> Facebook
+                                    </label>
+                                    <input type="url" class="form-control" id="facebook" name="facebook" placeholder="https://facebook.com/username">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        <i class="fas fa-globe me-2"></i> Website
+                                    </label>
+                                    <input type="url" class="form-control" id="website" name="website" placeholder="https://yourwebsite.com">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div class="col-lg-4">
+
+                        <!-- Profile Image -->
+                        <div class="form-card">
+                            <h3 class="form-card-header">
+                                <i class="iconsax me-2" data-icon="image"></i> Profile Image
+                            </h3>
+                            <div class="image-preview-wrapper">
+                                <img id="imagePreview" src="../../../assets/img/instructor/instructor-01.jpg" alt="Profile" class="image-preview mb-3">
+                                <div class="upload-btn-wrapper">
+                                    <button class="upload-btn">
+                                        <i class="iconsax me-2" data-icon="gallery-add"></i> Change Photo
+                                    </button>
+                                    <input type="file" id="profileImage" name="profileImage" accept="image/*" onchange="previewImage(event)">
+                                </div>
+                                <p class="text-muted mt-2 mb-0 small">Recommended: 500x500px, Max 2MB</p>
+                            </div>
+                        </div>
+
+                        <!-- Account Settings -->
+                        <div class="form-card">
+                            <h3 class="form-card-header">
+                                <i class="iconsax me-2" data-icon="setting-2"></i> Account Settings
+                            </h3>
+                            <div class="mb-3">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" id="status" name="status">
+                                    <option value="active">Active</option>
+                                    <option value="inactive">Inactive</option>
+                                    <option value="banned">Banned</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Rating</label>
+                                <input type="number" class="form-control" id="rating" name="rating" min="0" max="5" step="0.1" value="5.0">
+                                <small class="form-text text-muted">0.0 to 5.0</small>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="isVerified" name="isVerified">
+                                    <label class="form-check-label" for="isVerified">
+                                        <i class="iconsax me-1" data-icon="shield-tick"></i> Verified Instructor
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="emailVerified" name="emailVerified">
+                                    <label class="form-check-label" for="emailVerified">
+                                        <i class="iconsax me-1" data-icon="tick-circle"></i> Email Verified
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Statistics -->
+                        <div class="form-card">
+                            <h3 class="form-card-header">
+                                <i class="iconsax me-2" data-icon="chart"></i> Statistics
+                            </h3>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-muted">Total Courses</span>
+                                <span class="stats-badge" id="totalCourses">0</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-muted">Total Students</span>
+                                <span class="stats-badge" id="totalStudents">0</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <span class="text-muted">Member Since</span>
+                                <span class="small" id="memberSince">-</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-muted">Last Login</span>
+                                <span class="small" id="lastLogin">-</span>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="form-card">
+                            <button type="button" class="btn btn-save w-100 mb-2" onclick="saveInstructor()">
+                                <i class="iconsax me-2" data-icon="tick-circle"></i> Save Changes
+                            </button>
+                            <a href="instructors-list.html" class="btn btn-outline-secondary w-100">
+                                <i class="iconsax me-2" data-icon="arrow-left"></i> Back to List
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /Page Content -->
+
+    </div>
+    <!-- /Main Wrapper -->
+
+    <!-- jQuery -->
+    <script src="../../../assets/js/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Iconsax Icons -->
+    <script src="../../../assets/plugins/iconsax/index.js"></script>
+
+    <!-- Select2 JS -->
+    <script src="../../../assets/plugins/select2/js/select2.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="../../../assets/js/script.js"></script>
+
+    <script>
+        // API Configuration
+        const API_CONFIG = {
+            BASE_URL: 'https://alkahafonlineacademy.com/api/v1',
+            getHeaders: (includeAuth = false) => {
+                const headers = {
+                    'Content-Type': 'application/json'
+                };
+                if (includeAuth) {
+                    const token = localStorage.getItem('accessToken');
+                    if (token) {
+                        headers['Authorization'] = `Bearer ${token}`;
+                    }
+                }
+                return headers;
+            }
+        };
+
+        let instructorId = null;
+
+        // Check authentication and load instructor data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+
+            // Get instructor ID from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            instructorId = urlParams.get('id');
+
+            if (!instructorId) {
+                alert('No instructor ID provided');
+                window.location.href = 'instructors-list.html';
+                return;
+            }
+
+            loadInstructorData();
+            initializeSelect2();
+        });
+
+        // Check if user is logged in and is admin
+        function checkAuth() {
+            const token = localStorage.getItem('accessToken');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+            if (!token || user.role !== 'admin') {
+                window.location.href = '../auth/login.html';
+                return;
+            }
+
+            document.getElementById('adminName').textContent = user.firstName + ' ' + user.lastName;
+        }
+
+        // Initialize Select2
+        function initializeSelect2() {
+            $('#specialization').select2({
+                placeholder: 'Select specializations',
+                allowClear: true
+            });
+        }
+
+        // Load instructor data
+        async function loadInstructorData() {
+            showLoading();
+
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + instructorId, {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.success) {
+                        populateForm(result.data);
+                    } else {
+                        alert('Error: ' + result.message);
+                        window.location.href = 'instructors-list.html';
+                    }
+                } else if (response.status === 404) {
+                    alert('Instructor not found');
+                    window.location.href = 'instructors-list.html';
+                } else {
+                    alert('Failed to load instructor data');
+                }
+            } catch (error) {
+                console.error('Error loading instructor:', error);
+                alert('Failed to load instructor data');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Populate form with instructor data
+        function populateForm(instructor) {
+            // Basic info
+            document.getElementById('firstName').value = instructor.firstName || '';
+            document.getElementById('lastName').value = instructor.lastName || '';
+            document.getElementById('email').value = instructor.email || '';
+            document.getElementById('phone').value = instructor.phone || '';
+
+            // Professional info
+            document.getElementById('designation').value = instructor.designation || '';
+            document.getElementById('experience').value = instructor.experience || '';
+            document.getElementById('bio').value = instructor.bio || '';
+
+            // Specialization
+            if (instructor.specialization && Array.isArray(instructor.specialization)) {
+                $('#specialization').val(instructor.specialization).trigger('change');
+            }
+
+            // Social links
+            if (instructor.socialLinks) {
+                document.getElementById('linkedin').value = instructor.socialLinks.linkedin || '';
+                document.getElementById('twitter').value = instructor.socialLinks.twitter || '';
+                document.getElementById('facebook').value = instructor.socialLinks.facebook || '';
+                document.getElementById('website').value = instructor.socialLinks.website || '';
+            }
+
+            // Profile image
+            if (instructor.profileImage) {
+                document.getElementById('imagePreview').src = instructor.profileImage;
+            }
+
+            // Account settings
+            document.getElementById('status').value = instructor.status || 'active';
+            document.getElementById('rating').value = instructor.rating || 5.0;
+            document.getElementById('isVerified').checked = instructor.isVerified || false;
+            document.getElementById('emailVerified').checked = instructor.emailVerified || false;
+
+            // Statistics
+            document.getElementById('totalCourses').textContent = instructor.stats?.totalCourses || instructor.totalCourses || 0;
+            document.getElementById('totalStudents').textContent = instructor.stats?.totalStudents || instructor.totalStudents || 0;
+            document.getElementById('memberSince').textContent = new Date(instructor.createdAt).toLocaleDateString();
+            document.getElementById('lastLogin').textContent = instructor.lastLogin
+                ? new Date(instructor.lastLogin).toLocaleDateString()
+                : 'Never';
+        }
+
+        // Preview uploaded image
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('File size must be less than 2MB');
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Save instructor
+        async function saveInstructor() {
+            const form = document.getElementById('editInstructorForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            showLoading();
+
+            // Prepare data
+            const instructorData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                designation: document.getElementById('designation').value,
+                experience: parseInt(document.getElementById('experience').value) || 0,
+                bio: document.getElementById('bio').value,
+                specialization: $('#specialization').val(),
+                status: document.getElementById('status').value,
+                rating: parseFloat(document.getElementById('rating').value),
+                isVerified: document.getElementById('isVerified').checked,
+                emailVerified: document.getElementById('emailVerified').checked,
+                socialLinks: {
+                    linkedin: document.getElementById('linkedin').value,
+                    twitter: document.getElementById('twitter').value,
+                    facebook: document.getElementById('facebook').value,
+                    website: document.getElementById('website').value
+                }
+            };
+
+            // TODO: Handle profile image upload separately
+            // For now, we're not updating the image
+
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + instructorId, {
+                    method: 'PUT',
+                    headers: API_CONFIG.getHeaders(true),
+                    body: JSON.stringify(instructorData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Instructor updated successfully!');
+                    window.location.href = 'instructors-list.html';
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error updating instructor:', error);
+                alert('Failed to update instructor');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Show loading overlay
+        function showLoading() {
+            document.getElementById('loadingOverlay').classList.add('show');
+        }
+
+        // Hide loading overlay
+        function hideLoading() {
+            document.getElementById('loadingOverlay').classList.remove('show');
+        }
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('user');
+            window.location.href = '../auth/login.html';
+        });
+    </script>
+
+</body>
+
+</html>

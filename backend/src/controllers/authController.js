@@ -9,7 +9,7 @@ exports.register = async (req, res) => {
 
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
-      return res.status(400).json({ message: 'Email already registered' });
+      return res.status(400).json({ success: false, message: 'Email already registered' });
     }
 
     const user = await User.create({
@@ -22,12 +22,15 @@ exports.register = async (req, res) => {
 
     const tokens = tokenService.generateTokens(user.id, user.role);
     res.status(201).json({
+      success: true,
       message: 'Registration successful',
-      user: user.toJSON(),
-      ...tokens,
+      data: {
+        user: user.toJSON(),
+        ...tokens,
+      }
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
@@ -37,28 +40,31 @@ exports.login = async (req, res) => {
 
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      return res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
 
     if (user.status !== 'active') {
-      return res.status(403).json({ message: 'Account is inactive' });
+      return res.status(403).json({ success: false, message: 'Account is inactive' });
     }
 
     const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
-      return res.status(401).json({ message: 'Invalid credentials' });
+      return res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
 
     await user.update({ lastLogin: new Date() });
 
     const tokens = tokenService.generateTokens(user.id, user.role);
     res.json({
+      success: true,
       message: 'Login successful',
-      user: user.toJSON(),
-      ...tokens,
+      data: {
+        user: user.toJSON(),
+        ...tokens,
+      }
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 

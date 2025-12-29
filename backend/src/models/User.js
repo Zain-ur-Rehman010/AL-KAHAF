@@ -40,6 +40,42 @@ const User = sequelize.define('User', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
+  designation: {
+    type: DataTypes.STRING(100),
+    allowNull: true,
+  },
+  specialization: {
+    type: DataTypes.JSON,
+    allowNull: true,
+  },
+  experience: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  rating: {
+    type: DataTypes.DECIMAL(2, 1),
+    allowNull: true,
+    defaultValue: 5.0,
+  },
+  isVerified: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: false,
+  },
+  socialLinks: {
+    type: DataTypes.JSON,
+    allowNull: true,
+  },
+  totalCourses: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
+  totalStudents: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+  },
   role: {
     type: DataTypes.ENUM('admin', 'instructor', 'student'),
     defaultValue: 'student',
