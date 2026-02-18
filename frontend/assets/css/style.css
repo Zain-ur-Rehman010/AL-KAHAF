@@ -65,7 +65,8 @@ body {
   font-size: 15px;
   color: var(--gray-600);
   line-height: 1.5;
-  background-color: var(--white);
+  background: linear-gradient(180deg, #FDFBF7 0%, #FFF9F0 50%, #FFFDF9 100%);
+  background-attachment: fixed;
   overflow-y: auto;
   overflow-x: hidden;
 }

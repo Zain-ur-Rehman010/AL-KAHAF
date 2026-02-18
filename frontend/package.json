@@ -1,12 +1,15 @@
 {
   "scripts": {
-    "start": "live-server --port=3000",
+    "start": "node server.js",
     "sass": "sass --watch assets/scss/main.scss:assets/css/style.css",
     "dev": "concurrently \"npm start\" \"npm run sass\""
   },
+  "dependencies": {
+    "express": "^4.22.1"
+  },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "live-server": "^1.2.2",
-    "sass": "^1.96.0",
-    "concurrently": "^8.2.2"
+    "sass": "^1.96.0"
   }
 }

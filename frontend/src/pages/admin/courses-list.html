@@ -10,10 +10,10 @@
 	<meta name="author" content="AlKahaf Academy">
 	<meta name="robots" content="noindex, nofollow">
 
-	<title>Courses List | AlKahaf LMS Admin</title>
+	<title>Courses List | Al-Kahaf Online Academy</title>
 
 	<!-- Favicon -->
-	<link rel="shortcut icon" href="/assets/img/favicon.png">
+	<link rel="shortcut icon" href="/assets/img/favicon.svg">
 	<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
 
 	<!-- Theme Settings Js -->
@@ -92,33 +92,33 @@
 							</div>
 							<ul class="main-nav">
 								<li>
-									<a href="admin-dashboard.html"><i class="isax isax-home me-2"></i>Dashboard</a>
+									<a href="/admin/admin-dashboard"><i class="isax isax-home me-2"></i>Dashboard</a>
 								</li>
 								<li class="has-submenu">
 									<a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
 									<ul class="submenu">
-										<li><a href="users-list.html">All Users</a></li>
-										<li><a href="instructors-list.html">Instructors</a></li>
-										<li><a href="students-list.html">Students</a></li>
-										<li><a href="user-add.html">Add New User</a></li>
+										<li><a href="/admin/users-list">All Users</a></li>
+										<li><a href="/admin/instructors-list">Instructors</a></li>
+										<li><a href="/admin/students-list">Students</a></li>
+										<li><a href="/admin/user-add">Add New User</a></li>
 									</ul>
 								</li>
 								<li class="has-submenu active">
 									<a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
 									<ul class="submenu">
-										<li class="active"><a href="courses-list.html">All Courses</a></li>
-										<li><a href="course-add.html">Add Course</a></li>
-										<li><a href="categories-list.html">Categories</a></li>
+										<li class="active"><a href="/admin/courses-list">All Courses</a></li>
+										<li><a href="/admin/course-add">Add Course</a></li>
+										<li><a href="/admin/categories-list">Categories</a></li>
 									</ul>
 								</li>
 								<li>
-									<a href="enrollments-list.html"><i class="isax isax-note-2 me-2"></i>Enrollments</a>
+									<a href="/admin/enrollments-list"><i class="isax isax-note-2 me-2"></i>Enrollments</a>
 								</li>
 								<li>
-									<a href="payments-list.html"><i class="isax isax-wallet me-2"></i>Payments</a>
+									<a href="/admin/payments-list"><i class="isax isax-wallet me-2"></i>Payments</a>
 								</li>
 								<li>
-									<a href="admin-settings.html"><i class="isax isax-setting-2 me-2"></i>Settings</a>
+									<a href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a>
 								</li>
 							</ul>
 						</div>
@@ -162,8 +162,8 @@
 											<p class="text-muted mb-0">Admin</p>
 										</div>
 									</div>
-									<a class="dropdown-item" href="admin-profile.html"><i class="isax isax-user me-2"></i>My Profile</a>
-									<a class="dropdown-item" href="admin-settings.html"><i class="isax isax-setting-2 me-2"></i>Settings</a>
+									<a class="dropdown-item" href="/admin/admin-profile"><i class="isax isax-user me-2"></i>My Profile</a>
+									<a class="dropdown-item" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a>
 									<a class="dropdown-item" href="/src/pages/auth/login.html" id="logout-btn"><i class="isax isax-logout me-2"></i>Logout</a>
 								</div>
 							</li>
@@ -183,7 +183,7 @@
 						<nav aria-label="breadcrumb" class="page-breadcrumb">
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="/index.html">Home</a></li>
-								<li class="breadcrumb-item"><a href="admin-dashboard.html">Admin</a></li>
+								<li class="breadcrumb-item"><a href="/admin/admin-dashboard">Admin</a></li>
 								<li class="breadcrumb-item active" aria-current="page">Courses</li>
 							</ol>
 						</nav>
@@ -208,7 +208,7 @@
 										<p class="text-muted mb-0 mt-1">Manage all platform courses</p>
 									</div>
 									<div class="col-md-6 text-md-end mt-3 mt-md-0">
-										<a href="course-add.html" class="btn btn-primary">
+										<a href="/admin/course-add" class="btn btn-primary">
 											<i class="isax isax-add-circle me-2"></i>Add New Course
 										</a>
 										<button class="btn btn-outline-secondary ms-2" onclick="refreshTable()">

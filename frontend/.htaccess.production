@@ -1,0 +1,128 @@
+# AlKahaf Online Academy - Production .htaccess
+# Upload this file to your production server and rename to .htaccess
+# Optimized for cPanel/shared hosting
+
+# Enable Rewrite Engine
+RewriteEngine On
+
+#########################
+# FORCE HTTPS (SSL)
+#########################
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#########################
+# CLEAN URL REWRITES
+#########################
+
+# Home
+RewriteRule ^home/?$ index.html [L]
+
+# Courses - CLEAN URLs (hides file structure)
+RewriteRule ^courses/?$ src/pages/courses/course-grid.html [L]
+RewriteRule ^courses/grid/?$ src/pages/courses/course-grid.html [L]
+RewriteRule ^courses/list/?$ src/pages/courses/course-list.html [L]
+RewriteRule ^course-details/?$ src/pages/courses/course-details.html [L]
+
+# Auth
+RewriteRule ^login/?$ src/pages/auth/login.html [L]
+RewriteRule ^register/?$ src/pages/auth/register.html [L]
+RewriteRule ^forgot-password/?$ src/pages/auth/forgot-password.html [L]
+RewriteRule ^reset-password/?$ src/pages/auth/reset-password.html [L]
+
+# Student
+RewriteRule ^student/?$ src/pages/student/student-dashboard.html [L]
+RewriteRule ^student/dashboard/?$ src/pages/student/student-dashboard.html [L]
+RewriteRule ^student/courses/?$ src/pages/student/student-courses.html [L]
+RewriteRule ^student/course-play/?$ src/pages/student/student-course-play.html [L]
+RewriteRule ^student/quiz/?$ src/pages/student/student-quiz.html [L]
+RewriteRule ^student/profile/?$ src/pages/student/student-profile.html [L]
+RewriteRule ^student/settings/?$ src/pages/student/student-settings.html [L]
+
+# Instructor
+RewriteRule ^instructor/?$ src/pages/instructor/instructor-dashboard.html [L]
+RewriteRule ^instructor/dashboard/?$ src/pages/instructor/instructor-dashboard.html [L]
+RewriteRule ^instructor/courses/?$ src/pages/instructor/instructor-course.html [L]
+RewriteRule ^instructor/course/add/?$ src/pages/instructor/add-course.html [L]
+RewriteRule ^instructor/students/?$ src/pages/instructor/instructor-students.html [L]
+RewriteRule ^instructor/profile/?$ src/pages/instructor/instructor-profile.html [L]
+
+# Admin
+RewriteRule ^admin/?$ src/pages/admin/admin-dashboard.html [L]
+RewriteRule ^admin/dashboard/?$ src/pages/admin/admin-dashboard.html [L]
+RewriteRule ^admin/users/?$ src/pages/admin/users-list.html [L]
+RewriteRule ^admin/user/add/?$ src/pages/admin/user-add.html [L]
+
+#########################
+# REDIRECT OLD URLS (301 Permanent)
+#########################
+# This prevents anyone from accessing the old exposed URLs
+RewriteRule ^src/pages/courses/course-grid\.html$ /courses [R=301,L]
+RewriteRule ^src/pages/courses/course-list\.html$ /courses/list [R=301,L]
+RewriteRule ^src/pages/courses/course-details\.html$ /course-details [R=301,L]
+RewriteRule ^src/pages/auth/login\.html$ /login [R=301,L]
+RewriteRule ^src/pages/auth/register\.html$ /register [R=301,L]
+RewriteRule ^src/pages/student/(.+)\.html$ /student/$1 [R=301,L]
+RewriteRule ^src/pages/instructor/(.+)\.html$ /instructor/$1 [R=301,L]
+RewriteRule ^src/pages/admin/(.+)\.html$ /admin/$1 [R=301,L]
+
+#########################
+# SECURITY
+#########################
+
+# Prevent directory browsing
+Options -Indexes
+
+# Hide server signature
+ServerSignature Off
+
+# Protect hidden files
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+#########################
+# PERFORMANCE
+#########################
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Serve static files directly
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Default to index.html
+RewriteRule ^$ index.html [L]
+
+# Error pages
+ErrorDocument 404 /index.html
