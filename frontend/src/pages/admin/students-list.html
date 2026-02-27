@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,26 +7,23 @@
     <title>Students List | Al-Kahaf Online Academy</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="../../../assets/img/favicon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.svg">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 
     <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="../../../assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="../../../assets/plugins/fontawesome/css/all.min.css">
-
-    <!-- Iconsax CSS -->
-    <link rel="stylesheet" href="../../../assets/plugins/iconsax/css/style.css">
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
 
     <!-- Select2 CSS -->
-    <link rel="stylesheet" href="../../../assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
 
     <!-- DataTables CSS -->
-    <link rel="stylesheet" href="../../../assets/plugins/datatables/datatables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
     <style>
         .student-avatar {
@@ -202,29 +199,14 @@
                                 </span>
                             </a>
                             <a href="/" class="navbar-brand logo">
-                                <img src="../../../assets/img/logo.svg" class="img-fluid" alt="Logo">
                             </a>
                         </div>
-                        <div class="main-menu-wrapper">
-                            <div class="menu-header">
-                                <a href="/" class="menu-logo">
-                                    <img src="../../../assets/img/logo.svg" class="img-fluid" alt="Logo">
-                                </a>
-                                <a id="menu_close" class="menu-close" href="javascript:void(0);">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
                         <ul class="nav header-navbar-rht">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/admin/admin-dashboard">
-                                    <i class="iconsax" data-icon="home-2"></i> Dashboard
-                                </a>
-                            </li>
+
                             <li class="nav-item dropdown has-arrow main-drop">
                                 <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                                     <span class="user-img">
-                                        <img src="../../../assets/img/user/user1.jpg" alt="">
+                                        <img src="/assets/img/user/user1.jpg" alt="">
                                     </span>
                                     <span class="user-text" id="adminName">Admin User</span>
                                 </a>
@@ -409,160 +391,8 @@
                                     </tr>
                                 </thead>
                                 <tbody id="studentsTableBody">
-                                    <!-- Sample Data -->
-                                    <tr>
-                                        <td><input type="checkbox" class="student-checkbox" value="1"></td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../../../assets/img/user/user1.jpg" alt="Student" class="student-avatar me-3">
-                                                <div>
-                                                    <div class="fw-semibold">Alice Johnson</div>
-                                                    <small class="text-muted">ID: #ST12345</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>alice.johnson@example.com</td>
-                                        <td>+1 234 567 8901</td>
-                                        <td><span class="course-count-badge">5 Courses</span></td>
-                                        <td>
-                                            <div class="progress-wrapper">
-                                                <div class="progress progress-bar-custom">
-                                                    <div class="progress-bar bg-success" style="width: 75%"></div>
-                                                </div>
-                                                <span class="small fw-semibold">75%</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="status-badge status-active">Active</span></td>
-                                        <td>Jan 15, 2024</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn action-btn btn-view" onclick="viewStudent('1')">
-                                                    <i class="iconsax" data-icon="eye"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-message" onclick="messageStudent('1')">
-                                                    <i class="iconsax" data-icon="message"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-delete" onclick="deleteStudent('1')">
-                                                    <i class="iconsax" data-icon="trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="student-checkbox" value="2"></td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../../../assets/img/user/user2.jpg" alt="Student" class="student-avatar me-3">
-                                                <div>
-                                                    <div class="fw-semibold">Bob Smith</div>
-                                                    <small class="text-muted">ID: #ST12346</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>bob.smith@example.com</td>
-                                        <td>+1 234 567 8902</td>
-                                        <td><span class="course-count-badge">3 Courses</span></td>
-                                        <td>
-                                            <div class="progress-wrapper">
-                                                <div class="progress progress-bar-custom">
-                                                    <div class="progress-bar bg-warning" style="width: 45%"></div>
-                                                </div>
-                                                <span class="small fw-semibold">45%</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="status-badge status-active">Active</span></td>
-                                        <td>Feb 20, 2024</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn action-btn btn-view" onclick="viewStudent('2')">
-                                                    <i class="iconsax" data-icon="eye"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-message" onclick="messageStudent('2')">
-                                                    <i class="iconsax" data-icon="message"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-delete" onclick="deleteStudent('2')">
-                                                    <i class="iconsax" data-icon="trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="student-checkbox" value="3"></td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../../../assets/img/user/user3.jpg" alt="Student" class="student-avatar me-3">
-                                                <div>
-                                                    <div class="fw-semibold">Carol Williams</div>
-                                                    <small class="text-muted">ID: #ST12347</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>carol.williams@example.com</td>
-                                        <td>+1 234 567 8903</td>
-                                        <td><span class="course-count-badge">8 Courses</span></td>
-                                        <td>
-                                            <div class="progress-wrapper">
-                                                <div class="progress progress-bar-custom">
-                                                    <div class="progress-bar bg-success" style="width: 92%"></div>
-                                                </div>
-                                                <span class="small fw-semibold">92%</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="status-badge status-active">Active</span></td>
-                                        <td>Dec 10, 2023</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn action-btn btn-view" onclick="viewStudent('3')">
-                                                    <i class="iconsax" data-icon="eye"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-message" onclick="messageStudent('3')">
-                                                    <i class="iconsax" data-icon="message"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-delete" onclick="deleteStudent('3')">
-                                                    <i class="iconsax" data-icon="trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="student-checkbox" value="4"></td>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../../../assets/img/user/user4.jpg" alt="Student" class="student-avatar me-3">
-                                                <div>
-                                                    <div class="fw-semibold">David Brown</div>
-                                                    <small class="text-muted">ID: #ST12348</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>david.brown@example.com</td>
-                                        <td>+1 234 567 8904</td>
-                                        <td><span class="course-count-badge">1 Course</span></td>
-                                        <td>
-                                            <div class="progress-wrapper">
-                                                <div class="progress progress-bar-custom">
-                                                    <div class="progress-bar bg-danger" style="width: 15%"></div>
-                                                </div>
-                                                <span class="small fw-semibold">15%</span>
-                                            </div>
-                                        </td>
-                                        <td><span class="status-badge status-inactive">Inactive</span></td>
-                                        <td>Mar 5, 2024</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn action-btn btn-view" onclick="viewStudent('4')">
-                                                    <i class="iconsax" data-icon="eye"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-message" onclick="messageStudent('4')">
-                                                    <i class="iconsax" data-icon="message"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-delete" onclick="deleteStudent('4')">
-                                                    <i class="iconsax" data-icon="trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
+											<tr><td colspan="9" class="text-center py-4"><div class="spinner-border text-warning" role="status"></div></td></tr>
+										</tbody>
                             </table>
                         </div>
                     </div>
@@ -631,40 +461,25 @@
     </div>
 
     <!-- jQuery -->
-    <script src="../../../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
 
     <!-- Bootstrap Bundle JS -->
-    <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Iconsax Icons -->
-    <script src="../../../assets/plugins/iconsax/index.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
 
     <!-- Select2 JS -->
-    <script src="../../../assets/plugins/select2/js/select2.min.js"></script>
+    <script src="/assets/plugins/select2/js/select2.min.js"></script>
 
     <!-- DataTables JS -->
-    <script src="../../../assets/plugins/datatables/datatables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
     <!-- Custom JS -->
-    <script src="../../../assets/js/script.js"></script>
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/api-config.js"></script>
+    <script src="/assets/js/admin-header.js"></script>
 
     <script>
-        // API Configuration
-        const API_CONFIG = {
-            BASE_URL: 'https://alkahafonlineacademy.com/api/v1',
-            getHeaders: (includeAuth = false) => {
-                const headers = {
-                    'Content-Type': 'application/json'
-                };
-                if (includeAuth) {
-                    const token = localStorage.getItem('accessToken');
-                    if (token) {
-                        headers['Authorization'] = `Bearer ${token}`;
-                    }
-                }
-                return headers;
-            }
-        };
+        // Uses global API_CONFIG from /assets/js/api-config.js
 
         let studentsTable;
         let deleteStudentId = null;
@@ -684,7 +499,7 @@
             const user = JSON.parse(localStorage.getItem('user') || '{}');
 
             if (!token || user.role !== 'admin') {
-                window.location.href = '../auth/login.html';
+                window.location.href = '/auth/login';
                 return;
             }
 
@@ -752,7 +567,7 @@
             const emailVerified = document.getElementById('verifiedFilter').value;
             const search = document.getElementById('searchInput').value;
 
-            let url = API_CONFIG.BASE_URL + '/admin/instructors?role=student&';
+            let url = API_CONFIG.BASE_URL + '/users?role=student&';
             if (status) url += `status=${status}&`;
             if (emailVerified) url += `emailVerified=${emailVerified}&`;
             if (search) url += `search=${search}&`;
@@ -785,7 +600,7 @@
                 const row = [
                     `<input type="checkbox" class="student-checkbox" value="${student.id}">`,
                     `<div class="d-flex align-items-center">
-                        <img src="${student.profileImage || '../../../assets/img/user/user1.jpg'}" alt="Student" class="student-avatar me-3">
+                        <img src="${student.profileImage || '/assets/img/user/user1.jpg'}" alt="Student" class="student-avatar me-3">
                         <div>
                             <div class="fw-semibold">${student.firstName} ${student.lastName}</div>
                             <small class="text-muted">ID: #ST${student.id.substr(0, 6)}</small>
@@ -864,7 +679,7 @@
             if (!deleteStudentId) return;
 
             try {
-                const response = await fetch(API_CONFIG.BASE_URL + '/admin/users/' + deleteStudentId, {
+                const response = await fetch(API_CONFIG.BASE_URL + '/users/' + deleteStudentId, {
                     method: 'DELETE',
                     headers: API_CONFIG.getHeaders(true)
                 });
@@ -938,9 +753,14 @@
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('user');
-            window.location.href = '../auth/login.html';
+            window.location.href = '/auth/login';
         });
     </script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
 
 </body>
 

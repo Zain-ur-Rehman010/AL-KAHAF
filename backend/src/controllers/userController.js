@@ -1,4 +1,5 @@
 const { User, Course, Enrollment } = require('../models');
+const { notifyAdmins } = require('../services/notificationService');
 
 exports.getUserProfile = async (req, res) => {
   try {
@@ -45,22 +46,22 @@ exports.getInstructors = async (req, res) => {
 
 exports.getUserStats = async (req, res) => {
   try {
-    const user = await User.findByPk(req.user.id);
+    const user = await User.findByPk(req.user.userId);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     const enrollmentCount = await Enrollment.count({
-      where: { studentId: req.user.id },
+      where: { studentId: req.user.userId },
     });
 
     const completedCount = await Enrollment.count({
-      where: { studentId: req.user.id, status: 'completed' },
+      where: { studentId: req.user.userId, status: 'completed' },
     });
 
     const instructedCourses = user.role === 'instructor'
-      ? await Course.count({ where: { instructorId: req.user.id } })
+      ? await Course.count({ where: { instructorId: req.user.userId } })
       : 0;
 
     res.json({
@@ -83,7 +84,7 @@ exports.getMyInstructedCourses = async (req, res) => {
     const { page = 1, limit = 10 } = req.query;
     const offset = (page - 1) * limit;
 
-    const where = req.user.role === 'admin' ? {} : { instructorId: req.user.id };
+    const where = req.user.role === 'admin' ? {} : { instructorId: req.user.userId };
 
     const { count, rows } = await Course.findAndCountAll({
       where,
@@ -127,7 +128,8 @@ exports.getAllUsers = async (req, res) => {
     });
 
     res.json({
-      users: rows,
+      success: true,
+      data: rows,
       pagination: {
         total: count,
         page: parseInt(page),
@@ -155,6 +157,13 @@ exports.updateUserStatus = async (req, res) => {
 
     await user.update({ status });
 
+    notifyAdmins({
+      type: 'general',
+      title: 'User Status Updated',
+      message: `${user.firstName} ${user.lastName}'s account status changed to "${status}".`,
+      actionUrl: '/admin/users-list',
+    });
+
     res.json({
       message: 'User status updated',
       user: user.toJSON(),
@@ -176,7 +185,15 @@ exports.deleteUser = async (req, res) => {
       return res.status(404).json({ message: 'User not found' });
     }
 
+    const userName = `${user.firstName} ${user.lastName}`;
     await user.destroy();
+
+    notifyAdmins({
+      type: 'general',
+      title: 'User Deleted',
+      message: `User "${userName}" (${user.email}) was deleted from the system.`,
+      actionUrl: '/admin/users-list',
+    });
 
     res.json({ message: 'User deleted successfully' });
   } catch (error) {

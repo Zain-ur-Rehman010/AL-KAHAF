@@ -17,6 +17,7 @@
 @use "components/forms";
 @use "components/tables";
 @use "components/popup";
+@use "components/scroll-top";
 
 /****** Layout ******/
 @use "layout/common";
@@ -50,10 +51,5 @@
 @use "pages/error-pages";
 @use "pages/dashboard";
 @use "pages/index-1";
-@use "pages/index-2";
-@use "pages/index-3";
-@use "pages/index-4";
-@use "pages/index-5";
-@use "pages/index-6";
 @use "pages/theme";
 @use "pages/category";

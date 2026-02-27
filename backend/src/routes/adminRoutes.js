@@ -9,6 +9,9 @@ router.use(authMiddleware);
 // Dashboard Statistics
 router.get('/statistics', adminController.getDashboardStatistics);
 router.get('/recent-enrollments', adminController.getRecentEnrollments);
+router.get('/enrollment-trends', adminController.getEnrollmentTrends);
+router.get('/top-courses', adminController.getTopCourses);
+router.get('/recent-registrations', adminController.getRecentRegistrations);
 
 // Instructor Management
 router.get('/instructors', adminController.getAllInstructors);
@@ -28,5 +31,9 @@ router.get('/enrollments/:id', adminController.getEnrollmentById);
 router.post('/enrollments', adminController.createEnrollment);
 router.put('/enrollments/:id', adminController.updateEnrollment);
 router.delete('/enrollments/:id', adminController.deleteEnrollment);
+
+// Site Settings
+router.get('/settings', adminController.getSettings);
+router.put('/settings', adminController.updateSettings);
 
 module.exports = router;

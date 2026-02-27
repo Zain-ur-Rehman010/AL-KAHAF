@@ -1,5 +1,11 @@
 {
   "permissions": {
+    "allow": [
+      "Bash(powershell:*)",
+      "Bash(npx sass:*)",
+      "Bash(python3:*)",
+      "Bash(python:*)"
+    ],
     "additionalDirectories": [
       "d:\\Client Projects\\AlKahaf"
     ]

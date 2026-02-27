@@ -1,6 +1,6 @@
-/*
+﻿/*
 Author       : Dreamguys
-Template Name: Dreams LMS - Bootstrap Template
+Template Name: Al-Kahaf LMS - Bootstrap Template
 Version      : 1.0
 */
 
@@ -28,14 +28,26 @@ Version      : 1.0
 	});
 		
 
-	// Sticky Header
+	// Sticky Header + Scroll to Top
 	$(window).scroll(function () {
 		if ($(this).scrollTop() > 130) {
 		  $("header").addClass("fixed");
 		} else {
 		  $("header").removeClass("fixed");
 		}
+
+		// Show/hide scroll-to-top button
+		if ($(this).scrollTop() > 300) {
+		  $("#scroll-top").addClass("visible");
+		} else {
+		  $("#scroll-top").removeClass("visible");
+		}
 	  });
+
+	// Scroll to top on click
+	$(document).on("click", "#scroll-top", function () {
+		$("html, body").animate({ scrollTop: 0 }, 800);
+	});
 	
 	// Sidebar
 

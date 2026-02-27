@@ -1,884 +1,1236 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>Users List | Al-Kahaf Online Academy</title>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="AlKahaf LMS - Users Management">
+	<meta name="author" content="AlKahaf Academy">
+	<meta name="robots" content="noindex, nofollow">
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="../../../assets/img/favicon.svg">
+	<title>Users List | Al-Kahaf Online Academy</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/assets/img/favicon.svg">
 
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="../../../assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="../../../assets/plugins/fontawesome/css/all.min.css">
+	<!-- Theme Settings Js -->
+	<script src="/assets/js/theme-script.js"></script>
 
-    <!-- Iconsax CSS -->
-    <link rel="stylesheet" href="../../../assets/plugins/iconsax/css/style.css">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 
-    <!-- Select2 CSS -->
-    <link rel="stylesheet" href="../../../assets/plugins/select2/css/select2.min.css">
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
 
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" href="../../../assets/plugins/datatables/datatables.min.css">
+	<!-- Iconsax CSS -->
+	<link rel="stylesheet" href="/assets/css/iconsax.css">
 
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="../../../assets/css/style.css">
+	<!-- Select2 CSS -->
+	<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
 
-    <style>
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
+	<!-- Datatables CSS -->
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 
-        .role-badge {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-        }
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/assets/css/style.css">
 
-        .role-admin {
-            background: #DC3545;
-            color: white;
-        }
+	<style>
+		/* ── Stat cards ───────────────────────────── */
+		.stat-icon {
+			width: 52px;
+			height: 52px;
+			min-width: 52px;
+			border-radius: 14px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 24px;
+		}
+		.stat-icon.brown  { background: rgba(82,40,17,.12);  color: #522811; }
+		.stat-icon.green  { background: rgba(46,125,50,.12); color: #2e7d32; }
+		.stat-icon.gold   { background: rgba(216,172,39,.15);color: #b8920d; }
+		.stat-icon.red    { background: rgba(220,53,69,.10); color: #dc3545; }
 
-        .role-instructor {
-            background: #FF6F28;
-            color: white;
-        }
+		.stat-card {
+			border: none;
+			border-radius: 14px;
+			box-shadow: 0 2px 12px rgba(0,0,0,.07);
+			transition: transform .2s, box-shadow .2s;
+		}
+		.stat-card:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 6px 20px rgba(0,0,0,.11);
+		}
+		.stat-number {
+			font-size: 28px;
+			font-weight: 700;
+			line-height: 1;
+			color: #1a1a1a;
+		}
 
-        .role-student {
-            background: #28A745;
-            color: white;
-        }
+		/* ── Filter card ──────────────────────────── */
+		.filter-card {
+			border: none;
+			border-radius: 14px;
+			box-shadow: 0 2px 12px rgba(0,0,0,.07);
+		}
+		.filter-card .form-control:focus,
+		.filter-card .form-select:focus {
+			border-color: #d8ac27;
+			box-shadow: 0 0 0 .2rem rgba(216,172,39,.25);
+		}
 
-        .status-badge {
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-        }
+		/* ── Table card ───────────────────────────── */
+		.table-card {
+			border: none;
+			border-radius: 14px;
+			box-shadow: 0 2px 12px rgba(0,0,0,.07);
+			overflow: hidden;
+		}
+		.table thead th {
+			background: #f8f5f2;
+			border-bottom: 2px solid #e8ddd5;
+			color: #522811;
+			font-weight: 600;
+			font-size: 13px;
+			letter-spacing: .3px;
+			white-space: nowrap;
+			padding: 12px 16px;
+		}
+		.table tbody td {
+			vertical-align: middle;
+			padding: 12px 16px;
+			border-color: #f2ede8;
+		}
+		.table tbody tr:hover {
+			background: #fdf8f5;
+		}
 
-        .status-active {
-            background: #D4EDDA;
-            color: #155724;
-        }
+		/* ── User avatar ──────────────────────────── */
+		.user-avatar {
+			width: 40px;
+			height: 40px;
+			min-width: 40px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 2px solid #e8ddd5;
+		}
+		.avatar-initials {
+			width: 40px;
+			height: 40px;
+			min-width: 40px;
+			border-radius: 50%;
+			background: #522811;
+			color: #fff;
+			font-size: 14px;
+			font-weight: 700;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			border: 2px solid #e8ddd5;
+		}
 
-        .status-inactive {
-            background: #FFF3CD;
-            color: #856404;
-        }
+		/* ── Badges ───────────────────────────────── */
+		.role-badge {
+			padding: 4px 12px;
+			border-radius: 20px;
+			font-size: 12px;
+			font-weight: 600;
+			letter-spacing: .2px;
+		}
+		.role-admin      { background: rgba(103,58,183,.13); color: #6a1b9a; }  /* purple      */
+		.role-instructor { background: rgba(230,81,0,.12);   color: #bf360c; }  /* deep-orange */
+		.role-student    { background: rgba(2,119,189,.12);  color: #01579b; }  /* blue        */
 
-        .status-banned {
-            background: #F8D7DA;
-            color: #721C24;
-        }
+		.status-badge {
+			padding: 4px 12px;
+			border-radius: 20px;
+			font-size: 12px;
+			font-weight: 600;
+		}
+		.status-active   { background: rgba(46,125,50,.12);  color: #2e7d32; }
+		.status-inactive { background: rgba(255,193,7,.15);  color: #856404; }
+		.status-banned   { background: rgba(220,53,69,.12);  color: #c62828; }
 
-        .filter-card {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
-            border: 1px solid #E9ECEF;
-        }
+		/* ── Action buttons ───────────────────────── */
+		.action-btns .btn {
+			padding: 0.25rem 0.5rem;
+			font-size: 0.875rem;
+			border-radius: 6px;
+		}
 
-        .stats-card {
-            background: linear-gradient(135deg, #FF6F28 0%, #FF8A4D 100%);
-            color: white;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 24px;
-        }
+		/* ── Online indicator ─────────────────────── */
+		.online-dot {
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: #2e7d32;
+			display: inline-block;
+			margin-right: 4px;
+			animation: pulse-green 1.5s infinite;
+		}
+		@keyframes pulse-green {
+			0%,100% { opacity: 1; }
+			50%      { opacity: .4; }
+		}
 
-        .stats-card h3 {
-            font-size: 32px;
-            font-weight: 700;
-            margin: 0;
-        }
+		/* ── Add user button ──────────────────────── */
+		.btn-add-user {
+			background: linear-gradient(135deg, #522811, #7a3d1a);
+			color: #fff;
+			border: none;
+			border-radius: 8px;
+			font-weight: 600;
+			transition: all .2s;
+		}
+		.btn-add-user:hover {
+			background: linear-gradient(135deg, #7a3d1a, #9a4d22);
+			color: #fff;
+			transform: translateY(-1px);
+			box-shadow: 0 4px 12px rgba(82,40,17,.3);
+		}
 
-        .stats-card p {
-            margin: 0;
-            opacity: 0.9;
-        }
+		/* ── Apply filters button ─────────────────── */
+		.btn-apply {
+			background: #522811;
+			color: #fff;
+			border: none;
+			border-radius: 8px;
+			font-weight: 600;
+		}
+		.btn-apply:hover {
+			background: #7a3d1a;
+			color: #fff;
+		}
+		.btn-reset {
+			border-color: #d8ac27;
+			color: #b8920d;
+			border-radius: 8px;
+			font-weight: 500;
+		}
+		.btn-reset:hover {
+			background: #d8ac27;
+			color: #fff;
+		}
 
-        .action-btn {
-            padding: 6px 12px;
-            font-size: 13px;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
+		/* ── Verified ─────────────────────────────── */
+		.verified-yes   { color: #2e7d32; font-size: 13px; }
+		.verified-no    { color: #dc3545; font-size: 13px; }
 
-        .btn-view {
-            background: #E3F2FD;
-            color: #0D47A1;
-            border: none;
-        }
+		/* ── DataTables overrides ─────────────────── */
+		.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+		.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+			background: #522811 !important;
+			border-color: #522811 !important;
+			color: #fff !important;
+			border-radius: 6px;
+		}
+		.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+			background: rgba(82,40,17,.1) !important;
+			border-color: transparent !important;
+			color: #522811 !important;
+			border-radius: 6px;
+		}
+		.dataTables_wrapper .dataTables_info { font-size: 13px; color: #888; }
+	/* Align DataTables controls with card padding */
+	.dataTables_wrapper > .row:first-child { padding: 10px 12px 4px; }
+	.dataTables_wrapper > .row:last-child  { padding: 4px 12px 10px; }
 
-        .btn-view:hover {
-            background: #BBDEFB;
-            color: #0D47A1;
-        }
+		/* ── Empty state ──────────────────────────── */
+		#empty-row td { padding: 40px; }
 
-        .btn-edit {
-            background: #FFF3E0;
-            color: #E65100;
-            border: none;
-        }
-
-        .btn-edit:hover {
-            background: #FFE0B2;
-            color: #E65100;
-        }
-
-        .btn-delete {
-            background: #FFEBEE;
-            color: #C62828;
-            border: none;
-        }
-
-        .btn-delete:hover {
-            background: #FFCDD2;
-            color: #C62828;
-        }
-
-        .table-responsive {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            border: 1px solid #E9ECEF;
-        }
-
-        .verified-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            color: #0D6EFD;
-            font-size: 12px;
-        }
-    </style>
+		/* ── Refresh spin animation ───────────────── */
+		@keyframes spin { to { transform: rotate(360deg); } }
+		.fa-spin-once { animation: spin 0.6s linear; }
+	</style>
 </head>
-
 <body>
 
-    <!-- Main Wrapper -->
-    <div class="main-wrapper">
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
 
-        <!-- Header -->
-        <header class="header header-page">
-            <div class="header-fixed">
-                <nav class="navbar navbar-expand-lg header-nav scroll-sticky">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <a id="mobile_btn" href="javascript:void(0);">
-                                <span class="bar-icon">
-                                    <span></span>
-                                    <span></span>
-                                    <span></span>
-                                </span>
-                            </a>
-                            <a href="/" class="navbar-brand logo">
-                                <img src="../../../assets/img/logo.svg" class="img-fluid" alt="Logo">
-                            </a>
-                        </div>
-                        <div class="main-menu-wrapper">
-                            <div class="menu-header">
-                                <a href="/" class="menu-logo">
-                                    <img src="../../../assets/img/logo.svg" class="img-fluid" alt="Logo">
-                                </a>
-                                <a id="menu_close" class="menu-close" href="javascript:void(0);">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <ul class="nav header-navbar-rht">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/admin/admin-dashboard">
-                                    <i class="iconsax" data-icon="home-2"></i> Dashboard
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown has-arrow main-drop">
-                                <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
-                                    <span class="user-img">
-                                        <img src="../../../assets/img/user/user1.jpg" alt="">
-                                    </span>
-                                    <span class="user-text" id="adminName">Admin User</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-                                    <a class="dropdown-item" href="/admin/admin-dashboard">
-                                        <i class="iconsax me-2" data-icon="grid-4"></i>Dashboard
-                                    </a>
-                                    <a class="dropdown-item" href="/admin/admin-settings">
-                                        <i class="iconsax me-2" data-icon="setting-2"></i>Settings
-                                    </a>
-                                    <a class="dropdown-item" href="#" id="logoutBtn">
-                                        <i class="iconsax me-2" data-icon="logout-2"></i>Logout
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <!-- /Header -->
+		<!-- Header -->
+		<header class="header">
+			<div class="header-fixed">
+				<nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a id="mobile_btn" href="javascript:void(0);">
+								<span class="bar-icon">
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
+							</a>
+							<a href="/index.html" class="navbar-brand logo"></a>
+						</div>
+						<ul class="nav header-navbar-rht">
+							<li class="nav-item dropdown noti-dropdown">
+								<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+									<i class="isax isax-notification"></i>
+									<span class="badge badge-pill" style="display:none">0</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end notifications">
+									<div class="topnav-dropdown-header">
+										<span class="notification-title">Notifications</span>
+									</div>
+									<div class="noti-content">
+										<ul class="notification-list">
+											<li class="notification-message text-center py-3">
+												<p class="text-muted mb-0">Loading...</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="nav-item dropdown user-dropdown">
+								<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+									<span class="user-img">
+										<img class="rounded-circle" src="/assets/img/instructor/instructor-01.jpg" alt="Admin" style="width:38px;height:38px;object-fit:cover;">
+										<span class="status online"></span>
+									</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end">
+									<div class="user-header">
+										<div class="user-text">
+											<h6 id="admin-name">Administrator</h6>
+											<p class="text-muted mb-0">Admin</p>
+										</div>
+									</div>
+									<a class="dropdown-item" href="/admin/admin-profile"><i class="isax isax-user me-2"></i>My Profile</a>
+									<a class="dropdown-item" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a>
+									<a class="dropdown-item" href="/auth/login" id="logout-btn"><i class="isax isax-logout me-2"></i>Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!-- /Header -->
 
-        <!-- Breadcrumb -->
-        <div class="breadcrumb-bar breadcrumb-bar-info">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 col-12">
-                        <div class="breadcrumb-list">
-                            <h2 class="breadcrumb-title">All Users</h2>
-                            <nav aria-label="breadcrumb" class="page-breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                    <li class="breadcrumb-item"><a href="/admin/admin-dashboard">Admin</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">All Users</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- /Breadcrumb -->
+		<!-- Breadcrumb -->
+		<div class="breadcrumb-bar text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-12">
+						<h2 class="breadcrumb-title">Users Management</h2>
+						<nav aria-label="breadcrumb" class="page-breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+								<li class="breadcrumb-item"><a href="/admin/admin-dashboard">Admin</a></li>
+								<li class="breadcrumb-item active" aria-current="page">All Users</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Breadcrumb -->
 
-        <!-- Page Content -->
-        <div class="page-content">
-            <div class="container">
-                <div class="row">
+		<!-- Page Content -->
+		<div class="page-content">
+			<div class="container">
 
-                    <!-- Statistics Cards -->
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="stats-card" style="background: linear-gradient(135deg, #0D6EFD 0%, #3B8BFF 100%);">
-                            <h3 id="totalUsers">0</h3>
-                            <p><i class="iconsax me-2" data-icon="user-octagon"></i> Total Users</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="stats-card" style="background: linear-gradient(135deg, #28A745 0%, #4DBF6A 100%);">
-                            <h3 id="totalStudents">0</h3>
-                            <p><i class="iconsax me-2" data-icon="book"></i> Students</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="stats-card" style="background: linear-gradient(135deg, #FF6F28 0%, #FF8A4D 100%);">
-                            <h3 id="totalInstructors">0</h3>
-                            <p><i class="iconsax me-2" data-icon="teacher"></i> Instructors</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="stats-card" style="background: linear-gradient(135deg, #DC3545 0%, #E85A66 100%);">
-                            <h3 id="totalAdmins">0</h3>
-                            <p><i class="iconsax me-2" data-icon="shield-tick"></i> Admins</p>
-                        </div>
-                    </div>
+				<!-- ── Stats Row ───────────────────────────────────── -->
+				<div class="row g-3 mb-4">
+					<div class="col-sm-6 col-lg-3">
+						<div class="card stat-card h-100">
+							<div class="card-body d-flex align-items-center gap-3">
+								<div class="stat-icon brown">
+									<i class="fas fa-users"></i>
+								</div>
+								<div>
+									<div class="text-muted small mb-1">Total Users</div>
+									<div class="stat-number" id="totalUsers">—</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3">
+						<div class="card stat-card h-100">
+							<div class="card-body d-flex align-items-center gap-3">
+								<div class="stat-icon green">
+									<i class="isax isax-book"></i>
+								</div>
+								<div>
+									<div class="text-muted small mb-1">Students</div>
+									<div class="stat-number" id="totalStudents">—</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3">
+						<div class="card stat-card h-100">
+							<div class="card-body d-flex align-items-center gap-3">
+								<div class="stat-icon gold">
+									<i class="isax isax-teacher"></i>
+								</div>
+								<div>
+									<div class="text-muted small mb-1">Instructors</div>
+									<div class="stat-number" id="totalInstructors">—</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-6 col-lg-3">
+						<div class="card stat-card h-100">
+							<div class="card-body d-flex align-items-center gap-3">
+								<div class="stat-icon red">
+									<i class="isax isax-shield-tick"></i>
+								</div>
+								<div>
+									<div class="text-muted small mb-1">Admins</div>
+									<div class="stat-number" id="totalAdmins">—</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                    <!-- Filters -->
-                    <div class="col-12">
-                        <div class="filter-card">
-                            <div class="row align-items-end">
-                                <div class="col-lg-3 col-md-6 mb-3">
-                                    <label class="form-label">Search</label>
-                                    <input type="text" class="form-control" id="searchInput" placeholder="Search by name or email...">
-                                </div>
-                                <div class="col-lg-2 col-md-6 mb-3">
-                                    <label class="form-label">Role</label>
-                                    <select class="form-select" id="roleFilter">
-                                        <option value="">All Roles</option>
-                                        <option value="student">Student</option>
-                                        <option value="instructor">Instructor</option>
-                                        <option value="admin">Admin</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-2 col-md-6 mb-3">
-                                    <label class="form-label">Status</label>
-                                    <select class="form-select" id="statusFilter">
-                                        <option value="">All Status</option>
-                                        <option value="active">Active</option>
-                                        <option value="inactive">Inactive</option>
-                                        <option value="banned">Banned</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-2 col-md-6 mb-3">
-                                    <label class="form-label">Email Verified</label>
-                                    <select class="form-select" id="verifiedFilter">
-                                        <option value="">All</option>
-                                        <option value="true">Verified</option>
-                                        <option value="false">Not Verified</option>
-                                    </select>
-                                </div>
-                                <div class="col-lg-3 col-md-12 mb-3">
-                                    <button class="btn btn-primary w-100" onclick="applyFilters()">
-                                        <i class="iconsax me-2" data-icon="filter"></i> Apply Filters
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+				<!-- ── Filters ──────────────────────────────────────── -->
+				<div class="card filter-card mb-4">
+					<div class="card-body py-3">
+						<div class="row g-3 align-items-end">
+							<div class="col-lg-4 col-md-6">
+								<label class="form-label fw-medium" style="font-size:13px">Search</label>
+								<div class="input-group">
+									<span class="input-group-text bg-white border-end-0" style="border-color:#dee2e6">
+										<i class="fas fa-search" style="color:#999;font-size:14px"></i>
+									</span>
+									<input type="text" class="form-control border-start-0" id="searchInput" placeholder="Search by name or email…" style="border-color:#dee2e6">
+								</div>
+							</div>
+							<div class="col-lg-2 col-md-6 col-sm-4">
+								<label class="form-label fw-medium" style="font-size:13px">Role</label>
+								<select class="form-select" id="roleFilter">
+									<option value="">All Roles</option>
+									<option value="student">Student</option>
+									<option value="instructor">Instructor</option>
+									<option value="admin">Admin</option>
+								</select>
+							</div>
+							<div class="col-lg-2 col-md-4 col-sm-4">
+								<label class="form-label fw-medium" style="font-size:13px">Status</label>
+								<select class="form-select" id="statusFilter">
+									<option value="">All Status</option>
+									<option value="active">Active</option>
+									<option value="inactive">Inactive</option>
+									<option value="banned">Banned</option>
+								</select>
+							</div>
+							<div class="col-lg-2 col-md-4 col-sm-4">
+								<label class="form-label fw-medium" style="font-size:13px">Email Verified</label>
+								<select class="form-select" id="verifiedFilter">
+									<option value="">All</option>
+									<option value="true">Verified</option>
+									<option value="false">Unverified</option>
+								</select>
+							</div>
+							<div class="col-lg-2 col-md-4 d-flex gap-2">
+								<button class="btn btn-apply flex-grow-1" onclick="applyFilters()">
+									<i class="fas fa-filter me-1"></i> Filter
+								</button>
+								<button class="btn btn-reset" onclick="resetFilters()" title="Reset">
+									<i class="fas fa-sync-alt"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                    <!-- Users Table -->
-                    <div class="col-12">
-                        <div class="table-responsive">
-                            <div class="d-flex justify-content-between align-items-center mb-3">
-                                <h4 class="mb-0">Users Directory</h4>
-                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
-                                    <i class="iconsax me-2" data-icon="add-circle"></i> Add User
-                                </button>
-                            </div>
-                            <table class="table table-hover" id="usersTable">
-                                <thead>
-                                    <tr>
-                                        <th>User</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
-                                        <th>Email Verified</th>
-                                        <th>Joined</th>
-                                        <th>Last Login</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="usersTableBody">
-                                    <!-- Sample Data -->
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../../../assets/img/user/user1.jpg" alt="User" class="user-avatar me-2">
-                                                <div>
-                                                    <div class="fw-semibold">John Doe</div>
-                                                    <small class="text-muted">ID: #12345</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>john.doe@example.com</td>
-                                        <td><span class="role-badge role-student">Student</span></td>
-                                        <td><span class="status-badge status-active">Active</span></td>
-                                        <td>
-                                            <span class="verified-badge">
-                                                <i class="iconsax" data-icon="tick-circle" style="color: #28A745;"></i> Verified
-                                            </span>
-                                        </td>
-                                        <td>Jan 15, 2024</td>
-                                        <td>2 hours ago</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn action-btn btn-view" onclick="viewUser('12345')">
-                                                    <i class="iconsax" data-icon="eye"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-edit" onclick="editUser('12345')">
-                                                    <i class="iconsax" data-icon="edit-2"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-delete" onclick="deleteUser('12345')">
-                                                    <i class="iconsax" data-icon="trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../../../assets/img/instructor/instructor-09.jpg" alt="User" class="user-avatar me-2">
-                                                <div>
-                                                    <div class="fw-semibold">Sarah Johnson</div>
-                                                    <small class="text-muted">ID: #12346</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>sarah.johnson@example.com</td>
-                                        <td><span class="role-badge role-instructor">Instructor</span></td>
-                                        <td><span class="status-badge status-active">Active</span></td>
-                                        <td>
-                                            <span class="verified-badge">
-                                                <i class="iconsax" data-icon="tick-circle" style="color: #28A745;"></i> Verified
-                                            </span>
-                                        </td>
-                                        <td>Dec 10, 2023</td>
-                                        <td>1 day ago</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn action-btn btn-view" onclick="viewUser('12346')">
-                                                    <i class="iconsax" data-icon="eye"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-edit" onclick="editUser('12346')">
-                                                    <i class="iconsax" data-icon="edit-2"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-delete" onclick="deleteUser('12346')">
-                                                    <i class="iconsax" data-icon="trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../../../assets/img/user/user2.jpg" alt="User" class="user-avatar me-2">
-                                                <div>
-                                                    <div class="fw-semibold">Michael Brown</div>
-                                                    <small class="text-muted">ID: #12347</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>michael.brown@example.com</td>
-                                        <td><span class="role-badge role-admin">Admin</span></td>
-                                        <td><span class="status-badge status-active">Active</span></td>
-                                        <td>
-                                            <span class="verified-badge">
-                                                <i class="iconsax" data-icon="tick-circle" style="color: #28A745;"></i> Verified
-                                            </span>
-                                        </td>
-                                        <td>Nov 5, 2023</td>
-                                        <td>Online</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn action-btn btn-view" onclick="viewUser('12347')">
-                                                    <i class="iconsax" data-icon="eye"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-edit" onclick="editUser('12347')">
-                                                    <i class="iconsax" data-icon="edit-2"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-delete" onclick="deleteUser('12347')" disabled>
-                                                    <i class="iconsax" data-icon="trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex align-items-center">
-                                                <img src="../../../assets/img/user/user3.jpg" alt="User" class="user-avatar me-2">
-                                                <div>
-                                                    <div class="fw-semibold">Emily Davis</div>
-                                                    <small class="text-muted">ID: #12348</small>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td>emily.davis@example.com</td>
-                                        <td><span class="role-badge role-student">Student</span></td>
-                                        <td><span class="status-badge status-inactive">Inactive</span></td>
-                                        <td>
-                                            <span class="text-muted">
-                                                <i class="iconsax" data-icon="close-circle" style="color: #DC3545;"></i> Not Verified
-                                            </span>
-                                        </td>
-                                        <td>Feb 20, 2024</td>
-                                        <td>1 week ago</td>
-                                        <td>
-                                            <div class="d-flex gap-2">
-                                                <button class="btn action-btn btn-view" onclick="viewUser('12348')">
-                                                    <i class="iconsax" data-icon="eye"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-edit" onclick="editUser('12348')">
-                                                    <i class="iconsax" data-icon="edit-2"></i>
-                                                </button>
-                                                <button class="btn action-btn btn-delete" onclick="deleteUser('12348')">
-                                                    <i class="iconsax" data-icon="trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+				<!-- ── Users Table ──────────────────────────────────── -->
+				<div class="card table-card">
+					<div class="card-header bg-white d-flex align-items-center justify-content-between py-3 border-bottom-0">
+						<div>
+							<h5 class="mb-0 fw-bold" style="color:#522811">
+								<i class="fas fa-users me-2"></i>Users Directory
+							</h5>
+							<small class="text-muted" id="result-count"></small>
+						</div>
+						<div class="d-flex gap-2">
+							<button class="btn btn-sm btn-outline-secondary" onclick="refreshTable()" title="Refresh" id="refresh-btn">
+								<i class="fas fa-sync-alt" id="refresh-icon"></i>
+							</button>
+							<button class="btn btn-add-user btn-sm" data-bs-toggle="modal" data-bs-target="#addUserModal">
+								<i class="fas fa-plus me-1"></i> Add User
+							</button>
+						</div>
+					</div>
+					<div class="card-body p-0">
+						<div class="table-responsive">
+							<table class="table table-hover mb-0" id="usersTable">
+								<thead>
+									<tr>
+										<th>User</th>
+										<th>Email</th>
+										<th>Role</th>
+										<th>Status</th>
+										<th>Email</th>
+										<th>Joined</th>
+										<th>Last Seen</th>
+										<th class="text-center">Actions</th>
+									</tr>
+								</thead>
+								<tbody id="usersTableBody">
+									<!-- Sample placeholder rows -->
+									<tr>
+										<td>
+											<div class="d-flex align-items-center gap-2">
+												<img src="/assets/img/instructor/instructor-09.jpg" class="user-avatar" alt="">
+												<div>
+													<div class="fw-semibold" style="font-size:14px">John Doe</div>
+													<small class="text-muted">ID: #12345</small>
+												</div>
+											</div>
+										</td>
+										<td style="font-size:13px">john.doe@example.com</td>
+										<td><span class="role-badge role-student">Student</span></td>
+										<td><span class="status-badge status-active">Active</span></td>
+										<td><span class="verified-yes"><i class="fas fa-check-circle me-1"></i>Verified</span></td>
+										<td style="font-size:13px">Jan 15, 2024</td>
+										<td style="font-size:13px">2 hrs ago</td>
+										<td class="text-center">
+											<div class="action-btns d-flex justify-content-center gap-1">
+												<button class="btn btn-sm btn-outline-info" onclick="viewUser('12345')" title="View">
+													<i class="fas fa-eye"></i>
+												</button>
+												<button class="btn btn-sm btn-outline-warning" onclick="editUser('12345')" title="Edit">
+													<i class="fas fa-edit"></i>
+												</button>
+												<button class="btn btn-sm btn-outline-danger" onclick="deleteUser('12345')" title="Delete">
+													<i class="fas fa-trash"></i>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="d-flex align-items-center gap-2">
+												<img src="/assets/img/instructor/instructor-10.jpg" class="user-avatar" alt="">
+												<div>
+													<div class="fw-semibold" style="font-size:14px">Sarah Johnson</div>
+													<small class="text-muted">ID: #12346</small>
+												</div>
+											</div>
+										</td>
+										<td style="font-size:13px">sarah.johnson@example.com</td>
+										<td><span class="role-badge role-instructor">Instructor</span></td>
+										<td><span class="status-badge status-active">Active</span></td>
+										<td><span class="verified-yes"><i class="fas fa-check-circle me-1"></i>Verified</span></td>
+										<td style="font-size:13px">Dec 10, 2023</td>
+										<td style="font-size:13px">1 day ago</td>
+										<td class="text-center">
+											<div class="action-btns d-flex justify-content-center gap-1">
+												<button class="btn btn-sm btn-outline-info" onclick="viewUser('12346')" title="View">
+													<i class="fas fa-eye"></i>
+												</button>
+												<button class="btn btn-sm btn-outline-warning" onclick="editUser('12346')" title="Edit">
+													<i class="fas fa-edit"></i>
+												</button>
+												<button class="btn btn-sm btn-outline-danger" onclick="deleteUser('12346')" title="Delete">
+													<i class="fas fa-trash"></i>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="d-flex align-items-center gap-2">
+												<span class="avatar-initials">MB</span>
+												<div>
+													<div class="fw-semibold" style="font-size:14px">Michael Brown</div>
+													<small class="text-muted">ID: #12347</small>
+												</div>
+											</div>
+										</td>
+										<td style="font-size:13px">michael.brown@example.com</td>
+										<td><span class="role-badge role-admin">Admin</span></td>
+										<td><span class="status-badge status-active">Active</span></td>
+										<td><span class="verified-yes"><i class="fas fa-check-circle me-1"></i>Verified</span></td>
+										<td style="font-size:13px">Nov 5, 2023</td>
+										<td style="font-size:13px"><span class="online-dot"></span>Online</td>
+										<td class="text-center">
+											<div class="action-btns d-flex justify-content-center gap-1">
+												<button class="btn btn-sm btn-outline-info" onclick="viewUser('12347')" title="View">
+													<i class="fas fa-eye"></i>
+												</button>
+												<button class="btn btn-sm btn-outline-warning" onclick="editUser('12347')" title="Edit">
+													<i class="fas fa-edit"></i>
+												</button>
+												<button class="btn btn-sm btn-outline-danger" onclick="deleteUser('12347')" title="Delete" disabled>
+													<i class="fas fa-trash"></i>
+												</button>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<div class="d-flex align-items-center gap-2">
+												<img src="/assets/img/instructor/instructor-11.jpg" class="user-avatar" alt="">
+												<div>
+													<div class="fw-semibold" style="font-size:14px">Emily Davis</div>
+													<small class="text-muted">ID: #12348</small>
+												</div>
+											</div>
+										</td>
+										<td style="font-size:13px">emily.davis@example.com</td>
+										<td><span class="role-badge role-student">Student</span></td>
+										<td><span class="status-badge status-inactive">Inactive</span></td>
+										<td><span class="verified-no"><i class="fas fa-times-circle me-1"></i>Unverified</span></td>
+										<td style="font-size:13px">Feb 20, 2024</td>
+										<td style="font-size:13px">1 week ago</td>
+										<td class="text-center">
+											<div class="action-btns d-flex justify-content-center gap-1">
+												<button class="btn btn-sm btn-outline-info" onclick="viewUser('12348')" title="View">
+													<i class="fas fa-eye"></i>
+												</button>
+												<button class="btn btn-sm btn-outline-warning" onclick="editUser('12348')" title="Edit">
+													<i class="fas fa-edit"></i>
+												</button>
+												<button class="btn btn-sm btn-outline-danger" onclick="deleteUser('12348')" title="Delete">
+													<i class="fas fa-trash"></i>
+												</button>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 
-                </div>
-            </div>
-        </div>
-        <!-- /Page Content -->
+			</div>
+		</div>
+		<!-- /Page Content -->
 
-    </div>
-    <!-- /Main Wrapper -->
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="text-center">
+								<p class="mb-0">&copy; 2025 AlKahaf Academy. All rights reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- /Footer -->
 
-    <!-- Add User Modal -->
-    <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addUserForm">
-                        <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">First Name *</label>
-                                <input type="text" class="form-control" name="firstName" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Last Name *</label>
-                                <input type="text" class="form-control" name="lastName" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Email *</label>
-                                <input type="email" class="form-control" name="email" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Role *</label>
-                                <select class="form-select" name="role" required>
-                                    <option value="">Select Role</option>
-                                    <option value="student">Student</option>
-                                    <option value="instructor">Instructor</option>
-                                    <option value="admin">Admin</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Password *</label>
-                                <input type="password" class="form-control" name="password" required>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Phone</label>
-                                <input type="tel" class="form-control" name="phone">
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Status</label>
-                                <select class="form-select" name="status">
-                                    <option value="active" selected>Active</option>
-                                    <option value="inactive">Inactive</option>
-                                </select>
-                            </div>
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Email Verified</label>
-                                <select class="form-select" name="emailVerified">
-                                    <option value="false">No</option>
-                                    <option value="true">Yes</option>
-                                </select>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" onclick="addUser()">
-                        <i class="iconsax me-2" data-icon="add-circle"></i> Add User
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+	</div>
+	<!-- /Main Wrapper -->
 
-    <!-- Delete Confirmation Modal -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Confirm Deletion</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to delete this user? This action cannot be undone.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
+	<!-- ── Add User Modal ───────────────────────────────── -->
+	<div class="modal fade" id="addUserModal" tabindex="-1">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content border-0 shadow" style="border-radius:12px;overflow:hidden;">
+				<div class="modal-header border-0" style="background:linear-gradient(135deg,#522811,#7a3d1a);color:#fff;padding:16px 20px;align-items:center;">
+					<h5 class="modal-title fw-bold mb-0">
+						<i class="fas fa-user-plus me-2"></i>Add New User
+					</h5>
+					<button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal" style="margin:0;padding:0;opacity:1;"></button>
+				</div>
+				<div class="modal-body p-4">
+					<form id="addUserForm">
+						<div class="row g-3">
+							<div class="col-md-6">
+								<label class="form-label fw-medium">First Name <span class="text-danger">*</span></label>
+								<input type="text" class="form-control" name="firstName" placeholder="Enter first name" required>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label fw-medium">Last Name <span class="text-danger">*</span></label>
+								<input type="text" class="form-control" name="lastName" placeholder="Enter last name" required>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label fw-medium">Email Address <span class="text-danger">*</span></label>
+								<input type="email" class="form-control" name="email" placeholder="user@example.com" required>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label fw-medium">Role <span class="text-danger">*</span></label>
+								<select class="form-select" name="role" required>
+									<option value="">Select Role</option>
+									<option value="student">Student</option>
+									<option value="instructor">Instructor</option>
+									<option value="admin">Admin</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label fw-medium">Password <span class="text-danger">*</span></label>
+								<input type="password" class="form-control" name="password" placeholder="••••••••" required>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label fw-medium">Phone</label>
+								<input type="tel" class="form-control" name="phone" placeholder="+1 234 567 8900">
+							</div>
+							<div class="col-md-6">
+								<label class="form-label fw-medium">Status</label>
+								<select class="form-select" name="status">
+									<option value="active" selected>Active</option>
+									<option value="inactive">Inactive</option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<label class="form-label fw-medium">Email Verified</label>
+								<select class="form-select" name="emailVerified">
+									<option value="false">No</option>
+									<option value="true">Yes</option>
+								</select>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer bg-light">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-add-user px-4" onclick="addUser()">
+						<i class="fas fa-plus me-1"></i> Add User
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <!-- jQuery -->
-    <script src="../../../assets/js/jquery-3.7.1.min.js"></script>
+	<!-- ── User Detail Modal ────────────────────────────── -->
+	<div class="modal fade" id="userDetailModal" tabindex="-1">
+		<div class="modal-dialog modal-md">
+			<div class="modal-content border-0 shadow" style="border-radius:12px;overflow:hidden;">
+				<div class="modal-header border-0" style="background:linear-gradient(135deg,#522811,#7a3d1a);color:#fff;padding:16px 20px;align-items:center;">
+					<h5 class="modal-title fw-bold mb-0">
+						<i class="fas fa-user me-2"></i>User Details
+					</h5>
+					<button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal" style="margin:0;padding:0;opacity:1;"></button>
+				</div>
+				<div class="modal-body p-4" id="user-detail-body">
+					<div class="text-center py-4">
+						<i class="fas fa-circle-notch fa-spin" style="color:#522811;font-size:28px"></i>
+					</div>
+				</div>
+				<div class="modal-footer border-0 bg-light d-flex justify-content-end gap-2" style="padding:12px 20px;">
+					<button type="button" class="btn btn-outline-secondary btn-sm px-3" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-sm btn-add-user px-3" id="detail-edit-btn">
+						<i class="fas fa-edit me-1"></i> Edit User
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <!-- Bootstrap Bundle JS -->
-    <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
+	<!-- ── Edit User Modal ──────────────────────────────────── -->
+	<div class="modal fade" id="editUserModal" tabindex="-1">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content border-0 shadow" style="border-radius:12px;overflow:hidden;">
+				<div class="modal-header border-0" style="background:linear-gradient(135deg,#522811,#7a3d1a);color:#fff;padding:16px 20px;align-items:center;">
+					<h5 class="modal-title fw-bold mb-0">
+						<i class="fas fa-user-edit me-2"></i>Edit User
+					</h5>
+					<button type="button" class="btn-close btn-close-white ms-auto" data-bs-dismiss="modal" style="margin:0;padding:0;opacity:1;"></button>
+				</div>
+				<div class="modal-body p-4">
+					<input type="hidden" id="editUserId">
+					<p class="text-muted small mb-3" id="editUserName"></p>
+					<div class="mb-3">
+						<label class="form-label fw-medium">Account Status</label>
+						<select class="form-select" id="editUserStatus">
+							<option value="active">Active</option>
+							<option value="inactive">Inactive</option>
+							<option value="banned">Banned</option>
+						</select>
+					</div>
+					<div class="mb-1">
+						<label class="form-label fw-medium">Role</label>
+						<select class="form-select" id="editUserRole">
+							<option value="student">Student</option>
+							<option value="instructor">Instructor</option>
+							<option value="admin">Admin</option>
+						</select>
+					</div>
+				</div>
+				<div class="modal-footer border-0 bg-light d-flex justify-content-end gap-2" style="padding:12px 20px;">
+					<button type="button" class="btn btn-outline-secondary btn-sm px-3" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-add-user btn-sm px-3" id="saveUserEditBtn" onclick="saveUserEdit()">
+						<i class="fas fa-save me-1"></i> Save Changes
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <!-- Iconsax Icons -->
-    <script src="../../../assets/plugins/iconsax/index.js"></script>
+		<!-- ── Delete Confirmation Modal ────────────────────── -->
+	<div class="modal fade" id="deleteModal" tabindex="-1">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content border-0 shadow" style="border-radius:12px;overflow:hidden;">
+				<div class="modal-header border-0" style="padding:16px 20px;align-items:center;">
+					<h5 class="modal-title fw-bold text-danger mb-0">
+						<i class="fas fa-trash me-2"></i>Delete User
+					</h5>
+					<button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" style="margin:0;padding:0;"></button>
+				</div>
+				<div class="modal-body" style="padding:0 20px 16px;">
+					<p class="text-muted mb-0">Are you sure you want to delete this user? This action <strong>cannot be undone</strong>.</p>
+				</div>
+				<div class="modal-footer border-0 bg-light d-flex justify-content-end gap-2" style="padding:12px 20px;">
+					<button type="button" class="btn btn-outline-secondary btn-sm px-3" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-danger btn-sm px-3" id="confirmDeleteBtn">
+						<i class="fas fa-trash me-1"></i> Delete
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <!-- Select2 JS -->
-    <script src="../../../assets/plugins/select2/js/select2.min.js"></script>
+	<!-- jQuery -->
+	<script src="/assets/js/jquery-3.7.1.min.js"></script>
+	<!-- Bootstrap Core JS -->
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+	<!-- Select2 JS -->
+	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+	<!-- Datatables JS -->
+	<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+	<!-- Custom JS -->
+	<script src="/assets/js/script.js"></script>
+	<!-- API Configuration -->
+	<script src="/assets/js/api-config.js"></script>
+	<!-- Admin Header: dynamic notifications + user info -->
+	<script src="/assets/js/admin-header.js"></script>
 
-    <!-- DataTables JS -->
-    <script src="../../../assets/plugins/datatables/datatables.min.js"></script>
+	<script>
+		let usersDataTable;
+		let deleteUserId = null;
+		let cachedUsers  = {};   // id → user object
 
-    <!-- Custom JS -->
-    <script src="../../../assets/js/script.js"></script>
+		// ── Init ──────────────────────────────────────────────
+		document.addEventListener('DOMContentLoaded', function () {
+			const user = JSON.parse(localStorage.getItem('user') || 'null');
+			if (!user || user.role !== 'admin') {
+				window.location.href = '/auth/login';
+				return;
+			}
 
-    <script>
-        // API Configuration
-        const API_CONFIG = {
-            BASE_URL: 'https://alkahafonlineacademy.com/api/v1',
-            getHeaders: (includeAuth = false) => {
-                const headers = {
-                    'Content-Type': 'application/json'
-                };
-                if (includeAuth) {
-                    const token = localStorage.getItem('accessToken');
-                    if (token) {
-                        headers['Authorization'] = `Bearer ${token}`;
-                    }
-                }
-                return headers;
-            }
-        };
+			initDataTable();
+			loadStatistics();
+			loadUsers();
 
-        let usersTable;
-        let deleteUserId = null;
+			$('#roleFilter, #statusFilter, #verifiedFilter').select2({ minimumResultsForSearch: Infinity });
 
-        // Check authentication on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            checkAuth();
-            initializeDataTable();
-            loadStatistics();
-            loadUsers();
-            $('#roleFilter, #statusFilter, #verifiedFilter').select2();
-        });
+			// Search on Enter
+			document.getElementById('searchInput').addEventListener('keyup', function (e) {
+				if (e.key === 'Enter') applyFilters();
+			});
+		});
 
-        // Check if user is logged in and is admin
-        function checkAuth() {
-            const token = localStorage.getItem('accessToken');
-            const user = JSON.parse(localStorage.getItem('user') || '{}');
+		// ── DataTable ─────────────────────────────────────────
+		function initDataTable() {
+			usersDataTable = $('#usersTable').DataTable({
+				pageLength: 10,
+				ordering: true,
+				searching: false,
+				lengthChange: true,
+				order: [[5, 'desc']],
+				language: {
+					lengthMenu: 'Show _MENU_ users',
+					info: 'Showing _START_–_END_ of _TOTAL_ users',
+					infoEmpty: 'No users found',
+					zeroRecords: 'No matching users found',
+					emptyTable: 'No users available',
+				},
+				columnDefs: [{ orderable: false, targets: [7] }],
+			});
+		}
 
-            if (!token || user.role !== 'admin') {
-                window.location.href = '../auth/login.html';
-                return;
-            }
+		// ── Load Statistics ───────────────────────────────────
+		async function loadStatistics() {
+			try {
+				const res  = await fetch(API_CONFIG.BASE_URL + '/admin/statistics', {
+					headers: API_CONFIG.getHeaders(true),
+				});
+				const data = await res.json();
+				if (data.success) {
+					const o = data.data.overview || {};
+					const d = data.data.userDistribution || {};
+					document.getElementById('totalUsers').textContent       = o.totalUsers        || 0;
+					document.getElementById('totalStudents').textContent    = d.students          || 0;
+					document.getElementById('totalInstructors').textContent = d.instructors       || 0;
+					document.getElementById('totalAdmins').textContent      = d.admins            || 0;
+				}
+			} catch (err) { console.error('Stats error:', err); }
+		}
 
-            document.getElementById('adminName').textContent = user.firstName + ' ' + user.lastName;
-        }
+		// ── Load Users ────────────────────────────────────────
+		function showTableLoading() {
+			usersDataTable.clear().draw();
+			document.getElementById('usersTableBody').innerHTML =
+				'<tr><td colspan="8" class="text-center py-4">'
+				+ '<i class="fas fa-circle-notch fa-spin me-2" style="color:#522811"></i>'
+				+ '<span class="text-muted">Loading users...</span></td></tr>';
+		}
 
-        // Initialize DataTable
-        function initializeDataTable() {
-            usersTable = $('#usersTable').DataTable({
-                pageLength: 10,
-                ordering: true,
-                searching: false,
-                lengthChange: true,
-                language: {
-                    search: "Search:",
-                    lengthMenu: "Show _MENU_ users per page",
-                    info: "Showing _START_ to _END_ of _TOTAL_ users",
-                    infoEmpty: "No users found",
-                    zeroRecords: "No matching users found"
-                }
-            });
-        }
+		function showTableError(msg) {
+			document.getElementById('usersTableBody').innerHTML =
+				'<tr><td colspan="8" class="text-center py-4">'
+				+ '<i class="fas fa-exclamation-circle me-2 text-danger"></i>'
+				+ '<span class="text-muted">' + msg + '</span></td></tr>';
+		}
 
-        // Load statistics
-        async function loadStatistics() {
-            try {
-                const response = await fetch(API_CONFIG.BASE_URL + '/admin/statistics', {
-                    headers: API_CONFIG.getHeaders(true)
-                });
+		async function loadUsers() {
+			const role     = document.getElementById('roleFilter').value;
+			const status   = document.getElementById('statusFilter').value;
+			const verified = document.getElementById('verifiedFilter').value;
+			const search   = document.getElementById('searchInput').value.trim();
 
-                if (response.ok) {
-                    const result = await response.json();
-                    if (result.success) {
-                        const stats = result.data;
-                        document.getElementById('totalUsers').textContent = stats.overview.totalUsers || 0;
-                        document.getElementById('totalStudents').textContent = stats.userDistribution.students || 0;
-                        document.getElementById('totalInstructors').textContent = stats.userDistribution.instructors || 0;
-                        document.getElementById('totalAdmins').textContent = stats.userDistribution.admins || 0;
-                    }
-                }
-            } catch (error) {
-                console.error('Error loading statistics:', error);
-            }
-        }
+			const params = new URLSearchParams();
+			if (role)     params.set('role', role);
+			if (status)   params.set('status', status);
+			if (verified) params.set('emailVerified', verified);
+			if (search)   params.set('search', search);
+			params.set('limit', 200);
 
-        // Load users from API
-        async function loadUsers() {
-            const role = document.getElementById('roleFilter').value;
-            const status = document.getElementById('statusFilter').value;
-            const emailVerified = document.getElementById('verifiedFilter').value;
-            const search = document.getElementById('searchInput').value;
+			showTableLoading();
 
-            let url = API_CONFIG.BASE_URL + '/admin/users?';
-            if (role) url += `role=${role}&`;
-            if (status) url += `status=${status}&`;
-            if (emailVerified) url += `emailVerified=${emailVerified}&`;
-            if (search) url += `search=${search}&`;
+			try {
+				const res  = await fetch(API_CONFIG.BASE_URL + '/users?' + params.toString(), {
+					headers: API_CONFIG.getHeaders(true),
+				});
+				const data = await res.json();
+				if (data.success) {
+					populateTable(data.data || []);
+				} else {
+					showTableError(data.message || 'Failed to load users');
+					showAlert('error', data.message || 'Failed to load users');
+				}
+			} catch (err) {
+				console.error('Load users error:', err);
+				showTableError('Could not connect to server. Is the backend running?');
+				showAlert('error', 'Failed to connect to server');
+			}
+		}
 
-            try {
-                const response = await fetch(url, {
-                    headers: API_CONFIG.getHeaders(true)
-                });
+		// ── Populate Table ────────────────────────────────────
+		function populateTable(users) {
+			usersDataTable.clear();
 
-                if (response.ok) {
-                    const result = await response.json();
-                    if (result.success) {
-                        displayUsers(result.data);
-                    }
-                }
-            } catch (error) {
-                console.error('Error loading users:', error);
-            }
-        }
+			document.getElementById('result-count').textContent =
+				users.length ? users.length + ' users found' : '';
 
-        // Display users in table
-        function displayUsers(users) {
-            usersTable.clear();
+			users.forEach(user => {
+				cachedUsers[user.id] = user;   // cache for viewUser/editUser
+				const initials = ((user.firstName||'')[0] + (user.lastName||'')[0]).toUpperCase();
+				const avatarHtml = user.profileImage
+					? `<img src="${esc(user.profileImage)}" class="user-avatar" alt="">`
+					: `<span class="avatar-initials">${initials}</span>`;
 
-            users.forEach(user => {
-                const roleClass = `role-${user.role}`;
-                const statusClass = `status-${user.status}`;
-                const verifiedIcon = user.emailVerified
-                    ? '<i class="iconsax" data-icon="tick-circle" style="color: #28A745;"></i> Verified'
-                    : '<i class="iconsax" data-icon="close-circle" style="color: #DC3545;"></i> Not Verified';
+				const joinDate  = user.createdAt ? new Date(user.createdAt).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) : '—';
+				const lastSeen  = user.lastLogin  ? formatLastLogin(user.lastLogin) : 'Never';
+				const lastSeenHtml = lastSeen === 'Online'
+					? `<span class="online-dot"></span>Online`
+					: lastSeen;
 
-                const row = [
-                    `<div class="d-flex align-items-center">
-                        <img src="${user.profileImage || '../../../assets/img/user/user1.jpg'}" alt="User" class="user-avatar me-2">
-                        <div>
-                            <div class="fw-semibold">${user.firstName} ${user.lastName}</div>
-                            <small class="text-muted">ID: #${user.id.substr(0, 8)}</small>
-                        </div>
-                    </div>`,
-                    user.email,
-                    `<span class="role-badge ${roleClass}">${user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>`,
-                    `<span class="status-badge ${statusClass}">${user.status.charAt(0).toUpperCase() + user.status.slice(1)}</span>`,
-                    `<span class="verified-badge">${verifiedIcon}</span>`,
-                    new Date(user.createdAt).toLocaleDateString(),
-                    user.lastLogin ? formatLastLogin(user.lastLogin) : 'Never',
-                    `<div class="d-flex gap-2">
-                        <button class="btn action-btn btn-view" onclick="viewUser('${user.id}')">
-                            <i class="iconsax" data-icon="eye"></i>
-                        </button>
-                        <button class="btn action-btn btn-edit" onclick="editUser('${user.id}')">
-                            <i class="iconsax" data-icon="edit-2"></i>
-                        </button>
-                        <button class="btn action-btn btn-delete" onclick="deleteUser('${user.id}')" ${user.role === 'admin' ? 'disabled' : ''}>
-                            <i class="iconsax" data-icon="trash"></i>
-                        </button>
-                    </div>`
-                ];
+				const verifiedHtml = user.emailVerified
+					? `<span class="verified-yes"><i class="fas fa-check-circle me-1"></i>Verified</span>`
+					: `<span class="verified-no"><i class="fas fa-times-circle me-1"></i>Unverified</span>`;
 
-                usersTable.row.add(row);
-            });
+				const shortId = String(user.id).slice(0, 8);
 
-            usersTable.draw();
-        }
+				const row = [
+					`<div class="d-flex align-items-center gap-2">
+						${avatarHtml}
+						<div>
+							<div class="fw-semibold" style="font-size:14px">${esc(user.firstName)} ${esc(user.lastName)}</div>
+							<small class="text-muted">ID: #${shortId}</small>
+						</div>
+					</div>`,
+					`<span style="font-size:13px">${esc(user.email)}</span>`,
+					`<span class="role-badge role-${user.role}">${capitalize(user.role)}</span>`,
+					`<span class="status-badge status-${user.status}">${capitalize(user.status)}</span>`,
+					verifiedHtml,
+					`<span style="font-size:13px">${joinDate}</span>`,
+					`<span style="font-size:13px">${lastSeenHtml}</span>`,
+					`<div class="action-btns d-flex justify-content-center gap-1">
+						<button class="btn btn-sm btn-outline-info" onclick="viewUser('${user.id}')" title="View">
+							<i class="fas fa-eye"></i>
+						</button>
+						<button class="btn btn-sm btn-outline-warning" onclick="editUser('${user.id}')" title="Edit">
+							<i class="fas fa-edit"></i>
+						</button>
+						<button class="btn btn-sm btn-outline-danger" onclick="deleteUser('${user.id}')" title="Delete" ${user.role === 'admin' ? 'disabled' : ''}>
+							<i class="fas fa-trash"></i>
+						</button>
+					</div>`,
+				];
 
-        // Format last login time
-        function formatLastLogin(dateString) {
-            const now = new Date();
-            const loginDate = new Date(dateString);
-            const diffMs = now - loginDate;
-            const diffMins = Math.floor(diffMs / 60000);
+				usersDataTable.row.add(row);
+			});
 
-            if (diffMins < 5) return 'Online';
-            if (diffMins < 60) return `${diffMins} mins ago`;
-            if (diffMins < 1440) return `${Math.floor(diffMins / 60)} hours ago`;
-            return `${Math.floor(diffMins / 1440)} days ago`;
-        }
+			usersDataTable.draw();
+		}
 
-        // Apply filters
-        function applyFilters() {
-            loadUsers();
-        }
+		// ── Filters ───────────────────────────────────────────
+		function applyFilters() { loadUsers(); }
 
-        // Add new user
-        async function addUser() {
-            const form = document.getElementById('addUserForm');
-            const formData = new FormData(form);
+		function resetFilters() {
+			// Reset all filter inputs
+			document.getElementById('searchInput').value = '';
+			document.getElementById('roleFilter').value = '';
+			document.getElementById('statusFilter').value = '';
+			document.getElementById('verifiedFilter').value = '';
+			// Sync Select2 UI dropdowns
+			$('#roleFilter, #statusFilter, #verifiedFilter').trigger('change');
+			// Spin the reset icon briefly
+			var icon = document.getElementById('reset-icon');
+			if (icon) {
+				icon.classList.add('fa-spin-once');
+				setTimeout(function() { icon.classList.remove('fa-spin-once'); }, 700);
+			}
+			loadUsers();
+		}
 
-            const userData = {
-                firstName: formData.get('firstName'),
-                lastName: formData.get('lastName'),
-                email: formData.get('email'),
-                password: formData.get('password'),
-                confirmPassword: formData.get('password'),
-                role: formData.get('role'),
-                phone: formData.get('phone'),
-                status: formData.get('status'),
-                emailVerified: formData.get('emailVerified') === 'true'
-            };
+		// ── Refresh table button ──────────────────────────────
+		function refreshTable() {
+			var icon = document.getElementById('refresh-icon');
+			if (icon) {
+				icon.classList.add('fa-spin');
+				setTimeout(function() { icon.classList.remove('fa-spin'); }, 900);
+			}
+			loadUsers();
+			loadStatistics();
+		}
 
-            try {
-                const response = await fetch(API_CONFIG.BASE_URL + '/auth/register', {
-                    method: 'POST',
-                    headers: API_CONFIG.getHeaders(false),
-                    body: JSON.stringify(userData)
-                });
+		// ── Add User ──────────────────────────────────────────
+		async function addUser() {
+			const form = document.getElementById('addUserForm');
+			const fd   = new FormData(form);
 
-                const result = await response.json();
+			const body = {
+				firstName:      fd.get('firstName'),
+				lastName:       fd.get('lastName'),
+				email:          fd.get('email'),
+				password:       fd.get('password'),
+				confirmPassword:fd.get('password'),
+				role:           fd.get('role'),
+				phone:          fd.get('phone') || undefined,
+				status:         fd.get('status'),
+				emailVerified:  fd.get('emailVerified') === 'true',
+			};
 
-                if (result.success) {
-                    alert('User added successfully!');
-                    bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
-                    form.reset();
-                    loadUsers();
-                    loadStatistics();
-                } else {
-                    alert('Error: ' + result.message);
-                }
-            } catch (error) {
-                console.error('Error adding user:', error);
-                alert('Failed to add user');
-            }
-        }
+			if (!body.firstName || !body.lastName || !body.email || !body.password || !body.role) {
+				showAlert('error', 'Please fill in all required fields');
+				return;
+			}
 
-        // View user details
-        function viewUser(userId) {
-            // Navigate to user detail page or show modal
-            window.location.href = `user-detail.html?id=${userId}`;
-        }
+			try {
+				const res  = await fetch(API_CONFIG.BASE_URL + '/auth/register', {
+					method: 'POST',
+					headers: API_CONFIG.getHeaders(false),
+					body: JSON.stringify(body),
+				});
+				const data = await res.json();
+				if (data.success || data.message === 'User registered successfully') {
+					showAlert('success', 'User added successfully!');
+					bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
+					form.reset();
+					loadUsers();
+					loadStatistics();
+				} else {
+					showAlert('error', data.message || 'Failed to add user');
+				}
+			} catch (err) {
+				console.error('Add user error:', err);
+				showAlert('error', 'Failed to add user');
+			}
+		}
 
-        // Edit user
-        function editUser(userId) {
-            // Navigate to edit page based on role
-            // For now, redirect to a generic edit page
-            window.location.href = `user-edit.html?id=${userId}`;
-        }
+		// ── View User Detail ──────────────────────────────────
+		async function viewUser(id) {
+			const body = document.getElementById('user-detail-body');
+			const editBtn = document.getElementById('detail-edit-btn');
 
-        // Delete user
-        function deleteUser(userId) {
-            deleteUserId = userId;
-            const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
-            modal.show();
-        }
+			// Show modal with spinner
+			body.innerHTML = '<div class="text-center py-4"><i class="fas fa-circle-notch fa-spin" style="color:#522811;font-size:28px"></i></div>';
+			new bootstrap.Modal(document.getElementById('userDetailModal')).show();
 
-        // Confirm delete
-        document.getElementById('confirmDeleteBtn')?.addEventListener('click', async function() {
-            if (!deleteUserId) return;
+			try {
+			// Use cached data first; fallback to public profile endpoint
+			let u = cachedUsers[id];
+			if (!u) {
+				const res = await fetch(API_CONFIG.BASE_URL + '/users/' + id + '/profile', {
+					headers: API_CONFIG.getHeaders(false),
+				});
+				if (!res.ok) throw new Error('User not found');
+				u = await res.json();
+			}
+			if (!u || !u.id) throw new Error('Invalid user data');
+				const initials = ((u.firstName||'')[0] + (u.lastName||'')[0]).toUpperCase();
+				const joinDate  = u.createdAt ? new Date(u.createdAt).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' }) : '—';
+				const lastLogin = u.lastLogin  ? new Date(u.lastLogin).toLocaleString() : 'Never';
 
-            try {
-                const response = await fetch(API_CONFIG.BASE_URL + '/admin/users/' + deleteUserId, {
-                    method: 'DELETE',
-                    headers: API_CONFIG.getHeaders(true)
-                });
+	
+				body.innerHTML = `
+					<div class="text-center mb-3">
+						${u.profileImage
+							? `<img src="${esc(u.profileImage)}" class="rounded-circle mb-2" style="width:72px;height:72px;object-fit:cover;border:3px solid #e8ddd5">`
+							: `<div class="avatar-initials mx-auto mb-2" style="width:72px;height:72px;font-size:22px">${initials}</div>`
+						}
+						<h5 class="fw-bold mb-0">${esc(u.firstName)} ${esc(u.lastName)}</h5>
+						<span class="role-badge role-${u.role} mt-1">${capitalize(u.role)}</span>
+					</div>
+					<hr class="my-2">
+					<div class="row g-2" style="font-size:14px">
+						<div class="col-5 text-muted fw-medium">Email</div>
+						<div class="col-7">${esc(u.email)}</div>
 
-                const result = await response.json();
+						<div class="col-5 text-muted fw-medium">Phone</div>
+						<div class="col-7">${esc(u.phone) || '<span class="text-muted">—</span>'}</div>
 
-                if (result.success) {
-                    alert('User deleted successfully');
-                    bootstrap.Modal.getInstance(document.getElementById('deleteModal')).hide();
-                    loadUsers();
-                    loadStatistics();
-                } else {
-                    alert('Error: ' + result.message);
-                }
-            } catch (error) {
-                console.error('Error deleting user:', error);
-                alert('Failed to delete user');
-            }
+						<div class="col-5 text-muted fw-medium">Status</div>
+						<div class="col-7">
+							<span class="status-badge status-${u.status}">${capitalize(u.status)}</span>
+						</div>
 
-            deleteUserId = null;
-        });
+						<div class="col-5 text-muted fw-medium">Email Verified</div>
+						<div class="col-7">
+							${u.emailVerified
+								? '<span class="verified-yes"><i class="fas fa-check-circle me-1"></i>Verified</span>'
+								: '<span class="verified-no"><i class="fas fa-times-circle me-1"></i>Unverified</span>'
+							}
+						</div>
 
-        // Search on enter
-        document.getElementById('searchInput').addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                applyFilters();
-            }
-        });
+						<div class="col-5 text-muted fw-medium">Joined</div>
+						<div class="col-7">${joinDate}</div>
 
-        // Logout
-        document.getElementById('logoutBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('refreshToken');
-            localStorage.removeItem('user');
-            window.location.href = '../auth/login.html';
-        });
-    </script>
+						<div class="col-5 text-muted fw-medium">Last Login</div>
+						<div class="col-7">${lastLogin}</div>
+
+						<div class="col-5 text-muted fw-medium">User ID</div>
+						<div class="col-7 text-muted" style="font-size:12px;word-break:break-all">${esc(u.id)}</div>
+					</div>`;
+
+				// Wire up Edit button
+				editBtn.onclick = function () {
+					bootstrap.Modal.getInstance(document.getElementById('userDetailModal')).hide();
+					editUser(id);
+				};
+
+			} catch (err) {
+				body.innerHTML = '<div class="text-center text-danger py-3"><i class="fas fa-exclamation-circle me-2"></i>Failed to load user details</div>';
+			}
+		}
+
+		// ── Edit User ──────────────────────────────────────────
+		function editUser(id) {
+			const u = cachedUsers[id];
+			if (!u) { showAlert('error', 'User data not available. Please refresh the table.'); return; }
+
+			// Populate and open the inline Edit modal
+			document.getElementById('editUserId').value        = u.id;
+			document.getElementById('editUserName').textContent =
+				(u.firstName || '') + ' ' + (u.lastName || '') + ' — ' + (u.email || '');
+			document.getElementById('editUserStatus').value    = u.status || 'active';
+			document.getElementById('editUserRole').value      = u.role   || 'student';
+
+			new bootstrap.Modal(document.getElementById('editUserModal')).show();
+		}
+
+		async function saveUserEdit() {
+			const id      = document.getElementById('editUserId').value;
+			const status  = document.getElementById('editUserStatus').value;
+			const role    = document.getElementById('editUserRole').value;
+			const saveBtn = document.getElementById('saveUserEditBtn');
+
+			saveBtn.disabled = true;
+			saveBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin me-1"></i> Saving...';
+
+			try {
+				const res = await fetch(API_CONFIG.BASE_URL + '/users/' + id + '/status', {
+					method:  'PUT',
+					headers: API_CONFIG.getHeaders(true),
+					body:    JSON.stringify({ status, role }),
+				});
+				if (res.ok) {
+					showAlert('success', 'User updated successfully');
+					bootstrap.Modal.getInstance(document.getElementById('editUserModal')).hide();
+					loadUsers();
+					loadStatistics();
+				} else {
+					const d = await res.json();
+					showAlert('error', d.message || 'Failed to update user');
+				}
+			} catch (err) {
+				console.error('Edit user error:', err);
+				showAlert('error', 'Failed to connect to server');
+			} finally {
+				saveBtn.disabled = false;
+				saveBtn.innerHTML = '<i class="fas fa-save me-1"></i> Save Changes';
+			}
+		}
+
+		// ── Delete ────────────────────────────────────────────
+		function deleteUser(id) {
+			deleteUserId = id;
+			new bootstrap.Modal(document.getElementById('deleteModal')).show();
+		}
+
+		document.getElementById('confirmDeleteBtn').addEventListener('click', async function () {
+			if (!deleteUserId) return;
+			try {
+				const res  = await fetch(API_CONFIG.BASE_URL + '/users/' + deleteUserId, {
+				method: 'DELETE',
+				headers: API_CONFIG.getHeaders(true),
+			});
+			if (res.ok) {
+				showAlert('success', 'User deleted successfully');
+				bootstrap.Modal.getInstance(document.getElementById('deleteModal')).hide();
+				loadUsers();
+				loadStatistics();
+			} else {
+				const d = await res.json();
+				showAlert('error', d.message || 'Failed to delete user');
+			}
+			} catch (err) {
+				console.error('Delete user error:', err);
+				showAlert('error', 'Failed to delete user');
+			}
+			deleteUserId = null;
+		});
+
+		// ── Helpers ───────────────────────────────────────────
+		function formatLastLogin(dateStr) {
+			const diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
+			if (diff < 300)   return 'Online';
+			if (diff < 3600)  return Math.floor(diff / 60) + ' min ago';
+			if (diff < 86400) return Math.floor(diff / 3600) + ' hr ago';
+			return Math.floor(diff / 86400) + ' days ago';
+		}
+
+		function capitalize(str) {
+			return str ? str.charAt(0).toUpperCase() + str.slice(1) : '';
+		}
+
+		function esc(str) {
+			if (!str) return '';
+			return String(str)
+				.replace(/&/g,'&amp;').replace(/</g,'&lt;')
+				.replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+		}
+
+		function showAlert(type, message) {
+			const cls = type === 'success' ? 'alert-success' : type === 'info' ? 'alert-info' : 'alert-danger';
+			document.body.insertAdjacentHTML('beforeend', `
+				<div class="alert ${cls} alert-dismissible fade show position-fixed top-0 end-0 m-3" role="alert" style="z-index:9999;min-width:260px">
+					${message}
+					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+				</div>`);
+			setTimeout(() => document.querySelectorAll('.alert').forEach(a => a.remove()), 3500);
+		}
+	</script>
+
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
 
 </body>
-
 </html>

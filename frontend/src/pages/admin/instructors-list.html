@@ -36,15 +36,16 @@
 	<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
 
 	<!-- Datatables CSS -->
-	<link rel="stylesheet" href="/assets/plugins/datatables/datatables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 
 	<!-- Main CSS -->
 	<link rel="stylesheet" href="/assets/css/style.css">
 
 	<style>
 		.instructor-avatar {
-			width: 45px;
-			height: 45px;
+			width: 40px;
+			height: 40px;
+			min-width: 40px;
 			object-fit: cover;
 			border-radius: 50%;
 		}
@@ -54,6 +55,24 @@
 		.action-btns .btn {
 			padding: 0.25rem 0.5rem;
 			font-size: 0.875rem;
+		}
+		#instructors-table td {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			vertical-align: middle;
+		}
+		#instructors-table td:first-child {
+			max-width: 160px;
+		}
+		#instructors-table td:nth-child(2) {
+			max-width: 180px;
+		}
+		#instructors-table .instructor-name {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100px;
 		}
 	</style>
 
@@ -77,49 +96,7 @@
 								</span>
 							</a>
 							<a href="/index.html" class="navbar-brand logo">
-								<img src="/assets/img/white-logo.png" class="img-fluid" alt="Logo" style="width: 120px;">
 							</a>
-						</div>
-						<div class="main-menu-wrapper">
-							<div class="menu-header">
-								<a href="/index.html" class="menu-logo">
-									<img src="/assets/img/logo.svg" class="img-fluid" alt="Logo">
-								</a>
-								<a id="menu_close" class="menu-close" href="javascript:void(0);">
-									<i class="fas fa-times"></i>
-								</a>
-							</div>
-							<ul class="main-nav">
-								<li>
-									<a href="/admin/admin-dashboard"><i class="isax isax-home me-2"></i>Dashboard</a>
-								</li>
-								<li class="has-submenu active">
-									<a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
-									<ul class="submenu">
-										<li><a href="/admin/users-list">All Users</a></li>
-										<li class="active"><a href="/admin/instructors-list">Instructors</a></li>
-										<li><a href="/admin/students-list">Students</a></li>
-										<li><a href="/admin/user-add">Add New User</a></li>
-									</ul>
-								</li>
-								<li class="has-submenu">
-									<a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
-									<ul class="submenu">
-										<li><a href="/admin/courses-list">All Courses</a></li>
-										<li><a href="/admin/course-add">Add Course</a></li>
-										<li><a href="/admin/categories-list">Categories</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="/admin/enrollments-list"><i class="isax isax-note-2 me-2"></i>Enrollments</a>
-								</li>
-								<li>
-									<a href="/admin/payments-list"><i class="isax isax-wallet me-2"></i>Payments</a>
-								</li>
-								<li>
-									<a href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a>
-								</li>
-							</ul>
 						</div>
 						<ul class="nav header-navbar-rht">
 							<li class="nav-item dropdown noti-dropdown">
@@ -150,7 +127,7 @@
 							<li class="nav-item dropdown user-dropdown">
 								<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
 									<span class="user-img">
-										<img class="rounded-circle" src="/assets/img/instructor/instructor-01.jpg" alt="Admin">
+										<img class="rounded-circle" src="/assets/img/instructor/instructor-01.jpg" alt="Admin" style="width:38px;height:38px;object-fit:cover;">
 										<span class="status online"></span>
 									</span>
 								</a>
@@ -163,7 +140,7 @@
 									</div>
 									<a class="dropdown-item" href="/admin/admin-profile"><i class="isax isax-user me-2"></i>My Profile</a>
 									<a class="dropdown-item" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a>
-									<a class="dropdown-item" href="/src/pages/auth/login.html" id="logout-btn"><i class="isax isax-logout me-2"></i>Logout</a>
+									<a class="dropdown-item" href="/auth/login" id="logout-btn"><i class="isax isax-logout me-2"></i>Logout</a>
 								</div>
 							</li>
 						</ul>
@@ -461,7 +438,7 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="text-center">
-								<p class="mb-0">© 2025 AlKahaf Academy. All rights reserved.</p>
+								<p class="mb-0">� 2025 AlKahaf Academy. All rights reserved.</p>
 							</div>
 						</div>
 					</div>
@@ -503,13 +480,16 @@
 	<script src="/assets/plugins/select2/js/select2.min.js"></script>
 
 	<!-- Datatables JS -->
-	<script src="/assets/plugins/datatables/datatables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
 	<!-- Custom JS -->
 	<script src="/assets/js/script.js"></script>
 
 	<!-- API Configuration -->
 	<script src="/assets/js/api-config.js"></script>
+	<!-- Admin Header: dynamic notifications + user info -->
+	<script src="/assets/js/admin-header.js"></script>
 
 	<!-- Instructors List JS -->
 	<script>
@@ -520,7 +500,7 @@
 			// Check if user is admin
 			const user = JSON.parse(localStorage.getItem('user') || '{}');
 			if (!user || user.role !== 'admin') {
-				window.location.href = '/src/pages/auth/login.html';
+				window.location.href = '/auth/login';
 				return;
 			}
 
@@ -535,7 +515,7 @@
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
 				localStorage.removeItem('user');
-				window.location.href = '/src/pages/auth/login.html';
+				window.location.href = '/auth/login';
 			});
 
 			// Initialize DataTable
@@ -554,29 +534,44 @@
 			dataTable = $('#instructors-table').DataTable({
 				pageLength: 10,
 				ordering: true,
-				searching: false, // We use custom search
+				searching: false,
 				info: true,
 				lengthChange: true,
-				order: [[8, 'desc']] // Sort by joined date
+				autoWidth: false,
+				order: [[8, 'desc']],
+				columnDefs: [
+					{ width: '180px', targets: 0 }, // Instructor name
+					{ width: '200px', targets: 1 }, // Email
+					{ width: '120px', targets: 2 }, // Designation
+					{ width: '80px',  targets: 3 }, // Rating
+					{ width: '70px',  targets: 4 }, // Courses
+					{ width: '70px',  targets: 5 }, // Students
+					{ width: '80px',  targets: 6 }, // Status
+					{ width: '90px',  targets: 7 }, // Verified
+					{ width: '110px', targets: 8 }, // Joined
+					{ width: '100px', targets: 9, orderable: false } // Actions
+				]
 			});
 		}
 
-		async function loadInstructors() {
+		async function loadInstructors(params = {}) {
 			try {
 				const token = localStorage.getItem('accessToken');
 				if (!token) {
-					window.location.href = '/src/pages/auth/login.html';
+					window.location.href = '/auth/login';
 					return;
 				}
 
-				// TODO: Replace with actual API call
-				// const response = await fetch(API_CONFIG.BASE_URL + '/users?role=instructor', {
-				//     headers: API_CONFIG.getHeaders(true)
-				// });
-				// const data = await response.json();
-				// if (data.success) {
-				//     populateTable(data.data);
-				// }
+				const query = new URLSearchParams(params).toString();
+				const response = await fetch(API_CONFIG.BASE_URL + '/admin/instructors?' + query, {
+					headers: API_CONFIG.getHeaders(true)
+				});
+				const data = await response.json();
+				if (data.success) {
+					populateTable(data.data);
+				} else {
+					showAlert('error', data.message || 'Failed to load instructors');
+				}
 
 			} catch (error) {
 				console.error('Error loading instructors:', error);
@@ -589,13 +584,11 @@
 
 			instructors.forEach(instructor => {
 				const row = [
-					`<div class="d-flex align-items-center">
-						<img src="${instructor.profileImage || '/assets/img/instructor/instructor-09.jpg'}" class="instructor-avatar me-2" alt="">
-						<div>
-							<h6 class="mb-0">${instructor.firstName} ${instructor.lastName}</h6>
-						</div>
+					`<div class="d-flex align-items-center" style="min-width:0">
+						<img src="${instructor.profileImage || '/assets/img/instructor/instructor-09.jpg'}" class="instructor-avatar me-2 flex-shrink-0" alt="">
+						<h6 class="mb-0 instructor-name">${instructor.firstName} ${instructor.lastName}</h6>
 					</div>`,
-					instructor.email,
+					`<span style="white-space:nowrap">${instructor.email}</span>`,
 					`<span class="badge bg-info-light text-info">${instructor.designation || 'Instructor'}</span>`,
 					`<div class="rating-stars">
 						<i class="fas fa-star"></i>
@@ -604,7 +597,7 @@
 					instructor.totalCourses || 0,
 					instructor.totalStudents || 0,
 					getStatusBadge(instructor.status),
-					getVerificationBadge(instructor.isVerified),
+					getVerificationBadge(instructor.emailVerified),
 					formatDate(instructor.createdAt),
 					`<div class="action-btns">
 						<a href="instructor-edit.html?id=${instructor.id}" class="btn btn-sm btn-outline-primary me-1" title="Edit">
@@ -652,16 +645,18 @@
 		}
 
 		function applyFilters() {
-			const search = document.getElementById('search-input').value;
-			const status = document.getElementById('filter-status').value;
+			const params = {};
+			const search   = document.getElementById('search-input').value;
+			const status   = document.getElementById('filter-status').value;
 			const verified = document.getElementById('filter-verified').value;
-
-			// TODO: Apply filters to API call
-			loadInstructors();
+			if (search)   params.search     = search;
+			if (status)   params.status     = status;
+			if (verified) params.isVerified = verified;
+			loadInstructors(params);
 		}
 
 		function viewInstructor(id) {
-			window.location.href = `instructor-view.html?id=${id}`;
+			window.location.href = `/instructor/instructor-details?id=${id}`;
 		}
 
 		function deleteInstructor(id) {
@@ -671,15 +666,18 @@
 
 			document.getElementById('confirm-delete-btn').onclick = async function() {
 				try {
-					// TODO: Call delete API
-					// const response = await fetch(API_CONFIG.BASE_URL + `/users/${id}`, {
-					//     method: 'DELETE',
-					//     headers: API_CONFIG.getHeaders(true)
-					// });
-
-					showAlert('success', 'Instructor deleted successfully');
-					modal.hide();
-					loadInstructors();
+					const response = await fetch(API_CONFIG.BASE_URL + `/admin/instructors/${id}`, {
+						method: 'DELETE',
+						headers: API_CONFIG.getHeaders(true)
+					});
+					const data = await response.json();
+					if (data.success) {
+						showAlert('success', 'Instructor deleted successfully');
+						modal.hide();
+						loadInstructors();
+					} else {
+						showAlert('error', data.message || 'Failed to delete instructor');
+					}
 				} catch (error) {
 					console.error('Error deleting instructor:', error);
 					showAlert('error', 'Failed to delete instructor');
@@ -711,6 +709,11 @@
 			}
 		});
 	</script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
 
 </body>
 </html>

@@ -1,18 +1,26 @@
 const { Course, User, Enrollment } = require('../models');
 const { Op } = require('sequelize');
+const { notifyAdmins } = require('../services/notificationService');
 
 exports.createCourse = async (req, res) => {
   try {
     const { title, description, category, price, level } = req.body;
 
     const course = await Course.create({
-      instructorId: req.user.id,
+      instructorId: req.user.userId,
       title,
       description,
       category,
       price,
       level,
       status: 'draft',
+    });
+
+    notifyAdmins({
+      type: 'course_update',
+      title: 'New Course Created',
+      message: `A new course "${course.title}" was created by instructor (ID: ${req.user.userId}).`,
+      actionUrl: '/admin/courses-list',
     });
 
     res.status(201).json({
@@ -82,7 +90,7 @@ exports.updateCourse = async (req, res) => {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-    if (course.instructorId !== req.user.id && req.user.role !== 'admin') {
+    if (course.instructorId !== req.user.userId && req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
@@ -104,11 +112,20 @@ exports.deleteCourse = async (req, res) => {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-    if (course.instructorId !== req.user.id && req.user.role !== 'admin') {
+    if (course.instructorId !== req.user.userId && req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
+    const courseTitle = course.title;
     await course.destroy();
+
+    notifyAdmins({
+      type: 'course_update',
+      title: 'Course Deleted',
+      message: `Course "${courseTitle}" was deleted.`,
+      actionUrl: '/admin/courses-list',
+    });
+
     res.json({ message: 'Course deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -123,11 +140,19 @@ exports.publishCourse = async (req, res) => {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-    if (course.instructorId !== req.user.id && req.user.role !== 'admin') {
+    if (course.instructorId !== req.user.userId && req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
     await course.update({ status: 'published' });
+
+    notifyAdmins({
+      type: 'course_update',
+      title: 'Course Published',
+      message: `Course "${course.title}" is now live and published.`,
+      actionUrl: '/admin/courses-list',
+    });
+
     res.json({
       message: 'Course published successfully',
       course,
@@ -145,7 +170,7 @@ exports.getCourseStats = async (req, res) => {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-    if (course.instructorId !== req.user.id && req.user.role !== 'admin') {
+    if (course.instructorId !== req.user.userId && req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 

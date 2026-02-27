@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const { User } = require('../models');
 const config = require('../config/config');
 const tokenService = require('../services/tokenService');
+const { notifyAdmins } = require('../services/notificationService');
 
 exports.register = async (req, res) => {
   try {
@@ -21,6 +22,14 @@ exports.register = async (req, res) => {
     });
 
     const tokens = tokenService.generateTokens(user.id, user.role);
+
+    notifyAdmins({
+      type: 'general',
+      title: 'New User Registered',
+      message: `${user.firstName} ${user.lastName} (${user.email}) registered as ${user.role}.`,
+      actionUrl: '/admin/users-list',
+    });
+
     res.status(201).json({
       success: true,
       message: 'Registration successful',
@@ -95,7 +104,7 @@ exports.logout = async (req, res) => {
 
 exports.getCurrentUser = async (req, res) => {
   try {
-    const user = await User.findByPk(req.user.id);
+    const user = await User.findByPk(req.user.userId);
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -108,7 +117,7 @@ exports.getCurrentUser = async (req, res) => {
 exports.updateProfile = async (req, res) => {
   try {
     const { firstName, lastName, phone, bio, profileImage } = req.body;
-    const user = await User.findByPk(req.user.id);
+    const user = await User.findByPk(req.user.userId);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -134,7 +143,7 @@ exports.updateProfile = async (req, res) => {
 exports.changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
-    const user = await User.findByPk(req.user.id);
+    const user = await User.findByPk(req.user.userId);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });

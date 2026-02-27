@@ -1,3 +1,4 @@
+const sequelize = require('../config/database');
 const User = require('./User');
 const Course = require('./Course');
 const Enrollment = require('./Enrollment');
@@ -72,6 +73,7 @@ Message.belongsTo(Course, { foreignKey: 'courseId', as: 'course' });
 Notification.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
 module.exports = {
+  sequelize,
   User,
   Course,
   Enrollment,

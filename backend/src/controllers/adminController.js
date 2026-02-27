@@ -1,5 +1,22 @@
 const { User, Course, Enrollment, Payment, Certificate, sequelize } = require('../models');
 const { Op } = require('sequelize');
+const { notifyUser } = require('../services/notificationService');
+const fs = require('fs');
+const path = require('path');
+
+const SETTINGS_FILE = path.join(__dirname, '../settings.json');
+
+function readSettings() {
+  try {
+    return JSON.parse(fs.readFileSync(SETTINGS_FILE, 'utf8'));
+  } catch {
+    return {};
+  }
+}
+
+function writeSettings(data) {
+  fs.writeFileSync(SETTINGS_FILE, JSON.stringify(data, null, 2), 'utf8');
+}
 
 /**
  * Get Admin Dashboard Statistics
@@ -19,6 +36,8 @@ exports.getDashboardStatistics = async (req, res) => {
     const totalUsers = await User.count();
     const totalCourses = await Course.count();
     const totalEnrollments = await Enrollment.count();
+    const completedEnrollments = await Enrollment.count({ where: { status: 'completed' } });
+    const completionRate = totalEnrollments > 0 ? ((completedEnrollments / totalEnrollments) * 100).toFixed(1) : 0;
 
     // Get user counts by role
     const studentCount = await User.count({ where: { role: 'student' } });
@@ -77,6 +96,8 @@ exports.getDashboardStatistics = async (req, res) => {
           totalCourses,
           totalEnrollments,
           totalRevenue: parseFloat(totalRevenue).toFixed(2),
+          completionRate: parseFloat(completionRate),
+          draftCourses,
           userGrowth: `${userGrowth}%`,
           courseGrowth: `${courseGrowth}%`,
           enrollmentGrowth: `${enrollmentGrowth}%`
@@ -110,6 +131,95 @@ exports.getDashboardStatistics = async (req, res) => {
 };
 
 /**
+ * Get Top Courses by Enrollment
+ * GET /api/v1/admin/top-courses
+ */
+exports.getTopCourses = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') return res.status(403).json({ success: false, message: 'Unauthorized' });
+
+    const courses = await Course.findAll({
+      attributes: [
+        'id', 'title', 'category', 'price', 'status',
+        [sequelize.fn('COUNT', sequelize.col('enrollments.id')), 'enrollmentCount']
+      ],
+      include: [{ model: Enrollment, as: 'enrollments', attributes: [] }],
+      group: ['Course.id'],
+      order: [[sequelize.literal('enrollmentCount'), 'DESC']],
+      limit: 5,
+      subQuery: false
+    });
+
+    res.json({
+      success: true,
+      data: courses.map(c => ({
+        id: c.id,
+        title: c.title,
+        category: c.category || 'General',
+        price: c.price || 0,
+        status: c.status,
+        enrollmentCount: parseInt(c.dataValues.enrollmentCount) || 0
+      }))
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+/**
+ * Get Recent Registrations
+ * GET /api/v1/admin/recent-registrations
+ */
+exports.getRecentRegistrations = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') return res.status(403).json({ success: false, message: 'Unauthorized' });
+
+    const users = await User.findAll({
+      attributes: ['id', 'firstName', 'lastName', 'email', 'role', 'createdAt'],
+      order: [['createdAt', 'DESC']],
+      limit: 6
+    });
+
+    res.json({ success: true, data: users });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+/**
+ * Get Enrollment Trends (last 7 days)
+ * GET /api/v1/admin/enrollment-trends
+ */
+exports.getEnrollmentTrends = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Unauthorized' });
+    }
+
+    const labels = [];
+    const counts = [];
+
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date();
+      d.setDate(d.getDate() - i);
+      const start = new Date(d); start.setHours(0, 0, 0, 0);
+      const end   = new Date(d); end.setHours(23, 59, 59, 999);
+
+      const count = await Enrollment.count({
+        where: { createdAt: { [Op.between]: [start, end] } }
+      });
+
+      labels.push(start.toLocaleDateString('en-US', { weekday: 'short' }));
+      counts.push(count);
+    }
+
+    res.json({ success: true, data: { labels, counts } });
+  } catch (error) {
+    res.status(500).json({ success: false, message: 'Error fetching trends', error: error.message });
+  }
+};
+
+/**
  * Get Recent Enrollments for Admin Dashboard
  * GET /api/v1/admin/recent-enrollments
  */
@@ -136,7 +246,7 @@ exports.getRecentEnrollments = async (req, res) => {
         {
           model: Course,
           as: 'course',
-          attributes: ['id', 'title', 'thumbnailImage']
+          attributes: ['id', 'title', 'thumbnail']
         }
       ]
     });
@@ -205,16 +315,14 @@ exports.getAllInstructors = async (req, res) => {
         const totalCourses = instructor.instructedCourses?.length || 0;
 
         // Get total students enrolled in instructor's courses
-        const totalStudents = await Enrollment.count({
-          include: [{
-            model: Course,
-            as: 'course',
-            where: { instructorId: instructor.id },
-            attributes: []
-          }],
-          distinct: true,
-          col: 'studentId'
-        });
+        const instructorCourseIds = (instructor.instructedCourses || []).map(c => c.id);
+        const totalStudents = instructorCourseIds.length > 0
+          ? await Enrollment.count({
+              where: { courseId: instructorCourseIds },
+              distinct: true,
+              col: 'studentId'
+            })
+          : 0;
 
         return {
           ...instructor.toJSON(),
@@ -714,7 +822,7 @@ exports.getAllEnrollments = async (req, res) => {
         {
           model: Course,
           as: 'course',
-          attributes: ['id', 'title', 'thumbnailImage', 'price']
+          attributes: ['id', 'title', 'thumbnail', 'price']
         },
         {
           model: Certificate,
@@ -899,7 +1007,12 @@ exports.updateEnrollment = async (req, res) => {
       });
     }
 
-    const enrollment = await Enrollment.findByPk(req.params.id);
+    const enrollment = await Enrollment.findByPk(req.params.id, {
+      include: [
+        { model: User, as: 'student', attributes: ['id', 'firstName', 'lastName'] },
+        { model: Course, as: 'course', attributes: ['id', 'title'] }
+      ]
+    });
 
     if (!enrollment) {
       return res.status(404).json({
@@ -909,6 +1022,10 @@ exports.updateEnrollment = async (req, res) => {
     }
 
     const { status, progress, paymentStatus } = req.body;
+
+    // Track previous values for notification logic
+    const prevStatus = enrollment.status;
+    const prevProgress = parseInt(enrollment.progress);
 
     // Update allowed fields
     if (status !== undefined) enrollment.status = status;
@@ -922,6 +1039,37 @@ exports.updateEnrollment = async (req, res) => {
     }
 
     await enrollment.save();
+
+    // Send notification to student based on what changed
+    const student = enrollment.student;
+    const course = enrollment.course;
+    if (student && course) {
+      const newStatus = enrollment.status;
+      const newProgress = parseInt(enrollment.progress);
+
+      if (newStatus === 'dropped' && prevStatus !== 'dropped') {
+        await notifyUser(student.id, {
+          type: 'course_update',
+          title: 'Enrollment Dropped',
+          message: `You have been dropped from the course "${course.title}" by the administrator.`,
+          actionUrl: '/student/courses'
+        });
+      } else if (newStatus === 'completed' && prevStatus !== 'completed') {
+        await notifyUser(student.id, {
+          type: 'course_completed',
+          title: 'Course Completed!',
+          message: `Your enrollment in "${course.title}" has been marked as completed by the administrator. Congratulations!`,
+          actionUrl: '/student/courses'
+        });
+      } else if (progress !== undefined && newProgress !== prevProgress) {
+        await notifyUser(student.id, {
+          type: 'course_update',
+          title: 'Progress Updated',
+          message: `Your progress in "${course.title}" has been updated to ${newProgress}% by the administrator.`,
+          actionUrl: '/student/courses'
+        });
+      }
+    }
 
     res.json({
       success: true,
@@ -953,7 +1101,12 @@ exports.deleteEnrollment = async (req, res) => {
       });
     }
 
-    const enrollment = await Enrollment.findByPk(req.params.id);
+    const enrollment = await Enrollment.findByPk(req.params.id, {
+      include: [
+        { model: User, as: 'student', attributes: ['id', 'firstName', 'lastName'] },
+        { model: Course, as: 'course', attributes: ['id', 'title'] }
+      ]
+    });
 
     if (!enrollment) {
       return res.status(404).json({
@@ -962,7 +1115,20 @@ exports.deleteEnrollment = async (req, res) => {
       });
     }
 
+    const studentId = enrollment.student?.id;
+    const courseTitle = enrollment.course?.title;
+
     await enrollment.destroy();
+
+    // Notify student after removal
+    if (studentId && courseTitle) {
+      await notifyUser(studentId, {
+        type: 'general',
+        title: 'Enrollment Removed',
+        message: `Your enrollment in "${courseTitle}" has been removed by the administrator.`,
+        actionUrl: '/student/courses'
+      });
+    }
 
     res.json({
       success: true,
@@ -994,19 +1160,10 @@ exports.getEnrollmentStatistics = async (req, res) => {
     }
 
     const totalEnrollments = await Enrollment.count();
-    const activeEnrollments = await Enrollment.count({ where: { status: 'active' } });
+    const activeEnrollments = await Enrollment.count({ where: { status: ['enrolled', 'in_progress'] } });
     const completedEnrollments = await Enrollment.count({ where: { status: 'completed' } });
     const droppedEnrollments = await Enrollment.count({ where: { status: 'dropped' } });
-
-    // Enrollments in progress (progress > 0 but < 100)
-    const inProgressEnrollments = await Enrollment.count({
-      where: {
-        progress: {
-          [Op.gt]: 0,
-          [Op.lt]: 100
-        }
-      }
-    });
+    const inProgressEnrollments = await Enrollment.count({ where: { status: 'in_progress' } });
 
     // Average progress
     const avgProgressResult = await Enrollment.findAll({
@@ -1035,11 +1192,11 @@ exports.getEnrollmentStatistics = async (req, res) => {
     res.json({
       success: true,
       data: {
-        total: totalEnrollments,
-        active: activeEnrollments,
-        completed: completedEnrollments,
-        dropped: droppedEnrollments,
-        inProgress: inProgressEnrollments,
+        totalEnrollments,
+        activeEnrollments,
+        completedEnrollments,
+        droppedEnrollments,
+        inProgressEnrollments,
         avgProgress: parseFloat(avgProgress),
         completionRate: parseFloat(completionRate),
         recentEnrollments
@@ -1057,3 +1214,44 @@ exports.getEnrollmentStatistics = async (req, res) => {
 };
 
 module.exports = exports;
+
+/**
+ * Get Site Settings
+ * GET /api/v1/admin/settings
+ */
+exports.getSettings = (req, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ success: false, message: 'Unauthorized. Admin access required.' });
+  }
+  const settings = readSettings();
+  const safe = { ...settings };
+  if (safe.smtpPassword) safe.smtpPassword = '';
+  if (safe.stripeSecretKey) safe.stripeSecretKey = '';
+  if (safe.stripeWebhookSecret) safe.stripeWebhookSecret = '';
+  res.json({ success: true, data: safe });
+};
+
+/**
+ * Update Site Settings
+ * PUT /api/v1/admin/settings
+ */
+exports.updateSettings = (req, res) => {
+  if (req.user.role !== 'admin') {
+    return res.status(403).json({ success: false, message: 'Unauthorized. Admin access required.' });
+  }
+  try {
+    const current = readSettings();
+    const incoming = req.body;
+    const updated = { ...current };
+    const secretFields = ['smtpPassword', 'stripeSecretKey', 'stripeWebhookSecret'];
+    for (const key of Object.keys(incoming)) {
+      if (secretFields.includes(key) && incoming[key] === '') continue;
+      updated[key] = incoming[key];
+    }
+    writeSettings(updated);
+    res.json({ success: true, message: 'Settings saved successfully.', data: updated });
+  } catch (err) {
+    console.error('Error saving settings:', err);
+    res.status(500).json({ success: false, message: 'Failed to save settings.', error: err.message });
+  }
+};

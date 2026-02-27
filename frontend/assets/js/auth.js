@@ -137,21 +137,21 @@
             }
 
             if (!user) {
-                window.location.href = '/src/pages/auth/login.html';
+                window.location.href = '/auth/login';
                 return;
             }
 
             // Redirect based on role
             switch (user.role) {
                 case 'admin':
-                    window.location.href = '/src/pages/admin/admin-dashboard.html';
+                    window.location.href = '/admin/admin-dashboard';
                     break;
                 case 'instructor':
-                    window.location.href = '/src/pages/instructor/instructor-dashboard.html';
+                    window.location.href = '/instructor/instructor-dashboard';
                     break;
                 case 'student':
                 default:
-                    window.location.href = '/src/pages/student/student-dashboard.html';
+                    window.location.href = '/student/student-dashboard';
                     break;
             }
         },

@@ -36,7 +36,7 @@
 	<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
 
 	<!-- Datatables CSS -->
-	<link rel="stylesheet" href="/assets/plugins/datatables/datatables.min.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
 
 	<!-- Main CSS -->
 	<link rel="stylesheet" href="/assets/css/style.css">
@@ -78,49 +78,7 @@
 								</span>
 							</a>
 							<a href="/index.html" class="navbar-brand logo">
-								<img src="/assets/img/white-logo.png" class="img-fluid" alt="Logo" style="width: 120px;">
 							</a>
-						</div>
-						<div class="main-menu-wrapper">
-							<div class="menu-header">
-								<a href="/index.html" class="menu-logo">
-									<img src="/assets/img/logo.svg" class="img-fluid" alt="Logo">
-								</a>
-								<a id="menu_close" class="menu-close" href="javascript:void(0);">
-									<i class="fas fa-times"></i>
-								</a>
-							</div>
-							<ul class="main-nav">
-								<li>
-									<a href="/admin/admin-dashboard"><i class="isax isax-home me-2"></i>Dashboard</a>
-								</li>
-								<li class="has-submenu">
-									<a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
-									<ul class="submenu">
-										<li><a href="/admin/users-list">All Users</a></li>
-										<li><a href="/admin/instructors-list">Instructors</a></li>
-										<li><a href="/admin/students-list">Students</a></li>
-										<li><a href="/admin/user-add">Add New User</a></li>
-									</ul>
-								</li>
-								<li class="has-submenu active">
-									<a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
-									<ul class="submenu">
-										<li class="active"><a href="/admin/courses-list">All Courses</a></li>
-										<li><a href="/admin/course-add">Add Course</a></li>
-										<li><a href="/admin/categories-list">Categories</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="/admin/enrollments-list"><i class="isax isax-note-2 me-2"></i>Enrollments</a>
-								</li>
-								<li>
-									<a href="/admin/payments-list"><i class="isax isax-wallet me-2"></i>Payments</a>
-								</li>
-								<li>
-									<a href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a>
-								</li>
-							</ul>
 						</div>
 						<ul class="nav header-navbar-rht">
 							<li class="nav-item dropdown noti-dropdown">
@@ -151,7 +109,7 @@
 							<li class="nav-item dropdown user-dropdown">
 								<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
 									<span class="user-img">
-										<img class="rounded-circle" src="/assets/img/instructor/instructor-01.jpg" alt="Admin">
+										<img class="rounded-circle" src="/assets/img/instructor/instructor-01.jpg" alt="Admin" style="width:38px;height:38px;object-fit:cover;">
 										<span class="status online"></span>
 									</span>
 								</a>
@@ -164,7 +122,7 @@
 									</div>
 									<a class="dropdown-item" href="/admin/admin-profile"><i class="isax isax-user me-2"></i>My Profile</a>
 									<a class="dropdown-item" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a>
-									<a class="dropdown-item" href="/src/pages/auth/login.html" id="logout-btn"><i class="isax isax-logout me-2"></i>Logout</a>
+									<a class="dropdown-item" href="/auth/login" id="logout-btn"><i class="isax isax-logout me-2"></i>Logout</a>
 								</div>
 							</li>
 						</ul>
@@ -299,11 +257,8 @@
 										<label class="form-label">Category</label>
 										<select class="form-select" id="filter-category">
 											<option value="">All Categories</option>
-											<option value="programming">Programming</option>
-											<option value="design">Design</option>
-											<option value="business">Business</option>
-											<option value="marketing">Marketing</option>
-											<option value="photography">Photography</option>
+											<option value="IslamicStudies">Islamic Studies</option>
+                                            <option value="Arabic">Arabic</option>
 										</select>
 									</div>
 									<div class="col-md-2">
@@ -364,145 +319,7 @@
 												<th>Actions</th>
 											</tr>
 										</thead>
-										<tbody id="courses-tbody">
-											<!-- Sample Data -->
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<img src="/assets/img/course/course-10.jpg" class="course-thumb me-3" alt="">
-														<div>
-															<h6 class="mb-0">Complete Web Development Bootcamp</h6>
-															<p class="text-muted mb-0 small">12 modules, 156 lessons</p>
-														</div>
-													</div>
-												</td>
-												<td>Joyce Pence</td>
-												<td><span class="badge bg-primary-light text-primary">Programming</span></td>
-												<td><span class="badge bg-success-light text-success">Beginner</span></td>
-												<td><span class="price-badge text-primary">$49.99</span></td>
-												<td>234</td>
-												<td><span class="badge bg-success-light text-success"><i class="isax isax-tick-circle me-1"></i>Published</span></td>
-												<td>Jan 15, 2024</td>
-												<td>
-													<div class="action-btns">
-														<a href="course-edit.html?id=1" class="btn btn-sm btn-outline-primary me-1" title="Edit">
-															<i class="isax isax-edit"></i>
-														</a>
-														<button class="btn btn-sm btn-outline-info me-1" onclick="viewCourse(1)" title="View">
-															<i class="isax isax-eye"></i>
-														</button>
-														<button class="btn btn-sm btn-outline-warning me-1" onclick="toggleStatus(1, 'draft')" title="Unpublish">
-															<i class="isax isax-archive"></i>
-														</button>
-														<button class="btn btn-sm btn-outline-danger" onclick="deleteCourse(1)" title="Delete">
-															<i class="isax isax-trash"></i>
-														</button>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<img src="/assets/img/course/course-11.jpg" class="course-thumb me-3" alt="">
-														<div>
-															<h6 class="mb-0">Data Science & Machine Learning</h6>
-															<p class="text-muted mb-0 small">15 modules, 200 lessons</p>
-														</div>
-													</div>
-												</td>
-												<td>Ruben Holmes</td>
-												<td><span class="badge bg-primary-light text-primary">Data Science</span></td>
-												<td><span class="badge bg-warning-light text-warning">Intermediate</span></td>
-												<td><span class="price-badge text-primary">$79.99</span></td>
-												<td>456</td>
-												<td><span class="badge bg-success-light text-success"><i class="isax isax-tick-circle me-1"></i>Published</span></td>
-												<td>Feb 10, 2024</td>
-												<td>
-													<div class="action-btns">
-														<a href="course-edit.html?id=2" class="btn btn-sm btn-outline-primary me-1" title="Edit">
-															<i class="isax isax-edit"></i>
-														</a>
-														<button class="btn btn-sm btn-outline-info me-1" onclick="viewCourse(2)" title="View">
-															<i class="isax isax-eye"></i>
-														</button>
-														<button class="btn btn-sm btn-outline-warning me-1" onclick="toggleStatus(2, 'draft')" title="Unpublish">
-															<i class="isax isax-archive"></i>
-														</button>
-														<button class="btn btn-sm btn-outline-danger" onclick="deleteCourse(2)" title="Delete">
-															<i class="isax isax-trash"></i>
-														</button>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<img src="/assets/img/course/course-12.jpg" class="course-thumb me-3" alt="">
-														<div>
-															<h6 class="mb-0">UI/UX Design Masterclass</h6>
-															<p class="text-muted mb-0 small">10 modules, 120 lessons</p>
-														</div>
-													</div>
-												</td>
-												<td>Edith Dorsey</td>
-												<td><span class="badge bg-info-light text-info">Design</span></td>
-												<td><span class="badge bg-success-light text-success">Beginner</span></td>
-												<td><span class="price-badge text-success">Free</span></td>
-												<td>678</td>
-												<td><span class="badge bg-success-light text-success"><i class="isax isax-tick-circle me-1"></i>Published</span></td>
-												<td>Mar 05, 2024</td>
-												<td>
-													<div class="action-btns">
-														<a href="course-edit.html?id=3" class="btn btn-sm btn-outline-primary me-1" title="Edit">
-															<i class="isax isax-edit"></i>
-														</a>
-														<button class="btn btn-sm btn-outline-info me-1" onclick="viewCourse(3)" title="View">
-															<i class="isax isax-eye"></i>
-														</button>
-														<button class="btn btn-sm btn-outline-warning me-1" onclick="toggleStatus(3, 'draft')" title="Unpublish">
-															<i class="isax isax-archive"></i>
-														</button>
-														<button class="btn btn-sm btn-outline-danger" onclick="deleteCourse(3)" title="Delete">
-															<i class="isax isax-trash"></i>
-														</button>
-													</div>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<img src="/assets/img/course/course-13.jpg" class="course-thumb me-3" alt="">
-														<div>
-															<h6 class="mb-0">Digital Marketing Complete Guide</h6>
-															<p class="text-muted mb-0 small">8 modules, 95 lessons</p>
-														</div>
-													</div>
-												</td>
-												<td>Carol Magner</td>
-												<td><span class="badge bg-warning-light text-warning">Marketing</span></td>
-												<td><span class="badge bg-warning-light text-warning">Intermediate</span></td>
-												<td><span class="price-badge text-primary">$59.99</span></td>
-												<td>89</td>
-												<td><span class="badge bg-warning-light text-warning"><i class="isax isax-edit me-1"></i>Draft</span></td>
-												<td>Apr 20, 2024</td>
-												<td>
-													<div class="action-btns">
-														<a href="course-edit.html?id=4" class="btn btn-sm btn-outline-primary me-1" title="Edit">
-															<i class="isax isax-edit"></i>
-														</a>
-														<button class="btn btn-sm btn-outline-info me-1" onclick="viewCourse(4)" title="View">
-															<i class="isax isax-eye"></i>
-														</button>
-														<button class="btn btn-sm btn-outline-success me-1" onclick="toggleStatus(4, 'published')" title="Publish">
-															<i class="isax isax-tick-circle"></i>
-														</button>
-														<button class="btn btn-sm btn-outline-danger" onclick="deleteCourse(4)" title="Delete">
-															<i class="isax isax-trash"></i>
-														</button>
-													</div>
-												</td>
-											</tr>
-										</tbody>
+										<tbody id="courses-tbody"></tbody>
 									</table>
 								</div>
 							</div>
@@ -521,7 +338,7 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="text-center">
-								<p class="mb-0">© 2025 AlKahaf Academy. All rights reserved.</p>
+								<p class="mb-0">� 2025 AlKahaf Academy. All rights reserved.</p>
 							</div>
 						</div>
 					</div>
@@ -563,13 +380,16 @@
 	<script src="/assets/plugins/select2/js/select2.min.js"></script>
 
 	<!-- Datatables JS -->
-	<script src="/assets/plugins/datatables/datatables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
 	<!-- Custom JS -->
 	<script src="/assets/js/script.js"></script>
 
 	<!-- API Configuration -->
 	<script src="/assets/js/api-config.js"></script>
+	<!-- Admin Header: dynamic notifications + user info -->
+	<script src="/assets/js/admin-header.js"></script>
 
 	<!-- Courses List JS -->
 	<script>
@@ -580,7 +400,7 @@
 			// Check if user is admin
 			const user = JSON.parse(localStorage.getItem('user') || '{}');
 			if (!user || user.role !== 'admin') {
-				window.location.href = '/src/pages/auth/login.html';
+				window.location.href = '/auth/login';
 				return;
 			}
 
@@ -595,7 +415,7 @@
 				localStorage.removeItem('accessToken');
 				localStorage.removeItem('refreshToken');
 				localStorage.removeItem('user');
-				window.location.href = '/src/pages/auth/login.html';
+				window.location.href = '/auth/login';
 			});
 
 			// Initialize DataTable
@@ -617,27 +437,33 @@
 				searching: false,
 				info: true,
 				lengthChange: true,
-				order: [[7, 'desc']]
+				order: [[7, 'desc']],
+				language: {
+					emptyTable: '<div class="text-center py-3"><span class="spinner-border spinner-border-sm text-warning me-2"></span>Loading courses...</div>',
+					zeroRecords: 'No courses found matching your filters.'
+				}
 			});
 		}
 
-		async function loadCourses() {
+		async function loadCourses(params = {}) {
 			try {
 				const token = localStorage.getItem('accessToken');
 				if (!token) {
-					window.location.href = '/src/pages/auth/login.html';
+					window.location.href = '/auth/login';
 					return;
 				}
 
-				// TODO: Replace with actual API call
-				// const response = await fetch(API_CONFIG.BASE_URL + '/courses', {
-				//     headers: API_CONFIG.getHeaders(true)
-				// });
-				// const data = await response.json();
-				// if (data.success) {
-				//     populateTable(data.data);
-				//     updateStatistics(data.statistics);
-				// }
+				const query = new URLSearchParams(params).toString();
+				const response = await fetch(API_CONFIG.BASE_URL + '/admin/courses?' + query, {
+					headers: API_CONFIG.getHeaders(true)
+				});
+				const data = await response.json();
+				if (data.success) {
+					populateTable(data.data);
+					updateStatistics(data.statistics || {});
+				} else {
+					showAlert('error', data.message || 'Failed to load courses');
+				}
 
 			} catch (error) {
 				console.error('Error loading courses:', error);
@@ -725,32 +551,37 @@
 		}
 
 		function applyFilters() {
-			const search = document.getElementById('search-input').value;
+			const params = {};
+			const search   = document.getElementById('search-input').value;
 			const category = document.getElementById('filter-category').value;
-			const level = document.getElementById('filter-level').value;
-			const status = document.getElementById('filter-status').value;
-			const price = document.getElementById('filter-price').value;
-
-			// TODO: Apply filters to API call
-			loadCourses();
+			const level    = document.getElementById('filter-level').value;
+			const status   = document.getElementById('filter-status').value;
+			if (search)   params.search   = search;
+			if (category) params.category = category;
+			if (level)    params.level    = level;
+			if (status)   params.status   = status;
+			loadCourses(params);
 		}
 
 		function viewCourse(id) {
-			window.location.href = `course-view.html?id=${id}`;
+			window.location.href = `/courses/course-details?id=${id}`;
 		}
 
 		async function toggleStatus(id, newStatus) {
 			try {
-				// TODO: Call API to update status
-				// const response = await fetch(API_CONFIG.BASE_URL + `/courses/${id}`, {
-				//     method: 'PUT',
-				//     headers: API_CONFIG.getHeaders(true),
-				//     body: JSON.stringify({ status: newStatus })
-				// });
-
+				const response = await fetch(API_CONFIG.BASE_URL + `/admin/courses/${id}/status`, {
+					method: 'PATCH',
+					headers: API_CONFIG.getHeaders(true),
+					body: JSON.stringify({ status: newStatus })
+				});
+				const data = await response.json();
 				const statusText = newStatus === 'published' ? 'published' : 'unpublished';
-				showAlert('success', `Course ${statusText} successfully`);
-				loadCourses();
+				if (data.success) {
+					showAlert('success', `Course ${statusText} successfully`);
+					loadCourses();
+				} else {
+					showAlert('error', data.message || 'Failed to update status');
+				}
 			} catch (error) {
 				console.error('Error updating course status:', error);
 				showAlert('error', 'Failed to update course status');
@@ -764,15 +595,18 @@
 
 			document.getElementById('confirm-delete-btn').onclick = async function() {
 				try {
-					// TODO: Call delete API
-					// const response = await fetch(API_CONFIG.BASE_URL + `/courses/${id}`, {
-					//     method: 'DELETE',
-					//     headers: API_CONFIG.getHeaders(true)
-					// });
-
-					showAlert('success', 'Course deleted successfully');
-					modal.hide();
-					loadCourses();
+					const response = await fetch(API_CONFIG.BASE_URL + `/courses/${id}`, {
+						method: 'DELETE',
+						headers: API_CONFIG.getHeaders(true)
+					});
+					const data = await response.json();
+					if (data.success) {
+						showAlert('success', 'Course deleted successfully');
+						modal.hide();
+						loadCourses();
+					} else {
+						showAlert('error', data.message || 'Failed to delete course');
+					}
 				} catch (error) {
 					console.error('Error deleting course:', error);
 					showAlert('error', 'Failed to delete course');
@@ -810,6 +644,11 @@
 			}
 		});
 	</script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
 
 </body>
 </html>

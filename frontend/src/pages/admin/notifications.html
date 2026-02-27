@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="AlKahaf LMS - Notifications">
+	<meta name="author" content="AlKahaf Academy">
+	<meta name="robots" content="noindex, nofollow">
+
+	<title>Notifications | Al-Kahaf Online Academy</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/assets/img/favicon.svg">
+
+	<!-- Theme Settings Js -->
+	<script src="/assets/js/theme-script.js"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Iconsax CSS -->
+	<link rel="stylesheet" href="/assets/css/iconsax.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/assets/css/style.css">
+
+	<style>
+		.notif-card {
+			border-left: 4px solid transparent;
+			transition: background 0.2s;
+		}
+		.notif-card.unread {
+			border-left-color: #522811;
+			background: #fdf8f5;
+		}
+		.notif-card:hover {
+			background: #f9f3ee;
+		}
+		.notif-icon-wrap {
+			width: 44px;
+			height: 44px;
+			min-width: 44px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: rgba(82, 40, 17, 0.1);
+			color: #522811;
+			font-size: 20px;
+		}
+		.notif-icon-wrap.unread {
+			background: #522811;
+			color: #fff;
+		}
+		.unread-dot {
+			width: 9px;
+			height: 9px;
+			background: #522811;
+			border-radius: 50%;
+			display: inline-block;
+			flex-shrink: 0;
+		}
+		.notif-time {
+			font-size: 12px;
+			color: #888;
+		}
+		.filter-tab {
+			cursor: pointer;
+			border: none;
+			background: none;
+			padding: 8px 20px;
+			border-radius: 30px;
+			font-size: 14px;
+			font-weight: 500;
+			color: #555;
+			transition: all 0.2s;
+		}
+		.filter-tab.active {
+			background: #522811;
+			color: #fff;
+		}
+		.stat-card-icon {
+			width: 48px;
+			height: 48px;
+			border-radius: 12px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 22px;
+		}
+		.page-link {
+			color: #522811;
+		}
+		.page-item.active .page-link {
+			background-color: #522811;
+			border-color: #522811;
+		}
+		.btn-mark-read {
+			color: #522811;
+			border-color: #522811;
+		}
+		.btn-mark-read:hover {
+			background: #522811;
+			color: #fff;
+		}
+		#empty-state {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header (Admin Navigation) -->
+		<header class="header">
+			<div class="header-fixed">
+				<nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a id="mobile_btn" href="javascript:void(0);">
+								<span class="bar-icon">
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
+							</a>
+							<a href="/index.html" class="navbar-brand logo">
+							</a>
+						</div>
+						<ul class="nav header-navbar-rht">
+							<li class="nav-item dropdown noti-dropdown">
+								<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+									<i class="isax isax-notification"></i>
+									<span class="badge badge-pill" style="display:none">0</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end notifications">
+									<div class="topnav-dropdown-header">
+										<span class="notification-title">Notifications</span>
+									</div>
+									<div class="noti-content">
+										<ul class="notification-list">
+											<li class="notification-message text-center py-3">
+												<p class="text-muted mb-0">Loading...</p>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</li>
+							<li class="nav-item dropdown user-dropdown">
+								<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
+									<span class="user-img">
+										<img class="rounded-circle" src="/assets/img/instructor/instructor-01.jpg" alt="Admin" style="width:38px;height:38px;object-fit:cover;">
+										<span class="status online"></span>
+									</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end">
+									<div class="user-header">
+										<div class="user-text">
+											<h6 id="admin-name">Administrator</h6>
+											<p class="text-muted mb-0">Admin</p>
+										</div>
+									</div>
+									<a class="dropdown-item" href="/admin/admin-profile"><i class="isax isax-user me-2"></i>My Profile</a>
+									<a class="dropdown-item" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a>
+									<a class="dropdown-item" href="/auth/login" id="logout-btn"><i class="isax isax-logout me-2"></i>Logout</a>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!-- /Header -->
+
+		<!-- Breadcrumb -->
+		<div class="breadcrumb-bar text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-12">
+						<h2 class="breadcrumb-title">Notifications</h2>
+						<nav aria-label="breadcrumb" class="page-breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+								<li class="breadcrumb-item"><a href="/admin/admin-dashboard">Admin</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Notifications</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Breadcrumb -->
+
+		<!-- Page Content -->
+		<div class="page-content">
+			<div class="container">
+
+				<!-- Stats Row -->
+				<div class="row g-3 mb-4">
+					<div class="col-sm-4">
+						<div class="card border-0 shadow-sm h-100">
+							<div class="card-body d-flex align-items-center gap-3">
+								<div class="stat-card-icon bg-primary-subtle text-primary">
+									<i class="isax isax-notification"></i>
+								</div>
+								<div>
+									<div class="text-muted small">Total</div>
+									<div class="fw-bold fs-4" id="stat-total">0</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="card border-0 shadow-sm h-100">
+							<div class="card-body d-flex align-items-center gap-3">
+								<div class="stat-card-icon" style="background:rgba(82,40,17,.1);color:#522811;">
+									<i class="isax isax-notification-bing"></i>
+								</div>
+								<div>
+									<div class="text-muted small">Unread</div>
+									<div class="fw-bold fs-4" id="stat-unread">0</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="card border-0 shadow-sm h-100">
+							<div class="card-body d-flex align-items-center gap-3">
+								<div class="stat-card-icon bg-success-subtle text-success">
+									<i class="isax isax-tick-circle"></i>
+								</div>
+								<div>
+									<div class="text-muted small">Read</div>
+									<div class="fw-bold fs-4" id="stat-read">0</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Notifications Card -->
+				<div class="card border-0 shadow-sm">
+					<div class="card-header bg-white d-flex align-items-center justify-content-between flex-wrap gap-2 py-3">
+						<!-- Filter Tabs -->
+						<div class="d-flex gap-1">
+							<button class="filter-tab active" onclick="setFilter('all')" id="tab-all">All</button>
+							<button class="filter-tab" onclick="setFilter('unread')" id="tab-unread">Unread</button>
+						</div>
+						<!-- Actions -->
+						<div class="d-flex gap-2">
+							<button class="btn btn-sm btn-mark-read border" onclick="markAllRead()" id="mark-all-btn">
+								<i class="isax isax-tick-circle me-1"></i> Mark all as read
+							</button>
+							<button class="btn btn-sm btn-outline-danger" onclick="confirmClearAll()" id="clear-all-btn">
+								<i class="isax isax-trash me-1"></i> Clear all
+							</button>
+						</div>
+					</div>
+
+					<!-- Notification List -->
+					<div class="card-body p-0" id="notif-list-wrap">
+						<!-- Populated by JS -->
+					</div>
+
+					<!-- Empty State -->
+					<div class="text-center py-5" id="empty-state">
+						<i class="isax isax-notification" style="font-size:56px;color:#d8ac27;opacity:.6"></i>
+						<p class="mt-3 text-muted">No notifications found</p>
+					</div>
+
+					<!-- Pagination -->
+					<div class="card-footer bg-white d-flex align-items-center justify-content-between flex-wrap gap-2" id="pagination-wrap" style="display:none!important">
+						<small class="text-muted" id="pagination-info"></small>
+						<nav>
+							<ul class="pagination pagination-sm mb-0" id="pagination-controls">
+							</ul>
+						</nav>
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<!-- /Page Content -->
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="text-center">
+								<p class="mb-0">&copy; 2025 AlKahaf Academy. All rights reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- /Footer -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- Clear All Confirmation Modal -->
+	<div class="modal fade" id="clearAllModal" tabindex="-1">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">Clear All Notifications</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+				</div>
+				<div class="modal-body">
+					<p class="mb-0">Are you sure you want to delete <strong>all</strong> notifications? This cannot be undone.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+					<button type="button" class="btn btn-danger btn-sm" onclick="clearAllNotifications()">Delete All</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script src="/assets/js/jquery-3.7.1.min.js"></script>
+	<!-- Bootstrap Core JS -->
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+	<!-- Custom JS -->
+	<script src="/assets/js/script.js"></script>
+	<!-- API Configuration -->
+	<script src="/assets/js/api-config.js"></script>
+	<!-- Admin Header: dynamic notifications + user info -->
+	<script src="/assets/js/admin-header.js"></script>
+
+	<script>
+		// ── State ────────────────────────────────────────────────────────────
+		let currentPage   = 1;
+		let currentFilter = 'all';   // 'all' | 'unread'
+		const PAGE_LIMIT  = 15;
+
+		const ICONS = {
+			enrollment_confirmation: 'isax-book',
+			course_update:           'isax-book-saved',
+			quiz_reminder:           'isax-clipboard',
+			assignment_due:          'isax-task-square',
+			grade_posted:            'isax-medal',
+			message_received:        'isax-message',
+			certificate_issued:      'isax-award',
+			course_completed:        'isax-tick-circle',
+			general:                 'isax-notification',
+		};
+
+		function getIcon(type) {
+			return ICONS[type] || 'isax-notification';
+		}
+
+		function timeAgo(dateStr) {
+			const diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
+			if (diff < 60)    return 'Just now';
+			if (diff < 3600)  return Math.floor(diff / 60) + ' min ago';
+			if (diff < 86400) return Math.floor(diff / 3600) + ' hr ago';
+			if (diff < 604800) return Math.floor(diff / 86400) + ' days ago';
+			return new Date(dateStr).toLocaleDateString();
+		}
+
+		// ── Guard ────────────────────────────────────────────────────────────
+		document.addEventListener('DOMContentLoaded', function () {
+			const user = JSON.parse(localStorage.getItem('user') || 'null');
+			if (!user || user.role !== 'admin') {
+				window.location.href = '/auth/login';
+				return;
+			}
+			loadNotifications();
+		});
+
+		// ── Fetch ────────────────────────────────────────────────────────────
+		async function loadNotifications() {
+			const token = localStorage.getItem('accessToken');
+			if (!token) { window.location.href = '/auth/login'; return; }
+
+			try {
+				const params = new URLSearchParams({
+					page:  currentPage,
+					limit: PAGE_LIMIT,
+				});
+				if (currentFilter === 'unread') params.set('unreadOnly', 'true');
+
+				const res  = await fetch(API_CONFIG.BASE_URL + '/notifications?' + params.toString(), {
+					headers: API_CONFIG.getHeaders(true),
+				});
+				const data = await res.json();
+				if (!data.success) throw new Error(data.message);
+
+				renderStats(data.pagination.total, data.unreadCount);
+				renderList(data.data);
+				renderPagination(data.pagination);
+			} catch (err) {
+				console.error('Error loading notifications:', err);
+				showAlert('error', 'Failed to load notifications');
+			}
+		}
+
+		// ── Render Stats ─────────────────────────────────────────────────────
+		function renderStats(total, unread) {
+			document.getElementById('stat-total').textContent  = total;
+			document.getElementById('stat-unread').textContent = unread;
+			document.getElementById('stat-read').textContent   = Math.max(0, total - unread);
+		}
+
+		// ── Render List ──────────────────────────────────────────────────────
+		function renderList(notifications) {
+			const wrap      = document.getElementById('notif-list-wrap');
+			const emptyEl   = document.getElementById('empty-state');
+
+			if (!notifications.length) {
+				wrap.innerHTML  = '';
+				emptyEl.style.display = 'block';
+				return;
+			}
+			emptyEl.style.display = 'none';
+
+			wrap.innerHTML = notifications.map(n => `
+				<div class="notif-card p-3 border-bottom d-flex align-items-start gap-3 ${n.isRead ? '' : 'unread'}" id="nc-${n.id}">
+					<div class="notif-icon-wrap ${n.isRead ? '' : 'unread'}">
+						<i class="isax ${getIcon(n.type)}"></i>
+					</div>
+					<div class="flex-grow-1 min-w-0">
+						<div class="d-flex align-items-start justify-content-between gap-2">
+							<div>
+								<p class="mb-0 fw-semibold" style="font-size:14px">${escHtml(n.title)}</p>
+								<p class="mb-1 text-muted" style="font-size:13px">${escHtml(n.message)}</p>
+								<span class="notif-time">${timeAgo(n.createdAt)}</span>
+								${n.actionUrl ? `<a href="${escHtml(n.actionUrl)}" class="ms-2 text-decoration-none" style="font-size:12px;color:#522811">View &rarr;</a>` : ''}
+							</div>
+							<div class="d-flex align-items-center gap-1 flex-shrink-0">
+								${!n.isRead ? `<span class="unread-dot" title="Unread"></span>` : ''}
+								${!n.isRead ? `
+								<button class="btn btn-sm btn-mark-read border" onclick="markRead('${n.id}')" title="Mark as read" style="padding:2px 8px;font-size:12px">
+									<i class="isax isax-tick-circle"></i>
+								</button>` : ''}
+								<button class="btn btn-sm btn-outline-danger" onclick="deleteOne('${n.id}')" title="Delete" style="padding:2px 8px;font-size:12px">
+									<i class="isax isax-trash"></i>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			`).join('');
+		}
+
+		// ── Render Pagination ────────────────────────────────────────────────
+		function renderPagination(pagination) {
+			const wrap    = document.getElementById('pagination-wrap');
+			const info    = document.getElementById('pagination-info');
+			const controls = document.getElementById('pagination-controls');
+
+			if (pagination.pages <= 1) {
+				wrap.style.display = 'none';
+				return;
+			}
+			wrap.style.display = '';
+
+			const from = (pagination.page - 1) * pagination.limit + 1;
+			const to   = Math.min(pagination.page * pagination.limit, pagination.total);
+			info.textContent = `Showing ${from}–${to} of ${pagination.total}`;
+
+			let html = '';
+			// Prev
+			html += `<li class="page-item ${pagination.page === 1 ? 'disabled' : ''}">
+				<button class="page-link" onclick="goToPage(${pagination.page - 1})">
+					<i class="fas fa-chevron-left" style="font-size:11px"></i>
+				</button>
+			</li>`;
+			// Pages
+			for (let p = 1; p <= pagination.pages; p++) {
+				if (
+					p === 1 || p === pagination.pages ||
+					(p >= pagination.page - 1 && p <= pagination.page + 1)
+				) {
+					html += `<li class="page-item ${p === pagination.page ? 'active' : ''}">
+						<button class="page-link" onclick="goToPage(${p})">${p}</button>
+					</li>`;
+				} else if (p === pagination.page - 2 || p === pagination.page + 2) {
+					html += `<li class="page-item disabled"><span class="page-link">&hellip;</span></li>`;
+				}
+			}
+			// Next
+			html += `<li class="page-item ${pagination.page === pagination.pages ? 'disabled' : ''}">
+				<button class="page-link" onclick="goToPage(${pagination.page + 1})">
+					<i class="fas fa-chevron-right" style="font-size:11px"></i>
+				</button>
+			</li>`;
+
+			controls.innerHTML = html;
+		}
+
+		// ── Actions ──────────────────────────────────────────────────────────
+		async function markRead(id) {
+			try {
+				await fetch(API_CONFIG.BASE_URL + '/notifications/' + id + '/read', {
+					method: 'PATCH',
+					headers: API_CONFIG.getHeaders(true),
+				});
+				// Update card locally
+				const card = document.getElementById('nc-' + id);
+				if (card) {
+					card.classList.remove('unread');
+					card.querySelector('.notif-icon-wrap').classList.remove('unread');
+					// Remove dot and mark-read button
+					card.querySelectorAll('.unread-dot, .btn-mark-read').forEach(el => el.remove());
+				}
+				// Decrement unread stat
+				const el = document.getElementById('stat-unread');
+				el.textContent = Math.max(0, parseInt(el.textContent) - 1);
+				const readEl = document.getElementById('stat-read');
+				readEl.textContent = parseInt(readEl.textContent) + 1;
+			} catch (err) {
+				showAlert('error', 'Failed to mark as read');
+			}
+		}
+
+		async function markAllRead() {
+			try {
+				await fetch(API_CONFIG.BASE_URL + '/notifications/read-all', {
+					method: 'PATCH',
+					headers: API_CONFIG.getHeaders(true),
+				});
+				loadNotifications();
+				showAlert('success', 'All notifications marked as read');
+			} catch (err) {
+				showAlert('error', 'Failed to mark all as read');
+			}
+		}
+
+		async function deleteOne(id) {
+			try {
+				await fetch(API_CONFIG.BASE_URL + '/notifications/' + id, {
+					method: 'DELETE',
+					headers: API_CONFIG.getHeaders(true),
+				});
+				const card = document.getElementById('nc-' + id);
+				if (card) card.remove();
+				// Refresh stats accurately
+				loadNotifications();
+			} catch (err) {
+				showAlert('error', 'Failed to delete notification');
+			}
+		}
+
+		function confirmClearAll() {
+			const modal = new bootstrap.Modal(document.getElementById('clearAllModal'));
+			modal.show();
+		}
+
+		async function clearAllNotifications() {
+			try {
+				// Fetch all notification IDs (up to 200) and delete them
+				const res  = await fetch(API_CONFIG.BASE_URL + '/notifications?limit=200', {
+					headers: API_CONFIG.getHeaders(true),
+				});
+				const data = await res.json();
+				if (data.success && data.data.length) {
+					await Promise.all(data.data.map(n =>
+						fetch(API_CONFIG.BASE_URL + '/notifications/' + n.id, {
+							method: 'DELETE',
+							headers: API_CONFIG.getHeaders(true),
+						})
+					));
+				}
+				bootstrap.Modal.getInstance(document.getElementById('clearAllModal')).hide();
+				loadNotifications();
+				showAlert('success', 'All notifications cleared');
+			} catch (err) {
+				showAlert('error', 'Failed to clear notifications');
+			}
+		}
+
+		// ── Filter ───────────────────────────────────────────────────────────
+		function setFilter(filter) {
+			currentFilter = filter;
+			currentPage   = 1;
+			document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+			document.getElementById('tab-' + filter).classList.add('active');
+			loadNotifications();
+		}
+
+		// ── Pagination nav ───────────────────────────────────────────────────
+		function goToPage(page) {
+			currentPage = page;
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+			loadNotifications();
+		}
+
+		// ── Helpers ──────────────────────────────────────────────────────────
+		function escHtml(str) {
+			if (!str) return '';
+			return String(str)
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;');
+		}
+
+		function showAlert(type, message) {
+			const cls = type === 'success' ? 'alert-success' : 'alert-danger';
+			document.body.insertAdjacentHTML('beforeend', `
+				<div class="alert ${cls} alert-dismissible fade show position-fixed top-0 end-0 m-3" role="alert" style="z-index:9999;">
+					${message}
+					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+				</div>`);
+			setTimeout(() => {
+				document.querySelectorAll('.alert').forEach(a => a.remove());
+			}, 3000);
+		}
+	</script>
+
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
+</body>
+</html>

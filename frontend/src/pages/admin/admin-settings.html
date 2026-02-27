@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -7,23 +7,20 @@
     <title>Admin Settings | Al-Kahaf Online Academy</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="../../../assets/img/favicon.svg">
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.svg">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 
     <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="../../../assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="../../../assets/plugins/fontawesome/css/all.min.css">
-
-    <!-- Iconsax CSS -->
-    <link rel="stylesheet" href="../../../assets/plugins/iconsax/css/style.css">
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
 
     <!-- Select2 CSS -->
-    <link rel="stylesheet" href="../../../assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="../../../assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
     <style>
         .settings-section {
@@ -40,7 +37,7 @@
             color: #1D2026;
             margin-bottom: 20px;
             padding-bottom: 12px;
-            border-bottom: 2px solid #FF6F28;
+            border-bottom: 2px solid #d8ac27;
             display: inline-block;
         }
 
@@ -58,8 +55,8 @@
         }
 
         .form-control:focus, .form-select:focus {
-            border-color: #FF6F28;
-            box-shadow: 0 0 0 0.2rem rgba(255, 111, 40, 0.15);
+            border-color: #d8ac27;
+            box-shadow: 0 0 0 0.2rem rgba(216, 172, 39, 0.2);
         }
 
         .form-text {
@@ -81,8 +78,8 @@
         }
 
         .image-upload-wrapper:hover {
-            border-color: #FF6F28;
-            background: #FFF5F0;
+            border-color: #d8ac27;
+            background: #fdf8ec;
         }
 
         .image-upload-wrapper img {
@@ -97,7 +94,7 @@
         }
 
         .btn-save {
-            background: linear-gradient(135deg, #FF6F28 0%, #FF8A4D 100%);
+            background: linear-gradient(135deg, #522811 0%, #7a3d1a 100%);
             color: white;
             border: none;
             padding: 12px 32px;
@@ -108,7 +105,7 @@
 
         .btn-save:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 111, 40, 0.3);
+            box-shadow: 0 4px 12px rgba(82, 40, 17, 0.35);
             color: white;
         }
 
@@ -178,7 +175,7 @@
         }
 
         input:checked + .slider {
-            background-color: #FF6F28;
+            background-color: #522811;
         }
 
         input:checked + .slider:before {
@@ -202,12 +199,12 @@
         }
 
         .settings-tab.active {
-            color: #FF6F28;
-            border-bottom-color: #FF6F28;
+            color: #522811;
+            border-bottom-color: #d8ac27;
         }
 
         .settings-tab:hover {
-            color: #FF6F28;
+            color: #522811;
         }
 
         .tab-content-item {
@@ -221,6 +218,17 @@
 </head>
 
 <body>
+
+
+    <!-- Toast Notification -->
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+        <div id="settingsToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="settingsToastMsg">Settings saved.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Wrapper -->
     <div class="main-wrapper">
@@ -239,29 +247,14 @@
                                 </span>
                             </a>
                             <a href="/" class="navbar-brand logo">
-                                <img src="../../../assets/img/logo.svg" class="img-fluid" alt="Logo">
                             </a>
                         </div>
-                        <div class="main-menu-wrapper">
-                            <div class="menu-header">
-                                <a href="/" class="menu-logo">
-                                    <img src="../../../assets/img/logo.svg" class="img-fluid" alt="Logo">
-                                </a>
-                                <a id="menu_close" class="menu-close" href="javascript:void(0);">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
                         <ul class="nav header-navbar-rht">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/admin/admin-dashboard">
-                                    <i class="iconsax" data-icon="home-2"></i> Dashboard
-                                </a>
-                            </li>
+
                             <li class="nav-item dropdown has-arrow main-drop">
                                 <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                                     <span class="user-img">
-                                        <img src="../../../assets/img/user/user1.jpg" alt="">
+                                        <img src="/assets/img/user/user1.jpg" alt="">
                                     </span>
                                     <span class="user-text" id="adminName">Admin User</span>
                                 </a>
@@ -306,7 +299,16 @@
         <!-- /Breadcrumb -->
 
         <!-- Page Content -->
-        <div class="page-content">
+        <div class="page-content" style="position: relative;">
+
+            <!-- Settings Loading Overlay -->
+            <div id="settingsLoader" style="position:absolute;inset:0;background:rgba(255,255,255,0.85);z-index:100;display:flex;align-items:center;justify-content:center;border-radius:8px;">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status" style="width:2.5rem;height:2.5rem;"></div>
+                    <p class="mt-2 text-muted">Loading settings...</p>
+                </div>
+            </div>
+
             <div class="container">
                 <div class="row">
 
@@ -354,7 +356,7 @@
                                     <div class="col-md-12 mb-3">
                                         <label class="form-label">Site Logo</label>
                                         <div class="image-upload-wrapper" onclick="document.getElementById('logoUpload').click()">
-                                            <img id="logoPreview" src="../../../assets/img/logo.svg" alt="Logo">
+                                            <img id="logoPreview" src="/assets/img/white-logo.png" alt="Al-Kahaf Academy" style="max-height:70px;">
                                         </div>
                                         <input type="file" id="logoUpload" accept="image/*" style="display: none;">
                                         <small class="form-text d-block mt-2">Recommended size: 200x60px, PNG or SVG format</small>
@@ -362,7 +364,7 @@
                                     <div class="col-md-12 mb-3">
                                         <label class="form-label">Favicon</label>
                                         <div class="image-upload-wrapper" style="width: 64px; height: 64px;" onclick="document.getElementById('faviconUpload').click()">
-                                            <img id="faviconPreview" src="../../../assets/img/favicon.svg" alt="Favicon">
+                                            <img id="faviconPreview" src="/assets/img/favicon.svg" alt="Favicon">
                                         </div>
                                         <input type="file" id="faviconUpload" accept="image/*" style="display: none;">
                                         <small class="form-text d-block mt-2">Recommended size: 32x32px or 64x64px</small>
@@ -717,9 +719,9 @@
                                     <div class="col-md-6 mb-3">
                                         <label class="form-label">Primary Color</label>
                                         <div class="color-picker-wrapper">
-                                            <input type="color" class="form-control" id="primaryColor" value="#FF6F28">
-                                            <div class="color-preview" id="primaryColorPreview" style="background-color: #FF6F28;"></div>
-                                            <span class="small text-muted">#FF6F28</span>
+                                            <input type="color" class="form-control" id="primaryColor" value="#522811">
+                                            <div class="color-preview" id="primaryColorPreview" style="background-color: #522811;"></div>
+                                            <span class="small text-muted">#522811</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-3">
@@ -819,38 +821,20 @@
     <!-- /Main Wrapper -->
 
     <!-- jQuery -->
-    <script src="../../../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
 
     <!-- Bootstrap Bundle JS -->
-    <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Iconsax Icons -->
-    <script src="../../../assets/plugins/iconsax/index.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
 
     <!-- Select2 JS -->
-    <script src="../../../assets/plugins/select2/js/select2.min.js"></script>
+    <script src="/assets/plugins/select2/js/select2.min.js"></script>
 
     <!-- Custom JS -->
-    <script src="../../../assets/js/script.js"></script>
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/api-config.js"></script>
+    <script src="/assets/js/admin-header.js"></script>
 
     <script>
-        // API Configuration
-        const API_CONFIG = {
-            BASE_URL: 'https://alkahafonlineacademy.com/api/v1',
-            getHeaders: (includeAuth = false) => {
-                const headers = {
-                    'Content-Type': 'application/json'
-                };
-                if (includeAuth) {
-                    const token = localStorage.getItem('accessToken');
-                    if (token) {
-                        headers['Authorization'] = `Bearer ${token}`;
-                    }
-                }
-                return headers;
-            }
-        };
-
         // Check authentication on page load
         document.addEventListener('DOMContentLoaded', function() {
             checkAuth();
@@ -866,7 +850,7 @@
             const user = JSON.parse(localStorage.getItem('user') || '{}');
 
             if (!token || user.role !== 'admin') {
-                window.location.href = '../auth/login.html';
+                window.location.href = '/auth/login';
                 return;
             }
 
@@ -953,6 +937,8 @@
                 }
             } catch (error) {
                 console.log('Settings endpoint not available - using defaults');
+            } finally {
+                document.getElementById('settingsLoader').style.display = 'none';
             }
         }
 
@@ -1002,8 +988,27 @@
             if (settings.customCSS) document.getElementById('customCSS').value = settings.customCSS;
         }
 
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toastEl = document.getElementById('settingsToast');
+            const toastMsg = document.getElementById('settingsToastMsg');
+            toastMsg.textContent = message;
+            toastEl.className = 'toast align-items-center text-white border-0';
+            if (type === 'success') toastEl.classList.add('bg-success');
+            else if (type === 'danger') toastEl.classList.add('bg-danger');
+            else if (type === 'warning') toastEl.classList.add('bg-warning');
+            else toastEl.classList.add('bg-primary');
+            const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+            toast.show();
+        }
+
         // Save settings
         async function saveSettings() {
+            const saveBtn = document.querySelector('.btn-save');
+            const originalHtml = saveBtn.innerHTML;
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+
             const settings = {
                 // General
                 siteName: document.getElementById('siteName').value,
@@ -1068,13 +1073,16 @@
                 const result = await response.json();
 
                 if (result.success) {
-                    alert('Settings saved successfully!');
+                    showToast('Settings saved successfully!', 'success');
                 } else {
-                    alert('Error: ' + result.message);
+                    showToast('Error: ' + result.message, 'danger');
                 }
             } catch (error) {
                 console.error('Save settings error:', error);
-                alert('Failed to save settings. Endpoint may not be implemented yet.');
+                showToast('Failed to save settings. Please try again.', 'danger');
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalHtml;
             }
         }
 
@@ -1095,7 +1103,7 @@
             };
 
             if (!smtpConfig.host || !smtpConfig.port) {
-                alert('Please fill in SMTP host and port first.');
+                showToast('Please fill in SMTP host and port first.', 'warning');
                 return;
             }
 
@@ -1109,13 +1117,13 @@
                 const result = await response.json();
 
                 if (result.success) {
-                    alert('Email connection successful!');
+                    showToast('Email connection successful!', 'success');
                 } else {
-                    alert('Email connection failed: ' + result.message);
+                    showToast('Email connection failed: ' + result.message, 'danger');
                 }
             } catch (error) {
                 console.error('Test email error:', error);
-                alert('Failed to test email connection. Endpoint may not be implemented yet.');
+                showToast('Failed to test email connection.', 'danger');
             }
         }
 
@@ -1125,9 +1133,14 @@
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('user');
-            window.location.href = '../auth/login.html';
+            window.location.href = '/auth/login';
         });
     </script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
 
 </body>
 

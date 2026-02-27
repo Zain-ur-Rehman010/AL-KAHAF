@@ -105,72 +105,40 @@
 								</li>
 							</ul>
 						</div>
-						<ul class="nav header-navbar-rht">
-							<li class="nav-item dropdown noti-dropdown">
-								<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-									<i class="isax isax-notification"></i>
-									<span class="badge badge-pill">3</span>
-								</a>
-								<div class="dropdown-menu dropdown-menu-end notifications">
-									<div class="topnav-dropdown-header">
-										<span class="notification-title">Notifications</span>
-									</div>
-									<div class="noti-content">
-										<ul class="notification-list">
-											<li class="notification-message">
-												<a href="#">
-													<div class="media d-flex">
-														<div class="media-body">
-															<p class="noti-details">New enrollment in "Web Development"</p>
-															<p class="noti-time">5 mins ago</p>
-														</div>
-													</div>
-												</a>
-											</li>
-											<li class="notification-message">
-												<a href="#">
-													<div class="media d-flex">
-														<div class="media-body">
-															<p class="noti-details">New instructor registration</p>
-															<p class="noti-time">10 mins ago</p>
-														</div>
-													</div>
-												</a>
-											</li>
-											<li class="notification-message">
-												<a href="#">
-													<div class="media d-flex">
-														<div class="media-body">
-															<p class="noti-details">Payment received $99.00</p>
-															<p class="noti-time">20 mins ago</p>
-														</div>
-													</div>
-												</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>
-							<li class="nav-item dropdown user-dropdown">
-								<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-									<!-- <span class="user-img">
-										<img class="rounded-circle" src="/assets/img/instructor/instructor-01.jpg" alt="Admin">
-										<span class="status online"></span> -->
+						<div class="d-flex align-items-center" style="gap:16px;">
+							<!-- Notification Bell -->
+							<a href="/admin/notifications" class="position-relative" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#fff;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);color:#333;text-decoration:none;">
+								<i class="isax isax-notification" style="font-size:20px;"></i>
+								<span id="notif-badge" style="position:absolute;top:0;right:0;background:#e53935;color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 3px;line-height:1;border:2px solid #522811;">0</span>
+							</a>
+							<!-- Profile Dropdown -->
+							<div class="dropdown profile-dropdown">
+								<a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
+									<span style="width:42px;height:42px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:#522811;color:#d8ac27;font-weight:700;font-size:16px;cursor:pointer;border:2px solid rgba(255,255,255,0.3);">
+										<img src="/assets/img/user/user-01.jpg" id="admin-avatar-img" alt="Admin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';document.getElementById('admin-initials').style.display='flex';">
+										<span id="admin-initials" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#d8ac27;">A</span>
 									</span>
 								</a>
-								<div class="dropdown-menu dropdown-menu-end">
-									<div class="user-header">
-										<div class="user-text">
-											<h6 id="admin-name">Administrator</h6>
-											<p class="text-muted mb-0">Admin</p>
+								<div class="dropdown-menu dropdown-menu-end" style="min-width:220px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15);border:none;padding:0;overflow:hidden;">
+									<div class="profile-header d-flex align-items-center" style="padding:16px;background:#f8f9fa;border-bottom:1px solid #eee;">
+										<div style="width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#522811;display:flex;align-items:center;justify-content:center;" class="me-3">
+											<img src="/assets/img/user/user-01.jpg" alt="Admin" style="width:100%;height:100%;object-fit:cover;">
+										</div>
+										<div>
+											<h6 class="mb-0 fw-semibold" id="admin-name">Administrator</h6>
+											<small class="text-muted">Admin</small>
 										</div>
 									</div>
-									<a class="dropdown-item" href="/admin/admin-profile"><i class="isax isax-user me-2"></i>My Profile</a>
-									<a class="dropdown-item" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a>
-									<a class="dropdown-item" href="/src/pages/auth/login.html" id="logout-btn"><i class="isax isax-logout me-2"></i>Logout</a>
+									<ul class="profile-body list-unstyled mb-0" style="padding:8px 0 8px 8px;">
+										<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-settings"><i class="isax isax-security-user me-2"></i>My Profile</a></li>
+										<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+									</ul>
+									<div style="padding:12px 16px;border-top:1px solid #eee;">
+										<a href="/auth/login" id="logoutBtn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+									</div>
 								</div>
-							</li>
-						</ul>
+							</div>
+						</div>
 					</div>
 				</nav>
 			</div>
@@ -199,43 +167,17 @@
 		<div class="content">
 			<div class="container">
 
-				<!-- Welcome Card -->
-				<div class="profile-card overflow-hidden bg-blue-gradient2 mb-5 p-5">
-					<div class="profile-card-bg">
-						<img src="/assets/img/bg/card-bg-01.png" class="profile-card-bg-1" alt="">
-					</div>
-					<div class="row align-items-center row-gap-3">
-						<div class="col-lg-8">
-							<div class="d-flex align-items-center">
-								<div class="profile-img me-3">
-									<img src="/assets/img/instructor/instructor-01.jpg" alt="Admin" class="img-fluid rounded-circle" style="width: 80px; height: 80px; object-fit: cover;">
-								</div>
-								<div>
-									<h3 class="text-white mb-1">Welcome back, <span id="welcome-admin-name">Administrator</span>!</h3>
-									<p class="text-white-50 mb-0">Here's what's happening with your platform today</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="text-lg-end">
-								<p class="text-white-50 mb-1">Last Login</p>
-								<h5 class="text-white" id="last-login">Today, 10:30 AM</h5>
-							</div>
-						</div>
-					</div>
-				</div>
-
 				<!-- Statistics Cards -->
 				<div class="row mb-4">
 					<!-- Total Users -->
-					<div class="col-xl-3 col-lg-6 col-md-6 d-flex">
+					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
 						<div class="card flex-fill bg-white rounded-3 shadow-sm">
 							<div class="card-body">
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
-										<p class="text-muted mb-2">Total Users</p>
-										<h3 class="mb-0" id="total-users">1,234</h3>
-										<p class="text-success mb-0 mt-2"><i class="isax isax-arrow-up me-1"></i>+12% this month</p>
+										<p class="text-muted mb-2 small">Total Users</p>
+										<h3 class="mb-0" id="total-users"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
+										<div class="mt-2" id="user-growth-text"><small class="text-muted">Loading...</small></div>
 									</div>
 									<div class="stat-icon bg-primary-light rounded-circle p-3">
 										<i class="isax isax-user fs-3 text-primary"></i>
@@ -246,14 +188,14 @@
 					</div>
 
 					<!-- Total Courses -->
-					<div class="col-xl-3 col-lg-6 col-md-6 d-flex">
+					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
 						<div class="card flex-fill bg-white rounded-3 shadow-sm">
 							<div class="card-body">
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
-										<p class="text-muted mb-2">Total Courses</p>
-										<h3 class="mb-0" id="total-courses">156</h3>
-										<p class="text-success mb-0 mt-2"><i class="isax isax-arrow-up me-1"></i>+8% this month</p>
+										<p class="text-muted mb-2 small">Total Courses</p>
+										<h3 class="mb-0" id="total-courses"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
+										<div class="mt-2" id="course-growth-text"><small class="text-muted">Loading...</small></div>
 									</div>
 									<div class="stat-icon bg-success-light rounded-circle p-3">
 										<i class="isax isax-book fs-3 text-success"></i>
@@ -264,14 +206,14 @@
 					</div>
 
 					<!-- Total Enrollments -->
-					<div class="col-xl-3 col-lg-6 col-md-6 d-flex">
+					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
 						<div class="card flex-fill bg-white rounded-3 shadow-sm">
 							<div class="card-body">
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
-										<p class="text-muted mb-2">Total Enrollments</p>
-										<h3 class="mb-0" id="total-enrollments">3,567</h3>
-										<p class="text-success mb-0 mt-2"><i class="isax isax-arrow-up me-1"></i>+15% this month</p>
+										<p class="text-muted mb-2 small">Total Enrollments</p>
+										<h3 class="mb-0" id="total-enrollments"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
+										<div class="mt-2" id="enrollment-growth-text"><small class="text-muted">Loading...</small></div>
 									</div>
 									<div class="stat-icon bg-warning-light rounded-circle p-3">
 										<i class="isax isax-note-2 fs-3 text-warning"></i>
@@ -282,17 +224,53 @@
 					</div>
 
 					<!-- Total Revenue -->
-					<div class="col-xl-3 col-lg-6 col-md-6 d-flex">
+					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
 						<div class="card flex-fill bg-white rounded-3 shadow-sm">
 							<div class="card-body">
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
-										<p class="text-muted mb-2">Total Revenue</p>
-										<h3 class="mb-0" id="total-revenue">$45,678</h3>
-										<p class="text-success mb-0 mt-2"><i class="isax isax-arrow-up me-1"></i>+20% this month</p>
+										<p class="text-muted mb-2 small">Total Revenue</p>
+										<h3 class="mb-0" id="total-revenue"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
+										<div class="mt-2" id="revenue-growth-text"><small class="text-muted">Loading...</small></div>
 									</div>
 									<div class="stat-icon bg-info-light rounded-circle p-3">
 										<i class="isax isax-wallet fs-3 text-info"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Completion Rate -->
+					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
+						<div class="card flex-fill rounded-3 shadow-sm" style="background: linear-gradient(135deg, #2e7d32, #43a047);">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-white-50 mb-2 small">Completion Rate</p>
+										<h3 class="mb-0 text-white" id="completion-rate"><span class="spinner-border spinner-border-sm text-white-50"></span></h3>
+										<small class="text-white-50">Avg course completion</small>
+									</div>
+									<div class="rounded-circle p-3" style="background:rgba(255,255,255,0.15);">
+										<i class="isax isax-medal fs-3 text-white"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Draft Courses -->
+					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
+						<div class="card flex-fill rounded-3 shadow-sm" style="background: linear-gradient(135deg, #b8860b, #d8ac27);">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-white-50 mb-2 small">Draft Courses</p>
+										<h3 class="mb-0 text-white" id="draft-courses"><span class="spinner-border spinner-border-sm text-white-50"></span></h3>
+										<small class="text-white-50">Pending publication</small>
+									</div>
+									<div class="rounded-circle p-3" style="background:rgba(255,255,255,0.15);">
+										<i class="isax isax-edit fs-3 text-white"></i>
 									</div>
 								</div>
 							</div>
@@ -380,52 +358,11 @@
 												<th>Course</th>
 												<th>Date</th>
 												<th>Status</th>
-												<th>Action</th>
+												<th>Progress</th>
 											</tr>
 										</thead>
-										<tbody id="recent-enrollments">
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<img src="/assets/img/instructor/instructor-09.jpg" class="rounded-circle me-2" style="width: 32px; height: 32px;" alt="">
-														<span>John Doe</span>
-													</div>
-												</td>
-												<td>Web Development</td>
-												<td>2 hours ago</td>
-												<td><span class="badge bg-success-light text-success">Active</span></td>
-												<td>
-													<a href="#" class="btn btn-sm btn-outline-primary">View</a>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<img src="/assets/img/instructor/instructor-10.jpg" class="rounded-circle me-2" style="width: 32px; height: 32px;" alt="">
-														<span>Jane Smith</span>
-													</div>
-												</td>
-												<td>Data Science</td>
-												<td>5 hours ago</td>
-												<td><span class="badge bg-success-light text-success">Active</span></td>
-												<td>
-													<a href="#" class="btn btn-sm btn-outline-primary">View</a>
-												</td>
-											</tr>
-											<tr>
-												<td>
-													<div class="d-flex align-items-center">
-														<img src="/assets/img/instructor/instructor-11.jpg" class="rounded-circle me-2" style="width: 32px; height: 32px;" alt="">
-														<span>Mike Johnson</span>
-													</div>
-												</td>
-												<td>UI/UX Design</td>
-												<td>1 day ago</td>
-												<td><span class="badge bg-warning-light text-warning">In Progress</span></td>
-												<td>
-													<a href="#" class="btn btn-sm btn-outline-primary">View</a>
-												</td>
-											</tr>
+										<tbody id="recent-enrollments-tbody">
+											<tr><td colspan="5" class="text-center py-4"><span class="spinner-border spinner-border-sm text-muted me-2"></span>Loading...</td></tr>
 										</tbody>
 									</table>
 								</div>
@@ -458,49 +395,50 @@
 							</div>
 						</div>
 
-						<!-- System Status -->
+						<!-- New Registrations -->
 						<div class="card bg-white rounded-3 shadow-sm">
-							<div class="card-header border-0">
-								<h5 class="mb-0">System Status</h5>
+							<div class="card-header border-0 d-flex align-items-center justify-content-between">
+								<h5 class="mb-0">New Registrations</h5>
+								<a href="/admin/users-list" class="btn btn-sm btn-outline-primary">View All</a>
 							</div>
-							<div class="card-body">
-								<div class="mb-3">
-									<div class="d-flex align-items-center justify-content-between mb-2">
-										<span>Storage Used</span>
-										<strong>45%</strong>
-									</div>
-									<div class="progress" style="height: 6px;">
-										<div class="progress-bar bg-primary" style="width: 45%"></div>
-									</div>
-								</div>
-								<div class="mb-3">
-									<div class="d-flex align-items-center justify-content-between mb-2">
-										<span>Bandwidth</span>
-										<strong>67%</strong>
-									</div>
-									<div class="progress" style="height: 6px;">
-										<div class="progress-bar bg-success" style="width: 67%"></div>
-									</div>
-								</div>
-								<div>
-									<div class="d-flex align-items-center justify-content-between mb-2">
-										<span>Database</span>
-										<strong>32%</strong>
-									</div>
-									<div class="progress" style="height: 6px;">
-										<div class="progress-bar bg-warning" style="width: 32%"></div>
-									</div>
-								</div>
-								<hr>
-								<div class="d-flex align-items-center justify-content-between">
-									<span class="text-muted">Server Status</span>
-									<span class="badge bg-success-light text-success">Online</span>
-								</div>
+							<div class="card-body p-0" id="recent-registrations-list" style="max-height:320px;overflow-y:auto;">
+								<div class="text-center py-4"><span class="spinner-border spinner-border-sm text-muted me-2"></span>Loading...</div>
 							</div>
 						</div>
 					</div>
 				</div>
 
+
+				<!-- Top Performing Courses -->
+				<div class="row mt-4">
+					<div class="col-12">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 d-flex align-items-center justify-content-between">
+								<h5 class="mb-0">Top Performing Courses</h5>
+								<a href="/admin/courses-list" class="btn btn-sm btn-primary">View All</a>
+							</div>
+							<div class="card-body p-0">
+								<div class="table-responsive">
+									<table class="table table-hover mb-0">
+										<thead class="table-light">
+											<tr>
+												<th class="ps-4" style="width:40px">#</th>
+												<th>Course Name</th>
+												<th>Category</th>
+												<th>Price</th>
+												<th>Enrollments</th>
+												<th>Status</th>
+											</tr>
+										</thead>
+										<tbody id="top-courses-tbody">
+											<tr><td colspan="6" class="text-center py-4"><span class="spinner-border spinner-border-sm text-muted me-2"></span>Loading...</td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<!-- /Page Content -->
@@ -544,128 +482,231 @@
 
 	<!-- Admin Dashboard JS -->
 	<script>
-		// Initialize charts and load data
 		document.addEventListener('DOMContentLoaded', function() {
-			// Check if user is admin
-			const user = JSON.parse(localStorage.getItem('user') || '{}');
-			if (!user || user.role !== 'admin') {
-				window.location.href = '/src/pages/auth/login.html';
-				return;
+			var user = JSON.parse(localStorage.getItem('user') || '{}');
+			if (!user || user.role !== 'admin') { window.location.href = '/auth/login'; return; }
+
+			var lastLoginEl = document.getElementById('last-login');
+			if (lastLoginEl) {
+				var now = new Date();
+				lastLoginEl.textContent = now.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }) + ', ' + now.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit' });
 			}
 
-			// Set admin name
 			if (user.firstName && user.lastName) {
-				const fullName = user.firstName + ' ' + user.lastName;
-				document.getElementById('admin-name').textContent = fullName;
-				document.getElementById('welcome-admin-name').textContent = fullName;
+				var fullName = user.firstName + ' ' + user.lastName;
+				var nameEl = document.getElementById('admin-name');
+				var welcomeEl = document.getElementById('welcome-admin-name');
+				if (nameEl) nameEl.textContent = fullName;
+				if (welcomeEl) welcomeEl.textContent = fullName;
 			}
 
-			// Logout functionality
-			document.getElementById('logout-btn').addEventListener('click', function(e) {
-				e.preventDefault();
-				localStorage.removeItem('accessToken');
-				localStorage.removeItem('refreshToken');
-				localStorage.removeItem('user');
-				window.location.href = '/src/pages/auth/login.html';
-			});
+			var logoutBtn = document.getElementById('logoutBtn');
+			if (logoutBtn) {
+				logoutBtn.addEventListener('click', function(e) {
+					e.preventDefault();
+					localStorage.removeItem('accessToken');
+					localStorage.removeItem('refreshToken');
+					localStorage.removeItem('user');
+					window.location.href = '/auth/login';
+				});
+			}
 
-			// Initialize Enrollment Chart
-			var enrollmentOptions = {
-				series: [{
-					name: 'Enrollments',
-					data: [31, 40, 28, 51, 42, 82, 56]
-				}],
-				chart: {
-					height: 300,
-					type: 'area',
-					toolbar: {
-						show: false
+			// Load notification unread count into bell badge
+			var _token = localStorage.getItem('accessToken');
+			if (_token) {
+				fetch(API_CONFIG.BASE_URL + '/notifications?limit=1', {
+					headers: { 'Authorization': 'Bearer ' + _token }
+				}).then(function(r){ return r.json(); }).then(function(data) {
+					var badge = document.getElementById('notif-badge');
+					if (badge && data.unreadCount > 0) {
+						badge.textContent = data.unreadCount > 99 ? '99+' : data.unreadCount;
+						badge.style.display = 'flex';
+					} else if (badge) {
+						badge.style.display = 'none';
 					}
-				},
-				dataLabels: {
-					enabled: false
-				},
-				stroke: {
-					curve: 'smooth',
-					width: 2
-				},
-				colors: ['#FF6F28'],
-				fill: {
-					type: 'gradient',
-					gradient: {
-						shadeIntensity: 1,
-						opacityFrom: 0.4,
-						opacityTo: 0.1,
-					}
-				},
-				xaxis: {
-					categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-				},
-				tooltip: {
-					theme: 'dark'
-				}
-			};
-			var enrollmentChart = new ApexCharts(document.querySelector("#enrollment-chart"), enrollmentOptions);
+				}).catch(function(){});
+			}
+
+			var enrollmentChart = new ApexCharts(document.querySelector('#enrollment-chart'), {
+				series: [{ name: 'Enrollments', data: [0,0,0,0,0,0,0] }],
+				chart: { height: 300, type: 'area', toolbar: { show: false } },
+				dataLabels: { enabled: false },
+				stroke: { curve: 'smooth', width: 2 },
+				colors: ['#522811'],
+				fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.1 } },
+				xaxis: { categories: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'] },
+				yaxis: { min: 0, forceNiceScale: true, labels: { formatter: function(v){ return Math.round(v); } } },
+				tooltip: { theme: 'dark' }
+			});
 			enrollmentChart.render();
 
-			// Initialize User Distribution Chart
-			var userDistOptions = {
-				series: [980, 234, 20],
-				chart: {
-					type: 'donut',
-					height: 200
-				},
+			var userDistChart = new ApexCharts(document.querySelector('#user-distribution-chart'), {
+				series: [1, 1, 1],
+				chart: { type: 'donut', height: 200 },
 				labels: ['Students', 'Instructors', 'Admins'],
-				colors: ['#FF6F28', '#28a745', '#ffc107'],
-				legend: {
-					show: false
-				},
-				plotOptions: {
-					pie: {
-						donut: {
-							size: '70%'
-						}
-					}
-				}
-			};
-			var userDistChart = new ApexCharts(document.querySelector("#user-distribution-chart"), userDistOptions);
+				colors: ['#522811', '#2e7d32', '#d8ac27'],
+				legend: { show: false },
+				plotOptions: { pie: { donut: { size: '70%' } } }
+			});
 			userDistChart.render();
 
-			// Load dashboard data from API
-			loadDashboardData();
+			loadDashboardData(enrollmentChart, userDistChart);
 		});
 
-		async function loadDashboardData() {
-			try {
-				const token = localStorage.getItem('accessToken');
-				if (!token) {
-					window.location.href = '/src/pages/auth/login.html';
-					return;
-				}
-
-				// TODO: Replace with actual API calls
-				// const response = await fetch(API_CONFIG.BASE_URL + '/admin/statistics', {
-				//     headers: API_CONFIG.getHeaders(true)
-				// });
-				// const data = await response.json();
-				// updateDashboard(data);
-
-			} catch (error) {
-				console.error('Error loading dashboard data:', error);
-			}
+		function clearSpinners() {
+			['total-users','total-courses','total-enrollments','total-revenue','completion-rate','draft-courses'].forEach(function(id) {
+				var el = document.getElementById(id); if (el) el.textContent = '---';
+			});
+			['user-growth-text','course-growth-text','enrollment-growth-text','revenue-growth-text'].forEach(function(id) {
+				var el = document.getElementById(id);
+				if (el) el.innerHTML = '<small class="text-danger">Backend offline</small>';
+			});
 		}
 
-		function updateDashboard(data) {
-			// Update statistics
-			document.getElementById('total-users').textContent = data.totalUsers || '0';
-			document.getElementById('total-courses').textContent = data.totalCourses || '0';
-			document.getElementById('total-enrollments').textContent = data.totalEnrollments || '0';
-			document.getElementById('total-revenue').textContent = '$' + (data.totalRevenue || '0');
+		async function loadDashboardData(enrollmentChart, userDistChart) {
+			var token = localStorage.getItem('accessToken');
+			if (!token) { window.location.href = '/auth/login'; return; }
 
-			// Update user distribution
-			document.getElementById('students-count').textContent = data.studentsCount || '0';
-			document.getElementById('instructors-count').textContent = data.instructorsCount || '0';
-			document.getElementById('admins-count').textContent = data.adminsCount || '0';
+			try {
+				var statsRes = await fetch(API_CONFIG.BASE_URL + '/admin/statistics', { headers: API_CONFIG.getHeaders(true) });
+				if (statsRes.status === 401 || statsRes.status === 403) { window.location.href = '/auth/login'; return; }
+				var statsData = await statsRes.json();
+				if (statsData.success) updateDashboardStats(statsData.data, userDistChart);
+				else clearSpinners();
+			} catch(e) { console.error('Stats failed:', e); clearSpinners(); }
+
+			try {
+				var trendRes = await fetch(API_CONFIG.BASE_URL + '/admin/enrollment-trends', { headers: API_CONFIG.getHeaders(true) });
+				var trendData = await trendRes.json();
+				if (trendData.success) {
+					enrollmentChart.updateOptions({ xaxis: { categories: trendData.data.labels } });
+					enrollmentChart.updateSeries([{ name: 'Enrollments', data: trendData.data.counts }]);
+				}
+			} catch(e) { console.error('Trends failed:', e); }
+
+			try {
+				var enrollRes = await fetch(API_CONFIG.BASE_URL + '/admin/recent-enrollments?limit=5', { headers: API_CONFIG.getHeaders(true) });
+				var enrollData = await enrollRes.json();
+				updateRecentEnrollments(enrollData.success ? enrollData.data : []);
+			} catch(e) {
+				var tbody = document.getElementById('recent-enrollments-tbody');
+				if (tbody) tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-danger">Could not connect to server</td></tr>';
+			}
+
+			try {
+				var topRes = await fetch(API_CONFIG.BASE_URL + '/admin/top-courses', { headers: API_CONFIG.getHeaders(true) });
+				var topData = await topRes.json();
+				if (topData.success) renderTopCourses(topData.data);
+				else { var tb = document.getElementById('top-courses-tbody'); if (tb) tb.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted">No data available</td></tr>'; }
+			} catch(e) { var tb = document.getElementById('top-courses-tbody'); if (tb) tb.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-danger">Could not connect</td></tr>'; }
+
+			try {
+				var regRes = await fetch(API_CONFIG.BASE_URL + '/admin/recent-registrations', { headers: API_CONFIG.getHeaders(true) });
+				var regData = await regRes.json();
+				if (regData.success) renderRecentRegistrations(regData.data);
+				else { var rc = document.getElementById('recent-registrations-list'); if (rc) rc.innerHTML = '<p class="text-center text-muted py-3">No recent registrations</p>'; }
+			} catch(e) { var rc = document.getElementById('recent-registrations-list'); if (rc) rc.innerHTML = '<p class="text-center text-danger py-3">Could not connect</p>'; }
+		}
+
+		function updateDashboardStats(data, userDistChart) {
+			var o = data.overview || {};
+			var d = data.userDistribution || {};
+			function set(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; }
+			set('total-users',       (o.totalUsers || 0).toLocaleString());
+			set('total-courses',     (o.totalCourses || 0).toLocaleString());
+			set('total-enrollments', (o.totalEnrollments || 0).toLocaleString());
+			set('total-revenue',     '$' + parseFloat(o.totalRevenue || 0).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}));
+			set('completion-rate',   (o.completionRate || 0) + '%');
+			set('draft-courses',     o.draftCourses || 0);
+			function growthHtml(pct) {
+				var num = parseFloat(pct) || 0;
+				var cls = num >= 0 ? 'text-success' : 'text-danger';
+				var arrow = num >= 0 ? '&#8593;' : '&#8595;';
+				return '<small class="' + cls + '">' + arrow + ' ' + Math.abs(num) + '% this month</small>';
+			}
+			function setGrowth(id, pct) { var el = document.getElementById(id); if (el) el.innerHTML = growthHtml(pct); }
+			setGrowth('user-growth-text',       o.userGrowth);
+			setGrowth('course-growth-text',     o.courseGrowth);
+			setGrowth('enrollment-growth-text', o.enrollmentGrowth);
+			var revEl = document.getElementById('revenue-growth-text');
+			if (revEl) revEl.innerHTML = '<small class="text-muted">All time</small>';
+			set('students-count',    d.students    || 0);
+			set('instructors-count', d.instructors || 0);
+			set('admins-count',      d.admins      || 0);
+			if (userDistChart) userDistChart.updateSeries([parseInt(d.students||0), parseInt(d.instructors||0), parseInt(d.admins||0)]);
+		}
+
+		function updateRecentEnrollments(enrollments) {
+			var tbody = document.getElementById('recent-enrollments-tbody');
+			if (!tbody) return;
+			if (!enrollments || !enrollments.length) {
+				tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-muted">No recent enrollments found</td></tr>';
+				return;
+			}
+			var sc = function(s) { return s==='completed'?'success':s==='in_progress'?'warning':s==='dropped'?'danger':'primary'; };
+			var ago = function(dt) {
+				var d = Math.floor((Date.now()-new Date(dt))/1000);
+				return d<3600?Math.floor(d/60)+' min ago':d<86400?Math.floor(d/3600)+' hr ago':Math.floor(d/86400)+' days ago';
+			};
+			tbody.innerHTML = enrollments.map(function(e) {
+				var name = e.student?((e.student.firstName||'')+' '+(e.student.lastName||'')).trim():'Unknown';
+				var ini  = e.student?((e.student.firstName||'')[0]||'')+((e.student.lastName||'')[0]||''):'?';
+				var av = (e.student&&e.student.profileImage)
+					? '<img src="'+e.student.profileImage+'" class="rounded-circle me-2" style="width:32px;height:32px;object-fit:cover" alt="">'
+					: '<span class="rounded-circle me-2 d-inline-flex align-items-center justify-content-center fw-bold" style="width:32px;height:32px;min-width:32px;background:#522811;color:#fff;font-size:11px">'+ini.toUpperCase()+'</span>';
+				var c = sc(e.status);
+				var lbl = (e.status||'enrolled').replace('_',' ').replace(/\b\w/g,function(x){return x.toUpperCase();});
+				return '<tr>'+'<td><div class="d-flex align-items-center">'+av+'<span>'+name+'</span></div></td>'
+					+'<td>'+(e.course?e.course.title:'N/A')+'</td>'
+					+'<td class="text-muted small">'+ago(e.createdAt)+'</td>'
+					+'<td><span class="badge bg-'+c+'-light text-'+c+'">'+lbl+'</span></td>'
+					+'<td class="text-muted small">'+(e.progress||0)+'%</td></tr>';
+			}).join('');
+		}
+
+		function renderTopCourses(courses) {
+			var tbody = document.getElementById('top-courses-tbody');
+			if (!tbody) return;
+			if (!courses||!courses.length) {
+				tbody.innerHTML='<tr><td colspan="6" class="text-center py-4 text-muted">No courses found</td></tr>';
+				return;
+			}
+			tbody.innerHTML = courses.map(function(c,i) {
+				var sc2 = c.status==='published'?'success':c.status==='draft'?'warning':'secondary';
+				var sl  = (c.status||'draft').charAt(0).toUpperCase()+(c.status||'draft').slice(1);
+				var pr  = c.price>0?'$'+parseFloat(c.price).toFixed(2):'<span class="badge bg-success-light text-success">Free</span>';
+				var bar = Math.min(100,(c.enrollmentCount/(courses[0].enrollmentCount||1))*100).toFixed(0);
+				return '<tr>'
+					+'<td class="ps-4"><strong class="text-muted">'+(i+1)+'</strong></td>'
+					+'<td><div class="fw-semibold" style="max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="'+c.title+'">'+c.title+'</div>'
+					+'<div class="progress mt-1" style="height:4px;max-width:180px;"><div class="progress-bar" style="width:'+bar+'%;background:#522811;"></div></div></td>'
+					+'<td><span class="badge bg-light text-dark">'+(c.category||'General')+'</span></td>'
+					+'<td>'+pr+'</td>'
+					+'<td><strong>'+c.enrollmentCount+'</strong> <span class="text-muted small">students</span></td>'
+					+'<td><span class="badge bg-'+sc2+'-light text-'+sc2+'">'+sl+'</span></td></tr>';
+			}).join('');
+		}
+
+		function renderRecentRegistrations(users) {
+			var el = document.getElementById('recent-registrations-list');
+			if (!el) return;
+			if (!users||!users.length) { el.innerHTML='<p class="text-center text-muted py-3">No recent registrations</p>'; return; }
+			var rc = {student:'primary',instructor:'success',admin:'danger'};
+			var ago = function(dt) {
+				var d = Math.floor((Date.now()-new Date(dt))/1000);
+				return d<3600?Math.floor(d/60)+'m ago':d<86400?Math.floor(d/3600)+'h ago':Math.floor(d/86400)+'d ago';
+			};
+			el.innerHTML = users.map(function(u) {
+				var ini = ((u.firstName||'')[0]||'')+((u.lastName||'')[0]||'');
+				var role = u.role||'student';
+				var rclr = rc[role]||'secondary';
+				return '<div class="d-flex align-items-center px-3 py-2" style="border-bottom:1px solid #f5f5f5;">'
+					+'<div class="me-3 d-flex align-items-center justify-content-center fw-bold text-white rounded-circle flex-shrink-0" style="width:38px;height:38px;background:#522811;font-size:13px;">'+ini.toUpperCase()+'</div>'
+					+'<div class="flex-fill overflow-hidden"><div class="fw-semibold text-truncate">'+((u.firstName||'')+' '+(u.lastName||'')).trim()+'</div>'
+					+'<div class="text-muted small text-truncate">'+( u.email||'')+'</div></div>'
+					+'<div class="ms-2 text-end flex-shrink-0"><span class="badge bg-'+rclr+'-light text-'+rclr+' d-block mb-1">'+role.charAt(0).toUpperCase()+role.slice(1)+'</span>'
+					+'<small class="text-muted">'+ago(u.createdAt)+'</small></div></div>';
+			}).join('');
 		}
 	</script>
 

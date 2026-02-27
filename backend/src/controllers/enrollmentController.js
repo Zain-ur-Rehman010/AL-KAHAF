@@ -1,5 +1,6 @@
 const { Enrollment, Course, User, Payment, Certificate } = require('../models');
 const crypto = require('crypto');
+const { notifyAdmins } = require('../services/notificationService');
 
 exports.enrollCourse = async (req, res) => {
   try {
@@ -11,7 +12,7 @@ exports.enrollCourse = async (req, res) => {
     }
 
     const existingEnrollment = await Enrollment.findOne({
-      where: { studentId: req.user.id, courseId },
+      where: { studentId: req.user.userId, courseId },
     });
 
     if (existingEnrollment) {
@@ -19,13 +20,20 @@ exports.enrollCourse = async (req, res) => {
     }
 
     const enrollment = await Enrollment.create({
-      studentId: req.user.id,
+      studentId: req.user.userId,
       courseId,
       status: 'enrolled',
       paymentStatus: course.price === 0 ? 'completed' : 'pending',
     });
 
     await course.increment('enrollmentCount');
+
+    notifyAdmins({
+      type: 'enrollment_confirmation',
+      title: 'New Enrollment',
+      message: `A student enrolled in "${course.title}".`,
+      actionUrl: '/admin/enrollments-list',
+    });
 
     res.status(201).json({
       message: 'Enrolled successfully',
@@ -41,7 +49,7 @@ exports.getMyEnrollments = async (req, res) => {
     const { page = 1, limit = 10, status } = req.query;
     const offset = (page - 1) * limit;
 
-    const where = { studentId: req.user.id };
+    const where = { studentId: req.user.userId };
     if (status) where.status = status;
 
     const { count, rows } = await Enrollment.findAndCountAll({
@@ -83,7 +91,7 @@ exports.getEnrollmentById = async (req, res) => {
       return res.status(404).json({ message: 'Enrollment not found' });
     }
 
-    if (enrollment.studentId !== req.user.id && req.user.role !== 'admin') {
+    if (enrollment.studentId !== req.user.userId && req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
@@ -102,7 +110,7 @@ exports.updateProgress = async (req, res) => {
       return res.status(404).json({ message: 'Enrollment not found' });
     }
 
-    if (enrollment.studentId !== req.user.id && req.user.role !== 'admin') {
+    if (enrollment.studentId !== req.user.userId && req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
@@ -136,11 +144,18 @@ exports.dropCourse = async (req, res) => {
       return res.status(404).json({ message: 'Enrollment not found' });
     }
 
-    if (enrollment.studentId !== req.user.id && req.user.role !== 'admin') {
+    if (enrollment.studentId !== req.user.userId && req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
     await enrollment.update({ status: 'dropped' });
+
+    notifyAdmins({
+      type: 'general',
+      title: 'Student Dropped a Course',
+      message: `A student dropped enrollment (ID: ${enrollment.id}).`,
+      actionUrl: '/admin/enrollments-list',
+    });
 
     res.json({ message: 'Dropped course successfully' });
   } catch (error) {
@@ -156,7 +171,7 @@ exports.getCourseEnrollments = async (req, res) => {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-    if (course.instructorId !== req.user.id && req.user.role !== 'admin') {
+    if (course.instructorId !== req.user.userId && req.user.role !== 'admin') {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
@@ -204,6 +219,13 @@ exports.issueCertificate = async (req, res) => {
     });
 
     await enrollment.update({ certificateIssued: true });
+
+    notifyAdmins({
+      type: 'certificate_issued',
+      title: 'Certificate Issued',
+      message: `Certificate issued for course "${enrollment.course.title}" (student ID: ${enrollment.studentId}).`,
+      actionUrl: '/admin/enrollments-list',
+    });
 
     res.status(201).json({
       message: 'Certificate issued',

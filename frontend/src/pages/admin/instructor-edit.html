@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,7 +40,7 @@
             color: #1D2026;
             margin-bottom: 20px;
             padding-bottom: 12px;
-            border-bottom: 2px solid #FF6F28;
+            border-bottom: 2px solid #d8ac27;
         }
 
         .image-preview-wrapper {
@@ -63,8 +63,8 @@
         }
 
         .upload-btn {
-            border: 2px solid #FF6F28;
-            color: #FF6F28;
+            border: 2px solid #522811;
+            color: #522811;
             background-color: white;
             padding: 8px 20px;
             border-radius: 8px;
@@ -90,12 +90,12 @@
         }
 
         .form-control:focus, .form-select:focus {
-            border-color: #FF6F28;
+            border-color: #d8ac27;
             box-shadow: 0 0 0 0.2rem rgba(255, 111, 40, 0.15);
         }
 
         .btn-save {
-            background: linear-gradient(135deg, #FF6F28 0%, #FF8A4D 100%);
+            background: linear-gradient(135deg, #522811 0%, #7a3d1a 100%);
             color: white;
             border: none;
             padding: 12px 32px;
@@ -168,25 +168,10 @@
                                 </span>
                             </a>
                             <a href="/" class="navbar-brand logo">
-                                <img src="../../../assets/img/logo.svg" class="img-fluid" alt="Logo">
                             </a>
                         </div>
-                        <div class="main-menu-wrapper">
-                            <div class="menu-header">
-                                <a href="/" class="menu-logo">
-                                    <img src="../../../assets/img/logo.svg" class="img-fluid" alt="Logo">
-                                </a>
-                                <a id="menu_close" class="menu-close" href="javascript:void(0);">
-                                    <i class="fas fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
                         <ul class="nav header-navbar-rht">
-                            <li class="nav-item">
-                                <a class="nav-link" href="/admin/admin-dashboard">
-                                    <i class="iconsax" data-icon="home-2"></i> Dashboard
-                                </a>
-                            </li>
+
                             <li class="nav-item dropdown has-arrow main-drop">
                                 <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                                     <span class="user-img">
@@ -487,7 +472,7 @@
 
             if (!instructorId) {
                 alert('No instructor ID provided');
-                window.location.href = 'instructors-list.html';
+                window.location.href = '/admin/instructors-list';
                 return;
             }
 
@@ -501,7 +486,7 @@
             const user = JSON.parse(localStorage.getItem('user') || '{}');
 
             if (!token || user.role !== 'admin') {
-                window.location.href = '../auth/login.html';
+                window.location.href = '/auth/login';
                 return;
             }
 
@@ -531,11 +516,11 @@
                         populateForm(result.data);
                     } else {
                         alert('Error: ' + result.message);
-                        window.location.href = 'instructors-list.html';
+                        window.location.href = '/admin/instructors-list';
                     }
                 } else if (response.status === 404) {
                     alert('Instructor not found');
-                    window.location.href = 'instructors-list.html';
+                    window.location.href = '/admin/instructors-list';
                 } else {
                     alert('Failed to load instructor data');
                 }
@@ -656,7 +641,7 @@
 
                 if (result.success) {
                     alert('Instructor updated successfully!');
-                    window.location.href = 'instructors-list.html';
+                    window.location.href = '/admin/instructors-list';
                 } else {
                     alert('Error: ' + result.message);
                 }
@@ -684,10 +669,17 @@
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('user');
-            window.location.href = '../auth/login.html';
+            window.location.href = '/auth/login';
         });
     </script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
 
+
+	<script src="/assets/js/api-config.js"></script>
+	<script src="/assets/js/admin-header.js"></script>
 </body>
 
 </html>

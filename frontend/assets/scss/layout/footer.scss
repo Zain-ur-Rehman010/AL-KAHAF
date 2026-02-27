@@ -9,6 +9,9 @@
         @include utils.respond-below(lg) {
             padding: 40px 0;
         }
+        p {
+            color: #fff !important;
+        }
     }
     .footer-about {
         .footer-logo {
