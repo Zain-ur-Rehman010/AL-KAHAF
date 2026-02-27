@@ -123,8 +123,17 @@ exports.getAllUsers = async (req, res) => {
     const { count, rows } = await User.findAndCountAll({
       where,
       attributes: { exclude: ['password'] },
+      include: [
+        {
+          model: Enrollment,
+          as: 'enrollments',
+          attributes: ['id', 'progress', 'status'],
+          required: false,
+        },
+      ],
       limit: parseInt(limit),
       offset,
+      distinct: true,
     });
 
     res.json({

@@ -357,6 +357,8 @@
 
 	<!-- Add Instructor JS -->
 	<script>
+		let newProfileImageBase64 = null;
+
 		document.addEventListener('DOMContentLoaded', function() {
 			// Check if user is admin
 			const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -421,11 +423,9 @@
 					}
 				};
 
-				// TODO: Handle image upload
-				const imageFile = formData.get('profileImage');
-				if (imageFile && imageFile.size > 0) {
-					// Upload image and get URL
-					// data.profileImage = uploadedImageUrl;
+				// Include profile image if one was selected
+				if (newProfileImageBase64) {
+					data.profileImage = newProfileImageBase64;
 				}
 
 				const token = localStorage.getItem('accessToken');

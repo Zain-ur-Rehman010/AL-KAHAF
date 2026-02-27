@@ -441,26 +441,11 @@
 
     <!-- Custom JS -->
     <script src="../../../assets/js/script.js"></script>
+    <script src="/assets/js/api-config.js"></script>
 
     <script>
-        // API Configuration
-        const API_CONFIG = {
-            BASE_URL: 'https://alkahafonlineacademy.com/api/v1',
-            getHeaders: (includeAuth = false) => {
-                const headers = {
-                    'Content-Type': 'application/json'
-                };
-                if (includeAuth) {
-                    const token = localStorage.getItem('accessToken');
-                    if (token) {
-                        headers['Authorization'] = `Bearer ${token}`;
-                    }
-                }
-                return headers;
-            }
-        };
-
         let instructorId = null;
+        let newProfileImageBase64 = null;
 
         // Check authentication and load instructor data on page load
         document.addEventListener('DOMContentLoaded', function() {
@@ -578,7 +563,7 @@
                 : 'Never';
         }
 
-        // Preview uploaded image
+        // Preview uploaded image and store base64
         function previewImage(event) {
             const file = event.target.files[0];
             if (file) {
@@ -590,6 +575,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     document.getElementById('imagePreview').src = e.target.result;
+                    newProfileImageBase64 = e.target.result;
                 };
                 reader.readAsDataURL(file);
             }
@@ -627,8 +613,10 @@
                 }
             };
 
-            // TODO: Handle profile image upload separately
-            // For now, we're not updating the image
+            // Include new profile image if one was selected
+            if (newProfileImageBase64) {
+                instructorData.profileImage = newProfileImageBase64;
+            }
 
             try {
                 const response = await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + instructorId, {
@@ -678,7 +666,6 @@
 	</button>
 
 
-	<script src="/assets/js/api-config.js"></script>
 	<script src="/assets/js/admin-header.js"></script>
 </body>
 
