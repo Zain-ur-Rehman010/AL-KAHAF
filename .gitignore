@@ -51,7 +51,7 @@ logs/
 # css/**/*.css
 
 # Images & Large Assets
-frontend/assets/img/
+# frontend/assets/img/
 
 # Local Development
 .cache/
