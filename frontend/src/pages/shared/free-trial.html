@@ -1423,7 +1423,7 @@
 <!-- Dynamic Courses Loader -->
 <script>
 (function() {
-	var API_BASE = 'http://localhost:5000/api/v1';
+	var API_BASE = 'https://al-kahaf-production.up.railway.app/api/v1';
 	var FALLBACK_IMG = '/assets/img/course/course-01.jpg';
 
 	function getCatClass(cat) {
@@ -1521,7 +1521,7 @@
 				btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Submitting...';
 				btn.disabled = true;
 
-				fetch('http://localhost:5000/api/v1/free-trial', {
+				fetch('https://al-kahaf-production.up.railway.app/api/v1/free-trial', {
 					method: 'POST',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify({

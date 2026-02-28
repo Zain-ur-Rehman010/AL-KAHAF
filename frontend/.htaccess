@@ -12,7 +12,7 @@ DirectoryIndex index.html
 # ========================================
 # Route all /api/ requests to the backend Node.js app on port 5000
 RewriteCond %{REQUEST_URI} ^/api/
-RewriteRule ^(.*)$ http://localhost:5000/$1 [P,L]
+RewriteRule ^(.*)$ https://al-kahaf-production.up.railway.app/$1 [P,L]
 
 # ========================================
 # FRONTEND STATIC FILE SERVING

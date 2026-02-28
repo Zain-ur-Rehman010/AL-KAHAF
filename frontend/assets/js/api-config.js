@@ -3,7 +3,7 @@
 
 const API_CONFIG = {
     // Local Development API Base URL
-    BASE_URL: 'http://localhost:5000/api/v1',
+    BASE_URL: 'https://al-kahaf-production.up.railway.app/api/v1',
 
     // Production API Base URL (uncomment for production)
     // BASE_URL: 'https://alkahafonlineacademy.com/api/v1',
