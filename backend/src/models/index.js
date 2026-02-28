@@ -11,6 +11,7 @@ const Certificate = require('./Certificate');
 const Message = require('./Message');
 const Notification = require('./Notification');
 const Blog = require('./Blog');
+const FreeTrialRequest = require('./FreeTrialRequest');
 
 // User associations
 User.hasMany(Course, { foreignKey: 'instructorId', as: 'instructedCourses' });
@@ -91,4 +92,5 @@ module.exports = {
   Message,
   Notification,
   Blog,
+  FreeTrialRequest,
 };

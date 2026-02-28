@@ -412,6 +412,50 @@
 				</div>
 
 
+				<!-- Free Trial Requests -->
+				<div class="row mt-4">
+					<div class="col-12">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 d-flex align-items-center justify-content-between">
+								<div class="d-flex align-items-center gap-2">
+									<h5 class="mb-0">Free Trial Requests</h5>
+									<span id="ft-pending-badge" class="badge bg-warning text-dark" style="display:none"></span>
+								</div>
+								<div class="d-flex gap-2">
+									<select id="ft-status-filter" class="form-select form-select-sm" style="width:130px">
+										<option value="">All Status</option>
+										<option value="pending">Pending</option>
+										<option value="contacted">Contacted</option>
+										<option value="enrolled">Enrolled</option>
+										<option value="cancelled">Cancelled</option>
+									</select>
+								</div>
+							</div>
+							<div class="card-body p-0">
+								<div class="table-responsive">
+									<table class="table table-hover mb-0">
+										<thead class="table-light">
+											<tr>
+												<th class="ps-4">Name</th>
+												<th>Email / Phone</th>
+												<th>Course Interest</th>
+												<th>Country</th>
+												<th>Date</th>
+												<th>Status</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody id="free-trial-tbody">
+											<tr><td colspan="7" class="text-center py-4"><span class="spinner-border spinner-border-sm text-muted me-2"></span>Loading...</td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Free Trial Requests -->
+
 				<!-- Top Performing Courses -->
 				<div class="row mt-4">
 					<div class="col-12">
@@ -690,7 +734,83 @@
 			}).join('');
 		}
 
-		function renderRecentRegistrations(users) {
+		// ---- FREE TRIAL REQUESTS ----
+	function loadFreeTrialRequests(statusFilter) {
+		var tbody = document.getElementById('free-trial-tbody');
+		if (!tbody) return;
+		var token = localStorage.getItem('accessToken');
+		var url = 'http://localhost:5000/api/v1/free-trial?limit=10&page=1';
+		if (statusFilter) url += '&status=' + statusFilter;
+		fetch(url, { headers: { 'Authorization': 'Bearer ' + token } })
+			.then(function(r) { return r.json(); })
+			.then(function(d) { renderFreeTrialRequests(d.data || []); })
+			.catch(function() {
+				tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">Unable to load requests</td></tr>';
+			});
+	}
+
+	function renderFreeTrialRequests(requests) {
+		var tbody = document.getElementById('free-trial-tbody');
+		var badge = document.getElementById('ft-pending-badge');
+		if (!tbody) return;
+		if (!requests || !requests.length) {
+			tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">No free trial requests yet</td></tr>';
+			if (badge) badge.style.display = 'none';
+			return;
+		}
+		var pending = requests.filter(function(r) { return r.status === 'pending'; }).length;
+		if (badge) {
+			badge.textContent = pending + ' Pending';
+			badge.style.display = pending > 0 ? 'inline-block' : 'none';
+		}
+		var statusColors = { pending: 'warning', contacted: 'info', enrolled: 'success', cancelled: 'secondary' };
+		var ago = function(dt) {
+			var d = Math.floor((Date.now() - new Date(dt)) / 1000);
+			return d < 3600 ? Math.floor(d / 60) + 'm ago' : d < 86400 ? Math.floor(d / 3600) + 'h ago' : Math.floor(d / 86400) + 'd ago';
+		};
+		tbody.innerHTML = requests.map(function(r) {
+			var ini = (r.fullName || 'FT').split(' ').map(function(w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
+			var sc = statusColors[r.status] || 'secondary';
+			var sl = (r.status || 'pending').charAt(0).toUpperCase() + (r.status || 'pending').slice(1);
+			return '<tr>'
+				+ '<td class="ps-4"><div class="d-flex align-items-center gap-2">'
+				+ '<span class="rounded-circle d-inline-flex align-items-center justify-content-center fw-bold text-white flex-shrink-0" style="width:32px;height:32px;min-width:32px;background:#522811;font-size:11px">' + ini + '</span>'
+				+ '<span class="fw-semibold">' + (r.fullName || '') + '</span></div></td>'
+				+ '<td><div class="small">' + (r.email || '') + '</div><div class="text-muted small">' + (r.phone || '') + '</div></td>'
+				+ '<td><span class="badge bg-light text-dark">' + (r.courseInterest || '') + '</span></td>'
+				+ '<td class="text-muted small">' + (r.country || '—') + '</td>'
+				+ '<td class="text-muted small">' + ago(r.createdAt) + '</td>'
+				+ '<td><span class="badge bg-' + sc + '-light text-' + sc + '">' + sl + '</span></td>'
+				+ '<td><select class="form-select form-select-sm" style="width:120px" onchange="updateFtStatus(\'' + r.id + '\', this.value)">'
+				+ '<option value="pending"' + (r.status==='pending'?' selected':'') + '>Pending</option>'
+				+ '<option value="contacted"' + (r.status==='contacted'?' selected':'') + '>Contacted</option>'
+				+ '<option value="enrolled"' + (r.status==='enrolled'?' selected':'') + '>Enrolled</option>'
+				+ '<option value="cancelled"' + (r.status==='cancelled'?' selected':'') + '>Cancelled</option>'
+				+ '</select></td>'
+				+ '</tr>';
+		}).join('');
+	}
+
+	function updateFtStatus(id, status) {
+		var token = localStorage.getItem('accessToken');
+		fetch('http://localhost:5000/api/v1/free-trial/' + id + '/status', {
+			method: 'PATCH',
+			headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+			body: JSON.stringify({ status: status }),
+		})
+		.then(function(r) { return r.json(); })
+		.then(function() { loadFreeTrialRequests(document.getElementById('ft-status-filter').value); })
+		.catch(function() {});
+	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+		loadFreeTrialRequests('');
+		var filter = document.getElementById('ft-status-filter');
+		if (filter) filter.addEventListener('change', function() { loadFreeTrialRequests(this.value); });
+	});
+	// ---- END FREE TRIAL REQUESTS ----
+
+	function renderRecentRegistrations(users) {
 			var el = document.getElementById('recent-registrations-list');
 			if (!el) return;
 			if (!users||!users.length) { el.innerHTML='<p class="text-center text-muted py-3">No recent registrations</p>'; return; }

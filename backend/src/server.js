@@ -15,6 +15,7 @@ const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const blogRoutes = require('./routes/blogRoutes');
+const freeTrialRoutes = require('./routes/freeTrialRoutes');
 
 const app = express();
 
@@ -82,6 +83,7 @@ apiV1.use('/users', userRoutes);
 apiV1.use('/admin', adminRoutes);
 apiV1.use('/notifications', notificationRoutes);
 apiV1.use('/blogs', blogRoutes);
+apiV1.use('/free-trial', freeTrialRoutes);
 
 // Mount routes at both /v1 and /api/v1 for flexibility
 app.use('/v1', apiV1);
@@ -103,7 +105,7 @@ async function startServer() {
     await sequelize.authenticate();
     console.log('Database connected successfully');
 
-    await sequelize.sync({ alter: false });
+    await sequelize.sync({ alter: true });
     console.log('Database synchronized');
 
     app.listen(PORT, () => {
