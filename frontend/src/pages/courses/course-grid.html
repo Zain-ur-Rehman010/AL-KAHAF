@@ -41,7 +41,26 @@
 
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="/assets/css/style.css">
-	
+
+	<style>
+		/* Colorful category badges on course cards */
+		.course-cat-badge {
+			display: inline-flex;
+			align-items: center;
+			padding: 3px 12px;
+			border-radius: 50px;
+			font-size: 12px;
+			font-weight: 500;
+			white-space: nowrap;
+		}
+		.course-cat-IslamicStudies { background: #e8f5e9; color: #2e7d32; }
+		.course-cat-Arabic         { background: #fff3e0; color: #e65100; }
+		.course-cat-Quran          { background: #e3f2fd; color: #1565c0; }
+		.course-cat-Tajweed        { background: #f3e5f5; color: #6a1b9a; }
+		.course-cat-default        { background: #f5f5f5; color: #555; }
+
+	</style>
+
 	</head>
 	<body>
 
@@ -273,53 +292,28 @@
 											<div class="accordion-body">
 												<div>
 													<label class="custom_check">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span> Backend (3)
+														<input type="checkbox" name="cat_filter" data-category="IslamicStudies">
+														<span class="checkmark"></span> Islamic Studies
 													</label>
 												</div>
 												<div>
 													<label class="custom_check">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span>  CSS (2)
+														<input type="checkbox" name="cat_filter" data-category="Arabic">
+														<span class="checkmark"></span> Arabic
 													</label>
 												</div>
 												<div>
 													<label class="custom_check">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>  Frontend (2)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span> General (2)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist" checked>
-														<span class="checkmark"></span> IT & Software (2)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span> Photography (2)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>  Programming Language (3)
+														<input type="checkbox" name="cat_filter" data-category="Quran">
+														<span class="checkmark"></span> Quran
 													</label>
 												</div>
 												<div>
 													<label class="custom_check mb-0">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>  Technology (2)
+														<input type="checkbox" name="cat_filter" data-category="Tajweed">
+														<span class="checkmark"></span> Tajweed
 													</label>
 												</div>
-												<a href="javascript:void(0);" class="see-more-btn">See More</a>
 											</div>
 										</div>
 									</div>
@@ -370,22 +364,20 @@
 											<div class="accordion-body">
 												<div>
 													<label class="custom_check custom_one">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span> All (10)
-	
+														<input type="radio" name="price_filter" value="all" checked>
+														<span class="checkmark"></span> All
 													</label>
 												</div>
 												<div>
 													<label class="custom_check custom_one">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span>  Free (5) 
-	
+														<input type="radio" name="price_filter" value="free">
+														<span class="checkmark"></span> Free
 													</label>
 												</div>
 												<div>
 													<label class="custom_check custom_one mb-0">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>  Paid (3)
+														<input type="radio" name="price_filter" value="paid">
+														<span class="checkmark"></span> Paid
 													</label>
 												</div>
 											</div>
@@ -415,28 +407,20 @@
 											<div class="accordion-body">
 												<div>
 													<label class="custom_check custom_one">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span>Beginner (10)
-	
+														<input type="checkbox" name="level_filter" data-level="beginner">
+														<span class="checkmark"></span> Beginner
 													</label>
 												</div>
 												<div>
 													<label class="custom_check custom_one">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span> Intermediate (5)
-	
-													</label>
-												</div>
-												<div>
-													<label class="custom_check custom_one">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>Advanced (21)
+														<input type="checkbox" name="level_filter" data-level="intermediate">
+														<span class="checkmark"></span> Intermediate
 													</label>
 												</div>
 												<div>
 													<label class="custom_check custom_one mb-0">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>Expert  (3)
+														<input type="checkbox" name="level_filter" data-level="advanced">
+														<span class="checkmark"></span> Advanced
 													</label>
 												</div>
 											</div>
@@ -520,7 +504,7 @@
 								<div class="row align-items-center">
 									<div class="col-lg-4">
 											<div class="show-result text-center text-lg-start">
-												<h6 class="fw-medium">Showing 1-9 of 50 results</h6>
+												<h6 class="fw-medium" id="results-count">Showing courses...</h6>
 											</div>
 									</div>
 									<div class="col-lg-8">	
@@ -529,17 +513,15 @@
 												<div class="d-sm-flex justify-content-center justify-content-lg-end mb-1 mb-lg-0">
 													<div class="view-icons mb-2 mb-sm-0">
 														<a href="/courses/course-grid" class="grid-view active"><i class="feather-grid"></i></a>
-														<a href="/courses/course-list" class="list-view"><i class="isax isax-task"></i></a>
-													</div>
-													<select class="form-select">
-														<option>Newly Published </option>
-														<option>Trending Courses</option>
-														<option>Top Rated</option>
-														<option>Free Courses</option>
+															</div>
+													<select class="form-select" id="course-sort-select">
+														<option value="newest">Newly Published</option>
+														<option value="rating">Top Rated</option>
+														<option value="free">Free Courses</option>
 													</select>
 													<div class=" search-group">
 														<i class="isax isax-search-normal-1"></i>
-														<input type="text" class="form-control" placeholder="Search" >
+														<input type="text" class="form-control" id="course-search-input" placeholder="Search" >
 													</div>
 												</div>
 											</form>
@@ -549,329 +531,20 @@
 							</div>
 							<!-- /Filter -->
 							
-							<div class="row">
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-01.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<div class="badge text-bg-danger">15% off</div>
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-29.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">Brenda Slaton</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Design
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">Information About UI/UX Design Degree</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.9 (200 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$120</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-02.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-30.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">Ana Reyes</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Wordpress
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">Wordpress for Beginners - Master Wordpress Quickly</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (160 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$140</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-03.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-31.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">Andrew Pirtle</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Design
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">Sketch from A to Z (2024): Become an app designer</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (160 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$140</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-04.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-32.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">Christy Garner</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Programming
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">Build Responsive Real World Websites with Crash Course</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.2 (220 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$200</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-05.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-32.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">Justin Gregory</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Programming
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">Learn JavaScript and Express to become a Expert</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$130</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-06.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-33.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">Carolyn Hines</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Programming
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">Introduction to Python Programming</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$130</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-07.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-34.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">Rafael Miller</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Programming
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">Build Responsive Websites with HTML5 and CSS3</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$170</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-08.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-35.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">Nancy Duarte</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Design
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">Information About Photoshop Design Degree</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$170</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-09.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-36.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">James Kagan</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Design
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">C# Developers Double Your Coding with Visual Studio</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$180</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
-										</div>
-									</div>
+							<div id="courses-grid" class="row">
+								<div class="col-12 text-center py-5">
+									<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
+									<p class="mt-2 text-muted">Loading courses...</p>
 								</div>
 							</div>
 							
 							<!-- /pagination -->
-							<div class="row align-items-center">
+							<div class="row align-items-center" id="pagination-container">
 								<div class="col-md-2">
-                                  <p class="pagination-text">Page 1 of 2</p>
+									<p class="pagination-text" id="page-text">Page 1 of 1</p>
 								</div>
 								<div class="col-md-10">
-									<ul class="pagination lms-page justify-content-center justify-content-md-end mt-2 mt-md-0">
-										<li class="page-item prev">
-											<a class="page-link" href="javascript:void(0)" tabindex="-1"><i class="fas fa-angle-left"></i></a>
-										</li>
-										<li class="page-item first-page active">
-											<a class="page-link" href="javascript:void(0)">1</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">2</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">3</a>
-										</li>
-										<li class="page-item next">
-											<a class="page-link" href="javascript:void(0)"><i class="fas fa-angle-right"></i></a>
-										</li>
+									<ul class="pagination lms-page justify-content-center justify-content-md-end mt-2 mt-md-0" id="pagination-list">
 									</ul>
 								</div>
 							</div>
@@ -1009,6 +682,260 @@
 		<i class="fas fa-arrow-up"></i>
 	</button>
 
-		
+	<!-- Dynamic Course Loading -->
+	<script>
+	(function () {
+		'use strict';
+
+		var API_BASE = 'http://localhost:5000/api/v1';
+		var FALLBACK_IMG = '/assets/img/course/course-01.jpg';
+		var ITEMS_PER_PAGE = 9;
+
+		var currentPage = 1;
+		var currentFilters = { categories: [], levels: [], price: 'all', search: '' };
+
+		function formatPrice(price) {
+			var p = parseFloat(price);
+			if (isNaN(p) || p === 0) return 'Free';
+			return 'Rs' + Math.round(p);
+		}
+
+		function getInitials(name) {
+			return name ? name.charAt(0).toUpperCase() : 'I';
+		}
+
+		function getCatClass(cat) {
+			var map = { 'IslamicStudies': 'course-cat-IslamicStudies', 'Arabic': 'course-cat-Arabic', 'Quran': 'course-cat-Quran', 'Tajweed': 'course-cat-Tajweed' };
+			return map[cat] || 'course-cat-default';
+		}
+
+		function buildCardHTML(course) {
+			var imgSrc = course.thumbnail || FALLBACK_IMG;
+			var instructorName = course.instructor
+				? (course.instructor.firstName + ' ' + course.instructor.lastName)
+				: 'Instructor';
+			var rating = parseFloat(course.rating) || 0;
+			var ratingDisplay = rating > 0
+				? rating.toFixed(1) + ' (' + (course.enrollmentCount || 0) + ' Students)'
+				: 'New Course';
+			var priceDisplay = formatPrice(course.price);
+			var courseUrl = '/courses/course-details';
+
+			return '<div class="col-xl-4 col-md-6">' +
+				'<div class="course-item-two course-item mx-0">' +
+					'<div class="course-img">' +
+						'<a href="' + courseUrl + '">' +
+							'<img src="' + imgSrc + '" alt="' + course.title.replace(/"/g, '&quot;') + '" class="img-fluid" onerror="this.src=\'' + FALLBACK_IMG + '\'">' +
+						'</a>' +
+						'<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">' +
+							'<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>' +
+						'</div>' +
+					'</div>' +
+					'<div class="course-content">' +
+						'<div class="d-flex justify-content-between mb-2">' +
+							'<div class="d-flex align-items-center">' +
+								'<div class="avatar avatar-sm rounded-circle d-flex align-items-center justify-content-center text-white fw-bold" style="background:#522811;min-width:32px;height:32px;font-size:14px">' +
+									getInitials(instructorName) +
+								'</div>' +
+								'<div class="ms-2">' +
+									'<span class="link-default fs-14">' + instructorName + '</span>' +
+								'</div>' +
+							'</div>' +
+							'<span class="course-cat-badge ' + getCatClass(course.category) + '">' + course.category + '</span>' +
+						'</div>' +
+						'<h6 class="title mb-2"><a href="' + courseUrl + '">' + course.title + '</a></h6>' +
+						'<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' + ratingDisplay + '</p>' +
+						'<div class="d-flex align-items-center justify-content-between">' +
+							'<span class="text-secondary fw-bold lh-1" style="font-size:1.25rem">' + priceDisplay + '</span>' +
+							'<a href="' + courseUrl + '" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>' +
+						'</div>' +
+					'</div>' +
+				'</div>' +
+			'</div>';
+		}
+
+		function buildQueryParams() {
+			var params = ['status=published', 'page=' + currentPage, 'limit=' + ITEMS_PER_PAGE];
+			if (currentFilters.categories.length === 1) params.push('category=' + encodeURIComponent(currentFilters.categories[0]));
+			if (currentFilters.levels.length === 1) params.push('level=' + encodeURIComponent(currentFilters.levels[0]));
+			return params.join('&');
+		}
+
+		function loadCourses() {
+			var grid = document.getElementById('courses-grid');
+			grid.innerHTML = '<div class="col-12 text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="mt-2 text-muted">Loading courses...</p></div>';
+
+			fetch(API_BASE + '/courses?' + buildQueryParams())
+				.then(function (res) {
+					if (!res.ok) throw new Error('HTTP ' + res.status);
+					return res.json();
+				})
+				.then(function (data) {
+					var courses = data.courses || [];
+					var pagination = data.pagination || {};
+
+					// Multi-filter client-side
+					if (currentFilters.categories.length > 1) {
+						courses = courses.filter(function (c) { return currentFilters.categories.indexOf(c.category) !== -1; });
+					}
+					if (currentFilters.levels.length > 1) {
+						courses = courses.filter(function (c) { return currentFilters.levels.indexOf(c.level) !== -1; });
+					}
+					if (currentFilters.price === 'free') {
+						courses = courses.filter(function (c) { return parseFloat(c.price) === 0; });
+					} else if (currentFilters.price === 'paid') {
+						courses = courses.filter(function (c) { return parseFloat(c.price) > 0; });
+					}
+					if (currentFilters.search.trim()) {
+						var q = currentFilters.search.toLowerCase();
+						courses = courses.filter(function (c) {
+							return c.title.toLowerCase().indexOf(q) !== -1 ||
+								(c.category && c.category.toLowerCase().indexOf(q) !== -1);
+						});
+					}
+
+					renderGrid(courses);
+					renderPagination(pagination);
+					updateCount(courses, pagination);
+				})
+				.catch(function (err) {
+					console.error('Course load error:', err);
+					document.getElementById('courses-grid').innerHTML =
+						'<div class="col-12 text-center py-5">' +
+						'<i class="fa-solid fa-triangle-exclamation fa-3x text-warning mb-3 d-block"></i>' +
+						'<h5>Could not load courses</h5>' +
+						'<p class="text-muted">Backend server may not be running.</p>' +
+						'<button onclick="window._loadCourses()" class="btn btn-primary btn-sm">Retry</button>' +
+						'</div>';
+					document.getElementById('pagination-container').style.display = 'none';
+					document.getElementById('results-count').textContent = '';
+				});
+		}
+
+		window._loadCourses = loadCourses;
+
+		function renderGrid(courses) {
+			var grid = document.getElementById('courses-grid');
+			if (!courses.length) {
+				grid.innerHTML =
+					'<div class="col-12 text-center py-5">' +
+					'<i class="fa-solid fa-graduation-cap fa-3x text-muted mb-3 d-block"></i>' +
+					'<h5 class="text-muted">No courses found</h5>' +
+					'<p class="text-muted">Try adjusting your filters.</p>' +
+					'<a href="javascript:void(0);" onclick="window._clearFilters()" class="btn btn-outline-primary btn-sm">Clear Filters</a>' +
+					'</div>';
+				document.getElementById('pagination-container').style.display = 'none';
+				return;
+			}
+			grid.innerHTML = courses.map(buildCardHTML).join('');
+		}
+
+		function updateCount(courses, pagination) {
+			var el = document.getElementById('results-count');
+			if (!el) return;
+			if (!courses.length) { el.textContent = 'No results found'; return; }
+			var total = pagination.total || courses.length;
+			var start = ((currentPage - 1) * ITEMS_PER_PAGE) + 1;
+			var end = Math.min(currentPage * ITEMS_PER_PAGE, total);
+			el.textContent = 'Showing ' + start + '-' + end + ' of ' + total + ' results';
+		}
+
+		function renderPagination(pagination) {
+			var totalPages = pagination.pages || 1;
+			var pageText = document.getElementById('page-text');
+			var pageList = document.getElementById('pagination-list');
+			var container = document.getElementById('pagination-container');
+
+			if (pageText) pageText.textContent = 'Page ' + currentPage + ' of ' + totalPages;
+			if (totalPages <= 1) { if (container) container.style.display = 'none'; return; }
+			if (container) container.style.display = '';
+			if (!pageList) return;
+
+			var html = '<li class="page-item prev' + (currentPage === 1 ? ' disabled' : '') + '">' +
+				'<a class="page-link" href="javascript:void(0)" data-page="' + (currentPage - 1) + '"><i class="fas fa-angle-left"></i></a></li>';
+			var startP = Math.max(1, currentPage - 2);
+			var endP = Math.min(totalPages, currentPage + 2);
+			for (var i = startP; i <= endP; i++) {
+				html += '<li class="page-item' + (i === currentPage ? ' active' : '') + '">' +
+					'<a class="page-link" href="javascript:void(0)" data-page="' + i + '">' + i + '</a></li>';
+			}
+			html += '<li class="page-item next' + (currentPage === totalPages ? ' disabled' : '') + '">' +
+				'<a class="page-link" href="javascript:void(0)" data-page="' + (currentPage + 1) + '"><i class="fas fa-angle-right"></i></a></li>';
+			pageList.innerHTML = html;
+
+			pageList.querySelectorAll('[data-page]').forEach(function (link) {
+				link.addEventListener('click', function () {
+					var pg = parseInt(this.getAttribute('data-page'));
+					if (pg < 1 || pg > totalPages) return;
+					currentPage = pg;
+					loadCourses();
+					window.scrollTo({ top: 0, behavior: 'smooth' });
+				});
+			});
+		}
+
+		function attachFilters() {
+			document.querySelectorAll('input[name="cat_filter"]').forEach(function (cb) {
+				cb.addEventListener('change', function () {
+					currentFilters.categories = Array.from(document.querySelectorAll('input[name="cat_filter"]:checked'))
+						.map(function (el) { return el.getAttribute('data-category'); });
+					currentPage = 1; loadCourses();
+				});
+			});
+			document.querySelectorAll('input[name="level_filter"]').forEach(function (cb) {
+				cb.addEventListener('change', function () {
+					currentFilters.levels = Array.from(document.querySelectorAll('input[name="level_filter"]:checked'))
+						.map(function (el) { return el.getAttribute('data-level'); });
+					currentPage = 1; loadCourses();
+				});
+			});
+			document.querySelectorAll('input[name="price_filter"]').forEach(function (rb) {
+				rb.addEventListener('change', function () {
+					currentFilters.price = this.value;
+					currentPage = 1; loadCourses();
+				});
+			});
+			var searchInput = document.getElementById('course-search-input');
+			if (searchInput) {
+				var timer;
+				searchInput.addEventListener('input', function () {
+					var val = this.value;
+					clearTimeout(timer);
+					timer = setTimeout(function () { currentFilters.search = val; currentPage = 1; loadCourses(); }, 400);
+				});
+			}
+			var sortSelect = document.getElementById('course-sort-select');
+			if (sortSelect) {
+				sortSelect.addEventListener('change', function () {
+					if (this.value === 'free') { currentFilters.price = 'free'; document.querySelector('input[name="price_filter"][value="free"]').checked = true; }
+					currentPage = 1; loadCourses();
+				});
+			}
+			var clearBtn = document.querySelector('.clear-text');
+			if (clearBtn) {
+				clearBtn.addEventListener('click', function (e) { e.preventDefault(); window._clearFilters(); });
+			}
+		}
+
+		window._clearFilters = function () {
+			currentFilters = { categories: [], levels: [], price: 'all', search: '' };
+			currentPage = 1;
+			document.querySelectorAll('input[name="cat_filter"], input[name="level_filter"]').forEach(function (cb) { cb.checked = false; });
+			var priceAll = document.querySelector('input[name="price_filter"][value="all"]');
+			if (priceAll) priceAll.checked = true;
+			var si = document.getElementById('course-search-input');
+			if (si) si.value = '';
+			var ss = document.getElementById('course-sort-select');
+			if (ss) ss.value = 'newest';
+			loadCourses();
+		};
+
+		document.addEventListener('DOMContentLoaded', function () {
+			attachFilters();
+			loadCourses();
+		});
+	})();
+	</script>
+
 	</body>
 </html>

@@ -2165,3 +2165,19 @@ Version      : 1.0
 			}
 		
 })(jQuery);
+
+// ── Active Nav Highlight ──────────────────────────────────────────────────────
+(function () {
+	var path = window.location.pathname;
+	document.querySelectorAll('.main-nav > li').forEach(function (li) {
+		var a = li.querySelector('a');
+		if (!a) return;
+		var href = a.getAttribute('href');
+		if (!href || href === '#' || href === 'javascript:void(0);') return;
+		// Exact match for home, startsWith for other sections
+		var isActive = href === '/'
+			? path === '/' || path === '/index.html'
+			: path.startsWith(href);
+		if (isActive) li.classList.add('active');
+	});
+})();

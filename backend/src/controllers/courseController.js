@@ -4,7 +4,7 @@ const { notifyAdmins } = require('../services/notificationService');
 
 exports.createCourse = async (req, res) => {
   try {
-    const { title, description, category, price, level } = req.body;
+    const { title, description, category, price, level, status } = req.body;
 
     const course = await Course.create({
       instructorId: req.user.userId,
@@ -13,7 +13,7 @@ exports.createCourse = async (req, res) => {
       category,
       price,
       level,
-      status: 'draft',
+      status: status || 'draft',
     });
 
     notifyAdmins({

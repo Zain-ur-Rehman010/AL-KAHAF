@@ -548,7 +548,7 @@ Dependencies:
 			   ========================================== */
 			.featured-courses-section {
 				background: linear-gradient(180deg, #FDFBF7 0%, #FFF9F0 50%, #FFFDF9 100%);
-				padding: 100px 0;
+				padding: 20px 0 80px;
 				position: relative;
 				overflow: hidden;
 			}
@@ -936,54 +936,97 @@ Dependencies:
 			   Uses Slick slider for horizontal scrolling
 			   ========================================== */
 			.islamic-categories-section {
-				background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+				background: linear-gradient(135deg, #2c1506 0%, #522811 40%, #3d1d0a 70%, #1a0c03 100%);
 				padding: 100px 0;
 				position: relative;
 				overflow: hidden;
 			}
+			.islamic-categories-section::before {
+				content: '';
+				position: absolute;
+				top: -50%;
+				left: -20%;
+				width: 60%;
+				height: 200%;
+				background: radial-gradient(ellipse, rgba(216,172,39,0.12) 0%, transparent 70%);
+				pointer-events: none;
+			}
+			.islamic-categories-section::after {
+				content: '';
+				position: absolute;
+				bottom: -30%;
+				right: -10%;
+				width: 50%;
+				height: 150%;
+				background: radial-gradient(ellipse, rgba(216,172,39,0.08) 0%, transparent 70%);
+				pointer-events: none;
+			}
 			
 			.islamic-categories-section .section-header {
 				margin-bottom: 60px;
+				position: relative;
+				z-index: 1;
 			}
-			
+
 			.islamic-categories-section .section-header h2 {
 				font-size: 42px;
 				font-weight: 800;
-				color: #1a1a1a;
+				color: #ffffff;
 			}
 			
 			.islamic-categories-section .categories-slider-wrapper {
 				position: relative;
 				padding: 0 70px;
+				z-index: 1;
 			}
-			
-			/* Islamic Badge Shape */
+
+			/* Category card item */
 			.islamic-category-item {
 				text-align: center;
-				padding: 20px 15px;
+				padding: 30px 15px 25px;
 				cursor: pointer;
 				display: flex;
 				flex-direction: column;
 				align-items: center;
 				justify-content: flex-start;
-				min-height: 200px;
+				min-height: 210px;
+				background: rgba(255,255,255,0.06);
+				border: 1px solid rgba(216,172,39,0.2);
+				border-radius: 16px;
+				margin: 0 8px;
+				transition: all 0.35s ease;
+				backdrop-filter: blur(4px);
+				text-decoration: none;
+			}
+
+			.islamic-category-item:hover {
+				background: rgba(216,172,39,0.15);
+				border-color: rgba(216,172,39,0.6);
+				transform: translateY(-6px);
+				box-shadow: 0 16px 40px rgba(0,0,0,0.4);
 			}
 			
 			.islamic-badge {
-				width: 140px;
-				height: 140px;
-				margin: 0 auto 20px;
+				width: 90px;
+				height: 90px;
+				margin: 0 auto 18px;
 				position: relative;
 				display: flex;
 				align-items: center;
 				justify-content: center;
-				transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+				transition: all 0.35s ease;
 				border-radius: 50%;
-				background-color: #D4A024;
+				background: linear-gradient(135deg, #d8ac27 0%, #f0c842 50%, #b8920f 100%);
+				box-shadow: 0 6px 20px rgba(216,172,39,0.4);
 			}
-			
+
+			.islamic-category-item:hover .islamic-badge {
+				transform: scale(1.1);
+				box-shadow: 0 10px 30px rgba(216,172,39,0.6);
+			}
+
 			.islamic-badge .badge-icon {
-				font-size: 48px;
+				font-size: 36px;
 				color: #fff;
 				line-height: 1;
 				display: flex;
@@ -993,32 +1036,28 @@ Dependencies:
 				height: 100%;
 				text-align: center;
 			}
-			
+
 			/* Gold color variant */
 			.islamic-badge.badge-gold {
-				background-color: #D4A024;
+				background: linear-gradient(135deg, #d8ac27 0%, #f0c842 50%, #b8920f 100%);
 			}
-			
-			.islamic-category-item:hover .islamic-badge {
-				transform: translateY(-10px) scale(1.05);
-			}
-			
+
 			.islamic-category-item h6 {
-				font-size: 15px;
+				font-size: 14px;
 				font-weight: 600;
-				color: #1a1a1a;
+				color: rgba(255,255,255,0.85);
 				margin: 0;
-				line-height: 1.3;
+				line-height: 1.4;
 				transition: color 0.3s ease;
-				max-width: 140px;
-				min-height: 40px;
+				max-width: 130px;
+				min-height: 38px;
 				display: flex;
 				align-items: center;
 				justify-content: center;
 			}
-			
+
 			.islamic-category-item:hover h6 {
-				color: #522811;
+				color: #d8ac27;
 			}
 			
 			/* Hide Slider Navigation Arrows */
@@ -1031,44 +1070,44 @@ Dependencies:
 				.islamic-categories-section {
 					padding: 70px 0;
 				}
-				
+
 				.islamic-categories-section .section-header h2 {
 					font-size: 32px;
 				}
-				
+
 				.islamic-badge {
-					width: 120px;
-					height: 120px;
+					width: 75px;
+					height: 75px;
 				}
-				
+
 				.islamic-badge .badge-icon {
-					font-size: 36px;
+					font-size: 28px;
 				}
 			}
-			
+
 			@media (max-width: 768px) {
 				.islamic-categories-section {
 					padding: 50px 0;
 				}
-				
+
 				.islamic-categories-section .categories-slider-wrapper {
 					padding: 0 50px;
 				}
-				
+
 				.islamic-badge {
-					width: 100px;
-					height: 100px;
+					width: 65px;
+					height: 65px;
 				}
-				
+
 				.islamic-badge .badge-icon {
-					font-size: 30px;
+					font-size: 24px;
 				}
-				
+
 				.islamic-category-item h6 {
 					font-size: 13px;
 					max-width: 100px;
 				}
-				
+
 				.islamic-category-item {
 					min-height: 160px;
 				}
@@ -1640,45 +1679,6 @@ Dependencies:
 									</li>
 								</ul>
 							</div>
-							<!-------Currency changer-------->
-							<div class="dropdown currency-dropdown">
-								<a href="javascript:void(0);" class="dropdown-toggle currency-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="isax isax-dollar-circle4 currency-icon"></i>
-									<span class="currency-text">USD</span>
-								</a>
-								<ul class="dropdown-menu currency-menu">
-									<li>
-										<a class="dropdown-item currency-item active" href="javascript:void(0);">
-											<span class="currency-symbol">$</span>
-											<span>USD - US Dollar</span>
-											<i class="isax isax-tick-circle5 check-icon"></i>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item currency-item" href="javascript:void(0);">
-											<span class="currency-symbol"></span>
-											<span>YEN - Japanese Yen</span>
-											<i class="isax isax-tick-circle5 check-icon"></i>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item currency-item" href="javascript:void(0);">
-											<span class="currency-symbol"></span>
-											<span>EUR - Euro</span>
-											<i class="isax isax-tick-circle5 check-icon"></i>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<!-------Light Mode || Dark Mode--------->
-							<div class="icon-btn">
-								<a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle activate">
-									<i class="isax isax-sun-15"></i>
-								</a>
-								<a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle">
-									<i class="isax isax-moon"></i>
-								</a>
-							</div>
 							<!--Cart-->
 							<div class="icon-btn">
 								<a href="cart.html" class="position-relative">
@@ -1686,7 +1686,10 @@ Dependencies:
 									<span class="count-icon bg-success p-1 rounded-pill text-white fs-10 fw-bold">1</span>
 								</a>
 							</div>
-							<!--SigIn || Register-->
+							<!--Sign In || Enroll Now || Donate-->
+							<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
+								<i class="isax isax-user me-2"></i>Sign In
+							</a>
 							<a href="/auth/login" class="btn btn-primary d-inline-flex align-items-center me-2">
 								<i class="fa fa-paper-plane me-2"></i>Enroll Now
 							</a>
@@ -1744,23 +1747,6 @@ Dependencies:
 						</div>
 					</div>
 
-					<div class="slide-image-content">
-						<div class="modern-image-wrapper">
-							<div class="floating-card">
-								<img src="/assets/img/course/course-22.webp" alt="Course" class="card-image">
-								<div class="card-info">
-									<div class="card-title">Complete Web Development</div>
-									<div class="card-meta">
-										<div class="card-rating">
-											<i class="fas fa-star"></i>
-											<span>4.9 (12.5k)</span>
-										</div>
-										<div class="card-price">$49.99</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 			<!-- Slide 2 -->
@@ -1795,24 +1781,6 @@ Dependencies:
 							</a>
 						</div>
 					</div>
-
-					<div class="slide-image-content">
-						<div class="modern-image-wrapper">
-							<div class="floating-card">
-								<img src="/assets/img/course/course-22.webp" alt="Course" class="card-image">
-								<div class="card-info">
-									<div class="card-title">Complete Web Development</div>
-									<div class="card-meta">
-										<div class="card-rating">
-											<i class="fas fa-star"></i>
-											<span>4.9 (12.5k)</span>
-										</div>
-										<div class="card-price">$49.99</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 			<!-- Slide 3 -->
@@ -1845,24 +1813,6 @@ Dependencies:
 								<span>Watch Preview</span>
 								<i class="fas fa-play"></i>
 							</a>
-						</div>
-					</div>
-
-					<div class="slide-image-content">
-						<div class="modern-image-wrapper">
-							<div class="floating-card">
-								<img src="/assets/img/course/course-22.webp" alt="Course" class="card-image">
-								<div class="card-info">
-									<div class="card-title">Complete Web Development</div>
-									<div class="card-meta">
-										<div class="card-rating">
-											<i class="fas fa-star"></i>
-											<span>4.9 (12.5k)</span>
-										</div>
-										<div class="card-price">$49.99</div>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -2072,153 +2022,163 @@ Dependencies:
                         </div>
                         <div class="feature-course-slider-2">
                             <div>
-                                <div class="course-item">
+                                <div class="course-item-two course-item mb-0">
                                     <div class="course-img">
-										<a href="/courses/course-details">
-											<img src="assets/img/course/_course1.jpeg" alt="img" class="img-fluid">
-										</a>
-										<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-											<span class="price-badge ms-auto">Rs500</span>
-										</div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between pt-3">
-                                        <span class="badge badge-md badge-soft-info rounded-pill">Quran</span>
-                                        <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart"></i></a>
-                                    </div>
-                                    <div class="pb-3 border-bottom mb-3">
-                                        <h5><a href="/courses/course-details">Quran Reading with Tajweed Rules</a></h5>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-4">
-                                        <div class="course-rating">
-                                            <span class="course-user"><a href="javascript:void(0);"><img src="assets/img/user/user-06.jpg" alt="img" class="img-fluid"></a></span>
-                                            <a href="javascript:void(0);">Sheikh Ahmed</a>
-                                        </div>
-                                        <div class="d-flex">
-                                            <span class="d-flex align-items-center rating"><i class="fa-solid fa-star text-warning me-2"></i>5.0</span>
+                                        <a href="/courses/course-details">
+                                            <img src="assets/img/course/_course1.jpeg" alt="img" class="img-fluid">
+                                        </a>
+                                        <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
+                                            <a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
                                         </div>
                                     </div>
-                                    <a href="/courses/course-details" class="btn buy-course-btn">Buy Course Now</a>
+                                    <div class="course-content">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                    <img src="assets/img/user/user-06.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
+                                                </a>
+                                                <div class="ms-2">
+                                                    <a href="javascript:void(0);" class="link-default fs-14">Sheikh Ahmed</a>
+                                                </div>
+                                            </div>
+                                            <span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">Quran</span>
+                                        </div>
+                                        <h6 class="title mb-2"><a href="/courses/course-details">Quran Reading with Tajweed Rules</a></h6>
+                                        <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>5.0 (120 Reviews)</p>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h5 class="text-secondary mb-0">Rs500</h5>
+                                            <a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div>
-                                <div class="course-item">
+                                <div class="course-item-two course-item mb-0">
                                     <div class="course-img">
-										<a href="/courses/course-details">
-											<img src="assets/img/course/course-37.jpg" alt="img" class="img-fluid">
-										</a>
-										<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-											<span class="price-badge ms-auto">Rs300</span>
-										</div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between pt-3">
-                                        <span class="badge badge-soft-danger badge-md rounded-pill shadow-none">Arabic</span>
-                                        <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart"></i></a>
-                                    </div>
-                                    <div class="pb-3 border-bottom mb-3">
-                                        <h5><a href="/courses/course-details">Arabic Language Fundamentals Course</a></h5>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-4">
-                                        <div class="course-rating">
-                                            <span class="course-user"><a href="javascript:void(0);"><img src="assets/img/user/user-07.jpg" alt="img" class="img-fluid"></a></span>
-                                            <a href="javascript:void(0);">Ustadh Khalid</a>
-                                        </div>
-                                        <div class="d-flex">
-                                            <span class="d-flex align-items-center rating"><i class="fa-solid fa-star text-warning me-2"></i>5.0</span>
+                                        <a href="/courses/course-details">
+                                            <img src="assets/img/course/course-37.jpg" alt="img" class="img-fluid">
+                                        </a>
+                                        <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
+                                            <a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
                                         </div>
                                     </div>
-                                    <a href="/courses/course-details" class="btn buy-course-btn">Buy Course Now</a>
+                                    <div class="course-content">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                    <img src="assets/img/user/user-07.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
+                                                </a>
+                                                <div class="ms-2">
+                                                    <a href="javascript:void(0);" class="link-default fs-14">Ustadh Khalid</a>
+                                                </div>
+                                            </div>
+                                            <span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">Arabic</span>
+                                        </div>
+                                        <h6 class="title mb-2"><a href="/courses/course-details">Arabic Language Fundamentals Course</a></h6>
+                                        <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>5.0 (95 Reviews)</p>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h5 class="text-secondary mb-0">Rs300</h5>
+                                            <a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div>
-                                <div class="course-item">
+                                <div class="course-item-two course-item mb-0">
                                     <div class="course-img">
-										<a href="/courses/course-details">
-											<img src="assets/img/course/course-38.jpg" alt="img" class="img-fluid">
-										</a>
-										<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-											<span class="price-badge ms-auto">Rs350</span>
-										</div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between pt-3">
-                                        <span class="badge badge-soft-purple badge-md rounded-pill shadow-none">Tajweed</span>
-                                        <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart"></i></a>
-                                    </div>
-                                    <div class="pb-3 border-bottom mb-3">
-                                        <h5><a href="/courses/course-details">Advanced Tajweed & Quran Memorization</a></h5>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-4">
-                                        <div class="course-rating">
-                                            <span class="course-user"><a href="javascript:void(0);"><img src="assets/img/user/user-08.jpg" alt="img" class="img-fluid"></a></span>
-                                            <a href="javascript:void(0);">Sheikh Yusuf</a>
-                                        </div>
-                                        <div class="d-flex">
-                                            <span class="d-flex align-items-center rating"><i class="fa-solid fa-star text-warning me-2"></i>5.0</span>
+                                        <a href="/courses/course-details">
+                                            <img src="assets/img/course/course-38.jpg" alt="img" class="img-fluid">
+                                        </a>
+                                        <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
+                                            <a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
                                         </div>
                                     </div>
-                                    <a href="/courses/course-details" class="btn buy-course-btn">Buy Course Now</a>
+                                    <div class="course-content">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                    <img src="assets/img/user/user-08.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
+                                                </a>
+                                                <div class="ms-2">
+                                                    <a href="javascript:void(0);" class="link-default fs-14">Sheikh Yusuf</a>
+                                                </div>
+                                            </div>
+                                            <span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">Tajweed</span>
+                                        </div>
+                                        <h6 class="title mb-2"><a href="/courses/course-details">Advanced Tajweed & Quran Memorization</a></h6>
+                                        <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>5.0 (80 Reviews)</p>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h5 class="text-secondary mb-0">Rs350</h5>
+                                            <a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div>
-                                <div class="course-item">
+                                <div class="course-item-two course-item mb-0">
                                     <div class="course-img">
-										<a href="/courses/course-details">
-											<img src="assets/img/course/course-39.jpg" alt="img" class="img-fluid">
-										</a>
-										<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-											<span class="price-badge ms-auto">Rs500</span>
-										</div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between pt-3">
-                                        <span class="badge badge-soft-success badge-md rounded-pill shadow-none">Islamic Studies</span>
-                                        <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart5 text-danger"></i></a>
-                                    </div>
-                                    <div class="pb-3 border-bottom mb-3">
-                                        <h5><a href="/courses/course-details">Islamic Sciences & Fiqh Essentials</a></h5>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-4">
-                                        <div class="course-rating">
-                                            <span class="course-user"><a href="javascript:void(0);"><img src="assets/img/user/user-09.jpg" alt="img" class="img-fluid"></a></span>
-                                            <a href="javascript:void(0);">Ustadha Fatima</a>
-                                        </div>
-                                        <div class="d-flex">
-                                            <span class="d-flex align-items-center rating"><i class="fa-solid fa-star text-warning me-2"></i>5.0</span>
+                                        <a href="/courses/course-details">
+                                            <img src="assets/img/course/course-39.jpg" alt="img" class="img-fluid">
+                                        </a>
+                                        <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
+                                            <a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
                                         </div>
                                     </div>
-                                    <a href="/courses/course-details" class="btn buy-course-btn">Buy Course Now</a>
+                                    <div class="course-content">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                    <img src="assets/img/user/user-09.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
+                                                </a>
+                                                <div class="ms-2">
+                                                    <a href="javascript:void(0);" class="link-default fs-14">Ustadha Fatima</a>
+                                                </div>
+                                            </div>
+                                            <span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">Islamic Studies</span>
+                                        </div>
+                                        <h6 class="title mb-2"><a href="/courses/course-details">Islamic Sciences & Fiqh Essentials</a></h6>
+                                        <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>5.0 (150 Reviews)</p>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h5 class="text-secondary mb-0">Rs500</h5>
+                                            <a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div>
-                                <div class="course-item">
+                                <div class="course-item-two course-item mb-0">
                                     <div class="course-img">
-										<a href="/courses/course-details">
-											<img src="assets/img/course/course-37.jpg" alt="img" class="img-fluid">
-										</a>
-										<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-											<span class="price-badge ms-auto">Rs300</span>
-										</div>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between pt-3">
-                                        <span class="badge badge-soft-danger badge-md rounded-pill shadow-none">Kids Quran</span>
-                                        <a href="javascript:void(0);" class="fav-icon"><i class="isax isax-heart"></i></a>
-                                    </div>
-                                    <div class="pb-3 border-bottom mb-3">
-                                        <h5><a href="/courses/course-details">Quran for Kids - Interactive Learning</a></h5>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-4">
-                                        <div class="course-rating">
-                                            <span class="course-user"><a href="javascript:void(0);"><img src="assets/img/user/user-07.jpg" alt="img" class="img-fluid"></a></span>
-                                            <a href="javascript:void(0);">Ustadha Aisha</a>
-                                        </div>
-                                        <div class="d-flex">
-                                            <span class="d-flex align-items-center rating"><i class="fa-solid fa-star text-warning me-2"></i>5.0</span>
+                                        <a href="/courses/course-details">
+                                            <img src="assets/img/course/course-37.jpg" alt="img" class="img-fluid">
+                                        </a>
+                                        <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
+                                            <a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
                                         </div>
                                     </div>
-                                    <a href="/courses/course-details" class="btn buy-course-btn">Buy Course Now</a>
+                                    <div class="course-content">
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <div class="d-flex align-items-center">
+                                                <a href="javascript:void(0);" class="avatar avatar-sm">
+                                                    <img src="assets/img/user/user-07.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
+                                                </a>
+                                                <div class="ms-2">
+                                                    <a href="javascript:void(0);" class="link-default fs-14">Ustadha Aisha</a>
+                                                </div>
+                                            </div>
+                                            <span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">Kids Quran</span>
+                                        </div>
+                                        <h6 class="title mb-2"><a href="/courses/course-details">Quran for Kids - Interactive Learning</a></h6>
+                                        <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>5.0 (110 Reviews)</p>
+                                        <div class="d-flex align-items-center justify-content-between">
+                                            <h5 class="text-secondary mb-0">Rs300</h5>
+                                            <a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-center">
-                            <a href="/courses/course-list" class="btn btn-primary btn-md">View All Courses</a>
+                            <a href="/courses/course-grid" class="btn btn-primary btn-md">View All Courses</a>
                         </div>
                     </div>
 			   </section>
@@ -2649,12 +2609,11 @@ Dependencies:
 			     ============================================================ -->
 			<section class="benefit-section skills-section">
 				<div class="container">
-					<div class="section-header text-center">
-						<span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Why Choose Us</span>
+					<div class="section-header text-center mb-5">
 						<h2>Why Choose Us</h2>
 						<p>The right course, guided by an expert mentor, can provide invaluable insights and practical skills.</p>
-</div>
-<div class="row g-4">
+					</div>
+					<div class="row g-4">
 <!-- Card 1 - Certified Tutors (Blue Theme) -->
 <div class="col-lg-3 col-md-6">
 <div class="skills-card skills-card-blue">
@@ -2708,53 +2667,8 @@ Dependencies:
 </section>
 <!-- Why Choose Us -->
 	
-			<!-- institutions -->
-			<section class="client-section">
-				<div class="container">
-				  <h6 class="fw-medium text-center mb-4">Trusted by <span class="text-decoration-underline text-secondary">20+</span> Institutions Around the World</h6>
-				  <div class="institutions-slider lazy slider">
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/01.svg" alt="img">
-					 </div>
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/02.svg" alt="img">
-					 </div>
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/03.svg" alt="img">
-					 </div>
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/04.svg" alt="img">
-					 </div>
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/05.svg" alt="img">
-					 </div>
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/06.svg" alt="img">
-					 </div>
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/07.svg" alt="img">
-					 </div>
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/02.svg" alt="img">
-					 </div>
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/03.svg" alt="img">
-					 </div>
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/04.svg" alt="img">
-					 </div>
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/05.svg" alt="img">
-					 </div>
-					 <div class="institutions-items p-1">
-						<img class="img-fluid" src="/assets/img/client/06.svg" alt="img">
-					 </div>
-				  </div>
-				</div>
-			</section>
-			<!-- /institutions -->  
 			 <!-- trust -->
-			<section class="trust-sec">
+			<section class="trust-sec" style="margin-top: 80px;">
 				<div class="container">
 					<div class="video-showcase">
 						<img src="/assets/img/course/_Yvideoimg.png" class="img-fluid w-100 rounded-2" alt="banner">
@@ -3731,6 +3645,121 @@ Dependencies:
 	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
 		<i class="fas fa-arrow-up"></i>
 	</button>
+
+	<!-- Dynamic Featured Courses Loader -->
+	<script>
+	(function () {
+		'use strict';
+
+		var API_BASE = 'http://localhost:5000/api/v1';
+		var FALLBACK_IMG = 'assets/img/course/_course1.jpeg';
+
+		function formatPrice(price) {
+			var p = parseFloat(price);
+			if (isNaN(p) || p === 0) return 'Free';
+			return 'Rs' + Math.round(p);
+		}
+
+		function getInitial(name) {
+			return name ? name.charAt(0).toUpperCase() : 'I';
+		}
+
+		function buildSlideHTML(course) {
+			var imgSrc = course.thumbnail || FALLBACK_IMG;
+			var instructorName = course.instructor
+				? (course.instructor.firstName + ' ' + course.instructor.lastName)
+				: 'Instructor';
+			var rating = parseFloat(course.rating) || 0;
+			var ratingDisplay = rating > 0
+				? rating.toFixed(1) + ' (' + (course.enrollmentCount || 0) + ' Students)'
+				: 'New Course';
+			var priceDisplay = formatPrice(course.price);
+
+			return '<div>' +
+				'<div class="course-item-two course-item mb-0">' +
+					'<div class="course-img">' +
+						'<a href="/courses/course-details">' +
+							'<img src="' + imgSrc + '" alt="' + course.title.replace(/"/g, '&quot;') + '" class="img-fluid" onerror="this.src=\'' + FALLBACK_IMG + '\'">' +
+						'</a>' +
+						'<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">' +
+							'<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>' +
+						'</div>' +
+					'</div>' +
+					'<div class="course-content">' +
+						'<div class="d-flex justify-content-between mb-2">' +
+							'<div class="d-flex align-items-center">' +
+								'<div class="avatar avatar-sm rounded-circle d-flex align-items-center justify-content-center text-white fw-bold" style="background:#522811;min-width:32px;height:32px;font-size:14px">' +
+									getInitial(instructorName) +
+								'</div>' +
+								'<div class="ms-2">' +
+									'<span class="link-default fs-14">' + instructorName + '</span>' +
+								'</div>' +
+							'</div>' +
+							'<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">' + course.category + '</span>' +
+						'</div>' +
+						'<h6 class="title mb-2"><a href="/courses/course-details">' + course.title + '</a></h6>' +
+						'<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' + ratingDisplay + '</p>' +
+						'<div class="d-flex align-items-center justify-content-between">' +
+							'<span class="text-secondary fw-bold lh-1" style="font-size:1.25rem">' + priceDisplay + '</span>' +
+							'<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>' +
+						'</div>' +
+					'</div>' +
+				'</div>' +
+			'</div>';
+		}
+
+		function reinitSlider(slidesHTML) {
+			if (typeof $ === 'undefined' || !$.fn.slick) return;
+			var $slider = $('.feature-course-slider-2');
+			if (!$slider.length) return;
+			if ($slider.hasClass('slick-initialized')) {
+				$slider.slick('unslick');
+			}
+			$slider.html(slidesHTML);
+			$slider.slick({
+				dots: true,
+				arrows: true,
+				infinite: true,
+				speed: 500,
+				slidesToShow: 4,
+				slidesToScroll: 1,
+				swipe: true,
+				draggable: true,
+				touchMove: true,
+				swipeToSlide: true,
+				autoplay: true,
+				autoplaySpeed: 4000,
+				pauseOnHover: true,
+				responsive: [
+					{ breakpoint: 1400, settings: { slidesToShow: 3, slidesToScroll: 1, infinite: true, dots: true } },
+					{ breakpoint: 1024, settings: { slidesToShow: 2, slidesToScroll: 1, infinite: true, dots: true } },
+					{ breakpoint: 768,  settings: { slidesToShow: 1, slidesToScroll: 1, dots: true, arrows: false } }
+				]
+			});
+		}
+
+		function loadFeaturedCourses() {
+			fetch(API_BASE + '/courses?status=published&limit=8&page=1')
+				.then(function (res) {
+					if (!res.ok) throw new Error('HTTP ' + res.status);
+					return res.json();
+				})
+				.then(function (data) {
+					var courses = data.courses || [];
+					if (!courses.length) return; // keep static fallback
+					var slidesHTML = courses.map(buildSlideHTML).join('');
+					reinitSlider(slidesHTML);
+				})
+				.catch(function (err) {
+					// Silent fail — static fallback slides remain visible
+					console.warn('Featured courses: using static fallback.', err.message);
+				});
+		}
+
+		// window.load ensures script.js has already initialized slick before we replace it
+		window.addEventListener('load', loadFeaturedCourses);
+	})();
+	</script>
 
 	</body>
 	
