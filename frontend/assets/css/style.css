@@ -8902,8 +8902,8 @@ html.menu-opened body {
 
 .breadcrumb-bar.text-center,
 .breadcrumb-bar.breadcrumb-bar-info {
-  padding: 22px 0 22px;
-  margin-bottom: 30px;
+  padding: 140px 0 50px;
+  margin-bottom: 0;
   text-align: center;
 }
 .breadcrumb-bar.text-center .breadcrumb-list,
