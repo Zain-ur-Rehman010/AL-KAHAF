@@ -7938,6 +7938,7 @@ header.header-two.fixed .navbar-header #mobile_btn .bar-icon span {
 header.header-one {
   position: fixed;
   background: linear-gradient(135deg, #522811 0%, #8B4513 100%);
+  padding: 12px 0;
 }
 header.header-one.fixed {
   background: linear-gradient(135deg, #522811 0%, #8B4513 100%);
@@ -8236,6 +8237,11 @@ header.header-four {
   opacity: 1;
 }
 
+/* Language selector hidden site-wide */
+header.header-one .language-dropdown,
+header.header-two .language-dropdown {
+  display: none !important;
+}
 header.header-one .language-dropdown .lang-toggle, header.header-two .language-dropdown .lang-toggle {
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
