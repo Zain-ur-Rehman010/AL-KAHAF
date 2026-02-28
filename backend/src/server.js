@@ -14,6 +14,7 @@ const enrollmentRoutes = require('./routes/enrollmentRoutes');
 const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
+const blogRoutes = require('./routes/blogRoutes');
 
 const app = express();
 
@@ -58,6 +59,12 @@ const path = require('path');
 const staticPath = path.join(__dirname, '../../');
 app.use(express.static(staticPath));
 
+// Serve uploaded files (cross-origin allowed so frontend on different port can load images)
+app.use('/uploads', (req, res, next) => {
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+  next();
+}, express.static(path.join(__dirname, '../uploads')));
+
 // Health check (accessible at both /health and /api/health)
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date() });
@@ -74,6 +81,7 @@ apiV1.use('/enrollments', enrollmentRoutes);
 apiV1.use('/users', userRoutes);
 apiV1.use('/admin', adminRoutes);
 apiV1.use('/notifications', notificationRoutes);
+apiV1.use('/blogs', blogRoutes);
 
 // Mount routes at both /v1 and /api/v1 for flexibility
 app.use('/v1', apiV1);

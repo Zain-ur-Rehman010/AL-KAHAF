@@ -10,6 +10,7 @@ const Payment = require('./Payment');
 const Certificate = require('./Certificate');
 const Message = require('./Message');
 const Notification = require('./Notification');
+const Blog = require('./Blog');
 
 // User associations
 User.hasMany(Course, { foreignKey: 'instructorId', as: 'instructedCourses' });
@@ -72,6 +73,10 @@ Message.belongsTo(Course, { foreignKey: 'courseId', as: 'course' });
 // Notification associations
 Notification.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
+// Blog associations
+Blog.belongsTo(User, { foreignKey: 'authorId', as: 'author' });
+User.hasMany(Blog, { foreignKey: 'authorId', as: 'blogs' });
+
 module.exports = {
   sequelize,
   User,
@@ -85,4 +90,5 @@ module.exports = {
   Certificate,
   Message,
   Notification,
+  Blog,
 };
