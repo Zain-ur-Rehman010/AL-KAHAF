@@ -17,8 +17,8 @@ const migration = require('./migrations/04-add-education-experience');
     console.log('✅ Migration 04 complete — education + workExperience columns added');
     process.exit(0);
   } catch (err) {
-    // Column already exists → not a problem
-    if (err.message && err.message.includes('already exists')) {
+    // Column already exists → not a problem (PostgreSQL: "already exists", MySQL: "Duplicate column name")
+    if (err.message && (err.message.includes('already exists') || err.message.includes('Duplicate column name'))) {
       console.log('ℹ️  Columns already exist — nothing to do');
       process.exit(0);
     }
