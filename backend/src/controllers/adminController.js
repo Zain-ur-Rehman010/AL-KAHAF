@@ -642,10 +642,10 @@ exports.updateCourseStatus = async (req, res) => {
 
     const { status } = req.body;
 
-    if (!['published', 'draft', 'archived'].includes(status)) {
+    if (!['published', 'draft', 'archived', 'pending_approval'].includes(status)) {
       return res.status(400).json({
         success: false,
-        message: 'Invalid status. Must be: published, draft, or archived'
+        message: 'Invalid status. Must be: published, draft, archived, or pending_approval'
       });
     }
 

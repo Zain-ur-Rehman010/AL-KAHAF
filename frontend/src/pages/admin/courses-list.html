@@ -274,6 +274,7 @@
 										<label class="form-label">Status</label>
 										<select class="form-select" id="filter-status">
 											<option value="">All Status</option>
+											<option value="pending_approval">Pending Approval</option>
 											<option value="published">Published</option>
 											<option value="draft">Draft</option>
 											<option value="archived">Archived</option>
@@ -511,6 +512,7 @@
 		function getStatusBadge(status) {
 			const badges = {
 				'published': '<span class="badge bg-success-light text-success"><i class="isax isax-tick-circle me-1"></i>Published</span>',
+				'pending_approval': '<span class="badge bg-info-light text-info"><i class="isax isax-clock me-1"></i>Pending Approval</span>',
 				'draft': '<span class="badge bg-warning-light text-warning"><i class="isax isax-edit me-1"></i>Draft</span>',
 				'archived': '<span class="badge bg-secondary-light text-secondary"><i class="isax isax-archive me-1"></i>Archived</span>'
 			};
@@ -518,22 +520,30 @@
 		}
 
 		function getActionButtons(id, status) {
-			const publishBtn = status === 'published'
-				? `<button class="btn btn-sm btn-outline-warning me-1" onclick="toggleStatus('${id}', 'draft')" title="Unpublish">
+			let statusBtn = '';
+			if (status === 'pending_approval') {
+				statusBtn = `
+					<button class="btn btn-sm btn-success me-1" onclick="toggleStatus('${id}', 'published')" title="Approve & Publish">
+						<i class="isax isax-tick-circle"></i> Approve
+					</button>
+					<button class="btn btn-sm btn-outline-danger me-1" onclick="toggleStatus('${id}', 'draft')" title="Reject">
+						<i class="isax isax-close-circle"></i> Reject
+					</button>`;
+			} else if (status === 'published') {
+				statusBtn = `<button class="btn btn-sm btn-outline-warning me-1" onclick="toggleStatus('${id}', 'draft')" title="Unpublish">
 						<i class="isax isax-archive"></i>
-					</button>`
-				: `<button class="btn btn-sm btn-outline-success me-1" onclick="toggleStatus('${id}', 'published')" title="Publish">
+					</button>`;
+			} else {
+				statusBtn = `<button class="btn btn-sm btn-outline-success me-1" onclick="toggleStatus('${id}', 'published')" title="Publish">
 						<i class="isax isax-tick-circle"></i>
 					</button>`;
+			}
 
 			return `<div class="action-btns">
-				<a href="course-edit.html?id=${id}" class="btn btn-sm btn-outline-primary me-1" title="Edit">
-					<i class="isax isax-edit"></i>
-				</a>
 				<button class="btn btn-sm btn-outline-info me-1" onclick="viewCourse('${id}')" title="View">
 					<i class="isax isax-eye"></i>
 				</button>
-				${publishBtn}
+				${statusBtn}
 				<button class="btn btn-sm btn-outline-danger" onclick="deleteCourse('${id}')" title="Delete">
 					<i class="isax isax-trash"></i>
 				</button>

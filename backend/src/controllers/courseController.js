@@ -4,7 +4,7 @@ const { notifyAdmins } = require('../services/notificationService');
 
 exports.createCourse = async (req, res) => {
   try {
-    const { title, description, category, price, level, status } = req.body;
+    const { title, description, category, price, level } = req.body;
 
     const course = await Course.create({
       instructorId: req.user.userId,
@@ -13,13 +13,13 @@ exports.createCourse = async (req, res) => {
       category,
       price,
       level,
-      status: status || 'draft',
+      status: 'pending_approval',
     });
 
     notifyAdmins({
       type: 'course_update',
-      title: 'New Course Created',
-      message: `A new course "${course.title}" was created by instructor (ID: ${req.user.userId}).`,
+      title: 'New Course Pending Approval',
+      message: `A new course "${course.title}" has been submitted by an instructor and is awaiting your approval.`,
       actionUrl: '/admin/courses-list',
     });
 

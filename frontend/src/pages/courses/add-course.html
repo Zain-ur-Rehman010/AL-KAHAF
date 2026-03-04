@@ -333,31 +333,30 @@
 												<div class="col-md-12">
 													<div class="input-block">
 														<label class="form-label">Course Title<span class="text-danger ms-1">*</span></label>
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" id="course-title">
 													</div>
 												</div>
 												<div class="col-md-4">
 													<div class="input-block">
 														<label class="form-label">Course Category<span class="text-danger ms-1">*</span></label>
-														<select class="select form-control">
-															<option>Select</option>
-															<option>Management</option>
-															<option>IT & Softwares</option>
-															<option>Marketing</option>
-															<option>Finance</option>
-															<option>Productivity</option>
+														<select class="select form-control" id="course-category">
+															<option value="">Select</option>
+															<option value="management">Management</option>
+															<option value="it-software">IT & Softwares</option>
+															<option value="marketing">Marketing</option>
+															<option value="finance">Finance</option>
+															<option value="productivity">Productivity</option>
 														</select>
 													</div>
 												</div>
 												<div class="col-md-4">
 													<div class="input-block">
 														<label class="form-label">Course Level<span class="text-danger ms-1">*</span></label>
-														<select class="select form-control">
-															<option>Select</option>
-															<option>Beginner </option>
-															<option>Intermediate</option>
-															<option>Advanced</option>
-															<option>Expert</option>
+														<select class="select form-control" id="course-level">
+															<option value="">Select</option>
+															<option value="beginner">Beginner</option>
+															<option value="intermediate">Intermediate</option>
+															<option value="advanced">Advanced</option>
 														</select>
 													</div>
 												</div>
@@ -789,7 +788,7 @@
 												</div>
 												<div class="input-block mb-2">
 													<label class="form-label">Course Price ($)</label>
-													<input type="text" class="form-control">
+													<input type="text" class="form-control" id="course-price">
 												</div>
 												<div class="d-flex align-items-center mb-3">
 													<div class="form-check form-check-md d-flex align-items-center">
@@ -827,12 +826,13 @@
 													<span>After purchase, students can access the course until your selected time.</span>
 												</div>
 											</div>
+											<div id="course-submit-alert" class="alert alert-danger d-none mb-3"></div>
 											<div class="add-form-btn widget-next-btn submit-btn">
 												<div class="btn-left">
 													<a href="javascript:void(0);" class="btn btn-light main-btn prev_btns"><i class="isax isax-arrow-left-2 me-1"></i>Prev</a>
 												</div>
 												<div class="btn-left">
-													<a href="javascript:void(0);" class="btn btn-secondary main-btn next_btns" data-bs-toggle="modal" data-bs-target="#success">Submit Course</a>
+													<button type="button" id="submit-course-btn" class="btn btn-secondary main-btn">Submit for Approval</button>
 												</div>
 											</div>
 										</fieldset>
@@ -1103,6 +1103,74 @@
 		
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
+	<!-- API Config -->
+	<script src="/assets/js/api-config.js"></script>
+	<script>
+	(function () {
+		var submitBtn = document.getElementById('submit-course-btn');
+		if (!submitBtn) return;
+
+		submitBtn.addEventListener('click', async function () {
+			var title    = (document.getElementById('course-title')    || {}).value || '';
+			var category = (document.getElementById('course-category') || {}).value || '';
+			var level    = (document.getElementById('course-level')    || {}).value || '';
+			var price    = (document.getElementById('course-price')    || {}).value || '0';
+			var alertEl  = document.getElementById('course-submit-alert');
+
+			// Basic validation
+			if (!title.trim()) {
+				alertEl.textContent = 'Please enter a course title (Step 1).';
+				alertEl.classList.remove('d-none');
+				return;
+			}
+
+			var token = localStorage.getItem('accessToken');
+			if (!token) {
+				window.location.href = '/auth/login';
+				return;
+			}
+
+			submitBtn.disabled = true;
+			submitBtn.textContent = 'Submitting...';
+			alertEl.classList.add('d-none');
+
+			try {
+				var res = await fetch(API_CONFIG.BASE_URL + '/courses', {
+					method: 'POST',
+					headers: API_CONFIG.getHeaders(true),
+					body: JSON.stringify({
+						title: title.trim(),
+						category: category || 'general',
+						level: level || 'beginner',
+						price: parseFloat(price) || 0,
+						description: title.trim()
+					})
+				});
+				var data = await res.json();
+				if (res.ok) {
+					// Show success state
+					document.querySelector('.initialization-form-set').innerHTML =
+						'<div class="text-center py-5">' +
+						'<div class="mb-4"><i class="isax isax-tick-circle fs-1 text-success" style="font-size:64px!important"></i></div>' +
+						'<h4 class="text-success mb-2">Course Submitted Successfully!</h4>' +
+						'<p class="text-muted mb-4">Your course has been submitted for admin review.<br>You will be notified once it is approved.</p>' +
+						'<a href="/instructor/instructor-dashboard" class="btn btn-primary">Back to Dashboard</a>' +
+						'</div>';
+				} else {
+					alertEl.textContent = data.message || 'Failed to submit course. Please try again.';
+					alertEl.classList.remove('d-none');
+					submitBtn.disabled = false;
+					submitBtn.textContent = 'Submit for Approval';
+				}
+			} catch (err) {
+				alertEl.textContent = 'Network error. Please try again.';
+				alertEl.classList.remove('d-none');
+				submitBtn.disabled = false;
+				submitBtn.textContent = 'Submit for Approval';
+			}
+		});
+	})();
+	</script>
 	<!-- Scroll to Top Button -->
 	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
 		<i class="fas fa-arrow-up"></i>
