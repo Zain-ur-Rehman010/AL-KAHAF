@@ -116,7 +116,7 @@ exports.getCurrentUser = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const { firstName, lastName, phone, bio, profileImage } = req.body;
+    const { firstName, lastName, phone, bio, profileImage, designation, specialization, education, workExperience } = req.body;
     const user = await User.findByPk(req.user.userId);
 
     if (!user) {
@@ -126,9 +126,13 @@ exports.updateProfile = async (req, res) => {
     await user.update({
       firstName: firstName || user.firstName,
       lastName: lastName || user.lastName,
-      phone: phone || user.phone,
-      bio: bio || user.bio,
-      profileImage: profileImage || user.profileImage,
+      phone: phone !== undefined ? phone : user.phone,
+      bio: bio !== undefined ? bio : user.bio,
+      profileImage: profileImage !== undefined ? profileImage : user.profileImage,
+      designation: designation !== undefined ? designation : user.designation,
+      specialization: specialization !== undefined ? specialization : user.specialization,
+      education: education !== undefined ? education : user.education,
+      workExperience: workExperience !== undefined ? workExperience : user.workExperience,
     });
 
     res.json({

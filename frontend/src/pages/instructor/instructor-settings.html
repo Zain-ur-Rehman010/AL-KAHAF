@@ -488,7 +488,7 @@
                                     <li><a href="/instructor/instructor-integrations">Integrations</a></li>
                                     <li><a href="/instructor/instructor-withdraw">Withdraw</a></li>
 								</ul>
-								<form action="instructor-settings.html">
+								<form id="profile-form">
 								<div class="card">
 									<div class="card-body">									
 									<div class="profile-upload-group">									
@@ -520,13 +520,13 @@
 												<div class="col-md-6">
 													<div class="mb-3">
 														<label class="form-label">First Name <span class="text-danger"> *</span></label>
-														<input type="text" class="form-control" value="Eugene">
+														<input type="text" id="firstName" name="firstName" class="form-control" value="">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="mb-3">
 														<label class="form-label">Last Name <span class="text-danger"> *</span></label>
-														<input type="text" class="form-control" value="Andre">
+														<input type="text" id="lastName" name="lastName" class="form-control" value="">
 													</div>
 												</div>
 												<div class="col-md-6">
@@ -538,124 +538,44 @@
 												<div class="col-md-6">
 													<div class="mb-3">
 														<label class="form-label">Phone Number <span class="text-danger"> *</span></label>
-														<input type="text" class="form-control" value="90154-91036">
+														<input type="text" id="phone" name="phone" class="form-control" value="">
 													</div>
 												</div>
 									
 												<div class="col-md-12">
+													<div class="mb-3">
+														<label class="form-label">Designation <span class="text-muted fs-12">(e.g. Full Stack Developer, Python Expert)</span></label>
+														<input type="text" id="designation" name="designation" class="form-control" placeholder="Your professional title">
+													</div>
+												</div>
+											<div class="col-md-12">
 													<div class="mb-4">
 														<label class="form-label">Bio <span class="text-danger"> *</span></label>
-														<textarea rows="4" class="form-control">I am a web developer with a vast array of knowledge in many different front end and back end languages, responsive frameworks, databases, and best code practices.</textarea>
+														<textarea id="bio" name="bio" rows="4" class="form-control"></textarea>
 													</div>
 												</div>
                                                 <div class="mt-3 mb-3">
                                                     <h5 class="mb-1 fs-18">Educational Details</h5>
-                                                    <p>Edit your Educational information</p>
+                                                    <p>Edit your educational background</p>
                                                 </div>
-                                                <div class="col-md-12">                                                    
-                                                    <div class="row">
-                                                        <div class="col-xl-7">
-                                                          <div class="row">
-                                                           <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Degree<span class="text-danger"> *</span></label>
-                                                                <input type="text" class="form-control" value="">
-                                                            </div>
-                                                           </div>
-                                                           <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label class="form-label">University<span class="text-danger"> *</span></label>
-                                                                <input type="text" class="form-control" value="">
-                                                            </div>
-                                                           </div>
-                                                        </div>
-                                                       </div>
-                                                        <div class="col-xl-5">
-                                                            <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="mb-3">
-                                                                <label class="form-label">From Date<span class="text-danger"> *</span></label>
-                                                                <div class="input-icon position-relative calender-input">
-                                                                    <span class="input-icon-addon">
-                                                                        <i class="isax isax-calendar"></i>
-                                                                    </span>
-                                                                    <input type="text" class="form-control datetimepicker" placeholder="">
-                                                                </div>
-                                                            </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="mb-3">
-                                                                <label class="form-label">To Date<span class="text-danger"> *</span></label>
-                                                                <div class="input-icon position-relative calender-input">
-                                                                    <span class="input-icon-addon calender-input">
-                                                                        <i class="isax isax-calendar"></i>
-                                                                    </span>
-                                                                    <input type="text" class="form-control datetimepicker" placeholder="">
-                                                                </div>
-                                                            </div>
-                                                            </div>
-                                                           </div>
-                                                        </div>
-                                                    </div>
-                                                    <a href="javascript:void(0);" class="d-inline-flex align-items-center text-secondary fw-medium mb-3" id="add-new-topic-btn">
-                                                        <i class="isax isax-add me-1"></i> Add New
+                                                <div class="col-md-12">
+                                                    <div id="education-list"></div>
+                                                    <a href="javascript:void(0);" class="d-inline-flex align-items-center text-secondary fw-medium mb-3" id="add-education-btn">
+                                                        <i class="isax isax-add me-1"></i> Add Education
                                                     </a>
                                                 </div>
                                                 <div class="mt-3 mb-3">
-                                                    <h5 class="mb-1 fs-18">Experience</h5>
-                                                    <p>Edit your Experience</p>
+                                                    <h5 class="mb-1 fs-18">Work Experience</h5>
+                                                    <p>Edit your work experience</p>
                                                 </div>
-                                                <div class="col-md-12">                                                    
-                                                    <div class="row">
-                                                        <div class="col-xl-7">
-                                                          <div class="row">
-                                                           <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Company<span class="text-danger"> *</span></label>
-                                                                <input type="text" class="form-control" value="">
-                                                            </div>
-                                                           </div>
-                                                           <div class="col-md-6">
-                                                            <div class="mb-3">
-                                                                <label class="form-label">Position<span class="text-danger"> *</span></label>
-                                                                <input type="text" class="form-control" value="">
-                                                            </div>
-                                                           </div>
-                                                        </div>
-                                                       </div>
-                                                        <div class="col-xl-5">
-                                                            <div class="row">
-                                                            <div class="col-md-6">
-                                                                <div class="mb-3">
-                                                                <label class="form-label">From Date<span class="text-danger"> *</span></label>
-                                                                <div class="input-icon position-relative calender-input">
-                                                                    <span class="input-icon-addon">
-                                                                        <i class="isax isax-calendar"></i>
-                                                                    </span>
-                                                                    <input type="text" class="form-control datetimepicker" placeholder="">
-                                                                </div>
-                                                               </div>
-                                                            </div>
-                                                            <div class="col-md-6">
-                                                                <div class="mb-3">
-                                                                <label class="form-label">To Date<span class="text-danger"> *</span></label>
-                                                                <div class="input-icon position-relative calender-input">
-                                                                    <span class="input-icon-addon calender-input">
-                                                                        <i class="isax isax-calendar"></i>
-                                                                    </span>
-                                                                    <input type="text" class="form-control datetimepicker" placeholder="">
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                           </div>
-                                                        </div>
-                                                    </div>
-                                                    <a href="javascript:void(0);" class="d-inline-flex align-items-center text-secondary fw-medium mb-3" id="add-new-topic-btn2">
-                                                        <i class="isax isax-add me-1"></i> Add New
-                                                      </a>
+                                                <div class="col-md-12">
+                                                    <div id="experience-list"></div>
+                                                    <a href="javascript:void(0);" class="d-inline-flex align-items-center text-secondary fw-medium mb-3" id="add-experience-btn">
+                                                        <i class="isax isax-add me-1"></i> Add Experience
+                                                    </a>
                                                 </div>
-												<div class="col-md-12">
-													<button class="btn btn-secondary rounded-pill" type="submit">Update Profile</button>
+<div class="col-md-12">
+													<button id="save-profile-btn" class="btn btn-secondary rounded-pill" type="submit">Update Profile</button>
 												</div>
 											</div>
 										</div>
@@ -866,6 +786,13 @@
 		
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
+
+		<!-- API Config & Auth -->
+		<script src="/assets/js/api-config.js"></script>
+		<script src="/assets/js/instructor-header.js"></script>
+
+		<!-- Instructor Settings -->
+		<script src="/assets/js/instructor-settings.js"></script>
 	<!-- Scroll to Top Button -->
 	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
 		<i class="fas fa-arrow-up"></i>

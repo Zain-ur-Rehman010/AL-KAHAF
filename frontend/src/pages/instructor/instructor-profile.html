@@ -475,19 +475,19 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>First Name</h6>
-												<span>Eugene</span>
+												<span id="prof-firstName"></span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>Last Name</h6>
-												<span>Andre</span>
+												<span id="prof-lastName"></span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>Registration Date</h6>
-												<span>16 Jan 2024, 11:15 AM</span>
+												<span id="prof-createdAt"></span>
 											</div>
 										</div>
 										<div class="col-md-4">
@@ -499,18 +499,24 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>Phone Number</h6>
-												<span>89104-71829</span>
+												<span id="prof-phone"></span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>Email</h6>
-												<span>instructordemo@example.com</span>
+												<span id="prof-email"></span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
-												<h6>Gender</h6>
+												<h6>Designation</h6>
+												<span id="prof-designation">-</span>
+											</div>
+										</div>
+											<div class="col-md-4">
+												<div class="mb-3">
+													<h6>Gender</h6>
 												<span>Male</span>
 											</div>
 										</div>
@@ -529,10 +535,7 @@
 										<div class="col-md-12">
 											<div>
 												<h6>Bio</h6>
-												<span>I am a web developer with a vast array of knowledge in
-													many different front end and back end languages, 
-													responsive frameworks, databases, and best code practices.
-												</span>
+														<span id="prof-bio"></span>
 											</div>
 										</div>
 									</div>								
@@ -541,45 +544,17 @@
 							<div class="card">
 								<div class="card-body">
 										<h5 class="fs-18 pb-3 border-bottom mb-3">Education</h5>
-										<div class="education-flow">
-											<div class="ps-4 pb-3 timeline-flow">
-												<div>
-													<h6 class="mb-1">BCA - Bachelor of Computer Applications</h6>
-													<p>International University - (2004 - 2010)</p>
-												</div>
-											</div>
-											<div class="ps-4 pb-3 timeline-flow">
-												<div>
-													<h6 class="mb-1">MCA - Master of Computer Application</h6>
-													<p>International University - (2010 - 2012)</p>
-												</div>
-											</div>
-											<div class="ps-4 pb-0 timeline-flow">
-												<div>
-													<h6 class="mb-1">Design Communication Visual</h6>
-													<p>International University - (2012-2015)</p>
-												</div>
-											</div>
+										<div id="prof-education-list" class="education-flow">
+											<p class="text-muted fs-14">No education details added yet.</p>
 										</div>
 								</div>
 							</div>
 
 							<div class="card mb-0">
 								<div class="card-body">
-										<h5 class="fs-18 pb-3 border-bottom mb-3">Experience</h5>
-										<div class="d-flex align-items-center mb-4">
-											<span class="bg-light border avatar avatar-lg text-gray-9 flex-shrink-0 me-3"><i class="isax isax-briefcase fw-bold"></i></span>
-											<div>
-												<h6 class="mb-1">Web Design & Development Team Leader</h6>
-												<p>Creative Agency - (2013 - 2016)</p>
-											</div>
-										</div>
-										<div class="d-flex align-items-center">
-											<span class="bg-light border avatar avatar-lg text-gray-9 flex-shrink-0 me-3"><i class="isax isax-briefcase fw-bold"></i></span>
-											<div>
-												<h6 class="mb-1">Project Manager</h6>
-												<p>CJobcy Technology Pvt.Ltd - (Present)</p>
-											</div>
+										<h5 class="fs-18 pb-3 border-bottom mb-3">Work Experience</h5>
+										<div id="prof-experience-list">
+											<p class="text-muted fs-14">No experience details added yet.</p>
 										</div>
 								</div>
 							</div>					
@@ -701,6 +676,13 @@
 		
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
+
+		<!-- API Config & Auth -->
+		<script src="/assets/js/api-config.js"></script>
+		<script src="/assets/js/instructor-header.js"></script>
+
+		<!-- Instructor Profile Data -->
+		<script src="/assets/js/instructor-profile.js"></script>
 	<!-- Scroll to Top Button -->
 	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
 		<i class="fas fa-arrow-up"></i>

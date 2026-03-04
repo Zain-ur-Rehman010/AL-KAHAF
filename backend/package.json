@@ -4,7 +4,7 @@
   "description": "Production-ready LMS backend for AlKahaf",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
+    "start": "node run-migration-04.js && node src/server.js",
     "dev": "nodemon src/server.js",
     "migrate": "node migrations/migrate.js",
     "migrate:rollback": "node migrations/rollback.js",
