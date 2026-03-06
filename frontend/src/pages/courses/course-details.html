@@ -274,21 +274,21 @@
                                         </div>
                                       </div>
                                     <div class="w-100 ps-lg-4">
-                                        <h3 class="mb-2">The Complete Web Developer Course 2.0</h3>
-                                        <p class="fs-14 mb-3">Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python</p>
+                                        <h3 class="mb-2" id="cd-title">The Complete Web Developer Course 2.0</h3>
+                                        <p class="fs-14 mb-3" id="cd-short-desc">Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python</p>
                                         <div class="d-flex align-items-center gap-2 gap-sm-3 gap-xl-4 flex-wrap my-3 my-sm-0">
                                             <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/book.svg" alt="img">12+ Lesson</p>
                                             <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/timer-start.svg" alt="img">9hr 30min</p>
-                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/people.svg" alt="img">32 students enrolled</p>
-                                            <span class="badge badge-sm rounded-pill bg-warning fs-12">Web Development</span>
+                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/people.svg" alt="img"><span id="cd-enrollment-count">32</span> students enrolled</p>
+                                            <span class="badge badge-sm rounded-pill bg-warning fs-12" id="cd-category">Web Development</span>
                                         </div>
                                         <div class="d-sm-flex align-items-center justify-content-sm-between mt-3">
                                             <div class="d-flex align-items-center">
                                                 <div class="avatar avatar-lg">
-                                                    <img class="rounded-circle" src="/assets/img/instructor/_instructor-600_600.jpeg" alt="img">
+                                                    <img class="rounded-circle" src="/assets/img/instructor/_instructor-600_600.jpeg" alt="img" id="cd-instructor-avatar">
                                                 </div>
                                                 <div class="ms-2">
-                                                <h5 class="fs-18 fw-semibold"><a href="/instructor/instructor-details">Nicole Brown</a></h5>
+                                                <h5 class="fs-18 fw-semibold" id="cd-instructor-name"><a href="/instructor/instructor-details">Nicole Brown</a></h5>
                                                 <p class="fs-14">Instructor</p>
                                             </div>
                                             </div>
@@ -316,7 +316,7 @@
                                 <div class="card-body">
                                     <h5 class="mb-3">Overview</h5>
                                     <h6 class="mb-2">Course Description</h6>
-                                    <p>Embark on a transformative journey into AI with Mike Wheeler, your guide in this Udemy Best Seller course on ChatGPT and Prompt Engineering. As an experience instructor who has taught well over 300,000 students, Mike unveils the secrets of developing your own custom GPTs, ensuring your skills shine in the thriving digital marketplace. </p>
+                                    <p id="cd-description">Embark on a transformative journey into AI with Mike Wheeler, your guide in this Udemy Best Seller course on ChatGPT and Prompt Engineering. As an experience instructor who has taught well over 300,000 students, Mike unveils the secrets of developing your own custom GPTs, ensuring your skills shine in the thriving digital marketplace. </p>
                                     <p>This course will get your familiar with Generative AI and the effective use of ChatGPT and is perfect for the beginner. You will also learn advanced prompting techniques to take your Prompt Engineering skills to the next level!</p>
                                     <h6 class="mb-2">What you'll learn</h6>
                                     <ul class="custom-list mb-3">
@@ -621,8 +621,7 @@
                               <div class="card mb-4">
                                 <div class="card-body">
                                  <div class="d-flex justify-content-between align-items-center mb-4">
-                                      <h2 class="text-success fs-30">FREE</h2>
-                                      <p class="fs-14 mb-0"><span class="text-decoration-line-through me-2">$99.00</span>50% off</p>
+                                      <h2 class="text-success fs-30" id="cd-price">FREE</h2>
                                     </div>
                                     <div class="d-flex justify-content-between gap-3 wishlist-btns">
                                        <a class="btn d-flex btn-wish" href="/student/student-wishlist"><i class="isax isax-heart me-1 fs-18"></i>Add to Wishlist</a>
@@ -783,5 +782,72 @@
 	</button>
 
 		
-	</body>
+	
+	<!-- API Config -->
+	<script src="/assets/js/api-config.js"></script>
+
+	<script>
+	(function () {
+		var API_BASE = 'https://al-kahaf-production.up.railway.app/api/v1';
+
+		function setText(id, value) {
+			var el = document.getElementById(id);
+			if (el && value !== undefined && value !== null) el.textContent = value;
+		}
+
+		function populateCourse(course) {
+			// Title & descriptions
+			setText('cd-title', course.title);
+			setText('cd-short-desc', course.shortDescription || course.description || '');
+			setText('cd-description', course.description || course.shortDescription || '');
+			setText('cd-category', course.category || '');
+			setText('cd-enrollment-count', course.enrollmentCount || 0);
+
+			// Price
+			var priceEl = document.getElementById('cd-price');
+			if (priceEl) {
+				var p = parseFloat(course.price);
+				if (!p || p === 0) {
+					priceEl.textContent = 'Free';
+					priceEl.className = 'text-success fs-30';
+				} else {
+					priceEl.textContent = 'Rs' + p.toLocaleString();
+					priceEl.className = 'fw-bold fs-30';
+				}
+			}
+
+			// Instructor
+			if (course.instructor) {
+				var name = ((course.instructor.firstName || '') + ' ' + (course.instructor.lastName || '')).trim();
+				var nameEl = document.getElementById('cd-instructor-name');
+				if (nameEl) nameEl.innerHTML = '<a href="/instructor/instructor-details">' + name + '</a>';
+				var avatarEl = document.getElementById('cd-instructor-avatar');
+				if (avatarEl && course.instructor.avatar) avatarEl.src = course.instructor.avatar;
+			}
+
+			// Page title
+			document.title = (course.title || 'Course Details') + ' | Al-Kahaf Online Academy';
+		}
+
+		// Read ?id= from URL
+		var params = new URLSearchParams(window.location.search);
+		var courseId = params.get('id');
+
+		if (!courseId) return; // no ID — leave static content as fallback
+
+		fetch(API_BASE + '/courses/' + courseId)
+			.then(function (res) {
+				if (!res.ok) throw new Error('Course not found');
+				return res.json();
+			})
+			.then(function (json) {
+				var course = json.data || json;
+				populateCourse(course);
+			})
+			.catch(function (err) {
+				console.warn('Could not load course:', err.message);
+			});
+	})();
+	</script>
+</body>
 </html>

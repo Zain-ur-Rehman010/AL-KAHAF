@@ -3676,15 +3676,14 @@ Dependencies:
 				? rating.toFixed(1) + ' (' + (course.enrollmentCount || 0) + ' Students)'
 				: 'New Course';
 			var priceDisplay = formatPrice(course.price);
+			var courseUrl = course.id ? '/courses/course-details?id=' + course.id : '/courses/course-grid';
 
 			return '<div>' +
-				'<div class="course-item-two course-item mb-0">' +
+				'<div class="course-item-two course-item mb-0" style="cursor:pointer;position:relative;" onclick="window.location.href=\'' + courseUrl + '\'" role="link" tabindex="0" aria-label="' + course.title.replace(/"/g, '&quot;') + '" onkeydown="if(event.key===\'Enter\')window.location.href=\'' + courseUrl + '\'">' +
 					'<div class="course-img">' +
-						'<a href="/courses/course-details">' +
-							'<img src="' + imgSrc + '" alt="' + course.title.replace(/"/g, '&quot;') + '" class="img-fluid" onerror="this.src=\'' + FALLBACK_IMG + '\'">' +
-						'</a>' +
+						'<img src="' + imgSrc + '" alt="' + course.title.replace(/"/g, '&quot;') + '" class="img-fluid" onerror="this.src=\'' + FALLBACK_IMG + '\'">' +
 						'<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">' +
-							'<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>' +
+							'<button type="button" class="fav-icon ms-auto border-0 bg-transparent" onclick="event.stopPropagation();" aria-label="Add to wishlist"><i class="isax isax-heart"></i></button>' +
 						'</div>' +
 					'</div>' +
 					'<div class="course-content">' +
@@ -3699,11 +3698,11 @@ Dependencies:
 							'</div>' +
 							'<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">' + course.category + '</span>' +
 						'</div>' +
-						'<h6 class="title mb-2"><a href="/courses/course-details">' + course.title + '</a></h6>' +
+						'<h6 class="title mb-2">' + course.title + '</h6>' +
 						'<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' + ratingDisplay + '</p>' +
 						'<div class="d-flex align-items-center justify-content-between">' +
 							'<span class="text-secondary fw-bold lh-1" style="font-size:1.25rem">' + priceDisplay + '</span>' +
-							'<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>' +
+							'<button type="button" onclick="event.stopPropagation();window.location.href=\'' + courseUrl + '\'" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></button>' +
 						'</div>' +
 					'</div>' +
 				'</div>' +
