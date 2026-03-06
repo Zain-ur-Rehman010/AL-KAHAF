@@ -12,6 +12,8 @@ const Message = require('./Message');
 const Notification = require('./Notification');
 const Blog = require('./Blog');
 const FreeTrialRequest = require('./FreeTrialRequest');
+const PredefinedCourse = require('./PredefinedCourse');
+const InstructorCourse = require('./InstructorCourse');
 
 // User associations
 User.hasMany(Course, { foreignKey: 'instructorId', as: 'instructedCourses' });
@@ -78,6 +80,22 @@ Notification.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 Blog.belongsTo(User, { foreignKey: 'authorId', as: 'author' });
 User.hasMany(Blog, { foreignKey: 'authorId', as: 'blogs' });
 
+// Instructor ↔ PredefinedCourse (many-to-many via InstructorCourses junction table)
+User.belongsToMany(PredefinedCourse, {
+  through: InstructorCourse,
+  foreignKey: 'instructorId',
+  otherKey: 'predefinedCourseId',
+  as: 'assignedCourses'
+});
+PredefinedCourse.belongsToMany(User, {
+  through: InstructorCourse,
+  foreignKey: 'predefinedCourseId',
+  otherKey: 'instructorId',
+  as: 'instructors'
+});
+InstructorCourse.belongsTo(User, { foreignKey: 'instructorId', as: 'instructor' });
+InstructorCourse.belongsTo(PredefinedCourse, { foreignKey: 'predefinedCourseId', as: 'course' });
+
 module.exports = {
   sequelize,
   User,
@@ -93,4 +111,6 @@ module.exports = {
   Notification,
   Blog,
   FreeTrialRequest,
+  PredefinedCourse,
+  InstructorCourse,
 };

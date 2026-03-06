@@ -1,4 +1,4 @@
-const { User, Course, Enrollment, Payment, Certificate, sequelize } = require('../models');
+const { User, Course, Enrollment, Payment, Certificate, PredefinedCourse, InstructorCourse, sequelize } = require('../models');
 const { Op } = require('sequelize');
 const { notifyUser } = require('../services/notificationService');
 const fs = require('fs');
@@ -1253,5 +1253,132 @@ exports.updateSettings = (req, res) => {
   } catch (err) {
     console.error('Error saving settings:', err);
     res.status(500).json({ success: false, message: 'Failed to save settings.', error: err.message });
+  }
+};
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Predefined Course Catalog
+// ─────────────────────────────────────────────────────────────────────────────
+
+/**
+ * GET /api/v1/admin/predefined-courses
+ * Returns all active predefined courses, grouped by category.
+ */
+exports.getPredefinedCourses = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Admin access required.' });
+    }
+
+    const courses = await PredefinedCourse.findAll({
+      where: { isActive: true },
+      order: [['category', 'ASC'], ['courseName', 'ASC']],
+      attributes: ['id', 'courseName', 'category']
+    });
+
+    // Build a grouped structure for convenient frontend rendering
+    const grouped = courses.reduce((acc, c) => {
+      if (!acc[c.category]) acc[c.category] = [];
+      acc[c.category].push({ id: c.id, courseName: c.courseName });
+      return acc;
+    }, {});
+
+    return res.json({ success: true, data: { courses, grouped } });
+  } catch (error) {
+    console.error('getPredefinedCourses error:', error);
+    return res.status(500).json({ success: false, message: 'Server error.' });
+  }
+};
+
+/**
+ * GET /api/v1/admin/instructors/:id/courses
+ * Returns predefined courses currently assigned to an instructor.
+ */
+exports.getInstructorCourses = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Admin access required.' });
+    }
+
+    const instructor = await User.findOne({ where: { id: req.params.id, role: 'instructor' } });
+    if (!instructor) {
+      return res.status(404).json({ success: false, message: 'Instructor not found.' });
+    }
+
+    const assignments = await InstructorCourse.findAll({
+      where: { instructorId: req.params.id },
+      include: [{ model: PredefinedCourse, as: 'course', attributes: ['id', 'courseName', 'category'] }]
+    });
+
+    const courses = assignments.map(a => a.course).filter(Boolean);
+    return res.json({ success: true, data: courses });
+  } catch (error) {
+    console.error('getInstructorCourses error:', error);
+    return res.status(500).json({ success: false, message: 'Server error.' });
+  }
+};
+
+/**
+ * POST /api/v1/admin/instructors/:id/courses
+ * Sync (replace) all course assignments for an instructor.
+ * Body: { courseIds: ['uuid', ...] }
+ */
+exports.syncInstructorCourses = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Admin access required.' });
+    }
+
+    const instructor = await User.findOne({ where: { id: req.params.id, role: 'instructor' } });
+    if (!instructor) {
+      return res.status(404).json({ success: false, message: 'Instructor not found.' });
+    }
+
+    const courseIds = Array.isArray(req.body.courseIds) ? req.body.courseIds : [];
+
+    // Replace all existing assignments atomically
+    await sequelize.transaction(async (t) => {
+      await InstructorCourse.destroy({ where: { instructorId: req.params.id }, transaction: t });
+
+      if (courseIds.length > 0) {
+        const now = new Date();
+        const rows = courseIds.map(courseId => ({
+          instructorId: req.params.id,
+          predefinedCourseId: courseId,
+          assignedAt: now
+        }));
+        await InstructorCourse.bulkCreate(rows, { ignoreDuplicates: true, transaction: t });
+      }
+    });
+
+    return res.json({ success: true, message: `${courseIds.length} course(s) assigned successfully.` });
+  } catch (error) {
+    console.error('syncInstructorCourses error:', error);
+    return res.status(500).json({ success: false, message: 'Server error.' });
+  }
+};
+
+/**
+ * DELETE /api/v1/admin/instructors/:id/courses/:courseId
+ * Remove a single predefined course assignment from an instructor.
+ */
+exports.removeInstructorCourse = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Admin access required.' });
+    }
+
+    const deleted = await InstructorCourse.destroy({
+      where: { instructorId: req.params.id, predefinedCourseId: req.params.courseId }
+    });
+
+    if (!deleted) {
+      return res.status(404).json({ success: false, message: 'Assignment not found.' });
+    }
+
+    return res.json({ success: true, message: 'Course assignment removed.' });
+  } catch (error) {
+    console.error('removeInstructorCourse error:', error);
+    return res.status(500).json({ success: false, message: 'Server error.' });
   }
 };

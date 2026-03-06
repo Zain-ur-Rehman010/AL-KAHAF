@@ -36,4 +36,12 @@ router.delete('/enrollments/:id', adminController.deleteEnrollment);
 router.get('/settings', adminController.getSettings);
 router.put('/settings', adminController.updateSettings);
 
+// Predefined Course Catalog
+router.get('/predefined-courses', adminController.getPredefinedCourses);
+
+// Instructor ↔ Course Assignments
+router.get('/instructors/:id/courses', adminController.getInstructorCourses);
+router.post('/instructors/:id/courses', adminController.syncInstructorCourses);
+router.delete('/instructors/:id/courses/:courseId', adminController.removeInstructorCourse);
+
 module.exports = router;

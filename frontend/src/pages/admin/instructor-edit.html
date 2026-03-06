@@ -328,6 +328,21 @@
 
                     </div>
 
+                        <!-- Course Assignments -->
+                        <div class="form-card">
+                            <h3 class="form-card-header">
+                                <i class="iconsax me-2" data-icon="book"></i> Course Assignments
+                            </h3>
+                            <div id="courses-loading" class="text-center text-muted py-2">
+                                <i class="fas fa-spinner fa-spin me-2"></i>Loading courses...
+                            </div>
+                            <div id="courses-field" class="d-none">
+                                <label class="form-label">Assigned Courses <span class="text-muted fw-normal">(optional)</span></label>
+                                <select class="form-select" id="assignedCourses" name="assignedCourses" multiple></select>
+                                <small class="form-text text-muted">Changes are saved when you click "Save Changes".</small>
+                            </div>
+                        </div>
+
                     <!-- Sidebar -->
                     <div class="col-lg-4">
 
@@ -461,6 +476,7 @@
                 return;
             }
 
+            loadPredefinedCourses().then(() => loadInstructorCourses());
             loadInstructorData();
             initializeSelect2();
         });
@@ -628,6 +644,17 @@
                 const result = await response.json();
 
                 if (result.success) {
+                    // Sync course assignments
+                    const selectedCourses = $('#assignedCourses').val() || [];
+                    try {
+                        await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + instructorId + '/courses', {
+                            method: 'POST',
+                            headers: API_CONFIG.getHeaders(true),
+                            body: JSON.stringify({ courseIds: selectedCourses })
+                        });
+                    } catch (e) {
+                        console.warn('Course sync failed (non-critical):', e);
+                    }
                     alert('Instructor updated successfully!');
                     window.location.href = '/admin/instructors-list';
                 } else {
@@ -638,6 +665,61 @@
                 alert('Failed to update instructor');
             } finally {
                 hideLoading();
+            }
+        }
+
+        // Load predefined course catalog and populate the select dropdown
+        async function loadPredefinedCourses() {
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/predefined-courses', {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+                const result = await response.json();
+                if (!result.success) throw new Error(result.message);
+
+                const select = document.getElementById('assignedCourses');
+                const grouped = result.data.grouped;
+
+                Object.keys(grouped).sort().forEach(category => {
+                    const group = document.createElement('optgroup');
+                    group.label = category;
+                    grouped[category].forEach(course => {
+                        const opt = document.createElement('option');
+                        opt.value = course.id;
+                        opt.textContent = course.courseName;
+                        group.appendChild(opt);
+                    });
+                    select.appendChild(group);
+                });
+
+                document.getElementById('courses-loading').classList.add('d-none');
+                document.getElementById('courses-field').classList.remove('d-none');
+
+                $('#assignedCourses').select2({
+                    placeholder: 'Select courses to assign...',
+                    allowClear: true,
+                    width: '100%'
+                });
+            } catch (err) {
+                console.warn('Could not load predefined courses:', err);
+                document.getElementById('courses-loading').textContent = 'Courses unavailable.';
+            }
+        }
+
+        // Load courses already assigned to this instructor and pre-select them
+        async function loadInstructorCourses() {
+            if (!instructorId) return;
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + instructorId + '/courses', {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+                const result = await response.json();
+                if (result.success && Array.isArray(result.data)) {
+                    const ids = result.data.map(c => c.id);
+                    $('#assignedCourses').val(ids).trigger('change');
+                }
+            } catch (err) {
+                console.warn('Could not load instructor courses:', err);
             }
         }
 
