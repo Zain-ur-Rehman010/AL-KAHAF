@@ -454,10 +454,11 @@ exports.updateInstructor = async (req, res) => {
       });
     }
 
-    // Update allowed fields
+    // Scalar fields that can be directly updated
     const allowedFields = [
       'firstName', 'lastName', 'email', 'phone',
-      'profileImage', 'bio', 'status', 'emailVerified'
+      'profileImage', 'bio', 'status', 'emailVerified',
+      'designation', 'experience', 'rating', 'isVerified'
     ];
 
     const updateData = {};
@@ -467,12 +468,26 @@ exports.updateInstructor = async (req, res) => {
       }
     });
 
+    // JSON fields — keep as-is if provided
+    if (req.body.socialLinks !== undefined) {
+      updateData.socialLinks = req.body.socialLinks;
+    }
+    if (req.body.specialization !== undefined) {
+      updateData.specialization = Array.isArray(req.body.specialization)
+        ? req.body.specialization
+        : [req.body.specialization];
+    }
+
     await instructor.update(updateData);
+
+    // Return safe response (exclude password)
+    const result = instructor.toJSON();
+    delete result.password;
 
     res.json({
       success: true,
       message: 'Instructor updated successfully',
-      data: instructor.toJSON()
+      data: result
     });
 
   } catch (error) {
