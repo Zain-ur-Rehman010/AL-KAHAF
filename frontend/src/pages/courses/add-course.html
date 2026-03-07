@@ -854,16 +854,16 @@
 								<i class="isax isax-close-circle5"></i>
 							</button>
 						</div>
-						<form action="add-course.html">
+						<form action="javascript:void(0);" onsubmit="return false;">
 							<div class="modal-body">
 								<div class="input-block">
 									<label class="form-label">Add Name<span class="text-danger ms-1">*</span></label>
-									<input type="text" class="form-control">
+									<input type="text" id="topic-name-input" class="form-control" placeholder="Enter topic name">
 								</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn me-2 btn-light" data-bs-dismiss="modal">Cancel</button>
-								<button type="submit" class="btn btn-secondary">Add New</button>
+								<button type="button" class="btn btn-secondary" id="add-topic-btn">Add New</button>
 							</div>
 						</form>
 					</div>
@@ -881,19 +881,19 @@
 								<i class="isax isax-close-circle5"></i>
 							</button>
 						</div>
-						<form action="add-course.html">
+						<form action="javascript:void(0);" onsubmit="return false;">
 							<div class="modal-body">
 								<div class="input-block mb-4">
 									<label class="form-label">Add Lesson<span class="text-danger ms-1">*</span></label>
-									<input type="text" class="form-control">
+									<input type="text" id="lesson-name-input" class="form-control" placeholder="Lesson title">
 								</div>
 								<div class="input-block mb-4">
 									<label class="form-label">Video link<span class="text-danger ms-1">*</span></label>
-									<input type="text" class="form-control">
+									<input type="text" id="lesson-video-input" class="form-control" placeholder="https://...">
 								</div>
 								<div class="input-block mb-4">
 									<label class="form-label">Course Description</label>
-									<textarea class="form-control"></textarea>
+									<textarea id="lesson-desc-input" class="form-control"></textarea>
 								</div>
 								<div class="d-flex align-items-center">
 									<div class="form-check me-3">
@@ -912,7 +912,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn me-2 btn-light" data-bs-dismiss="modal">Cancel</button>
-								<button type="submit" class="btn btn-secondary">Add New</button>
+								<button type="button" class="btn btn-secondary" id="add-lesson-btn">Add New</button>
 							</div>
 						</form>
 					</div>
@@ -930,7 +930,7 @@
 								<i class="isax isax-close-circle5"></i>
 							</button>
 						</div>
-						<form action="add-course.html">
+						<form action="javascript:void(0);" onsubmit="return false;">
 							<div class="modal-body">
 								<div class="input-block mb-4">
 									<label class="form-label">Question<span class="text-danger ms-1">*</span></label>
@@ -1106,6 +1106,117 @@
 	<!-- API Config -->
 	<script src="/assets/js/api-config.js"></script>
 	<script>
+	// ── Module/Lesson data model ──────────────────────────────────────────────
+	var courseModules = []; // [{title, description, lessons:[{title,videoUrl,description,status}]}]
+	var topicCount = 0;
+	var targetModuleIndex = null;
+
+	// ── Add Topic (Module) handler ────────────────────────────────────────────
+	(function () {
+		var addTopicBtn = document.getElementById('add-topic-btn');
+		if (!addTopicBtn) return;
+
+		addTopicBtn.addEventListener('click', function () {
+			var input = document.getElementById('topic-name-input');
+			var name = input.value.trim();
+			if (!name) { input.focus(); return; }
+
+			var moduleIndex = courseModules.length;
+			courseModules.push({ title: name, description: '', lessons: [] });
+
+			topicCount++;
+			var uid = 'DynamicTopic' + topicCount;
+			var accordion = document.getElementById('accordionSpacingExample');
+
+			var item = document.createElement('div');
+			item.className = 'accordion-item';
+			item.setAttribute('data-module-index', moduleIndex);
+			item.innerHTML =
+				'<h2 class="accordion-header">' +
+				'<a href="javascript:void(0);" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#' + uid + '" aria-expanded="false">' +
+				'<span class="d-flex align-items-center mb-0"><i class="isax isax-menu-15 me-2"></i>' + name + '</span>' +
+				'</a></h2>' +
+				'<div id="' + uid + '" class="accordion-collapse collapse" data-bs-parent="#accordionSpacingExample">' +
+				'<div class="accordion-body">' +
+				'<div class="d-flex align-items-center justify-content-between">' +
+				'<a href="javascript:void(0);" class="btn add-edit-btn d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#add-lesson"><i class="isax isax-add-circle5 me-2"></i>Add Lesson</a>' +
+				'</div></div></div>';
+
+			accordion.appendChild(item);
+
+			input.value = '';
+			var modal = bootstrap.Modal.getInstance(document.getElementById('add-topic'));
+			if (modal) modal.hide();
+		});
+	})();
+
+	// ── Track which module "Add Lesson" was clicked for ───────────────────────
+	document.addEventListener('click', function (e) {
+		var btn = e.target.closest('[data-bs-target="#add-lesson"]');
+		if (!btn) return;
+		var accordionItem = btn.closest('.accordion-item[data-module-index]');
+		if (accordionItem) {
+			targetModuleIndex = parseInt(accordionItem.getAttribute('data-module-index'), 10);
+		}
+	});
+
+	// ── Add Lesson handler ────────────────────────────────────────────────────
+	(function () {
+		var addLessonBtn = document.getElementById('add-lesson-btn');
+		if (!addLessonBtn) return;
+
+		addLessonBtn.addEventListener('click', function () {
+			var nameInput = document.getElementById('lesson-name-input');
+			var name = nameInput.value.trim();
+			if (!name) { nameInput.focus(); return; }
+
+			var videoUrl = document.getElementById('lesson-video-input').value.trim();
+			var description = document.getElementById('lesson-desc-input').value.trim();
+			var isPremium = document.getElementById('flexRadioDefault5').checked;
+			var status = isPremium ? 'published' : 'draft';
+
+			// Store in data model
+			if (targetModuleIndex !== null && courseModules[targetModuleIndex]) {
+				courseModules[targetModuleIndex].lessons.push({ title: name, videoUrl: videoUrl, description: description, status: status });
+			}
+
+			var icon = isPremium ? 'isax-lock text-warning' : 'isax-play-circle5 text-success';
+			var lessonHtml =
+				'<div class="d-flex align-items-center justify-content-between bg-white p-2 border rounded-3 mb-3">' +
+				'<div class="d-flex align-items-center">' +
+				'<span><i class="isax ' + icon + ' fs-24 me-1"></i></span>' +
+				'<p class="fw-medium text-gray-5 mb-0">' + name + '</p>' +
+				'</div>' +
+				'<div class="d-flex align-items-center">' +
+				'<a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>' +
+				'<a href="javascript:void(0);" class="delete-btn1"><i class="isax isax-trash fs-16"></i></a>' +
+				'</div></div>';
+
+			// Render into the correct accordion body
+			var targetItem = targetModuleIndex !== null
+				? document.querySelector('.accordion-item[data-module-index="' + targetModuleIndex + '"]')
+				: null;
+			var body = targetItem
+				? targetItem.querySelector('.accordion-body')
+				: document.querySelector('#accordionSpacingExample .accordion-body');
+
+			if (body) {
+				var addLessonRow = body.querySelector('[data-bs-target="#add-lesson"]').closest('.d-flex');
+				var tmp = document.createElement('div');
+				tmp.innerHTML = lessonHtml;
+				body.insertBefore(tmp.firstElementChild, addLessonRow);
+			}
+
+			nameInput.value = '';
+			document.getElementById('lesson-video-input').value = '';
+			document.getElementById('lesson-desc-input').value = '';
+			document.getElementById('flexRadioDefault4').checked = true;
+			var modal = bootstrap.Modal.getInstance(document.getElementById('add-lesson'));
+			if (modal) modal.hide();
+		});
+	})();
+
+	// ── Submit course (course → modules → lessons) ────────────────────────────
 	(function () {
 		var submitBtn = document.getElementById('submit-course-btn');
 		if (!submitBtn) return;
@@ -1117,7 +1228,6 @@
 			var price    = (document.getElementById('course-price')    || {}).value || '0';
 			var alertEl  = document.getElementById('course-submit-alert');
 
-			// Basic validation
 			if (!title.trim()) {
 				alertEl.textContent = 'Please enter a course title (Step 1).';
 				alertEl.classList.remove('d-none');
@@ -1125,16 +1235,14 @@
 			}
 
 			var token = localStorage.getItem('accessToken');
-			if (!token) {
-				window.location.href = '/auth/login';
-				return;
-			}
+			if (!token) { window.location.href = '/auth/login'; return; }
 
 			submitBtn.disabled = true;
 			submitBtn.textContent = 'Submitting...';
 			alertEl.classList.add('d-none');
 
 			try {
+				// 1. Create course
 				var res = await fetch(API_CONFIG.BASE_URL + '/courses', {
 					method: 'POST',
 					headers: API_CONFIG.getHeaders(true),
@@ -1147,23 +1255,43 @@
 					})
 				});
 				var data = await res.json();
-				if (res.ok) {
-					// Show success state
-					document.querySelector('.initialization-form-set').innerHTML =
-						'<div class="text-center py-5">' +
-						'<div class="mb-4"><i class="isax isax-tick-circle fs-1 text-success" style="font-size:64px!important"></i></div>' +
-						'<h4 class="text-success mb-2">Course Submitted Successfully!</h4>' +
-						'<p class="text-muted mb-4">Your course has been submitted for admin review.<br>You will be notified once it is approved.</p>' +
-						'<a href="/instructor/instructor-dashboard" class="btn btn-primary">Back to Dashboard</a>' +
-						'</div>';
-				} else {
-					alertEl.textContent = data.message || 'Failed to submit course. Please try again.';
-					alertEl.classList.remove('d-none');
-					submitBtn.disabled = false;
-					submitBtn.textContent = 'Submit for Approval';
+				if (!res.ok) throw new Error(data.message || 'Failed to create course');
+
+				var courseId = data.course.id;
+
+				// 2. Create modules and their lessons
+				for (var i = 0; i < courseModules.length; i++) {
+					var mod = courseModules[i];
+					var modRes = await fetch(API_CONFIG.BASE_URL + '/courses/' + courseId + '/modules', {
+						method: 'POST',
+						headers: API_CONFIG.getHeaders(true),
+						body: JSON.stringify({ title: mod.title, description: mod.description, order: i + 1 })
+					});
+					var modData = await modRes.json();
+					if (!modRes.ok) continue;
+
+					var moduleId = modData.module.id;
+					for (var j = 0; j < mod.lessons.length; j++) {
+						var les = mod.lessons[j];
+						await fetch(API_CONFIG.BASE_URL + '/courses/' + courseId + '/modules/' + moduleId + '/lessons', {
+							method: 'POST',
+							headers: API_CONFIG.getHeaders(true),
+							body: JSON.stringify({ title: les.title, videoUrl: les.videoUrl, description: les.description, status: les.status, order: j + 1 })
+						});
+					}
 				}
+
+				// 3. Show success
+				document.querySelector('.initialization-form-set').innerHTML =
+					'<div class="text-center py-5">' +
+					'<div class="mb-4"><i class="isax isax-tick-circle fs-1 text-success" style="font-size:64px!important"></i></div>' +
+					'<h4 class="text-success mb-2">Course Submitted Successfully!</h4>' +
+					'<p class="text-muted mb-4">Your course has been submitted for admin review.<br>You will be notified once it is approved.</p>' +
+					'<a href="/instructor/instructor-dashboard" class="btn btn-primary">Back to Dashboard</a>' +
+					'</div>';
+
 			} catch (err) {
-				alertEl.textContent = 'Network error. Please try again.';
+				alertEl.textContent = err.message || 'Network error. Please try again.';
 				alertEl.classList.remove('d-none');
 				submitBtn.disabled = false;
 				submitBtn.textContent = 'Submit for Approval';

@@ -721,6 +721,7 @@
             btn.innerHTML = '<i class="iconsax me-2" data-icon="loader"></i> Creating...';
 
             try {
+                // 1. Create course
                 const res = await fetch(API_CONFIG.BASE_URL + '/courses', {
                     method: 'POST',
                     headers: API_CONFIG.getHeaders(true),
@@ -728,17 +729,50 @@
                 });
                 const result = await res.json();
 
-                if (res.ok) {
-                    showToast('Course created successfully!', 'success');
-                    setTimeout(function () {
-                        window.location.href = '/admin/courses-list';
-                    }, 1500);
-                } else {
+                if (!res.ok) {
                     alertEl.textContent = result.message || 'Failed to create course. Please try again.';
                     alertEl.classList.remove('d-none');
                     btn.disabled = false;
                     btn.innerHTML = '<i class="iconsax me-2" data-icon="tick-circle"></i> Create Course';
+                    return;
                 }
+
+                const courseId = result.course.id;
+
+                // 2. Create modules and lessons from DOM
+                const moduleItems = document.querySelectorAll('.module-item');
+                for (let i = 0; i < moduleItems.length; i++) {
+                    const moduleEl = moduleItems[i];
+                    const moduleIndex = moduleEl.getAttribute('data-module-index');
+                    const moduleTitle = (moduleEl.querySelector(`[data-module-title="${moduleIndex}"]`) || {}).value || ('Module ' + (i + 1));
+                    const moduleDesc = (moduleEl.querySelector(`[data-module-desc="${moduleIndex}"]`) || {}).value || '';
+
+                    const modRes = await fetch(API_CONFIG.BASE_URL + '/courses/' + courseId + '/modules', {
+                        method: 'POST',
+                        headers: API_CONFIG.getHeaders(true),
+                        body: JSON.stringify({ title: moduleTitle, description: moduleDesc, order: i + 1 })
+                    });
+                    const modData = await modRes.json();
+                    if (!modRes.ok) continue;
+
+                    const moduleId = modData.module.id;
+                    const lessonItems = moduleEl.querySelectorAll(`[data-module-lessons="${moduleIndex}"] .lesson-item`);
+                    for (let j = 0; j < lessonItems.length; j++) {
+                        const lessonEl = lessonItems[j];
+                        const lessonTitle = (lessonEl.querySelector('input[type="text"]') || {}).value || ('Lesson ' + (j + 1));
+                        await fetch(API_CONFIG.BASE_URL + '/courses/' + courseId + '/modules/' + moduleId + '/lessons', {
+                            method: 'POST',
+                            headers: API_CONFIG.getHeaders(true),
+                            body: JSON.stringify({ title: lessonTitle, status: 'draft', order: j + 1 })
+                        });
+                    }
+                }
+
+                showToast('Course created successfully!', 'success');
+                setTimeout(function () {
+                    window.location.href = '/admin/courses-list';
+                }, 1500);
+
             } catch (err) {
                 alertEl.textContent = 'Network error — could not reach server.';
                 alertEl.classList.remove('d-none');

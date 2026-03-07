@@ -2,11 +2,8 @@
 // This file contains all API endpoint configurations
 
 const API_CONFIG = {
-    // Local Development API Base URL
+    // API Base URL (Railway backend)
     BASE_URL: 'https://al-kahaf-production.up.railway.app/api/v1',
-
-    // Production API Base URL (uncomment for production)
-    // BASE_URL: 'https://alkahafonlineacademy.com/api/v1',
 
     // Endpoints
     ENDPOINTS: {

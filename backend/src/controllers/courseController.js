@@ -1,4 +1,4 @@
-const { Course, User, Enrollment } = require('../models');
+const { Course, User, Enrollment, Module, Lesson } = require('../models');
 const { Op } = require('sequelize');
 const { notifyAdmins } = require('../services/notificationService');
 
@@ -67,8 +67,13 @@ exports.getCourseById = async (req, res) => {
   try {
     const course = await Course.findByPk(req.params.id, {
       include: [
-        { model: User, as: 'instructor' },
-        { model: Enrollment, as: 'enrollments' },
+        { model: User, as: 'instructor', attributes: ['id', 'firstName', 'lastName', 'email', 'avatar', 'bio'] },
+        { model: Enrollment, as: 'enrollments', attributes: ['id', 'status'] },
+        {
+          model: Module, as: 'modules',
+          include: [{ model: Lesson, as: 'lessons', order: [['order', 'ASC']] }],
+          order: [['order', 'ASC']],
+        },
       ],
     });
 
@@ -76,7 +81,10 @@ exports.getCourseById = async (req, res) => {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-    res.json(course);
+    const data = course.toJSON();
+    data.enrollmentCount = data.enrollments ? data.enrollments.length : 0;
+
+    res.json(data);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

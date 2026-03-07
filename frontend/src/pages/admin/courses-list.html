@@ -455,15 +455,27 @@
 				}
 
 				const query = new URLSearchParams(params).toString();
-				const response = await fetch(API_CONFIG.BASE_URL + '/admin/courses?' + query, {
-					headers: API_CONFIG.getHeaders(true)
-				});
+				const [response, statsResponse] = await Promise.all([
+					fetch(API_CONFIG.BASE_URL + '/admin/courses?' + query, { headers: API_CONFIG.getHeaders(true) }),
+					fetch(API_CONFIG.BASE_URL + '/admin/courses/statistics', { headers: API_CONFIG.getHeaders(true) })
+				]);
+
 				const data = await response.json();
+				const statsData = await statsResponse.json();
+
 				if (data.success) {
 					populateTable(data.data);
-					updateStatistics(data.statistics || {});
 				} else {
 					showAlert('error', data.message || 'Failed to load courses');
+				}
+
+				if (statsData.success) {
+					updateStatistics({
+						publishedCount: statsData.data.publishedCourses,
+						draftCount: statsData.data.draftCourses,
+						totalStudents: statsData.data.totalEnrollments,
+						totalRevenue: statsData.data.totalRevenue
+					});
 				}
 
 			} catch (error) {

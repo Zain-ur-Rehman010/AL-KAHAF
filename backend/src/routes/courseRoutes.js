@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const courseController = require('../controllers/courseController');
+const moduleController = require('../controllers/moduleController');
+const lessonController = require('../controllers/lessonController');
 const authMiddleware = require('../middleware/authMiddleware');
 const roleMiddleware = require('../middleware/roleMiddleware');
 
@@ -35,5 +37,22 @@ router.post(
 );
 
 router.get('/:id/stats', authMiddleware, courseController.getCourseStats);
+
+// Module routes
+router.post(
+  '/:courseId/modules',
+  authMiddleware,
+  roleMiddleware(['instructor', 'admin']),
+  moduleController.createModule
+);
+router.get('/:courseId/modules', authMiddleware, moduleController.getModules);
+
+// Lesson routes
+router.post(
+  '/:courseId/modules/:moduleId/lessons',
+  authMiddleware,
+  roleMiddleware(['instructor', 'admin']),
+  lessonController.createLesson
+);
 
 module.exports = router;

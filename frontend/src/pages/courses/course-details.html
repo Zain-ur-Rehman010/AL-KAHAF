@@ -277,8 +277,8 @@
                                         <h3 class="mb-2" id="cd-title">The Complete Web Developer Course 2.0</h3>
                                         <p class="fs-14 mb-3" id="cd-short-desc">Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python</p>
                                         <div class="d-flex align-items-center gap-2 gap-sm-3 gap-xl-4 flex-wrap my-3 my-sm-0">
-                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/book.svg" alt="img">12+ Lesson</p>
-                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/timer-start.svg" alt="img">9hr 30min</p>
+                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/book.svg" alt="img"><span id="cd-lesson-count">12+</span> Lesson</p>
+                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/timer-start.svg" alt="img"><span id="cd-duration">9hr 30min</span></p>
                                             <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/people.svg" alt="img"><span id="cd-enrollment-count">32</span> students enrolled</p>
                                             <span class="badge badge-sm rounded-pill bg-warning fs-12" id="cd-category">Web Development</span>
                                         </div>
@@ -319,7 +319,7 @@
                                     <p id="cd-description">Embark on a transformative journey into AI with Mike Wheeler, your guide in this Udemy Best Seller course on ChatGPT and Prompt Engineering. As an experience instructor who has taught well over 300,000 students, Mike unveils the secrets of developing your own custom GPTs, ensuring your skills shine in the thriving digital marketplace. </p>
                                     <p>This course will get your familiar with Generative AI and the effective use of ChatGPT and is perfect for the beginner. You will also learn advanced prompting techniques to take your Prompt Engineering skills to the next level!</p>
                                     <h6 class="mb-2">What you'll learn</h6>
-                                    <ul class="custom-list mb-3">
+                                    <ul class="custom-list mb-3" id="cd-outcomes">
                                         <li class="list-item">Become a UX designer</li>
                                         <li class="list-item">You will be able to add UX designer to your CV</li>
                                         <li class="list-item">Become a UI designer</li>
@@ -327,7 +327,7 @@
                                         <li class="list-item">Build & test a full mobile app.</li>
                                     </ul>
                                     <h6 class="mb-2">Requirements</h6>
-                                    <ul class="custom-list mb-0">
+                                    <ul class="custom-list mb-0" id="cd-requirements">
                                         <li class="list-item">You will need a copy of Adobe XD 2019 or above. A free trial can be downloaded from Adobe.</li>
                                         <li class="list-item">No previous design experience is needed.</li>
                                         <li class="list-item">No previous Adobe XD skills are needed.</li>
@@ -338,7 +338,7 @@
                                 <div class="card-body">
                                 <div class="d-flex justify-content-between flex-wrap">
                               <h5 class="subs-title mb-2 mb-sm-3">Course Content</h5>
-                              <h6 class="fs-16 fw-medium text-gray-7 mb-3">92 Lectures <span class="text-secondary">10:56:11</span></h6>
+                              <h6 class="fs-16 fw-medium text-gray-7 mb-3" id="cd-content-summary">92 Lectures <span class="text-secondary">10:56:11</span></h6>
                             </div>
                             <div class="accordion accordion-customicon1 accordions-items-seperate p-0" id="accordioncustomicon1Example">
                                 <div class="accordion-item" data-aos="fade-up">
@@ -788,8 +788,6 @@
 
 	<script>
 	(function () {
-		var API_BASE = 'https://al-kahaf-production.up.railway.app/api/v1';
-
 		function setText(id, value) {
 			var el = document.getElementById(id);
 			if (el && value !== undefined && value !== null) el.textContent = value;
@@ -802,6 +800,12 @@
 			setText('cd-description', course.description || course.shortDescription || '');
 			setText('cd-category', course.category || '');
 			setText('cd-enrollment-count', course.enrollmentCount || 0);
+
+			// Duration (stored in hours as integer)
+			var durEl = document.getElementById('cd-duration');
+			if (durEl) {
+				durEl.textContent = course.duration ? course.duration + 'hr' : '';
+			}
 
 			// Price
 			var priceEl = document.getElementById('cd-price');
@@ -825,6 +829,63 @@
 				if (avatarEl && course.instructor.avatar) avatarEl.src = course.instructor.avatar;
 			}
 
+			// Outcomes (What you'll learn)
+			var outcomesEl = document.getElementById('cd-outcomes');
+			var outcomes = course.outcomes || course.learningOutcomes;
+			if (outcomesEl && Array.isArray(outcomes) && outcomes.length > 0) {
+				outcomesEl.innerHTML = outcomes.map(function (o) {
+					return '<li class="list-item">' + o + '</li>';
+				}).join('');
+			}
+
+			// Requirements
+			var reqEl = document.getElementById('cd-requirements');
+			var requirements = course.requirements;
+			if (reqEl && Array.isArray(requirements) && requirements.length > 0) {
+				reqEl.innerHTML = requirements.map(function (r) {
+					return '<li class="list-item">' + r + '</li>';
+				}).join('');
+			}
+
+			// Modules & Lessons accordion
+			var modules = course.modules;
+			if (Array.isArray(modules) && modules.length > 0) {
+				var totalLessons = 0;
+				modules.forEach(function (m) { totalLessons += (m.lessons || []).length; });
+
+				// Update lesson count
+				var lcEl = document.getElementById('cd-lesson-count');
+				if (lcEl) lcEl.textContent = totalLessons + '+';
+
+				// Update content summary
+				var summaryEl = document.getElementById('cd-content-summary');
+				if (summaryEl) summaryEl.innerHTML = totalLessons + ' Lessons &nbsp;|&nbsp; ' + modules.length + ' Modules';
+
+				// Rebuild accordion
+				var accordion = document.getElementById('accordioncustomicon1Example');
+				if (accordion) {
+					accordion.innerHTML = modules.map(function (mod, i) {
+						var uid = 'cdMod' + i;
+						var lessonsHtml = (mod.lessons || []).map(function (les, j) {
+							return '<li class="p-4 px-3 d-flex justify-content-between">' +
+								'<p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">' + les.title + '</p>' +
+								'<div class="d-flex gap-xl-5 gap-3">' +
+								(les.videoUrl ? '<a href="' + les.videoUrl + '" target="_blank" class="preview-link">Preview</a>' : '') +
+								'<p class="mb-0">' + (les.duration ? les.duration + ' min' : '') + '</p>' +
+								'</div></li>';
+						}).join('');
+
+						return '<div class="accordion-item">' +
+							'<h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + uid + '" aria-expanded="false">' +
+							mod.title + ' <span class="ms-2 text-muted fs-13">(' + (mod.lessons || []).length + ' lessons)</span>' +
+							'<i class="fa-solid fa-chevron-down ms-auto"></i></button></h2>' +
+							'<div id="' + uid + '" class="accordion-collapse collapse" data-bs-parent="#accordioncustomicon1Example">' +
+							'<div class="accordion-body p-0"><ul>' + (lessonsHtml || '<li class="p-3 text-muted">No lessons yet</li>') + '</ul></div>' +
+							'</div></div>';
+					}).join('');
+				}
+			}
+
 			// Page title
 			document.title = (course.title || 'Course Details') + ' | Al-Kahaf Online Academy';
 		}
@@ -833,9 +894,9 @@
 		var params = new URLSearchParams(window.location.search);
 		var courseId = params.get('id');
 
-		if (!courseId) return; // no ID — leave static content as fallback
+		if (!courseId) return;
 
-		fetch(API_BASE + '/courses/' + courseId)
+		fetch(API_CONFIG.BASE_URL + '/courses/' + courseId)
 			.then(function (res) {
 				if (!res.ok) throw new Error('Course not found');
 				return res.json();
