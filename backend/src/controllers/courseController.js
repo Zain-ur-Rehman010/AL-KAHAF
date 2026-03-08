@@ -67,7 +67,7 @@ exports.getCourseById = async (req, res) => {
   try {
     const course = await Course.findByPk(req.params.id, {
       include: [
-        { model: User, as: 'instructor', attributes: ['id', 'firstName', 'lastName', 'email', 'avatar', 'bio'] },
+        { model: User, as: 'instructor', attributes: ['id', 'firstName', 'lastName', 'email', 'profileImage', 'bio', 'designation'] },
         { model: Enrollment, as: 'enrollments', attributes: ['id', 'status'] },
         {
           model: Module, as: 'modules',
@@ -207,8 +207,8 @@ exports.searchCourses = async (req, res) => {
     const where = {
       status: 'published',
       [Op.or]: [
-        { title: { [Op.iLike]: `%${query}%` } },
-        { description: { [Op.iLike]: `%${query}%` } },
+        { title: { [Op.like]: `%${query}%` } },
+        { description: { [Op.like]: `%${query}%` } },
       ],
     };
 

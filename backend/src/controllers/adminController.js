@@ -144,7 +144,7 @@ exports.getTopCourses = async (req, res) => {
         [sequelize.fn('COUNT', sequelize.col('enrollments.id')), 'enrollmentCount']
       ],
       include: [{ model: Enrollment, as: 'enrollments', attributes: [] }],
-      group: ['Course.id'],
+      group: ['Course.id', 'Course.title', 'Course.category', 'Course.price', 'Course.status'],
       order: [[sequelize.literal('enrollmentCount'), 'DESC']],
       limit: 5,
       subQuery: false
