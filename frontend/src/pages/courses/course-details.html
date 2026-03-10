@@ -309,7 +309,7 @@
                     <div class="row mt-4">
                         <div class="col-lg-8">
 							<div>
-								<img src="/assets/img/course/_course-detail-856 x 482.jpeg" alt="img" class="img-fluid mb-4">
+								<img id="cd-thumbnail" src="/assets/img/course/_course-detail-856 x 482.jpeg" alt="img" class="img-fluid mb-4">
 							</div>
                            <div class="course-page-content pt-0">
                               <div class="card mb-4">
@@ -794,6 +794,12 @@
 		}
 
 		function populateCourse(course) {
+			// Thumbnail
+			if (course.thumbnail) {
+				var thumbEl = document.getElementById('cd-thumbnail');
+				if (thumbEl) thumbEl.src = course.thumbnail;
+			}
+
 			// Title & descriptions
 			setText('cd-title', course.title);
 			setText('cd-short-desc', course.shortDescription || course.description || '');

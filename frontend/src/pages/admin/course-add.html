@@ -344,9 +344,12 @@
                                     <i class="iconsax fs-1 text-muted mb-2" data-icon="gallery-add"></i>
                                     <h6>Click to upload thumbnail</h6>
                                     <p class="text-muted mb-0 small">Recommended: 1200x675px (16:9) · JPEG, PNG, WebP · Max 2MB</p>
-                                    <input type="file" id="thumbnailImage" accept="image/*" onchange="previewThumbnail(event)">
                                 </div>
-                                <img id="thumbnailPreview" class="image-preview" style="display:none;">
+                                <input type="file" id="thumbnailImage" accept="image/*" style="display:none;" onchange="previewThumbnail(event)" onclick="event.stopPropagation()">
+                                <div id="thumbnailPreviewWrapper" style="display:none; position:relative; width:fit-content; margin-top:12px;">
+                                    <img id="thumbnailPreview" class="image-preview" style="max-width:100%; border-radius:8px; display:block;">
+                                    <button type="button" onclick="removeThumbnail()" style="position:absolute; top:-10px; right:-10px; width:28px; height:28px; border-radius:50%; background:#dc3545; border:none; color:white; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2);">&times;</button>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Intro Video URL</label>
@@ -613,9 +616,10 @@
             // Show local preview immediately
             const reader = new FileReader();
             reader.onload = function (e) {
-                const preview = document.getElementById('thumbnailPreview');
-                preview.src = e.target.result;
-                preview.style.display = 'block';
+                document.getElementById('thumbnailPreview').src = e.target.result;
+                document.getElementById('thumbnailPreviewWrapper').style.display = 'block';
+                document.getElementById('thumbnailImage').closest('.image-upload-box') &&
+                    (document.querySelector('.image-upload-box').style.display = 'none');
             };
             reader.readAsDataURL(file);
 
@@ -625,6 +629,14 @@
             } catch (err) {
                 alert('Thumbnail upload failed: ' + err.message);
             }
+        }
+
+        function removeThumbnail() {
+            thumbnailUrl = null;
+            document.getElementById('thumbnailPreview').src = '';
+            document.getElementById('thumbnailPreviewWrapper').style.display = 'none';
+            document.getElementById('thumbnailImage').value = '';
+            document.querySelector('.image-upload-box').style.display = '';
         }
 
         function addModule() {

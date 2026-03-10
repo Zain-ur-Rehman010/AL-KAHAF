@@ -47,6 +47,33 @@
 			height: 60px;
 			object-fit: cover;
 			border-radius: 8px;
+			background: #f0f0f0;
+			flex-shrink: 0;
+		}
+		#courses-table td {
+			padding: 12px 16px;
+			vertical-align: middle;
+		}
+		#courses-table th {
+			padding: 12px 16px;
+			white-space: nowrap;
+		}
+		#courses-table th:first-child,
+		#courses-table td:first-child {
+			min-width: 260px;
+			max-width: 300px;
+			width: 300px;
+		}
+		#courses-table th:first-child { white-space: nowrap; }
+		#courses-table td:first-child h6 {
+			white-space: normal;
+			word-break: break-word;
+			margin-bottom: 2px;
+		}
+		/* Keep other columns compact and non-wrapping */
+		#courses-table th:not(:first-child),
+		#courses-table td:not(:first-child) {
+			white-space: nowrap;
 		}
 		.action-btns .btn {
 			padding: 0.25rem 0.5rem;
@@ -490,7 +517,7 @@
 			courses.forEach(course => {
 				const row = [
 					`<div class="d-flex align-items-center">
-						<img src="${course.thumbnailImage || '/assets/img/course/course-10.jpg'}" class="course-thumb me-3" alt="">
+						<img src="${course.thumbnail || '/assets/img/course/course-10.jpg'}" class="course-thumb me-3" alt="${course.title}">
 						<div>
 							<h6 class="mb-0">${course.title}</h6>
 							<p class="text-muted mb-0 small">${course.totalModules || 0} modules, ${course.totalLessons || 0} lessons</p>

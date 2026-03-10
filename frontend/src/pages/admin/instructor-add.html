@@ -225,8 +225,8 @@
 										<i class="isax isax-gallery-add fs-1 text-muted mb-3 d-block"></i>
 										<h6>Click to upload profile image</h6>
 										<p class="text-muted mb-0">Recommended: 500x500px, Max 2MB</p>
-										<input type="file" id="profileImage" name="profileImage" accept="image/*" class="d-none" onchange="previewImage(event)">
 									</div>
+									<input type="file" id="profileImage" name="profileImage" accept="image/*" class="d-none" onchange="previewImage(event)" onclick="event.stopPropagation()">
 								</div>
 								<div class="col-md-6 text-center">
 									<p class="text-muted mb-3">Preview</p>

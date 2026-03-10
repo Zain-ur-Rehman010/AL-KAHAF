@@ -245,11 +245,11 @@
 
 							<!-- Drop zone -->
 							<div id="upload-zone" style="border:2px dashed #dee2e6;border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:#fafafa;" onclick="document.getElementById('thumb-file-input').click()">
-								<input type="file" id="thumb-file-input" accept="image/jpeg,image/png,image/webp,image/gif" style="display:none;">
 								<i class="isax isax-image fs-1 text-muted d-block mb-2"></i>
 								<p class="mb-1 fw-semibold text-muted">Click to upload or drag &amp; drop</p>
 								<p class="text-muted small mb-0">JPG, PNG, WebP, GIF &mdash; max 5 MB</p>
 							</div>
+							<input type="file" id="thumb-file-input" accept="image/jpeg,image/png,image/webp,image/gif" style="display:none;" onclick="event.stopPropagation()">
 
 							<!-- Upload progress -->
 							<div id="upload-progress" style="display:none;" class="mt-2">

@@ -4,15 +4,23 @@ const { notifyAdmins } = require('../services/notificationService');
 
 exports.createCourse = async (req, res) => {
   try {
-    const { title, description, category, price, level } = req.body;
+    const { title, description, detailedDescription, category, price, level, language, duration, thumbnail, learningOutcomes, requirements, isFeatured, certificateAvailable, instructorId } = req.body;
 
     const course = await Course.create({
-      instructorId: req.user.userId,
+      instructorId: instructorId || req.user.userId,
       title,
       description,
+      detailedDescription,
       category,
       price,
       level,
+      language,
+      duration,
+      thumbnail,
+      learningOutcomes,
+      requirements,
+      isFeatured,
+      certificateAvailable,
       status: 'pending_approval',
     });
 
