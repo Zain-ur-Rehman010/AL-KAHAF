@@ -16,6 +16,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const blogRoutes = require('./routes/blogRoutes');
 const freeTrialRoutes = require('./routes/freeTrialRoutes');
+const uploadRoutes = require('./routes/uploadRoutes');
 
 const app = express();
 
@@ -60,11 +61,7 @@ const path = require('path');
 const staticPath = path.join(__dirname, '../../');
 app.use(express.static(staticPath));
 
-// Serve uploaded files (cross-origin allowed so frontend on different port can load images)
-app.use('/uploads', (req, res, next) => {
-  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
-  next();
-}, express.static(path.join(__dirname, '../uploads')));
+// Note: Local /uploads folder removed — images now served via Cloudinary CDN
 
 // Health check (accessible at both /health and /api/health)
 app.get('/health', (req, res) => {
@@ -84,6 +81,7 @@ apiV1.use('/admin', adminRoutes);
 apiV1.use('/notifications', notificationRoutes);
 apiV1.use('/blogs', blogRoutes);
 apiV1.use('/free-trial', freeTrialRoutes);
+apiV1.use('/upload', uploadRoutes);
 
 // Mount routes at both /v1 and /api/v1 for flexibility
 app.use('/v1', apiV1);

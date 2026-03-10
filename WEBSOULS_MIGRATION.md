@@ -62,42 +62,35 @@ or cause data loss if model definitions change.
 
 ---
 
-### ⚠️ TASK 2 — Add Cloudinary for image uploads
+### ✅ TASK 2 — Cloudinary for image uploads
 
-**Status:** Not yet implemented
-**Required packages:**
-```bash
-npm install cloudinary multer-storage-cloudinary multer
-```
+**Status:** Implemented
+**Packages installed:** `cloudinary`, `streamifier`
 
-**Files to create:**
-- `backend/src/middleware/cloudinaryUpload.js`
-- Upload route in `courseRoutes.js`: `POST /courses/upload-thumbnail`
-- Upload route in `adminRoutes.js`: `POST /admin/upload-image`
+**Files created:**
+- `backend/src/config/cloudinary.js` — Cloudinary v2 config
+- `backend/src/routes/uploadRoutes.js` — unified `POST /api/v1/upload?folder=courses|instructors|blogs`
 
-**Use memoryStorage (no disk writes — required for cPanel):**
-```js
-const storage = multer.memoryStorage(); // ← NOT diskStorage
-```
+**Cloudinary folders:** `alkahaf/courses`, `alkahaf/instructors`, `alkahaf/blogs`
 
-**Environment variables needed (add to cPanel Node.js app):**
+**Frontend pages updated:**
+- `instructor-add.html` / `instructor-edit.html` — upload before submit, store URL
+- `course-add.html` (admin) — thumbnail uploaded to Cloudinary, URL sent in payload
+- `add-course.html` (instructor) — same
+
+**Environment variables needed (add to Railway + cPanel Node.js app):**
 ```
 CLOUDINARY_CLOUD_NAME=
 CLOUDINARY_API_KEY=
 CLOUDINARY_API_SECRET=
 ```
 
-**Current workaround:** profileImage stored as base64 string in DB column.
-This is acceptable for small instructor photos but NOT for course thumbnails.
-
 ---
 
-### ⚠️ TASK 3 — multer uploadMiddleware.js writes to disk
+### ✅ TASK 3 — multer uploadMiddleware.js writes to disk
 
 **File:** `backend/src/middleware/uploadMiddleware.js`
-**Current:** Saves blog images to `uploads/blog/` on disk
-**Problem:** cPanel shared hosting has limited disk write permissions outside `public_html`
-**Fix:** Switch to Cloudinary (see TASK 2) or write to a writable path in cPanel home directory
+**Fix:** Switched from `diskStorage` to `multer.memoryStorage()` — no disk writes
 
 ---
 
@@ -111,15 +104,10 @@ but is still fragile.
 
 ---
 
-### ⚠️ TASK 5 — uploads/ folder served as static files
+### ✅ TASK 5 — uploads/ folder served as static files
 
 **File:** `backend/src/server.js`
-```js
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
-```
-**Problem:** If switching to Cloudinary, this becomes unused.
-If keeping disk storage on cPanel, ensure the `uploads/` path is writable.
-**Fix:** After Cloudinary migration, remove this line.
+**Fix:** Static `/uploads` route removed — all images now served via Cloudinary CDN.
 
 ---
 
@@ -272,6 +260,8 @@ Always run `npx sequelize-cli db:migrate` BEFORE importing data so tables exist 
 | `backend/src/config/database.js` | dialect already mysql | ✅ Already correct |
 | `backend/config/config.js` | dialect already mysql | ✅ Already correct |
 | `backend/src/server.js` | Change `sync({ alter: true })` → `authenticate()` | ⚠️ Pending |
-| `backend/src/middleware/uploadMiddleware.js` | Switch to Cloudinary memoryStorage | ⚠️ Pending |
+| `backend/src/middleware/uploadMiddleware.js` | Switch to memoryStorage (no disk writes) | ✅ Done |
+| `backend/src/config/cloudinary.js` | New — Cloudinary v2 config | ✅ Done |
+| `backend/src/routes/uploadRoutes.js` | New — unified upload endpoint | ✅ Done |
 | `backend/src/controllers/adminController.js` | Move settings from JSON file to DB | ⚠️ Pending |
 | `frontend/assets/js/api-config.js` | Update BASE_URL to production domain | ⚠️ Do on deploy day |

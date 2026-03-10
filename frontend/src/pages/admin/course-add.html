@@ -500,6 +500,21 @@
         let currentStep = 1;
         const totalSteps = 5;
         let moduleCounter = 0;
+        let thumbnailUrl = null;
+
+        async function uploadImage(file, folder) {
+            const formData = new FormData();
+            formData.append('image', file);
+            const token = localStorage.getItem('accessToken');
+            const res = await fetch(API_CONFIG.BASE_URL + '/upload?folder=' + folder, {
+                method: 'POST',
+                headers: { 'Authorization': 'Bearer ' + token },
+                body: formData
+            });
+            const data = await res.json();
+            if (!data.success) throw new Error(data.message || 'Upload failed');
+            return data.url;
+        }
         let outcomeCounter = 1;
         let reqCounter = 1;
 
@@ -590,16 +605,25 @@
             if (isFree) document.getElementById('price').value = '0';
         }
 
-        function previewThumbnail(event) {
+        async function previewThumbnail(event) {
             const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const preview = document.getElementById('thumbnailPreview');
-                    preview.src = e.target.result;
-                    preview.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
+            if (!file) return;
+            thumbnailUrl = null;
+
+            // Show local preview immediately
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const preview = document.getElementById('thumbnailPreview');
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+
+            // Upload to Cloudinary
+            try {
+                thumbnailUrl = await uploadImage(file, 'courses');
+            } catch (err) {
+                alert('Thumbnail upload failed: ' + err.message);
             }
         }
 
@@ -701,7 +725,8 @@
                 isFeatured: document.getElementById('isFeatured').checked,
                 certificateAvailable: document.getElementById('certificateAvailable').checked,
                 learningOutcomes: outcomes,
-                requirements: requirements
+                requirements: requirements,
+                thumbnail: thumbnailUrl || null
             };
         }
 

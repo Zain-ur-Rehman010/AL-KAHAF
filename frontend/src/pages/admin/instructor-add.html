@@ -374,7 +374,21 @@
 
 	<!-- Add Instructor JS -->
 	<script>
-		let newProfileImageBase64 = null;
+		let newProfileImageUrl = null;
+
+		async function uploadImage(file, folder) {
+			const formData = new FormData();
+			formData.append('image', file);
+			const token = localStorage.getItem('accessToken');
+			const res = await fetch(API_CONFIG.BASE_URL + '/upload?folder=' + folder, {
+				method: 'POST',
+				headers: { 'Authorization': 'Bearer ' + token },
+				body: formData
+			});
+			const data = await res.json();
+			if (!data.success) throw new Error(data.message || 'Upload failed');
+			return data.url;
+		}
 
 		document.addEventListener('DOMContentLoaded', function() {
 			// Check if user is admin
@@ -443,9 +457,9 @@
 					}
 				};
 
-				// Include profile image if one was selected
-				if (newProfileImageBase64) {
-					data.profileImage = newProfileImageBase64;
+				// Include profile image URL if one was uploaded to Cloudinary
+				if (newProfileImageUrl) {
+					data.profileImage = newProfileImageUrl;
 				}
 
 				const token = localStorage.getItem('accessToken');
@@ -528,21 +542,29 @@
 			}
 		}
 
-		function previewImage(event) {
+		async function previewImage(event) {
 			const file = event.target.files[0];
-			if (file) {
-				// Check file size (2MB)
-				if (file.size > 2 * 1024 * 1024) {
-					showAlert('error', 'Image size must be less than 2MB');
-					event.target.value = '';
-					return;
-				}
+			if (!file) return;
+			newProfileImageUrl = null;
 
-				const reader = new FileReader();
-				reader.onload = function(e) {
-					document.getElementById('image-preview').src = e.target.result;
-				};
-				reader.readAsDataURL(file);
+			if (file.size > 2 * 1024 * 1024) {
+				showAlert('error', 'Image size must be less than 2MB');
+				event.target.value = '';
+				return;
+			}
+
+			// Show local preview immediately
+			const reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('image-preview').src = e.target.result;
+			};
+			reader.readAsDataURL(file);
+
+			// Upload to Cloudinary in background
+			try {
+				newProfileImageUrl = await uploadImage(file, 'instructors');
+			} catch (err) {
+				showAlert('error', 'Image upload failed: ' + err.message);
 			}
 		}
 

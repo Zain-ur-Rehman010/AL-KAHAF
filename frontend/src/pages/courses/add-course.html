@@ -469,7 +469,7 @@
 												</div>
 												<div class="col-md-12">
 													<div class="upload-img-section d-flex align-items-center justify-content-center" id="upload-img-section">
-														<input type="file" id="upload-img-input" style="display: none;" accept="image/jpeg, image/png, image/gif, image/webp">
+														<input type="file" id="upload-img-input" style="display: none;" accept="image/jpeg, image/png, image/gif, image/webp" onchange="handleThumbnailUpload(event)">
 														<div class="upload-content">
 															<span class="d-flex align-items-center justify-content-center mb-1">
 															<i class="isax isax-image5 text-secondary fs-24 text-center"></i>
@@ -1110,6 +1110,46 @@
 	var courseModules = []; // [{title, description, lessons:[{title,videoUrl,description,status}]}]
 	var topicCount = 0;
 	var targetModuleIndex = null;
+	var courseThumbnailUrl = null;
+
+	async function uploadImage(file, folder) {
+		const formData = new FormData();
+		formData.append('image', file);
+		const token = localStorage.getItem('accessToken');
+		const res = await fetch(API_CONFIG.BASE_URL + '/upload?folder=' + folder, {
+			method: 'POST',
+			headers: { 'Authorization': 'Bearer ' + token },
+			body: formData
+		});
+		const data = await res.json();
+		if (!data.success) throw new Error(data.message || 'Upload failed');
+		return data.url;
+	}
+
+	// ── Thumbnail upload handler ──────────────────────────────────────────────
+	async function handleThumbnailUpload(event) {
+		var file = event.target.files[0];
+		if (!file) return;
+		courseThumbnailUrl = null;
+
+		// Show local preview
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			var section = document.getElementById('upload-img-section');
+			if (section) {
+				section.style.backgroundImage = 'url(' + e.target.result + ')';
+				section.querySelector('.upload-content').style.display = 'none';
+			}
+		};
+		reader.readAsDataURL(file);
+
+		// Upload to Cloudinary
+		try {
+			courseThumbnailUrl = await uploadImage(file, 'courses');
+		} catch (err) {
+			alert('Thumbnail upload failed: ' + err.message);
+		}
+	}
 
 	// ── Add Topic (Module) handler ────────────────────────────────────────────
 	(function () {
@@ -1251,7 +1291,8 @@
 						category: category || 'general',
 						level: level || 'beginner',
 						price: parseFloat(price) || 0,
-						description: title.trim()
+						description: title.trim(),
+						thumbnail: courseThumbnailUrl || null
 					})
 				});
 				var data = await res.json();

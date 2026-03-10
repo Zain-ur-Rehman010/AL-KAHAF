@@ -13,12 +13,20 @@ exports.register = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Email already registered' });
     }
 
+    const { phone, bio, profileImage, designation, specialization, experience } = req.body;
+
     const user = await User.create({
       firstName,
       lastName,
       email,
       password,
       role: role || 'student',
+      phone: phone || null,
+      bio: bio || null,
+      profileImage: profileImage || null,
+      designation: designation || null,
+      specialization: specialization || null,
+      experience: experience || null,
     });
 
     const tokens = tokenService.generateTokens(user.id, user.role);

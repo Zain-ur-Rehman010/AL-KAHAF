@@ -460,7 +460,21 @@
 
     <script>
         let instructorId = null;
-        let newProfileImageBase64 = null;
+        let newProfileImageUrl = null;
+
+        async function uploadImage(file, folder) {
+            const formData = new FormData();
+            formData.append('image', file);
+            const token = localStorage.getItem('accessToken');
+            const res = await fetch(API_CONFIG.BASE_URL + '/upload?folder=' + folder, {
+                method: 'POST',
+                headers: { 'Authorization': 'Bearer ' + token },
+                body: formData
+            });
+            const data = await res.json();
+            if (!data.success) throw new Error(data.message || 'Upload failed');
+            return data.url;
+        }
 
         // Check authentication and load instructor data on page load
         document.addEventListener('DOMContentLoaded', function() {
@@ -579,21 +593,29 @@
                 : 'Never';
         }
 
-        // Preview uploaded image and store base64
-        function previewImage(event) {
+        // Preview image and upload to Cloudinary
+        async function previewImage(event) {
             const file = event.target.files[0];
-            if (file) {
-                if (file.size > 2 * 1024 * 1024) {
-                    alert('File size must be less than 2MB');
-                    return;
-                }
+            if (!file) return;
+            newProfileImageUrl = null;
 
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('imagePreview').src = e.target.result;
-                    newProfileImageBase64 = e.target.result;
-                };
-                reader.readAsDataURL(file);
+            if (file.size > 2 * 1024 * 1024) {
+                alert('File size must be less than 2MB');
+                return;
+            }
+
+            // Show local preview immediately
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('imagePreview').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+
+            // Upload to Cloudinary
+            try {
+                newProfileImageUrl = await uploadImage(file, 'instructors');
+            } catch (err) {
+                alert('Image upload failed: ' + err.message);
             }
         }
 
@@ -629,9 +651,9 @@
                 }
             };
 
-            // Include new profile image if one was selected
-            if (newProfileImageBase64) {
-                instructorData.profileImage = newProfileImageBase64;
+            // Include new profile image URL if one was uploaded to Cloudinary
+            if (newProfileImageUrl) {
+                instructorData.profileImage = newProfileImageUrl;
             }
 
             try {
