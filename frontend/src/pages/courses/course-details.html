@@ -44,7 +44,24 @@
 
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="/assets/css/style.css">
-	
+
+		<style>
+			.sk {
+				background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+				background-size: 200% 100%;
+				animation: sk-shimmer 1.4s infinite;
+				border-radius: 6px;
+				display: block;
+			}
+			@keyframes sk-shimmer {
+				0%   { background-position: 200% 0; }
+				100% { background-position: -200% 0; }
+			}
+			.sk-text  { height: 14px; margin-bottom: 10px; }
+			.sk-title { height: 28px; margin-bottom: 14px; }
+			.sk-img   { width: 100%; border-radius: 8px; }
+		</style>
+
 	</head>
 	<body>
 
@@ -255,6 +272,90 @@
 			<!-- Course detail -->
 			<section class="course-details-two">
 				<div class="container">
+
+					<!-- Skeleton loader - visible while API is loading -->
+					<div id="cd-skeleton">
+						<div class="row mb-0">
+							<div class="col-12">
+								<div class="card bg-light">
+									<div class="card-body d-lg-flex align-items-center gap-4">
+										<span class="sk sk-img flex-shrink-0" style="width:200px;height:130px;"></span>
+										<div class="w-100">
+											<span class="sk sk-title" style="width:70%;"></span>
+											<span class="sk sk-text" style="width:90%;"></span>
+											<span class="sk sk-text" style="width:55%;"></span>
+											<div class="d-flex gap-3 mt-3 align-items-center">
+												<span class="sk" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></span>
+												<div style="flex:1">
+													<span class="sk sk-text" style="width:40%;"></span>
+													<span class="sk sk-text mb-0" style="width:25%;"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-4">
+							<div class="col-lg-8">
+								<span class="sk sk-img mb-4" style="height:260px;"></span>
+								<div class="card mb-4"><div class="card-body">
+									<span class="sk sk-text" style="width:80%;"></span>
+									<span class="sk sk-text" style="width:95%;"></span>
+									<span class="sk sk-text" style="width:90%;"></span>
+									<span class="sk sk-text mb-0" style="width:60%;"></span>
+								</div></div>
+								<div class="card mb-4"><div class="card-body">
+									<span class="sk sk-text" style="width:40%;margin-bottom:16px;"></span>
+									<span class="sk sk-text" style="width:100%;height:44px;border-radius:8px;margin-bottom:8px;"></span>
+									<span class="sk sk-text" style="width:100%;height:44px;border-radius:8px;margin-bottom:8px;"></span>
+									<span class="sk sk-text mb-0" style="width:100%;height:44px;border-radius:8px;"></span>
+								</div></div>
+								<div class="card mb-4"><div class="card-body">
+									<span class="sk sk-text" style="width:35%;margin-bottom:16px;"></span>
+									<div class="d-flex align-items-center gap-3">
+										<span class="sk" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></span>
+										<div style="flex:1"><span class="sk sk-text" style="width:45%;"></span><span class="sk sk-text mb-0" style="width:30%;"></span></div>
+									</div>
+									<span class="sk sk-text mt-3" style="width:95%;"></span>
+									<span class="sk sk-text mb-0" style="width:80%;"></span>
+								</div></div>
+							</div>
+							<div class="col-lg-4">
+								<div class="card mb-4"><div class="card-body">
+									<span class="sk sk-title" style="width:50%;"></span>
+									<span class="sk sk-text" style="width:100%;height:40px;border-radius:8px;margin-bottom:8px;"></span>
+									<span class="sk sk-text mb-0" style="width:100%;height:40px;border-radius:8px;"></span>
+								</div></div>
+								<div class="card mb-4"><div class="card-body">
+									<span class="sk sk-text" style="width:40%;margin-bottom:14px;"></span>
+									<span class="sk sk-text" style="width:80%;"></span>
+									<span class="sk sk-text" style="width:70%;"></span>
+									<span class="sk sk-text mb-0" style="width:60%;"></span>
+								</div></div>
+								<div class="card"><div class="card-body">
+									<span class="sk sk-text" style="width:55%;margin-bottom:14px;"></span>
+									<span class="sk sk-text" style="width:75%;"></span>
+									<span class="sk sk-text" style="width:65%;"></span>
+									<span class="sk sk-text" style="width:70%;"></span>
+									<span class="sk sk-text" style="width:60%;"></span>
+									<span class="sk sk-text mb-0" style="width:50%;"></span>
+								</div></div>
+							</div>
+						</div>
+					</div>
+					<!-- /Skeleton loader -->
+
+					<!-- Error state -->
+					<div id="cd-error" style="display:none;" class="text-center py-5">
+						<i class="fas fa-exclamation-circle fs-1 text-danger mb-3 d-block"></i>
+						<h5>Could not load course</h5>
+						<p class="text-muted">Please check your connection and try again.</p>
+						<a href="/courses/course-list" class="btn btn-primary mt-2">Browse Courses</a>
+					</div>
+
+					<!-- Real content (shown after API responds) -->
+					<div id="cd-real-content" style="display:none;">
                      <div class="row">
                         <div class="col-12">
                             <div class="card bg-light">
@@ -274,12 +375,12 @@
                                         </div>
                                       </div>
                                     <div class="w-100 ps-lg-4">
-                                        <h3 class="mb-2" id="cd-title">The Complete Web Developer Course 2.0</h3>
-                                        <p class="fs-14 mb-3" id="cd-short-desc">Learn Web Development by building 25 websites and mobile apps using HTML, CSS, Javascript, PHP, Python</p>
+                                        <h3 class="mb-2" id="cd-title"></h3>
+                                        <p class="fs-14 mb-3" id="cd-short-desc"></p>
                                         <div class="d-flex align-items-center gap-2 gap-sm-3 gap-xl-4 flex-wrap my-3 my-sm-0">
-                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/book.svg" alt="img"><span id="cd-lesson-count">12+</span> Lesson</p>
-                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/timer-start.svg" alt="img"><span id="cd-duration">9hr 30min</span></p>
-                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/people.svg" alt="img"><span id="cd-enrollment-count">32</span> students enrolled</p>
+                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/book.svg" alt="img"><span id="cd-lesson-count">—</span> Lesson</p>
+                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/timer-start.svg" alt="img"><span id="cd-duration">—</span></p>
+                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/people.svg" alt="img"><span id="cd-enrollment-count">—</span> students enrolled</p>
                                             <span class="badge badge-sm rounded-pill bg-warning fs-12" id="cd-category">Web Development</span>
                                         </div>
                                         <div class="d-sm-flex align-items-center justify-content-sm-between mt-3">
@@ -316,225 +417,20 @@
                                 <div class="card-body">
                                     <h5 class="mb-3">Overview</h5>
                                     <h6 class="mb-2">Course Description</h6>
-                                    <p id="cd-description">Embark on a transformative journey into AI with Mike Wheeler, your guide in this Udemy Best Seller course on ChatGPT and Prompt Engineering. As an experience instructor who has taught well over 300,000 students, Mike unveils the secrets of developing your own custom GPTs, ensuring your skills shine in the thriving digital marketplace. </p>
-                                    <p>This course will get your familiar with Generative AI and the effective use of ChatGPT and is perfect for the beginner. You will also learn advanced prompting techniques to take your Prompt Engineering skills to the next level!</p>
-                                    <h6 class="mb-2">What you'll learn</h6>
-                                    <ul class="custom-list mb-3" id="cd-outcomes">
-                                        <li class="list-item">Become a UX designer</li>
-                                        <li class="list-item">You will be able to add UX designer to your CV</li>
-                                        <li class="list-item">Become a UI designer</li>
-                                        <li class="list-item">Build & test a full website design.</li>
-                                        <li class="list-item">Build & test a full mobile app.</li>
-                                    </ul>
-                                    <h6 class="mb-2">Requirements</h6>
-                                    <ul class="custom-list mb-0" id="cd-requirements">
-                                        <li class="list-item">You will need a copy of Adobe XD 2019 or above. A free trial can be downloaded from Adobe.</li>
-                                        <li class="list-item">No previous design experience is needed.</li>
-                                        <li class="list-item">No previous Adobe XD skills are needed.</li>
-                                    </ul>
+                                    <p id="cd-description"></p>
+                                    <h6 id="cd-outcomes-heading" class="mb-2" style="display:none;">What you'll learn</h6>
+                                    <ul class="custom-list mb-3" id="cd-outcomes"></ul>
+                                    <h6 id="cd-requirements-heading" class="mb-2" style="display:none;">Requirements</h6>
+                                    <ul class="custom-list mb-0" id="cd-requirements"></ul>
                                 </div>
                               </div>
                               <div class="card mb-4">
                                 <div class="card-body">
                                 <div class="d-flex justify-content-between flex-wrap">
                               <h5 class="subs-title mb-2 mb-sm-3">Course Content</h5>
-                              <h6 class="fs-16 fw-medium text-gray-7 mb-3" id="cd-content-summary">92 Lectures <span class="text-secondary">10:56:11</span></h6>
+                              <h6 class="fs-16 fw-medium text-gray-7 mb-3" id="cd-content-summary"></h6>
                             </div>
-                            <div class="accordion accordion-customicon1 accordions-items-seperate p-0" id="accordioncustomicon1Example">
-                                <div class="accordion-item" data-aos="fade-up">
-                                    <h2 class="accordion-header" id="headingcustomicon1One">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1One" aria-expanded="false" aria-controls="collapsecustomicon1One">
-                                        Getting Started <i class="fa-solid fa-chevron-down"></i>
-                                        </button>
-                                    </h2>
-                                    <div id="collapsecustomicon1One" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1One" data-bs-parent="#accordioncustomicon1Example">
-                                        <div class="accordion-body p-0">
-                                            <ul>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.1 Introduction to the User Experience Course</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.2 Exercise: Your first design challenge</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.3 How to solve the previous exercise</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.4 Find out why smart objects are amazing</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.5 How to use text layers effectively</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item" data-aos="fade-up" data-aos-delay="250">
-                                    <h2 class="accordion-header" id="headingcustomicon1Two">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Two" aria-expanded="false" aria-controls="collapsecustomicon1Two">
-                                        The Brief<i class="fa-solid fa-chevron-down"></i>
-                                        </button>
-                                    </h2>
-                                    <div id="collapsecustomicon1Two" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Two" data-bs-parent="#accordioncustomicon1Example">
-                                        <div class="accordion-body p-0">
-                                            <ul>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.1 Introduction to the User Experience Course</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.2 Exercise: Your first design challenge</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.3 How to solve the previous exercise</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.4 Find out why smart objects are amazing</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.5 How to use text layers effectively</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
-                                    <h2 class="accordion-header" id="headingcustomicon1Three">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Three" aria-expanded="false" aria-controls="collapsecustomicon1Three">
-                                        Wireframing Low Fidelity<i class="fa-solid fa-chevron-down"></i>
-                                        </button>
-                                    </h2>
-                                    <div id="collapsecustomicon1Three" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Three" data-bs-parent="#accordioncustomicon1Example">
-                                        <div class="accordion-body p-0">
-                                            <ul>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.1 Introduction to the User Experience Course</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.2 Exercise: Your first design challenge</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.3 How to solve the previous exercise</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.4 Find out why smart objects are amazing</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.5 How to use text layers effectively</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item mb-0" data-aos="fade-up" data-aos-delay="350">
-                                    <h2 class="accordion-header" id="headingcustomicon1Four">
-                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Four" aria-expanded="false" aria-controls="collapsecustomicon1Four">
-                                        Type, Color & Icon Introduction<i class="fa-solid fa-chevron-down"></i>
-                                        </button>
-                                    </h2>
-                                    <div id="collapsecustomicon1Four" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Four" data-bs-parent="#accordioncustomicon1Example">
-                                        <div class="accordion-body p-0">
-                                            <ul>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.1 Introduction to the User Experience Course</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.2 Exercise: Your first design challenge</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.3 How to solve the previous exercise</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.4 Find out why smart objects are amazing</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                                <li class="p-4 px-3 pb-0 d-flex justify-content-between">
-                                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">Lecture1.5 How to use text layers effectively</p>   
-                                                   <div class="d-flex gap-xl-5 gap-3">
-                                                    <a href="#" class="preview-link">Preview</a>
-                                                    <p class="mb-0">02:53</p>
-                                                   </div>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                               
-                            </div>
+                            <div class="accordion accordion-customicon1 accordions-items-seperate p-0" id="accordioncustomicon1Example"></div>
                             </div>
                               </div>
                               <div class="card mb-4">
@@ -543,39 +439,15 @@
                                 <div class="d-flex align-items-center justify-content-between mt-4 gap-2 flex-wrap">
                                     <div class="d-flex align-items-center">
                                         <div class="avatar avatar-lg">
-                                            <img class="rounded-circle" src="/assets/img/instructor/_instructor-600_600.jpeg" alt="img">
+                                            <img class="rounded-circle" id="cd-about-avatar" src="/assets/img/instructor/_instructor-600_600.jpeg" alt="img">
                                         </div>
                                         <div class="ms-2">
-                                        <a href="/instructor/instructor-details" class="name-link">Nicole Brown</a>
-                                        <p class="mb-0 fs-14">UX/UI Designer</p>
-                                    </div>
-                                    </div>
-                                    <div class="d-flex align-items-center">
-                                        <i class="fa-solid fa-star text-warning me-1"></i>
-                                        <i class="fa-solid fa-star text-warning me-1"></i>
-                                        <i class="fa-solid fa-star text-warning me-1"></i>
-                                        <i class="fa-solid fa-star text-warning me-1"></i>
-                                        <i class="fa-solid fa-star text-warning me-2"></i>
-                                        <p class="mb-0 fs-14">4.5</p>
+                                            <a href="/instructor/instructor-details" class="name-link" id="cd-about-name">Instructor</a>
+                                            <p class="mb-0 fs-14" id="cd-about-designation">Instructor</p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="course-info align-items-center d-flex gap-2 gap-xl-3 mt-3 mb-3 flex-wrap">
-                                  <p class="fw-medium d-flex align-items-center fs-14 mb-0"><img class="me-2" src="/assets/img/icons/play2.svg" alt="img">5 Courses</p>
-                                  <p class="fw-medium d-flex align-items-center fs-14 mb-0"><img class="me-2" src="/assets/img/icons/book2.svg" alt="img">12+ Lesson</p>
-                                  <p class="fw-medium d-flex align-items-center fs-14 mb-0"><img class="me-2" src="/assets/img/icons/timer-start2.svg" alt="img">9hr 30min</p>
-                                  <p class="fw-medium d-flex align-items-center fs-14 mb-0"><img class="me-2" src="/assets/img/icons/people.svg" alt="img">270,866 students enrolled</p>
-                                </div>
-                                <p>UI/UX Designer, with 7+ Years Experience. Guarantee of High Quality Work.</p>
-                                <h6 class="fs-16 mb-2">Skills: </h6>
-								<p>Web Design, UI Design, UX/UI Design, Mobile Design, User Interface Design, Sketch, Photoshop, GUI, Html, Css, Grid Systems, Typography, Minimal, Template, English, Bootstrap, Responsive Web Design, Pixel Perfect, Graphic Design, Corporate, Creative, Flat, Luxury and much more.</p>
-                               <h6 class="fs-16 mb-2">Available for:</h6>
-                               <ol class="ordered-list">
-                                <li class="list-items">Full Time Office Work</li>
-                                <li class="list-items">Remote Work</li>
-                                <li class="list-items">Freelance</li>
-                                <li class="list-items">Contract</li>
-                                <li class="list-items mb-0">Worldwide</li>
-                               </ol>
+                                <p class="mt-3" id="cd-about-bio"></p>
                             </div>
                               </div>
                               <div class="card">
@@ -633,30 +505,29 @@
                               <div class="card mb-4">
                                 <div class="card-body">
                                     <h5 class="subs-title mb-4">Includes</h5>
-                                    <p class="mb-3"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">11 hours on-demand video</p>
-                                    <p class="mb-3"><img class="me-2" src="/assets/img/icons/import.svg" alt="img">69 downloadable resources</p>
+                                    <p class="mb-3" id="cd-incl-duration" style="display:none;"><img class="me-2" src="/assets/img/icons/play.svg" alt="img"><span id="cd-incl-duration-text"></span> hours on-demand video</p>
                                     <p class="mb-3"><img class="me-2" src="/assets/img/icons/key.svg" alt="img">Full lifetime access</p>
                                     <p class="mb-3"><img class="me-2" src="/assets/img/icons/monitor-mobbile.svg" alt="img">Access on mobile and TV</p>
-                                    <p class="mb-3"><img class="me-2" src="/assets/img/icons/cloud-lightning.svg" alt="img">Assignments</p>
-                                    <p class="mb-0"><img class="me-2" src="/assets/img/icons/teacher.svg" alt="img">Certificate of Completion</p>
+                                    <p class="mb-0" id="cd-incl-certificate" style="display:none;"><img class="me-2" src="/assets/img/icons/teacher.svg" alt="img">Certificate of Completion</p>
                                 </div>
                               </div>
                               <div class="card">
                                 <div class="card-body cou-features">
                                     <h5 class="subs-title">Course Features</h5>
                                     <ul>
-                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/people2.svg" alt="img">Enrolled: 32 students</p></li>
-                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/timer-start3.svg" alt="img">Duration: 20 hours</p></li>
-                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/note.svg" alt="img">Chapters: 15</p></li>
-                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/play3.svg" alt="img">Video: 12 hours</p></li>
-                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/chart.svg" alt="img">Level: Beginner</p></li>
+                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/people2.svg" alt="img">Enrolled: <span id="cd-feat-enrolled">0</span> students</p></li>
+                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/timer-start3.svg" alt="img">Duration: <span id="cd-feat-duration">-</span></p></li>
+                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/note.svg" alt="img">Modules: <span id="cd-feat-modules">0</span></p></li>
+                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/play3.svg" alt="img">Lessons: <span id="cd-feat-lessons">0</span></p></li>
+                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/chart.svg" alt="img">Level: <span id="cd-feat-level">-</span></p></li>
                                     </ul>
                                 </div>
                               </div>
                             </div>
                         </div>
                     </div>
-				</div>
+				
+					</div><!-- /cd-real-content --></div>
 			</section>
 			<!-- /Course detail -->
 			
@@ -892,6 +763,54 @@
 				}
 			}
 
+			// Show/hide outcomes heading
+			var outcomesHeading = document.getElementById('cd-outcomes-heading');
+			var outcomes = course.outcomes || course.learningOutcomes;
+			if (outcomesHeading) outcomesHeading.style.display = (Array.isArray(outcomes) && outcomes.length > 0) ? '' : 'none';
+
+			// Show/hide requirements heading
+			var reqHeading = document.getElementById('cd-requirements-heading');
+			var requirements = course.requirements;
+			if (reqHeading) reqHeading.style.display = (Array.isArray(requirements) && requirements.length > 0) ? '' : 'none';
+
+			// About instructor card
+			if (course.instructor) {
+				var aboutAvatar = document.getElementById('cd-about-avatar');
+				var aboutName = document.getElementById('cd-about-name');
+				var aboutDesig = document.getElementById('cd-about-designation');
+				var aboutBio = document.getElementById('cd-about-bio');
+				var fullName = ((course.instructor.firstName || '') + ' ' + (course.instructor.lastName || '')).trim();
+				if (aboutAvatar && course.instructor.profileImage) aboutAvatar.src = course.instructor.profileImage;
+				if (aboutName) aboutName.textContent = fullName;
+				if (aboutDesig) aboutDesig.textContent = course.instructor.designation || 'Instructor';
+				if (aboutBio) aboutBio.textContent = course.instructor.bio || '';
+			}
+
+			// Course features sidebar
+			var totalModules = Array.isArray(course.modules) ? course.modules.length : 0;
+			var totalLessonsCount = 0;
+			if (Array.isArray(course.modules)) course.modules.forEach(function(m){ totalLessonsCount += (m.lessons||[]).length; });
+			var featEnrolled = document.getElementById('cd-feat-enrolled');
+			var featDuration = document.getElementById('cd-feat-duration');
+			var featModules = document.getElementById('cd-feat-modules');
+			var featLessons = document.getElementById('cd-feat-lessons');
+			var featLevel = document.getElementById('cd-feat-level');
+			if (featEnrolled) featEnrolled.textContent = course.enrollmentCount || 0;
+			if (featDuration) featDuration.textContent = course.duration ? course.duration + ' hours' : '-';
+			if (featModules) featModules.textContent = totalModules;
+			if (featLessons) featLessons.textContent = totalLessonsCount;
+			if (featLevel) featLevel.textContent = course.level || '-';
+
+			// Includes sidebar — duration
+			var inclDuration = document.getElementById('cd-incl-duration');
+			if (inclDuration && course.duration) {
+				document.getElementById('cd-incl-duration-text').textContent = course.duration;
+				inclDuration.style.display = '';
+			}
+			// Includes sidebar — certificate
+			var certEl = document.getElementById('cd-incl-certificate');
+			if (certEl) certEl.style.display = course.certificateAvailable ? '' : 'none';
+
 			// Page title
 			document.title = (course.title || 'Course Details') + ' | Al-Kahaf Online Academy';
 		}
@@ -910,9 +829,13 @@
 			.then(function (json) {
 				var course = json.data || json;
 				populateCourse(course);
+				document.getElementById('cd-skeleton').style.display = 'none';
+				document.getElementById('cd-real-content').style.display = '';
 			})
 			.catch(function (err) {
 				console.warn('Could not load course:', err.message);
+				document.getElementById('cd-skeleton').style.display = 'none';
+				document.getElementById('cd-error').style.display = '';
 			});
 	})();
 	</script>

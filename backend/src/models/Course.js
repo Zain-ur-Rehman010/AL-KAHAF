@@ -70,6 +70,22 @@ const Course = sequelize.define('Course', {
     type: DataTypes.JSON,
     allowNull: true,
   },
+  isFeatured: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  certificateAvailable: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+  },
+  detailedDescription: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
+  discountPrice: {
+    type: DataTypes.DECIMAL(10, 2),
+    allowNull: true,
+  },
   createdAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,

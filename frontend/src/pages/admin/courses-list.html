@@ -214,7 +214,7 @@
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
 										<p class="mb-1 text-white-50">Published</p>
-										<h3 class="mb-0" id="published-count">124</h3>
+										<h3 class="mb-0" id="published-count">—</h3>
 									</div>
 									<div>
 										<i class="isax isax-tick-circle fs-1 opacity-50"></i>
@@ -229,7 +229,7 @@
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
 										<p class="mb-1 text-white-50">Draft</p>
-										<h3 class="mb-0" id="draft-count">32</h3>
+										<h3 class="mb-0" id="draft-count">—</h3>
 									</div>
 									<div>
 										<i class="isax isax-edit fs-1 opacity-50"></i>
@@ -244,7 +244,7 @@
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
 										<p class="mb-1 text-white-50">Total Students</p>
-										<h3 class="mb-0" id="total-students">3,567</h3>
+										<h3 class="mb-0" id="total-students">—</h3>
 									</div>
 									<div>
 										<i class="isax isax-people fs-1 opacity-50"></i>
@@ -259,7 +259,7 @@
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
 										<p class="mb-1 text-white-50">Revenue</p>
-										<h3 class="mb-0" id="total-revenue">$45,678</h3>
+										<h3 class="mb-0" id="total-revenue">—</h3>
 									</div>
 									<div>
 										<i class="isax isax-wallet fs-1 opacity-50"></i>
@@ -582,6 +582,9 @@
 				<button class="btn btn-sm btn-outline-info me-1" onclick="viewCourse('${id}')" title="View">
 					<i class="isax isax-eye"></i>
 				</button>
+				<button class="btn btn-sm btn-outline-primary me-1" onclick="editCourse('${id}')" title="Edit">
+					<i class="isax isax-edit-2"></i>
+				</button>
 				${statusBtn}
 				<button class="btn btn-sm btn-outline-danger" onclick="deleteCourse('${id}')" title="Delete">
 					<i class="isax isax-trash"></i>
@@ -614,6 +617,10 @@
 
 		function viewCourse(id) {
 			window.location.href = `/courses/course-details?id=${id}`;
+		}
+
+		function editCourse(id) {
+			window.location.href = `/admin/course-edit?id=${id}`;
 		}
 
 		async function toggleStatus(id, newStatus) {
