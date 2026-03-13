@@ -50,6 +50,51 @@ exports.createCourse = async (req, res) => {
   }
 };
 
+exports.getMyCourses = async (req, res) => {
+  try {
+    const { status } = req.query;
+    const where = { instructorId: req.user.userId };
+    if (status) where.status = status;
+
+    const courses = await Course.findAll({
+      where,
+      include: [
+        { model: Module, as: 'modules', attributes: ['id'], include: [{ model: Lesson, as: 'lessons', attributes: ['id'] }] },
+        { model: Enrollment, as: 'enrollments', attributes: ['id'] },
+      ],
+      order: [['createdAt', 'DESC']],
+    });
+
+    const formatted = courses.map(c => ({
+      id: c.id,
+      title: c.title,
+      thumbnail: c.thumbnail,
+      category: c.category,
+      level: c.level,
+      price: c.price,
+      status: c.status,
+      createdAt: c.createdAt,
+      totalModules: c.modules?.length || 0,
+      totalLessons: c.modules?.reduce((sum, m) => sum + (m.lessons?.length || 0), 0) || 0,
+      totalStudents: c.enrollments?.length || 0,
+    }));
+
+    // Stats counts
+    const all = await Course.findAll({ where: { instructorId: req.user.userId }, attributes: ['status', 'price'] });
+    const stats = {
+      active: all.filter(c => c.status === 'published').length,
+      pending: all.filter(c => c.status === 'pending_approval').length,
+      draft: all.filter(c => c.status === 'draft').length,
+      free: all.filter(c => c.price === 0).length,
+      paid: all.filter(c => c.price > 0).length,
+    };
+
+    res.json({ success: true, courses: formatted, stats });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 exports.getCourses = async (req, res) => {
   try {
     const { page = 1, limit = 10, category, level, status } = req.query;

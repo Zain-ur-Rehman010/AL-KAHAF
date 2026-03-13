@@ -397,7 +397,7 @@
 									<div class="card bg-success">
 										<div class="card-body">
 											<h6 class="fw-medium mb-1 text-white">Active Courses</h6>
-											<h4 class="fw-bold text-white">45</h4>
+											<h4 class="fw-bold text-white" id="stat-active">-</h4>
 										</div>
 									</div>
 								</div>
@@ -405,7 +405,7 @@
 									<div class="card bg-secondary">
 										<div class="card-body">
 											<h6 class="fw-medium mb-1 text-white">Pending Courses</h6>
-											<h4 class="fw-bold text-white">21</h4>
+											<h4 class="fw-bold text-white" id="stat-pending">-</h4>
 										</div>
 									</div>
 								</div>
@@ -413,7 +413,7 @@
 									<div class="card bg-info">
 										<div class="card-body">
 											<h6 class="fw-medium mb-1 text-white">Draft Courses</h6>
-											<h4 class="fw-bold text-white">15</h4>
+											<h4 class="fw-bold text-white" id="stat-draft">-</h4>
 										</div>
 									</div>
 								</div>
@@ -421,7 +421,7 @@
 									<div class="card bg-skyblue">
 										<div class="card-body">
 											<h6 class="fw-medium mb-1 text-white">Free Courses</h6>
-											<h4 class="fw-bold text-white">16</h4>
+											<h4 class="fw-bold text-white" id="stat-free">-</h4>
 										</div>
 									</div>
 								</div>
@@ -429,7 +429,7 @@
 									<div class="card bg-purple">
 										<div class="card-body">
 											<h6 class="fw-medium mb-1 text-white">Paid Courses</h6>
-											<h4 class="fw-bold text-white">21</h4>
+											<h4 class="fw-bold text-white" id="stat-paid">-</h4>
 										</div>
 									</div>
 								</div>
@@ -450,13 +450,13 @@
 											</a>
 											<ul class="dropdown-menu dropdown-menu-end p-3">
 												<li>
-													<a href="javascript:void(0);" class="dropdown-item rounded-1">Published</a>
+													<a href="javascript:void(0);" class="dropdown-item rounded-1 status-filter" data-status="published">Published</a>
 												</li>
 												<li>
-													<a href="javascript:void(0);" class="dropdown-item rounded-1">Pending</a>
+													<a href="javascript:void(0);" class="dropdown-item rounded-1 status-filter" data-status="pending_approval">Pending</a>
 												</li>
 												<li>
-													<a href="javascript:void(0);" class="dropdown-item rounded-1">Draft</a>
+													<a href="javascript:void(0);" class="dropdown-item rounded-1 status-filter" data-status="draft">Draft</a>
 												</li>
 											</ul>
 										</div>
@@ -467,7 +467,7 @@
 										<span class="input-icon-addon">
 											<i class="isax isax-search-normal-14"></i>
 										</span>
-										<input type="email" class="form-control form-control-md" placeholder="Search">
+										<input type="text" id="course-search" class="form-control form-control-md" placeholder="Search courses...">
 									</div>
 								</div>
 							</div>
@@ -483,310 +483,16 @@
 											<th></th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>
-												<div class="d-flex align-items-center">
-												
-													<a href="/courses/course-details" class="avatar avatar-lg me-2 flex-shrink-0"><img class="img-fluid object-fit-cover" src="/assets/img/course/course-01.jpg" alt=""></a>
-												   
-													<div>
-														<h6 class="fw-medium mb-2"><a href="/courses/course-details">Information About UI/UX Design Degree</a></h6>
-														<div class="d-flex align-items-center">
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11 Lessons</span>
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2 Quizzes</span>
-															<span class="d-inline-flex fs-12 align-items-center"><i class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>600</td>
-											<td>$160</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-													<span>4.5 (300)</span>
-												</div>
-											</td>
-											<td><span class="badge badge-sm bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Published</span></td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i class="isax isax-edit-2"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="/courses/course-details" class="avatar avatar-lg me-2"><img class="img-fluid object-fit-cover" src="/assets/img/course/course-02.jpg" alt=""></a>
-													<div>
-														<h6 class="fw-medium mb-2"><a href="/courses/course-details">Wordpress for Beginners - Master Wordpress Quickly</a></h6>
-														<div class="d-flex align-items-center">
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11 Lessons</span>
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2 Quizzes</span>
-															<span class="d-inline-flex fs-12 align-items-center"><i class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>500</td>
-											<td>$180</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-													<span>4.2 (430)</span>
-												</div>
-											</td>
-											<td><span class="badge badge-sm bg-skyblue d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Pending</span></td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i class="isax isax-edit-2"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="/courses/course-details" class="avatar avatar-lg me-2"><img class="img-fluid object-fit-cover" src="/assets/img/course/course-03.jpg" alt=""></a>
-													<div>
-														<h6 class="fw-medium mb-2"><a href="/courses/course-details">Sketch from A to Z (2024): Become an app designer</a></h6>
-														<div class="d-flex align-items-center">
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11 Lessons</span>
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2 Quizzes</span>
-															<span class="d-inline-flex fs-12 align-items-center"><i class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>300</td>
-											<td>$200</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-													<span>4.7 (140)</span>
-												</div>
-											</td>
-											<td><span class="badge badge-sm bg-info d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Draft</span></td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i class="isax isax-edit-2"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="/courses/course-details" class="avatar avatar-lg me-2"><img class="img-fluid object-fit-cover" src="/assets/img/course/course-04.jpg" alt=""></a>
-													<div>
-														<h6 class="fw-medium mb-2"><a href="/courses/course-details">Build Responsive Real World Websites with Crash Course</a></h6>
-														<div class="d-flex align-items-center">
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11 Lessons</span>
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2 Quizzes</span>
-															<span class="d-inline-flex fs-12 align-items-center"><i class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>400</td>
-											<td>$220</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-													<span>4.4 (260)</span>
-												</div>
-											</td>
-											<td><span class="badge badge-sm bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Published</span></td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i class="isax isax-edit-2"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="/courses/course-details" class="avatar avatar-lg me-2"><img class="img-fluid object-fit-cover" src="/assets/img/course/course-05.jpg" alt=""></a>
-													<div>
-														<h6 class="fw-medium mb-2"><a href="/courses/course-details">Learn JavaScript and Express to become a Expert</a></h6>
-														<div class="d-flex align-items-center">
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11 Lessons</span>
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2 Quizzes</span>
-															<span class="d-inline-flex fs-12 align-items-center"><i class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>700</td>
-											<td>$170</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-													<span>4.8 (180)</span>
-												</div>
-											</td>
-											<td><span class="badge badge-sm bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Published</span></td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i class="isax isax-edit-2"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="/courses/course-details" class="avatar avatar-lg me-2"><img class="img-fluid object-fit-cover" src="/assets/img/course/course-06.jpg" alt=""></a>
-													<div>
-														<h6 class="fw-medium mb-2"><a href="/courses/course-details">Introduction to Python Programming</a></h6>
-														<div class="d-flex align-items-center">
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11 Lessons</span>
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2 Quizzes</span>
-															<span class="d-inline-flex fs-12 align-items-center"><i class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>450</td>
-											<td>$150</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-													<span>4.8 (180)</span>
-												</div>
-											</td>
-											<td><span class="badge badge-sm bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Published</span></td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i class="isax isax-edit-2"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="/courses/course-details" class="avatar avatar-lg me-2"><img class="img-fluid object-fit-cover" src="/assets/img/course/course-07.jpg" alt=""></a>
-													<div>
-														<h6 class="fw-medium mb-2"><a href="/courses/course-details">Build Responsive Websites with HTML5 and CSS3</a></h6>
-														<div class="d-flex align-items-center">
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11 Lessons</span>
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2 Quizzes</span>
-															<span class="d-inline-flex fs-12 align-items-center"><i class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>620</td>
-											<td>$130</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-													<span>4.9 (510)</span>
-												</div>
-											</td>
-											<td><span class="badge badge-sm bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Published</span></td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i class="isax isax-edit-2"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="/courses/course-details" class="avatar avatar-lg me-2"><img class="img-fluid object-fit-cover" src="/assets/img/course/course-08.jpg" alt=""></a>
-													<div>
-														<h6 class="fw-medium mb-2"><a href="/courses/course-details">Information About Photoshop Design Degree</a></h6>
-														<div class="d-flex align-items-center">
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11 Lessons</span>
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2 Quizzes</span>
-															<span class="d-inline-flex fs-12 align-items-center"><i class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>550</td>
-											<td>$190</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-													<span>4.6 (400)</span>
-												</div>
-											</td>
-											<td><span class="badge badge-sm bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Published</span></td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i class="isax isax-edit-2"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="/courses/course-details" class="avatar avatar-lg me-2"><img class="img-fluid object-fit-cover" src="/assets/img/course/course-09.jpg" alt=""></a>
-													<div>
-														<h6 class="fw-medium mb-2"><a href="/courses/course-details">C# Developers Double Your Coding with Visual Studio</a></h6>
-														<div class="d-flex align-items-center">
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11 Lessons</span>
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2 Quizzes</span>
-															<span class="d-inline-flex fs-12 align-items-center"><i class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>240</td>
-											<td>$140</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-													<span>4.1 (180)</span>
-												</div>
-											</td>
-											<td><span class="badge badge-sm bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Published</span></td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i class="isax isax-edit-2"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="/courses/course-details" class="avatar avatar-lg me-2"><img class="img-fluid object-fit-cover" src="/assets/img/course/course-01.jpg" alt=""></a>
-													<div>
-														<h6 class="fw-medium mb-2"><a href="/courses/course-details">Complete HTML, CSS and Javascript Course</a></h6>
-														<div class="d-flex align-items-center">
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-video-circle me-1 text-gray-9 fw-bold"></i>11 Lessons</span>
-															<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-message-question me-1 text-gray-9 fw-bold"></i>2 Quizzes</span>
-															<span class="d-inline-flex fs-12 align-items-center"><i class="isax isax-clock me-1 text-gray-9 fw-bold"></i>03:15:00 Hours</span>
-														</div>
-													</div>
-												</div>
-											</td>
-											<td>380</td>
-											<td>$110</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<i class="fa-solid fa-star fs-12 filled text-warning me-1"></i>
-													<span>4.3 (200)</span>
-												</div>
-											</td>
-											<td><span class="badge badge-sm bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Published</span></td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon"><i class="isax isax-edit-2"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash"></i></a>
-												</div>
-											</td>
-										</tr>
-									</tbody>
+									<tbody id="courses-tbody">
+											<tr id="sk-row">
+												<td><div class="sk" style="height:18px;width:200px;border-radius:4px"></div></td>
+												<td><div class="sk" style="height:18px;width:40px;border-radius:4px"></div></td>
+												<td><div class="sk" style="height:18px;width:50px;border-radius:4px"></div></td>
+												<td><div class="sk" style="height:18px;width:80px;border-radius:4px"></div></td>
+												<td><div class="sk" style="height:18px;width:70px;border-radius:4px"></div></td>
+												<td></td>
+											</tr>
+										</tbody>
 								</table>
 							</div>
 							<!-- /pagination -->
@@ -961,5 +667,109 @@
 	</button>
 
 		
-	</body>
+	
+	<!-- API Config -->
+	<script src="/assets/js/api-config.js"></script>
+
+	<style>
+		.sk { background: linear-gradient(90deg,#f0f0f0 25%,#e0e0e0 50%,#f0f0f0 75%); background-size:200% 100%; animation:sk-shimmer 1.4s infinite; }
+		@keyframes sk-shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+	</style>
+
+	<script>
+		const token = localStorage.getItem('accessToken');
+		if (!token) window.location.href = '/auth/login';
+
+		let allCourses = [];
+		let currentStatus = '';
+
+		async function loadCourses(status) {
+			try {
+				const url = API_CONFIG.BASE_URL + '/courses/my/courses' + (status ? '?status=' + status : '');
+				const res = await fetch(url, { headers: API_CONFIG.getHeaders(true) });
+				const data = await res.json();
+				if (!data.success) return;
+
+				allCourses = data.courses;
+
+				// Update stats
+				document.getElementById('stat-active').textContent = data.stats.active;
+				document.getElementById('stat-pending').textContent = data.stats.pending;
+				document.getElementById('stat-draft').textContent = data.stats.draft;
+				document.getElementById('stat-free').textContent = data.stats.free;
+				document.getElementById('stat-paid').textContent = data.stats.paid;
+
+				renderCourses(allCourses);
+			} catch(e) {
+				console.error('Failed to load courses', e);
+				document.getElementById('courses-tbody').innerHTML = '<tr><td colspan="6" class="text-center text-danger py-4">Failed to load courses.</td></tr>';
+			}
+		}
+
+		function getStatusBadge(status) {
+			const map = {
+				'published': '<span class="badge badge-sm bg-success d-inline-flex align-items-center"><i class="fa-solid fa-circle fs-5 me-1"></i>Published</span>',
+				'pending_approval': '<span class="badge badge-sm bg-skyblue d-inline-flex align-items-center"><i class="fa-solid fa-circle fs-5 me-1"></i>Pending</span>',
+				'draft': '<span class="badge badge-sm bg-warning d-inline-flex align-items-center"><i class="fa-solid fa-circle fs-5 me-1"></i>Draft</span>',
+				'archived': '<span class="badge badge-sm bg-secondary d-inline-flex align-items-center"><i class="fa-solid fa-circle fs-5 me-1"></i>Archived</span>',
+			};
+			return map[status] || map['draft'];
+		}
+
+		function renderCourses(courses) {
+			const tbody = document.getElementById('courses-tbody');
+			if (!courses.length) {
+				tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted">No courses found.</td></tr>';
+				return;
+			}
+			tbody.innerHTML = courses.map(c => `
+				<tr>
+					<td>
+						<div class="d-flex align-items-center">
+							<a href="/courses/course-details?id=${c.id}" class="avatar avatar-lg me-2 flex-shrink-0">
+								<img class="img-fluid object-fit-cover" src="${c.thumbnail || '/assets/img/course/course-01.jpg'}" alt="${c.title}">
+							</a>
+							<div>
+								<h6 class="fw-medium mb-2"><a href="/courses/course-details?id=${c.id}">${c.title}</a></h6>
+								<div class="d-flex align-items-center">
+									<span class="d-inline-flex fs-12 align-items-center me-2 pe-2 border-end"><i class="isax isax-video-circle me-1"></i>${c.totalLessons} Lessons</span>
+									<span class="d-inline-flex fs-12 align-items-center"><i class="isax isax-grid me-1"></i>${c.totalModules} Modules</span>
+								</div>
+							</div>
+						</div>
+					</td>
+					<td>${c.totalStudents}</td>
+					<td>${c.price === 0 ? 'Free' : '$' + c.price}</td>
+					<td><span class="text-muted">-</span></td>
+					<td>${getStatusBadge(c.status)}</td>
+					<td>
+						<div class="d-flex align-items-center">
+							<a href="/instructor/course-edit?id=${c.id}" class="d-inline-flex fs-14 me-1 action-icon"><i class="isax isax-edit-2"></i></a>
+						</div>
+					</td>
+				</tr>
+			`).join('');
+		}
+
+		// Status filter
+		document.querySelectorAll('.status-filter').forEach(el => {
+			el.addEventListener('click', function() {
+				document.querySelectorAll('.status-filter').forEach(e => e.classList.remove('active'));
+				this.classList.add('active');
+				currentStatus = this.dataset.status;
+				loadCourses(currentStatus);
+			});
+		});
+
+		// Search
+		document.getElementById('course-search').addEventListener('input', function() {
+			const q = this.value.toLowerCase();
+			const filtered = allCourses.filter(c => c.title.toLowerCase().includes(q) || c.category.toLowerCase().includes(q));
+			renderCourses(filtered);
+		});
+
+		// Init
+		loadCourses();
+	</script>
+</body>
 </html>
