@@ -14,6 +14,7 @@ const Blog = require('./Blog');
 const FreeTrialRequest = require('./FreeTrialRequest');
 const PredefinedCourse = require('./PredefinedCourse');
 const InstructorCourse = require('./InstructorCourse');
+const InstructorStudent = require('./InstructorStudent');
 
 // User associations
 User.hasMany(Course, { foreignKey: 'instructorId', as: 'instructedCourses' });
@@ -96,6 +97,22 @@ PredefinedCourse.belongsToMany(User, {
 InstructorCourse.belongsTo(User, { foreignKey: 'instructorId', as: 'instructor' });
 InstructorCourse.belongsTo(PredefinedCourse, { foreignKey: 'predefinedCourseId', as: 'course' });
 
+// Instructor ↔ Student (many-to-many via InstructorStudents junction table)
+User.belongsToMany(User, {
+  through: InstructorStudent,
+  foreignKey: 'instructorId',
+  otherKey: 'studentId',
+  as: 'assignedStudents'
+});
+User.belongsToMany(User, {
+  through: InstructorStudent,
+  foreignKey: 'studentId',
+  otherKey: 'instructorId',
+  as: 'assignedInstructors'
+});
+InstructorStudent.belongsTo(User, { foreignKey: 'instructorId', as: 'instructor' });
+InstructorStudent.belongsTo(User, { foreignKey: 'studentId', as: 'student' });
+
 module.exports = {
   sequelize,
   User,
@@ -113,4 +130,5 @@ module.exports = {
   FreeTrialRequest,
   PredefinedCourse,
   InstructorCourse,
+  InstructorStudent,
 };

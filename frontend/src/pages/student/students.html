@@ -36,6 +36,11 @@
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="/assets/css/style.css">
 	
+	<style>
+	.sk{background:linear-gradient(90deg,#e0e0e0 25%,#ececec 50%,#e0e0e0 75%);background-size:200% 100%;animation:sk-shimmer 1.4s infinite;border-radius:6px;display:inline-block}
+	@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+	#profile-avatar.sk-loading,#header-avatar.sk-loading{opacity:0.3;filter:grayscale(1)}
+	</style>
 	</head>
 	<body>
 
@@ -309,7 +314,7 @@
 						<div class="dropdown profile-dropdown">
 							<a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
 								<span class="avatar">
-									<img src="/assets/img/user/user-01.jpg" alt="Img" class="img-fluid rounded-circle">
+									<img src="/assets/img/user/user-01.jpg" id="header-avatar" alt="Img" class="img-fluid rounded-circle">
 								</span>
 							</a>
 							<div class="dropdown-menu dropdown-menu-end">
@@ -382,12 +387,12 @@
 								<div class="col-md-6">
 									<div class="d-flex align-items-center">
 										<span class="avatar flex-shrink-0 avatar-xxl avatar-rounded me-3 border border-white border-3 position-relative">
-											<img src="/assets/img/user/user-01.jpg" alt="img">
+											<img src="/assets/img/user/user-01.jpg" id="profile-avatar" alt="img">
 											<span class="verify-tick"><i class="isax isax-verify5"></i></span>
 										</span>
 										<div>
-											<h5 class="mb-1 text-white d-inline-flex align-items-center">Eugene Andre<a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
-											<p class="text-light">Instructor</p>
+											<h5 class="mb-1 text-white d-inline-flex align-items-center"><span id="profile-name">Eugene Andre</span><a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+											<p class="text-light" id="profile-role">Instructor</p>
 										</div>
 									</div>
 								</div>
@@ -478,158 +483,51 @@
 										<span class="input-icon-addon">
 											<i class="isax isax-search-normal-14"></i>
 										</span>
-										<input type="email" class="form-control form-control-md" placeholder="Search">
+										<input type="text" id="studentSearch" class="form-control form-control-md" placeholder="Search students...">
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-xl-4 col-md-6">
-									<div class="card">
-										<div class="card-body">
-											<div class="mb-3">
-												<a href="/student/student-details"><img src="/assets/img/students/student-01.jpg" class="rounded-3" alt=""></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
-												<div>
-													<h5 class="mb-2 fw-bold"><a href="/student/student-details">Ronald Richard</a></h5>
-													<span class="text-info d-inline-flex align-items-center"><i class="isax isax-location me-1"></i><a href="#" class="text-info text-decoration-underline stu-loc">Newyork</a></span>
-												</div>
-												<a href="#" class="avatar avatar-md avatar-rounded border"><i class="isax isax-messages text-gray-9 fs-14"></i></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between fs-14">
-												<span class="d-inline-flex align-items-center"><i class="isax isax-calendar-add5 text-primary me-1"></i>22 Aug 2025</span>
-												<span class="d-inline-flex align-items-center"><i class="isax isax-teacher5 text-secondary me-1"></i>10 Courses</span>
-											</div>
+							<!-- Student Cards Grid -->
+							<div class="row" id="studentsGrid">
+								<!-- Skeleton shimmer cards while loading -->
+								<div class="col-xl-4 col-md-6 sk-card-wrap">
+									<div class="card"><div class="card-body">
+										<span class="sk d-block rounded-3 mb-3" style="height:160px;"></span>
+										<span class="sk d-block mb-2" style="height:18px;width:60%;"></span>
+										<span class="sk d-block mb-3" style="height:13px;width:40%;"></span>
+										<div class="d-flex justify-content-between">
+											<span class="sk" style="height:13px;width:30%;"></span>
+											<span class="sk" style="height:13px;width:30%;"></span>
 										</div>
-									</div>
+									</div></div>
 								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="card">
-										<div class="card-body">
-											<div class="mb-3">
-												<a href="/student/student-details"><img src="/assets/img/students/student-02.jpg" class="rounded-3" alt=""></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
-												<div>
-													<h5 class="mb-2 fw-bold"><a href="/student/student-details">Mona Nancy</a></h5>
-													<span class="text-info d-inline-flex align-items-center"><i class="isax isax-location me-1"></i><a href="#" class="text-info text-decoration-underline stu-loc">Los Angels</a></span>
-												</div>
-												<a href="#" class="avatar avatar-md avatar-rounded border"><i class="isax isax-messages text-gray-9 fs-14"></i></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between fs-14">
-												<span class="d-inline-flex align-items-center"><i class="isax isax-calendar-add5 text-primary me-1"></i>15 Jul 2025</span>
-												<span class="d-inline-flex align-items-center"><i class="isax isax-teacher5 text-secondary me-1"></i>08 Courses</span>
-											</div>
+								<div class="col-xl-4 col-md-6 sk-card-wrap">
+									<div class="card"><div class="card-body">
+										<span class="sk d-block rounded-3 mb-3" style="height:160px;"></span>
+										<span class="sk d-block mb-2" style="height:18px;width:60%;"></span>
+										<span class="sk d-block mb-3" style="height:13px;width:40%;"></span>
+										<div class="d-flex justify-content-between">
+											<span class="sk" style="height:13px;width:30%;"></span>
+											<span class="sk" style="height:13px;width:30%;"></span>
 										</div>
-									</div>
+									</div></div>
 								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="card">
-										<div class="card-body">
-											<div class="mb-3">
-												<a href="/student/student-details"><img src="/assets/img/students/student-03.jpg" class="rounded-3" alt=""></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
-												<div>
-													<h5 class="mb-2 fw-bold"><a href="/student/student-details">Patrick Alleman</a></h5>
-													<span class="text-info d-inline-flex align-items-center"><i class="isax isax-location me-1"></i><a href="#" class="text-info text-decoration-underline stu-loc">Alabama</a></span>
-												</div>
-												<a href="#" class="avatar avatar-md avatar-rounded border"><i class="isax isax-messages text-gray-9 fs-14"></i></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between fs-14">
-												<span class="d-inline-flex align-items-center"><i class="isax isax-calendar-add5 text-primary me-1"></i>18 Jun 2025</span>
-												<span class="d-inline-flex align-items-center"><i class="isax isax-teacher5 text-secondary me-1"></i>12 Courses</span>
-											</div>
+								<div class="col-xl-4 col-md-6 sk-card-wrap">
+									<div class="card"><div class="card-body">
+										<span class="sk d-block rounded-3 mb-3" style="height:160px;"></span>
+										<span class="sk d-block mb-2" style="height:18px;width:60%;"></span>
+										<span class="sk d-block mb-3" style="height:13px;width:40%;"></span>
+										<div class="d-flex justify-content-between">
+											<span class="sk" style="height:13px;width:30%;"></span>
+											<span class="sk" style="height:13px;width:30%;"></span>
 										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="card">
-										<div class="card-body">
-											<div class="mb-3">
-												<a href="/student/student-details"><img src="/assets/img/students/student-04.jpg" class="rounded-3" alt=""></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
-												<div>
-													<h5 class="mb-2 fw-bold"><a href="/student/student-details">Olive Paxson</a></h5>
-													<span class="text-info d-inline-flex align-items-center"><i class="isax isax-location me-1"></i><a href="#" class="text-info text-decoration-underline stu-loc">Brisbane</a></span>
-												</div>
-												<a href="#" class="avatar avatar-md avatar-rounded border"><i class="isax isax-messages text-gray-9 fs-14"></i></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between fs-14">
-												<span class="d-inline-flex align-items-center"><i class="isax isax-calendar-add5 text-primary me-1"></i>03 May 2025</span>
-												<span class="d-inline-flex align-items-center"><i class="isax isax-teacher5 text-secondary me-1"></i>07 Courses</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="card">
-										<div class="card-body">
-											<div class="mb-3">
-												<a href="/student/student-details"><img src="/assets/img/students/student-05.jpg" class="rounded-3" alt=""></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
-												<div>
-													<h5 class="mb-2 fw-bold"><a href="/student/student-details">Chris Thomas</a></h5>
-													<span class="text-info d-inline-flex align-items-center"><i class="isax isax-location me-1"></i><a href="#" class="text-info text-decoration-underline stu-loc">Newyork</a></span>
-												</div>
-												<a href="#" class="avatar avatar-md avatar-rounded border"><i class="isax isax-messages text-gray-9 fs-14"></i></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between fs-14">
-												<span class="d-inline-flex align-items-center"><i class="isax isax-calendar-add5 text-primary me-1"></i>14 Apr 2025</span>
-												<span class="d-inline-flex align-items-center"><i class="isax isax-teacher5 text-secondary me-1"></i>04 Courses</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="card">
-										<div class="card-body">
-											<div class="mb-3">
-												<a href="/student/student-details"><img src="/assets/img/students/student-06.jpg" class="rounded-3" alt=""></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
-												<div>
-													<h5 class="mb-2 fw-bold"><a href="/student/student-details">Joyce Perron</a></h5>
-													<span class="text-info d-inline-flex align-items-center"><i class="isax isax-location me-1"></i><a href="#" class="text-info text-decoration-underline stu-loc">Ontoro</a></span>
-												</div>
-												<a href="#" class="avatar avatar-md avatar-rounded border"><i class="isax isax-messages text-gray-9 fs-14"></i></a>
-											</div>
-											<div class="d-flex align-items-center justify-content-between fs-14">
-												<span class="d-inline-flex align-items-center"><i class="isax isax-calendar-add5 text-primary me-1"></i>17 Mar 2025</span>
-												<span class="d-inline-flex align-items-center"><i class="isax isax-teacher5 text-secondary me-1"></i>06 Courses</span>
-											</div>
-										</div>
-									</div>
+									</div></div>
 								</div>
 							</div>
-							<!-- /pagination -->
-							<div class="row align-items-center">
-								<div class="col-md-2">
-								<p class="pagination-text">Page 1 of 2</p>
-								</div>
-								<div class="col-md-10">
-									<ul class="pagination lms-page justify-content-center justify-content-md-end mt-2 mt-md-0">
-										<li class="page-item prev">
-											<a class="page-link" href="javascript:void(0)" tabindex="-1"><i class="fas fa-angle-left"></i></a>
-										</li>
-										<li class="page-item first-page active">
-											<a class="page-link" href="javascript:void(0)">1</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">2</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">3</a>
-										</li>
-										<li class="page-item next">
-											<a class="page-link" href="javascript:void(0)"><i class="fas fa-angle-right"></i></a>
-										</li>
-									</ul>
-								</div>
+							<div id="studentsEmpty" class="text-center py-5" style="display:none;">
+								<i class="isax isax-profile-2user5 fs-1 text-muted"></i>
+								<p class="text-muted mt-2">No students assigned to you yet.<br>Ask admin to assign students from the Users panel.</p>
 							</div>
-							<!-- /pagination -->
 															
 						</div>
 					</div>
@@ -777,5 +675,113 @@
 	</button>
 
 		
+	<script src="/assets/js/api-config.js"></script>
+	<script>
+	// Load instructor profile with skeleton shimmer
+	(async function loadProfile() {
+		const nameEl  = document.getElementById('profile-name');
+		const roleEl  = document.getElementById('profile-role');
+		const avatars = document.querySelectorAll('#profile-avatar, #header-avatar, .profile-dropdown img');
+
+		if (nameEl) { nameEl.textContent = ''; nameEl.classList.add('sk'); nameEl.style.cssText = 'width:140px;height:20px;vertical-align:middle;'; }
+		if (roleEl) { roleEl.textContent = ''; roleEl.classList.add('sk'); roleEl.style.cssText = 'width:90px;height:14px;margin-top:4px;'; }
+		avatars.forEach(el => el.classList.add('sk-loading'));
+
+		try {
+			const res = await fetch(API_CONFIG.BASE_URL + '/auth/me', { headers: API_CONFIG.getHeaders(true) });
+			const u   = await res.json();
+			if (!u || !u.firstName) return;
+			const fullName = (u.firstName || '') + ' ' + (u.lastName || '');
+			const avatar   = u.profileImage || '/assets/img/user/user-01.jpg';
+			const role     = u.designation || u.role || 'Instructor';
+
+			if (nameEl) { nameEl.classList.remove('sk'); nameEl.style.cssText = ''; nameEl.textContent = fullName.trim(); }
+			if (roleEl) { roleEl.classList.remove('sk'); roleEl.style.cssText = ''; roleEl.textContent = role.charAt(0).toUpperCase() + role.slice(1); }
+			avatars.forEach(el => { el.src = avatar; el.classList.remove('sk-loading'); });
+		} catch(e) {
+			if (nameEl) { nameEl.classList.remove('sk'); nameEl.style.cssText = ''; }
+			if (roleEl) { roleEl.classList.remove('sk'); roleEl.style.cssText = ''; }
+			avatars.forEach(el => el.classList.remove('sk-loading'));
+		}
+	})();
+
+	// ── Load assigned students ──────────────────────────────
+	let allStudents = [];
+
+	async function loadAssignedStudents() {
+		try {
+			const res  = await fetch(API_CONFIG.BASE_URL + '/instructor-students/my/students', {
+				headers: API_CONFIG.getHeaders(true)
+			});
+			const data = await res.json();
+			allStudents = data.success ? data.data : [];
+		} catch(e) {
+			allStudents = [];
+		}
+		renderStudents(allStudents);
+	}
+
+	function renderStudents(students) {
+		const grid  = document.getElementById('studentsGrid');
+		const empty = document.getElementById('studentsEmpty');
+
+		// Remove skeleton cards
+		grid.querySelectorAll('.sk-card-wrap').forEach(el => el.remove());
+
+		if (!students.length) {
+			grid.style.display = 'none';
+			empty.style.display = 'block';
+			return;
+		}
+
+		grid.style.display = '';
+		empty.style.display = 'none';
+
+		grid.innerHTML = students.map(s => {
+			const name    = s.firstName + ' ' + s.lastName;
+			const avatar  = s.profileImage || '/assets/img/user/user-01.jpg';
+			const joined  = new Date(s.assignedAt || s.createdAt).toLocaleDateString('en-GB', { day:'2-digit', month:'short', year:'numeric' });
+			const email   = s.email || '';
+			return `
+			<div class="col-xl-4 col-md-6 student-card-item" data-name="${name.toLowerCase()}" data-email="${email.toLowerCase()}">
+				<div class="card">
+					<div class="card-body">
+						<div class="mb-3 text-center">
+							<img src="${avatar}" class="rounded-3 w-100" style="height:160px;object-fit:cover;" alt="${name}"
+								onerror="this.src='/assets/img/user/user-01.jpg'">
+						</div>
+						<div class="d-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
+							<div>
+								<h5 class="mb-1 fw-bold">${name}</h5>
+								<small class="text-muted">${email}</small>
+							</div>
+							<a href="mailto:${email}" class="avatar avatar-md avatar-rounded border">
+								<i class="isax isax-messages text-gray-9 fs-14"></i>
+							</a>
+						</div>
+						<div class="d-flex align-items-center justify-content-between fs-14">
+							<span class="d-inline-flex align-items-center">
+								<i class="isax isax-calendar-add5 text-primary me-1"></i>${joined}
+							</span>
+							<span class="badge ${s.status === 'active' ? 'bg-success' : 'bg-warning'}">${s.status || 'active'}</span>
+						</div>
+					</div>
+				</div>
+			</div>`;
+		}).join('');
+	}
+
+	// Search filter
+	document.getElementById('studentSearch').addEventListener('input', function () {
+		const q = this.value.toLowerCase().trim();
+		if (!q) { renderStudents(allStudents); return; }
+		renderStudents(allStudents.filter(s =>
+			(s.firstName + ' ' + s.lastName).toLowerCase().includes(q) ||
+			(s.email || '').toLowerCase().includes(q)
+		));
+	});
+
+	loadAssignedStudents();
+	</script>
 	</body>
 </html>

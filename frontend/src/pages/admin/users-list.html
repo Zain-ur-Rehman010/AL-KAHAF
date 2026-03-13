@@ -585,7 +585,7 @@
 							</div>
 							<div class="col-md-6">
 								<label class="form-label fw-medium">Role <span class="text-danger">*</span></label>
-								<select class="form-select" name="role" required>
+								<select class="form-select" name="role" id="roleSelect" required>
 									<option value="">Select Role</option>
 									<option value="student">Student</option>
 									<option value="instructor">Instructor</option>
@@ -613,6 +613,14 @@
 									<option value="false">No</option>
 									<option value="true">Yes</option>
 								</select>
+							</div>
+							<!-- Assign Students — shown only when role = Instructor -->
+							<div class="col-12" id="assignStudentsField" style="display:none;">
+								<label class="form-label fw-medium">Assign Students <span class="text-muted fw-normal fs-12">(optional)</span></label>
+								<div class="border rounded p-2" style="max-height:200px;overflow-y:auto;background:#f9f9f9;" id="studentCheckboxList">
+									<div class="text-muted small p-2" id="studentListLoading">Loading students...</div>
+								</div>
+								<small class="text-muted">Select students to directly assign to this instructor.</small>
 							</div>
 						</div>
 					</form>
@@ -954,6 +962,11 @@
 				return;
 			}
 
+			if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(body.email)) {
+				showAlert('error', 'Please enter a valid email address');
+				return;
+			}
+
 			try {
 				const res  = await fetch(API_CONFIG.BASE_URL + '/auth/register', {
 					method: 'POST',
@@ -962,9 +975,24 @@
 				});
 				const data = await res.json();
 				if (data.success || data.message === 'User registered successfully') {
+					// If instructor, assign selected students
+					if (body.role === 'instructor' && data.data && data.data.id) {
+						const selectedStudents = Array.from(
+							document.querySelectorAll('#studentCheckboxList input[type=checkbox]:checked')
+						).map(cb => cb.value);
+
+						if (selectedStudents.length > 0) {
+							await fetch(API_CONFIG.BASE_URL + '/instructor-students/assign', {
+								method: 'POST',
+								headers: API_CONFIG.getHeaders(true),
+								body: JSON.stringify({ instructorId: data.data.id, studentIds: selectedStudents })
+							});
+						}
+					}
 					showAlert('success', 'User added successfully!');
 					bootstrap.Modal.getInstance(document.getElementById('addUserModal')).hide();
 					form.reset();
+					document.getElementById('assignStudentsField').style.display = 'none';
 					loadUsers();
 					loadStatistics();
 				} else {
@@ -1157,6 +1185,53 @@
 					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 				</div>`);
 			setTimeout(() => document.querySelectorAll('.alert').forEach(a => a.remove()), 3500);
+		}
+
+		// ── Assign Students: show/hide picker when role = Instructor ──
+		document.getElementById('roleSelect').addEventListener('change', function () {
+			const field = document.getElementById('assignStudentsField');
+			if (this.value === 'instructor') {
+				field.style.display = 'block';
+				loadStudentCheckboxList();
+			} else {
+				field.style.display = 'none';
+			}
+		});
+
+		// Reset student picker when modal closes
+		document.getElementById('addUserModal').addEventListener('hidden.bs.modal', function () {
+			document.getElementById('assignStudentsField').style.display = 'none';
+			document.getElementById('roleSelect').value = '';
+		});
+
+		async function loadStudentCheckboxList() {
+			const list = document.getElementById('studentCheckboxList');
+			list.innerHTML = '<div class="text-muted small p-2">Loading students...</div>';
+			try {
+				const res = await fetch(API_CONFIG.BASE_URL + '/users?role=student&limit=200', {
+					headers: API_CONFIG.getHeaders(true)
+				});
+				const result = await res.json();
+				const students = result.data || [];
+				if (!students.length) {
+					list.innerHTML = '<div class="text-muted small p-2">No students found in database.</div>';
+					return;
+				}
+				list.innerHTML = students.map(s => `
+					<div class="form-check py-1 px-3 border-bottom">
+						<input class="form-check-input" type="checkbox" value="${s.id}" id="stu_${s.id}">
+						<label class="form-check-label d-flex align-items-center gap-2" for="stu_${s.id}" style="cursor:pointer;">
+							<img src="${s.profileImage || '/assets/img/user/user1.jpg'}" style="width:28px;height:28px;border-radius:50%;object-fit:cover;" alt="">
+							<span>
+								<strong>${s.firstName} ${s.lastName}</strong>
+								<small class="text-muted ms-1">#ST${s.id.substr(0,6)}</small>
+								<br><small class="text-muted">${s.email}</small>
+							</span>
+						</label>
+					</div>`).join('');
+			} catch (e) {
+				list.innerHTML = '<div class="text-danger small p-2">Failed to load students.</div>';
+			}
 		}
 	</script>
 
