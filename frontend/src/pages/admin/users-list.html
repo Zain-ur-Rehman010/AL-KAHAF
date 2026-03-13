@@ -244,6 +244,10 @@
 		/* ── Refresh spin animation ───────────────── */
 		@keyframes spin { to { transform: rotate(360deg); } }
 		.fa-spin-once { animation: spin 0.6s linear; }
+
+		/* Skeleton shimmer */
+		.sk{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sk-shimmer 1.4s infinite;border-radius:6px;}
+		@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
 	</style>
 </head>
 <body>
@@ -475,128 +479,57 @@
 									</tr>
 								</thead>
 								<tbody id="usersTableBody">
-									<!-- Sample placeholder rows -->
-									<tr>
-										<td>
-											<div class="d-flex align-items-center gap-2">
-												<img src="/assets/img/instructor/instructor-09.jpg" class="user-avatar" alt="">
-												<div>
-													<div class="fw-semibold" style="font-size:14px">John Doe</div>
-													<small class="text-muted">ID: #12345</small>
-												</div>
-											</div>
-										</td>
-										<td style="font-size:13px">john.doe@example.com</td>
-										<td><span class="role-badge role-student">Student</span></td>
-										<td><span class="status-badge status-active">Active</span></td>
-										<td><span class="verified-yes"><i class="fas fa-check-circle me-1"></i>Verified</span></td>
-										<td style="font-size:13px">Jan 15, 2024</td>
-										<td style="font-size:13px">2 hrs ago</td>
-										<td class="text-center">
-											<div class="action-btns d-flex justify-content-center gap-1">
-												<button class="btn btn-sm btn-outline-info" onclick="viewUser('12345')" title="View">
-													<i class="fas fa-eye"></i>
-												</button>
-												<button class="btn btn-sm btn-outline-warning" onclick="editUser('12345')" title="Edit">
-													<i class="fas fa-edit"></i>
-												</button>
-												<button class="btn btn-sm btn-outline-danger" onclick="deleteUser('12345')" title="Delete">
-													<i class="fas fa-trash"></i>
-												</button>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="d-flex align-items-center gap-2">
-												<img src="/assets/img/instructor/instructor-10.jpg" class="user-avatar" alt="">
-												<div>
-													<div class="fw-semibold" style="font-size:14px">Sarah Johnson</div>
-													<small class="text-muted">ID: #12346</small>
-												</div>
-											</div>
-										</td>
-										<td style="font-size:13px">sarah.johnson@example.com</td>
-										<td><span class="role-badge role-instructor">Instructor</span></td>
-										<td><span class="status-badge status-active">Active</span></td>
-										<td><span class="verified-yes"><i class="fas fa-check-circle me-1"></i>Verified</span></td>
-										<td style="font-size:13px">Dec 10, 2023</td>
-										<td style="font-size:13px">1 day ago</td>
-										<td class="text-center">
-											<div class="action-btns d-flex justify-content-center gap-1">
-												<button class="btn btn-sm btn-outline-info" onclick="viewUser('12346')" title="View">
-													<i class="fas fa-eye"></i>
-												</button>
-												<button class="btn btn-sm btn-outline-warning" onclick="editUser('12346')" title="Edit">
-													<i class="fas fa-edit"></i>
-												</button>
-												<button class="btn btn-sm btn-outline-danger" onclick="deleteUser('12346')" title="Delete">
-													<i class="fas fa-trash"></i>
-												</button>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="d-flex align-items-center gap-2">
-												<span class="avatar-initials">MB</span>
-												<div>
-													<div class="fw-semibold" style="font-size:14px">Michael Brown</div>
-													<small class="text-muted">ID: #12347</small>
-												</div>
-											</div>
-										</td>
-										<td style="font-size:13px">michael.brown@example.com</td>
-										<td><span class="role-badge role-admin">Admin</span></td>
-										<td><span class="status-badge status-active">Active</span></td>
-										<td><span class="verified-yes"><i class="fas fa-check-circle me-1"></i>Verified</span></td>
-										<td style="font-size:13px">Nov 5, 2023</td>
-										<td style="font-size:13px"><span class="online-dot"></span>Online</td>
-										<td class="text-center">
-											<div class="action-btns d-flex justify-content-center gap-1">
-												<button class="btn btn-sm btn-outline-info" onclick="viewUser('12347')" title="View">
-													<i class="fas fa-eye"></i>
-												</button>
-												<button class="btn btn-sm btn-outline-warning" onclick="editUser('12347')" title="Edit">
-													<i class="fas fa-edit"></i>
-												</button>
-												<button class="btn btn-sm btn-outline-danger" onclick="deleteUser('12347')" title="Delete" disabled>
-													<i class="fas fa-trash"></i>
-												</button>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td>
-											<div class="d-flex align-items-center gap-2">
-												<img src="/assets/img/instructor/instructor-11.jpg" class="user-avatar" alt="">
-												<div>
-													<div class="fw-semibold" style="font-size:14px">Emily Davis</div>
-													<small class="text-muted">ID: #12348</small>
-												</div>
-											</div>
-										</td>
-										<td style="font-size:13px">emily.davis@example.com</td>
-										<td><span class="role-badge role-student">Student</span></td>
-										<td><span class="status-badge status-inactive">Inactive</span></td>
-										<td><span class="verified-no"><i class="fas fa-times-circle me-1"></i>Unverified</span></td>
-										<td style="font-size:13px">Feb 20, 2024</td>
-										<td style="font-size:13px">1 week ago</td>
-										<td class="text-center">
-											<div class="action-btns d-flex justify-content-center gap-1">
-												<button class="btn btn-sm btn-outline-info" onclick="viewUser('12348')" title="View">
-													<i class="fas fa-eye"></i>
-												</button>
-												<button class="btn btn-sm btn-outline-warning" onclick="editUser('12348')" title="Edit">
-													<i class="fas fa-edit"></i>
-												</button>
-												<button class="btn btn-sm btn-outline-danger" onclick="deleteUser('12348')" title="Delete">
-													<i class="fas fa-trash"></i>
-												</button>
-											</div>
-										</td>
-									</tr>
-								</tbody>
+										<tr>
+											<td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:36px;height:36px;border-radius:50%;flex-shrink:0;"></span><div style="flex:1"><span class="sk" style="width:110px;height:13px;border-radius:4px;display:block;margin-bottom:5px;"></span><span class="sk" style="width:70px;height:11px;border-radius:4px;display:block;"></span></div></div></td>
+											<td><span class="sk" style="width:150px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td>
+											<td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td>
+											<td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td class="text-center"><span class="sk" style="width:90px;height:28px;border-radius:4px;display:block;margin:0 auto;"></span></td>
+										</tr>
+										<tr>
+											<td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:36px;height:36px;border-radius:50%;flex-shrink:0;"></span><div style="flex:1"><span class="sk" style="width:110px;height:13px;border-radius:4px;display:block;margin-bottom:5px;"></span><span class="sk" style="width:70px;height:11px;border-radius:4px;display:block;"></span></div></div></td>
+											<td><span class="sk" style="width:150px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td>
+											<td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td>
+											<td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td class="text-center"><span class="sk" style="width:90px;height:28px;border-radius:4px;display:block;margin:0 auto;"></span></td>
+										</tr>
+										<tr>
+											<td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:36px;height:36px;border-radius:50%;flex-shrink:0;"></span><div style="flex:1"><span class="sk" style="width:110px;height:13px;border-radius:4px;display:block;margin-bottom:5px;"></span><span class="sk" style="width:70px;height:11px;border-radius:4px;display:block;"></span></div></div></td>
+											<td><span class="sk" style="width:150px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td>
+											<td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td>
+											<td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td class="text-center"><span class="sk" style="width:90px;height:28px;border-radius:4px;display:block;margin:0 auto;"></span></td>
+										</tr>
+										<tr>
+											<td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:36px;height:36px;border-radius:50%;flex-shrink:0;"></span><div style="flex:1"><span class="sk" style="width:110px;height:13px;border-radius:4px;display:block;margin-bottom:5px;"></span><span class="sk" style="width:70px;height:11px;border-radius:4px;display:block;"></span></div></div></td>
+											<td><span class="sk" style="width:150px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td>
+											<td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td>
+											<td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td class="text-center"><span class="sk" style="width:90px;height:28px;border-radius:4px;display:block;margin:0 auto;"></span></td>
+										</tr>
+										<tr>
+											<td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:36px;height:36px;border-radius:50%;flex-shrink:0;"></span><div style="flex:1"><span class="sk" style="width:110px;height:13px;border-radius:4px;display:block;margin-bottom:5px;"></span><span class="sk" style="width:70px;height:11px;border-radius:4px;display:block;"></span></div></div></td>
+											<td><span class="sk" style="width:150px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td>
+											<td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td>
+											<td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td>
+											<td class="text-center"><span class="sk" style="width:90px;height:28px;border-radius:4px;display:block;margin:0 auto;"></span></td>
+										</tr>
+									</tbody>
 							</table>
 						</div>
 					</div>

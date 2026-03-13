@@ -59,6 +59,13 @@
 		.course-cat-Tajweed        { background: #f3e5f5; color: #6a1b9a; }
 		.course-cat-default        { background: #f5f5f5; color: #555; }
 
+		/* Skeleton shimmer */
+		.sk{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sk-shimmer 1.4s infinite;border-radius:6px;display:block}
+		@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+		.sk-text{height:14px;margin-bottom:10px}
+		.sk-title{height:22px;margin-bottom:12px}
+		.sk-img{width:100%;border-radius:8px}
+
 	</style>
 
 	</head>
@@ -533,10 +540,13 @@
 							<!-- /Filter -->
 							
 							<div id="courses-grid" class="row">
-								<div class="col-12 text-center py-5">
-									<div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
-									<p class="mt-2 text-muted">Loading courses...</p>
-								</div>
+								<!-- skeleton placeholder — replaced by real cards after API loads -->
+								<div class="col-xl-4 col-lg-4 col-md-6 d-flex" style="margin-bottom:24px;"><div class="course-box flex-fill"><div class="product"><span class="sk sk-img" style="height:180px;"></span><div class="product-content p-3"><span class="sk" style="width:70px;height:20px;border-radius:20px;margin-bottom:10px;"></span><span class="sk sk-title"></span><span class="sk sk-text" style="width:55%;"></span><div class="d-flex justify-content-between mt-3"><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span></div></div></div></div></div>
+								<div class="col-xl-4 col-lg-4 col-md-6 d-flex" style="margin-bottom:24px;"><div class="course-box flex-fill"><div class="product"><span class="sk sk-img" style="height:180px;"></span><div class="product-content p-3"><span class="sk" style="width:70px;height:20px;border-radius:20px;margin-bottom:10px;"></span><span class="sk sk-title"></span><span class="sk sk-text" style="width:55%;"></span><div class="d-flex justify-content-between mt-3"><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span></div></div></div></div></div>
+								<div class="col-xl-4 col-lg-4 col-md-6 d-flex" style="margin-bottom:24px;"><div class="course-box flex-fill"><div class="product"><span class="sk sk-img" style="height:180px;"></span><div class="product-content p-3"><span class="sk" style="width:70px;height:20px;border-radius:20px;margin-bottom:10px;"></span><span class="sk sk-title"></span><span class="sk sk-text" style="width:55%;"></span><div class="d-flex justify-content-between mt-3"><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span></div></div></div></div></div>
+								<div class="col-xl-4 col-lg-4 col-md-6 d-flex" style="margin-bottom:24px;"><div class="course-box flex-fill"><div class="product"><span class="sk sk-img" style="height:180px;"></span><div class="product-content p-3"><span class="sk" style="width:70px;height:20px;border-radius:20px;margin-bottom:10px;"></span><span class="sk sk-title"></span><span class="sk sk-text" style="width:55%;"></span><div class="d-flex justify-content-between mt-3"><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span></div></div></div></div></div>
+								<div class="col-xl-4 col-lg-4 col-md-6 d-flex" style="margin-bottom:24px;"><div class="course-box flex-fill"><div class="product"><span class="sk sk-img" style="height:180px;"></span><div class="product-content p-3"><span class="sk" style="width:70px;height:20px;border-radius:20px;margin-bottom:10px;"></span><span class="sk sk-title"></span><span class="sk sk-text" style="width:55%;"></span><div class="d-flex justify-content-between mt-3"><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span></div></div></div></div></div>
+								<div class="col-xl-4 col-lg-4 col-md-6 d-flex" style="margin-bottom:24px;"><div class="course-box flex-fill"><div class="product"><span class="sk sk-img" style="height:180px;"></span><div class="product-content p-3"><span class="sk" style="width:70px;height:20px;border-radius:20px;margin-bottom:10px;"></span><span class="sk sk-title"></span><span class="sk sk-text" style="width:55%;"></span><div class="d-flex justify-content-between mt-3"><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span></div></div></div></div></div>
 							</div>
 							
 							<!-- /pagination -->
@@ -762,7 +772,7 @@
 
 		function loadCourses() {
 			var grid = document.getElementById('courses-grid');
-			grid.innerHTML = '<div class="col-12 text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="mt-2 text-muted">Loading courses...</p></div>';
+			grid.innerHTML = '<div class="col-xl-4 col-lg-4 col-md-6 d-flex" style="margin-bottom:24px;"><div class="course-box flex-fill"><div class="product"><span class="sk sk-img" style="height:180px;"></span><div class="product-content p-3"><span class="sk" style="width:70px;height:20px;border-radius:20px;margin-bottom:10px;"></span><span class="sk sk-title"></span><span class="sk sk-text" style="width:55%;"></span><div class="d-flex justify-content-between mt-3"><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span><span class="sk" style="width:60px;height:20px;border-radius:4px;"></span></div></div></div></div></div>'.repeat(6);
 
 			fetch(API_BASE + '/courses?' + buildQueryParams())
 				.then(function (res) {

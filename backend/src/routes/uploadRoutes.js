@@ -39,7 +39,7 @@ router.post('/', authMiddleware, upload.single('image'), async (req, res) => {
     const uploadToCloudinary = () =>
       new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
-          { folder: cloudinaryFolder, resource_type: 'image' },
+          { folder: cloudinaryFolder, resource_type: 'image', quality: 'auto', fetch_format: 'auto' },
           (error, result) => {
             if (error) reject(error);
             else resolve(result);
