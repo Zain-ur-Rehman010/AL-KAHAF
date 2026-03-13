@@ -1,6 +1,6 @@
 const { Course, User, Enrollment, Module, Lesson } = require('../models');
 const { Op } = require('sequelize');
-const { notifyAdmins } = require('../services/notificationService');
+const { notifyAdmins, notifyUser } = require('../services/notificationService');
 
 exports.createCourse = async (req, res) => {
   try {
@@ -30,6 +30,16 @@ exports.createCourse = async (req, res) => {
       message: `A new course "${course.title}" has been submitted by an instructor and is awaiting your approval.`,
       actionUrl: '/admin/courses-list',
     });
+
+    // If admin assigned this course to a specific instructor, notify them
+    if (instructorId && instructorId !== req.user.userId) {
+      notifyUser(instructorId, {
+        type: 'course_update',
+        title: 'New Course Assigned to You',
+        message: `Admin of Al-Kahaf Online Academy has assigned you the course "${course.title}". Please review it and add all course details including modules and lessons.`,
+        actionUrl: `/instructor/course-edit?id=${course.id}`,
+      });
+    }
 
     res.status(201).json({
       message: 'Course created successfully',
