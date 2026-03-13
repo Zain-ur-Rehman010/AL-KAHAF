@@ -39,7 +39,12 @@
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="/assets/css/style.css">
 	
-	</head>
+		<style>
+	.sk{background:linear-gradient(90deg,#e0e0e0 25%,#ececec 50%,#e0e0e0 75%);background-size:200% 100%;animation:sk-shimmer 1.4s infinite;border-radius:6px;display:inline-block}
+	@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+	#profile-avatar.sk-loading,#header-avatar.sk-loading{opacity:0.3;filter:grayscale(1)}
+	</style>
+</head>
 	<body>
 
 		<!-- Main Wrapper -->
@@ -312,7 +317,7 @@
 							<div class="dropdown profile-dropdown">
                                 <a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
                                     <span class="avatar">
-										<img src="/assets/img/user/user-01.jpg" alt="Img" class="img-fluid rounded-circle">
+										<img src="/assets/img/user/user-01.jpg" id="header-avatar" alt="Img" class="img-fluid rounded-circle">
 									</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
@@ -385,12 +390,12 @@
 								<div class="col-md-6">
 									<div class="d-flex align-items-center">
 										<span class="avatar flex-shrink-0 avatar-xxl avatar-rounded me-3 border border-white border-3 position-relative">
-											<img src="/assets/img/user/user-01.jpg" alt="img">
+											<img src="/assets/img/user/user-01.jpg" id="profile-avatar" alt="img">
 											<span class="verify-tick"><i class="isax isax-verify5"></i></span>
 										</span>
 										<div>
-											<h5 class="mb-1 text-white d-inline-flex align-items-center">Eugene Andre<a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
-											<p class="text-light">Instructor</p>
+											<h5 class="mb-1 text-white d-inline-flex align-items-center"><span id="profile-name">Eugene Andre</span><a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+											<p class="text-light" id="profile-role">Instructor</p>
 										</div>
 									</div>
 								</div>
@@ -1034,5 +1039,36 @@
 	</button>
 
 		
-	</body>
+	
+	<script src="/assets/js/api-config.js"></script>
+	<script>
+	// Load instructor profile with skeleton shimmer
+	(async function loadProfile() {
+		const nameEl  = document.getElementById('profile-name');
+		const roleEl  = document.getElementById('profile-role');
+		const avatars = document.querySelectorAll('#profile-avatar, #header-avatar, .profile-dropdown img');
+
+		if (nameEl) { nameEl.textContent = ''; nameEl.classList.add('sk'); nameEl.style.cssText = 'width:140px;height:20px;vertical-align:middle;'; }
+		if (roleEl) { roleEl.textContent = ''; roleEl.classList.add('sk'); roleEl.style.cssText = 'width:90px;height:14px;margin-top:4px;'; }
+		avatars.forEach(el => el.classList.add('sk-loading'));
+
+		try {
+			const res = await fetch(API_CONFIG.BASE_URL + '/auth/me', { headers: API_CONFIG.getHeaders(true) });
+			const u   = await res.json();
+			if (!u || !u.firstName) return;
+			const fullName = (u.firstName || '') + ' ' + (u.lastName || '');
+			const avatar   = u.profileImage || '/assets/img/user/user-01.jpg';
+			const role     = u.designation || u.role || 'Instructor';
+
+			if (nameEl) { nameEl.classList.remove('sk'); nameEl.style.cssText = ''; nameEl.textContent = fullName.trim(); }
+			if (roleEl) { roleEl.classList.remove('sk'); roleEl.style.cssText = ''; roleEl.textContent = role.charAt(0).toUpperCase() + role.slice(1); }
+			avatars.forEach(el => { el.src = avatar; el.classList.remove('sk-loading'); });
+		} catch(e) {
+			if (nameEl) { nameEl.classList.remove('sk'); nameEl.style.cssText = ''; }
+			if (roleEl) { roleEl.classList.remove('sk'); roleEl.style.cssText = ''; }
+			avatars.forEach(el => el.classList.remove('sk-loading'));
+		}
+	})();
+	</script>
+</body>
 </html>
