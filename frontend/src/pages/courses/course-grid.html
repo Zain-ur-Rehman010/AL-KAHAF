@@ -809,11 +809,12 @@
 				})
 				.catch(function (err) {
 					console.error('Course load error:', err);
+					var noInternet = !navigator.onLine;
 					document.getElementById('courses-grid').innerHTML =
 						'<div class="col-12 text-center py-5">' +
-						'<i class="fa-solid fa-triangle-exclamation fa-3x text-warning mb-3 d-block"></i>' +
-						'<h5>Could not load courses</h5>' +
-						'<p class="text-muted">Backend server may not be running.</p>' +
+						'<i class="fa-solid fa-' + (noInternet ? 'wifi' : 'triangle-exclamation') + ' fa-3x text-warning mb-3 d-block"></i>' +
+						'<h5>' + (noInternet ? 'No Internet Connection' : 'Could not load courses') + '</h5>' +
+						'<p class="text-muted">' + (noInternet ? 'Please check your connection and try again.' : 'Backend server may not be running.') + '</p>' +
 						'<button onclick="window._loadCourses()" class="btn btn-primary btn-sm">Retry</button>' +
 						'</div>';
 					document.getElementById('pagination-container').style.display = 'none';

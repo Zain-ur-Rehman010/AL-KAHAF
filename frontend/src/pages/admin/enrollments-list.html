@@ -261,7 +261,7 @@
 									<div class="col-md-1">
 										<label class="form-label">&nbsp;</label>
 										<button class="btn btn-secondary w-100" onclick="applyFilters()">
-											<i class="isax isax-filter"></i>
+											Search
 										</button>
 									</div>
 								</div>
@@ -814,7 +814,7 @@
 
 		function deleteEnrollment(id) {
 			deleteEnrollmentId = id;
-			const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+			const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('deleteModal'));
 			modal.show();
 			document.getElementById('confirm-delete-btn').onclick = async function() {
 				try {
@@ -823,11 +823,11 @@
 						headers: API_CONFIG.getHeaders(true)
 					});
 					const data = await response.json();
-					if (data.success) {
-						showAlert('success', 'Enrollment deleted successfully');
-						modal.hide();
+					modal.hide();
+					if (response.ok) {
 						loadEnrollments();
 						loadStatistics();
+						showAlert('success', 'Enrollment deleted successfully');
 					} else {
 						showAlert('error', data.message || 'Failed to delete enrollment');
 					}
