@@ -169,54 +169,75 @@
   }
 
   // ─── Profile Completion Widget ────────────────────────────────────────────
-  function loadProfileCompletion() {
-    var user = JSON.parse(localStorage.getItem('user') || 'null');
+  function renderProfileCompletion(user) {
     var card = document.getElementById('profile-completion-card');
-    if (!user || !card) return;
+    if (!card || !user) return;
 
     // Fields that define a complete instructor profile
     var checks = [
-      { label: 'Profile Photo',  done: !!user.profileImage },
-      { label: 'Phone Number',   done: !!user.phone },
-      { label: 'Bio',            done: !!user.bio },
-      { label: 'Designation',    done: !!user.designation }
+      { label: 'Profile Photo', done: !!user.profileImage },
+      { label: 'Phone Number',  done: !!user.phone },
+      { label: 'Bio',           done: !!(user.bio && user.bio.trim()) },
+      { label: 'Designation',   done: !!(user.designation && user.designation.trim()) }
     ];
 
     // Name always counts as done (required on registration)
-    var totalItems  = checks.length + 1;
-    var doneItems   = checks.filter(function (c) { return c.done; }).length + 1;
-    var pct         = Math.round((doneItems / totalItems) * 100);
+    var totalItems = checks.length + 1;
+    var doneItems  = checks.filter(function (c) { return c.done; }).length + 1;
+    var pct        = Math.round((doneItems / totalItems) * 100);
 
-    // Hide card when profile is fully complete
-    if (pct >= 100) {
-      card.style.display = 'none';
-      return;
-    }
+    // Always show the card
     card.style.display = 'block';
 
-    // Update percentage badge and progress bar
-    var pctEl = document.getElementById('completion-pct');
+    var pctEl  = document.getElementById('completion-pct');
     var barEl  = document.getElementById('completion-bar');
+    var listEl = document.getElementById('completion-checklist');
+
     if (pctEl) pctEl.textContent = pct + '%';
     if (barEl)  barEl.style.width = pct + '%';
 
-    // Render checklist badges
-    var listEl = document.getElementById('completion-checklist');
-    if (listEl) {
-      var nameChip = '<span class="badge bg-success-light text-success">' +
-        '<i class="isax isax-tick-circle5 me-1"></i>Name</span>';
+    var nameChip = '<span class="badge bg-success-light text-success">' +
+      '<i class="isax isax-tick-circle5 me-1"></i>Name</span>';
 
-      var chips = checks.map(function (c) {
-        if (c.done) {
-          return '<span class="badge bg-success-light text-success">' +
-            '<i class="isax isax-tick-circle5 me-1"></i>' + c.label + '</span>';
-        }
-        return '<span class="badge bg-warning-light text-warning">' +
-          '<i class="isax isax-info-circle me-1"></i>' + c.label + '</span>';
-      });
-
-      listEl.innerHTML = nameChip + chips.join('');
+    if (pct >= 100) {
+      // Show success / complete state
+      card.style.borderColor = '#2e7d32';
+      if (pctEl) { pctEl.className = 'badge bg-success fw-bold ms-3'; pctEl.style.fontSize = '15px'; }
+      if (barEl)  barEl.style.background = '#2e7d32';
+      var h6 = card.querySelector('h6');
+      var p  = card.querySelector('p.text-muted');
+      var btn = card.querySelector('a.btn');
+      if (h6)  h6.textContent = 'Profile Complete!';
+      if (p)   p.textContent  = 'Great work — your profile is fully set up.';
+      if (btn) btn.style.display = 'none';
+      if (listEl) listEl.innerHTML = nameChip + checks.map(function (c) {
+        return '<span class="badge bg-success-light text-success">' +
+          '<i class="isax isax-tick-circle5 me-1"></i>' + c.label + '</span>';
+      }).join('');
+    } else {
+      if (listEl) {
+        var chips = checks.map(function (c) {
+          if (c.done) {
+            return '<span class="badge bg-success-light text-success">' +
+              '<i class="isax isax-tick-circle5 me-1"></i>' + c.label + '</span>';
+          }
+          return '<span class="badge bg-warning-light text-warning">' +
+            '<i class="isax isax-info-circle me-1"></i>' + c.label + '</span>';
+        });
+        listEl.innerHTML = nameChip + chips.join('');
+      }
     }
+  }
+
+  function loadProfileCompletion() {
+    fetch(API_CONFIG.BASE_URL + '/auth/me', { headers: API_CONFIG.getHeaders(true) })
+      .then(function (r) { return r.json(); })
+      .then(function (u) { renderProfileCompletion(u); })
+      .catch(function () {
+        // Fallback to localStorage if API fails
+        var user = JSON.parse(localStorage.getItem('user') || 'null');
+        renderProfileCompletion(user);
+      });
   }
 
   document.addEventListener('DOMContentLoaded', function () {

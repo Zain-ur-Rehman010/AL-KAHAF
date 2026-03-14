@@ -312,6 +312,23 @@
 					</div>
 				</div>
 
+				<!-- Student Assignments -->
+				<div class="card bg-white rounded-3 shadow-sm mb-4">
+					<div class="card-header" style="background:linear-gradient(135deg,#1a5276 0%,#2e86c1 100%);">
+						<h5 class="mb-0 text-white"><i class="isax isax-people me-2"></i>Student Assignments</h5>
+					</div>
+					<div class="card-body">
+						<div id="students-loading" class="text-center text-muted py-2">
+							<i class="fas fa-spinner fa-spin me-2"></i>Loading students...
+						</div>
+						<div id="students-field" class="d-none">
+							<label class="form-label">Assign Students <span class="text-muted fw-normal">(optional)</span></label>
+							<select class="form-select" id="assignedStudents" name="assignedStudents" multiple></select>
+							<div class="form-text">Assign students directly to this instructor. You can update anytime from the edit page.</div>
+						</div>
+					</div>
+				</div>
+
 					<!-- Form Actions -->
 					<div class="card bg-white rounded-3 shadow-sm">
 						<div class="card-body">
@@ -420,6 +437,7 @@
 
 			// Load predefined course catalog
 			loadPredefinedCourses();
+			loadStudents();
 
 			// Form submission
 			document.getElementById('instructor-form').addEventListener('submit', handleSubmit);
@@ -487,6 +505,19 @@
 							});
 						} catch (e) {
 							console.warn('Course assignment failed (non-critical):', e);
+						}
+					}
+					// Assign selected students if any
+					const selectedStudents = $('#assignedStudents').val() || [];
+					if (selectedStudents.length > 0 && newInstructorId) {
+						try {
+							await fetch(API_CONFIG.BASE_URL + '/instructor-students/assign', {
+								method: 'POST',
+								headers: API_CONFIG.getHeaders(true),
+								body: JSON.stringify({ instructorId: newInstructorId, studentIds: selectedStudents })
+							});
+						} catch (e) {
+							console.warn('Student assignment failed (non-critical):', e);
 						}
 					}
 					showAlert('success', 'Instructor created successfully!');
@@ -581,7 +612,30 @@
 			}
 		}
 
-		function resetForm() {
+		async function loadStudents() {
+		try {
+			const res = await fetch(API_CONFIG.BASE_URL + '/users?role=student&limit=200', {
+				headers: API_CONFIG.getHeaders(true)
+			});
+			const result = await res.json();
+			const select = document.getElementById('assignedStudents');
+			const students = result.data || result.users || [];
+			students.forEach(function(s) {
+				const opt = document.createElement('option');
+				opt.value = s.id;
+				opt.textContent = (s.firstName || '') + ' ' + (s.lastName || '') + ' (' + (s.email || '') + ')';
+				select.appendChild(opt);
+			});
+			document.getElementById('students-loading').classList.add('d-none');
+			document.getElementById('students-field').classList.remove('d-none');
+			$('#assignedStudents').select2({ placeholder: 'Select students to assign...', allowClear: true, width: '100%' });
+		} catch (err) {
+			console.warn('Could not load students:', err);
+			document.getElementById('students-loading').textContent = 'Students unavailable — assign them later from the edit page.';
+		}
+	}
+
+	function resetForm() {
 			document.getElementById('instructor-form').reset();
 			document.getElementById('image-preview').src = '/assets/img/instructor/instructor-01.jpg';
 			$('#specialization').val(null).trigger('change');

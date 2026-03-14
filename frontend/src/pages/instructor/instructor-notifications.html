@@ -235,74 +235,8 @@
 										</li>
 									</ul>
 								</li>	
-								<li class="has-submenu">
-									<a href="#">Pages <i class="isax isax-add"></i></a>
-									<ul class="submenu">
-										<li class="has-submenu">
-											<a href="#">Instructors</a>
-											<ul class="submenu">
-												<li><a href="/instructor/instructor-grid">Instructor Grid</a></li>
-												<li><a href="/instructor/instructor-list">Instructor List</a></li>
-												<li><a href="/instructor/instructor-details">Instructor Details</a></li>
-											</ul>
-										</li>
-										<li><a href="/shared/about-us">About Us</a></li>
-										<li><a href="/shared/contact-us">Contact us</a></li>
-										<li><a href="/shared/notifications">Notifications</a></li>
-										<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
-										<li><a href="/shared/testimonials">Testimonials</a></li>
-										<li class="has-submenu">
-											<a href="#">Authentication</a>
-											<ul class="submenu">
-												<li><a href="/auth/login">Login</a></li>
-												<li><a href="/auth/register">Register</a></li>
-												<li><a href="/auth/forgot-password">Forgot Password</a></li>
-												<li><a href="/instructor/reset-password">Reset Password</a></li>
-												<li><a href="/auth/set-password">Set Password</a></li>
-												<li><a href="/auth/otp">OTP</a></li>
-												<li><a href="/auth/lock-screen">Lock Screen</a></li>
-											</ul>
-										</li>
-										<li class="has-submenu">
-											<a href="#">Error</a>
-											<ul class="submenu">
-												<li><a href="/shared/error-404">404 Error</a></li>
-												<li><a href="/shared/error-500">500 Error</a></li>
-											</ul>
-										</li>
-										<li><a href="/shared/pricing-plan">Pricing Plan</a></li>
-										<li><a href="/shared/faq">FAQ</a></li>
-										<li><a href="/shared/coming-soon">Coming Soon</a></li>
-										<li><a href="/shared/under-construction">Under Construction</a></li>
-										<li><a href="/shared/terms-and-conditions">Terms & Conditions</a></li>
-										<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
-									</ul>
-								</li>
-								<li class="has-submenu">
-									<a href="#">Blog <i class="isax isax-add"></i></a>
-									<ul class="submenu">
-										<li class="has-submenu">
-											<a href="#">Blog Layouts</a>
-											<ul class="submenu">
-												<li><a href="/blog/blog-grid">Blog 1 Grid</a></li>
-												<li><a href="/blog/blog-2-grid">Blog 2 Grid</a></li>
-												<li><a href="/blog/blog-3-grid">Blog 3 Grid</a></li>
-												<li><a href="/blog/blog-carousal">Blog Carousal</a></li>
-												<li><a href="/blog/blog-masonry">Blog Mansory</a></li>
-												<li><a href="/blog/blog-left-sidebar">Blog Left Sidebar</a></li>
-												<li><a href="/blog/blog-right-sidebar">Blog Right Sidebar</a></li>
-											</ul>
-										</li>
-										<li class="has-submenu">
-											<a href="#">Blog Details</a>
-											<ul class="submenu">
-												<li><a href="/blog/blog-details">Blog Details</a></li>
-												<li><a href="/blog/blog-details-left-sidebar">Blog Details Left Sidebar</a></li>
-												<li><a href="/blog/blog-details-right-sidebar">Blog Details Right Sidebar</a></li>
-											</ul>
-										</li>
-									</ul>
-								</li>
+								
+								
 							</ul>
 						</div>
 						<div class="header-btn d-flex align-items-center">
@@ -320,7 +254,22 @@
 									<span class="count-icon bg-success p-1 rounded-pill text-white fs-10 fw-bold">1</span>
 								</a>
 							</div>
-							<div class="dropdown profile-dropdown">
+							<div class="icon-btn me-3 dropdown noti-dropdown">
+						<a href="#" class="position-relative dropdown-toggle" data-bs-toggle="dropdown">
+							<i class="isax isax-notification5"></i>
+							<span id="notif-badge" style="display:none;position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;background:#d8ac27;color:#fff;border-radius:50%;font-size:10px;font-weight:700;align-items:center;justify-content:center;"></span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-end p-0" style="width:320px;max-height:420px;overflow-y:auto;">
+							<div class="d-flex align-items-center justify-content-between p-3 border-bottom">
+								<h6 class="mb-0 fw-bold">Notifications</h6>
+								<a href="javascript:void(0);" onclick="instructorMarkAllRead()" class="text-secondary small">Mark all read</a>
+							</div>
+							<ul class="list-unstyled mb-0" id="notif-list">
+								<li class="px-3 py-4 text-center text-muted small">Loading...</li>
+							</ul>
+						</div>
+					</div>
+						<div class="dropdown profile-dropdown">
                                 <a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
                                     <span class="avatar">
 										<img src="/assets/img/user/user-01.jpg" id="header-avatar" alt="Img" class="img-fluid rounded-circle">
@@ -729,7 +678,6 @@
 			</div>
 		</footer>
 		<!-- /Footer -->
-
 
 		</div>
 		<!-- /Main Wrapper -->

@@ -105,6 +105,76 @@
     }
   }
 
+  /* ─── Notifications ─────────────────────────────────── */
+  function timeAgo(dateStr) {
+    const diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
+    if (diff < 60)    return 'Just now';
+    if (diff < 3600)  return Math.floor(diff / 60) + ' min ago';
+    if (diff < 86400) return Math.floor(diff / 3600) + ' hr ago';
+    return Math.floor(diff / 86400) + ' days ago';
+  }
+
+  function getNotifIcon(type) {
+    const map = {
+      course_update:     'isax-book-saved',
+      message_received:  'isax-message',
+      certificate_issued:'isax-award',
+      assignment_due:    'isax-task-square',
+      quiz_reminder:     'isax-clipboard-text',
+      general:           'isax-notification',
+    };
+    return map[type] || 'isax-notification';
+  }
+
+  function loadNotifications() {
+    const badge = document.getElementById('notif-badge');
+    const list  = document.getElementById('notif-list');
+    if (!badge || !list) return;
+
+    fetch(API_CONFIG.BASE_URL + '/notifications?limit=10', {
+      headers: API_CONFIG.getHeaders(true)
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(data) {
+      if (!data.success) return;
+      var unread = data.unreadCount || 0;
+      badge.textContent = unread > 99 ? '99+' : unread;
+      badge.style.display = unread > 0 ? 'inline-flex' : 'none';
+
+      var items = data.data || [];
+      if (!items.length) {
+        list.innerHTML = '<li class="px-3 py-4 text-center text-muted small">No notifications yet</li>';
+        return;
+      }
+      list.innerHTML = items.map(function(n) {
+        return '<li class="notif-item' + (n.isRead ? '' : ' unread') + '" data-id="' + n.id + '">'
+          + '<a href="' + (n.actionUrl || 'javascript:void(0);') + '" onclick="instructorMarkRead(\'' + n.id + '\')" class="d-flex align-items-start gap-2 p-3 border-bottom text-decoration-none">'
+          + '<span class="flex-shrink-0 d-flex align-items-center justify-content-center rounded-circle" style="width:34px;height:34px;background:' + (n.isRead ? '#f0f0f0' : '#fff3e0') + ';">'
+          + '<i class="isax ' + getNotifIcon(n.type) + ' ' + (n.isRead ? 'text-muted' : 'text-warning') + ' fs-14"></i></span>'
+          + '<div style="min-width:0;flex:1;">'
+          + '<p class="mb-0 fw-medium ' + (n.isRead ? 'text-muted' : 'text-dark') + '" style="font-size:12px;white-space:normal;">' + (n.title || '') + '</p>'
+          + '<p class="mb-0 text-muted" style="font-size:11px;white-space:normal;">' + (n.message || '') + '</p>'
+          + '<p class="mb-0 text-muted" style="font-size:11px;">' + timeAgo(n.createdAt) + '</p>'
+          + '</div>'
+          + (!n.isRead ? '<span class="flex-shrink-0 ms-1 mt-1 rounded-circle" style="width:8px;height:8px;background:#d8ac27;display:inline-block;"></span>' : '')
+          + '</a></li>';
+      }).join('');
+    })
+    .catch(function(){});
+  }
+
+  window.instructorMarkRead = function(id) {
+    fetch(API_CONFIG.BASE_URL + '/notifications/' + id + '/read', {
+      method: 'PATCH', headers: API_CONFIG.getHeaders(true)
+    }).then(function(){ loadNotifications(); }).catch(function(){});
+  };
+
+  window.instructorMarkAllRead = function() {
+    fetch(API_CONFIG.BASE_URL + '/notifications/read-all', {
+      method: 'PATCH', headers: API_CONFIG.getHeaders(true)
+    }).then(function(){ loadNotifications(); }).catch(function(){});
+  };
+
   /* ─── Init ───────────────────────────────────────────── */
   document.addEventListener('DOMContentLoaded', function () {
     const user = checkAuth();
@@ -113,6 +183,8 @@
     updateHeaderProfile(user);
     updateProfileBanner(user);
     setupLogout();
+    loadNotifications();
+    setInterval(loadNotifications, 60000);
   });
 
 })();

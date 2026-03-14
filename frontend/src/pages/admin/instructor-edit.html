@@ -343,6 +343,21 @@
                             </div>
                         </div>
 
+                        <!-- Student Assignments -->
+                        <div class="form-card">
+                            <h3 class="form-card-header">
+                                <i class="iconsax me-2" data-icon="people"></i> Student Assignments
+                            </h3>
+                            <div id="students-loading" class="text-center text-muted py-2">
+                                <i class="fas fa-spinner fa-spin me-2"></i>Loading students...
+                            </div>
+                            <div id="students-field" class="d-none">
+                                <label class="form-label">Assigned Students <span class="text-muted fw-normal">(optional)</span></label>
+                                <select class="form-select" id="assignedStudents" name="assignedStudents" multiple></select>
+                                <small class="form-text text-muted">Changes are saved when you click &ldquo;Save Changes&rdquo;.</small>
+                            </div>
+                        </div>
+
                     <!-- Sidebar -->
                     <div class="col-lg-4">
 
@@ -491,6 +506,7 @@
             }
 
             loadPredefinedCourses().then(() => loadInstructorCourses());
+            loadStudents().then(() => loadInstructorStudents());
             loadInstructorData();
             initializeSelect2();
         });
@@ -677,6 +693,17 @@
                     } catch (e) {
                         console.warn('Course sync failed (non-critical):', e);
                     }
+                    // Sync student assignments
+                    const selectedStudents = $('#assignedStudents').val() || [];
+                    try {
+                        await fetch(API_CONFIG.BASE_URL + '/instructor-students/assign', {
+                            method: 'POST',
+                            headers: API_CONFIG.getHeaders(true),
+                            body: JSON.stringify({ instructorId: instructorId, studentIds: selectedStudents })
+                        });
+                    } catch (e) {
+                        console.warn('Student sync failed (non-critical):', e);
+                    }
                     alert('Instructor updated successfully!');
                     window.location.href = '/admin/instructors-list';
                 } else {
@@ -742,6 +769,47 @@
                 }
             } catch (err) {
                 console.warn('Could not load instructor courses:', err);
+            }
+        }
+
+        // Load all students for the picker
+        async function loadStudents() {
+            try {
+                const res = await fetch(API_CONFIG.BASE_URL + '/users?role=student&limit=200', {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+                const result = await res.json();
+                const select = document.getElementById('assignedStudents');
+                const students = result.data || result.users || [];
+                students.forEach(function(s) {
+                    const opt = document.createElement('option');
+                    opt.value = s.id;
+                    opt.textContent = (s.firstName || '') + ' ' + (s.lastName || '') + ' (' + (s.email || '') + ')';
+                    select.appendChild(opt);
+                });
+                document.getElementById('students-loading').classList.add('d-none');
+                document.getElementById('students-field').classList.remove('d-none');
+                $('#assignedStudents').select2({ placeholder: 'Select students to assign...', allowClear: true, width: '100%' });
+            } catch (err) {
+                console.warn('Could not load students:', err);
+                document.getElementById('students-loading').textContent = 'Students unavailable.';
+            }
+        }
+
+        // Pre-select students already assigned to this instructor
+        async function loadInstructorStudents() {
+            if (!instructorId) return;
+            try {
+                const res = await fetch(API_CONFIG.BASE_URL + '/instructor-students/' + instructorId, {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+                const result = await res.json();
+                if (result.success && Array.isArray(result.data)) {
+                    const ids = result.data.map(function(s) { return s.id; });
+                    $('#assignedStudents').val(ids).trigger('change');
+                }
+            } catch (err) {
+                console.warn('Could not load instructor students:', err);
             }
         }
 
