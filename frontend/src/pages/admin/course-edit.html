@@ -267,9 +267,7 @@
                                 <div class="col-md-4 mb-3">
                                     <label class="form-label">Category <span class="text-danger">*</span></label>
                                     <select class="form-select" id="category">
-                                        <option value="">Select Category</option>
-                                        <option value="IslamicStudies">Islamic Studies</option>
-                                        <option value="Arabic">Arabic</option>
+                                        <option value="">Loading...</option>
                                     </select>
                                 </div>
                                 <div class="col-md-4 mb-3">
@@ -513,7 +511,7 @@
                 return;
             }
 
-            Promise.all([loadCourse(courseId), loadInstructors()]).then(function () {
+            Promise.all([loadCourse(courseId), loadInstructors(), loadCategoryOptions()]).then(function () {
                 document.getElementById('loadingOverlay').style.display = 'none';
             });
         });
@@ -526,6 +524,28 @@
                 return;
             }
             document.getElementById('adminName').textContent = user.firstName + ' ' + user.lastName;
+        }
+
+        // ── Load categories from API ─────────────────────────────────────────
+        function loadCategoryOptions() {
+            var sel = document.getElementById('category');
+            return fetch(API_CONFIG.BASE_URL + '/courses/categories')
+                .then(function(r){ return r.json(); })
+                .then(function(data) {
+                    var cats = (data.success && Array.isArray(data.data)) ? data.data : ['Arabic', 'IslamicStudies'];
+                    sel.innerHTML = '<option value="">Select Category</option>';
+                    cats.forEach(function(c) {
+                        var opt = document.createElement('option');
+                        opt.value = c;
+                        opt.textContent = c;
+                        sel.appendChild(opt);
+                    });
+                })
+                .catch(function() {
+                    sel.innerHTML = '<option value="">Select Category</option>'
+                        + '<option value="Arabic">Arabic</option>'
+                        + '<option value="IslamicStudies">Islamic Studies</option>';
+                });
         }
 
         // ── Load existing course data ────────────────────────────────────────

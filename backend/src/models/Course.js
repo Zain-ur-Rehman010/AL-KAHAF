@@ -82,6 +82,10 @@ const Course = sequelize.define('Course', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
+  faqs: {
+    type: DataTypes.JSON,
+    allowNull: true,
+  },
   discountPrice: {
     type: DataTypes.DECIMAL(10, 2),
     allowNull: true,

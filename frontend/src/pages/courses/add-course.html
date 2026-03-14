@@ -340,12 +340,7 @@
 													<div class="input-block">
 														<label class="form-label">Course Category<span class="text-danger ms-1">*</span></label>
 														<select class="select form-control" id="course-category">
-															<option value="">Select</option>
-															<option value="management">Management</option>
-															<option value="it-software">IT & Softwares</option>
-															<option value="marketing">Marketing</option>
-															<option value="finance">Finance</option>
-															<option value="productivity">Productivity</option>
+															<option value="">Loading categories...</option>
 														</select>
 													</div>
 												</div>
@@ -418,14 +413,14 @@
 												<div class="col-md-6">
 													<div class="bg-light border	 p-4 rounded-3">
 														<h6 class="mb-2">Requirements</h6>
-														<div class="input-block">
+														<div class="input-block" id="req-block">
 															<div class="d-flex align-items-center add-new-input">
 															<input type="text" class="form-control">
 															<a href="javascript:void(0);" class="link-trash"><i class="isax isax-trash"></i></a>
 															</div>
 														</div>
 														<div class="d-flex align-items-center justify-content-end">
-															<a href="javascript:void(0);" class="d-flex align-items-center add-new-topic">
+															<a href="javascript:void(0);" class="d-flex align-items-center add-new-topic" id="add-req-btn">
 															<i class="isax isax-add me-1"></i> Add New Item
 															</a>
 														</div>
@@ -469,7 +464,7 @@
 												</div>
 												<div class="col-md-12">
 													<div class="upload-img-section d-flex align-items-center justify-content-center" id="upload-img-section">
-														<input type="file" id="upload-img-input" style="display: none;" accept="image/jpeg, image/png, image/gif, image/webp" onchange="handleThumbnailUpload(event)">
+														<input type="file" id="upload-img-input" style="display: none;" accept="image/jpeg, image/png, image/gif, image/webp" onchange="handleThumbnailUpload(this.files[0])">
 														<div class="upload-content">
 															<span class="d-flex align-items-center justify-content-center mb-1">
 															<i class="isax isax-image5 text-secondary fs-24 text-center"></i>
@@ -540,120 +535,8 @@
 											</div>
 											<div>
 												<div class="accordions-items-seperate" id="accordionSpacingExample">
-													<div class="accordion-item">
-														<h2 class="accordion-header" id="headingSpacingOne">
-															<a href="javascript:void(0);" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#SpacingOne" aria-expanded="false" aria-controls="SpacingOne">
-																<span class="d-flex align-items-center mb-0"><i class="isax isax-menu-15 me-2"></i>Introduction of Digital Marketing</span>
-															</a>
-														</h2>
-														<div id="SpacingOne" class="accordion-collapse collapse show" aria-labelledby="headingSpacingOne" data-bs-parent="#accordionSpacingExample">
-															<div class="accordion-body">
-																<div class="d-flex align-items-center justify-content-between bg-white p-2 border rounded-3 mb-3">
-																	<div class="d-flex align-items-center">
-																		<span><i class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-																		<p class="fw-medium text-gray-5 mb-0">Describe SEO Engine</p>
-																	</div>
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>
-																		<a href="javascript:void(0);" class="delete-btn1"><i class="isax isax-trash fs-16"></i></a>
-																	</div>
-																</div>
-																<div class="d-flex align-items-center justify-content-between bg-white p-2 border rounded-3 mb-3">
-																	<div class="d-flex align-items-center">
-																		<span><i class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-																		<p class="fw-medium text-gray-5 mb-0">Know about all marketing</p>
-																	</div>
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>
-																		<a href="javascript:void(0);" class="delete-btn1"><i class="isax isax-trash fs-16"></i></a>
-																	</div>
-																</div>
-																<div class="d-flex align-items-center justify-content-between">
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="btn add-edit-btn d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#add-lesson"><i class="isax isax-add-circle5 me-2"></i>Add Lesson</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="accordion-item">
-														<h2 class="accordion-header" id="headingSpacingTwo">
-															<a href="javascript:void(0);" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#SpacingTwo" aria-expanded="false" aria-controls="SpacingTwo">
-																	<span class="d-flex align-items-center mb-0">
-																		<i class="isax isax-menu-15 me-2"></i>
-																		Installing Development Software
-																	</span>
-															</a>
-														</h2>
-														<div id="SpacingTwo" class="accordion-collapse collapse" aria-labelledby="headingSpacingTwo" data-bs-parent="#accordionSpacingExample">
-															<div class="accordion-body">
-																<div class="d-flex align-items-center justify-content-between bg-white p-2 border rounded-3 mb-3">
-																	<div class="d-flex align-items-center">
-																		<span><i class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-																		<p class="fw-medium text-gray-5 mb-0">Describe SEO Engine</p>
-																	</div>
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>
-																		<a href="javascript:void(0);" class="delete-btn1"><i class="isax isax-trash fs-16"></i></a>
-																	</div>
-																</div>
-																<div class="d-flex align-items-center justify-content-between bg-white p-2 border rounded-3 mb-3">
-																	<div class="d-flex align-items-center">
-																		<span><i class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-																		<p class="fw-medium text-gray-5 mb-0">Know about all marketing</p>
-																	</div>
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>
-																		<a href="javascript:void(0);" class="delete-btn1"><i class="isax isax-trash fs-16"></i></a>
-																	</div>
-																</div>
-																<div class="d-flex align-items-center justify-content-between">
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="btn btn-primary d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#add-lesson"><i class="isax isax-add-circle5 me-2"></i>Add Lesson</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="accordion-item">
-														<h2 class="accordion-header" id="headingSpacingThree">
-															<a href="javascript:void(0);" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#SpacingThree" aria-expanded="false" aria-controls="SpacingThree">
-																<span class="d-flex align-items-center mb-0">
-																	<i class="isax isax-menu-15 me-2"></i>
-																	Hello World Project from GitHub
-																</span>
-															</a>
-														</h2>
-														<div id="SpacingThree" class="accordion-collapse collapse" aria-labelledby="headingSpacingThree" data-bs-parent="#accordionSpacingExample">
-															<div class="accordion-body">
-																<div class="d-flex align-items-center justify-content-between bg-white p-2 border rounded-3 mb-3">
-																	<div class="d-flex align-items-center">
-																		<span><i class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-																		<p class="fw-medium text-gray-5 mb-0">Describe SEO Engine</p>
-																	</div>
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>
-																		<a href="javascript:void(0);" class="delete-btn1"><i class="isax isax-trash fs-16"></i></a>
-																	</div>
-																</div>
-																<div class="d-flex align-items-center justify-content-between bg-white p-2 border rounded-3 mb-3">
-																	<div class="d-flex align-items-center">
-																		<span><i class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-																		<p class="fw-medium text-gray-5 mb-0">Know about all marketing</p>
-																	</div>
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>
-																		<a href="javascript:void(0);" class="delete-btn1"><i class="isax isax-trash fs-16"></i></a>
-																	</div>
-																</div>
-																<div class="d-flex align-items-center justify-content-between">
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="btn btn-primary d-inline-flex align-items-center" data-bs-toggle="modal" data-bs-target="#add-lesson"><i class="isax isax-add-circle5 me-2"></i>Add Lesson</a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
+													<!-- Modules added dynamically via Add New Topic -->
+													<p class="text-muted text-center py-3" id="curriculum-empty-msg">No modules yet. Click “Add New Topic” to add a module.</p>
 												</div>
 											</div>
 											<div class="add-form-btn widget-next-btn submit-btn">
@@ -678,75 +561,8 @@
 											</div>
 											<div class="pb-3 border-bottom mb-3">
 												<div class="accordions-items-seperate" id="accordionSpacingExample1">
-													<div class="accordion-item">
-														<h2 class="accordion-header" id="headingSpacingFour">
-															<a href="javascript:void(0);" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#Spacingthree" aria-expanded="false" aria-controls="Spacingthree">
-																<span class="d-flex align-items-center text-gray-9 mb-0">
-																	<i class="isax isax-menu-15 me-2"></i>
-																	Hello World Project from GitHub
-																</span>
-															</a>
-														</h2>
-														<div id="Spacingthree" class="accordion-collapse collapse" aria-labelledby="headingSpacingFour" data-bs-parent="#accordionSpacingExample1">
-															<div class="accordion-body">
-																<div class="d-flex align-items-center justify-content-between bg-white p-2 border rounded-3 mb-3">
-																	<div class="d-flex align-items-center">
-																		<span><i class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-																		<p class="fw-medium text-gray-5 mb-0">Describe SEO Engine</p>
-																	</div>
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>
-																		<a href="javascript:void(0);" class="delete-btn1"><i class="isax isax-trash fs-16"></i></a>
-																	</div>
-																</div>
-																<div class="d-flex align-items-center justify-content-between bg-white p-2 border rounded-3 mb-3">
-																	<div class="d-flex align-items-center">
-																		<span><i class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-																		<p class="fw-medium text-gray-5 mb-0">Know about all marketing</p>
-																	</div>
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>
-																		<a href="javascript:void(0);" class="delete-btn1"><i class="isax isax-trash fs-16"></i></a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="accordion-item">
-														<h2 class="accordion-header" id="headingSpacingFive">
-															<a href="javascript:void(0);" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#Spacingone" aria-expanded="false" aria-controls="Spacingone">
-																<span class="d-flex align-items-center text-gray-9">
-																	<i class="isax isax-menu-15 me-2"></i>
-																	New Update
-																</span>
-															</a>
-														</h2>
-														<div id="Spacingone" class="accordion-collapse collapse" aria-labelledby="headingSpacingFive" data-bs-parent="#accordionSpacingExample">
-															<div class="accordion-body">
-																<div class="d-flex align-items-center justify-content-between bg-white p-2 border rounded-3 mb-3">
-																	<div class="d-flex align-items-center">
-																		<span><i class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-																		<p class="fw-medium text-gray-5 mb-0">Describe SEO Engine</p>
-																	</div>
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>
-																		<a href="javascript:void(0);" class="delete-btn1"><i class="isax isax-trash fs-16"></i></a>
-																	</div>
-																</div>
-																<div class="d-flex align-items-center justify-content-between bg-white p-2 border rounded-3 mb-3">
-																	<div class="d-flex align-items-center">
-																		<span><i class="isax isax-play-circle5 text-success fs-24 me-1"></i></span>
-																		<p class="fw-medium text-gray-5 mb-0">Know about all marketing</p>
-																	</div>
-																	<div class="d-flex align-items-center">
-																		<a href="javascript:void(0);" class="edit-btn1"><i class="isax isax-edit-25 fs-16"></i></a>
-																		<a href="javascript:void(0);" class="delete-btn1"><i class="isax isax-trash fs-16"></i></a>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
+												<!-- FAQs added dynamically via Add New -->
+												<p class="text-muted text-center py-3" id="faq-empty-msg">No FAQs yet. Click “Add New” to add a question.</p>
 											</div>
 											<div class="pb-3 border-bottom mb-3">
 												<div class="input-block mb-0">
@@ -934,11 +750,11 @@
 							<div class="modal-body">
 								<div class="input-block mb-4">
 									<label class="form-label">Question<span class="text-danger ms-1">*</span></label>
-									<input type="text" class="form-control">
+									<input type="text" class="form-control" id="faq-question-input">
 								</div>
 								<div class="input-block mb-4">
 									<label class="form-label">Answer<span class="text-danger ms-1">*</span></label>
-									<textarea class="form-control"></textarea>
+									<textarea class="form-control" id="faq-answer-input"></textarea>
 								</div>
 								<div class="d-flex align-items-center">
 									<div class="form-check me-3">
@@ -957,7 +773,7 @@
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn me-2 btn-light" data-bs-dismiss="modal">Cancel</button>
-								<button type="submit" class="btn btn-secondary">Add New</button>
+								<button type="button" class="btn btn-secondary" id="add-faq-btn">Add New</button>
 							</div>
 						</form>
 					</div>
@@ -1106,6 +922,61 @@
 	<!-- API Config -->
 	<script src="/assets/js/api-config.js"></script>
 	<script>
+	// ── Load categories from API ──────────────────────────────────────────────
+	(function loadCategories() {
+		var sel = document.getElementById('course-category');
+		if (!sel) return;
+		fetch(API_CONFIG.BASE_URL + '/courses/categories')
+			.then(function(r){ return r.json(); })
+			.then(function(data) {
+				sel.innerHTML = '<option value="">Select Category</option>';
+				var cats = (data.success && Array.isArray(data.data)) ? data.data : [];
+				if (!cats.length) {
+					// Fallback defaults if DB has no courses yet
+					cats = ['Arabic', 'IslamicStudies'];
+				}
+				cats.forEach(function(c) {
+					var opt = document.createElement('option');
+					opt.value = c;
+					opt.textContent = c;
+					sel.appendChild(opt);
+				});
+			})
+			.catch(function() {
+				sel.innerHTML = '<option value="">Select Category</option>'
+					+ '<option value="Arabic">Arabic</option>'
+					+ '<option value="IslamicStudies">Islamic Studies</option>';
+			});
+	})();
+
+	// ── Requirements “Add New Item” handler ───────────────────────────────────
+	(function () {
+		var addReqBtn = document.getElementById('add-req-btn');
+		var reqBlock  = document.getElementById('req-block');
+		if (!addReqBtn || !reqBlock) return;
+
+		addReqBtn.addEventListener('click', function () {
+			var group = document.createElement('div');
+			group.className = 'd-flex align-items-center add-new-input';
+
+			var inp = document.createElement('input');
+			inp.type = 'text';
+			inp.className = 'form-control';
+			inp.placeholder = 'Enter requirement';
+
+			var trash = document.createElement('a');
+			trash.href = 'javascript:void(0);';
+			trash.className = 'link-trash';
+			trash.innerHTML = '<i class="isax isax-trash"></i>';
+			trash.addEventListener('click', function () { group.remove(); });
+
+			group.appendChild(inp);
+			group.appendChild(trash);
+			reqBlock.appendChild(group);
+			inp.focus();
+		});
+	})();
+
 	// ── Module/Lesson data model ──────────────────────────────────────────────
 	var courseModules = []; // [{title, description, lessons:[{title,videoUrl,description,status}]}]
 	var topicCount = 0;
@@ -1127,10 +998,13 @@
 	}
 
 	// ── Thumbnail upload handler ──────────────────────────────────────────────
-	async function handleThumbnailUpload(event) {
-		var file = event.target.files[0];
-		if (!file) return;
+	async function handleThumbnailUpload(file) {
+		if (!file || !(file instanceof File)) return;
 		courseThumbnailUrl = null;
+
+		// Update filename text input
+		var filenameInput = document.querySelector('.col-md-10 .form-control');
+		if (filenameInput) filenameInput.value = file.name;
 
 		// Show local preview
 		var reader = new FileReader();
@@ -1138,7 +1012,10 @@
 			var section = document.getElementById('upload-img-section');
 			if (section) {
 				section.style.backgroundImage = 'url(' + e.target.result + ')';
-				section.querySelector('.upload-content').style.display = 'none';
+				section.style.backgroundSize = 'cover';
+				section.style.backgroundPosition = 'center';
+				var uc = section.querySelector('.upload-content');
+				if (uc) uc.style.display = 'none';
 			}
 		};
 		reader.readAsDataURL(file);
@@ -1150,6 +1027,42 @@
 			alert('Thumbnail upload failed: ' + err.message);
 		}
 	}
+
+	// ── Wire upload inputs (strips script.js alert handler) ──────────────────
+	document.addEventListener('DOMContentLoaded', function () {
+		// Clone the upload-img-section to remove script.js click listener
+		var oldSection = document.getElementById('upload-img-section');
+		if (oldSection) {
+			var newSection = oldSection.cloneNode(true);
+			oldSection.parentNode.replaceChild(newSection, oldSection);
+			// Clicking the drag-drop area triggers the Upload File input
+			newSection.addEventListener('click', function () {
+				var fi = document.getElementById('file-upload');
+				if (fi) fi.click();
+			});
+			// Drag-and-drop support
+			newSection.addEventListener('dragover', function (e) {
+				e.preventDefault();
+				newSection.classList.add('drag-over');
+			});
+			newSection.addEventListener('dragleave', function () {
+				newSection.classList.remove('drag-over');
+			});
+			newSection.addEventListener('drop', function (e) {
+				e.preventDefault();
+				newSection.classList.remove('drag-over');
+				var f = e.dataTransfer.files[0];
+				if (f) handleThumbnailUpload(f);
+			});
+		}
+		// Wire the "Upload File" button input
+		var fileUploadInp = document.getElementById('file-upload');
+		if (fileUploadInp) {
+			fileUploadInp.addEventListener('change', function (e) {
+				handleThumbnailUpload(e.target.files[0]);
+			});
+		}
+	});
 
 	// ── Add Topic (Module) handler ────────────────────────────────────────────
 	(function () {
@@ -1175,6 +1088,7 @@
 				'<h2 class="accordion-header">' +
 				'<a href="javascript:void(0);" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#' + uid + '" aria-expanded="false">' +
 				'<span class="d-flex align-items-center mb-0"><i class="isax isax-menu-15 me-2"></i>' + name + '</span>' +
+				'<a href="javascript:void(0);" class="delete-module-btn ms-auto text-danger" title="Delete module"><i class="isax isax-trash fs-16"></i></a>' +
 				'</a></h2>' +
 				'<div id="' + uid + '" class="accordion-collapse collapse" data-bs-parent="#accordionSpacingExample">' +
 				'<div class="accordion-body">' +
@@ -1183,10 +1097,48 @@
 				'</div></div></div>';
 
 			accordion.appendChild(item);
+			var emptyMsg = document.getElementById('curriculum-empty-msg');
+			if (emptyMsg) emptyMsg.style.display = 'none';
 
 			input.value = '';
 			var modal = bootstrap.Modal.getInstance(document.getElementById('add-topic'));
 			if (modal) modal.hide();
+		});
+	})();
+
+
+	// ── Hide empty-state message when first module added; delete lesson/module ────
+	(function () {
+		var accordion = document.getElementById('accordionSpacingExample');
+		if (!accordion) return;
+
+		// Event delegation on the whole accordion
+		accordion.addEventListener('click', function (e) {
+			// Delete lesson
+			var delLesson = e.target.closest('.delete-btn1');
+			if (delLesson) {
+				var lessonRow = delLesson.closest('.d-flex.align-items-center.justify-content-between');
+				if (lessonRow) lessonRow.remove();
+				return;
+			}
+			// Delete module (trash on accordion header)
+			var delModule = e.target.closest('.delete-module-btn');
+			if (delModule) {
+				var accItem = delModule.closest('.accordion-item[data-module-index]');
+				if (accItem) {
+					var idx = parseInt(accItem.getAttribute('data-module-index'), 10);
+					if (!isNaN(idx)) courseModules.splice(idx, 1);
+					accItem.remove();
+					// Renumber remaining items
+					var items = accordion.querySelectorAll('.accordion-item[data-module-index]');
+					items.forEach(function (it, i) { it.setAttribute('data-module-index', i); });
+				}
+				if (!accordion.querySelector('.accordion-item')) {
+					var msg = document.getElementById('curriculum-empty-msg');
+					if (msg) msg.style.display = '';
+				}
+				return;
+			}
 		});
 	})();
 
@@ -1256,6 +1208,76 @@
 		});
 	})();
 
+
+	// ── FAQ data model + Add FAQ handler ─────────────────────────────
+	var courseFaqs = []; // [{question, answer}]
+	var faqCount = 0;
+
+	(function () {
+		var addFaqBtn = document.getElementById('add-faq-btn');
+		if (!addFaqBtn) return;
+
+		addFaqBtn.addEventListener('click', function () {
+			var qInput = document.getElementById('faq-question-input');
+			var aInput = document.getElementById('faq-answer-input');
+			var q = qInput.value.trim();
+			var a = aInput.value.trim();
+			if (!q) { qInput.focus(); return; }
+			if (!a) { aInput.focus(); return; }
+
+			// Hide empty msg
+			var emptyMsg = document.getElementById('faq-empty-msg');
+			if (emptyMsg) emptyMsg.style.display = 'none';
+
+			courseFaqs.push({ question: q, answer: a });
+			faqCount++;
+			var uid = 'DynamicFaq' + faqCount;
+			var accordion = document.getElementById('accordionSpacingExample1');
+
+			var item = document.createElement('div');
+			item.className = 'accordion-item';
+			item.setAttribute('data-faq-index', courseFaqs.length - 1);
+			item.innerHTML =
+				'<h2 class="accordion-header">' +
+				'<a href="javascript:void(0);" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#' + uid + '" aria-expanded="false">' +
+				'<span class="d-flex align-items-center mb-0"><i class="isax isax-message-question me-2"></i>' + q + '</span>' +
+				'<a href="javascript:void(0);" class="delete-faq-btn ms-auto text-danger" title="Delete FAQ"><i class="isax isax-trash fs-16"></i></a>' +
+				'</a></h2>' +
+				'<div id="' + uid + '" class="accordion-collapse collapse" data-bs-parent="#accordionSpacingExample1">' +
+				'<div class="accordion-body"><p class="mb-0">' + a + '</p></div></div>';
+
+			accordion.appendChild(item);
+
+			qInput.value = '';
+			aInput.value = '';
+			var modal = bootstrap.Modal.getInstance(document.getElementById('add-faq'));
+			if (modal) modal.hide();
+		});
+
+		// Delete FAQ via event delegation
+		var faqAccordion = document.getElementById('accordionSpacingExample1');
+		if (faqAccordion) {
+			faqAccordion.addEventListener('click', function (e) {
+				var delBtn = e.target.closest('.delete-faq-btn');
+				if (!delBtn) return;
+				var item = delBtn.closest('.accordion-item[data-faq-index]');
+				if (item) {
+					var idx = parseInt(item.getAttribute('data-faq-index'), 10);
+					if (!isNaN(idx)) courseFaqs.splice(idx, 1);
+					item.remove();
+					// Renumber
+					faqAccordion.querySelectorAll('.accordion-item[data-faq-index]').forEach(function (it, i) {
+						it.setAttribute('data-faq-index', i);
+					});
+					if (!faqAccordion.querySelector('.accordion-item')) {
+						var msg = document.getElementById('faq-empty-msg');
+						if (msg) msg.style.display = '';
+					}
+				}
+			});
+		}
+	})();
+
 	// ── Submit course (course → modules → lessons) ────────────────────────────
 	(function () {
 		var submitBtn = document.getElementById('submit-course-btn');
@@ -1292,7 +1314,8 @@
 						level: level || 'beginner',
 						price: parseFloat(price) || 0,
 						description: title.trim(),
-						thumbnail: courseThumbnailUrl || null
+						thumbnail: courseThumbnailUrl || null,
+						faqs: courseFaqs.length ? courseFaqs : undefined
 					})
 				});
 				var data = await res.json();

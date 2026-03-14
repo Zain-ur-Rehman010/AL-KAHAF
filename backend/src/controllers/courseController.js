@@ -4,7 +4,7 @@ const { notifyAdmins, notifyUser } = require('../services/notificationService');
 
 exports.createCourse = async (req, res) => {
   try {
-    const { title, description, detailedDescription, category, price, level, language, duration, thumbnail, learningOutcomes, requirements, isFeatured, certificateAvailable, instructorId } = req.body;
+    const { title, description, detailedDescription, category, price, level, language, duration, thumbnail, learningOutcomes, requirements, faqs, isFeatured, certificateAvailable, instructorId } = req.body;
 
     const course = await Course.create({
       instructorId: instructorId || req.user.userId,
@@ -19,6 +19,7 @@ exports.createCourse = async (req, res) => {
       thumbnail,
       learningOutcomes,
       requirements,
+      faqs,
       isFeatured,
       certificateAvailable,
       status: 'pending_approval',
@@ -285,5 +286,35 @@ exports.searchCourses = async (req, res) => {
     res.json(courses);
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+exports.getCategories = async (req, res) => {
+  try {
+    const { sequelize } = require('../models');
+    const { PredefinedCourse } = require('../models');
+
+    // Get distinct categories from actual courses
+    const courseRows = await Course.findAll({
+      attributes: [[sequelize.fn('DISTINCT', sequelize.col('category')), 'category']],
+      where: { category: { [Op.ne]: null } },
+      raw: true
+    });
+
+    // Get distinct categories from predefined courses catalog
+    const predefinedRows = await PredefinedCourse.findAll({
+      attributes: [[sequelize.fn('DISTINCT', sequelize.col('category')), 'category']],
+      where: { category: { [Op.ne]: null }, isActive: true },
+      raw: true
+    });
+
+    const all = new Set();
+    courseRows.forEach(r => r.category && all.add(r.category.trim()));
+    predefinedRows.forEach(r => r.category && all.add(r.category.trim()));
+
+    const categories = Array.from(all).sort();
+    res.json({ success: true, data: categories });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
 };

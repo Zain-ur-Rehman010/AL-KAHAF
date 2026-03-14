@@ -14,6 +14,7 @@ router.post(
 );
 
 router.get('/', courseController.getCourses);
+router.get('/categories', courseController.getCategories);
 router.get('/search', courseController.searchCourses);
 router.get('/my/courses', authMiddleware, roleMiddleware(['instructor', 'admin']), courseController.getMyCourses);
 router.get('/:id', courseController.getCourseById);
