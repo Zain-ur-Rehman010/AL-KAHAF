@@ -564,9 +564,10 @@
 												<!-- FAQs added dynamically via Add New -->
 												<p class="text-muted text-center py-3" id="faq-empty-msg">No FAQs yet. Click “Add New” to add a question.</p>
 											</div>
-											<div class="pb-3 border-bottom mb-3">
-												<div class="input-block mb-0">
-													<label class="form-label">Tags</label>
+										</div>
+										<div class="pb-3 border-bottom mb-3">
+											<div class="input-block mb-0">
+												<label class="form-label">Tags</label>
 													<input class="input-tags form-control" id="inputBox" type="text" data-role="tagsinput"  name="specialist" value="red, black">
 													<span class="fs-13 text-gray-6 mt-1 d-block">Maximum of 14 keywords. Keywords should all be in lowercase. e.g. javascript, react, marketing</span>
 												</div>
@@ -1085,11 +1086,12 @@
 			item.className = 'accordion-item';
 			item.setAttribute('data-module-index', moduleIndex);
 			item.innerHTML =
-				'<h2 class="accordion-header">' +
-				'<a href="javascript:void(0);" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#' + uid + '" aria-expanded="false">' +
+				'<h2 class="accordion-header d-flex align-items-center">' +
+				'<a href="javascript:void(0);" class="accordion-button collapsed flex-grow-1" data-bs-toggle="collapse" data-bs-target="#' + uid + '" aria-expanded="false">' +
 				'<span class="d-flex align-items-center mb-0"><i class="isax isax-menu-15 me-2"></i>' + name + '</span>' +
-				'<a href="javascript:void(0);" class="delete-module-btn ms-auto text-danger" title="Delete module"><i class="isax isax-trash fs-16"></i></a>' +
-				'</a></h2>' +
+				'</a>' +
+				'<a href="javascript:void(0);" class="delete-module-btn text-danger px-3" title="Delete module"><i class="isax isax-trash fs-16"></i></a>' +
+				'</h2>' +
 				'<div id="' + uid + '" class="accordion-collapse collapse" data-bs-parent="#accordionSpacingExample">' +
 				'<div class="accordion-body">' +
 				'<div class="d-flex align-items-center justify-content-between">' +
@@ -1238,11 +1240,12 @@
 			item.className = 'accordion-item';
 			item.setAttribute('data-faq-index', courseFaqs.length - 1);
 			item.innerHTML =
-				'<h2 class="accordion-header">' +
-				'<a href="javascript:void(0);" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#' + uid + '" aria-expanded="false">' +
+				'<h2 class="accordion-header d-flex align-items-center">' +
+				'<a href="javascript:void(0);" class="accordion-button collapsed flex-grow-1" data-bs-toggle="collapse" data-bs-target="#' + uid + '" aria-expanded="false">' +
 				'<span class="d-flex align-items-center mb-0"><i class="isax isax-message-question me-2"></i>' + q + '</span>' +
-				'<a href="javascript:void(0);" class="delete-faq-btn ms-auto text-danger" title="Delete FAQ"><i class="isax isax-trash fs-16"></i></a>' +
-				'</a></h2>' +
+				'</a>' +
+				'<a href="javascript:void(0);" class="delete-faq-btn text-danger px-3" title="Delete FAQ"><i class="isax isax-trash fs-16"></i></a>' +
+				'</h2>' +
 				'<div id="' + uid + '" class="accordion-collapse collapse" data-bs-parent="#accordionSpacingExample1">' +
 				'<div class="accordion-body"><p class="mb-0">' + a + '</p></div></div>';
 

@@ -75,10 +75,10 @@ module.exports = {
       }
     });
 
-    // Add indexes for better performance
-    await queryInterface.addIndex('Users', ['email']);
-    await queryInterface.addIndex('Users', ['role']);
-    await queryInterface.addIndex('Users', ['status']);
+    // Add indexes for better performance (skip if already exist)
+    for (const col of ['email', 'role', 'status']) {
+      try { await queryInterface.addIndex('Users', [col]); } catch (e) { /* already exists */ }
+    }
   },
 
   down: async (queryInterface, Sequelize) => {
