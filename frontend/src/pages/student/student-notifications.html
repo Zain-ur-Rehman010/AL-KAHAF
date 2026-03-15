@@ -175,6 +175,12 @@
 								</a>
 							</div>
 -->
+							<div class="me-2 position-relative" id="notif-bell-wrap" style="display:none;">
+								<a href="/student/student-notifications" class="position-relative d-flex align-items-center justify-content-center" style="width:36px;height:36px;" title="Notifications">
+									<i class="isax isax-notification5" style="font-size:22px;color:#fff;"></i>
+									<span id="notif-badge" style="display:none;position:absolute;top:0;right:0;min-width:16px;height:16px;font-size:9px;border-radius:50px;background:#e53935;color:#fff;align-items:center;justify-content:center;padding:0 3px;">0</span>
+								</a>
+							</div>
 							<div class="dropdown profile-dropdown">
                                 <a href="javascript:void(0);" class="d-flex align-items-center gap-2" data-bs-toggle="dropdown" title="My Account">
                                 	<span class="avatar">
@@ -188,11 +194,11 @@
                                 <div class="dropdown-menu dropdown-menu-end">
 									<div class="profile-header d-flex align-items-center">
 										<div class="avatar">
-											<img src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
+											<img id="dropdown-avatar" src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
 										</div>
 										<div>
-											<h6>Ronald Richard</h6>
-											<p>studentdemo@example.com</p>
+											<h6 id="dropdown-name">Ronald Richard</h6>
+											<p id="dropdown-email">studentdemo@example.com</p>
 										</div>
 									</div>
 									<ul class="profile-body">
@@ -214,7 +220,7 @@
 									</ul>
 									<div class="profile-footer">
 										<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/auth/login"><i class="isax isax-arrow-2 me-2"></i>Log in as Instructor</a>
-										<a href="/" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+										<a href="#" id="logout-btn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
 									</div>
                                 </div>
                             </div>
@@ -257,14 +263,14 @@
 											<span class="verify-tick"><i class="isax isax-verify5"></i></span>
 										</span>
 										<div>
-											<h5 class="mb-1 text-white d-inline-flex align-items-center">Ronald Richard<a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+											<h5 class="mb-1 text-white d-inline-flex align-items-center"><span id="prof-card-name">Ronald Richard</span><a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
 											<p class="text-light">Student</p>
 										</div>
 									</div>
 								</div>
 								<div class="col-lg-6">
 									<div class="d-flex align-items-center justify-content-lg-end flex-wrap gap-2">
-										<a href="/shared/become-an-instructor" class="btn btn-white rounded-pill me-3">Become an Instructor</a>
+										
 										
 									</div>
 								</div>
@@ -319,7 +325,7 @@
 											<a href="/student/student-settings" class="d-inline-flex align-items-center active"><i class="isax isax-setting-25 me-2"></i>Settings</a>
 										</li>
 										<li>
-											<a href="/auth/login" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
+											<a href="#" id="sidebar-logout-btn" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
 										</li>
 									</ul>
 								</div>
@@ -338,142 +344,20 @@
 									<li><a href="/student/student-notifications" class="active">Notifications</a></li>
 									<li><a href="/student/student-billing-address">Billing Address</a></li>
 								</ul>
-								
-								
-							
-							<form>
-								<!-- Title -->
-								<div class="d-flex justify-content-between align-items-center border-bottom pb-4 mb-4">
-									<h5 class="fs-18 mb-0">General Notifications</h5>
-									<button class="btn btn-sm btn-dark" type="button">Toggle all</button>
-								</div>
 
-								<!-- Item -->
-								<div class="d-flex justify-content-between align-items-center mb-4">
-									<!-- Content -->
-									<div>
-										<h6>Subscriptions</h6>
-										<small>Notify me about activity from profile I’m subscribe to</small>
+							<!-- Notification Inbox -->
+							<div class="card mb-4">
+								<div class="card-body">
+									<div class="d-flex justify-content-between align-items-center border-bottom pb-3 mb-3">
+										<h5 class="fs-18 mb-0">Your Notifications</h5>
+										<button class="btn btn-sm btn-dark" type="button" id="mark-all-read-btn">Mark All as Read</button>
 									</div>
-									<!-- Switch -->
-									<div class="form-check form-switch form-check-md mb-0 ms-3">
-										<input class="form-check-input" type="checkbox" id="checkPrivacy1" checked="">
-									</div>
-								</div>
-
-								<!-- Item -->
-								<div class="d-flex justify-content-between align-items-center mb-4">
-									<!-- Content -->
-									<div>
-										<h6>Recommended Courses</h6>
-										<small>Notify me about courses that suits for me</small>
-									</div>
-									<!-- Switch -->
-									<div class="form-check form-switch form-check-md mb-0 ms-3">
-										<input class="form-check-input" type="checkbox" id="7" checked="">
+									<div id="notif-list">
+										<div class="text-center py-4 text-muted"><div class="spinner-border spinner-border-sm me-2" role="status"></div> Loading...</div>
 									</div>
 								</div>
-
-								<!-- Item -->
-								<div class="d-flex justify-content-between align-items-center mb-4">
-									<!-- Content -->
-									<div>
-										<h6>Reply to my comments</h6>
-										<small>Notify me about replies for my comments</small>
-									</div>
-									<!-- Switch -->
-									<div class="form-check form-switch form-check-md mb-0 ms-3">
-										<input class="form-check-input" type="checkbox" id="4">
-									</div>
-								</div>
-
-								<!-- Item -->
-								<div class="d-flex justify-content-between align-items-center mb-4">
-									<!-- Content -->
-									<div>
-										<h6>Activity on my comments</h6>
-										<small>Notify me about replies for my comments.</small>
-									</div>
-									<!-- Switch -->
-									<div class="form-check form-switch form-check-md mb-0 ms-3">
-										<input class="form-check-input" type="checkbox" id="5">
-									</div>
-								</div>
-								
-							</form>
-							<div class="text-center my-5"></div>
-							<form>
-								<!-- Title -->
-								<div class="d-flex justify-content-between align-items-center border-bottom pb-4 mb-4">
-									<h5 class="fs-18 mb-0">Email Notifications</h5>
-									<button class="btn btn-sm btn-dark" type="button">Toggle all</button>
-								</div>
-
-								<!-- Item -->
-								<div class="d-flex justify-content-between align-items-center mb-4">
-									<!-- Content -->
-									<div>
-										<h6>Courses Activity</h6>
-										<small>Send me emails about my courses activity and updates I request</small>
-									</div>
-									<!-- Switch -->
-									<div class="form-check form-switch form-check-md mb-0 ms-3">
-										<input class="form-check-input" type="checkbox" id="checkPrivacy6" checked="">
-									</div>
-								</div>
-
-								<!-- Item -->
-								<div class="d-flex justify-content-between align-items-center mb-4">
-									<!-- Content -->
-									<div>
-										<h6>Promotions & Recommendations</h6>
-										<small>Send me emails about my courses promotions and recommendations</small>
-									</div>
-									<!-- Switch -->
-									<div class="form-check form-switch form-check-md mb-0 ms-3">
-										<input class="form-check-input" type="checkbox" id="checkPrivacy7" checked="">
-									</div>
-								</div>
-
-								<!-- Item -->
-								<div class="d-flex justify-content-between align-items-center mb-4">
-									<!-- Content -->
-									<div>
-										<h6>Course Comments</h6>
-										<small>Get notified about comments on your posts and replies to your comments.</small>
-									</div>
-									<!-- Switch -->
-									<div class="form-check form-switch form-check-md mb-0 ms-3">
-										<input class="form-check-input" type="checkbox" id="6">
-									</div>
-								</div>
-
-								<!-- Item -->
-								<div class="d-flex justify-content-between align-items-center mb-4">
-									<!-- Content -->
-									<div>
-										<h6>Course Reminders</h6>
-										<small>Receive booking assistance reminders to stay updated on your scheduled sessions.</small>
-									</div>
-									<!-- Switch -->
-									<div class="form-check form-switch form-check-md mb-0 ms-3">
-										<input class="form-check-input" type="checkbox" id="17">
-									</div>
-								</div>
-
-								<!-- Item -->
-								<div class="d-flex justify-content-between align-items-center mb-4">
-									<!-- Content -->
-									<div>
-										<h6>System Updates</h6>
-										<small>Send me emails about updates to the LMS platform </small>
-									</div>
-									<!-- Switch -->
-									<div class="form-check form-switch form-check-md mb-0 ms-3">
-										<input class="form-check-input" type="checkbox" id="8">
-									</div>
-								</div>
-							</form>
+							</div>
+							<!-- /Notification Inbox -->
 						</div>
 					</div>
 				</div>
@@ -612,6 +496,12 @@
         <script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 		
+		<!-- API Config -->
+		<script src="/assets/js/api-config.js"></script>
+
+		<!-- Auth JS -->
+		<script src="/assets/js/auth.js"></script>
+
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
 	<!-- Scroll to Top Button -->
@@ -620,5 +510,117 @@
 	</button>
 
 		
+	<script>
+	(function(){
+		var token=localStorage.getItem('accessToken');
+		if(!token){window.location.href='/auth/login?redirect='+encodeURIComponent(window.location.pathname);return;}
+
+		function el(id){return document.getElementById(id);}
+
+		function doLogout(e){
+			e.preventDefault();
+			['accessToken','refreshToken','user'].forEach(function(k){localStorage.removeItem(k);});
+			window.location.href='/auth/login';
+		}
+		['logout-btn','sidebar-logout-btn'].forEach(function(id){
+			var b=el(id);if(b)b.addEventListener('click',doLogout);
+		});
+
+		// Fill header from localStorage
+		try{
+			var u=JSON.parse(localStorage.getItem('user')||'null');
+			if(u){
+				var fn=((u.firstName||'')+' '+(u.lastName||'')).trim();
+				var av=u.profileImage||u.avatar||'/assets/img/user/user-02.jpg';
+				if(el('header-avatar'))    el('header-avatar').src=av;
+				if(el('header-name'))       el('header-name').textContent=fn;
+				if(el('dropdown-avatar'))   el('dropdown-avatar').src=av;
+				if(el('dropdown-name'))     el('dropdown-name').textContent=fn;
+				if(el('dropdown-email'))    el('dropdown-email').textContent=u.email||'';
+				if(el('prof-card-avatar'))  el('prof-card-avatar').src=av;
+				if(el('prof-card-name'))    el('prof-card-name').textContent=fn;
+			}
+		}catch(e){}
+
+		// Notification bell + inbox
+		var bellWrap=el('notif-bell-wrap');var bellBadge=el('notif-badge');
+		if(bellWrap)bellWrap.style.display='block';
+
+		function timeAgo(dateStr){
+			var d=new Date(dateStr),now=new Date();
+			var diff=Math.floor((now-d)/1000);
+			if(diff<60)return 'just now';
+			if(diff<3600)return Math.floor(diff/60)+' min ago';
+			if(diff<86400)return Math.floor(diff/3600)+' hr ago';
+			return Math.floor(diff/86400)+' days ago';
+		}
+
+		function renderNotifications(notifications,unreadCount){
+			var list=el('notif-list');
+			if(!list)return;
+			// Update bell badge
+			if(bellBadge){bellBadge.textContent=unreadCount>99?'99+':unreadCount;bellBadge.style.display=unreadCount>0?'flex':'none';}
+			if(!notifications||!notifications.length){
+				list.innerHTML='<div class="text-center py-5 text-muted"><i class="isax isax-notification-bing fs-1 d-block mb-3"></i><p>No notifications yet.</p></div>';
+				return;
+			}
+			var html=notifications.map(function(n){
+				var bg=n.isRead?'':' bg-light';
+				var dot=n.isRead?'':' <span class="bg-danger rounded-circle d-inline-block ms-2" style="width:8px;height:8px;vertical-align:middle;"></span>';
+				var icon=n.type==='course_update'?'isax-book-1':(n.type==='payment'?'isax-card-pos':(n.type==='enrollment'?'isax-teacher':'isax-notification'));
+				return '<div class="d-flex align-items-start p-3 border-bottom notif-item'+bg+'" data-id="'+n.id+'" data-read="'+n.isRead+'" style="cursor:pointer;" onclick="markRead(this)">'
+					+'<span class="avatar avatar-sm me-3 bg-primary-transparent flex-shrink-0"><i class="isax '+icon+'"></i></span>'
+					+'<div class="flex-fill">'
+					+'<p class="mb-1 fw-medium">'+n.title+dot+'</p>'
+					+'<p class="mb-1 text-muted fs-13">'+n.message+'</p>'
+					+'<small class="text-muted">'+timeAgo(n.createdAt)+'</small>'
+					+(n.actionUrl?'<a href="'+n.actionUrl+'" class="btn btn-xs btn-link p-0 ms-2 fs-12">View</a>':'')  
+					+'</div></div>';
+			}).join('');
+			list.innerHTML=html;
+		}
+
+		window.markRead=function(el){
+			var id=el.dataset.id,isRead=el.dataset.read==='true';
+			if(isRead)return;
+			el.classList.remove('bg-light');
+			el.dataset.read='true';
+			var dot=el.querySelector('.bg-danger.rounded-circle');
+			if(dot)dot.remove();
+			fetch(API_CONFIG.BASE_URL+'/notifications/'+id+'/read',{
+				method:'PATCH',headers:{'Authorization':'Bearer '+token}
+			}).catch(function(){});
+			// decrement badge
+			var badge=document.getElementById('notif-badge');
+			if(badge){var cnt=parseInt(badge.textContent)||0;cnt=Math.max(0,cnt-1);badge.textContent=cnt>99?'99+':cnt;badge.style.display=cnt>0?'flex':'none';}
+		};
+
+		// Mark all read button
+		var markAllBtn=el('mark-all-read-btn');
+		if(markAllBtn)markAllBtn.addEventListener('click',function(){
+			fetch(API_CONFIG.BASE_URL+'/notifications/read-all',{
+				method:'PATCH',headers:{'Authorization':'Bearer '+token}
+			}).then(function(){
+				document.querySelectorAll('.notif-item.bg-light').forEach(function(el){el.classList.remove('bg-light');});
+				document.querySelectorAll('.notif-item .bg-danger.rounded-circle').forEach(function(el){el.remove();});
+				if(bellBadge){bellBadge.textContent='0';bellBadge.style.display='none';}
+			}).catch(function(){});
+		});
+
+		// Fetch notifications
+		fetch(API_CONFIG.BASE_URL+'/notifications?limit=50',{
+			headers:{'Authorization':'Bearer '+token}
+		}).then(function(r){
+			if(r.status===401){doLogout({preventDefault:function(){}});return null;}
+			return r.json();
+		}).then(function(res){
+			if(!res)return;
+			renderNotifications(res.data||[],res.unreadCount||0);
+		}).catch(function(){
+			var list=el('notif-list');
+			if(list)list.innerHTML='<div class="col-12 text-center py-4 text-danger">Failed to load notifications.</div>';
+		});
+	})();
+	</script>
 	</body>
 </html>

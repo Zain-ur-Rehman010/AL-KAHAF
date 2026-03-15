@@ -169,6 +169,12 @@
 								</a>
 							</div>
 -->
+							<div class="me-2 position-relative" id="notif-bell-wrap" style="display:none;">
+								<a href="/student/student-notifications" class="position-relative d-flex align-items-center justify-content-center" style="width:36px;height:36px;" title="Notifications">
+									<i class="isax isax-notification5" style="font-size:22px;color:#fff;"></i>
+									<span id="notif-badge" style="display:none;position:absolute;top:0;right:0;min-width:16px;height:16px;font-size:9px;border-radius:50px;background:#e53935;color:#fff;align-items:center;justify-content:center;padding:0 3px;">0</span>
+								</a>
+							</div>
 							<div class="dropdown profile-dropdown">
                                 <a href="javascript:void(0);" class="d-flex align-items-center gap-2" data-bs-toggle="dropdown" title="My Account">
                                 	<span class="avatar">
@@ -182,11 +188,11 @@
                                 <div class="dropdown-menu dropdown-menu-end">
 									<div class="profile-header d-flex align-items-center">
 										<div class="avatar">
-											<img src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
+											<img id="dropdown-avatar" src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
 										</div>
 										<div>
-											<h6>Ronald Richard</h6>
-											<p>studentdemo@example.com</p>
+											<h6 id="dropdown-name">Ronald Richard</h6>
+											<p id="dropdown-email">studentdemo@example.com</p>
 										</div>
 									</div>
 									<ul class="profile-body">
@@ -208,7 +214,7 @@
 									</ul>
 									<div class="profile-footer">
 										<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/auth/login"><i class="isax isax-arrow-2 me-2"></i>Log in as Instructor</a>
-										<a href="/" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+										<a href="#" id="logout-btn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
 									</div>
                                 </div>
                             </div>
@@ -247,18 +253,18 @@
 								<div class="col-lg-6">
 									<div class="d-flex align-items-center">
 										<span class="avatar avatar-xxl avatar-rounded me-3 border border-white border-2 position-relative">
-											<img src="/assets/img/user/user-02.jpg" alt="">
+											<img id="prof-card-avatar" src="/assets/img/user/user-02.jpg" alt="">
 											<span class="verify-tick"><i class="isax isax-verify5"></i></span>
 										</span>
 										<div>
-											<h5 class="mb-1 text-white d-inline-flex align-items-center">Ronald Richard<a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+											<h5 class="mb-1 text-white d-inline-flex align-items-center"><span id="prof-card-name">Ronald Richard</span><a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
 											<p class="text-light">Student</p>
 										</div>
 									</div>
 								</div>
 								<div class="col-lg-6">
 									<div class="d-flex align-items-center justify-content-lg-end flex-wrap gap-2">
-										<a href="/shared/become-an-instructor" class="btn btn-white rounded-pill me-3">Become an Instructor</a>
+										
 										
 									</div>
 								</div>
@@ -313,7 +319,7 @@
 													<a href="/student/student-settings" class="d-inline-flex align-items-center"><i class="isax isax-setting-25 me-2"></i>Settings</a>
 												</li>
 												<li>
-													<a href="/auth/login" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
+													<a href="#" id="sidebar-logout-btn" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
 												</li>
 											</ul>
 										</div>
@@ -332,61 +338,61 @@
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>First Name</h6>
-												<span>Ronald</span>
+												<span id="prof-firstName">Ronald</span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>Last Name</h6>
-												<span>Richard</span>
+												<span id="prof-lastName">Richard</span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>Registration Date</h6>
-												<span>16 Jan 2024, 11:15 AM</span>
+												<span id="prof-regDate">16 Jan 2024, 11:15 AM</span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>User Name</h6>
-												<span>studentdemo</span>
+												<span id="prof-username">—</span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>Phone Number</h6>
-												<span>90154-91036</span>
+												<span id="prof-phone">—</span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>Email</h6>
-												<span>studentdemo@example.com</span>
+												<span id="prof-email">studentdemo@example.com</span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>Gender</h6>
-												<span>Male</span>
+												<span id="prof-gender">—</span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>DOB</h6>
-												<span>16 Jan 2020</span>
+												<span id="prof-dob">—</span>
 											</div>
 										</div>
 										<div class="col-md-4">
 											<div class="mb-3">
 												<h6>Age</h6>
-												<span>24</span>
+												<span id="prof-age">—</span>
 											</div>
 										</div>
 										<div class="col-md-12">
 											<div>
 												<h6>Bio</h6>
-												<span>Hello! I'm Ronald Richard. I'm passionate about developing innovative software solutions, analyzing classic literature. I aspire to become a software developer, work as an editor. In my free time, I enjoy coding, reading, hiking etc.
+												<span id="prof-bio">Hello! I'm Ronald Richard. I'm passionate about developing innovative software solutions, analyzing classic literature. I aspire to become a software developer, work as an editor. In my free time, I enjoy coding, reading, hiking etc.
 												</span>
 											</div>
 										</div>
@@ -510,6 +516,12 @@
         <script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 		
+		<!-- API Config -->
+		<script src="/assets/js/api-config.js"></script>
+
+		<!-- Auth JS -->
+		<script src="/assets/js/auth.js"></script>
+
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
 	<!-- Scroll to Top Button -->
@@ -518,5 +530,84 @@
 	</button>
 
 		
+	<script>
+	(function(){
+		var token=localStorage.getItem('accessToken');
+		if(!token){window.location.href='/auth/login?redirect='+encodeURIComponent(window.location.pathname);return;}
+
+		function el(id){return document.getElementById(id);}
+
+		function doLogout(e){
+			e.preventDefault();
+			['accessToken','refreshToken','user'].forEach(function(k){localStorage.removeItem(k);});
+			window.location.href='/auth/login';
+		}
+		['logout-btn','sidebar-logout-btn'].forEach(function(id){
+			var b=el(id);if(b)b.addEventListener('click',doLogout);
+		});
+
+		function fillProfile(u){
+			var fn=((u.firstName||'')+' '+(u.lastName||'')).trim();
+			var av=u.profileImage||u.avatar||'/assets/img/user/user-02.jpg';
+			// header + dropdown
+			if(el('header-avatar'))      el('header-avatar').src=av;
+			if(el('header-name'))         el('header-name').textContent=fn;
+			if(el('dropdown-avatar'))     el('dropdown-avatar').src=av;
+			if(el('dropdown-name'))       el('dropdown-name').textContent=fn;
+			if(el('dropdown-email'))      el('dropdown-email').textContent=u.email||'';
+			// profile card
+			if(el('prof-card-avatar'))    el('prof-card-avatar').src=av;
+			if(el('prof-card-name'))      el('prof-card-name').textContent=fn;
+			// basic info
+			if(el('prof-firstName'))  el('prof-firstName').textContent=u.firstName||'\u2014';
+			if(el('prof-lastName'))   el('prof-lastName').textContent=u.lastName||'\u2014';
+			if(el('prof-email'))      el('prof-email').textContent=u.email||'\u2014';
+			if(el('prof-phone'))      el('prof-phone').textContent=u.phone||'\u2014';
+			if(el('prof-bio'))        el('prof-bio').textContent=u.bio||'\u2014';
+			if(el('prof-regDate') && u.createdAt){
+				var d=new Date(u.createdAt);
+				el('prof-regDate').textContent=d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});
+			}
+		}
+
+		// Fill immediately from localStorage (no flash)
+		try{
+			var cached=JSON.parse(localStorage.getItem('user')||'null');
+			if(cached) fillProfile(cached);
+		}catch(e){}
+
+		// Fetch full profile from API
+		try{
+			var uid=JSON.parse(localStorage.getItem('user')||'null');
+			uid=uid&&(uid.id||uid.userId);
+			if(uid){
+				fetch(API_CONFIG.BASE_URL+'/users/'+uid+'/profile',{
+					headers:{'Authorization':'Bearer '+token}
+				}).then(function(r){
+					if(r.status===401){doLogout({preventDefault:function(){}});return null;}
+					return r.json();
+				}).then(function(u){
+					if(u&&!u.message) fillProfile(u);
+				}).catch(function(){});
+			}
+		}catch(e){}
+	})();
+	</script>
+	<script>
+	(function(){
+		var token=localStorage.getItem('accessToken');
+		if(!token)return;
+		var bellWrap=document.getElementById('notif-bell-wrap');
+		var bellBadge=document.getElementById('notif-badge');
+		if(bellWrap)bellWrap.style.display='block';
+		fetch(API_CONFIG.BASE_URL+'/notifications?unreadOnly=true&limit=1',{
+			headers:{'Authorization':'Bearer '+token}
+		}).then(function(r){if(r.ok)return r.json();}).then(function(res){
+			if(!res)return;
+			var cnt=res.unreadCount||0;
+			if(bellBadge){bellBadge.textContent=cnt>99?'99+':cnt;bellBadge.style.display=cnt>0?'flex':'none';}
+		}).catch(function(){});
+	})();
+	</script>
 	</body>
 </html>

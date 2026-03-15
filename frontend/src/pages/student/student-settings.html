@@ -175,6 +175,12 @@
 								</a>
 							</div>
 -->
+							<div class="me-2 position-relative" id="notif-bell-wrap" style="display:none;">
+								<a href="/student/student-notifications" class="position-relative d-flex align-items-center justify-content-center" style="width:36px;height:36px;" title="Notifications">
+									<i class="isax isax-notification5" style="font-size:22px;color:#fff;"></i>
+									<span id="notif-badge" style="display:none;position:absolute;top:0;right:0;min-width:16px;height:16px;font-size:9px;border-radius:50px;background:#e53935;color:#fff;align-items:center;justify-content:center;padding:0 3px;">0</span>
+								</a>
+							</div>
 							<div class="dropdown profile-dropdown">
                                 <a href="javascript:void(0);" class="d-flex align-items-center gap-2" data-bs-toggle="dropdown" title="My Account">
                                 	<span class="avatar">
@@ -188,11 +194,11 @@
                                 <div class="dropdown-menu dropdown-menu-end">
 									<div class="profile-header d-flex align-items-center">
 										<div class="avatar">
-											<img src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
+											<img id="dropdown-avatar" src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
 										</div>
 										<div>
-											<h6>Ronald Richard</h6>
-											<p>studentdemo@example.com</p>
+											<h6 id="dropdown-name">Ronald Richard</h6>
+											<p id="dropdown-email">studentdemo@example.com</p>
 										</div>
 									</div>
 									<ul class="profile-body">
@@ -214,7 +220,7 @@
 									</ul>
 									<div class="profile-footer">
 										<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/auth/login"><i class="isax isax-arrow-2 me-2"></i>Log in as Instructor</a>
-										<a href="/" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+										<a href="#" id="logout-btn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
 									</div>
                                 </div>
                             </div>
@@ -257,14 +263,14 @@
 												<span class="verify-tick"><i class="isax isax-verify5"></i></span>
 											</span>
 											<div>
-												<h5 class="mb-1 text-white d-inline-flex align-items-center">Ronald Richard<a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+												<h5 class="mb-1 text-white d-inline-flex align-items-center"><span id="prof-card-name">Ronald Richard</span><a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
 												<p class="text-light">Student</p>
 											</div>
 										</div>
 									</div>
 									<div class="col-lg-6">
 										<div class="d-flex align-items-center justify-content-lg-end flex-wrap gap-2">
-											<a href="/shared/become-an-instructor" class="btn btn-white rounded-pill me-3">Become an Instructor</a>
+											
 											
 										</div>
 									</div>
@@ -319,7 +325,7 @@
 												<a href="/student/student-settings" class="d-inline-flex align-items-center active"><i class="isax isax-setting-25 me-2"></i>Settings</a>
 											</li>
 											<li>
-												<a href="/auth/login" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
+												<a href="#" id="sidebar-logout-btn" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
 											</li>
 										</ul>
 									</div>
@@ -340,18 +346,18 @@
 								</ul>
 								<div class="card">
 									<div class="card-body">
-								<form action="student-settings.html">
+								<form id="settings-form">
 									<div class="profile-upload-group">									
 										<div class="d-flex align-items-center">
-											<a href="/student/student-profile" class="avatar flex-shrink-0 avatar-xxxl avatar-rounded border me-3"><img src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid"></a>
+											<a href="#" class="avatar flex-shrink-0 avatar-xxxl avatar-rounded border me-3" onclick="event.preventDefault();document.getElementById('settings-avatar-file').click()"><img id="settings-avatar-img" src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid"></a>
 											<div class="profile-upload-head">
 												<h6><a href="/student/student-profile">Profile Photo</a></h6>
 												<p class="fs-14 mb-0">PNG or JPG no bigger than 800px width and height</p>
 												<div class="new-employee-field">
 													<div class="d-flex align-items-center mt-2">
-														<div class="image-upload position-relative mb-0 me-2">
-															<input type="file">
-															<a href="#" class="btn bg-gray-100 btn-sm rounded-pill image-uploads">Upload</a>
+														<div class="mb-0 me-2">
+															<input type="file" id="settings-avatar-file" accept="image/*" style="display:none;">
+															<button type="button" class="btn bg-gray-100 btn-sm rounded-pill" onclick="document.getElementById('settings-avatar-file').click()">Upload</button>
 														</div>
 														<div class="img-delete">
 															<a href="#" class="btn btn-secondary btn-sm rounded-pill">Delete</a>
@@ -370,25 +376,25 @@
 												<div class="col-md-6">
 													<div class="mb-3">
 														<label class="form-label">First Name <span class="text-danger"> *</span></label>
-														<input type="text" class="form-control" value="Ronald">
+														<input type="text" id="settings-firstName" class="form-control" placeholder="First Name">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="mb-3">
 														<label class="form-label">Last Name <span class="text-danger"> *</span></label>
-														<input type="text" class="form-control" value="Richard">
+														<input type="text" id="settings-lastName" class="form-control" placeholder="Last Name">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="mb-3">
 														<label class="form-label">User Name <span class="text-danger"> *</span></label>
-														<input type="text" class="form-control" value="studentdemo">
+														<input type="text" id="settings-username" class="form-control" disabled>
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="mb-3">
 														<label class="form-label">Phone Number <span class="text-danger"> *</span></label>
-														<input type="text" class="form-control" value="90154-91036">
+														<input type="text" id="settings-phone" class="form-control" placeholder="Phone Number">
 													</div>
 												</div>
 												<div class="col-md-6">
@@ -415,11 +421,11 @@
 												<div class="col-md-12">
 													<div class="mb-3">
 														<label class="form-label">Bio <span class="text-danger"> *</span></label>
-														<textarea rows="4" class="form-control">Hello! I'm Ronald Richard. I'm passionate about developing innovative software solutions, analyzing classic literature. I aspire to become a software developer, work as an editor. In my free time, I enjoy coding, reading, hiking etc.</textarea>
+														<textarea rows="4" id="settings-bio" class="form-control">Hello! I'm Ronald Richard. I'm passionate about developing innovative software solutions, analyzing classic literature. I aspire to become a software developer, work as an editor. In my free time, I enjoy coding, reading, hiking etc.</textarea>
 													</div>
 												</div>
 												<div class="col-md-12">
-													<button class="btn btn-secondary rounded-pill" type="submit">Update Profile</button>
+													<button class="btn btn-secondary rounded-pill" id="settings-save-btn" type="button">Update Profile</button>
 												</div>
 											</div>
 										</div>
@@ -644,6 +650,12 @@
         <script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 		
+		<!-- API Config -->
+		<script src="/assets/js/api-config.js"></script>
+
+		<!-- Auth JS -->
+		<script src="/assets/js/auth.js"></script>
+
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
 	<!-- Scroll to Top Button -->
@@ -652,5 +664,129 @@
 	</button>
 
 		
+	<script>
+	(function(){
+		var token=localStorage.getItem('accessToken');
+		if(!token){window.location.href='/auth/login?redirect='+encodeURIComponent(window.location.pathname);return;}
+
+		function el(id){return document.getElementById(id);}
+
+		function doLogout(e){
+			e.preventDefault();
+			['accessToken','refreshToken','user'].forEach(function(k){localStorage.removeItem(k);});
+			window.location.href='/auth/login';
+		}
+		['logout-btn','sidebar-logout-btn'].forEach(function(id){
+			var b=el(id);if(b)b.addEventListener('click',doLogout);
+		});
+
+		function fillHeader(u){
+			var fn=((u.firstName||'')+' '+(u.lastName||'')).trim();
+			var av=u.profileImage||u.avatar||'/assets/img/user/user-02.jpg';
+			if(el('header-avatar'))    el('header-avatar').src=av;
+			if(el('header-name'))       el('header-name').textContent=fn;
+			if(el('dropdown-avatar'))   el('dropdown-avatar').src=av;
+			if(el('dropdown-name'))     el('dropdown-name').textContent=fn;
+			if(el('dropdown-email'))    el('dropdown-email').textContent=u.email||'';
+			if(el('prof-card-avatar'))  el('prof-card-avatar').src=av;
+			if(el('prof-card-name'))    el('prof-card-name').textContent=fn;
+			if(el('settings-avatar-img')) el('settings-avatar-img').src=av;
+		}
+
+		function fillForm(u){
+			if(el('settings-firstName')) el('settings-firstName').value=u.firstName||'';
+			if(el('settings-lastName'))  el('settings-lastName').value=u.lastName||'';
+			if(el('settings-phone'))     el('settings-phone').value=u.phone||'';
+			if(el('settings-bio'))       el('settings-bio').value=u.bio||'';
+		}
+
+		// Fill immediately from localStorage
+		try{
+			var u=JSON.parse(localStorage.getItem('user')||'null');
+			if(u){fillHeader(u);fillForm(u);}
+		}catch(e){}
+
+		// Fetch fresh profile from API
+		try{
+			var uid=JSON.parse(localStorage.getItem('user')||'null');
+			uid=uid&&(uid.id||uid.userId);
+			if(uid){
+				fetch(API_CONFIG.BASE_URL+'/users/'+uid+'/profile',{
+					headers:{'Authorization':'Bearer '+token}
+				}).then(function(r){if(r.status===401){doLogout({preventDefault:function(){}});return null;}return r.json();})
+				.then(function(u){if(u&&!u.message){fillHeader(u);fillForm(u);}}).catch(function(){});
+			}
+		}catch(e){}
+
+		// Profile photo upload
+		var fileInput=el('settings-avatar-file');
+		if(fileInput)fileInput.addEventListener('change',function(){
+			var file=this.files[0];if(!file)return;
+			var fd=new FormData();fd.append('image',file);
+			fetch(API_CONFIG.BASE_URL+'/upload?folder=profiles',{
+				method:'POST',
+				headers:{'Authorization':'Bearer '+token},
+				body:fd
+			}).then(function(r){return r.json();})
+			.then(function(res){
+				var url=res.url||res.data&&res.data.url;
+				if(!url)return;
+				if(el('settings-avatar-img')) el('settings-avatar-img').src=url;
+				if(el('prof-card-avatar'))    el('prof-card-avatar').src=url;
+				if(el('header-avatar'))        el('header-avatar').src=url;
+				fetch(API_CONFIG.BASE_URL+'/auth/profile',{
+					method:'PUT',
+					headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},
+					body:JSON.stringify({profileImage:url})
+				}).then(function(r){return r.json();})
+				.then(function(res){
+					if(res.user){var cu=JSON.parse(localStorage.getItem('user')||'null')||{};Object.assign(cu,res.user);localStorage.setItem('user',JSON.stringify(cu));}
+				}).catch(function(){});
+			}).catch(function(){alert('Photo upload failed. Please try again.');});
+		});
+
+		// Save button
+		var saveBtn=el('settings-save-btn');
+		if(saveBtn)saveBtn.addEventListener('click',function(){
+			var payload={};
+			var fn=el('settings-firstName');if(fn)payload.firstName=fn.value.trim();
+			var ln=el('settings-lastName');if(ln)payload.lastName=ln.value.trim();
+			var ph=el('settings-phone');if(ph)payload.phone=ph.value.trim();
+			var bi=el('settings-bio');if(bi)payload.bio=bi.value.trim();
+			if(!payload.firstName){alert('First name is required.');return;}
+			saveBtn.disabled=true;saveBtn.textContent='Saving...';
+			fetch(API_CONFIG.BASE_URL+'/auth/profile',{
+				method:'PUT',
+				headers:{'Authorization':'Bearer '+token,'Content-Type':'application/json'},
+				body:JSON.stringify(payload)
+			}).then(function(r){if(r.status===401){doLogout({preventDefault:function(){}});return null;}return r.json();})
+			.then(function(res){
+				saveBtn.disabled=false;saveBtn.textContent='Update Profile';
+				if(!res)return;
+				if(res.user){
+					var cu=JSON.parse(localStorage.getItem('user')||'null')||{};
+					Object.assign(cu,res.user);
+					localStorage.setItem('user',JSON.stringify(cu));
+					fillHeader(res.user);
+				}
+				alert(res.message||'Profile updated successfully!');
+			}).catch(function(){
+				saveBtn.disabled=false;saveBtn.textContent='Update Profile';
+				alert('Failed to save. Please try again.');
+			});
+		});
+
+		// Notification bell unread count
+		var bellWrap=el('notif-bell-wrap');var bellBadge=el('notif-badge');
+		if(bellWrap)bellWrap.style.display='block';
+		fetch(API_CONFIG.BASE_URL+'/notifications?unreadOnly=true&limit=1',{
+			headers:{'Authorization':'Bearer '+token}
+		}).then(function(r){if(r.ok)return r.json();}).then(function(res){
+			if(!res)return;
+			var cnt=res.unreadCount||0;
+			if(bellBadge){bellBadge.textContent=cnt>99?'99+':cnt;bellBadge.style.display=cnt>0?'flex':'none';}
+		}).catch(function(){});
+	})();
+	</script>
 	</body>
 </html>

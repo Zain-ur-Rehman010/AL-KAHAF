@@ -40,6 +40,13 @@
 	.profile-dropdown>a::after{display:none!important}
 	.header-inst-name{color:#fff!important}
 	</style>
+	<style>
+	.sk{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sk-shimmer 1.4s infinite;border-radius:6px;display:block}
+	@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+	.sk-text{height:14px;margin-bottom:10px}
+	.sk-title{height:22px;margin-bottom:12px}
+	.sk-img{width:100%;border-radius:8px}
+	</style>
 </head>
 	<body>
 
@@ -169,6 +176,12 @@
 								</a>
 							</div>
 -->
+							<div class="me-2 position-relative" id="notif-bell-wrap" style="display:none;">
+								<a href="/student/student-notifications" class="position-relative d-flex align-items-center justify-content-center" style="width:36px;height:36px;" title="Notifications">
+									<i class="isax isax-notification5" style="font-size:22px;color:#fff;"></i>
+									<span id="notif-badge" style="display:none;position:absolute;top:0;right:0;min-width:16px;height:16px;font-size:9px;border-radius:50px;background:#e53935;color:#fff;align-items:center;justify-content:center;padding:0 3px;">0</span>
+								</a>
+							</div>
 							<div class="dropdown profile-dropdown">
                                 <a href="javascript:void(0);" class="d-flex align-items-center gap-2" data-bs-toggle="dropdown" title="My Account">
                                 	<span class="avatar">
@@ -182,11 +195,11 @@
                                 <div class="dropdown-menu dropdown-menu-end">
 									<div class="profile-header d-flex align-items-center">
 										<div class="avatar">
-											<img src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
+											<img id="dropdown-avatar" src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
 										</div>
 										<div>
-											<h6>Ronald Richard</h6>
-											<p>studentdemo@example.com</p>
+											<h6 id="dropdown-name">Ronald Richard</h6>
+											<p id="dropdown-email">studentdemo@example.com</p>
 										</div>
 									</div>
 									<ul class="profile-body">
@@ -208,7 +221,7 @@
 									</ul>
 									<div class="profile-footer">
 										<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/auth/login"><i class="isax isax-arrow-2 me-2"></i>Log in as Instructor</a>
-										<a href="/" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+										<a href="#" id="logout-btn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
 									</div>
                                 </div>
                             </div>
@@ -247,18 +260,18 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center">
 									<span class="avatar avatar-xxl avatar-rounded me-3 border border-white border-2 position-relative">
-										<img src="/assets/img/user/user-02.jpg" alt="">
+										<img id="dash-profile-avatar" src="/assets/img/user/user-02.jpg" alt="">
 										<span class="verify-tick"><i class="isax isax-verify5"></i></span>
 									</span>
 									<div>
-										<h5 class="mb-1 text-white d-inline-flex align-items-center"><a href="/student/student-details">Ronald Richard</a><a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+										<h5 class="mb-1 text-white d-inline-flex align-items-center"><a href="/student/student-details" id="dash-profile-name">Ronald Richard</a><a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
 										<p class="text-light">Student</p>
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center justify-content-lg-end flex-wrap gap-2">
-									<a href="/shared/become-an-instructor" class="btn btn-white rounded-pill me-3">Become an Instructor</a>
+									
 									
 								</div>
 							</div>
@@ -313,7 +326,7 @@
 												<a href="/student/student-settings" class="d-inline-flex align-items-center"><i class="isax isax-setting-25 me-2"></i>Settings</a>
 											</li>
 											<li>
-												<a href="/auth/login" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
+												<a href="#" id="sidebar-logout-btn" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
 											</li>
 										</ul>
 									</div>
@@ -345,10 +358,10 @@
 									<div class="card">
 										<div class="card-body">
 											<div class="d-flex align-items-center">
-												<span class="icon-box bg-primary-transparent me-2 me-xxl-3 flex-shrink-0"><img src="/assets/img/icon/graduation.svg" alt=""></span>
-												<div>
-													<span class="d-block">Enrolled Courses</span>
-													<h4 class="fs-24 mt-1">12</h4>
+												<span class="sk flex-shrink-0 me-2 me-xxl-3" style="width:48px;height:48px;border-radius:10px;"></span>
+												<div style="flex:1">
+													<span class="sk sk-text" style="width:100px;"></span>
+													<span class="sk" style="width:50px;height:28px;margin-top:4px;"></span>
 												</div>
 											</div>
 										</div>
@@ -358,10 +371,10 @@
 									<div class="card">
 										<div class="card-body">
 											<div class="d-flex align-items-center">
-												<span class="icon-box bg-secondary-transparent me-2 me-xxl-3 flex-shrink-0"><img src="/assets/img/icon/book.svg" alt=""></span>
-												<div>
-													<span class="d-block">Active Courses</span>
-													<h4 class="fs-24 mt-1">03</h4>
+												<span class="sk flex-shrink-0 me-2 me-xxl-3" style="width:48px;height:48px;border-radius:10px;"></span>
+												<div style="flex:1">
+													<span class="sk sk-text" style="width:100px;"></span>
+													<span class="sk" style="width:50px;height:28px;margin-top:4px;"></span>
 												</div>
 											</div>
 										</div>
@@ -371,10 +384,10 @@
 									<div class="card">
 										<div class="card-body">
 											<div class="d-flex align-items-center">
-												<span class="icon-box bg-success-transparent me-2 me-xxl-3 flex-shrink-0"><img src="/assets/img/icon/bookmark.svg" alt=""></span>
-												<div>
-													<span class="d-block">Completed Courses</span>
-													<h4 class="fs-24 mt-1">10</h4>
+												<span class="sk flex-shrink-0 me-2 me-xxl-3" style="width:48px;height:48px;border-radius:10px;"></span>
+												<div style="flex:1">
+													<span class="sk sk-text" style="width:100px;"></span>
+													<span class="sk" style="width:50px;height:28px;margin-top:4px;"></span>
 												</div>
 											</div>
 										</div>
@@ -382,104 +395,47 @@
 								</div>
 							</div>
 							<h5 class="mb-3 fs-18">Recently Enrolled Courses</h5>
-							<div class="row">
+							<div class="row" id="dash-courses-grid">
+								
 								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-01.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<div class="badge text-bg-danger">15% off</div>
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
+									<div class="course-item-two course-item mx-0" style="overflow:hidden;">
+										<div class="course-img"><span class="sk sk-img" style="height:185px;"></span></div>
+										<div class="course-content p-3">
+											<div class="d-flex align-items-center gap-2 mb-2">
+												<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+												<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-29.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">Brenda Slaton</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Design
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">Information About UI/UX Design Degree</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.9 (200 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$120</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
+											<span class="sk sk-title" style="width:90%;"></span>
+											<span class="sk sk-text" style="width:60%;"></span>
+											<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 										</div>
 									</div>
 								</div>
 								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-02.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
+									<div class="course-item-two course-item mx-0" style="overflow:hidden;">
+										<div class="course-img"><span class="sk sk-img" style="height:185px;"></span></div>
+										<div class="course-content p-3">
+											<div class="d-flex align-items-center gap-2 mb-2">
+												<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+												<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-30.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">Ana Reyes</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Wordpress
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">Wordpress for Beginners - Master Wordpress Quickly</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (160 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$140</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
+											<span class="sk sk-title" style="width:90%;"></span>
+											<span class="sk sk-text" style="width:60%;"></span>
+											<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 										</div>
 									</div>
 								</div>
 								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0">
-										<div class="course-img">
-											<a href="/courses/course-details">
-												<img src="/assets/img/course/course-03.jpg" alt="img" class="img-fluid">  
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-												<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
+									<div class="course-item-two course-item mx-0" style="overflow:hidden;">
+										<div class="course-img"><span class="sk sk-img" style="height:185px;"></span></div>
+										<div class="course-content p-3">
+											<div class="d-flex align-items-center gap-2 mb-2">
+												<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+												<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 											</div>
-										</div>
-										<div class="course-content">
-											<div class="d-flex justify-content-between mb-2">
-												<div class="d-flex align-items-center">
-													<a href="/instructor/instructor-details" class="avatar avatar-sm">
-														<img src="/assets/img/user/user-31.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-													</a>
-													<div class="ms-2">
-														<a href="/instructor/instructor-details" class="link-default fs-14">Andrew Pirtle</a>
-													</div>
-												</div>
-												<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-													Design
-												</span>
-											</div>
-											<h6 class="title mb-2"><a href="/courses/course-details">Sketch from A to Z (2024): Become an app designer</a></h6>
-											<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (160 Reviews)</p>
-											<div class="d-flex align-items-center justify-content-between">
-												<h5 class="text-secondary mb-0">$140</h5>
-												<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-											</div>
+											<span class="sk sk-title" style="width:90%;"></span>
+											<span class="sk sk-text" style="width:60%;"></span>
+											<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 										</div>
 									</div>
 								</div>
@@ -491,72 +447,9 @@
 										<div class="card">
 											<div class="card-body">
 												<h5 class="mb-3 border-bottom pb-3 fs-18">Recent Invoices</h5>
-												<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2 mb-3">
-													<div>
-														<h6 class="mb-1">Build Responsive Real World Websites..</h6>
-														<div class="d-flex align-items-center">
-															<span class="badge badge-sm bg-light border d-inline-flex me-3">#INV001</span>
-															<p class="small">Amount : <span class="heading-color fw-semibold">$200</span></p>
-														</div>
-													</div>
-													<div class="d-flex align-items-center">
-														<span class="badge fw-normal bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Paid</span>
-														<a href="#" class="action-icon"><i class="isax isax-document-download"></i></a>
-													</div>
-												</div>
-												<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2 mb-3">
-													<div>
-														<h6 class="mb-1">Wordpress for Beginners</h6>
-														<div class="d-flex align-items-center">
-															<span class="badge badge-sm bg-light border d-inline-flex me-3">#INV002</span>
-															<p class="small">Amount : <span class="heading-color fw-semibold">$310</span></p>
-														</div>
-													</div>
-													<div class="d-flex align-items-center">
-														<span class="badge fw-normal bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Paid</span>
-														<a href="#" class="action-icon"><i class="isax isax-document-download"></i></a>
-													</div>
-												</div>
-												<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2 mb-3">
-													<div>
-														<h6 class="mb-1">Information About UI/UX Design Degree</h6>
-														<div class="d-flex align-items-center">
-															<span class="badge badge-sm bg-light border d-inline-flex me-3">#INV003</span>
-															<p class="small">Amount : <span class="heading-color fw-semibold">$270</span></p>
-														</div>
-													</div>
-													<div class="d-flex align-items-center">
-														<span class="badge fw-normal bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Paid</span>
-														<a href="#" class="action-icon"><i class="isax isax-document-download"></i></a>
-													</div>
-												</div>
-												<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2 mb-3">
-													<div>
-														<h6 class="mb-1">Sketch from A to Z (2024)</h6>
-														<div class="d-flex align-items-center">
-															<span class="badge badge-sm bg-light border d-inline-flex me-3">#INV004</span>
-															<p class="small">Amount : <span class="heading-color fw-semibold">$180</span></p>
-														</div>
-													</div>
-													<div class="d-flex align-items-center">
-														<span class="badge fw-normal bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Paid</span>
-														<a href="#" class="action-icon"><i class="isax isax-document-download"></i></a>
-													</div>
-												</div>
-												<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2">
-													<div>
-														<h6 class="mb-1">Become an app designer</h6>
-														<div class="d-flex align-items-center">
-															<span class="badge badge-sm bg-light border d-inline-flex me-3">#INV005</span>
-															<p class="small">Amount : <span class="heading-color fw-semibold">$220</span></p>
-														</div>
-													</div>
-													<div class="d-flex align-items-center">
-														<span class="badge fw-normal bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Paid</span>
-														<a href="#" class="action-icon"><i class="isax isax-document-download"></i></a>
-													</div>
-												</div>
-											</div>
+												<div id="dash-invoices">
+													<p class="text-muted text-center py-3 mb-0">Loading...</p>
+												</div>											</div>
 										</div>
 									</div>
 									<div class="col-xl-5">
@@ -769,6 +662,12 @@
         <script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 		
+		<!-- API Config -->
+		<script src="/assets/js/api-config.js"></script>
+
+		<!-- Auth JS -->
+		<script src="/assets/js/auth.js"></script>
+
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
 	<!-- Scroll to Top Button -->
@@ -777,5 +676,115 @@
 	</button>
 
 		
+	<script>
+	(function() {
+		var token = localStorage.getItem('accessToken');
+		if (!token) { window.location.href = '/auth/login?redirect=' + encodeURIComponent(window.location.pathname); return; }
+
+		function el(id) { return document.getElementById(id); }
+
+		try {
+			var u = JSON.parse(localStorage.getItem('user') || 'null');
+			if (u) {
+				var fn = ((u.firstName||'')+' '+(u.lastName||'')).trim();
+				var av = u.avatar || '/assets/img/user/user-02.jpg';
+				if(el('dash-profile-name'))  el('dash-profile-name').textContent = fn;
+				if(el('dash-profile-avatar')) el('dash-profile-avatar').src = av;
+				if(el('header-avatar'))       el('header-avatar').src = av;
+				if(el('header-name'))         el('header-name').textContent = fn;
+				if(el('dropdown-avatar'))     el('dropdown-avatar').src = av;
+				if(el('dropdown-name'))       el('dropdown-name').textContent = fn;
+				if(el('dropdown-email'))      el('dropdown-email').textContent = u.email||'';
+			}
+		} catch(e) {}
+
+		function doLogout(e) {
+			e.preventDefault();
+			['accessToken','refreshToken','user'].forEach(function(k){localStorage.removeItem(k);});
+			window.location.href = '/auth/login';
+		}
+		['logout-btn','sidebar-logout-btn'].forEach(function(id){
+			var b=el(id); if(b) b.addEventListener('click',doLogout);
+		});
+
+		fetch(API_CONFIG.BASE_URL+'/enrollments/my-enrollments?limit=100',{
+			headers:{'Authorization':'Bearer '+token}
+		}).then(function(r){
+			if(r.status===401){doLogout({preventDefault:function(){}});return null;}
+			return r.json();
+		}).then(function(res){
+			if(!res) return;
+			var E=res.enrollments||(res.data&&res.data.enrollments)||(Array.isArray(res.data)?res.data:[]);
+
+			var tot=E.length;
+			var act=E.filter(function(e){return e.status==='in_progress'||e.status==='enrolled';}).length;
+			var com=E.filter(function(e){return e.status==='completed';}).length;
+			if(el('stat-enrolled'))  el('stat-enrolled').textContent=tot;
+			if(el('stat-active'))    el('stat-active').textContent=(act<10?'0':'')+act;
+			if(el('stat-completed')) el('stat-completed').textContent=(com<10?'0':'')+com;
+
+			var grid=el('dash-courses-grid');
+			if(grid){
+				if(!E.length){
+					grid.innerHTML='<div class="col-12 text-center py-4"><p class="text-muted">No courses yet. <a href="/courses/course-grid">Browse Courses</a></p></div>';
+				}else{
+					grid.innerHTML=E.slice(0,3).map(function(enr){
+						var c=enr.course||{};
+						var th=c.thumbnail?'<img src="'+c.thumbnail+'" alt="" class="img-fluid">':'<img src="/assets/img/course/course-01.jpg" alt="" class="img-fluid">';
+						var pr=parseFloat(c.price)>0?'$'+parseFloat(c.price).toFixed(2):'Free';
+						var pg=enr.progress||0;
+						var ur='/courses/course-details?id='+(c.id||'');
+						return '<div class="col-xl-4 col-md-6"><div class="course-item-two course-item mx-0">'
+						+'<div class="course-img"><a href="'+ur+'">'+th+'</a></div>'
+						+'<div class="course-content"><h6 class="title mb-2"><a href="'+ur+'">'+( c.title||'Untitled')+'</a></h6>'
+						+'<div class="progress mb-2" style="height:6px"><div class="progress-bar bg-success" style="width:'+pg+'%"></div></div>'
+						+'<p class="small text-muted mb-2">Progress: '+pg+'%</p>'
+						+'<div class="d-flex align-items-center justify-content-between"><h5 class="text-secondary mb-0">'+pr+'</h5>'
+						+'<a href="'+ur+'" class="btn btn-dark btn-sm">View Course</a></div></div></div></div>';
+					}).join('');
+				}
+			}
+
+			var inv=el('dash-invoices');
+			if(inv){
+				var pd=E.filter(function(e){return e.paymentStatus==='completed'&&parseFloat((e.course||{}).price)>0;});
+				if(!pd.length){
+					inv.innerHTML='<p class="text-muted text-center py-3 mb-0">No invoices yet.</p>';
+				}else{
+					inv.innerHTML=pd.slice(0,5).map(function(e,i){
+						var c=e.course||{};
+						var am=parseFloat(c.price||0);
+						var nm='#INV'+String(i+1).padStart(3,'0');
+						var il=i===Math.min(pd.length,5)-1;
+						return '<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2'+(il?'':' mb-3')+'">'
+						+'<div><h6 class="mb-1">'+(c.title||'Course')+'</h6>'
+						+'<div class="d-flex align-items-center"><span class="badge badge-sm bg-light border d-inline-flex me-3">'+nm+'</span>'
+						+'<p class="small">Amount: <span class="heading-color fw-semibold">$'+am.toFixed(2)+'</span></p></div></div>'
+						+'<span class="badge fw-normal bg-success d-inline-flex align-items-center"><i class="fa-solid fa-circle fs-5 me-1"></i>Paid</span></div>';
+					}).join('');
+				}
+			}
+		}).catch(function(){
+			if(el('dash-courses-grid')) el('dash-courses-grid').innerHTML='<div class="col-12 text-center py-3 text-muted">Could not load courses.</div>';
+			if(el('dash-invoices'))    el('dash-invoices').innerHTML='<p class="text-muted text-center py-3 mb-0">Could not load invoices.</p>';
+		});
+	})();
+	</script>
+	<script>
+	(function(){
+		var token=localStorage.getItem('accessToken');
+		if(!token)return;
+		var bellWrap=document.getElementById('notif-bell-wrap');
+		var bellBadge=document.getElementById('notif-badge');
+		if(bellWrap)bellWrap.style.display='block';
+		fetch(API_CONFIG.BASE_URL+'/notifications?unreadOnly=true&limit=1',{
+			headers:{'Authorization':'Bearer '+token}
+		}).then(function(r){if(r.ok)return r.json();}).then(function(res){
+			if(!res)return;
+			var cnt=res.unreadCount||0;
+			if(bellBadge){bellBadge.textContent=cnt>99?'99+':cnt;bellBadge.style.display=cnt>0?'flex':'none';}
+		}).catch(function(){});
+	})();
+	</script>
 	</body>
 </html>

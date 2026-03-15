@@ -40,6 +40,13 @@
 	.profile-dropdown>a::after{display:none!important}
 	.header-inst-name{color:#fff!important}
 	</style>
+	<style>
+	.sk{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sk-shimmer 1.4s infinite;border-radius:6px;display:block}
+	@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+	.sk-text{height:14px;margin-bottom:10px}
+	.sk-title{height:22px;margin-bottom:12px}
+	.sk-img{width:100%;border-radius:8px}
+	</style>
 </head>
 	<body>
 
@@ -169,6 +176,12 @@
 								</a>
 							</div>
 -->
+							<div class="me-2 position-relative" id="notif-bell-wrap" style="display:none;">
+								<a href="/student/student-notifications" class="position-relative d-flex align-items-center justify-content-center" style="width:36px;height:36px;" title="Notifications">
+									<i class="isax isax-notification5" style="font-size:22px;color:#fff;"></i>
+									<span id="notif-badge" style="display:none;position:absolute;top:0;right:0;min-width:16px;height:16px;font-size:9px;border-radius:50px;background:#e53935;color:#fff;align-items:center;justify-content:center;padding:0 3px;">0</span>
+								</a>
+							</div>
 							<div class="dropdown profile-dropdown">
                                 <a href="javascript:void(0);" class="d-flex align-items-center gap-2" data-bs-toggle="dropdown" title="My Account">
                                 	<span class="avatar">
@@ -182,11 +195,11 @@
                                 <div class="dropdown-menu dropdown-menu-end">
 									<div class="profile-header d-flex align-items-center">
 										<div class="avatar">
-											<img src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
+											<img id="dropdown-avatar" src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
 										</div>
 										<div>
-											<h6>Ronald Richard</h6>
-											<p>studentdemo@example.com</p>
+											<h6 id="dropdown-name">Ronald Richard</h6>
+											<p id="dropdown-email">studentdemo@example.com</p>
 										</div>
 									</div>
 									<ul class="profile-body">
@@ -208,7 +221,7 @@
 									</ul>
 									<div class="profile-footer">
 										<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/auth/login"><i class="isax isax-arrow-2 me-2"></i>Log in as Instructor</a>
-										<a href="/" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+										<a href="#" id="logout-btn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
 									</div>
                                 </div>
                             </div>
@@ -247,18 +260,18 @@
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center">
 									<span class="avatar avatar-xxl avatar-rounded me-3 border border-white border-2 position-relative">
-										<img src="/assets/img/user/user-02.jpg" alt="">
+										<img id="prof-card-avatar" src="/assets/img/user/user-02.jpg" alt="">
 										<span class="verify-tick"><i class="isax isax-verify5"></i></span>
 									</span>
 									<div>
-										<h5 class="mb-1 text-white d-inline-flex align-items-center">Ronald Richard<a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+										<h5 class="mb-1 text-white d-inline-flex align-items-center"><span id="prof-card-name">Ronald Richard</span><a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
 										<p class="text-light">Student</p>
 									</div>
 								</div>
 							</div>
 							<div class="col-lg-6">
 								<div class="d-flex align-items-center justify-content-lg-end flex-wrap gap-2">
-									<a href="/shared/become-an-instructor" class="btn btn-white rounded-pill me-3">Become an Instructor</a>
+									
 									
 								</div>
 							</div>
@@ -313,7 +326,7 @@
 													<a href="/student/student-settings" class="d-inline-flex align-items-center"><i class="isax isax-setting-25 me-2"></i>Settings</a>
 												</li>
 												<li>
-													<a href="/auth/login" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
+													<a href="#" id="sidebar-logout-btn" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
 												</li>
 											</ul>
 										</div>
@@ -326,13 +339,13 @@
 								<div class="tab-list">
 									<ul class="nav mb-0 gap-2" role="tablist">
 										<li class="nav-item mb-0" role="presentation">
-											<a href="javascript:void(0);" class="active" data-bs-toggle="tab" data-bs-target="#enroll-courses" aria-selected="true" role="tab">Enrolled (09)</a>
+											<a href="javascript:void(0);" class="active" data-bs-toggle="tab" data-bs-target="#enroll-courses" aria-selected="true" role="tab"><span id="tab-enrolled">Enrolled (09)</span></a>
 										</li>
 										<li class="nav-item mb-0" role="presentation">
-											<a href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#active-courses" aria-selected="false" role="tab" class="" tabindex="-1">Active (06)</a>
+											<a href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#active-courses" aria-selected="false" role="tab" class="" tabindex="-1"><span id="tab-active">Active (06)</span></a>
 										</li>
 										<li class="nav-item mb-0" role="presentation">
-											<a href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#complete-courses" aria-selected="false" role="tab" class="" tabindex="-1">Completed (03)</a>
+											<a href="javascript:void(0);" data-bs-toggle="tab" data-bs-target="#complete-courses" aria-selected="false" role="tab" class="" tabindex="-1"><span id="tab-completed">Completed (03)</span></a>
 										</li>
 									</ul>
 								</div>
@@ -341,606 +354,154 @@
 								<div class="tab-pane fade active show" id="enroll-courses" role="tabpanel">
 									<div class="row">
 										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
+											<div class="course-item-two course-item mx-0" style="overflow:hidden;">
 												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-01.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<div class="badge text-bg-danger">15% off</div>
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
+													<span class="sk sk-img" style="height:185px;"></span>
 												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-29.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Brenda Slaton</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Design
-														</span>
+												<div class="course-content p-3">
+													<div class="d-flex align-items-center gap-2 mb-2">
+														<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+														<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Information About UI/UX Design Degree</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.9 (200 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$120</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
+													<span class="sk sk-title" style="width:90%;"></span>
+													<span class="sk sk-text" style="width:60%;"></span>
+													<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 												</div>
 											</div>
 										</div>
 										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
+											<div class="course-item-two course-item mx-0" style="overflow:hidden;">
 												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-02.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
+													<span class="sk sk-img" style="height:185px;"></span>
 												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-30.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Ana Reyes</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Wordpress
-														</span>
+												<div class="course-content p-3">
+													<div class="d-flex align-items-center gap-2 mb-2">
+														<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+														<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Wordpress for Beginners - Master Wordpress Quickly</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (160 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$140</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
+													<span class="sk sk-title" style="width:90%;"></span>
+													<span class="sk sk-text" style="width:60%;"></span>
+													<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 												</div>
 											</div>
 										</div>
 										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
+											<div class="course-item-two course-item mx-0" style="overflow:hidden;">
 												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-03.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
+													<span class="sk sk-img" style="height:185px;"></span>
 												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-31.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Andrew Pirtle</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Design
-														</span>
+												<div class="course-content p-3">
+													<div class="d-flex align-items-center gap-2 mb-2">
+														<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+														<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Sketch from A to Z (2024): Become an app designer</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (160 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$140</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
-												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-04.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
-												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-32.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Christy Garner</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Programming
-														</span>
-													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Build Responsive Real World Websites with Crash Course</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.2 (220 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$200</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
-												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-05.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
-												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-32.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Justin Gregory</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Programming
-														</span>
-													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Learn JavaScript and Express to become a Expert</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$130</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
-												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-06.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
-												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-33.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Carolyn Hines</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Programming
-														</span>
-													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Introduction to Python Programming</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$130</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
-												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-07.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
-												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-34.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Rafael Miller</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Programming
-														</span>
-													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Build Responsive Websites with HTML5 and CSS3</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$170</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
-												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-08.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
-												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-35.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Nancy Duarte</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Design
-														</span>
-													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Information About Photoshop Design Degree</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$170</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
-												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-09.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
-												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-36.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">James Kagan</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Design
-														</span>
-													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">C# Developers Double Your Coding with Visual Studio</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$180</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
+													<span class="sk sk-title" style="width:90%;"></span>
+													<span class="sk sk-text" style="width:60%;"></span>
+													<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="tab-pane fade" id="active-courses" role="tabpanel">
-									<div class="row">								
+									<div class="row">
 										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
+											<div class="course-item-two course-item mx-0" style="overflow:hidden;">
 												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-01.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<div class="badge text-bg-danger">15% off</div>
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
+													<span class="sk sk-img" style="height:185px;"></span>
 												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-29.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Brenda Slaton</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Design
-														</span>
+												<div class="course-content p-3">
+													<div class="d-flex align-items-center gap-2 mb-2">
+														<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+														<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Information About UI/UX Design Degree</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.9 (200 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$120</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
+													<span class="sk sk-title" style="width:90%;"></span>
+													<span class="sk sk-text" style="width:60%;"></span>
+													<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 												</div>
 											</div>
 										</div>
 										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
+											<div class="course-item-two course-item mx-0" style="overflow:hidden;">
 												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-02.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
+													<span class="sk sk-img" style="height:185px;"></span>
 												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-30.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Ana Reyes</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Wordpress
-														</span>
+												<div class="course-content p-3">
+													<div class="d-flex align-items-center gap-2 mb-2">
+														<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+														<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Wordpress for Beginners - Master Wordpress Quickly</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (160 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$140</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
+													<span class="sk sk-title" style="width:90%;"></span>
+													<span class="sk sk-text" style="width:60%;"></span>
+													<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 												</div>
 											</div>
 										</div>
 										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
+											<div class="course-item-two course-item mx-0" style="overflow:hidden;">
 												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-03.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
+													<span class="sk sk-img" style="height:185px;"></span>
 												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-31.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Andrew Pirtle</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Design
-														</span>
+												<div class="course-content p-3">
+													<div class="d-flex align-items-center gap-2 mb-2">
+														<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+														<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Sketch from A to Z (2024): Become an app designer</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (160 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$140</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
-												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-04.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
-												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-32.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Christy Garner</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Programming
-														</span>
-													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Build Responsive Real World Websites with Crash Course</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.2 (220 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$200</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
-												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-05.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
-												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-32.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Justin Gregory</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Programming
-														</span>
-													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Learn JavaScript and Express to become a Expert</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$130</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
-												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-06.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
-												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-33.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Carolyn Hines</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Programming
-														</span>
-													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Introduction to Python Programming</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$130</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
+													<span class="sk sk-title" style="width:90%;"></span>
+													<span class="sk sk-text" style="width:60%;"></span>
+													<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 								<div class="tab-pane fade" id="complete-courses" role="tabpanel">
-									<div class="row">								
+									<div class="row">
 										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
+											<div class="course-item-two course-item mx-0" style="overflow:hidden;">
 												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-04.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
+													<span class="sk sk-img" style="height:185px;"></span>
 												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-32.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Christy Garner</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Programming
-														</span>
+												<div class="course-content p-3">
+													<div class="d-flex align-items-center gap-2 mb-2">
+														<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+														<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Build Responsive Real World Websites with Crash Course</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.2 (220 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$200</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
+													<span class="sk sk-title" style="width:90%;"></span>
+													<span class="sk sk-text" style="width:60%;"></span>
+													<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 												</div>
 											</div>
 										</div>
 										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
+											<div class="course-item-two course-item mx-0" style="overflow:hidden;">
 												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-05.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
+													<span class="sk sk-img" style="height:185px;"></span>
 												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-32.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Justin Gregory</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Programming
-														</span>
+												<div class="course-content p-3">
+													<div class="d-flex align-items-center gap-2 mb-2">
+														<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+														<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Learn JavaScript and Express to become a Expert</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$130</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
+													<span class="sk sk-title" style="width:90%;"></span>
+													<span class="sk sk-text" style="width:60%;"></span>
+													<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 												</div>
 											</div>
 										</div>
 										<div class="col-xl-4 col-md-6">
-											<div class="course-item-two course-item mx-0">
+											<div class="course-item-two course-item mx-0" style="overflow:hidden;">
 												<div class="course-img">
-													<a href="/courses/course-details">
-														<img src="/assets/img/course/course-06.jpg" alt="img" class="img-fluid">  
-													</a>
-													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-														<a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
-													</div>
+													<span class="sk sk-img" style="height:185px;"></span>
 												</div>
-												<div class="course-content">
-													<div class="d-flex justify-content-between mb-2">
-														<div class="d-flex align-items-center">
-															<a href="/instructor/instructor-details" class="avatar avatar-sm">
-																<img src="/assets/img/user/user-33.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-															</a>
-															<div class="ms-2">
-																<a href="/instructor/instructor-details" class="link-default fs-14">Carolyn Hines</a>
-															</div>
-														</div>
-														<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">
-															Programming
-														</span>
+												<div class="course-content p-3">
+													<div class="d-flex align-items-center gap-2 mb-2">
+														<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
+														<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
 													</div>
-													<h6 class="title mb-2"><a href="/courses/course-details">Introduction to Python Programming</a></h6>
-													<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>4.4 (180 Reviews)</p>
-													<div class="d-flex align-items-center justify-content-between">
-														<h5 class="text-secondary mb-0">$130</h5>
-														<a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-													</div>
+													<span class="sk sk-title" style="width:90%;"></span>
+													<span class="sk sk-text" style="width:60%;"></span>
+													<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
 												</div>
 											</div>
 										</div>
@@ -1090,6 +651,12 @@
         <script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 		
+		<!-- API Config -->
+		<script src="/assets/js/api-config.js"></script>
+
+		<!-- Auth JS -->
+		<script src="/assets/js/auth.js"></script>
+
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
 	<!-- Scroll to Top Button -->
@@ -1098,5 +665,118 @@
 	</button>
 
 		
+	<script>
+	(function(){
+		var token=localStorage.getItem('accessToken');
+		if(!token){window.location.href='/auth/login?redirect='+encodeURIComponent(window.location.pathname);return;}
+
+		function el(id){return document.getElementById(id);}
+
+		function doLogout(e){
+			e.preventDefault();
+			['accessToken','refreshToken','user'].forEach(function(k){localStorage.removeItem(k);});
+			window.location.href='/auth/login';
+		}
+		['logout-btn','sidebar-logout-btn'].forEach(function(id){
+			var b=el(id);if(b)b.addEventListener('click',doLogout);
+		});
+
+		// Fill header/profile-card from localStorage immediately (no flash)
+		try{
+			var u=JSON.parse(localStorage.getItem('user')||'null');
+			if(u){
+				var fn=((u.firstName||'')+' '+(u.lastName||'')).trim();
+				var av=u.profileImage||u.avatar||'/assets/img/user/user-02.jpg';
+				if(el('header-avatar'))    el('header-avatar').src=av;
+				if(el('header-name'))       el('header-name').textContent=fn;
+				if(el('dropdown-avatar'))   el('dropdown-avatar').src=av;
+				if(el('dropdown-name'))     el('dropdown-name').textContent=fn;
+				if(el('dropdown-email'))    el('dropdown-email').textContent=u.email||'';
+				if(el('prof-card-avatar'))  el('prof-card-avatar').src=av;
+				if(el('prof-card-name'))    el('prof-card-name').textContent=fn;
+			}
+		}catch(e){}
+
+		function buildCard(enr){
+			var cr=enr.course||{};
+			var title=cr.title||'Untitled Course';
+			var thumb=cr.thumbnail||'/assets/img/course/course-01.jpg';
+			var cat=cr.category||'';
+			var prog=enr.progress||0;
+			var cid=cr.id||'';
+			var href='/courses/course-details'+(cid?'?id='+cid:'');
+			var instr=cr.instructor?((cr.instructor.firstName||'')+' '+(cr.instructor.lastName||'')).trim():'';
+			var statusBadge=enr.status==='completed'?'<span class="badge text-bg-success ms-auto">Completed</span>':
+				(enr.status==='in_progress'?'<span class="badge text-bg-primary ms-auto">In Progress</span>':
+				(enr.status==='dropped'?'<span class="badge text-bg-danger ms-auto">Dropped</span>':'<span class="badge text-bg-secondary ms-auto">Enrolled</span>'));
+			return '<div class="col-xl-4 col-md-6">'
+				+'<div class="course-item-two course-item mx-0">'
+				+'<div class="course-img"><a href="'+href+'"><img src="'+thumb+'" alt="img" class="img-fluid" onerror="this.src=\'/assets/img/course/course-01.jpg\'"></a>'
+				+'<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">'+statusBadge+'</div></div>'
+				+'<div class="course-content">'
+				+'<div class="d-flex justify-content-between mb-2">'
+				+(instr?'<div class="d-flex align-items-center"><span class="link-default fs-14">'+instr+'</span></div>':'<div></div>')
+				+(cat?'<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">'+cat+'</span>':'')
+				+'</div>'
+				+'<h6 class="title mb-2"><a href="'+href+'">'+title+'</a></h6>'
+				+'<div class="progress mt-2 mb-2" style="height:6px;"><div class="progress-bar bg-success" role="progressbar" style="width:'+prog+'%" aria-valuenow="'+prog+'" aria-valuemin="0" aria-valuemax="100"></div></div>'
+				+'<div class="d-flex align-items-center justify-content-between">'
+				+'<small class="text-muted">'+prog+'% Complete</small>'
+				+'<a href="'+href+'" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>'
+				+'</div></div></div></div>';
+		}
+
+		function renderGrid(gridEl,enrollments){
+			if(!gridEl)return;
+			if(!enrollments||!enrollments.length){
+				gridEl.innerHTML='<div class="col-12 text-center py-5 text-muted"><i class="isax isax-book-1 fs-1 d-block mb-3"></i><p>No courses found.</p></div>';
+				return;
+			}
+			gridEl.innerHTML=enrollments.map(buildCard).join('');
+		}
+
+		fetch(API_CONFIG.BASE_URL+'/enrollments/my-enrollments?limit=100',{
+			headers:{'Authorization':'Bearer '+token}
+		}).then(function(r){
+			if(r.status===401){doLogout({preventDefault:function(){}});return null;}
+			return r.json();
+		}).then(function(res){
+			if(!res)return;
+			var E=res.enrollments||(res.data&&res.data.enrollments)||(Array.isArray(res.data)?res.data:[]);
+			var active=E.filter(function(e){return e.status==='in_progress';});
+			var completed=E.filter(function(e){return e.status==='completed';});
+			// Update tab labels
+			var te=el('tab-enrolled');if(te)te.textContent='Enrolled ('+E.length+')';
+			var ta=el('tab-active');if(ta)ta.textContent='Active ('+active.length+')';
+			var tc=el('tab-completed');if(tc)tc.textContent='Completed ('+completed.length+')';
+			// Render grids
+			var eg=document.querySelector('#enroll-courses .row');
+			var ag=document.querySelector('#active-courses .row');
+			var cg=document.querySelector('#complete-courses .row');
+			renderGrid(eg,E);
+			renderGrid(ag,active);
+			renderGrid(cg,completed);
+		}).catch(function(){
+			var eg=document.querySelector('#enroll-courses .row');
+			if(eg)eg.innerHTML='<div class="col-12 text-center py-5 text-danger">Failed to load courses. Please refresh.</div>';
+		});
+	})();
+	</script>
+	<script>
+	(function(){
+		var token=localStorage.getItem('accessToken');
+		if(!token)return;
+		var bellWrap=document.getElementById('notif-bell-wrap');
+		var bellBadge=document.getElementById('notif-badge');
+		if(bellWrap)bellWrap.style.display='block';
+		fetch(API_CONFIG.BASE_URL+'/notifications?unreadOnly=true&limit=1',{
+			headers:{'Authorization':'Bearer '+token}
+		}).then(function(r){if(r.ok)return r.json();}).then(function(res){
+			if(!res)return;
+			var cnt=res.unreadCount||0;
+			if(bellBadge){bellBadge.textContent=cnt>99?'99+':cnt;bellBadge.style.display=cnt>0?'flex':'none';}
+		}).catch(function(){});
+	})();
+	</script>
 	</body>
 </html>
