@@ -26,6 +26,10 @@ const upload = multer({
 // POST /api/v1/upload?folder=courses|instructors|blogs
 router.post('/', authMiddleware, upload.single('image'), async (req, res) => {
   try {
+    if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY) {
+      return res.status(500).json({ success: false, message: 'Cloudinary credentials not configured on server' });
+    }
+
     if (!req.file) {
       return res.status(400).json({ success: false, message: 'No file uploaded' });
     }
