@@ -47,7 +47,11 @@
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="/assets/css/style.css">
 	
-	</head>
+		<style>
+	.profile-dropdown>a::after{display:none!important}
+	.header-inst-name{color:#fff!important}
+	</style>
+</head>
 	<body>
 
 		<!-- Main Wrapper -->
@@ -83,8 +87,6 @@
 								<li><a href="/">Home</a></li>
 								<li><a href="/courses/course-grid">Courses</a></li>
 								<li><a href="/shared/about-us">About Us</a></li>
-								<li><a href="#">Projects</a></li>
-								<li><a href="#">Download</a></li>
 							</ul>
 							
 							<div class="menu-dropdown">
@@ -145,7 +147,8 @@
 							</div>
 						</div>
 						<div class="header-btn d-flex align-items-center">
-							<div class="icon-btn me-2">
+							<!-- Dark mode toggle disabled for now
+<div class="icon-btn me-2">
 								<a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle activate">
 									<i class="isax isax-sun-15"></i>
 								</a>
@@ -153,12 +156,15 @@
 									<i class="isax isax-moon"></i>
 								</a>
 							</div>
-							<div class="icon-btn me-3">
+-->
+							<!-- Cart icon disabled for now
+<div class="icon-btn me-3">
 								<a href="/shared/cart" class="position-relative">
 									<i class="isax isax-shopping-cart5"></i>
 									<span class="count-icon bg-success p-1 rounded-pill text-white fs-10 fw-bold">1</span>
 								</a>
 							</div>
+-->
 							<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
 								<i class="isax isax-lock-circle me-2"></i>Sign In
 							</a>

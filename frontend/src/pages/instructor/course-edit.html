@@ -66,6 +66,8 @@
 	.step-title h5{font-size:18px;font-weight:600;color:#1D2026;padding-bottom:12px;border-bottom:2px solid #d8ac27;margin-bottom:20px}
 	#loadingOverlay{position:fixed;inset:0;background:rgba(255,255,255,0.85);display:flex;align-items:center;justify-content:center;z-index:9999;flex-direction:column;gap:12px}
 	#loadingOverlay p{font-size:15px;color:#522811;font-weight:500}
+		.profile-dropdown>a::after{display:none!important}
+	.header-inst-name{color:#fff!important}
 	</style>
 </head>
 	<body>
@@ -109,56 +111,13 @@
 							</div>
 							<ul class="main-nav">
 								<li><a href="/">Home</a></li>
-								<li class="has-submenu">
-									<a href="#">Courses <i class="isax isax-add"></i></a>
-									<ul class="submenu">
-										<li class="has-submenu">
-											<a href="javascript:void(0);">Courses</a>
-											<ul class="submenu">
-												<li><a href="/courses/course-grid">Course Grid</a></li>
-												<li><a href="/courses/course-list">Course List</a></li>
-											</ul>
-										</li>
-										<li class="has-submenu">
-											<a href="javascript:void(0);">Course Details</a>
-											<ul class="submenu">
-												<li><a href="/courses/course-details">Course Details</a></li>
-											</ul>
-										</li>
-										<li><a href="/courses/course-resume">Course Resume</a></li>
-										<li><a href="/courses/course-watch">Course Watch</a></li>
-									</ul>
-								</li>
-								<li class="has-submenu active">
-									<a href="javascript:void(0);">Dashboard <i class="isax isax-add"></i></a>
-									<ul class="submenu">
-										<li class="has-submenu active">
-											<a href="javascript:void(0);">Instructor Dashboard</a>
-											<ul class="submenu">
-												<li><a href="/instructor/instructor-dashboard">Dashboard</a></li>
-												<li><a href="/instructor/instructor-profile">My Profile</a></li>
-												<li class="active"><a href="/instructor/instructor-course">Course</a></li>
-												<li><a href="/instructor/instructor-announcements">Announcements</a></li>
-												<li><a href="/instructor/instructor-assignment">Assignments</a></li>
-												<li class="has-submenu">
-													<a href="javascript:void(0);">Student</a>
-													<ul class="submenu">
-														<li><a href="/student/students">Student Grid</a></li>
-													</ul>
-												</li>
-												<li><a href="/instructor/instructor-quiz">Quiz</a></li>
-												<li><a href="/instructor/instructor-quiz-results">Quiz Results</a></li>
-												<li><a href="/instructor/instructor-certificate">Certificates</a></li>
-												<li><a href="/instructor/instructor-earnings">Earning</a></li>
-												<li><a href="/instructor/instructor-settings">Settings</a></li>
-											</ul>
-										</li>
-									</ul>
-								</li>
+								<li><a href="/courses/course-grid">Courses</a></li>
+								<li><a href="/shared/about-us">About Us</a></li>
 							</ul>
 						</div>
 						<div class="header-btn d-flex align-items-center">
-							<div class="icon-btn me-2">
+							<!-- Dark mode toggle disabled for now
+<div class="icon-btn me-2">
 								<a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle activate">
 									<i class="isax isax-sun-15"></i>
 								</a>
@@ -166,8 +125,9 @@
 									<i class="isax isax-moon"></i>
 								</a>
 							</div>
+-->
 							<div class="icon-btn me-3 dropdown noti-dropdown">
-								<a href="#" class="position-relative dropdown-toggle" data-bs-toggle="dropdown">
+								<a href="#" class="position-relative" data-bs-toggle="dropdown">
 									<i class="isax isax-notification5"></i>
 									<span id="notif-badge" style="display:none;position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;background:#d8ac27;color:#fff;border-radius:50%;font-size:10px;font-weight:700;align-items:center;justify-content:center;"></span>
 								</a>
@@ -182,10 +142,14 @@
 								</div>
 							</div>
 							<div class="dropdown profile-dropdown">
-                                <a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
-                                    <span class="avatar">
-										<img src="/assets/img/user/user-01.jpg" id="header-avatar" alt="Img" class="img-fluid rounded-circle">
-									</span>
+                                <a href="javascript:void(0);" class="d-flex align-items-center gap-2" data-bs-toggle="dropdown" title="My Account">
+                                	<span class="avatar">
+                                		<img src="/assets/img/user/user-01.jpg" id="header-avatar" alt="Img" class="img-fluid rounded-circle">
+                                	</span>
+                                	<span class="d-none d-md-flex flex-column lh-1">
+                                		<span class="fw-semibold" style="font-size:13px;color:#d8ac27;">My Account</span>
+                                		<span id="header-name" class="header-inst-name" style="font-size:11px;">Instructor</span>
+                                	</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-end">
 									<div class="profile-header d-flex align-items-center">
