@@ -562,10 +562,16 @@
             }
         }
 
+        function stripHTML(html) {
+            var d = document.createElement('div');
+            d.innerHTML = html || '';
+            return d.textContent || d.innerText || '';
+        }
+
         function populateForm(course) {
             // Step 1
             document.getElementById('title').value = course.title || '';
-            document.getElementById('description').value = course.description || '';
+            document.getElementById('description').value = stripHTML(course.description);
             document.getElementById('detailedDescription').value = course.detailedDescription || '';
             setSelectValue('category', course.category);
             setSelectValue('level', course.level);

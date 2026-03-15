@@ -358,7 +358,7 @@
 												<div class="col-md-4">
 													<div class="input-block">
 														<label class="form-label">Language<span class="text-danger ms-1">*</span></label>
-														<select class="select form-control">
+														<select class="select form-control" id="course-language">
 															<option>Select</option>
 															<option>French </option>
 															<option>German</option>
@@ -369,23 +369,22 @@
 												<div class="col-md-6">
 													<div class="input-block">
 														<label class="form-label">Max Number of Students<span class="text-danger ms-1">*</span></label>
-														<input type="text" class="form-control student-count">
+														<input type="text" class="form-control student-count" id="course-max-students">
 													</div>
 												</div>
 												<div class="col-md-6">
 													<div class="input-block">
 														<label class="form-label">Public / Private Course<span class="text-danger ms-1">*</span></label>
-														<select class="select form-control">
-															<option>Select</option>
-															<option>Private </option>
-															<option>Public</option>
+														<select class="select form-control" id="course-visibility">
+															<option value="public">Public</option>
+															<option value="private">Private</option>
 														</select>
 													</div>
 												</div>
 												<div class="col-md-12">
 													<div class="input-block">
 														<label class="form-label">Short Description<span class="text-danger ms-1">*</span></label>
-														<input type="text" class="form-control">
+														<input type="text" class="form-control" id="course-short-desc">
 													</div>
 												</div>
 												<div class="col-md-12">
@@ -399,7 +398,7 @@
 														<h6 class="mb-2">What will students learn in your course?</h6>
 														<div class="input-block" id="input-block">
 															<div class="d-flex align-items-center add-new-input">
-															<input type="text" class="form-control" value="Become a UX designer">
+															<input type="text" class="form-control">
 															<a href="javascript:void(0);" class="link-trash"><i class="isax isax-trash"></i></a>
 															</div>
 														</div>
@@ -568,7 +567,7 @@
 										<div class="pb-3 border-bottom mb-3">
 											<div class="input-block mb-0">
 												<label class="form-label">Tags</label>
-													<input class="input-tags form-control" id="inputBox" type="text" data-role="tagsinput"  name="specialist" value="red, black">
+													<input class="input-tags form-control" id="inputBox" type="text" data-role="tagsinput"  name="specialist" value="">
 													<span class="fs-13 text-gray-6 mt-1 d-block">Maximum of 14 keywords. Keywords should all be in lowercase. e.g. javascript, react, marketing</span>
 												</div>
 											</div>
@@ -616,8 +615,13 @@
 													</div>
 												</div>
 												<div class="input-block">
+													<label class="form-label">Course Duration (hours)</label>
+													<input type="number" min="0" step="0.5" class="form-control mb-1" id="course-duration" placeholder="e.g. 12">
+													<span>Total hours of video/content in this course.</span>
+												</div>
+												<div class="input-block">
 													<label class="form-label">Discount Price ($)</label>
-													<input type="text" class="form-control mb-1">
+													<input type="text" class="form-control mb-1" id="course-discount-price">
 													<span>This course has 0% Discount</span>
 												</div>
 												<div class="mb-4">
@@ -639,7 +643,7 @@
 												</div>
 												<div class="input-block">
 													<label class="form-label">Number of month</label>
-													<input type="text" class="form-control mb-1">
+													<input type="number" min="1" class="form-control mb-1" id="course-access-months">
 													<span>After purchase, students can access the course until your selected time.</span>
 												</div>
 											</div>
@@ -1287,11 +1291,49 @@
 		if (!submitBtn) return;
 
 		submitBtn.addEventListener('click', async function () {
-			var title    = (document.getElementById('course-title')    || {}).value || '';
-			var category = (document.getElementById('course-category') || {}).value || '';
-			var level    = (document.getElementById('course-level')    || {}).value || '';
-			var price    = (document.getElementById('course-price')    || {}).value || '0';
-			var alertEl  = document.getElementById('course-submit-alert');
+			var title         = (document.getElementById('course-title')          || {}).value || '';
+			var category      = (document.getElementById('course-category')       || {}).value || '';
+			var level         = (document.getElementById('course-level')          || {}).value || '';
+			var price         = (document.getElementById('course-price')          || {}).value || '0';
+			var shortDesc     = (document.getElementById('course-short-desc')     || {}).value || '';
+			var language      = (document.getElementById('course-language')       || {}).value || 'en';
+			var discountPrice = (document.getElementById('course-discount-price') || {}).value || '';
+			var duration      = (document.getElementById('course-duration')       || {}).value || '';
+			var isFeatured    = (document.getElementById('checkFeature')          || {}).checked || false;
+			var isFreeCourse  = (document.getElementById('flexCheckChecked1')     || {}).checked || false;
+			var maxStudents   = (document.getElementById('course-max-students')   || {}).value || '';
+			var visibility    = (document.getElementById('course-visibility')     || {}).value || 'public';
+			var accessMonths  = (document.getElementById('course-access-months')  || {}).value || '';
+			var alertEl       = document.getElementById('course-submit-alert');
+
+			// Collect summernote description (plain text)
+			var descEl = document.querySelector('.summernote');
+			var _rawDesc = (descEl && typeof $ !== 'undefined' && $(descEl).summernote)
+				? $(descEl).summernote('code')
+				: (descEl ? descEl.innerHTML : '');
+			var _tmpDiv = document.createElement('div');
+			_tmpDiv.innerHTML = _rawDesc;
+			var description = (_tmpDiv.textContent || _tmpDiv.innerText || '').trim();
+			if (!description) description = shortDesc || title.trim();
+
+			// Collect outcomes (What will students learn)
+			var outcomes = Array.from(
+				document.querySelectorAll('#input-block .add-new-input input')
+			).map(function(i){ return i.value.trim(); }).filter(Boolean);
+
+			// Collect requirements
+			var requirements = Array.from(
+				document.querySelectorAll('#req-block .add-new-input input')
+			).map(function(i){ return i.value.trim(); }).filter(Boolean);
+
+			// Collect tags
+			var tagsEl = document.getElementById('inputBox');
+			var tags = tagsEl ? tagsEl.value.split(',').map(function(t){ return t.trim(); }).filter(Boolean) : [];
+
+			// Collect message to reviewer
+			var reviewerMsg = '';
+			var textareas = document.querySelectorAll('.form-inner.wizard-form-card textarea');
+			if (textareas.length) reviewerMsg = textareas[0].value.trim();
 
 			if (!title.trim()) {
 				alertEl.textContent = 'Please enter a course title (Step 1).';
@@ -1312,13 +1354,24 @@
 					method: 'POST',
 					headers: API_CONFIG.getHeaders(true),
 					body: JSON.stringify({
-						title: title.trim(),
-						category: category || 'general',
-						level: level || 'beginner',
-						price: parseFloat(price) || 0,
-						description: title.trim(),
-						thumbnail: courseThumbnailUrl || null,
-						faqs: courseFaqs.length ? courseFaqs : undefined
+						title:              title.trim(),
+						category:           category || 'general',
+						level:              level || 'beginner',
+						price:              isFreeCourse ? 0 : (parseFloat(price) || 0),
+						discountPrice:      discountPrice ? parseFloat(discountPrice) : undefined,
+						description:        description,
+						detailedDescription: reviewerMsg || undefined,
+						language:           language && language !== 'Select' ? language : 'en',
+						duration:           duration ? parseFloat(duration) : undefined,
+						thumbnail:          courseThumbnailUrl || null,
+						isFeatured:         isFeatured,
+						outcomes:           outcomes.length ? outcomes : undefined,
+						requirements:       requirements.length ? requirements : undefined,
+						tags:               tags.length ? tags : undefined,
+						maxStudents:        maxStudents ? parseInt(maxStudents) : undefined,
+						visibility:         visibility || 'public',
+						accessDuration:     accessMonths ? parseInt(accessMonths) : undefined,
+						faqs:               courseFaqs.length ? courseFaqs : undefined
 					})
 				});
 				var data = await res.json();

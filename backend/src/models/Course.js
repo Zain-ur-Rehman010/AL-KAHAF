@@ -86,6 +86,18 @@ const Course = sequelize.define('Course', {
     type: DataTypes.JSON,
     allowNull: true,
   },
+  maxStudents: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  accessDuration: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  visibility: {
+    type: DataTypes.ENUM('public', 'private'),
+    defaultValue: 'public',
+  },
   discountPrice: {
     type: DataTypes.DECIMAL(10, 2),
     allowNull: true,

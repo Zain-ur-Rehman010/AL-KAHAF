@@ -673,8 +673,10 @@
 
 			// Title & descriptions
 			setText('cd-title', course.title);
-			setText('cd-short-desc', course.shortDescription || course.description || '');
-			setText('cd-description', course.description || course.shortDescription || '');
+			var _descEl = document.getElementById('cd-description');
+			var _shortEl = document.getElementById('cd-short-desc');
+			if (_descEl) _descEl.innerHTML = course.description || course.shortDescription || '';
+			if (_shortEl) _shortEl.innerHTML = course.shortDescription || course.description || '';
 			setText('cd-category', course.category || '');
 			setText('cd-enrollment-count', course.enrollmentCount || 0);
 
