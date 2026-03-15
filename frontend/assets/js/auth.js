@@ -141,6 +141,14 @@
                 return;
             }
 
+            // If a ?redirect= param is present, go there instead of dashboard
+            const params = new URLSearchParams(window.location.search);
+            const redirect = params.get('redirect');
+            if (redirect) {
+                window.location.href = decodeURIComponent(redirect);
+                return;
+            }
+
             // Redirect based on role
             switch (user.role) {
                 case 'admin':
@@ -257,9 +265,14 @@
                 // Save email to localStorage for auto-fill on login page
                 localStorage.setItem('registeredEmail', email);
 
+                // Preserve ?redirect= param when going to login page
+                const params = new URLSearchParams(window.location.search);
+                const redirect = params.get('redirect');
+                const loginUrl = '/auth/login' + (redirect ? '?redirect=' + encodeURIComponent(redirect) : '');
+
                 // Redirect to login page after 1.5 seconds
                 setTimeout(() => {
-                    window.location.href = '/src/pages/auth/login.html';
+                    window.location.href = loginUrl;
                 }, 1500);
             } else {
                 AuthManager.showAlert(result.message, 'danger');
