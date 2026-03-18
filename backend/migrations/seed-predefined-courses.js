@@ -4,35 +4,44 @@
  * Seed script for AlKahaf predefined course catalog.
  * Run with: node migrations/seed-predefined-courses.js
  *
- * This script is idempotent — it skips courses that already exist
- * (matched by courseName), so it's safe to run multiple times.
+ * This script is idempotent — it upserts by courseName:
+ * - Inserts missing courses
+ * - Updates category/isActive for existing courses
+ * Safe to run multiple times.
  */
 
 const { v4: uuidv4 } = require('uuid');
 const sequelize = require('../src/config/database');
 
 const COURSES = [
-  // ── Basic Programs ─────────────────────────────────────────────
-  { courseName: 'Basic Computer Skills',        category: 'Basic Programs' },
-  { courseName: 'Atfal Winter Course',           category: 'Basic Programs' },
-  { courseName: "Kids' Summer Program",          category: 'Basic Programs' },
-  { courseName: "Kids' Ramazan Islamic Course",  category: 'Basic Programs' },
-  { courseName: "Kids' Arabic Course",           category: 'Basic Programs' },
+  // Children
+  { courseName: 'Basic Computer Skills', category: 'Children' },
+  { courseName: 'Atfal Winter Course', category: 'Children' },
+  { courseName: "Kids' Summer Program", category: 'Children' },
+  { courseName: "Kids' Ramazan Islamic Course", category: 'Children' },
+  { courseName: "Kids' Arabic Course", category: 'Children' },
 
-  // ── Islamic Studies ────────────────────────────────────────────
-  { courseName: 'Dars-e-Nizami',                category: 'Islamic Studies' },
-  { courseName: 'Arabic Language',              category: 'Islamic Studies' },
-  { courseName: 'Tafseer of the Quran',         category: 'Islamic Studies' },
-  { courseName: 'Tajweed',                      category: 'Islamic Studies' },
+  // Adult - Long Courses
+  { courseName: 'Dars-e-Nizami', category: 'Adult - Long Courses' },
+  { courseName: 'Arabic Language', category: 'Adult - Long Courses' },
+  { courseName: 'Tafseer of the Quran', category: 'Adult - Long Courses' },
+  { courseName: 'Tajweed', category: 'Adult - Long Courses' },
 
-  // ── Advanced Learning ──────────────────────────────────────────
-  { courseName: 'Hadith Learning',              category: 'Advanced Learning' },
-  { courseName: 'Quranic Arabic',               category: 'Advanced Learning' },
-  { courseName: 'Khutbah Training',             category: 'Advanced Learning' },
-  { courseName: 'Ideal Marriage Life',          category: 'Advanced Learning' },
-  { courseName: 'Masail-e-Taraveeh',            category: 'Advanced Learning' },
-  { courseName: 'Fehm-e-Miras',                category: 'Advanced Learning' },
-  { courseName: 'Mazameen-e-Quran',             category: 'Advanced Learning' },
+  // Adult - Short Courses
+  { courseName: 'Hadith Learning', category: 'Adult - Short Courses' },
+  { courseName: 'Quranic Arabic', category: 'Adult - Short Courses' },
+  { courseName: 'Khutbah Training', category: 'Adult - Short Courses' },
+  { courseName: 'Ideal Marriage Life', category: 'Adult - Short Courses' },
+  { courseName: 'Masail-e-Taraveeh', category: 'Adult - Short Courses' },
+  { courseName: 'Fehm-e-Miras', category: 'Adult - Short Courses' },
+  { courseName: 'Mazameen-e-Quran', category: 'Adult - Short Courses' },
+
+  // Workshops
+  { courseName: 'Hajj & Umrah Workshop', category: 'Workshops' },
+  { courseName: 'Zakat Workshop', category: 'Workshops' },
+  { courseName: 'Namaz Workshop', category: 'Workshops' },
+  { courseName: 'Huqooq-e-Mustafa Workshop', category: 'Workshops' },
+  { courseName: 'Khatm-e-Nubuwwat Workshop', category: 'Workshops' }
 ];
 
 async function seedPredefinedCourses() {
@@ -43,34 +52,40 @@ async function seedPredefinedCourses() {
     const queryInterface = sequelize.getQueryInterface();
     const now = new Date();
     let inserted = 0;
-    let skipped = 0;
+    let updated = 0;
 
     for (const course of COURSES) {
       // Check if this course already exists (by name)
-      const [existing] = await sequelize.query(
+      const existing = await sequelize.query(
         'SELECT id FROM PredefinedCourses WHERE courseName = ? LIMIT 1',
         { replacements: [course.courseName], type: sequelize.QueryTypes.SELECT }
       );
 
-      if (existing) {
-        console.log(`  ⏭  Skipped (already exists): ${course.courseName}`);
-        skipped++;
-        continue;
+      if (existing && existing.length > 0) {
+        await sequelize.query(
+          'UPDATE PredefinedCourses SET category = ?, isActive = ?, updatedAt = ? WHERE courseName = ?',
+          {
+            replacements: [course.category, true, now, course.courseName],
+            type: sequelize.QueryTypes.UPDATE
+          }
+        );
+        console.log(`  🔄 Updated: [${course.category}] ${course.courseName}`);
+        updated++;
+      } else {
+        await sequelize.query(
+          'INSERT INTO PredefinedCourses (id, courseName, category, isActive, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?)',
+          {
+            replacements: [uuidv4(), course.courseName, course.category, true, now, now],
+            type: sequelize.QueryTypes.INSERT
+          }
+        );
+
+        console.log(`  ✅ Inserted: [${course.category}] ${course.courseName}`);
+        inserted++;
       }
-
-      await sequelize.query(
-        'INSERT INTO PredefinedCourses (id, courseName, category, isActive, createdAt, updatedAt) VALUES (?, ?, ?, ?, ?, ?)',
-        {
-          replacements: [uuidv4(), course.courseName, course.category, true, now, now],
-          type: sequelize.QueryTypes.INSERT
-        }
-      );
-
-      console.log(`  ✅ Inserted: [${course.category}] ${course.courseName}`);
-      inserted++;
     }
 
-    console.log(`\n📊 Summary: ${inserted} inserted, ${skipped} skipped.`);
+    console.log(`\n📊 Summary: ${inserted} inserted, ${updated} updated.`);
     process.exit(0);
   } catch (error) {
     console.error('❌ Seeding failed:', error.message);
