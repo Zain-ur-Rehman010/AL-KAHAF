@@ -114,15 +114,15 @@ AlKahaf/
 │   │   ├── AUTH_COMPLETION_GUIDE.md
 │   │   ├── FRONTEND_DEPLOYMENT_GUIDE.md
 │   │   └── (other guides)
-│   ├── DEPLOYMENT_COMPLETE.md         # ⭐ Current status
+│   ├── QUICK_REFERENCE.md             # ⭐ Current quick reference
 │   └── PROJECT_STRUCTURE.md           # ⭐ This file
 │
 ├── .git/                              # Git repository
 ├── .gitignore
 ├── CLAUDE.md                          # AI assistant instructions
-├── DEPLOYMENT_STATUS.md
+├── QUICK_REFERENCE.md
 ├── LMS_DEVELOPMENT_GUIDE.md
-├── READY_TO_DEPLOY.md
+├── README.md
 └── START_HERE.md
 ```
 
@@ -245,8 +245,8 @@ DB_PASSWORD=your_secure_password
 # JWT
 JWT_SECRET=your_jwt_secret_here
 JWT_REFRESH_SECRET=your_refresh_secret_here
-JWT_EXPIRES_IN=15m
-JWT_REFRESH_EXPIRES_IN=7d
+JWT_EXPIRATION=24h
+JWT_REFRESH_EXPIRATION=7d
 
 # CORS
 CORS_ORIGIN=https://alkahafonlineacademy.com
@@ -255,7 +255,7 @@ CORS_ORIGIN=https://alkahafonlineacademy.com
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
 SMTP_USER=your_email@gmail.com
-SMTP_PASS=your_app_password
+SMTP_PASSWORD=your_app_password
 
 # Stripe (Optional - for future use)
 STRIPE_SECRET_KEY=sk_test_...
@@ -435,6 +435,6 @@ JSON data back to frontend
 ---
 
 **📖 For more details, see:**
-- `/docs/DEPLOYMENT_COMPLETE.md` - Deployment status
+- `/docs/QUICK_REFERENCE.md` - Deployment and maintenance quick reference
 - `/docs/guides/AUTH_COMPLETION_GUIDE.md` - Authentication implementation
 - `/backend/README.md` - Backend API documentation

@@ -71,7 +71,7 @@ FRONTEND_URL=https://yourdomain.com
 
 **If you have multiple domains:**
 ```env
-CORS_ORIGIN=https://yourdomain.com,https://www.yourdomain.com
+CORS_ORIGIN=https://yourdomain.com
 ```
 
 **For testing with subdomain:**
@@ -290,7 +290,7 @@ JWT_EXPIRATION=24h
 JWT_REFRESH_EXPIRATION=7d
 
 # Domains
-CORS_ORIGIN=https://alkahaf-lms.com,https://www.alkahaf-lms.com
+CORS_ORIGIN=https://alkahaf-lms.com
 FRONTEND_URL=https://alkahaf-lms.com
 
 # Email (Gmail example)

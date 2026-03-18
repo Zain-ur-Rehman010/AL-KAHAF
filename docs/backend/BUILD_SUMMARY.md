@@ -87,7 +87,7 @@ All models with proper relationships, validations, and indexes.
 ### 6. Containerization ✅
 - **Dockerfile** - Production-grade Node.js image
 - **docker-compose.yml** - Multi-service setup
-  - PostgreSQL database with health checks
+  - MySQL database with health checks
   - Express backend application
   - Redis cache layer
   - Persistent volumes for data
@@ -154,7 +154,7 @@ Total Lines:     5,000+ lines of code
 |----------|-----------|---------|
 | Runtime | Node.js | 16+ |
 | Framework | Express.js | 4.18.2 |
-| Database | PostgreSQL | 12+ |
+| Database | MySQL | 8+ |
 | ORM | Sequelize | 6.35.1 |
 | Auth | JWT | 9.1.0 |
 | Password | bcryptjs | 2.4.3 |
@@ -231,7 +231,7 @@ Total Lines:     5,000+ lines of code
 - Read status tracking
 
 ### Data Persistence ✅
-- PostgreSQL database
+- MySQL database
 - 11 relational models
 - Foreign key relationships
 - Data integrity constraints
@@ -279,7 +279,7 @@ Total Lines:     5,000+ lines of code
 
 ## Deployment Options
 1. **Docker Compose** (Included)
-   - PostgreSQL + Backend + Redis
+   - MySQL + Backend + Redis
    - Single command setup
    - Development ready
 
@@ -290,7 +290,7 @@ Total Lines:     5,000+ lines of code
 
 3. **Heroku**
    - Git push deployment
-   - PostgreSQL add-on
+   - MySQL add-on
    - Auto-scaling
 
 4. **Kubernetes**
@@ -387,7 +387,7 @@ npm run dev
 ## Next Steps
 1. ✅ Backend fully built
 2. → Configure environment variables
-3. → Start database (Docker or PostgreSQL)
+3. → Start database (Docker or MySQL)
 4. → Run migrations
 5. → Connect frontend to API
 6. → Import Postman collection for testing

@@ -107,7 +107,7 @@ Complete guide to all documentation files and resources for the Al-Kahaf Learnin
 2. **emailService.js** - Email notifications (Nodemailer)
 
 ### Configuration (`src/config/` & `config/`)
-1. **database.js** - PostgreSQL connection setup
+1. **database.js** - MySQL connection setup
 2. **config.js** - Application configuration
 
 ### Server

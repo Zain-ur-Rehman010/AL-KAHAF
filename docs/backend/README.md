@@ -1,11 +1,11 @@
 # Al-Kahaf LMS Backend API
 
-Production-ready Node.js/Express backend for Learning Management System with PostgreSQL, JWT authentication, and comprehensive course/student management.
+Production-ready Node.js/Express backend for Learning Management System with MySQL, JWT authentication, and comprehensive course/student management.
 
 ## Features
 
 - **Authentication**: JWT-based with refresh tokens, password hashing (bcryptjs)
-- **Database**: PostgreSQL with Sequelize ORM, 11 models with relationships
+- **Database**: MySQL with Sequelize ORM, 11 models with relationships
 - **Security**: Helmet, CORS, rate limiting, input validation (Joi)
 - **Role-Based Access**: Admin, Instructor, Student with fine-grained permissions
 - **Payment Integration**: Stripe-ready payment processing
@@ -19,7 +19,7 @@ Production-ready Node.js/Express backend for Learning Management System with Pos
 
 - **Runtime**: Node.js 16+
 - **Framework**: Express.js 4.18.2
-- **Database**: PostgreSQL 12+, Sequelize 6.35.1
+- **Database**: MySQL 8+, Sequelize 6.35.1
 - **Authentication**: JWT (jsonwebtoken 9.1.0), bcryptjs 2.4.3
 - **Security**: Helmet 7.1.0, CORS 2.8.5, express-rate-limit 7.1.5
 - **Validation**: Joi 17.11.0
@@ -34,7 +34,7 @@ Production-ready Node.js/Express backend for Learning Management System with Pos
 
 ### Prerequisites
 - Node.js 16 or higher
-- PostgreSQL 12 or higher
+- MySQL 8 or higher
 - Redis (optional, for caching)
 - Docker & Docker Compose (for containerized setup)
 
@@ -52,9 +52,9 @@ cp .env.example .env
 # Edit .env with your database credentials and API keys
 ```
 
-3. **Start PostgreSQL** (if not using Docker)
+3. **Start MySQL** (if not using Docker)
 ```bash
-# Make sure PostgreSQL is running on localhost:5432
+# Make sure MySQL is running on localhost:3306
 ```
 
 4. **Run database migrations and seeds**
@@ -73,7 +73,7 @@ Server runs on `http://localhost:5000`
 ### Using Docker
 
 ```bash
-# Start all services (PostgreSQL, Backend, Redis)
+# Start all services (MySQL, Backend, Redis)
 docker-compose up -d
 
 # View logs
@@ -236,9 +236,9 @@ API_VERSION=v1
 
 # Database
 DB_HOST=localhost
-DB_PORT=5432
+DB_PORT=3306
 DB_NAME=alkahaf_lms_dev
-DB_USER=postgres
+DB_USER=root
 DB_PASSWORD=yourpassword
 
 # JWT
@@ -382,7 +382,7 @@ npm test -- --coverage
 
 - [ ] Set `NODE_ENV=production`
 - [ ] Change all JWT secrets
-- [ ] Configure real database (managed PostgreSQL)
+- [ ] Configure real database (managed MySQL)
 - [ ] Set up Stripe keys
 - [ ] Configure SMTP for emails
 - [ ] Enable HTTPS/SSL
@@ -412,7 +412,7 @@ docker run -p 5000:5000 \
 ```bash
 heroku login
 heroku create alkahaf-lms-backend
-heroku addons:create heroku-postgresql:standard-0 --app alkahaf-lms-backend
+heroku addons:create jawsdb:kitefin --app alkahaf-lms-backend
 heroku config:set JWT_SECRET=your-secret --app alkahaf-lms-backend
 git push heroku main
 heroku logs --tail

@@ -94,7 +94,7 @@ Assessments
 - ✅ **Backup Strategy**: Daily automated backups
 
 ### Recommended Database
-- **SQL**: PostgreSQL (best for complex queries) or MySQL
+- **SQL**: MySQL (current project database)
 - **Why NOT NoSQL**: LMS requires ACID compliance
 
 ### Critical Tables
@@ -143,7 +143,7 @@ assessments (id, course_id, type, passing_score)
 ### Phase 2 (1,000 users)
 - Separate frontend server (static hosting)
 - API server (Node.js, Python, or .NET)
-- PostgreSQL database
+- MySQL database
 - Redis for caching
 
 ### Phase 3 (10,000+ users)
@@ -293,7 +293,7 @@ Load Testing          → Test under high traffic
 - **Benefits**: Type-safe, great for enterprise, good performance
 
 ### Database
-- **PostgreSQL** (primary)
+- **MySQL** (primary)
 - **Redis** (caching, sessions)
 
 ### Authentication
@@ -343,7 +343,7 @@ Before starting development:
 - OWASP Security: https://owasp.org/
 - LMS Best Practices: https://www.learningpeople.com/
 - Docker: https://www.docker.com/
-- PostgreSQL: https://www.postgresql.org/
+- MySQL: https://dev.mysql.com/doc/
 
 ---
 

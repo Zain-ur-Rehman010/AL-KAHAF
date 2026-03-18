@@ -24,7 +24,13 @@ const app = express();
 // Security middleware
 app.use(helmet());
 
-// CORS configuration - Allow multiple frontend ports
+// CORS configuration - Allow common local origins + env-configured origins.
+// Supports both a single origin and comma-separated values in CORS_ORIGIN.
+const envConfiguredOrigins = (process.env.CORS_ORIGIN || process.env.ALLOWED_ORIGINS || '')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
 const allowedOrigins = [
   'http://localhost:3000',
   'http://localhost:8000',
@@ -33,7 +39,7 @@ const allowedOrigins = [
   'http://127.0.0.1:8000',
   'http://127.0.0.1:8080',
   'http://127.0.0.1:55808', // live-server
-  process.env.CORS_ORIGIN // from .env if set
+  ...envConfiguredOrigins,
 ].filter(Boolean);
 
 app.use(cors({

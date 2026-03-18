@@ -12,7 +12,7 @@ docker-compose up -d
 
 That's it! Your backend is running:
 - **Backend API**: http://localhost:5000
-- **Database**: PostgreSQL on localhost:5432
+- **Database**: MySQL on localhost:3306
 - **Redis Cache**: localhost:6379
 
 ### 2. Test it
@@ -51,7 +51,7 @@ npm install
 cp .env.example .env
 
 # Edit .env with your database credentials
-# Make sure PostgreSQL is running on localhost:5432
+# Make sure MySQL is running on localhost:3306
 ```
 
 ### 3. Run migrations
@@ -119,7 +119,7 @@ curl -X GET http://localhost:5000/api/v1/auth/me \
 docker-compose down
 
 # View database
-docker-compose exec db psql -U postgres -d alkahaf_lms_dev
+docker-compose exec db mysql -u root -p alkahaf_lms_dev
 
 # Reset everything
 docker-compose down -v
@@ -136,7 +136,7 @@ curl http://localhost:5000/api/health
 
 | Variable | Default | Notes |
 |----------|---------|-------|
-| `DB_HOST` | localhost | PostgreSQL host |
+| `DB_HOST` | localhost | MySQL host |
 | `DB_NAME` | alkahaf_lms_dev | Database name |
 | `JWT_SECRET` | (required) | Change in production! |
 | `CORS_ORIGIN` | http://localhost:3000 | Frontend URL |
@@ -147,7 +147,7 @@ curl http://localhost:5000/api/health
 
 ### Database connection error
 ```bash
-# Check PostgreSQL running
+# Check MySQL running
 docker-compose ps
 
 # Reset database

@@ -49,7 +49,7 @@ AlKahaf/
 ├── backend/          # Node.js + Express API
 ├── frontend/         # HTML/CSS/JS Frontend
 ├── docs/             # Documentation
-│   ├── DEPLOYMENT_COMPLETE.md
+│   ├── QUICK_REFERENCE.md
 │   ├── PROJECT_STRUCTURE.md
 │   ├── QUICK_REFERENCE.md
 │   └── guides/
@@ -111,11 +111,11 @@ AlKahaf/
 
 | Document | Description |
 |----------|-------------|
-| [DEPLOYMENT_COMPLETE.md](docs/DEPLOYMENT_COMPLETE.md) | Complete deployment status and configuration |
+| [QUICK_REFERENCE.md](docs/QUICK_REFERENCE.md) | Quick deployment and maintenance reference |
 | [PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) | Detailed project file organization |
 | [QUICK_REFERENCE.md](docs/QUICK_REFERENCE.md) | Quick reference for common tasks |
 | [AUTH_COMPLETION_GUIDE.md](docs/guides/AUTH_COMPLETION_GUIDE.md) | Authentication implementation guide |
-| [Backend README](backend/README.md) | Backend API documentation |
+| [Backend README](docs/backend/README.md) | Backend API documentation |
 
 ---
 
@@ -249,8 +249,8 @@ This project is proprietary and confidential.
 
 For questions or issues:
 1. Check documentation in `/docs/`
-2. Review API documentation in `/backend/README.md`
-3. Check deployment status in `/docs/DEPLOYMENT_COMPLETE.md`
+2. Review API documentation in `/docs/backend/README.md`
+3. Check deployment notes in `/docs/QUICK_REFERENCE.md`
 
 ---
 

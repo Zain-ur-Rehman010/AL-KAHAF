@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 AlKahaf is a Learning Management System (LMS) with a production-ready backend and a frontend. The project is structured as a monolithic application with clear separation between frontend and backend components.
 
 **Tech Stack:**
-- **Backend**: Node.js + Express.js + PostgreSQL + Sequelize ORM
+- **Backend**: Node.js + Express.js + MySQL + Sequelize ORM
 - **Frontend**: HTML/CSS/JS with SCSS preprocessing
 - **Authentication**: JWT with refresh tokens
 - **Security**: bcrypt, helmet, CORS, rate limiting
@@ -55,7 +55,7 @@ cp .env.example .env
 # Edit .env with your database credentials
 
 # Database setup
-createdb alkahaf_lms  # PostgreSQL database creation
+mysql -u root -p -e "CREATE DATABASE alkahaf_lms;"  # MySQL database creation
 npm run migrate        # Run database migrations
 npm run seed          # Seed with sample data (optional)
 
@@ -90,7 +90,7 @@ npx sass assets/scss/main.scss assets/css/style.css --style=compressed  # Produc
 
 ```bash
 cd backend
-docker-compose up -d   # Start PostgreSQL + backend
+docker-compose up -d   # Start MySQL + backend
 docker-compose down    # Stop services
 ```
 
@@ -187,9 +187,9 @@ router.post('/courses', authMiddleware, roleMiddleware(['instructor', 'admin']),
 
 NEVER commit `.env` files. Required variables:
 - `JWT_SECRET` / `JWT_REFRESH_SECRET` (use strong random strings in production)
-- `DB_PASSWORD` (PostgreSQL password)
+- `DB_PASSWORD` (MySQL password)
 - `STRIPE_SECRET_KEY` (if using payments)
-- `ALLOWED_ORIGINS` (CORS whitelist)
+- `CORS_ORIGIN` (CORS whitelist)
 
 ### Authentication
 
@@ -344,7 +344,7 @@ When changing database schema:
 ### Backend Issues
 
 **"Cannot connect to database"**
-- Verify PostgreSQL is running
+- Verify MySQL is running
 - Check `.env` has correct `DB_*` credentials
 - Ensure database `alkahaf_lms` exists
 
@@ -428,7 +428,7 @@ Refer to `backend/DEPLOYMENT.md` for comprehensive deployment guide. Key steps:
 
 1. Set `NODE_ENV=production`
 2. Use strong secrets in `.env`
-3. Setup PostgreSQL database
+3. Setup MySQL database
 4. Run migrations
 5. Use process manager (PM2)
 6. Configure reverse proxy (Nginx)

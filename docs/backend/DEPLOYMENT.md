@@ -14,7 +14,7 @@ Comprehensive checklist for deploying Al-Kahaf LMS backend to production.
 - [ ] Rollback procedures tested
 
 ### Infrastructure Preparation
-- [ ] Production database provisioned (PostgreSQL 12+)
+- [ ] Production database provisioned (MySQL 8+)
 - [ ] Database backups configured (daily automated)
 - [ ] CDN/cache configured (Redis)
 - [ ] SSL/TLS certificates obtained
@@ -57,7 +57,7 @@ API_VERSION=v1
 
 # Database - Use managed service
 DB_HOST=prod-db.aws.rds.amazonaws.com
-DB_PORT=5432
+DB_PORT=3306
 DB_NAME=alkahaf_lms_production
 DB_USER=db_admin
 DB_PASSWORD=<strong-password>
@@ -86,7 +86,7 @@ REDIS_PORT=6379
 REDIS_PASSWORD=<strong-password>
 
 # CORS - Only production domains
-CORS_ORIGIN=https://app.alkahaf.com,https://www.alkahaf.com
+CORS_ORIGIN=https://app.alkahaf.com
 
 # Rate Limiting - More restrictive
 RATE_LIMIT_WINDOW_MS=900000

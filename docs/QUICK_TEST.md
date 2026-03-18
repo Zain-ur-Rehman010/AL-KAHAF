@@ -241,11 +241,11 @@ If all checked, **your API is fully functional!** 🎉
 ## 📚 More Information
 
 For detailed guides, see:
-- `docs/guides/DEPLOYMENT_COMPLETE.md` - Full deployment guide
+- `docs/guides/CPANEL_DEPLOYMENT_GUIDE.md` - Full deployment guide
 - `docs/guides/CPANEL_DEPLOYMENT_GUIDE.md` - cPanel deployment steps
 - `docs/guides/AUTH_COMPLETION_GUIDE.md` - Complete auth features
 - `backend/README.md` - Full API documentation
 
 ---
 
-**Need help?** Check the troubleshooting section in DEPLOYMENT_COMPLETE.md
+**Need help?** Check the troubleshooting section in `docs/guides/CPANEL_DEPLOYMENT_GUIDE.md`

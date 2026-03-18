@@ -4,7 +4,7 @@ Complete step-by-step guide to deploy your AlKahaf LMS project on cPanel hosting
 
 ## 📋 Prerequisites
 
-✅ Your backend is now configured for MySQL (instead of PostgreSQL)
+✅ Your backend is now configured for MySQL
 ✅ cPanel account with:
 - MySQL database access
 - Node.js App support
@@ -174,12 +174,12 @@ DB_PASSWORD=your_generated_database_password
 # JWT Configuration (Generate strong random strings)
 JWT_SECRET=your_super_secret_jwt_key_change_this_to_random_string
 JWT_REFRESH_SECRET=your_super_secret_refresh_key_change_this_too
-JWT_EXPIRE=7d
-JWT_REFRESH_EXPIRE=30d
+JWT_EXPIRATION=24h
+JWT_REFRESH_EXPIRATION=7d
 
 # Stripe Payment Gateway (Add your keys if using payments)
 STRIPE_SECRET_KEY=sk_test_your_stripe_key
-STRIPE_PUBLIC_KEY=pk_test_your_stripe_key
+STRIPE_PUBLISHABLE_KEY=pk_test_your_stripe_key
 
 # Email Configuration (Configure with your email provider)
 SMTP_HOST=smtp.gmail.com
@@ -189,7 +189,7 @@ SMTP_PASSWORD=your_app_password
 SMTP_FROM=noreply@yourdomain.com
 
 # CORS Configuration
-ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
+CORS_ORIGIN=https://yourdomain.com
 
 # Frontend URL (for email links)
 FRONTEND_URL=https://yourdomain.com
@@ -333,7 +333,7 @@ Make sure your backend allows requests from your frontend domain.
 
 In your `.env`:
 ```env
-ALLOWED_ORIGINS=https://yourdomain.com,https://www.yourdomain.com
+CORS_ORIGIN=https://yourdomain.com
 ```
 
 ---

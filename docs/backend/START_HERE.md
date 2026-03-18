@@ -23,7 +23,7 @@ docker-compose up -d
 
 That's it! Everything starts automatically:
 - Backend: http://localhost:5000
-- PostgreSQL: localhost:5432 (credentials in docker-compose.yml)
+- MySQL: localhost:3306 (credentials in `.env`)
 - Redis: localhost:6379
 
 **Test it:**
@@ -162,9 +162,9 @@ Create `.env` file from `.env.example`:
 - `SMTP_HOST` - For emails (optional)
 
 ### Database
-- Type: PostgreSQL (included in Docker)
-- Port: 5432
-- Credentials: postgres/postgres (Docker default)
+- Type: MySQL
+- Port: 3306
+- Credentials: Set in your `.env` file
 - Name: alkahaf_lms_dev
 
 ### Cache
@@ -277,7 +277,7 @@ docker-compose up -d
 
 ### Database connection error?
 ```bash
-# Check PostgreSQL is running
+# Check MySQL is running
 docker-compose ps
 
 # Reset database
@@ -317,7 +317,7 @@ When ready for production:
 
 ✅ **Complete Backend**
 - Express.js server
-- PostgreSQL database
+- MySQL database
 - 11 data models
 - 30+ API endpoints
 - JWT authentication
@@ -365,7 +365,7 @@ Once backend is working:
 - Review code comments
 - Check error messages from API
 - Docker logs: `docker-compose logs -f`
-- Database: Connect with any PostgreSQL client
+- Database: Connect with any MySQL client
 
 ## Ready to Go!
 
