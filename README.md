@@ -49,9 +49,9 @@ AlKahaf/
 ├── backend/          # Node.js + Express API
 ├── frontend/         # HTML/CSS/JS Frontend
 ├── docs/             # Documentation
-│   ├── QUICK_REFERENCE.md
-│   ├── PROJECT_STRUCTURE.md
-│   ├── QUICK_REFERENCE.md
+│   ├── overview/
+│   ├── project/
+│   ├── reference/
 │   └── guides/
 └── README.md         # This file
 ```
@@ -111,9 +111,10 @@ AlKahaf/
 
 | Document | Description |
 |----------|-------------|
-| [QUICK_REFERENCE.md](docs/QUICK_REFERENCE.md) | Quick deployment and maintenance reference |
-| [PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) | Detailed project file organization |
-| [QUICK_REFERENCE.md](docs/QUICK_REFERENCE.md) | Quick reference for common tasks |
+| [START_HERE.md](docs/overview/START_HERE.md) | Primary documentation entry point |
+| [QUICK_REFERENCE.md](docs/reference/QUICK_REFERENCE.md) | Quick deployment and maintenance reference |
+| [PROJECT_STRUCTURE.md](docs/project/PROJECT_STRUCTURE.md) | Detailed project file organization |
+| [ENV_SETUP_GUIDE.md](docs/setup/ENV_SETUP_GUIDE.md) | Environment setup and configuration |
 | [AUTH_COMPLETION_GUIDE.md](docs/guides/AUTH_COMPLETION_GUIDE.md) | Authentication implementation guide |
 | [Backend README](docs/backend/README.md) | Backend API documentation |
 
@@ -164,7 +165,7 @@ DELETE /api/v1/enrollments/:id
 - Messages
 - Notifications
 
-See [PROJECT_STRUCTURE.md](docs/PROJECT_STRUCTURE.md) for detailed schema.
+See [PROJECT_STRUCTURE.md](docs/project/PROJECT_STRUCTURE.md) for detailed schema.
 
 ---
 
@@ -250,7 +251,7 @@ This project is proprietary and confidential.
 For questions or issues:
 1. Check documentation in `/docs/`
 2. Review API documentation in `/docs/backend/README.md`
-3. Check deployment notes in `/docs/QUICK_REFERENCE.md`
+3. Check deployment notes in `/docs/reference/QUICK_REFERENCE.md`
 
 ---
 

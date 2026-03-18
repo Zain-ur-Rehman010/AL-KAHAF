@@ -1,7 +1,7 @@
 const multer = require('multer');
 const path = require('path');
 
-// Memory storage — no disk writes (required for Railway/cPanel)
+// Memory storage — no disk writes (works for local and hosted setups)
 const storage = multer.memoryStorage();
 
 const fileFilter = (req, file, cb) => {

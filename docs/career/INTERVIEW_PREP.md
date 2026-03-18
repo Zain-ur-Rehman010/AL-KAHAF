@@ -14,7 +14,7 @@ Al-Kahaf Online Academy is a full-stack Learning Management System (LMS) for an 
 - 38+ REST API endpoints
 - 11 database models with associations
 - 109 frontend HTML pages
-- Deployed on Railway (backend) + Websouls cPanel (frontend option)
+- Runs locally for development, with optional cPanel deployment
 
 ---
 
@@ -24,9 +24,9 @@ Al-Kahaf Online Academy is a full-stack Learning Management System (LMS) for an 
 |---|---|---|
 | Backend | Node.js + Express.js | Lightweight, async-friendly, large ecosystem |
 | ORM | Sequelize | SQL abstraction, migrations, associations |
-| Database | MySQL (Railway) | Relational data suits LMS relationships |
+| Database | MySQL | Relational data suits LMS relationships |
 | Auth | JWT (access + refresh tokens) | Stateless, scalable, no session storage needed |
-| File Storage | Cloudinary CDN | Ephemeral servers (Railway) can't store files on disk |
+| File Storage | Cloudinary CDN | Avoids relying on local server disk for uploads |
 | Frontend | HTML/CSS/JS + Bootstrap 5 | Static site, no bundler complexity |
 | SCSS | Sass | Maintainable CSS with variables and nesting |
 | Frontend Server | Express.js (clean URL routing) | Maps `/admin/course-add` → `src/pages/admin/course-add.html` |
@@ -36,7 +36,7 @@ Al-Kahaf Online Academy is a full-stack Learning Management System (LMS) for an 
 ## 3. Architecture Decisions
 
 ### Why Cloudinary instead of local disk storage?
-Railway uses ephemeral containers — files written to disk are lost on redeploy. Cloudinary provides a free CDN, persistent storage, and automatic image optimization. Images are uploaded using `multer.memoryStorage()` (no disk write) then piped to Cloudinary via `streamifier` + `cloudinary.uploader.upload_stream`.
+Cloudinary provides CDN delivery, persistent storage, and automatic image optimization. Images are uploaded using `multer.memoryStorage()` (no disk write) then piped to Cloudinary via `streamifier` + `cloudinary.uploader.upload_stream`.
 
 ### Why JWT with refresh tokens?
 - `accessToken` (short-lived, ~15min) is sent with every API request
@@ -44,7 +44,7 @@ Railway uses ephemeral containers — files written to disk are lost on redeploy
 - Reduces risk: if an access token is stolen, it expires quickly
 - Tokens stored in `localStorage` on the frontend
 
-### Why `sequelize.sync({ alter: true })` on Railway?
+### Why `sequelize.sync({ alter: true })` in development?
 Auto-applies schema changes (new columns/tables) on every deploy without manual migration commands. Suitable for active development. In production, proper migrations (`sequelize-cli`) would replace this.
 
 ### Why a unified `/api/v1/upload?folder=` endpoint?
@@ -166,7 +166,7 @@ Project scope was a static multi-page site with form interactions. Using vanilla
 Each page has inline JS that:
 1. Checks `localStorage` for `accessToken` + `user` object on load
 2. Redirects to `/auth/login` if not authenticated or wrong role
-3. Fetches data from Railway API using `fetch()` + `API_CONFIG.BASE_URL`
+3. Fetches data from backend API using `fetch()` + `API_CONFIG.BASE_URL`
 4. Populates DOM elements by `id`
 
 ### Flash-of-Dummy-Data Problem (Fixed)
@@ -184,22 +184,22 @@ HTML elements that get populated by JS must NOT have hardcoded placeholder value
 | CORS | Whitelist of allowed origins |
 | Rate limiting | `express-rate-limit` on all routes |
 | Auth on sensitive routes | `authMiddleware` + `roleMiddleware` |
-| No secrets in code | All credentials in `.env` / Railway env vars |
+| No secrets in code | All credentials in `.env` |
 
 ---
 
 ## 10. Deployment
 
-### Backend (Railway)
-- Auto-deploys from `main` branch on git push
-- Environment variables set in Railway dashboard (DB credentials, JWT secrets, Cloudinary keys)
-- `sequelize.sync({ alter: true })` auto-applies schema changes on startup
-- No disk storage — all uploads go to Cloudinary CDN
+### Backend (Local Development)
+- Runs on `http://localhost:5000`
+- Environment variables are loaded from backend `.env`
+- `sequelize.sync({ alter: true })` can auto-apply schema changes during active development
+- Uploads are streamed to Cloudinary CDN
 
 ### Frontend
 - Served via Express.js on port 3001 (local dev)
 - Can be hosted on Websouls cPanel as a Node.js app or static export
-- `API_CONFIG.BASE_URL` in `assets/js/api-config.js` points to Railway backend URL
+- `API_CONFIG.BASE_URL` in `assets/js/api-config.js` points to local backend URL during localhost runs
 
 ---
 

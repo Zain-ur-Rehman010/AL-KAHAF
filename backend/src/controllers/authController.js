@@ -89,15 +89,20 @@ exports.refreshToken = async (req, res) => {
   try {
     const { refreshToken } = req.body;
     if (!refreshToken) {
-      return res.status(400).json({ message: 'Refresh token required' });
+      return res.status(400).json({ success: false, message: 'Refresh token required' });
     }
 
     const decoded = jwt.verify(refreshToken, config.jwtRefreshSecret);
     const tokens = tokenService.generateTokens(decoded.userId, decoded.role);
 
-    res.json(tokens);
+    res.json({
+      success: true,
+      message: 'Token refreshed successfully',
+      data: tokens,
+      ...tokens, // Backward compatibility for existing clients reading top-level tokens
+    });
   } catch (error) {
-    res.status(401).json({ message: 'Invalid refresh token' });
+    res.status(401).json({ success: false, message: 'Invalid refresh token' });
   }
 };
 
@@ -114,11 +119,17 @@ exports.getCurrentUser = async (req, res) => {
   try {
     const user = await User.findByPk(req.user.userId);
     if (!user) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ success: false, message: 'User not found' });
     }
-    res.json(user.toJSON());
+    const userData = user.toJSON();
+    res.json({
+      success: true,
+      message: 'User fetched successfully',
+      data: { user: userData },
+      ...userData, // Backward compatibility for existing clients reading direct user fields
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 

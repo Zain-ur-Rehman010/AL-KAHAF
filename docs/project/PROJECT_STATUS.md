@@ -321,6 +321,6 @@ AlKahaf/
 │   └── package.json
 ├── docs/                     # Documentation files
 ├── CLAUDE.md                 # Developer instructions
-├── docs/PROJECT_STATUS.md    # This file
+├── docs/project/PROJECT_STATUS.md    # This file
 └── README.md                 # Project overview
 ```

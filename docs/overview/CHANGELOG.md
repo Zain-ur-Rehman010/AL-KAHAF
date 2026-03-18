@@ -73,7 +73,7 @@ Migrated from deprecated `@import` to modern `@use`/`@forward` syntax.
 
 ### 📚 Documentation Updates
 
-#### `LMS_DEVELOPMENT_GUIDE.md`
+#### `docs/reference/LMS_DEVELOPMENT_GUIDE.md`
 - Added "Local Development Server" section with setup instructions
 - Added "Frontend Commands" section with npm scripts
 - Added "Dart Sass (No npm)" section with standalone usage
@@ -124,7 +124,7 @@ sass assets\scss\main.scss assets\css\style.css --style=compressed
 - `frontend/assets/scss/utils/_index.scss` (new)
 - `frontend/assets/scss/utils/_variables.scss`
 - `frontend/assets/scss/utils/_mixins.scss`
-- `LMS_DEVELOPMENT_GUIDE.md`
+- `docs/reference/LMS_DEVELOPMENT_GUIDE.md`
 
 ---
 

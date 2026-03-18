@@ -304,8 +304,8 @@ npx sequelize-cli db:migrate
 ## 📞 Support Information
 
 ### Documentation Files:
-- `/docs/ENV_SETUP_GUIDE.md` - Environment and deployment configuration
-- `/docs/PROJECT_STRUCTURE.md` - Project organization
+- `/docs/setup/ENV_SETUP_GUIDE.md` - Environment and deployment configuration
+- `/docs/project/PROJECT_STRUCTURE.md` - Project organization
 - `/docs/guides/AUTH_COMPLETION_GUIDE.md` - Authentication guide
 - `/backend/README.md` - Backend API documentation
 

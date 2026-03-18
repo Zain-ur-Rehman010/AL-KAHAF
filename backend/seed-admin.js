@@ -1,17 +1,11 @@
 const bcrypt = require('bcryptjs');
-const { Sequelize } = require('sequelize');
-
-const sequelize = new Sequelize('railway', 'root', 'awcHtthHJLJHrnWUSjrVhhArFeJESbxw', {
-  host: 'crossover.proxy.rlwy.net',
-  port: 50511,
-  dialect: 'mysql',
-  logging: false,
-});
+require('dotenv').config();
+const sequelize = require('./src/config/database');
 
 async function seedAdmin() {
   try {
     await sequelize.authenticate();
-    console.log('Connected to Railway MySQL');
+    console.log('Connected to MySQL');
 
     const hash = await bcrypt.hash('Admin@123', 10);
 

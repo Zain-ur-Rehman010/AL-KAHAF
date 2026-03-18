@@ -1,6 +1,6 @@
 /**
  * One-off script: Add 'pending_approval' to Course status ENUM.
- * Run once on Railway, then revert start script.
+ * Run once on your environment, then revert start script.
  *
  *   node run-migration-05.js
  */

@@ -1,9 +1,14 @@
 // API Configuration for AlKahaf LMS
 // This file contains all API endpoint configurations
 
+const isLocalhost = typeof window !== 'undefined'
+    && (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
 const API_CONFIG = {
-    // API Base URL (Railway backend)
-    BASE_URL: 'https://al-kahaf-production.up.railway.app/api/v1',
+    // Auto-switch API URL for local development vs production.
+    BASE_URL: isLocalhost
+        ? 'http://localhost:5000/api/v1'
+        : 'https://alkahafonlineacademy.com/api/v1',
 
     // Endpoints
     ENDPOINTS: {
@@ -11,7 +16,7 @@ const API_CONFIG = {
         REGISTER: '/auth/register',
         LOGIN: '/auth/login',
         LOGOUT: '/auth/logout',
-        REFRESH: '/auth/refresh',
+        REFRESH: '/auth/refresh-token',
         ME: '/auth/me',
 
         // Courses

@@ -755,7 +755,7 @@
 		var tbody = document.getElementById('free-trial-tbody');
 		if (!tbody) return;
 		var token = localStorage.getItem('accessToken');
-		var url = 'https://al-kahaf-production.up.railway.app/api/v1/free-trial?limit=10&page=1';
+		var url = 'http://localhost:5000/api/v1/free-trial?limit=10&page=1';
 		if (statusFilter) url += '&status=' + statusFilter;
 		fetch(url, { headers: { 'Authorization': 'Bearer ' + token } })
 			.then(function(r) { return r.json(); })
@@ -809,7 +809,7 @@
 
 	function updateFtStatus(id, status) {
 		var token = localStorage.getItem('accessToken');
-		fetch('https://al-kahaf-production.up.railway.app/api/v1/free-trial/' + id + '/status', {
+		fetch('http://localhost:5000/api/v1/free-trial/' + id + '/status', {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
 			body: JSON.stringify({ status: status }),

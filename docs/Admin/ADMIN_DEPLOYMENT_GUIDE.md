@@ -503,9 +503,9 @@ LIMIT 5;
 5. Ensure all files uploaded correctly
 
 **Documentation:**
-- API Endpoints: `docs/ADMIN_API_ENDPOINTS.md`
-- Admin Dashboard: `docs/ADMIN_DASHBOARD_COMPLETE.md`
-- Project Structure: `docs/PROJECT_STRUCTURE.md`
+- API Endpoints: `docs/Admin/ADMIN_API_ENDPOINTS.md`
+- Admin Dashboard: `docs/Admin/ADMIN_DASHBOARD_COMPLETE.md`
+- Project Structure: `docs/project/PROJECT_STRUCTURE.md`
 
 ---
 

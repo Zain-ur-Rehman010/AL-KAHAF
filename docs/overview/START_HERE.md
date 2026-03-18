@@ -25,11 +25,11 @@ This is the primary entry point for project documentation.
 
 ## Core Docs (Keep These Handy)
 
-- `docs/README.md` - documentation map and usage.
-- `docs/QUICK_REFERENCE.md` - operational shortcuts.
-- `docs/ENV_SETUP_GUIDE.md` - env variables and setup.
-- `docs/PROJECT_STRUCTURE.md` - repository and deployment layout.
-- `docs/QUICK_TEST.md` - fast API and deployment checks.
+- `docs/overview/README.md` - documentation map and usage.
+- `docs/reference/QUICK_REFERENCE.md` - operational shortcuts.
+- `docs/setup/ENV_SETUP_GUIDE.md` - env variables and setup.
+- `docs/project/PROJECT_STRUCTURE.md` - repository and deployment layout.
+- `docs/testing/QUICK_TEST.md` - fast API and deployment checks.
 
 ## Backend Docs
 

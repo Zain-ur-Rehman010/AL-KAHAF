@@ -105,25 +105,31 @@ AlKahaf/
 │   ├── .htaccess                      # ⭐ Apache routing config
 │   ├── index.html                     # Homepage
 │   ├── hero-slider.html
-│   ├── package.json
-│   ├── INTEGRATION_QUICK_START.md
-│   └── PRE_DEPLOYMENT_CHECKLIST.md
+│   └── package.json
 │
 ├── docs/                              # Documentation
-│   ├── guides/
-│   │   ├── AUTH_COMPLETION_GUIDE.md
-│   │   ├── FRONTEND_DEPLOYMENT_GUIDE.md
-│   │   └── (other guides)
-│   ├── QUICK_REFERENCE.md             # ⭐ Current quick reference
-│   └── PROJECT_STRUCTURE.md           # ⭐ This file
+│   ├── INDEX.md                       # Main docs landing file
+│   ├── overview/                      # Entry docs
+│   ├── project/                       # Project status/structure docs
+│   ├── setup/                         # Environment/deployment setup docs
+│   ├── reference/                     # Quick references and standards
+│   ├── testing/                       # Test guides and checklists
+│   ├── reports/                       # Audits and analysis docs
+│   ├── client/                        # Client-facing requirement docs
+│   ├── career/                        # Interview and preparation docs
+│   ├── guides/                        # Deployment/integration guides
+│   ├── Admin/                         # Admin deployment/API docs
+│   ├── backend/                       # Backend-specific docs
+│   └── cursor-doc/                    # Cursor-generated planning/testing docs
 │
+├── node_modules/                      # Root-level dev tools (live-server)
 ├── .git/                              # Git repository
 ├── .gitignore
-├── CLAUDE.md                          # AI assistant instructions
-├── QUICK_REFERENCE.md
-├── LMS_DEVELOPMENT_GUIDE.md
+├── deploy-htaccess.sh                 # Deployment helper script
+├── package.json                       # Root dev dependency config
+├── package-lock.json
 ├── README.md
-└── START_HERE.md
+└── seed-admin.js                      # Root helper seed script
 ```
 
 ---
@@ -435,6 +441,6 @@ JSON data back to frontend
 ---
 
 **📖 For more details, see:**
-- `/docs/QUICK_REFERENCE.md` - Deployment and maintenance quick reference
+- `/docs/reference/QUICK_REFERENCE.md` - Deployment and maintenance quick reference
 - `/docs/guides/AUTH_COMPLETION_GUIDE.md` - Authentication implementation
 - `/backend/README.md` - Backend API documentation

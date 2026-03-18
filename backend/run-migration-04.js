@@ -1,6 +1,6 @@
 /**
  * One-off script: Add education + workExperience columns to Users table.
- * Run once on Railway, then delete this file.
+ * Run once on your environment, then delete this file.
  *
  *   node run-migration-04.js
  */
