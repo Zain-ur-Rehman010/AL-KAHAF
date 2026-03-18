@@ -308,6 +308,11 @@
 							<label class="form-label">Assign Courses <span class="text-muted fw-normal">(optional)</span></label>
 							<select class="form-select" id="assignedCourses" name="assignedCourses" multiple></select>
 							<div class="form-text">Select one or more courses this instructor will teach. You can update anytime from the edit page.</div>
+							<div class="mt-2">
+								<a href="/admin/predefined-courses" class="text-primary small">
+									<i class="isax isax-setting-2 me-1"></i>Manage predefined course catalog
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -372,6 +377,27 @@
 	</div>
 	<!-- /Main Wrapper -->
 
+	<!-- Feedback Modal -->
+	<div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="feedback-title">Status</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body text-center">
+					<div id="feedback-icon-wrap" class="mx-auto mb-2 d-inline-flex align-items-center justify-content-center rounded-circle" style="width:56px;height:56px;background:rgba(25,135,84,.12);color:#198754;">
+						<i id="feedback-icon" class="isax isax-tick-circle" style="font-size:24px;"></i>
+					</div>
+					<div id="feedback-message"></div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- jQuery -->
 	<script src="/assets/js/jquery-3.7.1.min.js"></script>
 
@@ -392,6 +418,7 @@
 	<!-- Add Instructor JS -->
 	<script>
 		let newProfileImageUrl = null;
+		let feedbackModal = null;
 
 		async function uploadImage(file, folder) {
 			const formData = new FormData();
@@ -441,6 +468,7 @@
 
 			// Form submission
 			document.getElementById('instructor-form').addEventListener('submit', handleSubmit);
+			feedbackModal = new bootstrap.Modal(document.getElementById('feedbackModal'));
 		});
 
 		async function handleSubmit(e) {
@@ -643,19 +671,27 @@
 		}
 
 		function showAlert(type, message) {
-			const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
-			const alertHtml = `
-				<div class="alert ${alertClass} alert-dismissible fade show position-fixed top-0 end-0 m-3" role="alert" style="z-index: 9999;">
-					${message}
-					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-				</div>
-			`;
-			document.body.insertAdjacentHTML('beforeend', alertHtml);
+			const isSuccess = type === 'success';
+			const title = isSuccess ? 'Success' : 'Error';
+			const iconWrap = document.getElementById('feedback-icon-wrap');
+			const icon = document.getElementById('feedback-icon');
+			const msg = document.getElementById('feedback-message');
+			document.getElementById('feedback-title').textContent = title;
 
-			setTimeout(() => {
-				const alerts = document.querySelectorAll('.alert');
-				alerts.forEach(alert => alert.remove());
-			}, 3000);
+			iconWrap.style.background = isSuccess ? 'rgba(25,135,84,.12)' : 'rgba(220,53,69,.12)';
+			iconWrap.style.color = isSuccess ? '#198754' : '#dc3545';
+			icon.className = isSuccess ? 'isax isax-tick-circle' : 'isax isax-close-circle';
+			msg.innerHTML = `<div class="${isSuccess ? 'text-success' : 'text-danger'}">${escapeHtml(message)}</div>`;
+			(feedbackModal || bootstrap.Modal.getOrCreateInstance(document.getElementById('feedbackModal'))).show();
+		}
+
+		function escapeHtml(str) {
+			return String(str || '')
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;')
+				.replace(/'/g, '&#39;');
 		}
 	</script>
 	<!-- Scroll to Top Button -->

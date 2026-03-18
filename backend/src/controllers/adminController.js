@@ -18,6 +18,13 @@ function writeSettings(data) {
   fs.writeFileSync(SETTINGS_FILE, JSON.stringify(data, null, 2), 'utf8');
 }
 
+function toBoolean(value, defaultValue = false) {
+  if (value === undefined || value === null) return defaultValue;
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'string') return value.toLowerCase() === 'true';
+  return Boolean(value);
+}
+
 /**
  * Get Admin Dashboard Statistics
  * GET /api/v1/admin/statistics
@@ -1285,22 +1292,179 @@ exports.getPredefinedCourses = async (req, res) => {
       return res.status(403).json({ success: false, message: 'Admin access required.' });
     }
 
+    const includeInactive = req.query.includeInactive === 'true';
+    const where = includeInactive ? {} : { isActive: true };
+
     const courses = await PredefinedCourse.findAll({
-      where: { isActive: true },
+      where,
       order: [['category', 'ASC'], ['courseName', 'ASC']],
-      attributes: ['id', 'courseName', 'category']
+      attributes: ['id', 'courseName', 'category', 'isActive']
     });
 
     // Build a grouped structure for convenient frontend rendering
     const grouped = courses.reduce((acc, c) => {
       if (!acc[c.category]) acc[c.category] = [];
-      acc[c.category].push({ id: c.id, courseName: c.courseName });
+      acc[c.category].push({ id: c.id, courseName: c.courseName, isActive: c.isActive });
       return acc;
     }, {});
 
     return res.json({ success: true, data: { courses, grouped } });
   } catch (error) {
     console.error('getPredefinedCourses error:', error);
+    return res.status(500).json({ success: false, message: 'Server error.' });
+  }
+};
+
+/**
+ * POST /api/v1/admin/predefined-courses
+ * Create a predefined course.
+ */
+exports.createPredefinedCourse = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Admin access required.' });
+    }
+
+    const courseName = (req.body.courseName || '').trim();
+    const category = (req.body.category || '').trim();
+    const isActive = toBoolean(req.body.isActive, true);
+
+    if (!courseName || !category) {
+      return res.status(400).json({
+        success: false,
+        message: 'courseName and category are required.'
+      });
+    }
+
+    const existing = await PredefinedCourse.findOne({
+      where: sequelize.where(
+        sequelize.fn('LOWER', sequelize.col('courseName')),
+        courseName.toLowerCase()
+      )
+    });
+
+    if (existing) {
+      return res.status(409).json({
+        success: false,
+        message: 'A predefined course with this name already exists.'
+      });
+    }
+
+    const created = await PredefinedCourse.create({ courseName, category, isActive });
+
+    return res.status(201).json({
+      success: true,
+      message: 'Predefined course created successfully.',
+      data: created
+    });
+  } catch (error) {
+    console.error('createPredefinedCourse error:', error);
+    return res.status(500).json({ success: false, message: 'Server error.' });
+  }
+};
+
+/**
+ * PUT /api/v1/admin/predefined-courses/:id
+ * Update predefined course fields.
+ */
+exports.updatePredefinedCourse = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Admin access required.' });
+    }
+
+    const course = await PredefinedCourse.findByPk(req.params.id);
+    if (!course) {
+      return res.status(404).json({ success: false, message: 'Predefined course not found.' });
+    }
+
+    const updateData = {};
+    if (req.body.courseName !== undefined) {
+      const name = String(req.body.courseName).trim();
+      if (!name) {
+        return res.status(400).json({ success: false, message: 'courseName cannot be empty.' });
+      }
+
+      const duplicate = await PredefinedCourse.findOne({
+        where: {
+          [Op.and]: [
+            sequelize.where(
+              sequelize.fn('LOWER', sequelize.col('courseName')),
+              name.toLowerCase()
+            ),
+            { id: { [Op.ne]: course.id } }
+          ]
+        }
+      });
+
+      if (duplicate) {
+        return res.status(409).json({
+          success: false,
+          message: 'A predefined course with this name already exists.'
+        });
+      }
+      updateData.courseName = name;
+    }
+
+    if (req.body.category !== undefined) {
+      const category = String(req.body.category).trim();
+      if (!category) {
+        return res.status(400).json({ success: false, message: 'category cannot be empty.' });
+      }
+      updateData.category = category;
+    }
+
+    if (req.body.isActive !== undefined) {
+      updateData.isActive = toBoolean(req.body.isActive, course.isActive);
+    }
+
+    await course.update(updateData);
+
+    return res.json({
+      success: true,
+      message: 'Predefined course updated successfully.',
+      data: course
+    });
+  } catch (error) {
+    console.error('updatePredefinedCourse error:', error);
+    return res.status(500).json({ success: false, message: 'Server error.' });
+  }
+};
+
+/**
+ * DELETE /api/v1/admin/predefined-courses/:id
+ * Delete a predefined course if not assigned.
+ */
+exports.deletePredefinedCourse = async (req, res) => {
+  try {
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ success: false, message: 'Admin access required.' });
+    }
+
+    const course = await PredefinedCourse.findByPk(req.params.id);
+    if (!course) {
+      return res.status(404).json({ success: false, message: 'Predefined course not found.' });
+    }
+
+    const assignmentCount = await InstructorCourse.count({
+      where: { predefinedCourseId: course.id }
+    });
+    if (assignmentCount > 0) {
+      return res.status(400).json({
+        success: false,
+        message: 'Cannot delete a course assigned to instructors. Unassign it first.',
+        assignmentCount
+      });
+    }
+
+    await course.destroy();
+
+    return res.json({
+      success: true,
+      message: 'Predefined course deleted successfully.'
+    });
+  } catch (error) {
+    console.error('deletePredefinedCourse error:', error);
     return res.status(500).json({ success: false, message: 'Server error.' });
   }
 };

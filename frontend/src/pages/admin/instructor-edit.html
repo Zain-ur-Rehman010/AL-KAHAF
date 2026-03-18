@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -340,6 +340,11 @@
                                 <label class="form-label">Assigned Courses <span class="text-muted fw-normal">(optional)</span></label>
                                 <select class="form-select" id="assignedCourses" name="assignedCourses" multiple></select>
                                 <small class="form-text text-muted">Changes are saved when you click "Save Changes".</small>
+                                <div class="mt-2">
+                                    <a href="/admin/predefined-courses" class="small text-primary">
+                                        <i class="isax isax-setting-2 me-1"></i>Manage predefined course catalog
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
@@ -457,6 +462,27 @@
     </div>
     <!-- /Main Wrapper -->
 
+    <!-- Feedback Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedback-title">Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="feedback-icon-wrap" class="mx-auto mb-2 d-inline-flex align-items-center justify-content-center rounded-circle" style="width:56px;height:56px;background:rgba(25,135,84,.12);color:#198754;">
+                        <i id="feedback-icon" class="isax isax-tick-circle" style="font-size:24px;"></i>
+                    </div>
+                    <div id="feedback-message"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- jQuery -->
     <script src="../../../assets/js/jquery-3.7.1.min.js"></script>
 
@@ -476,6 +502,7 @@
     <script>
         let instructorId = null;
         let newProfileImageUrl = null;
+        let feedbackModal = null;
 
         async function uploadImage(file, folder) {
             const formData = new FormData();
@@ -494,14 +521,15 @@
         // Check authentication and load instructor data on page load
         document.addEventListener('DOMContentLoaded', function() {
             checkAuth();
+            feedbackModal = new bootstrap.Modal(document.getElementById('feedbackModal'));
 
             // Get instructor ID from URL
             const urlParams = new URLSearchParams(window.location.search);
             instructorId = urlParams.get('id');
 
             if (!instructorId) {
-                alert('No instructor ID provided');
-                window.location.href = '/admin/instructors-list';
+                showFeedbackModal('error', 'Missing ID', 'No instructor ID provided.');
+                setTimeout(() => { window.location.href = '/admin/instructors-list'; }, 1200);
                 return;
             }
 
@@ -546,18 +574,18 @@
                     if (result.success) {
                         populateForm(result.data);
                     } else {
-                        alert('Error: ' + result.message);
-                        window.location.href = '/admin/instructors-list';
+                        showFeedbackModal('error', 'Load Failed', result.message || 'Failed to load instructor data.');
+                        setTimeout(() => { window.location.href = '/admin/instructors-list'; }, 1200);
                     }
                 } else if (response.status === 404) {
-                    alert('Instructor not found');
-                    window.location.href = '/admin/instructors-list';
+                    showFeedbackModal('error', 'Not Found', 'Instructor not found.');
+                    setTimeout(() => { window.location.href = '/admin/instructors-list'; }, 1200);
                 } else {
-                    alert('Failed to load instructor data');
+                    showFeedbackModal('error', 'Load Failed', 'Failed to load instructor data.');
                 }
             } catch (error) {
                 console.error('Error loading instructor:', error);
-                alert('Failed to load instructor data');
+                showFeedbackModal('error', 'Load Failed', 'Failed to load instructor data.');
             } finally {
                 hideLoading();
             }
@@ -616,7 +644,7 @@
             newProfileImageUrl = null;
 
             if (file.size > 2 * 1024 * 1024) {
-                alert('File size must be less than 2MB');
+                showFeedbackModal('error', 'Invalid File', 'File size must be less than 2MB.');
                 return;
             }
 
@@ -631,7 +659,7 @@
             try {
                 newProfileImageUrl = await uploadImage(file, 'instructors');
             } catch (err) {
-                alert('Image upload failed: ' + err.message);
+                showFeedbackModal('error', 'Upload Failed', 'Image upload failed: ' + err.message);
             }
         }
 
@@ -704,14 +732,14 @@
                     } catch (e) {
                         console.warn('Student sync failed (non-critical):', e);
                     }
-                    alert('Instructor updated successfully!');
-                    window.location.href = '/admin/instructors-list';
+                    showFeedbackModal('success', 'Updated', 'Instructor updated successfully.');
+                    setTimeout(() => { window.location.href = '/admin/instructors-list'; }, 1000);
                 } else {
-                    alert('Error: ' + result.message);
+                    showFeedbackModal('error', 'Update Failed', result.message || 'Failed to update instructor.');
                 }
             } catch (error) {
                 console.error('Error updating instructor:', error);
-                alert('Failed to update instructor');
+                showFeedbackModal('error', 'Update Failed', 'Failed to update instructor.');
             } finally {
                 hideLoading();
             }
@@ -821,6 +849,28 @@
         // Hide loading overlay
         function hideLoading() {
             document.getElementById('loadingOverlay').classList.remove('show');
+        }
+
+        function showFeedbackModal(type, title, message) {
+            const isSuccess = type === 'success';
+            const iconWrap = document.getElementById('feedback-icon-wrap');
+            const icon = document.getElementById('feedback-icon');
+            const text = document.getElementById('feedback-message');
+            document.getElementById('feedback-title').textContent = title || (isSuccess ? 'Success' : 'Error');
+            iconWrap.style.background = isSuccess ? 'rgba(25,135,84,.12)' : 'rgba(220,53,69,.12)';
+            iconWrap.style.color = isSuccess ? '#198754' : '#dc3545';
+            icon.className = isSuccess ? 'isax isax-tick-circle' : 'isax isax-close-circle';
+            text.innerHTML = '<div class="' + (isSuccess ? 'text-success' : 'text-danger') + '">' + escapeHtml(message || '') + '</div>';
+            (feedbackModal || bootstrap.Modal.getOrCreateInstance(document.getElementById('feedbackModal'))).show();
+        }
+
+        function escapeHtml(str) {
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
         }
 
         // Logout

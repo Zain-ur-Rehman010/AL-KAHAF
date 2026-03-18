@@ -38,6 +38,9 @@ router.put('/settings', adminController.updateSettings);
 
 // Predefined Course Catalog
 router.get('/predefined-courses', adminController.getPredefinedCourses);
+router.post('/predefined-courses', adminController.createPredefinedCourse);
+router.put('/predefined-courses/:id', adminController.updatePredefinedCourse);
+router.delete('/predefined-courses/:id', adminController.deletePredefinedCourse);
 
 // Instructor ↔ Course Assignments
 router.get('/instructors/:id/courses', adminController.getInstructorCourses);
