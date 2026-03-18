@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html> 
+<!DOCTYPE html> 
 <html lang="en">
 	<head>
 	
@@ -117,10 +117,10 @@
 								</div>
 								<div class="dropdown mb-2">
 									<a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-										USD
+										PKR
 									</a>
 									<ul class="dropdown-menu p-2 mt-2">
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
+										<li><a class="dropdown-item rounded" href="javascript:void(0);">PKR</a></li>
 										<li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
 										<li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
 									</ul>
@@ -175,13 +175,13 @@
 							<div class="dropdown currency-dropdown">
 								<a href="javascript:void(0);" class="dropdown-toggle currency-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class="isax isax-dollar-circle4 currency-icon"></i>
-									<span class="currency-text">USD</span>
+									<span class="currency-text">PKR</span>
 								</a>
 								<ul class="dropdown-menu currency-menu">
 									<li>
 										<a class="dropdown-item currency-item active" href="javascript:void(0);">
-											<span class="currency-symbol">$</span>
-											<span>USD - US Dollar</span>
+											<span class="currency-symbol">Rs</span>
+											<span>PKR - Pakistani Rupee</span>
 											<i class="isax isax-tick-circle5 check-icon"></i>
 										</a>
 									</li>
@@ -356,7 +356,7 @@
 								</div>
 								<div class="d-flex align-items-center justify-content-end">
 									<button id="btn-pay-jazzcash" class="btn rounded-pill px-4" style="background:#cc0000;border-color:#cc0000;color:#fff;">
-										<i class="fa fa-lock me-2"></i>Pay <span id="jazzcash-amount">$0.00</span> via JazzCash
+										<i class="fa fa-lock me-2"></i>Pay <span id="jazzcash-amount">Rs 0</span> via JazzCash
 									</button>
 								</div>
 							</div>
@@ -366,7 +366,7 @@
 									<div class="col-md-6"><div class="input-block"><label class="form-label">Name on Card<span class="text-danger ms-1">*</span></label><input type="text" id="co-cardName" class="form-control"></div></div>
 									<div class="col-md-6"><div class="input-block"><label class="form-label">Expiry Date<span class="text-danger ms-1">*</span></label><input type="text" id="co-expiry" class="form-control" placeholder="MM/YY"></div></div>
 									<div class="col-md-6"><div class="input-block"><label class="form-label">CVV<span class="text-danger ms-1">*</span></label><input type="text" id="co-cvv" class="form-control" placeholder="123"></div></div>
-									<div class="col-md-12"><div class="d-flex align-items-center justify-content-end"><button id="btn-pay-card" class="btn btn-secondary rounded-pill px-4"><i class="fa fa-lock me-2"></i>Pay <span id="card-amount">$0.00</span></button></div></div>
+									<div class="col-md-12"><div class="d-flex align-items-center justify-content-end"><button id="btn-pay-card" class="btn btn-secondary rounded-pill px-4"><i class="fa fa-lock me-2"></i>Pay <span id="card-amount">Rs 0</span></button></div></div>
 								</div>
 							</div>
 						</div>
@@ -506,7 +506,7 @@
 		function sc(i) { localStorage.setItem(CK, JSON.stringify(i)); }
 		function rm(id){ sc(gc().filter(function(i){return String(i.id)!==String(id);})); ro(); }
 		function gt(){ var s=gc().reduce(function(a,i){return a+(parseFloat(i.price)||0);},0); return {s:s,t:s*VAT,total:s+s*VAT}; }
-		function f(n){return '$'+n.toFixed(2);}
+		function f(n){return 'Rs '+Number(n||0).toLocaleString('en-PK',{maximumFractionDigits:0});}
 		function el(id){return document.getElementById(id);}
 
 		function ro() {
@@ -520,7 +520,7 @@
 					var th=item.thumbnail
 						? '<img src="'+item.thumbnail+'" alt="" style="width:56px;height:56px;object-fit:cover;border-radius:6px;">'
 						: '<div style="width:56px;height:56px;background:#e8e8e8;border-radius:6px;display:flex;align-items:center;justify-content:center;"><i class="isax isax-gallery" style="color:#aaa;"></i></div>';
-					var pr=parseFloat(item.price)>0 ? '$'+parseFloat(item.price).toFixed(2) : 'Free';
+					var pr=parseFloat(item.price)>0 ? ('Rs '+parseFloat(item.price).toLocaleString('en-PK',{maximumFractionDigits:0})) : 'Free';
 					return '<div class="d-flex align-items-center gap-3 mb-3">'
 						+'<div style="position:relative;flex-shrink:0;">'+th
 						+'<a href="javascript:void(0);" class="ri" data-id="'+item.id+'" style="position:absolute;top:-5px;right:-5px;background:#dc3545;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;"><i style="color:#fff;font-size:9px;" class="fa fa-times"></i></a></div>'

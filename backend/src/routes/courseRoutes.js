@@ -34,8 +34,15 @@ router.delete(
 router.post(
   '/:id/publish',
   authMiddleware,
-  roleMiddleware(['instructor', 'admin']),
+  roleMiddleware(['admin']),
   courseController.publishCourse
+);
+
+router.post(
+  '/:id/submit-for-approval',
+  authMiddleware,
+  roleMiddleware(['instructor', 'admin']),
+  courseController.submitCourseForApproval
 );
 
 router.get('/:id/stats', authMiddleware, courseController.getCourseStats);

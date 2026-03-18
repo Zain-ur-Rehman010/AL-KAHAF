@@ -26,6 +26,24 @@
     <link rel="stylesheet" href="/assets/css/style.css">
 
     <style>
+        .simple-course-card {
+            background: #fff;
+            border: 1px solid #e4e9f0;
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 10px 24px rgba(13, 29, 44, 0.06);
+            margin-bottom: 22px;
+        }
+        .workflow-note {
+            border-left: 3px solid #d8ac27;
+            background: #fffbf0;
+            border-radius: 8px;
+            padding: 12px 14px;
+            color: #5d4a24;
+            font-size: 14px;
+        }
+        .legacy-wizard { display: none !important; }
+
         .wizard-form-card {
             background: white;
             border-radius: 12px;
@@ -209,6 +227,43 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 mx-auto">
+                        <div class="simple-course-card">
+                            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                                <h5 class="mb-0"><i class="iconsax me-2" data-icon="note-2"></i>Assign Course to Instructor</h5>
+                                <span class="badge bg-info-light text-info">Single Page Workflow</span>
+                            </div>
+                            <p class="text-muted mb-3">Select a predefined course title and assign it to an instructor. The instructor will complete full details and submit it back for admin approval.</p>
+
+                            <div class="workflow-note mb-3">
+                                Workflow: <strong>Admin assigns</strong> -> <strong>Instructor completes details</strong> -> <strong>Submit for approval</strong> -> <strong>Admin approves to publish</strong>.
+                            </div>
+
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Course Title (Predefined Catalog) <span class="text-danger">*</span></label>
+                                    <select class="form-select" id="predefinedCourseId">
+                                        <option value="">Loading predefined courses...</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Assign To Instructor <span class="text-danger">*</span></label>
+                                    <select class="form-select instructor-select" id="assignInstructorId">
+                                        <option value="">Loading instructors...</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div id="simple-submit-alert" class="alert alert-danger d-none mt-3 mb-0"></div>
+
+                            <div class="d-flex gap-2 justify-content-end mt-4">
+                                <a href="/admin/courses-list" class="btn btn-outline-secondary">Cancel</a>
+                                <button type="button" class="btn btn-save" id="createAssignedCourseBtn" onclick="createAssignedCourse()">
+                                    <i class="iconsax me-2" data-icon="tick-circle"></i> Assign Course
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="legacy-wizard">
 
                         <!-- Step Indicator -->
                         <ul class="form-wizard-steps" id="stepIndicator">
@@ -320,7 +375,7 @@
                             <div class="step-title"><h5><i class="iconsax me-2" data-icon="teacher"></i> Assign Instructor</h5></div>
                             <div class="mb-3">
                                 <label class="form-label">Select Instructor <span class="text-danger">*</span></label>
-                                <select class="form-select" id="instructorId">
+                                <select class="form-select instructor-select" id="instructorId">
                                     <option value="">Loading instructors...</option>
                                 </select>
                                 <small class="text-muted">The course will be listed under this instructor's name.</small>
@@ -429,11 +484,11 @@
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3" id="priceSection">
-                                    <label class="form-label">Price ($)</label>
+                                    <label class="form-label">Price (Rs)</label>
                                     <input type="number" class="form-control" id="price" min="0" step="0.01" value="49.99">
                                 </div>
                                 <div class="col-md-6 mb-3" id="discountSection">
-                                    <label class="form-label">Discount Price ($)</label>
+                                    <label class="form-label">Discount Price (Rs)</label>
                                     <input type="number" class="form-control" id="discountPrice" min="0" step="0.01" placeholder="Leave empty if none">
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -476,6 +531,7 @@
                                 </div>
                             </div>
                         </div>
+                        </div>
 
                     </div>
                 </div>
@@ -504,6 +560,7 @@
         const totalSteps = 5;
         let moduleCounter = 0;
         let thumbnailUrl = null;
+        const predefinedCourseById = new Map();
 
         async function uploadImage(file, folder) {
             const formData = new FormData();
@@ -524,6 +581,7 @@
         document.addEventListener('DOMContentLoaded', function () {
             checkAuth();
             loadInstructors();
+            loadPredefinedCoursesForAssignment();
         });
 
         function checkAuth() {
@@ -542,18 +600,123 @@
                     headers: API_CONFIG.getHeaders(true)
                 });
                 const result = await res.json();
-                const select = document.getElementById('instructorId');
-                select.innerHTML = '<option value="">Select Instructor</option>';
+                const selects = Array.from(document.querySelectorAll('.instructor-select'));
+                selects.forEach(function(select) {
+                    select.innerHTML = '<option value="">Select Instructor</option>';
+                });
+
                 if (result.success && result.data && result.data.length > 0) {
                     result.data.forEach(function (inst) {
-                        const opt = document.createElement('option');
-                        opt.value = inst.id;
-                        opt.textContent = inst.firstName + ' ' + inst.lastName;
-                        select.appendChild(opt);
+                        selects.forEach(function(select) {
+                            const opt = document.createElement('option');
+                            opt.value = inst.id;
+                            opt.textContent = inst.firstName + ' ' + inst.lastName;
+                            select.appendChild(opt);
+                        });
                     });
                 }
             } catch (e) {
-                document.getElementById('instructorId').innerHTML = '<option value="">Could not load instructors</option>';
+                Array.from(document.querySelectorAll('.instructor-select')).forEach(function(select) {
+                    select.innerHTML = '<option value="">Could not load instructors</option>';
+                });
+            }
+        }
+
+        async function loadPredefinedCoursesForAssignment() {
+            const select = document.getElementById('predefinedCourseId');
+            if (!select) return;
+            try {
+                const res = await fetch(API_CONFIG.BASE_URL + '/admin/predefined-courses', {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+                const result = await res.json();
+                select.innerHTML = '<option value="">Select Course Title</option>';
+                predefinedCourseById.clear();
+
+                if (!res.ok || !result.success) {
+                    throw new Error(result.message || 'Failed to load predefined courses');
+                }
+
+                const grouped = result.data?.grouped || {};
+                Object.keys(grouped).sort().forEach(function(category) {
+                    const group = document.createElement('optgroup');
+                    group.label = category;
+                    grouped[category].forEach(function(item) {
+                        predefinedCourseById.set(item.id, {
+                            id: item.id,
+                            courseName: item.courseName,
+                            category: category
+                        });
+                        const opt = document.createElement('option');
+                        opt.value = item.id;
+                        opt.textContent = item.courseName;
+                        group.appendChild(opt);
+                    });
+                    select.appendChild(group);
+                });
+            } catch (error) {
+                select.innerHTML = '<option value="">Could not load predefined courses</option>';
+            }
+        }
+
+        async function createAssignedCourse() {
+            const alertEl = document.getElementById('simple-submit-alert');
+            const btn = document.getElementById('createAssignedCourseBtn');
+            alertEl.classList.add('d-none');
+
+            const predefinedId = (document.getElementById('predefinedCourseId') || {}).value;
+            const instructorId = (document.getElementById('assignInstructorId') || {}).value;
+            const selected = predefinedCourseById.get(predefinedId);
+
+            if (!selected) {
+                alertEl.textContent = 'Please select a predefined course title.';
+                alertEl.classList.remove('d-none');
+                return;
+            }
+            if (!instructorId) {
+                alertEl.textContent = 'Please select an instructor.';
+                alertEl.classList.remove('d-none');
+                return;
+            }
+
+            const payload = {
+                title: selected.courseName,
+                description: 'Course assigned by admin. Instructor will complete full course details.',
+                detailedDescription: '',
+                category: selected.category || 'General',
+                level: 'beginner',
+                language: 'English',
+                duration: 0,
+                price: 0,
+                discountPrice: null,
+                instructorId: instructorId,
+                requirements: [],
+                outcomes: [],
+                isFeatured: false,
+                certificateAvailable: true
+            };
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="iconsax me-2" data-icon="loader"></i> Assigning...';
+            try {
+                const res = await fetch(API_CONFIG.BASE_URL + '/courses', {
+                    method: 'POST',
+                    headers: API_CONFIG.getHeaders(true),
+                    body: JSON.stringify(payload)
+                });
+                const result = await res.json();
+                if (!res.ok) {
+                    throw new Error(result.message || 'Could not assign course');
+                }
+                showToast('Course assigned successfully. Instructor can now complete details.', 'success');
+                setTimeout(function () {
+                    window.location.href = '/admin/courses-list';
+                }, 1300);
+            } catch (err) {
+                alertEl.textContent = err.message || 'Failed to assign course.';
+                alertEl.classList.remove('d-none');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="iconsax me-2" data-icon="tick-circle"></i> Assign Course';
             }
         }
 

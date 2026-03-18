@@ -401,17 +401,16 @@
 										</select>
 									</div>
 									<div class="col-md-6 mb-3" id="priceSection">
-										<label class="form-label">Price ($)</label>
+										<label class="form-label">Price (Rs)</label>
 										<input type="number" class="form-control" id="price" min="0" step="0.01" value="49.99">
 									</div>
 									<div class="col-md-6 mb-3" id="discountSection">
-										<label class="form-label">Discount Price ($)</label>
+										<label class="form-label">Discount Price (Rs)</label>
 										<input type="number" class="form-control" id="discountPrice" min="0" step="0.01" placeholder="Leave empty if none">
 									</div>
 									<div class="col-md-6 mb-3">
 										<label class="form-label">Status</label>
 										<select class="form-select" id="status">
-											<option value="published">Published</option>
 											<option value="pending_approval">Pending Approval</option>
 											<option value="draft">Draft</option>
 											<option value="archived">Archived</option>
@@ -445,6 +444,9 @@
 										<a href="/instructor/instructor-course" class="btn btn-outline-secondary">Cancel</a>
 										<button type="button" class="btn btn-save" id="saveCourseBtn" onclick="saveCourse()">
 											<i class="isax isax-tick-circle me-2"></i> Save Changes
+										</button>
+										<button type="button" class="btn btn-primary" id="submitApprovalBtn" onclick="submitForApproval()">
+											<i class="isax isax-send-2 me-2"></i> Submit for Approval
 										</button>
 									</div>
 								</div>
@@ -806,7 +808,7 @@
         }
 
         // ── Collect form data ─────────────────────────────────────────────────
-        function collectData() {
+        function collectData(forceStatus) {
             var outcomes = [];
             document.querySelectorAll('[data-outcome-index]').forEach(function (el) {
                 if (el.value.trim()) outcomes.push(el.value.trim());
@@ -825,7 +827,7 @@
                 duration: parseFloat(document.getElementById('duration').value) || 0,
                 price: parseFloat(document.getElementById('price').value) || 0,
                 discountPrice: parseFloat(document.getElementById('discountPrice').value) || null,
-                status: document.getElementById('status').value,
+                status: forceStatus || document.getElementById('status').value,
                 isFeatured: document.getElementById('isFeatured').checked,
                 certificateAvailable: document.getElementById('certificateAvailable').checked,
                 outcomes: outcomes,
@@ -835,12 +837,14 @@
         }
 
         // ── Save course (PUT) ─────────────────────────────────────────────────
-        async function saveCourse() {
+        async function saveCourse(options) {
+            var opts = options || {};
             var btn = document.getElementById('saveCourseBtn');
+            var submitBtn = document.getElementById('submitApprovalBtn');
             var alertEl = document.getElementById('course-submit-alert');
             alertEl.classList.add('d-none');
 
-            var data = collectData();
+            var data = collectData(opts.forceStatus);
             if (!data.title) {
                 alertEl.textContent = 'Please go back to Step 1 and fill in the course title.';
                 alertEl.classList.remove('d-none');
@@ -848,6 +852,7 @@
             }
 
             btn.disabled = true;
+            if (submitBtn) submitBtn.disabled = true;
             btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span> Saving...';
 
             try {
@@ -918,7 +923,7 @@
                     }
                 }
 
-                showToast('Course updated successfully!', 'success');
+                showToast(opts.successMessage || 'Course updated successfully!', 'success');
                 setTimeout(function () {
                     window.location.href = '/instructor/instructor-course';
                 }, 1500);
@@ -927,8 +932,16 @@
                 alertEl.textContent = 'Network error — could not reach server.';
                 alertEl.classList.remove('d-none');
                 btn.disabled = false;
+                if (submitBtn) submitBtn.disabled = false;
                 btn.innerHTML = '<i class="isax isax-tick-circle me-2"></i> Save Changes';
             }
+        }
+
+        async function submitForApproval() {
+            await saveCourse({
+                forceStatus: 'pending_approval',
+                successMessage: 'Course submitted for admin approval successfully!'
+            });
         }
 
         // ── Toast notification ────────────────────────────────────────────────

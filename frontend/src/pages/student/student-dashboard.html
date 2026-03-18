@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html> 
+<!DOCTYPE html> 
 <html lang="en">
 	<head>
 	
@@ -89,10 +89,10 @@
 								</div>
 								<div class="dropdown mb-2 me-3">
 									<a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-										USD
+										PKR
 									</a>
 									<ul class="dropdown-menu p-2 mt-2">
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
+										<li><a class="dropdown-item rounded" href="javascript:void(0);">PKR</a></li>
 										<li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
 										<li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
 									</ul>
@@ -731,7 +731,7 @@
 					grid.innerHTML=E.slice(0,3).map(function(enr){
 						var c=enr.course||{};
 						var th=c.thumbnail?'<img src="'+c.thumbnail+'" alt="" class="img-fluid">':'<img src="/assets/img/course/course-01.jpg" alt="" class="img-fluid">';
-						var pr=parseFloat(c.price)>0?'$'+parseFloat(c.price).toFixed(2):'Free';
+						var pr=parseFloat(c.price)>0?'Rs '+parseFloat(c.price).toLocaleString('en-PK',{maximumFractionDigits:0}):'Free';
 						var pg=enr.progress||0;
 						var ur='/courses/course-details?id='+(c.id||'');
 						return '<div class="col-xl-4 col-md-6"><div class="course-item-two course-item mx-0">'
@@ -759,7 +759,7 @@
 						return '<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2'+(il?'':' mb-3')+'">'
 						+'<div><h6 class="mb-1">'+(c.title||'Course')+'</h6>'
 						+'<div class="d-flex align-items-center"><span class="badge badge-sm bg-light border d-inline-flex me-3">'+nm+'</span>'
-						+'<p class="small">Amount: <span class="heading-color fw-semibold">$'+am.toFixed(2)+'</span></p></div></div>'
+						+'<p class="small">Amount: <span class="heading-color fw-semibold">Rs '+am.toLocaleString('en-PK',{maximumFractionDigits:0})+'</span></p></div></div>'
 						+'<span class="badge fw-normal bg-success d-inline-flex align-items-center"><i class="fa-solid fa-circle fs-5 me-1"></i>Paid</span></div>';
 					}).join('');
 				}

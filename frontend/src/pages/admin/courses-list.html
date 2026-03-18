@@ -563,7 +563,7 @@
 					course.instructor?.firstName + ' ' + course.instructor?.lastName,
 					`<span class="badge bg-primary-light text-primary">${course.category}</span>`,
 					getLevelBadge(course.level),
-					course.price === 0 ? '<span class="price-badge text-success">Free</span>' : `<span class="price-badge text-primary">$${course.price}</span>`,
+					course.price === 0 ? '<span class="price-badge text-success">Free</span>' : `<span class="price-badge text-primary">Rs ${Number(course.price || 0).toLocaleString('en-PK')}</span>`,
 					course.enrollmentCount || 0,
 					getStatusBadge(course.status),
 					formatDate(course.createdAt),
@@ -712,7 +712,7 @@
 			document.getElementById('published-count').textContent = stats.publishedCount || 0;
 			document.getElementById('draft-count').textContent = stats.draftCount || 0;
 			document.getElementById('total-students').textContent = stats.totalStudents || 0;
-			document.getElementById('total-revenue').textContent = '$' + (stats.totalRevenue || 0);
+			document.getElementById('total-revenue').textContent = 'Rs ' + Number(stats.totalRevenue || 0).toLocaleString('en-PK');
 		}
 
 		function showAlert(type, message) {

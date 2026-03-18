@@ -1,4 +1,4 @@
-﻿/*
+/*
 Author       : Dreamguys
 Template Name: Al-Kahaf LMS - Bootstrap Template
 Version      : 1.0
@@ -2180,4 +2180,78 @@ Version      : 1.0
 			: path.startsWith(href);
 		if (isActive) li.classList.add('active');
 	});
+})();
+
+// ── Global Currency Localization (PKR) ───────────────────────────────────────
+(function () {
+	var TARGET_CODE = 'PKR';
+	var TARGET_SYMBOL = 'Rs';
+
+	function shouldSkipTextNode(node) {
+		if (!node || !node.parentElement) return true;
+		var tag = node.parentElement.tagName;
+		if (!tag) return true;
+		return ['SCRIPT', 'STYLE', 'NOSCRIPT', 'TEXTAREA'].indexOf(tag) !== -1;
+	}
+
+	function normalizeCurrencyText(text) {
+		if (!text) return text;
+		var out = text;
+		out = out.replace(/\bUSD\b/g, TARGET_CODE);
+		out = out.replace(/US Dollar/gi, 'Pakistani Rupee');
+		out = out.replace(/\$ ?([0-9]+(?:,[0-9]{3})*(?:\.[0-9]{1,2})?)/g, TARGET_SYMBOL + ' $1');
+		out = out.replace(/Minimum withdraw amount is\s*\$ ?([0-9]+(?:\.[0-9]{1,2})?)/gi, 'Minimum withdraw amount is ' + TARGET_SYMBOL + ' $1');
+		return out;
+	}
+
+	function localizeTextNodes(root) {
+		if (!root) return;
+		var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null, false);
+		var node;
+		while ((node = walker.nextNode())) {
+			if (shouldSkipTextNode(node)) continue;
+			var original = node.nodeValue;
+			var normalized = normalizeCurrencyText(original);
+			if (normalized !== original) node.nodeValue = normalized;
+		}
+	}
+
+	function localizeAttributeValues() {
+		document.querySelectorAll('input[value^="$"], input[placeholder^="$"]').forEach(function (el) {
+			if (typeof el.value === 'string' && el.value.trim().indexOf('$') === 0) {
+				el.value = el.value.replace('$', TARGET_SYMBOL + ' ');
+			}
+			if (typeof el.placeholder === 'string' && el.placeholder.trim().indexOf('$') === 0) {
+				el.placeholder = el.placeholder.replace('$', TARGET_SYMBOL + ' ');
+			}
+		});
+	}
+
+	function localizeCurrencyWidgets() {
+		document.querySelectorAll('.currency-text').forEach(function (el) {
+			el.textContent = TARGET_CODE;
+		});
+		document.querySelectorAll('.currency-symbol').forEach(function (el) {
+			if (el.textContent && el.textContent.trim() === '$') {
+				el.textContent = TARGET_SYMBOL;
+			}
+		});
+		document.querySelectorAll('.currency-item, .dropdown-item').forEach(function (el) {
+			if (!el || !el.textContent) return;
+			var txt = el.textContent.trim();
+			if (txt === 'USD') el.textContent = 'PKR';
+		});
+	}
+
+	function applyPkrLocalization() {
+		localizeCurrencyWidgets();
+		localizeAttributeValues();
+		localizeTextNodes(document.body);
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', applyPkrLocalization);
+	} else {
+		applyPkrLocalization();
+	}
 })();

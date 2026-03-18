@@ -28,7 +28,7 @@ const Payment = sequelize.define('Payment', {
   },
   currency: {
     type: DataTypes.STRING,
-    defaultValue: 'USD',
+    defaultValue: 'PKR',
   },
   status: {
     type: DataTypes.ENUM('pending', 'completed', 'failed', 'refunded', 'cancelled'),

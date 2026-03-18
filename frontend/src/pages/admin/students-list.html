@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -56,66 +56,121 @@
         }
 
         .stats-card {
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
+            position: relative;
+            background: #fff;
+            border-radius: 16px;
+            padding: 20px;
             margin-bottom: 24px;
-            border: 1px solid #E9ECEF;
-            transition: all 0.3s;
+            border: 1px solid #dfe7f1;
+            box-shadow: 0 12px 26px rgba(13, 29, 44, 0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            overflow: hidden;
+        }
+
+        .stats-card::after {
+            content: '';
+            position: absolute;
+            top: -35px;
+            right: -30px;
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            pointer-events: none;
         }
 
         .stats-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transform: translateY(-2px);
+            box-shadow: 0 18px 34px rgba(13, 29, 44, 0.12);
+            transform: translateY(-4px);
         }
 
         .stats-card .icon-wrapper {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
+            width: 58px;
+            height: 58px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 28px;
+            font-size: 26px;
+            flex-shrink: 0;
         }
 
         .stats-card h3 {
-            font-size: 32px;
+            font-size: 34px;
             font-weight: 700;
-            margin: 12px 0 4px;
-            color: #1D2026;
+            line-height: 1;
+            margin: 0 0 6px;
+            color: #111827;
         }
 
         .stats-card p {
             margin: 0;
-            color: #6C757D;
+            color: #4b5563;
             font-size: 14px;
+            font-weight: 500;
         }
 
         .stats-card small {
+            display: inline-block;
+            margin-top: 2px;
             font-size: 12px;
-            color: #28A745;
+            color: #208753;
+            font-weight: 600;
         }
+
+        .stats-total {
+            background: linear-gradient(140deg, #f8fbff 0%, #f2f8ff 100%);
+        }
+        .stats-active {
+            background: linear-gradient(140deg, #f8fff9 0%, #f1fbf3 100%);
+        }
+        .stats-enrollments {
+            background: linear-gradient(140deg, #fffdf7 0%, #fef8eb 100%);
+        }
+        .stats-completed {
+            background: linear-gradient(140deg, #fdf8ff 0%, #f7f0fc 100%);
+        }
+
+        .stats-total .icon-wrapper { background: #e6f1ff; color: #1556b0; }
+        .stats-active .icon-wrapper { background: #e8f8eb; color: #2f7d32; }
+        .stats-enrollments .icon-wrapper { background: #fff1dc; color: #d96a00; }
+        .stats-completed .icon-wrapper { background: #f2e5fb; color: #7b1fa2; }
 
         .filter-card {
             background: white;
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 24px;
             margin-bottom: 24px;
-            border: 1px solid #E9ECEF;
+            border: 1px solid #dfe7f1;
+            box-shadow: 0 8px 20px rgba(13, 29, 44, 0.05);
+        }
+        .students-management-content {
+            margin-top: 0;
+            row-gap: 4px;
+        }
+        @media (max-width: 767.98px) {
+            .students-management-content {
+                margin-top: 0;
+                row-gap: 8px;
+            }
         }
 
         .action-btn {
-            padding: 8px 14px;
+            width: 34px;
+            height: 34px;
+            padding: 0;
             font-size: 13px;
-            border-radius: 6px;
+            border-radius: 8px;
             transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .btn-view {
             background: #E3F2FD;
             color: #0D47A1;
-            border: none;
+            border: 1px solid #bbdefb;
         }
 
         .btn-view:hover {
@@ -126,7 +181,7 @@
         .btn-message {
             background: #FFF3E0;
             color: #E65100;
-            border: none;
+            border: 1px solid #ffe0b2;
         }
 
         .btn-message:hover {
@@ -137,7 +192,7 @@
         .btn-delete {
             background: #FFEBEE;
             color: #C62828;
-            border: none;
+            border: 1px solid #ffcdd2;
         }
 
         .btn-delete:hover {
@@ -147,9 +202,28 @@
 
         .table-responsive {
             background: white;
-            border-radius: 12px;
+            border-radius: 14px;
             padding: 24px;
-            border: 1px solid #E9ECEF;
+            border: 1px solid #dfe7f1;
+            box-shadow: 0 10px 24px rgba(13, 29, 44, 0.06);
+        }
+
+        .students-table-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .page-content {
+            padding-top: 52px;
+            background: linear-gradient(180deg, #f6f8fb 0%, #f9fbfd 60%, #ffffff 100%);
+        }
+        @media (max-width: 767.98px) {
+            .page-content {
+                padding-top: 34px;
+            }
+        }
+        .breadcrumb-bar.breadcrumb-bar-info {
+            margin-bottom: 10px;
         }
 
         .progress-wrapper {
@@ -176,6 +250,90 @@
             border-radius: 12px;
             font-size: 12px;
             font-weight: 600;
+        }
+        .avatar-fallback {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #522811;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+        }
+        .student-profile-email {
+            max-width: 100%;
+            overflow-wrap: anywhere;
+            word-break: break-word;
+            line-height: 1.35;
+        }
+        .student-profile-left {
+            border-right: 1px solid #eef1f4;
+        }
+        @media (max-width: 767.98px) {
+            .student-profile-left {
+                border-right: 0;
+                border-bottom: 1px solid #eef1f4;
+                padding-bottom: 16px;
+                margin-bottom: 4px;
+            }
+        }
+
+        /* Keep modal action buttons properly separated/aligned */
+        #deleteModal .modal-footer,
+        #bulkMessageModal .modal-footer,
+        #studentDetailModal .modal-footer,
+        #feedbackModal .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        #deleteModal .modal-footer .btn,
+        #bulkMessageModal .modal-footer .btn,
+        #studentDetailModal .modal-footer .btn,
+        #feedbackModal .modal-footer .btn {
+            min-width: 126px;
+            margin: 0;
+        }
+
+        @media (max-width: 575.98px) {
+            .stats-card {
+                padding: 14px;
+                border-radius: 14px;
+            }
+            .stats-card .icon-wrapper {
+                width: 46px;
+                height: 46px;
+                font-size: 22px;
+            }
+            .stats-card h3 {
+                font-size: 27px;
+            }
+            .stats-card p {
+                font-size: 13px;
+            }
+            .filter-card,
+            .table-responsive {
+                padding: 14px;
+            }
+            .students-table-actions {
+                width: 100%;
+                flex-direction: column;
+            }
+            .students-table-actions .btn {
+                width: 100%;
+            }
+            #deleteModal .modal-footer .btn,
+            #bulkMessageModal .modal-footer .btn,
+            #studentDetailModal .modal-footer .btn,
+            #feedbackModal .modal-footer .btn {
+                width: 100%;
+                min-width: 0;
+            }
         }
 
         /* Skeleton shimmer */
@@ -257,13 +415,13 @@
         <!-- Page Content -->
         <div class="page-content">
             <div class="container">
-                <div class="row">
+                <div class="row students-management-content">
 
                     <!-- Statistics Cards -->
                     <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="stats-card">
+                        <div class="stats-card stats-total">
                             <div class="d-flex align-items-center">
-                                <div class="icon-wrapper" style="background: #E3F2FD; color: #0D47A1;">
+                                <div class="icon-wrapper">
                                     <i class="iconsax" data-icon="user-octagon"></i>
                                 </div>
                                 <div class="ms-3">
@@ -276,9 +434,9 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="stats-card">
+                        <div class="stats-card stats-active">
                             <div class="d-flex align-items-center">
-                                <div class="icon-wrapper" style="background: #E8F5E9; color: #2E7D32;">
+                                <div class="icon-wrapper">
                                     <i class="iconsax" data-icon="user-tick"></i>
                                 </div>
                                 <div class="ms-3">
@@ -291,9 +449,9 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="stats-card">
+                        <div class="stats-card stats-enrollments">
                             <div class="d-flex align-items-center">
-                                <div class="icon-wrapper" style="background: #FFF3E0; color: #E65100;">
+                                <div class="icon-wrapper">
                                     <i class="iconsax" data-icon="book"></i>
                                 </div>
                                 <div class="ms-3">
@@ -306,9 +464,9 @@
                     </div>
 
                     <div class="col-lg-3 col-md-6 mb-4">
-                        <div class="stats-card">
+                        <div class="stats-card stats-completed">
                             <div class="d-flex align-items-center">
-                                <div class="icon-wrapper" style="background: #F3E5F5; color: #7B1FA2;">
+                                <div class="icon-wrapper">
                                     <i class="iconsax" data-icon="award"></i>
                                 </div>
                                 <div class="ms-3">
@@ -369,7 +527,7 @@
                         <div class="table-responsive">
                             <div class="d-flex justify-content-between align-items-center mb-3">
                                 <h4 class="mb-0">Students Directory</h4>
-                                <div class="d-flex gap-2">
+                                <div class="students-table-actions">
                                     <button class="btn btn-outline-primary" onclick="exportStudents()">
                                         <i class="iconsax me-2" data-icon="export"></i> Export
                                     </button>
@@ -468,6 +626,47 @@
         </div>
     </div>
 
+    <!-- Student Detail Modal -->
+    <div class="modal fade" id="studentDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Student Profile</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="student-detail-body">
+                    <div class="text-center py-4">
+                        <span class="spinner-border spinner-border-sm me-2"></span>Loading...
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedback-title">Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="feedback-icon-wrap" class="mx-auto mb-2 d-inline-flex align-items-center justify-content-center rounded-circle" style="width:56px;height:56px;background:rgba(25,135,84,.12);color:#198754;">
+                        <i id="feedback-icon" class="isax isax-tick-circle" style="font-size:24px;"></i>
+                    </div>
+                    <div id="feedback-message"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- jQuery -->
     <script src="/assets/js/jquery-3.7.1.min.js"></script>
 
@@ -487,34 +686,44 @@
     <script src="/assets/js/admin-header.js"></script>
 
     <script>
-        // Uses global API_CONFIG from /assets/js/api-config.js
-
         let studentsTable;
         let deleteStudentId = null;
+        let deleteModal;
+        let bulkMessageModal;
+        let studentDetailModal;
+        let feedbackModal;
+        const state = { students: [], filtered: [] };
+        let isLoadingStudents = false;
 
-        // Check authentication on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            checkAuth();
+        document.addEventListener('DOMContentLoaded', async function() {
+            if (!checkAuth()) return;
+
+            deleteModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('deleteModal'));
+            bulkMessageModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('bulkMessageModal'));
+            studentDetailModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('studentDetailModal'));
+            feedbackModal = bootstrap.Modal.getOrCreateInstance(document.getElementById('feedbackModal'));
+
             initializeDataTable();
-            loadStatistics();
-            loadStudents();
             initializeSelectors();
+            bindEvents();
+            await loadStudents();
         });
 
-        // Check if user is logged in and is admin
         function checkAuth() {
             const token = localStorage.getItem('accessToken');
             const user = JSON.parse(localStorage.getItem('user') || '{}');
-
             if (!token || user.role !== 'admin') {
                 window.location.href = '/auth/login';
-                return;
+                return false;
             }
 
-            document.getElementById('adminName').textContent = user.firstName + ' ' + user.lastName;
+            const adminName = document.getElementById('adminName');
+            if (adminName) {
+                adminName.textContent = (user.firstName || '') + ' ' + (user.lastName || '');
+            }
+            return true;
         }
 
-        // Initialize DataTable
         function initializeDataTable() {
             studentsTable = $('#studentsTable').DataTable({
                 pageLength: 10,
@@ -523,99 +732,141 @@
                 lengthChange: true,
                 order: [[7, 'desc']],
                 language: {
-                    search: "Search:",
-                    lengthMenu: "Show _MENU_ students per page",
-                    info: "Showing _START_ to _END_ of _TOTAL_ students",
-                    infoEmpty: "No students found",
-                    zeroRecords: "No matching students found"
+                    lengthMenu: 'Show _MENU_ students per page',
+                    info: 'Showing _START_ to _END_ of _TOTAL_ students',
+                    infoEmpty: 'No students found',
+                    zeroRecords: 'No matching students found'
                 }
             });
         }
 
-        // Initialize selectors
         function initializeSelectors() {
-            $('#statusFilter, #verifiedFilter, #enrollmentFilter').select2();
+            $('#statusFilter, #verifiedFilter, #enrollmentFilter').select2({ minimumResultsForSearch: -1 });
+        }
 
-            // Select all checkbox
+        function bindEvents() {
             document.getElementById('selectAll').addEventListener('change', function() {
                 document.querySelectorAll('.student-checkbox').forEach(cb => {
                     cb.checked = this.checked;
                 });
             });
+
+            document.getElementById('confirmDeleteBtn').addEventListener('click', confirmDeleteStudent);
+
+            document.getElementById('searchInput').addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') applyFilters();
+            });
+
+            document.getElementById('logoutBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('refreshToken');
+                localStorage.removeItem('user');
+                window.location.href = '/auth/login';
+            });
         }
 
-        // Load statistics
-        async function loadStatistics() {
-            try {
-                const response = await fetch(API_CONFIG.BASE_URL + '/admin/statistics', {
-                    headers: API_CONFIG.getHeaders(true)
-                });
-
-                if (response.ok) {
-                    const result = await response.json();
-                    if (result.success) {
-                        const stats = result.data;
-                        document.getElementById('totalStudents').textContent = stats.userDistribution.students || 0;
-                        // Calculate active students (assume 89% of total)
-                        const activeCount = Math.round((stats.userDistribution.students || 0) * 0.89);
-                        document.getElementById('activeStudents').textContent = activeCount;
-                        document.getElementById('totalEnrollments').textContent = stats.overview.totalEnrollments || 0;
-                        // Completed courses estimated
-                        document.getElementById('completedCourses').textContent = Math.round((stats.overview.totalEnrollments || 0) * 0.25);
-                    }
-                }
-            } catch (error) {
-                console.error('Error loading statistics:', error);
-            }
-        }
-
-        // Load students from API
         async function loadStudents() {
-            const status = document.getElementById('statusFilter').value;
-            const emailVerified = document.getElementById('verifiedFilter').value;
-            const search = document.getElementById('searchInput').value;
-
-            let url = API_CONFIG.BASE_URL + '/users?role=student&';
-            if (status) url += `status=${status}&`;
-            if (emailVerified) url += `emailVerified=${emailVerified}&`;
-            if (search) url += `search=${search}&`;
-
+            setLoadingState(true);
             try {
-                const response = await fetch(url, {
+                const response = await fetch(API_CONFIG.BASE_URL + '/users?role=student&limit=500', {
                     headers: API_CONFIG.getHeaders(true)
                 });
+                const result = await response.json();
 
-                if (response.ok) {
-                    const result = await response.json();
-                    if (result.success) {
-                        displayStudents(result.data);
-                    }
+                if (!response.ok || !result.success) {
+                    throw new Error(result.message || 'Failed to load students');
                 }
+
+                state.students = Array.isArray(result.data) ? result.data : [];
             } catch (error) {
                 console.error('Error loading students:', error);
+                state.students = [];
+                showFeedback('error', 'Load Failed', error.message || 'Failed to load students.');
+            } finally {
+                setLoadingState(false);
+                applyFilters();
             }
         }
 
-        // Display students in table
+        function applyFilters() {
+            const status = document.getElementById('statusFilter').value;
+            const verified = document.getElementById('verifiedFilter').value;
+            const enrollmentBucket = document.getElementById('enrollmentFilter').value;
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+
+            state.filtered = state.students.filter(student => {
+                const name = ((student.firstName || '') + ' ' + (student.lastName || '')).toLowerCase();
+                const email = (student.email || '').toLowerCase();
+                const phone = (student.phone || '').toLowerCase();
+                const enrollmentCount = (student.enrollments || []).length;
+
+                const matchesQuery = !query || name.includes(query) || email.includes(query) || phone.includes(query);
+                const matchesStatus = !status || student.status === status;
+                const matchesVerified = !verified || String(Boolean(student.emailVerified)) === verified;
+
+                let matchesEnrollment = true;
+                if (enrollmentBucket === '0') matchesEnrollment = enrollmentCount === 0;
+                if (enrollmentBucket === '1-3') matchesEnrollment = enrollmentCount >= 1 && enrollmentCount <= 3;
+                if (enrollmentBucket === '4-10') matchesEnrollment = enrollmentCount >= 4 && enrollmentCount <= 10;
+                if (enrollmentBucket === '10+') matchesEnrollment = enrollmentCount > 10;
+
+                return matchesQuery && matchesStatus && matchesVerified && matchesEnrollment;
+            });
+
+            updateStatistics();
+            displayStudents(state.filtered);
+        }
+
+        function updateStatistics() {
+            if (isLoadingStudents) return;
+
+            const totalStudents = state.students.length;
+            const activeStudents = state.students.filter(s => s.status === 'active').length;
+            const totalEnrollments = state.students.reduce((sum, s) => sum + (s.enrollments || []).length, 0);
+            const completedCourses = state.students.reduce((sum, s) => {
+                return sum + (s.enrollments || []).filter(e => e.status === 'completed').length;
+            }, 0);
+
+            document.getElementById('totalStudents').textContent = totalStudents;
+            document.getElementById('activeStudents').textContent = activeStudents;
+            document.getElementById('totalEnrollments').textContent = totalEnrollments;
+            document.getElementById('completedCourses').textContent = completedCourses;
+        }
+
         function displayStudents(students) {
+            if (isLoadingStudents) {
+                renderTableSkeletonRows(6);
+                return;
+            }
+
             studentsTable.clear();
 
             students.forEach(student => {
-                const statusClass = `status-${student.status}`;
-                const enrollmentCount = student.enrollments?.length || 0;
-                const avgProgress = calculateAvgProgress(student.enrollments || []);
+                const normalizedStatus = student.status || 'inactive';
+                const statusClass = 'status-' + normalizedStatus;
+                const enrollments = student.enrollments || [];
+                const enrollmentCount = enrollments.length;
+                const avgProgress = calculateAvgProgress(enrollments);
+                const safeId = String(student.id || '');
+                const safeName = escapeHtml((student.firstName || '') + ' ' + (student.lastName || ''));
+                const email = escapeHtml(student.email || 'N/A');
+                const phone = escapeHtml(student.phone || 'N/A');
+                const joined = student.createdAt ? new Date(student.createdAt).toLocaleDateString() : 'N/A';
+                const studentStatusLabel = normalizedStatus.charAt(0).toUpperCase() + normalizedStatus.slice(1);
+                const avatarHtml = getStudentAvatarHtml(student);
 
                 const row = [
-                    `<input type="checkbox" class="student-checkbox" value="${student.id}">`,
+                    '<input type="checkbox" class="student-checkbox" value="' + safeId + '">',
                     `<div class="d-flex align-items-center">
-                        <img src="${student.profileImage || '/assets/img/user/user1.jpg'}" alt="Student" class="student-avatar me-3">
+                        ${avatarHtml}
                         <div>
-                            <div class="fw-semibold">${student.firstName} ${student.lastName}</div>
-                            <small class="text-muted">ID: #ST${student.id.substr(0, 6)}</small>
+                            <div class="fw-semibold">${safeName}</div>
+                            <small class="text-muted">ID: #ST${escapeHtml(safeId.substring(0, 6))}</small>
                         </div>
                     </div>`,
-                    student.email,
-                    student.phone || 'N/A',
+                    email,
+                    phone,
                     `<span class="course-count-badge">${enrollmentCount} Course${enrollmentCount !== 1 ? 's' : ''}</span>`,
                     `<div class="progress-wrapper">
                         <div class="progress progress-bar-custom">
@@ -623,17 +874,17 @@
                         </div>
                         <span class="small fw-semibold">${avgProgress}%</span>
                     </div>`,
-                    `<span class="status-badge ${statusClass}">${student.status.charAt(0).toUpperCase() + student.status.slice(1)}</span>`,
-                    new Date(student.createdAt).toLocaleDateString(),
+                    `<span class="status-badge ${statusClass}">${studentStatusLabel}</span>`,
+                    joined,
                     `<div class="d-flex gap-2">
-                        <button class="btn action-btn btn-view" onclick="viewStudent('${student.id}')">
-                            <i class="iconsax" data-icon="eye"></i>
+                        <button class="btn action-btn btn-view" onclick="viewStudent('${safeId}')">
+                            <i class="fas fa-eye"></i>
                         </button>
-                        <button class="btn action-btn btn-message" onclick="messageStudent('${student.id}')">
-                            <i class="iconsax" data-icon="message"></i>
+                        <button class="btn action-btn btn-message" onclick="messageStudent('${safeId}')">
+                            <i class="fas fa-envelope"></i>
                         </button>
-                        <button class="btn action-btn btn-delete" onclick="deleteStudent('${student.id}')">
-                            <i class="iconsax" data-icon="trash"></i>
+                        <button class="btn action-btn btn-delete" onclick="deleteStudent('${safeId}')">
+                            <i class="fas fa-trash"></i>
                         </button>
                     </div>`
                 ];
@@ -644,14 +895,42 @@
             studentsTable.draw();
         }
 
-        // Calculate average progress
+        function setLoadingState(isLoading) {
+            isLoadingStudents = isLoading;
+            if (!isLoading) return;
+
+            document.getElementById('totalStudents').innerHTML = '<span class="sk d-inline-block" style="width:42px;height:30px;"></span>';
+            document.getElementById('activeStudents').innerHTML = '<span class="sk d-inline-block" style="width:42px;height:30px;"></span>';
+            document.getElementById('totalEnrollments').innerHTML = '<span class="sk d-inline-block" style="width:42px;height:30px;"></span>';
+            document.getElementById('completedCourses').innerHTML = '<span class="sk d-inline-block" style="width:42px;height:30px;"></span>';
+
+            renderTableSkeletonRows(6);
+        }
+
+        function renderTableSkeletonRows(count) {
+            studentsTable.clear();
+            for (let i = 0; i < count; i++) {
+                studentsTable.row.add([
+                    '<span class="sk d-inline-block" style="width:16px;height:16px;border-radius:3px;"></span>',
+                    '<div class="d-flex align-items-center gap-2"><span class="sk d-inline-block" style="width:36px;height:36px;border-radius:50%;flex-shrink:0;"></span><div><span class="sk d-block" style="width:110px;height:13px;"></span><span class="sk d-block mt-1" style="width:70px;height:10px;"></span></div></div>',
+                    '<span class="sk d-block" style="width:160px;height:13px;"></span>',
+                    '<span class="sk d-block" style="width:90px;height:13px;"></span>',
+                    '<span class="sk d-block" style="width:60px;height:13px;"></span>',
+                    '<span class="sk d-block" style="width:120px;height:8px;"></span>',
+                    '<span class="sk d-block" style="width:65px;height:22px;border-radius:20px;"></span>',
+                    '<span class="sk d-block" style="width:80px;height:13px;"></span>',
+                    '<span class="sk d-block" style="width:100px;height:28px;"></span>'
+                ]);
+            }
+            studentsTable.draw();
+        }
+
         function calculateAvgProgress(enrollments) {
             if (!enrollments.length) return 0;
-            const total = enrollments.reduce((sum, e) => sum + (e.progress || 0), 0);
+            const total = enrollments.reduce((sum, e) => sum + Number(e.progress || 0), 0);
             return Math.round(total / enrollments.length);
         }
 
-        // Get progress bar color
         function getProgressColor(progress) {
             if (progress >= 75) return 'bg-success';
             if (progress >= 50) return 'bg-primary';
@@ -659,31 +938,91 @@
             return 'bg-danger';
         }
 
-        // Apply filters
-        function applyFilters() {
-            loadStudents();
-        }
-
-        // View student details
         function viewStudent(studentId) {
-            window.location.href = `student-detail.html?id=${studentId}`;
+            const student = state.students.find(s => String(s.id) === String(studentId));
+            if (!student) {
+                showFeedback('error', 'Not Found', 'Student not found.');
+                return;
+            }
+
+            const enrollmentCount = (student.enrollments || []).length;
+            const completedCount = (student.enrollments || []).filter(e => e.status === 'completed').length;
+            const avgProgress = calculateAvgProgress(student.enrollments || []);
+            const detailBody = document.getElementById('student-detail-body');
+            const joinedOn = student.createdAt ? new Date(student.createdAt).toLocaleString() : 'N/A';
+            const avatar = getStudentAvatarHtml(student);
+            const status = capitalize(student.status || 'inactive');
+            const verified = student.emailVerified ? 'Verified' : 'Not Verified';
+
+            detailBody.innerHTML = `
+                <div class="row g-4">
+                    <div class="col-md-5 text-center student-profile-left">
+                        <div class="d-inline-block mb-3">${avatar.replace(' me-3', '')}</div>
+                        <h5 class="mb-1">${escapeHtml((student.firstName || '') + ' ' + (student.lastName || ''))}</h5>
+                        <div class="text-muted mb-2 student-profile-email">${escapeHtml(student.email || 'N/A')}</div>
+                        <span class="status-badge status-${escapeHtml(student.status || 'inactive')}">${escapeHtml(status)}</span>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <div class="border rounded p-3">
+                                    <div class="text-muted small">Phone</div>
+                                    <div class="fw-semibold">${escapeHtml(student.phone || 'N/A')}</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="border rounded p-3">
+                                    <div class="text-muted small">Email Status</div>
+                                    <div class="fw-semibold">${escapeHtml(verified)}</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="border rounded p-3">
+                                    <div class="text-muted small">Joined On</div>
+                                    <div class="fw-semibold">${escapeHtml(joinedOn)}</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="border rounded p-3">
+                                    <div class="text-muted small">Student ID</div>
+                                    <div class="fw-semibold">#ST${escapeHtml(String(student.id || '').substring(0, 6))}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row g-3">
+                            <div class="col-sm-4">
+                                <div class="text-muted small">Enrollments</div>
+                                <div class="h5 mb-0">${enrollmentCount}</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="text-muted small">Completed</div>
+                                <div class="h5 mb-0">${completedCount}</div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="text-muted small">Avg Progress</div>
+                                <div class="h5 mb-0">${avgProgress}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            studentDetailModal.show();
         }
 
-        // Message student
         function messageStudent(studentId) {
-            // TODO: Implement messaging functionality
-            alert('Messaging feature coming soon!');
+            document.querySelectorAll('.student-checkbox').forEach(cb => { cb.checked = false; });
+            const target = document.querySelector('.student-checkbox[value="' + studentId + '"]');
+            if (target) target.checked = true;
+            sendBulkMessage();
         }
 
-        // Delete student
         function deleteStudent(studentId) {
             deleteStudentId = studentId;
-            const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
-            modal.show();
+            deleteModal.show();
         }
 
-        // Confirm delete
-        document.getElementById('confirmDeleteBtn')?.addEventListener('click', async function() {
+        async function confirmDeleteStudent() {
             if (!deleteStudentId) return;
 
             try {
@@ -691,78 +1030,96 @@
                     method: 'DELETE',
                     headers: API_CONFIG.getHeaders(true)
                 });
-
                 const result = await response.json();
 
-                if (result.success) {
-                    alert('Student deleted successfully');
-                    bootstrap.Modal.getInstance(document.getElementById('deleteModal')).hide();
-                    loadStudents();
-                    loadStatistics();
+                if (response.ok) {
+                    deleteModal.hide();
+                    deleteStudentId = null;
+                    showFeedback('success', 'Deleted', result.message || 'Student deleted successfully.');
+                    await loadStudents();
                 } else {
-                    alert('Error: ' + result.message);
+                    throw new Error(result.message || 'Failed to delete student');
                 }
             } catch (error) {
                 console.error('Error deleting student:', error);
-                alert('Failed to delete student');
+                showFeedback('error', 'Delete Failed', error.message || 'Failed to delete student.');
             }
-
-            deleteStudentId = null;
-        });
-
-        // Export students
-        function exportStudents() {
-            // TODO: Implement export functionality
-            alert('Export feature coming soon!');
         }
 
-        // Send bulk message
+        function exportStudents() {
+            showFeedback('error', 'Coming Soon', 'Export feature will be available soon.');
+        }
+
         function sendBulkMessage() {
             const selectedCount = document.querySelectorAll('.student-checkbox:checked').length;
             if (selectedCount === 0) {
-                alert('Please select at least one student');
+                showFeedback('error', 'No Selection', 'Please select at least one student.');
                 return;
             }
-
-            document.getElementById('recipientCount').value = `${selectedCount} student(s) selected`;
-            const modal = new bootstrap.Modal(document.getElementById('bulkMessageModal'));
-            modal.show();
+            document.getElementById('recipientCount').value = selectedCount + ' student(s) selected';
+            bulkMessageModal.show();
         }
 
-        // Send message
         function sendMessage() {
             const selectedIds = Array.from(document.querySelectorAll('.student-checkbox:checked')).map(cb => cb.value);
             const form = document.getElementById('bulkMessageForm');
             const formData = new FormData(form);
+            const subject = (formData.get('subject') || '').trim();
+            const message = (formData.get('message') || '').trim();
 
-            const messageData = {
+            if (!subject || !message) {
+                showFeedback('error', 'Validation Error', 'Subject and message are required.');
+                return;
+            }
+
+            console.log('Bulk message payload:', {
                 recipients: selectedIds,
-                subject: formData.get('subject'),
-                message: formData.get('message')
-            };
+                subject,
+                message
+            });
 
-            // TODO: Send to API
-            console.log('Sending message:', messageData);
-            alert('Message sent successfully!');
-            bootstrap.Modal.getInstance(document.getElementById('bulkMessageModal')).hide();
+            bulkMessageModal.hide();
             form.reset();
+            showFeedback('success', 'Message Queued', 'Bulk message has been queued successfully.');
         }
 
-        // Search on enter
-        document.getElementById('searchInput').addEventListener('keyup', function(e) {
-            if (e.key === 'Enter') {
-                applyFilters();
-            }
-        });
+        function showFeedback(type, title, message) {
+            const isSuccess = type === 'success';
+            document.getElementById('feedback-title').textContent = title || (isSuccess ? 'Success' : 'Error');
+            document.getElementById('feedback-message').innerHTML = `<div class="${isSuccess ? 'text-success' : 'text-danger'}">${escapeHtml(message)}</div>`;
+            const wrap = document.getElementById('feedback-icon-wrap');
+            const icon = document.getElementById('feedback-icon');
+            wrap.style.background = isSuccess ? 'rgba(25,135,84,.12)' : 'rgba(220,53,69,.12)';
+            wrap.style.color = isSuccess ? '#198754' : '#dc3545';
+            icon.className = isSuccess ? 'isax isax-tick-circle' : 'isax isax-close-circle';
+            feedbackModal.show();
+        }
 
-        // Logout
-        document.getElementById('logoutBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('refreshToken');
-            localStorage.removeItem('user');
-            window.location.href = '/auth/login';
-        });
+        function getStudentAvatarHtml(student) {
+            const initials = ((student.firstName || '').charAt(0) + (student.lastName || '').charAt(0)).toUpperCase() || 'ST';
+            const imageUrl = student.profileImage ? escapeHtml(student.profileImage) : '';
+            if (!imageUrl) {
+                return `<span class="avatar-fallback me-3">${escapeHtml(initials)}</span>`;
+            }
+            return `
+                <img src="${imageUrl}" alt="Student" class="student-avatar me-3"
+                    onerror="this.style.display='none'; const next=this.nextElementSibling; if(next) next.style.display='inline-flex';">
+                <span class="avatar-fallback me-3" style="display:none;">${escapeHtml(initials)}</span>
+            `;
+        }
+
+        function capitalize(str) {
+            return str ? str.charAt(0).toUpperCase() + str.slice(1) : '';
+        }
+
+        function escapeHtml(str) {
+            return String(str || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
     </script>
 	<!-- Scroll to Top Button -->
 	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">

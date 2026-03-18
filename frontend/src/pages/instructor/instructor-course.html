@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html> 
+<!DOCTYPE html> 
 <html lang="en">
 	<head>
 	
@@ -647,7 +647,7 @@
 						</div>
 					</td>
 					<td>${c.totalStudents}</td>
-					<td>${c.price === 0 ? 'Free' : '$' + c.price}</td>
+					<td>${c.price === 0 ? 'Free' : ('Rs ' + Number(c.price || 0).toLocaleString('en-PK'))}</td>
 					<td><span class="text-muted">-</span></td>
 					<td>${getStatusBadge(c.status)}</td>
 					<td>

@@ -5,9 +5,13 @@ const { notifyAdmins, notifyUser } = require('../services/notificationService');
 exports.createCourse = async (req, res) => {
   try {
     const { title, description, detailedDescription, category, price, discountPrice, level, language, duration, thumbnail, learningOutcomes, outcomes, requirements, tags, faqs, isFeatured, certificateAvailable, maxStudents, accessDuration, visibility, instructorId } = req.body;
+    const isAdminCreator = req.user.role === 'admin';
+    const assignedInstructorId = instructorId || req.user.userId;
+    const isAssignedToAnotherInstructor = Boolean(isAdminCreator && instructorId && instructorId !== req.user.userId);
+    const initialStatus = isAssignedToAnotherInstructor ? 'draft' : 'pending_approval';
 
     const course = await Course.create({
-      instructorId: instructorId || req.user.userId,
+      instructorId: assignedInstructorId,
       title,
       description,
       detailedDescription,
@@ -27,19 +31,21 @@ exports.createCourse = async (req, res) => {
       maxStudents: maxStudents || null,
       accessDuration: accessDuration || null,
       visibility: visibility || 'public',
-      status: 'pending_approval',
+      status: initialStatus,
     });
 
-    notifyAdmins({
-      type: 'course_update',
-      title: 'New Course Pending Approval',
-      message: `A new course "${course.title}" has been submitted by an instructor and is awaiting your approval.`,
-      actionUrl: '/admin/courses-list',
-    });
+    if (course.status === 'pending_approval') {
+      notifyAdmins({
+        type: 'course_update',
+        title: 'New Course Pending Approval',
+        message: `A new course "${course.title}" has been submitted by an instructor and is awaiting your approval.`,
+        actionUrl: '/admin/courses-list',
+      });
+    }
 
     // If admin assigned this course to a specific instructor, notify them
-    if (instructorId && instructorId !== req.user.userId) {
-      notifyUser(instructorId, {
+    if (isAssignedToAnotherInstructor) {
+      notifyUser(assignedInstructorId, {
         type: 'course_update',
         title: 'New Course Assigned to You',
         message: `Admin of Al-Kahaf Online Academy has assigned you the course "${course.title}". Please review it and add all course details including modules and lessons.`,
@@ -48,7 +54,9 @@ exports.createCourse = async (req, res) => {
     }
 
     res.status(201).json({
-      message: 'Course created successfully',
+      message: isAssignedToAnotherInstructor
+        ? 'Course assigned to instructor successfully'
+        : 'Course created successfully',
       course,
     });
   } catch (error) {
@@ -171,6 +179,10 @@ exports.updateCourse = async (req, res) => {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
+    if (req.user.role !== 'admin' && req.body.status === 'published') {
+      return res.status(403).json({ message: 'Only admin can publish courses' });
+    }
+
     await course.update(req.body);
     res.json({
       message: 'Course updated successfully',
@@ -217,8 +229,8 @@ exports.publishCourse = async (req, res) => {
       return res.status(404).json({ message: 'Course not found' });
     }
 
-    if (course.instructorId !== req.user.userId && req.user.role !== 'admin') {
-      return res.status(403).json({ message: 'Unauthorized' });
+    if (req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Only admin can publish courses' });
     }
 
     await course.update({ status: 'published' });
@@ -236,6 +248,41 @@ exports.publishCourse = async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
+  }
+};
+
+exports.submitCourseForApproval = async (req, res) => {
+  try {
+    const course = await Course.findByPk(req.params.id);
+
+    if (!course) {
+      return res.status(404).json({ message: 'Course not found' });
+    }
+
+    if (course.instructorId !== req.user.userId && req.user.role !== 'admin') {
+      return res.status(403).json({ message: 'Unauthorized' });
+    }
+
+    if (course.status === 'published') {
+      return res.status(400).json({ message: 'Published course does not require approval submission' });
+    }
+
+    await course.update({ status: 'pending_approval' });
+
+    notifyAdmins({
+      type: 'course_update',
+      title: 'Course Submitted for Approval',
+      message: `Course "${course.title}" was submitted for approval by instructor.`,
+      actionUrl: '/admin/courses-list',
+    });
+
+    res.json({
+      success: true,
+      message: 'Course submitted for approval successfully',
+      course,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 

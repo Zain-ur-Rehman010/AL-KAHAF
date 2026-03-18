@@ -45,6 +45,146 @@
 		/* Skeleton shimmer */
 		.sk{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sk-shimmer 1.4s infinite;border-radius:6px;}
 		@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+		.dashboard-content {
+			padding-top: 34px;
+			background: linear-gradient(180deg, #f6f8fb 0%, #f9fbfd 62%, #ffffff 100%);
+		}
+		@media (max-width: 991.98px) {
+			.dashboard-content {
+				padding-top: 24px;
+			}
+		}
+
+		.dashboard-content .card {
+			border: 1px solid #dfe7f1;
+			border-radius: 16px !important;
+			box-shadow: 0 12px 26px rgba(13, 29, 44, 0.08) !important;
+			transition: transform .25s ease, box-shadow .25s ease;
+		}
+		.dashboard-content .card:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 18px 34px rgba(13, 29, 44, 0.12) !important;
+		}
+		.dashboard-content .card .card-header {
+			padding: 1rem 1.1rem 0;
+			background: transparent;
+		}
+		.dashboard-content .card .card-body {
+			padding: 1.1rem;
+		}
+
+		.metric-card .card-body {
+			padding: 1rem 1rem;
+		}
+		.metric-card h3 {
+			font-size: 1.85rem;
+			line-height: 1;
+			margin-bottom: .3rem;
+			color: #111827;
+		}
+		.metric-card p {
+			margin-bottom: .1rem;
+			color: #4b5563;
+			font-weight: 500;
+		}
+		.metric-card small {
+			font-weight: 600;
+		}
+		.metric-card .metric-icon {
+			width: 52px;
+			height: 52px;
+			border-radius: 14px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background: #eaf2ff;
+			flex-shrink: 0;
+		}
+		.metric-card .metric-icon i {
+			font-size: 1.6rem;
+		}
+
+		.metric-card-users { background: linear-gradient(135deg, #f8fbff, #f0f6ff); }
+		.metric-card-courses { background: linear-gradient(135deg, #f8fff9, #eefaf1); }
+		.metric-card-enrollments { background: linear-gradient(135deg, #fffdf6, #fef8e9); }
+		.metric-card-revenue { background: linear-gradient(135deg, #f6fcff, #edf8fe); }
+
+		.metric-card-users .metric-icon { background: #e6f0ff; }
+		.metric-card-courses .metric-icon { background: #e7f7ea; }
+		.metric-card-enrollments .metric-icon { background: #fff1dc; }
+		.metric-card-revenue .metric-icon { background: #e7f6fb; }
+
+		.metric-card-success {
+			background: linear-gradient(135deg, #2e7d32, #43a047);
+			color: #fff;
+		}
+		.metric-card-warning {
+			background: linear-gradient(135deg, #b8860b, #d8ac27);
+			color: #fff;
+		}
+		.metric-card-success p,
+		.metric-card-success h3,
+		.metric-card-success small,
+		.metric-card-warning p,
+		.metric-card-warning h3,
+		.metric-card-warning small {
+			color: rgba(255,255,255,0.92) !important;
+		}
+		.metric-card-success p,
+		.metric-card-warning p {
+			color: rgba(255,255,255,0.75) !important;
+		}
+		.metric-card .metric-icon-soft {
+			background: rgba(255,255,255,0.16);
+		}
+
+		.dashboard-cards-row > [class*="col-"] {
+			margin-bottom: 1rem;
+		}
+		@media (min-width: 1200px) {
+			.dashboard-cards-row > [class*="col-"] {
+				margin-bottom: 1.25rem;
+			}
+		}
+
+		@media (max-width: 575.98px) {
+			.dashboard-content {
+				padding-top: 18px;
+			}
+			.dashboard-content .card {
+				border-radius: 14px !important;
+			}
+			.dashboard-content .card .card-header {
+				padding: .85rem .85rem 0;
+			}
+			.dashboard-content .card .card-body {
+				padding: .85rem;
+			}
+			.metric-card .card-body {
+				padding: .85rem;
+			}
+			.metric-card h3 {
+				font-size: 1.55rem;
+			}
+			.metric-card .metric-icon {
+				width: 44px;
+				height: 44px;
+				border-radius: 12px;
+			}
+			.metric-card .metric-icon i {
+				font-size: 1.3rem;
+			}
+			.dashboard-cards-row {
+				margin-bottom: .75rem !important;
+			}
+			.dashboard-cards-row > [class*="col-"] {
+				margin-bottom: .75rem;
+			}
+			.card .d-grid.gap-2 .btn {
+				width: 100%;
+			}
+		}
 	</style>
 </head>
 <body>
@@ -172,14 +312,14 @@
 		<!-- /Breadcrumb -->
 
 		<!-- Page Content -->
-		<div class="content">
+		<div class="content dashboard-content">
 			<div class="container">
 
 				<!-- Statistics Cards -->
-				<div class="row mb-4">
+				<div class="row mb-4 dashboard-cards-row">
 					<!-- Total Users -->
-					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
-						<div class="card flex-fill bg-white rounded-3 shadow-sm">
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-users flex-fill">
 							<div class="card-body">
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
@@ -187,7 +327,7 @@
 										<h3 class="mb-0" id="total-users"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
 										<div class="mt-2" id="user-growth-text"><small class="text-muted">Loading...</small></div>
 									</div>
-									<div class="stat-icon bg-primary-light rounded-circle p-3">
+									<div class="metric-icon">
 										<i class="isax isax-user fs-3 text-primary"></i>
 									</div>
 								</div>
@@ -196,8 +336,8 @@
 					</div>
 
 					<!-- Total Courses -->
-					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
-						<div class="card flex-fill bg-white rounded-3 shadow-sm">
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-courses flex-fill">
 							<div class="card-body">
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
@@ -205,7 +345,7 @@
 										<h3 class="mb-0" id="total-courses"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
 										<div class="mt-2" id="course-growth-text"><small class="text-muted">Loading...</small></div>
 									</div>
-									<div class="stat-icon bg-success-light rounded-circle p-3">
+									<div class="metric-icon">
 										<i class="isax isax-book fs-3 text-success"></i>
 									</div>
 								</div>
@@ -214,8 +354,8 @@
 					</div>
 
 					<!-- Total Enrollments -->
-					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
-						<div class="card flex-fill bg-white rounded-3 shadow-sm">
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-enrollments flex-fill">
 							<div class="card-body">
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
@@ -223,7 +363,7 @@
 										<h3 class="mb-0" id="total-enrollments"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
 										<div class="mt-2" id="enrollment-growth-text"><small class="text-muted">Loading...</small></div>
 									</div>
-									<div class="stat-icon bg-warning-light rounded-circle p-3">
+									<div class="metric-icon">
 										<i class="isax isax-note-2 fs-3 text-warning"></i>
 									</div>
 								</div>
@@ -232,8 +372,8 @@
 					</div>
 
 					<!-- Total Revenue -->
-					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
-						<div class="card flex-fill bg-white rounded-3 shadow-sm">
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-revenue flex-fill">
 							<div class="card-body">
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
@@ -241,7 +381,7 @@
 										<h3 class="mb-0" id="total-revenue"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
 										<div class="mt-2" id="revenue-growth-text"><small class="text-muted">Loading...</small></div>
 									</div>
-									<div class="stat-icon bg-info-light rounded-circle p-3">
+									<div class="metric-icon">
 										<i class="isax isax-wallet fs-3 text-info"></i>
 									</div>
 								</div>
@@ -250,8 +390,8 @@
 					</div>
 
 					<!-- Completion Rate -->
-					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
-						<div class="card flex-fill rounded-3 shadow-sm" style="background: linear-gradient(135deg, #2e7d32, #43a047);">
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-success flex-fill">
 							<div class="card-body">
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
@@ -259,7 +399,7 @@
 										<h3 class="mb-0 text-white" id="completion-rate"><span class="spinner-border spinner-border-sm text-white-50"></span></h3>
 										<small class="text-white-50">Avg course completion</small>
 									</div>
-									<div class="rounded-circle p-3" style="background:rgba(255,255,255,0.15);">
+									<div class="metric-icon metric-icon-soft">
 										<i class="isax isax-medal fs-3 text-white"></i>
 									</div>
 								</div>
@@ -268,8 +408,8 @@
 					</div>
 
 					<!-- Draft Courses -->
-					<div class="col-xl-2 col-lg-4 col-md-6 d-flex mb-3 mb-xl-0">
-						<div class="card flex-fill rounded-3 shadow-sm" style="background: linear-gradient(135deg, #b8860b, #d8ac27);">
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-warning flex-fill">
 							<div class="card-body">
 								<div class="d-flex align-items-center justify-content-between">
 									<div>
@@ -277,7 +417,7 @@
 										<h3 class="mb-0 text-white" id="draft-courses"><span class="spinner-border spinner-border-sm text-white-50"></span></h3>
 										<small class="text-white-50">Pending publication</small>
 									</div>
-									<div class="rounded-circle p-3" style="background:rgba(255,255,255,0.15);">
+									<div class="metric-icon metric-icon-soft">
 										<i class="isax isax-edit fs-3 text-white"></i>
 									</div>
 								</div>
@@ -287,9 +427,9 @@
 				</div>
 
 				<!-- Charts Row -->
-				<div class="row mb-4">
+				<div class="row mb-4 dashboard-cards-row">
 					<!-- Enrollment Chart -->
-					<div class="col-lg-8">
+					<div class="col-lg-8 mb-4 mb-lg-0">
 						<div class="card bg-white rounded-3 shadow-sm">
 							<div class="card-header border-0 pb-0">
 								<div class="d-flex align-items-center justify-content-between">
@@ -313,7 +453,7 @@
 					</div>
 
 					<!-- User Distribution -->
-					<div class="col-lg-4">
+					<div class="col-lg-4 mb-4 mb-lg-0">
 						<div class="card bg-white rounded-3 shadow-sm">
 							<div class="card-header border-0 pb-0">
 								<h5 class="mb-0">User Distribution</h5>
@@ -349,9 +489,9 @@
 				</div>
 
 				<!-- Tables Row -->
-				<div class="row">
+				<div class="row dashboard-cards-row">
 					<!-- Recent Enrollments -->
-					<div class="col-lg-8">
+					<div class="col-lg-8 mb-4 mb-lg-0">
 						<div class="card bg-white rounded-3 shadow-sm">
 							<div class="card-header border-0 d-flex align-items-center justify-content-between">
 								<h5 class="mb-0">Recent Enrollments</h5>
@@ -383,7 +523,7 @@
 					</div>
 
 					<!-- Quick Actions & Recent Activity -->
-					<div class="col-lg-4">
+					<div class="col-lg-4 mb-4 mb-lg-0">
 						<!-- Quick Actions -->
 						<div class="card bg-white rounded-3 shadow-sm mb-4">
 							<div class="card-header border-0">
@@ -425,7 +565,7 @@
 
 
 				<!-- Free Trial Requests -->
-				<div class="row mt-4">
+				<div class="row mt-4 dashboard-cards-row">
 					<div class="col-12">
 						<div class="card bg-white rounded-3 shadow-sm">
 							<div class="card-header border-0 d-flex align-items-center justify-content-between">
@@ -473,7 +613,7 @@
 				<!-- /Free Trial Requests -->
 
 				<!-- Top Performing Courses -->
-				<div class="row mt-4">
+				<div class="row mt-4 dashboard-cards-row">
 					<div class="col-12">
 						<div class="card bg-white rounded-3 shadow-sm">
 							<div class="card-header border-0 d-flex align-items-center justify-content-between">
