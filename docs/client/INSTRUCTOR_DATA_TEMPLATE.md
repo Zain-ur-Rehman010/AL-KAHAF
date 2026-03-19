@@ -63,7 +63,8 @@ socialLinks.linkedin: [url]
 socialLinks.facebook: [url]
 socialLinks.twitter: [url]
 socialLinks.website: [url]
-education: Shahadat-ul-Alamiyyah|Wifaq ul Madaris|2012|2018; MA Islamic Studies|University X|2019|2021
+
+education: Shahadat-ul-Alamiyyah|Wifaq ul Madaris|2012|2018; MA Islamic Studies|University X|2019|2021|
 workExperience: Supervisor|Al-Kahaf Online Academy|2021|Present; Lecturer|Madrasa Y|2017|2021
 addressCity: Lahore
 addressCountry: Pakistan
