@@ -18,16 +18,10 @@
                 const data = await response.json();
 
                 if (response.ok && data.success) {
-                    // Save tokens
-                    this.saveTokens(data.data.accessToken, data.data.refreshToken);
-
-                    // Save user data
-                    this.saveUser(data.data.user);
-
                     return {
                         success: true,
                         message: data.message || 'Registration successful!',
-                        user: data.data.user
+                        email: data.data?.email
                     };
                 } else {
                     return {
@@ -260,19 +254,10 @@
             AuthManager.hideLoading(submitButton);
 
             if (result.success) {
-                AuthManager.showAlert('Registration successful! Please login to continue.', 'success');
+                AuthManager.showAlert('Registration successful! Please check your email for the OTP.', 'success');
 
-                // Save email to localStorage for auto-fill on login page
-                localStorage.setItem('registeredEmail', email);
-
-                // Preserve ?redirect= param when going to login page
-                const params = new URLSearchParams(window.location.search);
-                const redirect = params.get('redirect');
-                const loginUrl = '/auth/login' + (redirect ? '?redirect=' + encodeURIComponent(redirect) : '');
-
-                // Redirect to login page after 1.5 seconds
                 setTimeout(() => {
-                    window.location.href = loginUrl;
+                    window.location.href = '/auth/otp?email=' + encodeURIComponent(email);
                 }, 1500);
             } else {
                 AuthManager.showAlert(result.message, 'danger');

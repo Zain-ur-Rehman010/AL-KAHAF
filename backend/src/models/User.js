@@ -97,6 +97,22 @@ const User = sequelize.define('User', {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  verificationOtp: {
+    type: DataTypes.STRING(6),
+    allowNull: true,
+  },
+  otpExpiresAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  passwordResetToken: {
+    type: DataTypes.STRING(64),
+    allowNull: true,
+  },
+  passwordResetExpiry: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
   twoFactorEnabled: {
     type: DataTypes.BOOLEAN,
     defaultValue: false,

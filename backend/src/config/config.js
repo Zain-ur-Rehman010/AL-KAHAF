@@ -17,6 +17,7 @@ module.exports = {
   redisPort: process.env.REDIS_PORT,
   redisHost: process.env.REDIS_HOST,
   
+  frontendUrl: process.env.FRONTEND_URL || 'http://localhost:3000',
   corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:3000',
   
   rateLimitWindowMs: parseInt(process.env.RATE_LIMIT_WINDOW_MS) || 15 * 60 * 1000,
