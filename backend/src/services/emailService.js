@@ -93,6 +93,59 @@ module.exports = {
     }
   },
 
+  async sendAdminEnrollmentEmail(adminEmails, studentName, studentEmail, courseTitle, amount, txnRef) {
+    const dashboardUrl = `${config.frontendUrl}/admin/enrollments-list`;
+    try {
+      await transporter.sendMail({
+        from: config.smtpFrom,
+        to: adminEmails.join(','),
+        subject: `New Enrollment via JazzCash — ${courseTitle}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
+            <div style="background: #d8ac27; padding: 16px 24px; border-radius: 6px 6px 0 0;">
+              <h2 style="color: #fff; margin: 0;">New Enrollment Received</h2>
+            </div>
+            <div style="padding: 24px;">
+              <p style="font-size: 16px; color: #333;">A student has successfully enrolled via <strong>JazzCash</strong>.</p>
+              <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+                <tr style="background: #f9f9f9;">
+                  <td style="padding: 10px 14px; font-weight: bold; color: #555; width: 40%;">Student</td>
+                  <td style="padding: 10px 14px; color: #333;">${studentName}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 14px; font-weight: bold; color: #555;">Email</td>
+                  <td style="padding: 10px 14px; color: #333;">${studentEmail}</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                  <td style="padding: 10px 14px; font-weight: bold; color: #555;">Course</td>
+                  <td style="padding: 10px 14px; color: #333;">${courseTitle}</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px 14px; font-weight: bold; color: #555;">Amount Paid</td>
+                  <td style="padding: 10px 14px; color: #159F46; font-weight: bold;">PKR ${amount}</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                  <td style="padding: 10px 14px; font-weight: bold; color: #555;">Transaction Ref</td>
+                  <td style="padding: 10px 14px; color: #333; font-family: monospace;">${txnRef}</td>
+                </tr>
+              </table>
+              <div style="text-align: center; margin-top: 24px;">
+                <a href="${dashboardUrl}" style="background: #d8ac27; color: #fff; padding: 12px 28px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 15px;">
+                  View in Dashboard
+                </a>
+              </div>
+            </div>
+            <div style="padding: 12px 24px; background: #f5f5f5; border-radius: 0 0 6px 6px;">
+              <p style="color: #999; font-size: 12px; margin: 0;">Al-Kahaf Online Academy — Automated enrollment notification</p>
+            </div>
+          </div>
+        `,
+      });
+    } catch (error) {
+      console.error('Admin enrollment email failed:', error);
+    }
+  },
+
   async sendCertificateEmail(email, firstName, courseTitle, certificateUrl) {
     try {
       await transporter.sendMail({

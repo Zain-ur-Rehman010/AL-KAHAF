@@ -6,6 +6,11 @@ module.exports = {
   
   stripeSecretKey: process.env.STRIPE_SECRET_KEY,
   stripePublishableKey: process.env.STRIPE_PUBLISHABLE_KEY,
+
+  jazzcashMerchantId: process.env.JAZZCASH_MERCHANT_ID,
+  jazzcashPassword: process.env.JAZZCASH_PASSWORD,
+  jazzcashIntegrationKey: process.env.JAZZCASH_INTEGRATION_KEY,
+  jazzcashEnv: process.env.JAZZCASH_ENV || 'sandbox',
   
   smtpHost: process.env.SMTP_HOST,
   smtpPort: process.env.SMTP_PORT,
