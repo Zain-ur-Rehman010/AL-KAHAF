@@ -42,7 +42,48 @@
 
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="/assets/css/style.css">
-	
+
+		<style>
+			/* Back to Home modern button */
+			.back-home-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 6px;
+				padding: 8px 16px;
+				border-radius: 50px;
+				border: 1.5px solid #d8ac27;
+				color: #d8ac27;
+				font-size: 13px;
+				font-weight: 500;
+				text-decoration: none;
+				transition: all 0.25s ease;
+				background: transparent;
+				white-space: nowrap;
+			}
+			.back-home-btn:hover {
+				background: #d8ac27;
+				color: #fff;
+				transform: translateX(-3px);
+				text-decoration: none;
+			}
+			.back-home-btn i {
+				font-size: 11px;
+				transition: transform 0.25s ease;
+			}
+			.back-home-btn:hover i {
+				transform: translateX(-2px);
+			}
+
+			/* Tighten spacing on register page so form fits without scrolling */
+			.login-content .login-wrap-bg .login-header { margin-bottom: 0px !important; }
+			.login-content .login-wrap-bg .topic { margin-bottom: 25px !important; text-align: center !important; }
+			.login-content .login-wrap-bg .loginbox { padding: 5px 100px 15px 100px !important; }
+			.login-content .login-wrap-bg .login-wrapper { overflow: hidden !important; }
+			#register-form .mb-3 { margin-bottom: 0.5rem !important; }
+			#register-form .mb-4 { margin-bottom: 0.6rem !important; }
+			#register-form.mb-3.pb-3 { margin-bottom: 0.3rem !important; padding-bottom: 0.3rem !important; }
+		</style>
+
 	</head>
 	<body>
 
@@ -96,11 +137,11 @@
                             <div class="loginbox">
                                 <div class="w-100">
                                     <div class="d-flex align-items-center justify-content-between login-header">
-                                        <img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="img-fluid" alt="Logo">
-                                        <a href="/" class="link-1">Back to Home</a>
+                                        <img src="/assets/img/white-logo.png" style="width: 150px;height: 130px;object-fit:contain;object-position:left center;margin-left:-30px;" class="img-fluid" alt="Logo">
+                                        <a href="/" class="back-home-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
                                     </div>
                                     <h1 class="fs-32 fw-bold topic">Sign up</h1>
-                                    <form  class="mb-3 pb-3" id="register-form" method="POST">
+                                    <form class="mb-2" id="register-form" method="POST">
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="mb-3 position-relative">
@@ -166,6 +207,7 @@
                                             <button class="btn btn-secondary btn-lg" type="submit">Sign Up <i class="isax isax-arrow-right-3 ms-1"></i></button>
                                         </div>
                                     </form>
+                                    <!-- Social login buttons (Google/Facebook) - commented out for now, will implement later
 
                                     <div class="d-flex align-items-center justify-content-center or fs-14 mb-3">
                                         Or
@@ -175,8 +217,9 @@
                                         <a href="javascript:void(0);" class="btn btn-light me-2"><img src="/assets/img/icons/google.svg" alt="img" class="me-2">Google</a>
                                         <a href="javascript:void(0);" class="btn btn-light"><img src="/assets/img/icons/facebook.svg" alt="img" class="me-2">Facebook</a>
                                     </div>
+                                    -->
                                     <div class="fs-14 fw-normal d-flex align-items-center justify-content-center">
-                                        Already you have an account?<a href="/src/pages/auth/login.html" class="link-2 ms-1"> Login</a>
+                                        Already you have an account?<a href="/auth/login" class="link-2 ms-1"> Login</a>
                                     </div>
     
                                     <!-- /Login -->

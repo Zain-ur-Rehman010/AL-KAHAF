@@ -288,6 +288,12 @@
                 return;
             }
 
+            const termsChecked = document.getElementById('flexCheckDefault')?.checked;
+            if (!termsChecked) {
+                AuthManager.showAlert('You must agree to the Terms of Service and Privacy Policy to continue.', 'danger');
+                return;
+            }
+
             // Get submit button
             const submitButton = registerForm.querySelector('button[type="submit"]');
             AuthManager.showLoading(submitButton);

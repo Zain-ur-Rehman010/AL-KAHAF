@@ -43,6 +43,38 @@
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="/assets/css/style.css">
 	
+
+		<style>
+		/* Back to Home modern button */
+		.back-home-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			padding: 8px 16px;
+			border-radius: 50px;
+			border: 1.5px solid #d8ac27;
+			color: #d8ac27;
+			font-size: 13px;
+			font-weight: 500;
+			text-decoration: none;
+			transition: all 0.25s ease;
+			background: transparent;
+			white-space: nowrap;
+		}
+		.back-home-btn:hover {
+			background: #d8ac27;
+			color: #fff;
+			transform: translateX(-3px);
+			text-decoration: none;
+		}
+		.back-home-btn i {
+			font-size: 11px;
+			transition: transform 0.25s ease;
+		}
+		.back-home-btn:hover i {
+			transform: translateX(-2px);
+		}
+		</style>
 	</head>
 	<body>
 
@@ -96,8 +128,8 @@
                             <div class="loginbox">
                                 <div class="w-100">
                                     <div class="d-flex align-items-center justify-content-between login-header">
-                                        <img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="img-fluid" alt="Logo">
-                                        <a href="/" class="link-1">Back to Home</a>
+                                        <img src="/assets/img/white-logo.png" style="width: 150px;height: 130px;object-fit:contain;object-position:left center;margin-left:-30px;" class="img-fluid" alt="Logo">
+                                        <a href="/" class="back-home-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
                                     </div>
                                     <div class="topic">
                                         <h1 class="fs-32 fw-bold mb-3">Email OTP</h1>
