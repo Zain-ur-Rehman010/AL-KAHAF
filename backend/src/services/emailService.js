@@ -68,8 +68,10 @@ module.exports = {
           </div>
         `,
       });
+      return true;
     } catch (error) {
       console.error('OTP email sending failed:', error);
+      return false;
     }
   },
 

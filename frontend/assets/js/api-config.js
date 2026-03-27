@@ -15,6 +15,8 @@ const API_CONFIG = {
         // Authentication
         REGISTER: '/auth/register',
         LOGIN: '/auth/login',
+        VERIFY_OTP: '/auth/verify-otp',
+        RESEND_OTP: '/auth/resend-otp',
         LOGOUT: '/auth/logout',
         REFRESH: '/auth/refresh-token',
         ME: '/auth/me',

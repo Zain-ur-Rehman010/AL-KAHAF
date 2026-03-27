@@ -36,7 +36,13 @@ exports.register = async (req, res) => {
       otpExpiresAt,
     });
 
-    emailService.sendOtpEmail(user.email, user.firstName, otp);
+    const otpSent = await emailService.sendOtpEmail(user.email, user.firstName, otp);
+    if (!otpSent) {
+      return res.status(500).json({
+        success: false,
+        message: 'Registration created but failed to send OTP email. Please try again.',
+      });
+    }
 
     notifyAdmins({
       type: 'general',
@@ -73,6 +79,21 @@ exports.login = async (req, res) => {
     const isPasswordValid = await user.comparePassword(password);
     if (!isPasswordValid) {
       return res.status(401).json({ success: false, message: 'Invalid credentials' });
+    }
+
+    if (!user.emailVerified) {
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+      const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+
+      await user.update({ verificationOtp: otp, otpExpiresAt });
+      const otpSent = await emailService.sendOtpEmail(user.email, user.firstName, otp);
+
+      return res.status(403).json({
+        success: false,
+        message: 'First verify your account via OTP to continue.',
+        code: 'EMAIL_NOT_VERIFIED',
+        data: { email: user.email, otpSent },
+      });
     }
 
     await user.update({ lastLogin: new Date() });
@@ -182,7 +203,10 @@ exports.forgotPassword = async (req, res) => {
     const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000);
 
     await user.update({ verificationOtp: otp, otpExpiresAt });
-    emailService.sendOtpEmail(user.email, user.firstName, otp);
+    const otpSent = await emailService.sendOtpEmail(user.email, user.firstName, otp);
+    if (!otpSent) {
+      return res.status(500).json({ success: false, message: 'Failed to send OTP email. Please try again.' });
+    }
 
     res.json({ success: true, message: 'OTP sent to your email.' });
   } catch (error) {
@@ -302,7 +326,10 @@ exports.resendOtp = async (req, res) => {
     const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000);
 
     await user.update({ verificationOtp: otp, otpExpiresAt });
-    emailService.sendOtpEmail(user.email, user.firstName, otp);
+    const otpSent = await emailService.sendOtpEmail(user.email, user.firstName, otp);
+    if (!otpSent) {
+      return res.status(500).json({ success: false, message: 'Failed to resend OTP email. Please try again.' });
+    }
 
     res.json({ success: true, message: 'OTP resent successfully. Please check your email.' });
   } catch (error) {
