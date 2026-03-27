@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
 
 module.exports = {
   async sendWelcomeEmail(email, firstName) {
-    const coursesUrl = `${config.frontendUrl}/courses/courses-list`;
+    const coursesUrl = `${config.frontendUrl}/courses/course-grid`;
     const loginUrl = `${config.frontendUrl}/auth/login`;
     try {
       await transporter.sendMail({
