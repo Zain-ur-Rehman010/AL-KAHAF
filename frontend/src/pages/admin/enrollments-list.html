@@ -372,7 +372,7 @@
 				<div class="modal-body p-4" id="view-enrollment-body">
 					<!-- populated by JS -->
 				</div>
-				<div class="modal-footer" style="padding:12px 20px;">
+				<div class="modal-footer gap-2" style="padding:12px 20px;">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -839,13 +839,15 @@
 
 		function showAlert(type, message) {
 			const cls = type === 'success' ? 'alert-success' : type === 'info' ? 'alert-info' : 'alert-danger';
+			const isTokenErr = type !== 'success' && /expired|token|unauthorized|401/i.test(message);
+			const loginLink = isTokenErr ? ' <a href="/auth/login" class="alert-link ms-2">Go to Login</a>' : '';
 			document.body.insertAdjacentHTML('beforeend',
 				'<div class="alert ' + cls + ' alert-dismissible fade show position-fixed top-0 end-0 m-3" role="alert" style="z-index:9999;">'
-				+ message
+				+ message + loginLink
 				+ '<button type="button" class="btn-close" data-bs-dismiss="alert"></button></div>');
 			setTimeout(function() {
 				document.querySelectorAll('.alert').forEach(function(a) { a.remove(); });
-			}, 3000);
+			}, isTokenErr ? 8000 : 3000);
 		}
 	</script>
 

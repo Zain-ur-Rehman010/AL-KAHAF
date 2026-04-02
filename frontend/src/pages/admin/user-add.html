@@ -431,19 +431,20 @@
 					$('body').append(alertContainer);
 				}
 
+				const isTokenErr = type !== 'success' && /expired|token|unauthorized|401/i.test(message);
+				const loginLink = isTokenErr ? ` <a href="/auth/login" class="alert-link ms-2">Go to Login</a>` : '';
 				const alertDiv = $(`
 					<div class="alert alert-${type} alert-dismissible fade show" role="alert">
-						${message}
+						${message}${loginLink}
 						<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 					</div>
 				`);
 
 				alertContainer.append(alertDiv);
 
-				// Auto dismiss after 5 seconds
 				setTimeout(() => {
 					alertDiv.fadeOut(() => alertDiv.remove());
-				}, 5000);
+				}, isTokenErr ? 8000 : 5000);
 			}
 		});
 	</script>

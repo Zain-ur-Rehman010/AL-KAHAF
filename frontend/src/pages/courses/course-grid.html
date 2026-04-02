@@ -195,9 +195,12 @@
 
 
 							<!--SigIn || Register-->
-							<a href="/auth/login" class="btn btn-primary d-inline-flex align-items-center me-2">
-								<i class="fa fa-paper-plane me-2"></i>Enroll Now
+														<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
+								<i class="isax isax-user me-2"></i>Sign In
 							</a>
+<a href="/auth/register" class="btn btn-dark d-inline-flex align-items-center me-2">
+	<i class="isax isax-user-edit me-2"></i>Register
+</a>
 							<a href="/auth/register" class="btn btn-secondary btn-donate me-0">
 								<i class="isax isax-heart5 me-1"></i>Donate
 							</a>
@@ -685,9 +688,6 @@
 				'<div class="course-item-two course-item mx-0" style="cursor:pointer;position:relative;" onclick="window.location.href=\'' + courseUrl + '\'" role="link" tabindex="0" aria-label="' + course.title.replace(/"/g, '&quot;') + '" onkeydown="if(event.key===\'Enter\')window.location.href=\'' + courseUrl + '\'">' +
 					'<div class="course-img">' +
 						'<img src="' + imgSrc + '" alt="' + course.title.replace(/"/g, '&quot;') + '" class="img-fluid" onerror="this.src=\'' + FALLBACK_IMG + '\'">' +
-						'<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">' +
-							'<button type="button" class="fav-icon ms-auto border-0 bg-transparent" onclick="event.stopPropagation();" aria-label="Add to wishlist"><i class="isax isax-heart"></i></button>' +
-						'</div>' +
 					'</div>' +
 					'<div class="course-content">' +
 						'<div class="d-flex justify-content-between mb-2">' +
@@ -895,6 +895,5 @@
 		});
 	})();
 	</script>
-
-	</body>
+</body>
 </html>

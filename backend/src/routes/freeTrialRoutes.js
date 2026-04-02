@@ -4,6 +4,9 @@ const authMiddleware = require('../middleware/authMiddleware');
 const roleMiddleware = require('../middleware/roleMiddleware');
 const freeTrialController = require('../controllers/freeTrialController');
 
+// GET active predefined courses — public, for the free trial dropdown
+router.get('/courses', freeTrialController.getPublicCourses);
+
 // POST — public, anyone can submit
 router.post('/', freeTrialController.create);
 

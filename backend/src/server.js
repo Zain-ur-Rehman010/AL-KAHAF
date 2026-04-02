@@ -19,6 +19,7 @@ const freeTrialRoutes = require('./routes/freeTrialRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const instructorStudentRoutes = require('./routes/instructorStudentRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
+const { startTrialEmailJob } = require('./jobs/trialEmailJob');
 
 const app = express();
 
@@ -113,12 +114,13 @@ async function startServer() {
     await sequelize.authenticate();
     console.log('Database connected successfully');
 
-    await sequelize.sync({ alter: false });
+    await sequelize.sync({ alter: true });
     console.log('Database synchronized');
 
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
       console.log(`API Documentation: http://localhost:${PORT}/api/v1`);
+      startTrialEmailJob();
     });
   } catch (error) {
     console.error('Failed to start server:', error);

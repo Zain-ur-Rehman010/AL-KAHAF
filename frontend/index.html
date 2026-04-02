@@ -105,145 +105,6 @@ Dependencies:
 		     ============================================ -->
 		<style>
 			/* ==========================================
-			   LOGO STYLES
-			   Custom Al-Kahaf Academy logo with Arabic text
-			   ========================================== */
-			.custom-logo {
-				display: flex;
-				align-items: center;
-				gap: 12px;
-				padding: 2px 0;
-			}
-			
-			.logo-badge {
-				flex-shrink: 0;
-			}
-			
-			.logo-badge svg {
-				width: 55px;
-				height: 55px;
-				filter: drop-shadow(1px 1px 3px rgba(0,0,0,0.2));
-			}
-			
-			/* Vertical Divider */
-			.logo-text-section {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				border-left: 2px solid #d8ac27;
-				padding-left: 12px;
-				line-height: 1;
-			}
-			
-			.logo-title-large {
-				font-size: 24px;
-				font-weight: 900;
-				letter-spacing: 2px;
-				color: #8B5A3C;
-				font-family: 'Inter', 'Arial Black', sans-serif;
-				text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-				margin-bottom: 4px;
-			}
-			
-			.logo-subtitle-large {
-				font-size: 10px;
-				font-weight: 700;
-				color: #d8ac27;
-				letter-spacing: 2px;
-				font-family: 'Inter', 'Arial', sans-serif;
-				text-transform: uppercase;
-			}
-			
-			.custom-logo-link {
-				text-decoration: none;
-			}
-			
-			.custom-logo-link:hover .logo-title-large {
-				color: #d8ac27;
-				transition: color 0.3s ease;
-			}
-			
-			.custom-logo-link:hover .logo-subtitle-large {
-				color: #ffd966;
-				transition: color 0.3s ease;
-			}
-			
-			/* Responsive adjustments */
-			@media (max-width: 991px) {
-				.logo-badge svg {
-					width: 50px;
-					height: 50px;
-				}
-				
-				.logo-text-section {
-					padding-left: 10px;
-				}
-				
-				.logo-title-large {
-					font-size: 22px;
-					letter-spacing: 2px;
-				}
-				
-				.logo-subtitle-large {
-					font-size: 9px;
-					letter-spacing: 2px;
-				}
-			}
-			
-			@media (max-width: 768px) {
-				.custom-logo {
-					gap: 10px;
-				}
-				
-				.logo-badge svg {
-					width: 45px;
-					height: 45px;
-				}
-				
-				.logo-text-section {
-					padding-left: 8px;
-					border-left-width: 2px;
-				}
-				
-				.logo-title-large {
-					font-size: 20px;
-					letter-spacing: 1px;
-					margin-bottom: 3px;
-				}
-				
-				.logo-subtitle-large {
-					font-size: 8px;
-					letter-spacing: 1px;
-				}
-			}
-			
-			@media (max-width: 480px) {
-				.custom-logo {
-					gap: 8px;
-				}
-				
-				.logo-badge svg {
-					width: 40px;
-					height: 40px;
-				}
-				
-				.logo-text-section {
-					padding-left: 6px;
-				}
-				
-				.logo-title-large {
-					font-size: 16px;
-					letter-spacing: 1px;
-					margin-bottom: 2px;
-				}
-				
-				.logo-subtitle-large {
-					font-size: 7px;
-					letter-spacing: 1px;
-				}
-			}
-			
-			/* ==========================================
 			   WHY CHOOSE US / SKILLS SECTION
 			   Features 4 colored cards with icons
 			   Background: Islamic geometric pattern
@@ -729,32 +590,7 @@ Dependencies:
 				box-shadow: 0 8px 25px rgba(82, 40, 17, 0.3);
 			}
 			
-			.featured-courses-section .fav-icon {
-				width: 38px;
-				height: 38px;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				background: #fff;
-				border-radius: 50%;
-				box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-				transition: all 0.3s ease;
-			}
 			
-			.featured-courses-section .fav-icon:hover {
-				background: #FFE4E4;
-				transform: scale(1.1);
-			}
-			
-			.featured-courses-section .fav-icon i {
-				font-size: 18px;
-				color: #888;
-				transition: color 0.3s ease;
-			}
-			
-			.featured-courses-section .fav-icon:hover i {
-				color: #e74c3c;
-			}
 			
 			.featured-courses-section .course-rating {
 				display: flex;
@@ -1514,69 +1350,19 @@ Dependencies:
 									<i class="isax isax-menu"></i>
 								</span>
 							</a>
-							<!-- Academy Logo with Arabic Text -->
-							<div class="navbar-logo">
-								<a class="logo-white header-logo custom-logo-link" href="index.html">
-									<div class="custom-logo">
-										<!-- SVG Logo Badge with Mosque & Book Icon -->
-										<div class="logo-badge">
-											<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<rect x="5" y="5" width="110" height="110" rx="25" stroke="#d8ac27" stroke-width="3" fill="#3d2817"/>
-												<path d="M 60 25 Q 70 25 70 35 Q 70 40 60 45 Q 50 40 50 35 Q 50 25 60 25 Z" fill="#8B5A3C"/>
-												<circle cx="60" cy="24" r="3" fill="#d8ac27"/>
-												<rect x="58" y="15" width="4" height="10" fill="#d8ac27" rx="2"/>
-												<path d="M 35 50 Q 60 45 85 50 L 85 75 Q 60 70 35 75 Z" fill="#8B5A3C" stroke="#d8ac27" stroke-width="1.5"/>
-												<path d="M 60 45 L 60 70" stroke="#d8ac27" stroke-width="1.5"/>
-												<line x1="40" y1="55" x2="55" y2="55" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<line x1="40" y1="60" x2="55" y2="60" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<line x1="40" y1="65" x2="55" y2="65" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<line x1="65" y1="55" x2="80" y2="55" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<line x1="65" y1="60" x2="80" y2="60" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<line x1="65" y1="65" x2="80" y2="65" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<!-- Arabic Academy Name -->
-												<text x="60" y="92" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#d8ac27" text-anchor="middle" direction="rtl">أكاديمية الكهف</text>
-												<text x="60" y="105" font-family="Arial, sans-serif" font-size="8" font-weight="600" fill="#8B5A3C" text-anchor="middle">ALKAHAFACADEMY</text>
-											</svg>
-										</div>
-										<!-- Logo Text: English name + Arabic subtitle -->
-										<div class="logo-text-section">
-											<div class="logo-title-large">AL-KAHAF</div>
-											<div class="logo-subtitle-large">ARABIC ONLINE ACADEMY</div>
-										</div>
-									</div>
+														<div class="navbar-logo">
+								<a class="logo-white header-logo" href="index.html">
+									<img src="assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
 								</a>
-								<a class="logo-dark header-logo custom-logo-link" href="index.html">
-									<div class="custom-logo">
-										<div class="logo-badge">
-											<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-												<rect x="5" y="5" width="110" height="110" rx="25" stroke="#522811" stroke-width="3" fill="#f5f5dc"/>
-												<path d="M 60 25 Q 70 25 70 35 Q 70 40 60 45 Q 50 40 50 35 Q 50 25 60 25 Z" fill="#522811"/>
-												<circle cx="60" cy="24" r="3" fill="#522811"/>
-												<rect x="58" y="15" width="4" height="10" fill="#522811" rx="2"/>
-												<path d="M 35 50 Q 60 45 85 50 L 85 75 Q 60 70 35 75 Z" fill="#522811" stroke="#522811" stroke-width="1.5"/>
-												<path d="M 60 45 L 60 70" stroke="#d8ac27" stroke-width="1.5"/>
-												<line x1="40" y1="55" x2="55" y2="55" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<line x1="40" y1="60" x2="55" y2="60" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<line x1="40" y1="65" x2="55" y2="65" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<line x1="65" y1="55" x2="80" y2="55" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<line x1="65" y1="60" x2="80" y2="60" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<line x1="65" y1="65" x2="80" y2="65" stroke="#d8ac27" stroke-width="1" opacity="0.7"/>
-												<text x="60" y="92" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#522811" text-anchor="middle" direction="rtl">أكاديمية الكهف</text>
-												<text x="60" y="105" font-family="Arial, sans-serif" font-size="8" font-weight="600" fill="#8B5A3C" text-anchor="middle">ALKAHAFACADEMY</text>
-											</svg>
-										</div>
-										<div class="logo-text-section">
-											<div class="logo-title-large">AL-KAHAF</div>
-											<div class="logo-subtitle-large">ARABIC ONLINE ACADEMY</div>
-										</div>
-									</div>
+								<a class="logo-dark header-logo" href="index.html">
+									<img src="assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
 								</a>
 							</div>
 						</div>
 						<div class="main-menu-wrapper">								
 							<div class="menu-header">
 								<a href="index.html" class="menu-logo">
-									<img src="assets/img/logo.svg" class="img-fluid" alt="Logo">
+									<img src="assets/img/white-logo.png" style="width: 150px;height: 110px;" class="img-fluid" alt="Logo">
 								</a>
 								<a id="menu_close" class="menu-close" href="javascript:void(0);">
 									<i class="fas fa-times"></i>
@@ -1678,8 +1464,8 @@ Dependencies:
 							<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
 								<i class="isax isax-user me-2"></i>Sign In
 							</a>
-							<a href="/auth/login" class="btn btn-primary d-inline-flex align-items-center me-2">
-								<i class="fa fa-paper-plane me-2"></i>Enroll Now
+														<a href="/auth/register" class="btn btn-dark d-inline-flex align-items-center me-2">
+								<i class="isax isax-user-edit me-2"></i>Register
 							</a>
 							<a href="/auth/register" class="btn btn-secondary btn-donate me-0">
 								<i class="isax isax-heart5 me-1"></i>Donate
@@ -1887,9 +1673,7 @@ Dependencies:
 												<div class="course-img">
 													<img src="assets/img/course/course-22.webp" alt="img" class="img-fluid">
 													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-														<a href="javascript:void(0);" class="fav-icon">
-															<i class="isax isax-heart"></i>
-														</a>
+														
 														<!-- <a href="javascript:void(0);" class="brand-icon ms-auto">
 															<img src="assets/img/icons/course-01.svg" alt="img" class="img-fluid">
 														</a> -->
@@ -1923,9 +1707,7 @@ Dependencies:
 												<div class="course-img">
 													<img src="assets/img/course/coursee-25.jpg" alt="img" class="img-fluid">
 													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-														<a href="javascript:void(0);" class="fav-icon">
-															<i class="isax isax-heart"></i>
-														</a>
+														
 														<!-- <a href="javascript:void(0);" class="brand-icon ms-auto">
 															<img src="assets/img/featured-courses/Clip-path-group.svg" alt="img" class="img-fluid">
 														</a> -->
@@ -1959,9 +1741,7 @@ Dependencies:
 												<div class="course-img">
 													<img src="assets/img/course/coursee-24.jpg" alt="img" class="img-fluid">
 													<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-														<a href="javascript:void(0);" class="fav-icon">
-															<i class="isax isax-heart"></i>
-														</a>
+														
 														<!-- <a href="javascript:void(0);" class="brand-icon ms-auto">
 															<img src="assets/img/featured-courses/react.svg" alt="img" class="img-fluid">
 														</a> -->
@@ -2016,7 +1796,7 @@ Dependencies:
                                             <img src="assets/img/course/_course1.jpeg" alt="img" class="img-fluid">
                                         </a>
                                         <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-                                            <a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="course-content">
@@ -2047,7 +1827,7 @@ Dependencies:
                                             <img src="assets/img/course/course-37.jpg" alt="img" class="img-fluid">
                                         </a>
                                         <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-                                            <a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="course-content">
@@ -2078,7 +1858,7 @@ Dependencies:
                                             <img src="assets/img/course/course-38.jpg" alt="img" class="img-fluid">
                                         </a>
                                         <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-                                            <a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="course-content">
@@ -2109,7 +1889,7 @@ Dependencies:
                                             <img src="assets/img/course/course-39.jpg" alt="img" class="img-fluid">
                                         </a>
                                         <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-                                            <a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="course-content">
@@ -2140,7 +1920,7 @@ Dependencies:
                                             <img src="assets/img/course/course-37.jpg" alt="img" class="img-fluid">
                                         </a>
                                         <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-                                            <a href="javascript:void(0);" class="fav-icon ms-auto"><i class="isax isax-heart"></i></a>
+                                            
                                         </div>
                                     </div>
                                     <div class="course-content">
@@ -2857,9 +2637,7 @@ Dependencies:
 									<span class="verify">
 										<img src="assets/img/icons/verify-icon.svg" alt="img" class="img-fluid">
 									</span>
-									<a href="javascript:void(0);" class="favourite ms-auto">
-										<i class="isax isax-heart"></i>
-									</a>
+									
 								</div>
 							</div>
 							<div class="instructor-content">
@@ -2883,9 +2661,7 @@ Dependencies:
 									<span class="verify">
 										<img src="assets/img/icons/verify-icon.svg" alt="img" class="img-fluid">
 									</span>
-									<a href="javascript:void(0);" class="favourite ms-auto">
-										<i class="isax isax-heart"></i>
-									</a>
+									
 								</div>
 							</div>
 							<div class="instructor-content instructor-img-hight">
@@ -2909,9 +2685,7 @@ Dependencies:
 									<span class="verify">
 										<img src="assets/img/icons/verify-icon.svg" alt="img" class="img-fluid">
 									</span>
-									<a href="javascript:void(0);" class="favourite ms-auto">
-										<i class="isax isax-heart"></i>
-									</a>
+									
 								</div>
 							</div>
 							<div class="instructor-content">
@@ -2935,9 +2709,7 @@ Dependencies:
 									<span class="verify">
 										<img src="assets/img/icons/verify-icon.svg" alt="img" class="img-fluid">
 									</span>
-									<a href="javascript:void(0);" class="favourite ms-auto">
-										<i class="isax isax-heart"></i>
-									</a>
+									
 								</div>
 							</div>
 							<div class="instructor-content">
@@ -2961,9 +2733,7 @@ Dependencies:
 									<span class="verify">
 										<img src="assets/img/icons/verify-icon.svg" alt="img" class="img-fluid">
 									</span>
-									<a href="javascript:void(0);" class="favourite ms-auto">
-										<i class="isax isax-heart"></i>
-									</a>
+									
 								</div>
 							</div>
 							<div class="instructor-content">
@@ -3669,20 +3439,20 @@ Dependencies:
 					'<div class="course-img">' +
 						'<img src="' + imgSrc + '" alt="' + course.title.replace(/"/g, '&quot;') + '" class="img-fluid" onerror="this.src=\'' + FALLBACK_IMG + '\'">' +
 						'<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">' +
-							'<button type="button" class="fav-icon ms-auto border-0 bg-transparent" onclick="event.stopPropagation();" aria-label="Add to wishlist"><i class="isax isax-heart"></i></button>' +
+							
 						'</div>' +
 					'</div>' +
 					'<div class="course-content">' +
-						'<div class="d-flex justify-content-between mb-2">' +
-							'<div class="d-flex align-items-center">' +
-								'<div class="avatar avatar-sm rounded-circle d-flex align-items-center justify-content-center text-white fw-bold" style="background:#522811;min-width:32px;height:32px;font-size:14px">' +
+						'<div class="d-flex align-items-center justify-content-between mb-2" style="gap:6px;min-width:0">' +
+							'<div class="d-flex align-items-center" style="min-width:0;flex:1 1 0;overflow:hidden">' +
+								'<div class="avatar avatar-sm rounded-circle d-flex align-items-center justify-content-center text-white fw-bold flex-shrink-0" style="background:#522811;width:32px;height:32px;font-size:14px">' +
 									getInitial(instructorName) +
 								'</div>' +
-								'<div class="ms-2">' +
-									'<span class="link-default fs-14">' + instructorName + '</span>' +
+								'<div class="ms-2" style="min-width:0;overflow:hidden">' +
+									'<span class="link-default fs-14 d-block text-truncate">' + instructorName + '</span>' +
 								'</div>' +
 							'</div>' +
-							'<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">' + course.category + '</span>' +
+							'<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-12 fw-medium flex-shrink-0" style="white-space:nowrap;max-width:90px;overflow:hidden;text-overflow:ellipsis">' + (course.category || '') + '</span>' +
 						'</div>' +
 						'<h6 class="title mb-2">' + course.title + '</h6>' +
 						'<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' + ratingDisplay + '</p>' +

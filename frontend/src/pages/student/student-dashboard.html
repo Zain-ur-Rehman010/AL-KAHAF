@@ -233,6 +233,22 @@
 			</div>
 			<!-- /Breadcrumb -->
 
+			<!-- Trial Countdown Banner -->
+			<div id="trialBanner" style="display:none;background:linear-gradient(135deg,#2c1506,#522811);padding:14px 0;border-bottom:3px solid #d8ac27;">
+				<div class="container">
+					<div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+						<div class="d-flex align-items-center gap-3">
+							<span style="background:#d8ac27;color:#1a0a00;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;">Free Trial</span>
+							<span id="trialBannerText" style="color:#fff;font-size:14px;font-weight:500;"></span>
+						</div>
+						<a href="/src/pages/courses/course-grid.html" style="background:#d8ac27;color:#1a0a00;padding:8px 22px;border-radius:6px;font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap;">
+							<i class="fa-solid fa-bolt me-1"></i>Enroll Now
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- /Trial Countdown Banner -->
+
 			<div class="content">
 				<div class="container">
 				<!-- profile box -->
@@ -280,9 +296,6 @@
 											</li>
 											<li>
 												<a href="/student/student-certificates" class="d-inline-flex align-items-center"><i class="isax isax-note-215 me-2"></i>My Certificates</a>
-											</li>
-											<li>
-												<a href="/student/student-wishlist" class="d-inline-flex align-items-center"><i class="isax isax-heart5 me-2"></i>Wishlist</a>
 											</li>
 											<li>
 												<a href="/student/student-reviews" class="d-inline-flex align-items-center"><i class="isax isax-star5 me-2"></i>Reviews</a>
@@ -666,6 +679,40 @@
 		if (!token) { window.location.href = '/auth/login?redirect=' + encodeURIComponent(window.location.pathname); return; }
 
 		function el(id) { return document.getElementById(id); }
+
+		// Trial countdown banner
+		(function() {
+			try {
+				var payload = JSON.parse(atob(token.split('.')[1]));
+				if (!payload.isTrial || !payload.trialExpiresAt) return;
+
+				var expiry = new Date(payload.trialExpiresAt);
+				var banner = el('trialBanner');
+				var bannerText = el('trialBannerText');
+				if (!banner || !bannerText) return;
+
+				function updateBanner() {
+					var diff = expiry - Date.now();
+					if (diff <= 0) {
+						banner.style.display = 'none';
+						// Redirect to courses — trial expired
+						window.location.href = '/src/pages/courses/course-grid.html?reason=trial_expired';
+						return;
+					}
+					var h = Math.floor(diff / 3600000);
+					var m = Math.floor((diff % 3600000) / 60000);
+					var s = Math.floor((diff % 60000) / 1000);
+					var timeStr = h > 0
+						? h + 'h ' + m + 'm remaining in your free trial'
+						: m + 'm ' + s + 's remaining in your free trial';
+					bannerText.textContent = timeStr;
+					banner.style.display = 'block';
+				}
+
+				updateBanner();
+				setInterval(updateBanner, 1000);
+			} catch(e) {}
+		})();
 
 		try {
 			var u = JSON.parse(localStorage.getItem('user') || 'null');

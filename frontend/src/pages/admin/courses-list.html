@@ -424,6 +424,7 @@
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+					<a href="/auth/login" id="feedback-login-btn" class="btn btn-secondary d-none ms-2"><i class="isax isax-logout me-1"></i>Go to Login</a>
 				</div>
 			</div>
 		</div>
@@ -724,6 +725,11 @@
 			wrap.style.background = isSuccess ? 'rgba(25,135,84,.12)' : 'rgba(220,53,69,.12)';
 			wrap.style.color = isSuccess ? '#198754' : '#dc3545';
 			icon.className = isSuccess ? 'isax isax-tick-circle' : 'isax isax-close-circle';
+			const loginBtn = document.getElementById('feedback-login-btn');
+			if (loginBtn) {
+				const isTokenError = !isSuccess && /expired|token|unauthorized|401/i.test(message);
+				loginBtn.classList.toggle('d-none', !isTokenError);
+			}
 			(feedbackModal || bootstrap.Modal.getOrCreateInstance(document.getElementById('feedbackModal'))).show();
 		}
 
