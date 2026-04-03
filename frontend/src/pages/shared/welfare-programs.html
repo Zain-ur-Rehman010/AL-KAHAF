@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Explore Al-Kahaf's current welfare projects and programs — education, healthcare, food relief, and community support across Pakistan.">
+	<title>Welfare Programs | Al-Kahaf Online Academy</title>
+
+	<link rel="shortcut icon" href="/assets/img/favicon.svg">
+	<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+	<script src="/assets/js/theme-script.js"></script>
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+	<link rel="stylesheet" href="/assets/plugins/slick/slick.css">
+	<link rel="stylesheet" href="/assets/plugins/slick/slick-theme.css">
+	<link rel="stylesheet" href="/assets/plugins/feather/feather.css">
+	<link rel="stylesheet" href="/assets/css/iconsax.css">
+	<link rel="stylesheet" href="/assets/css/style.css">
+
+	<style>
+		/* ============================================
+		   WELFARE PROGRAMS PAGE — CUSTOM STYLES
+		   ============================================ */
+
+		/* ---- HERO ---- */
+		.wp-hero {
+			background: linear-gradient(135deg, #2c1506 0%, #522811 50%, #1a3a1a 100%);
+			padding: 110px 0 90px;
+			position: relative;
+			overflow: hidden;
+		}
+		.wp-hero::before {
+			content: '';
+			position: absolute;
+			top: -20%;
+			right: -5%;
+			width: 50%;
+			height: 150%;
+			background: radial-gradient(ellipse, rgba(34,139,34,0.12) 0%, transparent 65%);
+			pointer-events: none;
+		}
+		.wp-hero::after {
+			content: '';
+			position: absolute;
+			bottom: -20%;
+			left: -5%;
+			width: 40%;
+			height: 120%;
+			background: radial-gradient(ellipse, rgba(216,172,39,0.08) 0%, transparent 65%);
+			pointer-events: none;
+		}
+		.wp-hero .hero-badge {
+			display: inline-flex;
+			align-items: center;
+			background: rgba(34,139,34,0.2);
+			border: 1px solid rgba(34,139,34,0.5);
+			color: #5cb85c;
+			font-size: 13px;
+			font-weight: 600;
+			padding: 6px 18px;
+			border-radius: 50px;
+			margin-bottom: 22px;
+			letter-spacing: 0.5px;
+		}
+		.wp-hero h1 {
+			font-size: 48px;
+			font-weight: 800;
+			color: #fff;
+			line-height: 1.15;
+			margin-bottom: 20px;
+		}
+		.wp-hero h1 span { color: #d8ac27; }
+		.wp-hero .hero-sub {
+			font-size: 17px;
+			color: rgba(255,255,255,0.75);
+			line-height: 1.75;
+			margin-bottom: 36px;
+			max-width: 520px;
+		}
+		.wp-hero .btn-donate-hero {
+			background: linear-gradient(135deg, #d8ac27, #f0c842);
+			color: #1a1a1a;
+			font-weight: 700;
+			padding: 13px 32px;
+			border-radius: 50px;
+			border: none;
+			font-size: 15px;
+			transition: transform 0.2s, box-shadow 0.2s;
+		}
+		.wp-hero .btn-donate-hero:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 8px 24px rgba(216,172,39,0.4);
+			color: #1a1a1a;
+		}
+		.wp-hero .btn-explore-hero {
+			background: transparent;
+			color: #fff;
+			font-weight: 600;
+			padding: 12px 30px;
+			border-radius: 50px;
+			border: 2px solid rgba(255,255,255,0.4);
+			font-size: 15px;
+			transition: border-color 0.2s, background 0.2s;
+		}
+		.wp-hero .btn-explore-hero:hover {
+			border-color: #fff;
+			background: rgba(255,255,255,0.08);
+			color: #fff;
+		}
+		.wp-hero-img-wrap {
+			position: relative;
+		}
+		.wp-hero-img-wrap img {
+			border-radius: 24px;
+			width: 100%;
+			object-fit: cover;
+			max-height: 420px;
+			box-shadow: 0 32px 80px rgba(0,0,0,0.4);
+		}
+		.wp-hero-badge-float {
+			position: absolute;
+			bottom: -20px;
+			left: -20px;
+			background: #fff;
+			border-radius: 16px;
+			padding: 16px 20px;
+			box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+			min-width: 180px;
+		}
+		.wp-hero-badge-float .num {
+			font-size: 28px;
+			font-weight: 800;
+			color: #522811;
+			line-height: 1;
+		}
+		.wp-hero-badge-float .lbl {
+			font-size: 12px;
+			color: #888;
+			margin-top: 2px;
+		}
+
+		/* ---- IMPACT STATS ---- */
+		.wp-stats {
+			background: #fff;
+			padding: 70px 0;
+		}
+		.wp-stat-card {
+			text-align: center;
+			padding: 36px 24px;
+			border-radius: 20px;
+			border: 1.5px solid #f0f0f0;
+			transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+		}
+		.wp-stat-card:hover {
+			box-shadow: 0 16px 48px rgba(82,40,17,0.1);
+			transform: translateY(-4px);
+			border-color: #d8ac27;
+		}
+		.wp-stat-card .stat-icon {
+			width: 64px;
+			height: 64px;
+			border-radius: 50%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 26px;
+			margin: 0 auto 16px;
+		}
+		.wp-stat-card .stat-num {
+			font-size: 38px;
+			font-weight: 800;
+			color: #1a1a1a;
+			line-height: 1;
+		}
+		.wp-stat-card .stat-suffix {
+			font-size: 22px;
+			font-weight: 700;
+			color: #d8ac27;
+		}
+		.wp-stat-card .stat-label {
+			font-size: 14px;
+			color: #777;
+			margin-top: 8px;
+			font-weight: 500;
+		}
+
+		/* ---- FILTER TABS ---- */
+		.wp-filters {
+			padding: 60px 0 40px;
+			background: #f9f7f4;
+		}
+		.wp-filter-tabs {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			justify-content: center;
+		}
+		.wp-filter-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 10px 24px;
+			border-radius: 50px;
+			border: 2px solid #e0dbd5;
+			background: #fff;
+			color: #555;
+			font-size: 14px;
+			font-weight: 600;
+			cursor: pointer;
+			transition: all 0.2s;
+		}
+		.wp-filter-btn:hover,
+		.wp-filter-btn.active {
+			background: #522811;
+			border-color: #522811;
+			color: #fff;
+		}
+		.wp-filter-btn i { font-size: 15px; }
+
+		/* ---- PROJECTS GRID ---- */
+		.wp-projects {
+			padding: 40px 0 70px;
+			background: #f9f7f4;
+		}
+		.wp-project-card {
+			background: #fff;
+			border-radius: 20px;
+			overflow: hidden;
+			border: 1.5px solid #f0ece6;
+			transition: box-shadow 0.25s, transform 0.25s;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+		.wp-project-card:hover {
+			box-shadow: 0 16px 48px rgba(82,40,17,0.12);
+			transform: translateY(-4px);
+		}
+		.wp-project-card .card-img-wrap {
+			position: relative;
+			overflow: hidden;
+			height: 200px;
+		}
+		.wp-project-card .card-img-wrap img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: transform 0.4s;
+		}
+		.wp-project-card:hover .card-img-wrap img {
+			transform: scale(1.05);
+		}
+		.wp-project-card .card-cat-tag {
+			position: absolute;
+			top: 14px;
+			left: 14px;
+			background: #522811;
+			color: #fff;
+			font-size: 11px;
+			font-weight: 700;
+			padding: 4px 12px;
+			border-radius: 50px;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+		}
+		.wp-project-card .card-urgent {
+			position: absolute;
+			top: 14px;
+			right: 14px;
+			background: #e53935;
+			color: #fff;
+			font-size: 11px;
+			font-weight: 700;
+			padding: 4px 12px;
+			border-radius: 50px;
+			display: flex;
+			align-items: center;
+			gap: 4px;
+		}
+		.wp-project-card .card-body-inner {
+			padding: 24px;
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+		}
+		.wp-project-card .card-title {
+			font-size: 17px;
+			font-weight: 700;
+			color: #1a1a1a;
+			margin-bottom: 10px;
+			line-height: 1.4;
+		}
+		.wp-project-card .card-desc {
+			font-size: 14px;
+			color: #666;
+			line-height: 1.65;
+			margin-bottom: 16px;
+			flex: 1;
+		}
+		.wp-project-card .card-impact {
+			display: flex;
+			align-items: center;
+			gap: 6px;
+			font-size: 13px;
+			font-weight: 600;
+			color: #522811;
+			margin-bottom: 16px;
+		}
+		.wp-project-card .progress {
+			height: 6px;
+			border-radius: 50px;
+			background: #f0ece6;
+			margin-bottom: 8px;
+		}
+		.wp-project-card .progress-bar {
+			background: linear-gradient(90deg, #d8ac27, #f0c842);
+			border-radius: 50px;
+		}
+		.wp-project-card .progress-labels {
+			display: flex;
+			justify-content: space-between;
+			font-size: 12px;
+			color: #888;
+			margin-bottom: 18px;
+		}
+		.wp-project-card .card-actions {
+			display: flex;
+			gap: 10px;
+		}
+		.wp-project-card .btn-view {
+			flex: 1;
+			padding: 9px 16px;
+			border-radius: 10px;
+			border: 2px solid #522811;
+			color: #522811;
+			font-size: 13px;
+			font-weight: 600;
+			background: transparent;
+			transition: all 0.2s;
+			text-align: center;
+		}
+		.wp-project-card .btn-view:hover {
+			background: #522811;
+			color: #fff;
+		}
+		.wp-project-card .btn-donate-card {
+			flex: 1;
+			padding: 9px 16px;
+			border-radius: 10px;
+			background: linear-gradient(135deg, #d8ac27, #f0c842);
+			color: #1a1a1a;
+			font-size: 13px;
+			font-weight: 700;
+			border: none;
+			text-align: center;
+			transition: transform 0.2s, box-shadow 0.2s;
+		}
+		.wp-project-card .btn-donate-card:hover {
+			transform: translateY(-1px);
+			box-shadow: 0 6px 18px rgba(216,172,39,0.35);
+			color: #1a1a1a;
+		}
+
+		/* ---- FEATURED PROJECT ---- */
+		.wp-featured {
+			padding: 80px 0;
+			background: #fff;
+		}
+		.wp-featured-card {
+			border-radius: 24px;
+			overflow: hidden;
+			box-shadow: 0 24px 80px rgba(82,40,17,0.12);
+			display: flex;
+			flex-direction: column;
+		}
+		@media (min-width: 992px) {
+			.wp-featured-card { flex-direction: row; }
+			.wp-featured-card .feat-img { width: 50%; }
+			.wp-featured-card .feat-content { width: 50%; }
+		}
+		.wp-featured-card .feat-img {
+			position: relative;
+			min-height: 380px;
+		}
+		.wp-featured-card .feat-img img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
+		.wp-featured-card .feat-img-overlay {
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(135deg, rgba(82,40,17,0.7) 0%, rgba(26,26,26,0.3) 100%);
+			display: flex;
+			align-items: flex-end;
+			padding: 28px;
+		}
+		.wp-featured-card .feat-img-overlay .feat-tag {
+			background: #d8ac27;
+			color: #1a1a1a;
+			font-size: 12px;
+			font-weight: 700;
+			padding: 6px 16px;
+			border-radius: 50px;
+			letter-spacing: 0.5px;
+			text-transform: uppercase;
+		}
+		.wp-featured-card .feat-content {
+			background: #fff;
+			padding: 48px 40px;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+		.wp-featured-card .feat-eyebrow {
+			font-size: 13px;
+			font-weight: 700;
+			color: #d8ac27;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			margin-bottom: 12px;
+		}
+		.wp-featured-card .feat-title {
+			font-size: 28px;
+			font-weight: 800;
+			color: #1a1a1a;
+			margin-bottom: 16px;
+			line-height: 1.3;
+		}
+		.wp-featured-card .feat-desc {
+			font-size: 15px;
+			color: #666;
+			line-height: 1.75;
+			margin-bottom: 28px;
+		}
+		.wp-featured-card .feat-goal-label {
+			display: flex;
+			justify-content: space-between;
+			font-size: 13px;
+			font-weight: 600;
+			color: #333;
+			margin-bottom: 8px;
+		}
+		.wp-featured-card .feat-progress {
+			height: 10px;
+			border-radius: 50px;
+			background: #f0ece6;
+			margin-bottom: 6px;
+		}
+		.wp-featured-card .feat-progress .bar {
+			height: 100%;
+			background: linear-gradient(90deg, #522811, #d8ac27);
+			border-radius: 50px;
+			transition: width 1.5s ease;
+		}
+		.wp-featured-card .feat-raised {
+			font-size: 12px;
+			color: #888;
+			margin-bottom: 28px;
+		}
+		.wp-featured-card .btn-support {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			background: linear-gradient(135deg, #522811, #7a3d18);
+			color: #fff;
+			font-weight: 700;
+			padding: 14px 32px;
+			border-radius: 50px;
+			border: none;
+			font-size: 15px;
+			transition: transform 0.2s, box-shadow 0.2s;
+			align-self: flex-start;
+		}
+		.wp-featured-card .btn-support:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 10px 28px rgba(82,40,17,0.35);
+			color: #fff;
+		}
+
+		/* ---- CTA SECTION ---- */
+		.wp-cta {
+			padding: 80px 0;
+			background: linear-gradient(135deg, #522811 0%, #2c1506 60%, #1a3a1a 100%);
+			position: relative;
+			overflow: hidden;
+			text-align: center;
+		}
+		.wp-cta::before {
+			content: '';
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			width: 600px;
+			height: 600px;
+			background: radial-gradient(ellipse, rgba(216,172,39,0.1) 0%, transparent 65%);
+			pointer-events: none;
+		}
+		.wp-cta h2 {
+			font-size: 40px;
+			font-weight: 800;
+			color: #fff;
+			margin-bottom: 16px;
+		}
+		.wp-cta h2 span { color: #d8ac27; }
+		.wp-cta p {
+			font-size: 16px;
+			color: rgba(255,255,255,0.75);
+			max-width: 520px;
+			margin: 0 auto 36px;
+			line-height: 1.7;
+		}
+		.wp-cta .btn-donate-cta {
+			background: linear-gradient(135deg, #d8ac27, #f0c842);
+			color: #1a1a1a;
+			font-weight: 700;
+			padding: 14px 36px;
+			border-radius: 50px;
+			border: none;
+			font-size: 15px;
+			transition: transform 0.2s, box-shadow 0.2s;
+		}
+		.wp-cta .btn-donate-cta:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 10px 28px rgba(216,172,39,0.4);
+			color: #1a1a1a;
+		}
+		.wp-cta .btn-volunteer-cta {
+			background: transparent;
+			color: #fff;
+			font-weight: 600;
+			padding: 13px 34px;
+			border-radius: 50px;
+			border: 2px solid rgba(255,255,255,0.45);
+			font-size: 15px;
+			transition: border-color 0.2s, background 0.2s;
+		}
+		.wp-cta .btn-volunteer-cta:hover {
+			border-color: #fff;
+			background: rgba(255,255,255,0.08);
+			color: #fff;
+		}
+
+		/* ---- TESTIMONIALS ---- */
+		.wp-testimonials {
+			padding: 80px 0;
+			background: #f9f7f4;
+		}
+		.wp-testi-card {
+			background: #fff;
+			border-radius: 20px;
+			padding: 32px 28px;
+			border: 1.5px solid #f0ece6;
+			height: 100%;
+			transition: box-shadow 0.25s;
+		}
+		.wp-testi-card:hover {
+			box-shadow: 0 12px 40px rgba(82,40,17,0.1);
+		}
+		.wp-testi-card .testi-quote {
+			font-size: 48px;
+			color: #d8ac27;
+			line-height: 1;
+			margin-bottom: 12px;
+			font-family: Georgia, serif;
+		}
+		.wp-testi-card .testi-text {
+			font-size: 15px;
+			color: #555;
+			line-height: 1.75;
+			margin-bottom: 24px;
+			font-style: italic;
+		}
+		.wp-testi-card .testi-author {
+			display: flex;
+			align-items: center;
+			gap: 14px;
+		}
+		.wp-testi-card .testi-avatar {
+			width: 48px;
+			height: 48px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 3px solid #f0ece6;
+		}
+		.wp-testi-card .testi-avatar-placeholder {
+			width: 48px;
+			height: 48px;
+			border-radius: 50%;
+			background: linear-gradient(135deg, #522811, #d8ac27);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #fff;
+			font-weight: 700;
+			font-size: 18px;
+			flex-shrink: 0;
+		}
+		.wp-testi-card .testi-name {
+			font-size: 15px;
+			font-weight: 700;
+			color: #1a1a1a;
+			margin-bottom: 2px;
+		}
+		.wp-testi-card .testi-role {
+			font-size: 12px;
+			color: #999;
+		}
+		.wp-testi-card .testi-stars {
+			color: #d8ac27;
+			font-size: 13px;
+			margin-bottom: 16px;
+		}
+
+		/* ---- NEWSLETTER ---- */
+		.wp-newsletter {
+			padding: 70px 0;
+			background: #fff;
+		}
+		.wp-newsletter-card {
+			background: linear-gradient(135deg, #2c1506, #522811);
+			border-radius: 24px;
+			padding: 56px 48px;
+			position: relative;
+			overflow: hidden;
+			text-align: center;
+		}
+		.wp-newsletter-card::before {
+			content: '';
+			position: absolute;
+			top: -30%;
+			right: -5%;
+			width: 40%;
+			height: 160%;
+			background: radial-gradient(ellipse, rgba(216,172,39,0.12) 0%, transparent 65%);
+		}
+		.wp-newsletter-card h3 {
+			font-size: 30px;
+			font-weight: 800;
+			color: #fff;
+			margin-bottom: 10px;
+		}
+		.wp-newsletter-card p {
+			font-size: 15px;
+			color: rgba(255,255,255,0.72);
+			margin-bottom: 32px;
+		}
+		.wp-newsletter-form {
+			display: flex;
+			max-width: 480px;
+			margin: 0 auto;
+			gap: 0;
+		}
+		.wp-newsletter-form input {
+			flex: 1;
+			padding: 14px 20px;
+			border: none;
+			border-radius: 50px 0 0 50px;
+			font-size: 14px;
+			outline: none;
+		}
+		.wp-newsletter-form button {
+			background: linear-gradient(135deg, #d8ac27, #f0c842);
+			color: #1a1a1a;
+			font-weight: 700;
+			padding: 14px 28px;
+			border: none;
+			border-radius: 0 50px 50px 0;
+			font-size: 14px;
+			white-space: nowrap;
+			transition: opacity 0.2s;
+		}
+		.wp-newsletter-form button:hover { opacity: 0.9; }
+
+		/* ---- SECTION HEADER ---- */
+		.wp-section-header {
+			text-align: center;
+			margin-bottom: 50px;
+		}
+		.wp-section-header .eyebrow {
+			display: inline-block;
+			font-size: 13px;
+			font-weight: 700;
+			color: #d8ac27;
+			text-transform: uppercase;
+			letter-spacing: 1.5px;
+			margin-bottom: 12px;
+		}
+		.wp-section-header h2 {
+			font-size: 34px;
+			font-weight: 800;
+			color: #1a1a1a;
+			margin-bottom: 14px;
+		}
+		.wp-section-header p {
+			font-size: 15px;
+			color: #777;
+			max-width: 560px;
+			margin: 0 auto;
+			line-height: 1.75;
+		}
+
+		/* ---- HIDDEN card filter ---- */
+		.wp-project-card[data-cat].filtered-out {
+			display: none !important;
+		}
+
+		/* ---- RESPONSIVE ---- */
+		@media (max-width: 767px) {
+			.wp-hero { padding: 80px 0 60px; }
+			.wp-hero h1 { font-size: 32px; }
+			.wp-hero-badge-float { left: 10px; }
+			.wp-featured-card .feat-content { padding: 32px 24px; }
+			.wp-featured-card .feat-title { font-size: 22px; }
+			.wp-newsletter-card { padding: 40px 24px; }
+			.wp-newsletter-form { flex-direction: column; }
+			.wp-newsletter-form input { border-radius: 50px; margin-bottom: 10px; }
+			.wp-newsletter-form button { border-radius: 50px; }
+		}
+	</style>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+	<!-- Header -->
+	<header class="header-one">
+		<div class="container">
+			<div class="header-nav">
+				<div class="navbar-header">
+					<a id="mobile_btn" href="javascript:void(0);">
+						<span class="bar-icon"><i class="isax isax-menu"></i></span>
+					</a>
+					<div class="navbar-logo">
+						<a class="logo-white header-logo" href="/">
+							<img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="logo" alt="Logo">
+						</a>
+						<a class="logo-dark header-logo" href="/">
+							<img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="logo" alt="Logo">
+						</a>
+					</div>
+				</div>
+				<div class="main-menu-wrapper">
+					<div class="menu-header">
+						<a href="/" class="menu-logo">
+							<img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="img-fluid" alt="Logo">
+						</a>
+						<a id="menu_close" class="menu-close" href="javascript:void(0);">
+							<i class="fas fa-times"></i>
+						</a>
+					</div>
+					<ul class="main-nav">
+						<li><a href="/">Home</a></li>
+						<li><a href="/courses/course-grid">Courses</a></li>
+						<li><a href="/shared/about-us">About Us</a></li>
+						<li class="active"><a href="/shared/welfare-programs">Welfare Programs</a></li>
+						<li><a href="/shared/contact-us">Contact Us</a></li>
+					</ul>
+					<div class="menu-login">
+						<a href="/auth/login" class="btn btn-primary w-100 mb-2"><i class="isax isax-user me-2"></i>Sign In</a>
+						<a href="/auth/register" class="btn btn-secondary w-100"><i class="isax isax-user-edit me-2"></i>Register</a>
+					</div>
+				</div>
+				<div class="header-btn d-flex align-items-center">
+					<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
+						<i class="isax isax-user me-2"></i>Sign In
+					</a>
+					<a href="/auth/register" class="btn btn-dark d-inline-flex align-items-center me-2">
+						<i class="isax isax-user-edit me-2"></i>Register
+					</a>
+					<a href="#donate" class="btn btn-secondary btn-donate me-0">
+						<i class="isax isax-heart5 me-1"></i>Donate
+					</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- /Header -->
+
+	<!-- ===== HERO ===== -->
+	<section class="wp-hero">
+		<div class="container position-relative">
+			<div class="row align-items-center gy-5">
+				<div class="col-lg-6">
+					<span class="wp-hero .hero-badge">
+						<i class="fa fa-hand-holding-heart me-2"></i>Serving Communities Since 2015
+					</span>
+					<h1>Current Projects &amp;<br><span>Welfare Programs</span></h1>
+					<p class="hero-sub">Together we can uplift lives through education, healthcare, food relief, and community empowerment — making a lasting difference across Pakistan.</p>
+					<div class="d-flex flex-wrap gap-3">
+						<a href="#donate" class="btn-donate-hero btn">
+							<i class="fa fa-heart me-2"></i>Donate Now
+						</a>
+						<a href="#programs" class="btn-explore-hero btn">
+							<i class="fa fa-compass me-2"></i>Explore Programs
+						</a>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="wp-hero-img-wrap">
+						<img src="/assets/img/bg/home-bg-01.jpg" alt="Welfare Programs" onerror="this.src='/assets/img/about/about-2.svg'">
+						<div class="wp-hero-badge-float">
+							<div class="num" id="hero-counter">12,000+</div>
+							<div class="lbl">Lives Impacted This Year</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /Hero -->
+
+	<!-- ===== IMPACT STATS ===== -->
+	<section class="wp-stats">
+		<div class="container">
+			<div class="wp-section-header">
+				<span class="eyebrow">Our Impact</span>
+				<h2>Numbers That Speak for Themselves</h2>
+				<p>Every figure represents a real person whose life we've touched through your generous support.</p>
+			</div>
+			<div class="row g-4">
+				<div class="col-6 col-lg-3">
+					<div class="wp-stat-card">
+						<div class="stat-icon" style="background:rgba(216,172,39,0.12);color:#d8ac27;">
+							<i class="fa fa-users"></i>
+						</div>
+						<div class="stat-num">
+							<span class="counter" data-count="50000">0</span><span class="stat-suffix">+</span>
+						</div>
+						<div class="stat-label">People Served Daily</div>
+					</div>
+				</div>
+				<div class="col-6 col-lg-3">
+					<div class="wp-stat-card">
+						<div class="stat-icon" style="background:rgba(82,40,17,0.1);color:#522811;">
+							<i class="fa fa-project-diagram"></i>
+						</div>
+						<div class="stat-num">
+							<span class="counter" data-count="340">0</span><span class="stat-suffix">+</span>
+						</div>
+						<div class="stat-label">Projects Completed</div>
+					</div>
+				</div>
+				<div class="col-6 col-lg-3">
+					<div class="wp-stat-card">
+						<div class="stat-icon" style="background:rgba(34,139,34,0.1);color:#228B22;">
+							<i class="fa fa-hand-holding-heart"></i>
+						</div>
+						<div class="stat-num">
+							<span class="counter" data-count="120000">0</span><span class="stat-suffix">+</span>
+						</div>
+						<div class="stat-label">Active Beneficiaries</div>
+					</div>
+				</div>
+				<div class="col-6 col-lg-3">
+					<div class="wp-stat-card">
+						<div class="stat-icon" style="background:rgba(220,53,69,0.1);color:#dc3545;">
+							<i class="fa fa-city"></i>
+						</div>
+						<div class="stat-num">
+							<span class="counter" data-count="85">0</span><span class="stat-suffix">+</span>
+						</div>
+						<div class="stat-label">Cities Reached</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /Stats -->
+
+	<!-- ===== FILTER TABS ===== -->
+	<section class="wp-filters" id="programs">
+		<div class="container">
+			<div class="wp-section-header">
+				<span class="eyebrow">Browse by Category</span>
+				<h2>Find a Program Close to Your Heart</h2>
+				<p>Filter through our active welfare initiatives and discover where your support makes the most impact.</p>
+			</div>
+			<div class="wp-filter-tabs">
+				<button class="wp-filter-btn active" data-filter="all">
+					<i class="fa fa-th"></i> All Programs
+				</button>
+				<button class="wp-filter-btn" data-filter="education">
+					<i class="fa fa-graduation-cap"></i> Education
+				</button>
+				<button class="wp-filter-btn" data-filter="healthcare">
+					<i class="fa fa-heartbeat"></i> Healthcare
+				</button>
+				<button class="wp-filter-btn" data-filter="food">
+					<i class="fa fa-utensils"></i> Food &amp; Relief
+				</button>
+				<button class="wp-filter-btn" data-filter="microfinance">
+					<i class="fa fa-hand-holding-usd"></i> Microfinance
+				</button>
+				<button class="wp-filter-btn" data-filter="water">
+					<i class="fa fa-tint"></i> Clean Water
+				</button>
+			</div>
+		</div>
+	</section>
+	<!-- /Filters -->
+
+	<!-- ===== PROJECTS GRID ===== -->
+	<section class="wp-projects">
+		<div class="container">
+			<div class="row g-4" id="projects-grid">
+
+				<!-- Card 1: Free Food Distribution -->
+				<div class="col-md-6 col-lg-4 wp-card-col" data-cat="food">
+					<div class="wp-project-card">
+						<div class="card-img-wrap">
+							<img src="/assets/img/course/course-01.jpg" alt="Free Food Distribution" onerror="this.src='/assets/img/about/about-2.svg'">
+							<span class="card-cat-tag">Food &amp; Relief</span>
+							<span class="card-urgent"><i class="fa fa-bolt"></i> Urgent</span>
+						</div>
+						<div class="card-body-inner">
+							<div class="card-title">Free Food Distribution (Dastarkhwan)</div>
+							<p class="card-desc">Providing hot nutritious meals to underprivileged families, orphans, and daily wage workers through our community kitchen network across Pakistan.</p>
+							<div class="card-impact">
+								<i class="fa fa-users"></i> 15,000+ beneficiaries monthly
+							</div>
+							<div class="progress"><div class="progress-bar" style="width:73%"></div></div>
+							<div class="progress-labels"><span>Raised: PKR 7.3L</span><span>Goal: PKR 10L</span></div>
+							<div class="card-actions">
+								<a href="/shared/welfare-program-detail?id=food-distribution" class="btn-view">View Details</a>
+								<a href="#donate" class="btn-donate-card">Donate</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Card 2: IT Education -->
+				<div class="col-md-6 col-lg-4 wp-card-col" data-cat="education">
+					<div class="wp-project-card">
+						<div class="card-img-wrap">
+							<img src="/assets/img/course/course-02.jpg" alt="IT Education" onerror="this.src='/assets/img/about/about-2.svg'">
+							<span class="card-cat-tag">Education</span>
+						</div>
+						<div class="card-body-inner">
+							<div class="card-title">Free IT &amp; Vocational Training Program</div>
+							<p class="card-desc">Equipping youth from low-income backgrounds with marketable digital skills — web development, graphic design, and freelancing — to achieve financial independence.</p>
+							<div class="card-impact">
+								<i class="fa fa-users"></i> 3,200+ students enrolled
+							</div>
+							<div class="progress"><div class="progress-bar" style="width:58%"></div></div>
+							<div class="progress-labels"><span>Raised: PKR 5.8L</span><span>Goal: PKR 10L</span></div>
+							<div class="card-actions">
+								<a href="/shared/welfare-program-detail?id=it-education" class="btn-view">View Details</a>
+								<a href="#donate" class="btn-donate-card">Donate</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Card 3: Interest-Free Loans -->
+				<div class="col-md-6 col-lg-4 wp-card-col" data-cat="microfinance">
+					<div class="wp-project-card">
+						<div class="card-img-wrap">
+							<img src="/assets/img/course/course-03.jpg" alt="Interest-Free Loans" onerror="this.src='/assets/img/about/about-2.svg'">
+							<span class="card-cat-tag">Microfinance</span>
+						</div>
+						<div class="card-body-inner">
+							<div class="card-title">Interest-Free Loan Scheme (Qarz-e-Hasna)</div>
+							<p class="card-desc">Offering interest-free microloans to small business owners and entrepreneurs to help them grow sustainably without falling into debt cycles.</p>
+							<div class="card-impact">
+								<i class="fa fa-users"></i> 8,500+ families supported
+							</div>
+							<div class="progress"><div class="progress-bar" style="width:82%"></div></div>
+							<div class="progress-labels"><span>Raised: PKR 16.4L</span><span>Goal: PKR 20L</span></div>
+							<div class="card-actions">
+								<a href="/shared/welfare-program-detail?id=microfinance" class="btn-view">View Details</a>
+								<a href="#donate" class="btn-donate-card">Donate</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Card 4: Medical Assistance -->
+				<div class="col-md-6 col-lg-4 wp-card-col" data-cat="healthcare">
+					<div class="wp-project-card">
+						<div class="card-img-wrap">
+							<img src="/assets/img/course/course-04.jpg" alt="Medical Assistance" onerror="this.src='/assets/img/about/about-2.svg'">
+							<span class="card-cat-tag">Healthcare</span>
+							<span class="card-urgent"><i class="fa fa-bolt"></i> Urgent</span>
+						</div>
+						<div class="card-body-inner">
+							<div class="card-title">Free Medical &amp; Medicine Assistance</div>
+							<p class="card-desc">Providing free consultations, medicines, and surgical support to patients who cannot afford healthcare. Mobile clinics reach remote areas monthly.</p>
+							<div class="card-impact">
+								<i class="fa fa-users"></i> 6,000+ patients treated
+							</div>
+							<div class="progress"><div class="progress-bar" style="width:45%"></div></div>
+							<div class="progress-labels"><span>Raised: PKR 4.5L</span><span>Goal: PKR 10L</span></div>
+							<div class="card-actions">
+								<a href="/shared/welfare-program-detail?id=medical-assistance" class="btn-view">View Details</a>
+								<a href="#donate" class="btn-donate-card">Donate</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Card 5: Clean Water -->
+				<div class="col-md-6 col-lg-4 wp-card-col" data-cat="water">
+					<div class="wp-project-card">
+						<div class="card-img-wrap">
+							<img src="/assets/img/course/course-05.jpg" alt="Clean Water" onerror="this.src='/assets/img/about/about-2.svg'">
+							<span class="card-cat-tag">Clean Water</span>
+						</div>
+						<div class="card-body-inner">
+							<div class="card-title">Clean Water &amp; Sanitation Projects</div>
+							<p class="card-desc">Installing hand pumps, water filtration plants, and sanitation facilities in flood-affected and drought-prone villages across rural Pakistan.</p>
+							<div class="card-impact">
+								<i class="fa fa-users"></i> 25,000+ villagers served
+							</div>
+							<div class="progress"><div class="progress-bar" style="width:66%"></div></div>
+							<div class="progress-labels"><span>Raised: PKR 6.6L</span><span>Goal: PKR 10L</span></div>
+							<div class="card-actions">
+								<a href="/shared/welfare-program-detail?id=clean-water" class="btn-view">View Details</a>
+								<a href="#donate" class="btn-donate-card">Donate</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Card 6: Quran Education -->
+				<div class="col-md-6 col-lg-4 wp-card-col" data-cat="education">
+					<div class="wp-project-card">
+						<div class="card-img-wrap">
+							<img src="/assets/img/course/course-06.jpg" alt="Quran Education" onerror="this.src='/assets/img/about/about-2.svg'">
+							<span class="card-cat-tag">Education</span>
+						</div>
+						<div class="card-body-inner">
+							<div class="card-title">Free Quran &amp; Islamic Education for Orphans</div>
+							<p class="card-desc">Sponsoring Quran memorisation (Hifz), Tajweed, and Islamic Studies for orphaned children through our certified online and in-person programs.</p>
+							<div class="card-impact">
+								<i class="fa fa-users"></i> 1,800+ children enrolled
+							</div>
+							<div class="progress"><div class="progress-bar" style="width:90%"></div></div>
+							<div class="progress-labels"><span>Raised: PKR 9L</span><span>Goal: PKR 10L</span></div>
+							<div class="card-actions">
+								<a href="/shared/welfare-program-detail?id=quran-education" class="btn-view">View Details</a>
+								<a href="#donate" class="btn-donate-card">Donate</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<!-- No results message -->
+			<div id="no-results" class="text-center py-5 d-none">
+				<i class="fa fa-search fa-3x mb-3" style="color:#ccc;"></i>
+				<p class="text-muted">No programs found for this category.</p>
+			</div>
+		</div>
+	</section>
+	<!-- /Projects Grid -->
+
+	<!-- ===== FEATURED PROJECT ===== -->
+	<section class="wp-featured">
+		<div class="container">
+			<div class="wp-section-header">
+				<span class="eyebrow">Featured Initiative</span>
+				<h2>Project Spotlight</h2>
+				<p>One project that urgently needs your attention and support right now.</p>
+			</div>
+			<div class="wp-featured-card">
+				<div class="feat-img">
+					<img src="/assets/img/bg/home-bg-01.jpg" alt="Ramadan Relief" onerror="this.src='/assets/img/about/about-2.svg'">
+					<div class="feat-img-overlay">
+						<span class="feat-tag"><i class="fa fa-bolt me-1"></i> Urgent — Ramadan Drive</span>
+					</div>
+				</div>
+				<div class="feat-content">
+					<div class="feat-eyebrow">Featured Project</div>
+					<div class="feat-title">Ramadan Food Package Distribution for 5,000 Families</div>
+					<p class="feat-desc">This Ramadan, we aim to distribute complete food packages to 5,000 deserving families across 12 cities. Each package covers a family's essential food needs for the entire holy month — ensuring no one goes hungry while fasting.</p>
+					<div class="feat-goal-label">
+						<span><strong>PKR 18.2 Lakh raised</strong></span>
+						<span style="color:#d8ac27;font-weight:700;">91% of goal</span>
+					</div>
+					<div class="feat-progress">
+						<div class="bar" id="feat-bar" style="width:0%"></div>
+					</div>
+					<div class="feat-raised">Goal: PKR 20 Lakh &nbsp;•&nbsp; 1,240 donors &nbsp;•&nbsp; 12 days left</div>
+					<a href="#donate" class="btn-support btn">
+						<i class="fa fa-heart me-1"></i> Support This Project
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /Featured -->
+
+	<!-- ===== CTA ===== -->
+	<section class="wp-cta" id="donate">
+		<div class="container position-relative">
+			<h2>Be Part of the <span>Change</span></h2>
+			<p>Your donation — no matter how small — creates a ripple effect that transforms lives, families, and entire communities.</p>
+			<div class="d-flex flex-wrap justify-content-center gap-3">
+				<a href="/shared/checkout" class="btn-donate-cta btn">
+					<i class="fa fa-heart me-2"></i>Donate Now
+				</a>
+				<a href="/shared/free-trial" class="btn-volunteer-cta btn">
+					<i class="fa fa-hands-helping me-2"></i>Become a Volunteer
+				</a>
+			</div>
+		</div>
+	</section>
+	<!-- /CTA -->
+
+	<!-- ===== TESTIMONIALS ===== -->
+	<section class="wp-testimonials">
+		<div class="container">
+			<div class="wp-section-header">
+				<span class="eyebrow">Success Stories</span>
+				<h2>Lives Changed, Words Shared</h2>
+				<p>Hear directly from the people whose lives have been transformed through your generous support.</p>
+			</div>
+			<div class="row g-4">
+				<div class="col-md-6 col-lg-4">
+					<div class="wp-testi-card">
+						<div class="testi-stars">
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+						</div>
+						<div class="testi-quote">"</div>
+						<p class="testi-text">The free IT training program completely changed my life. I went from unemployed to earning PKR 80,000/month as a freelancer within 8 months. Al-Kahaf didn't just teach me skills — they gave me hope.</p>
+						<div class="testi-author">
+							<div class="testi-avatar-placeholder">A</div>
+							<div>
+								<div class="testi-name">Ahmed Raza</div>
+								<div class="testi-role">IT Training Graduate, Lahore</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="wp-testi-card">
+						<div class="testi-stars">
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
+						</div>
+						<div class="testi-quote">"</div>
+						<p class="testi-text">When my husband lost his job, we didn't know how we'd feed our four children. The Dastarkhwan program fed us every day for three months while he recovered. Allah bless everyone who donated.</p>
+						<div class="testi-author">
+							<div class="testi-avatar-placeholder">F</div>
+							<div>
+								<div class="testi-name">Fatima Bibi</div>
+								<div class="testi-role">Food Program Beneficiary, Karachi</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 col-lg-4">
+					<div class="wp-testi-card">
+						<div class="testi-stars">
+							<i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star-half-alt"></i>
+						</div>
+						<div class="testi-quote">"</div>
+						<p class="testi-text">The interest-free loan helped me expand my small tailoring business. I hired two women from my neighbourhood. Now we are all independent. This is what true welfare looks like.</p>
+						<div class="testi-author">
+							<div class="testi-avatar-placeholder">N</div>
+							<div>
+								<div class="testi-name">Nazia Parveen</div>
+								<div class="testi-role">Microfinance Beneficiary, Faisalabad</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- /Testimonials -->
+
+	<!-- ===== NEWSLETTER ===== -->
+	<section class="wp-newsletter">
+		<div class="container">
+			<div class="wp-newsletter-card">
+				<h3>Stay Updated with Our Work</h3>
+				<p>Get monthly impact reports, new program announcements, and stories of change delivered to your inbox.</p>
+				<form class="wp-newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+					<input type="email" placeholder="Enter your email address" required>
+					<button type="submit"><i class="fa fa-paper-plane me-2"></i>Subscribe</button>
+				</form>
+				<p id="newsletter-msg" style="margin-top:14px;color:rgba(255,255,255,0.8);font-size:13px;display:none;"></p>
+			</div>
+		</div>
+	</section>
+	<!-- /Newsletter -->
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="footer-bg">
+			<img src="/assets/img/bg/footer-bg-01.png" class="footer-bg-1" alt="">
+			<img src="/assets/img/bg/footer-bg-02.png" class="footer-bg-2" alt="">
+		</div>
+		<div class="footer-top">
+			<div class="container">
+				<div class="row row-gap-4">
+					<div class="col-lg-4">
+						<div class="footer-about">
+							<div class="footer-logo">
+								<img src="/assets/img/white-logo.png" style="width:200px;height:150px;" alt="">
+							</div>
+							<p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
+							<div class="d-flex align-items-center">
+								<a href="#" class="me-2"><img src="/assets/img/icon/appstore.svg" alt=""></a>
+								<a href="#"><img src="/assets/img/icon/googleplay.svg" alt=""></a>
+							</div>
+						</div>
+					</div>
+					<div class="col-lg-8">
+						<div class="row row-gap-4">
+							<div class="col-lg-3">
+								<div class="footer-widget footer-menu">
+									<h5 class="footer-title">For Instructor</h5>
+									<ul>
+										<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
+										<li><a href="/instructor/instructor-dashboard">Instructor Dashboard</a></li>
+										<li><a href="/courses/add-course">Add New Course</a></li>
+										<li><a href="/auth/login">Login</a></li>
+										<li><a href="/auth/register">Register</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="footer-widget footer-menu">
+									<h5 class="footer-title">For Student</h5>
+									<ul>
+										<li><a href="/courses/course-grid">Browse Courses</a></li>
+										<li><a href="/student/student-dashboard">Student Dashboard</a></li>
+										<li><a href="/student/student-certificates">My Certificates</a></li>
+										<li><a href="/auth/login">Login</a></li>
+										<li><a href="/auth/register">Register</a></li>
+									</ul>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="footer-widget footer-contact">
+									<h5 class="footer-title">Newsletter</h5>
+									<div class="subscribe-input">
+										<form action="javascript:void(0);">
+											<input type="email" class="form-control" placeholder="Enter your Email Address">
+											<button type="submit" class="btn btn-primary btn-sm inline-flex align-items-center"><i class="isax isax-send-2 me-1"></i>Subscribe</button>
+										</form>
+									</div>
+									<div class="footer-contact-info">
+										<div class="footer-address d-flex align-items-center">
+											<img src="/assets/img/icon/icon-20.svg" alt="" class="img-fluid me-2">
+											<p>Al-Kahaf Online Academy, Pakistan</p>
+										</div>
+										<div class="footer-address d-flex align-items-center">
+											<img src="/assets/img/icon/icon-19.svg" alt="" class="img-fluid me-2">
+											<p>info@alkahafonlineacademy.com</p>
+										</div>
+										<div class="footer-address d-flex align-items-center">
+											<img src="/assets/img/icon/icon-21.svg" alt="" class="img-fluid me-2">
+											<p>+92 300 0000000</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row row-gap-2">
+					<div class="col-md-6">
+						<div class="text-center text-md-start">
+							<p class="text-white">Copyright 2025 <span class="text-secondary">Al-Kahaf Online Academy</span>. All rights reserved.</p>
+						</div>
+					</div>
+					<div class="col-md-6">
+						<ul class="d-flex align-items-center justify-content-center justify-content-md-end footer-link">
+							<li><a href="/shared/terms-and-conditions">Terms &amp; Conditions</a></li>
+							<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- /Footer -->
+
+</div>
+<!-- /Main Wrapper -->
+
+<!-- jQuery -->
+<script src="/assets/js/jquery-3.7.1.min.js"></script>
+<!-- Bootstrap -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="/assets/plugins/select2/js/select2.min.js"></script>
+<!-- Slick -->
+<script src="/assets/plugins/slick/slick.js"></script>
+<!-- Counter -->
+<script src="/assets/js/counter.js"></script>
+<!-- Main Script -->
+<script src="/assets/js/script.js"></script>
+
+<script>
+	// ── Filter tabs ────────────────────────────────────────────
+	document.querySelectorAll('.wp-filter-btn').forEach(function(btn) {
+		btn.addEventListener('click', function() {
+			document.querySelectorAll('.wp-filter-btn').forEach(function(b) { b.classList.remove('active'); });
+			btn.classList.add('active');
+			var filter = btn.getAttribute('data-filter');
+			var cols = document.querySelectorAll('.wp-card-col');
+			var visible = 0;
+			cols.forEach(function(col) {
+				if (filter === 'all' || col.getAttribute('data-cat') === filter) {
+					col.style.display = '';
+					visible++;
+				} else {
+					col.style.display = 'none';
+				}
+			});
+			document.getElementById('no-results').classList.toggle('d-none', visible > 0);
+		});
+	});
+
+	// ── Featured project progress bar animate on scroll ───────
+	(function() {
+		var bar = document.getElementById('feat-bar');
+		if (!bar) return;
+		var animated = false;
+		function animateBar() {
+			if (animated) return;
+			var rect = bar.getBoundingClientRect();
+			if (rect.top < window.innerHeight) {
+				animated = true;
+				bar.style.width = '91%';
+			}
+		}
+		window.addEventListener('scroll', animateBar, { passive: true });
+		animateBar();
+	})();
+
+	// ── Counter animation (fallback if counter.js doesn't handle data-count) ──
+	(function() {
+		var counters = document.querySelectorAll('.counter[data-count]');
+		var started = false;
+		function runCounters() {
+			if (started) return;
+			var section = document.querySelector('.wp-stats');
+			if (!section) return;
+			var rect = section.getBoundingClientRect();
+			if (rect.top < window.innerHeight) {
+				started = true;
+				counters.forEach(function(el) {
+					var target = parseInt(el.getAttribute('data-count'));
+					var duration = 1800;
+					var start = null;
+					function step(ts) {
+						if (!start) start = ts;
+						var progress = Math.min((ts - start) / duration, 1);
+						var eased = 1 - Math.pow(1 - progress, 3);
+						el.textContent = Math.floor(eased * target).toLocaleString();
+						if (progress < 1) requestAnimationFrame(step);
+						else el.textContent = target.toLocaleString();
+					}
+					requestAnimationFrame(step);
+				});
+			}
+		}
+		window.addEventListener('scroll', runCounters, { passive: true });
+		runCounters();
+	})();
+
+	// ── Newsletter ─────────────────────────────────────────────
+	function handleNewsletterSubmit(e) {
+		e.preventDefault();
+		var msg = document.getElementById('newsletter-msg');
+		msg.textContent = 'Thank you for subscribing! We\'ll keep you updated.';
+		msg.style.display = 'block';
+		e.target.reset();
+	}
+</script>
+
+<!-- Scroll to Top -->
+<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+	<i class="fas fa-arrow-up"></i>
+</button>
+
+</body>
+</html>
