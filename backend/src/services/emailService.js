@@ -270,4 +270,27 @@ module.exports = {
       console.error('Email sending failed:', error);
     }
   },
+
+  async sendContactFormEmail({ name, email, phone, subject, message }) {
+    const adminEmail = config.smtpFrom;
+    await transporter.sendMail({
+      from: config.smtpFrom,
+      to: adminEmail,
+      replyTo: email,
+      subject: `Contact Us: ${subject || 'New Message'} — ${name}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #2c3e50;">New Contact Form Submission</h2>
+          <table style="width:100%; border-collapse:collapse;">
+            <tr><td style="padding:8px; font-weight:bold;">Name</td><td style="padding:8px;">${name}</td></tr>
+            <tr><td style="padding:8px; font-weight:bold;">Email</td><td style="padding:8px;">${email}</td></tr>
+            <tr><td style="padding:8px; font-weight:bold;">Phone</td><td style="padding:8px;">${phone || '—'}</td></tr>
+            <tr><td style="padding:8px; font-weight:bold;">Subject</td><td style="padding:8px;">${subject || '—'}</td></tr>
+          </table>
+          <h3 style="color: #2c3e50; margin-top: 20px;">Message</h3>
+          <p style="background:#f9f9f9; padding:15px; border-radius:4px;">${message}</p>
+        </div>
+      `,
+    });
+  },
 };

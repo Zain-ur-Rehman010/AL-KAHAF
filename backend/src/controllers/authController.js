@@ -134,7 +134,19 @@ exports.refreshToken = async (req, res) => {
     }
 
     const decoded = jwt.verify(refreshToken, config.jwtRefreshSecret);
-    const tokens = tokenService.generateTokens(decoded.userId, decoded.role);
+
+    // Re-load user from DB to get current trial state — JWT payload may be stale
+    const user = await User.findByPk(decoded.userId);
+    if (!user || user.status !== 'active') {
+      return res.status(401).json({ success: false, message: 'User not found or inactive' });
+    }
+
+    let trialData = null;
+    if (user.isTrial) {
+      trialData = { isTrial: true, trialExpiresAt: user.trialExpiresAt };
+    }
+
+    const tokens = tokenService.generateTokens(decoded.userId, decoded.role, trialData);
 
     res.json({
       success: true,

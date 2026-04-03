@@ -8,6 +8,7 @@ const rateLimitMiddleware = require('./middleware/rateLimitMiddleware');
 const errorHandler = require('./middleware/errorHandler');
 
 // Import routes
+const contactRoutes = require('./routes/contactRoutes');
 const authRoutes = require('./routes/authRoutes');
 const courseRoutes = require('./routes/courseRoutes');
 const enrollmentRoutes = require('./routes/enrollmentRoutes');
@@ -35,9 +36,11 @@ const envConfiguredOrigins = (process.env.CORS_ORIGIN || process.env.ALLOWED_ORI
 
 const allowedOrigins = [
   'http://localhost:3000',
+  'http://localhost:3001',
   'http://localhost:8000',
   'http://localhost:8080',
   'http://127.0.0.1:3000',
+  'http://127.0.0.1:3001',
   'http://127.0.0.1:8000',
   'http://127.0.0.1:8080',
   'http://127.0.0.1:55808', // live-server
@@ -46,17 +49,26 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(null, true); // Allow for now, can restrict later
-    }
+    // Allow requests with no origin (e.g. server-to-server, curl, Postman)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) return callback(null, true);
+    callback(new Error(`CORS: origin '${origin}' not allowed`));
   },
   credentials: true,
 }));
 
-// Rate limiting
+// Rate limiting — global
 app.use(rateLimitMiddleware);
+
+// Stricter rate limit for auth endpoints (brute-force protection)
+const rateLimit = require('express-rate-limit');
+const authRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20,
+  message: { success: false, message: 'Too many attempts, please try again later' },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // Logging
 app.use(morgan('combined'));
@@ -65,10 +77,10 @@ app.use(morgan('combined'));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 
-// Serve static files from the parent directory (frontend)
+// Serve static files from the frontend directory only (never the monorepo root)
 const path = require('path');
-const staticPath = path.join(__dirname, '../../');
-app.use(express.static(staticPath));
+const staticPath = path.join(__dirname, '../../frontend');
+app.use(express.static(staticPath, { dotfiles: 'deny' }));
 
 // Note: Local /uploads folder removed — images now served via Cloudinary CDN
 
@@ -82,7 +94,8 @@ app.get('/api/health', (req, res) => {
 
 // API v1 routes
 const apiV1 = express.Router();
-apiV1.use('/auth', authRoutes);
+apiV1.use('/auth', authRateLimit, authRoutes);
+apiV1.use('/contact', contactRoutes);
 apiV1.use('/courses', courseRoutes);
 apiV1.use('/enrollments', enrollmentRoutes);
 apiV1.use('/users', userRoutes);
@@ -111,10 +124,21 @@ const PORT = process.env.PORT || 5000;
 
 async function startServer() {
   try {
+    // Fail fast if critical secrets are missing in production
+    if (process.env.NODE_ENV === 'production') {
+      const required = ['JWT_SECRET', 'JWT_REFRESH_SECRET'];
+      const missing = required.filter((k) => !process.env[k]);
+      if (missing.length) {
+        console.error(`Missing required env vars: ${missing.join(', ')}`);
+        process.exit(1);
+      }
+    }
+
     await sequelize.authenticate();
     console.log('Database connected successfully');
 
-    await sequelize.sync({ alter: true });
+    // Use alter only in development — never in production (risk of data loss / table locks)
+    await sequelize.sync({ alter: process.env.NODE_ENV !== 'production' });
     console.log('Database synchronized');
 
     app.listen(PORT, () => {

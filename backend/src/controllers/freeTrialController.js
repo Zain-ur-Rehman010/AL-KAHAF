@@ -1,4 +1,5 @@
 const { Op } = require('sequelize');
+const bcrypt = require('bcryptjs');
 const { FreeTrialRequest, User, Course, Enrollment } = require('../models');
 const { notifyAdmins, notifyUser } = require('../services/notificationService');
 const emailService = require('../services/emailService');
@@ -37,33 +38,32 @@ exports.create = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Password must be at least 8 characters.' });
     }
 
-    // Duplicate free trial check — email or phone already used
-    try {
-      const existing = await FreeTrialRequest.findOne({
-        where: {
-          [Op.or]: [
-            { email: email.toLowerCase().trim(), trialUsed: true },
-            { phone: phone.trim(), trialUsed: true },
-          ],
-        },
-      });
-      if (existing) {
-        return res.status(409).json({
-          success: false,
-          code: 'TRIAL_ALREADY_USED',
-          message: 'You have already availed your free trial demo.',
-        });
-      }
-    } catch (dupCheckErr) {
-      // Column may not exist yet — don't block the submission
-      console.warn('Free trial duplicate check skipped:', dupCheckErr.message);
+    // Block if any active (pending/contacted) or already-used request exists for this email/phone
+    const existing = await FreeTrialRequest.findOne({
+      where: {
+        [Op.or]: [
+          { email: email.toLowerCase().trim(), status: { [Op.in]: ['pending', 'contacted'] } },
+          { email: email.toLowerCase().trim(), trialUsed: true },
+          { phone: phone.trim(), trialUsed: true },
+        ],
+      },
+    });
+    if (existing) {
+      const message =
+        existing.trialUsed
+          ? 'You have already availed your free trial demo.'
+          : 'A free trial request for this email is already pending review.';
+      return res.status(409).json({ success: false, code: 'TRIAL_ALREADY_USED', message });
     }
+
+    // Hash password before storing — never persist plaintext credentials
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const request = await FreeTrialRequest.create({
       fullName,
-      email,
-      phone,
-      password,
+      email: email.toLowerCase().trim(),
+      phone: phone.trim(),
+      password: hashedPassword,
       country: country || null,
       courseInterest,
       preferredSchedule: preferredSchedule || null,
@@ -72,12 +72,14 @@ exports.create = async (req, res) => {
     });
 
     // Notify all admins about the new free trial request
-    notifyAdmins({
-      type: 'general',
-      title: 'New Free Trial Request',
-      message: `${fullName} (${email}) has submitted a free trial request for "${courseInterest}".`,
-      actionUrl: '/admin/admin-dashboard',
-    });
+    try {
+      notifyAdmins({
+        type: 'general',
+        title: 'New Free Trial Request',
+        message: `${fullName} (${email}) has submitted a free trial request for "${courseInterest}".`,
+        actionUrl: '/admin/admin-dashboard',
+      });
+    } catch (_) {}
 
     res.status(201).json({
       success: true,
@@ -100,6 +102,8 @@ exports.getAll = async (req, res) => {
 
     const { count, rows } = await FreeTrialRequest.findAndCountAll({
       where,
+      // Never return password hash to API consumers
+      attributes: { exclude: ['password'] },
       order: [['createdAt', 'DESC']],
       limit: parseInt(limit),
       offset,
@@ -152,7 +156,8 @@ exports.updateStatus = async (req, res) => {
         const trialExpiresAt = new Date(trialStartedAt.getTime() + TRIAL_DURATION_HOURS * 60 * 60 * 1000);
 
         if (!user) {
-          // Use the password the user chose on the free trial form
+          // Password stored in FreeTrialRequest is already bcrypt-hashed — skip the User beforeCreate hook
+          // to prevent double-hashing
           user = await User.create({
             firstName,
             lastName,
@@ -166,7 +171,7 @@ exports.updateStatus = async (req, res) => {
             trialStartedAt,
             trialExpiresAt,
             trialEmailsSent: 0,
-          });
+          }, { hooks: false });
         } else {
           // Existing user — activate trial
           await user.update({
@@ -177,10 +182,10 @@ exports.updateStatus = async (req, res) => {
           });
         }
 
-        // Find matching course by title (case-insensitive)
+        // Find matching course by title (case-insensitive, partial match)
         const course = await Course.findOne({
           where: {
-            title: { [Op.like]: request.courseInterest },
+            title: { [Op.like]: `%${request.courseInterest}%` },
             status: 'published',
           },
         });
@@ -213,7 +218,7 @@ exports.updateStatus = async (req, res) => {
         // Mark the free trial request as used (prevents re-submission)
         await request.update({ trialUsed: true });
 
-        // Send approval email — password not included, user already set it on form
+        // Send approval email
         await emailService.sendFreeTrialApprovedEmail(
           request.email,
           request.fullName,
@@ -227,7 +232,7 @@ exports.updateStatus = async (req, res) => {
       }
     }
 
-    res.json({ success: true, message: 'Status updated.', data: request });
+    res.json({ success: true, message: 'Status updated.', data: { ...request.toJSON(), password: undefined } });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
