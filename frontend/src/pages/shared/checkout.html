@@ -313,9 +313,22 @@
 								</div>
 							</div>
 						</div>
-					</div>					</div>
+					</div>
+					<!-- Donation Order Summary (shown only for welfare donations) -->
+					<div class="col-lg-4" id="checkout-order-col">
+						<div class="checkout-item-1" id="checkout-order-wrap">
+							<div class="border-bottom pb-3 mb-3"><h5>Order Summary</h5></div>
+							<div id="checkout-items"></div>
+							<div class="border-top pt-3 mt-3">
+								<div class="d-flex justify-content-between mb-2 fs-14"><span class="text-muted">Subtotal</span><span id="checkout-subtotal" class="fw-medium">Rs 0</span></div>
+								<div class="d-flex justify-content-between mb-2 fs-14"><span class="text-muted">Tax (5%)</span><span id="checkout-tax" class="fw-medium">Rs 0</span></div>
+								<div class="d-flex justify-content-between fw-bold fs-16 mt-2 pt-2 border-top"><span>Total</span><span id="checkout-total" style="color:#d8ac27;">Rs 0</span></div>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div >
+			</div>
+			</div>
 			<!-- /Checkout -->
 			
 			<!-- Footer -->
@@ -444,6 +457,48 @@
 		
 	<script>
 	(function() {
+		// ── If arriving from welfare donation page, show notice + auto-select JazzCash ──
+		var donationRaw = localStorage.getItem('alkahaf_donation');
+		if (donationRaw) {
+			try {
+				var don = JSON.parse(donationRaw);
+				// Show donation notice banner above billing form
+				var noticeHtml = '<div id="donation-notice" style="background:linear-gradient(135deg,#2c1506,#522811);color:#fff;border-radius:14px;padding:18px 22px;margin-bottom:24px;display:flex;align-items:center;gap:14px;">'
+					+ '<i class="fa fa-heart" style="font-size:24px;color:#d8ac27;flex-shrink:0;"></i>'
+					+ '<div><strong style="font-size:15px;">Welfare Donation — ' + don.programTitle + '</strong>'
+					+ '<br><span style="font-size:13px;opacity:0.8;">Amount: <strong style="color:#d8ac27;">PKR ' + Number(don.amount).toLocaleString() + '</strong>'
+					+ (don.donorName ? '&nbsp;&nbsp;|&nbsp;&nbsp;Donor: ' + don.donorName : '') + '</span></div>'
+					+ '<a href="/shared/welfare-programs" style="margin-left:auto;font-size:12px;color:rgba(255,255,255,0.6);white-space:nowrap;">← Change program</a></div>';
+				var checkoutWrap = document.querySelector('.checkout-content .row');
+				if (checkoutWrap) checkoutWrap.insertAdjacentHTML('beforebegin', noticeHtml);
+
+				// Pre-fill billing name from donor info
+				var nameParts = (don.donorName || '').split(' ');
+				var fnEl = document.querySelector('input[id="co-firstName"]') || document.querySelectorAll('.checkout-item-1 input[type="text"]')[0];
+				var lnEl = document.querySelector('input[id="co-lastName"]')  || document.querySelectorAll('.checkout-item-1 input[type="text"]')[1];
+				var phEl = document.querySelectorAll('.checkout-item-1 input[type="text"]')[2];
+				if (fnEl) fnEl.value = nameParts[0] || '';
+				if (lnEl) lnEl.value = nameParts.slice(1).join(' ') || '';
+				if (phEl && don.donorPhone) phEl.value = don.donorPhone;
+				if (don.donorEmail) {
+					var emEl = document.getElementById('co-email');
+					if (emEl) emEl.value = don.donorEmail;
+				}
+
+				// Auto-activate JazzCash tab
+				var jzTab = document.querySelector('[href="#pay-jazzcash"]');
+				var cdTab = document.querySelector('[href="#pay-card"]');
+				if (jzTab && cdTab) {
+					jzTab.classList.add('active');
+					cdTab.classList.remove('active');
+					var jzPane = document.getElementById('pay-jazzcash');
+					var cdPane = document.getElementById('pay-card');
+					if (jzPane) jzPane.classList.add('active','show');
+					if (cdPane) cdPane.classList.remove('active','show');
+				}
+			} catch(e) {}
+		}
+
 		var CK = 'alkahaf_cart', VAT = 0.05;
 		function gc() { try{return JSON.parse(localStorage.getItem(CK)||'[]');}catch(e){return[];} }
 		function sc(i) { localStorage.setItem(CK, JSON.stringify(i)); }
@@ -538,17 +593,24 @@
 		}
 
 		function sar(){
+			// Clear donation context after successful payment
+			var isDonation = !!localStorage.getItem('alkahaf_donation');
+			localStorage.removeItem('alkahaf_donation');
+
 			var ov = document.createElement('div');
 			ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:9999;display:flex;align-items:center;justify-content:center;';
+			var msg = isDonation
+				? '<p class="text-muted mb-1">JazakAllah Khair! Your donation has been received.</p><p class="text-muted" style="font-size:13px;">Redirecting to Welfare Programs...</p>'
+				: '<p class="text-muted mb-1">You are now enrolled in your course(s).</p><p class="text-muted" style="font-size:13px;">Redirecting to your student dashboard...</p>';
 			ov.innerHTML = '<div style="background:#fff;border-radius:16px;padding:40px 32px;text-align:center;max-width:340px;width:90%;">'
 				+'<div style="width:72px;height:72px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">'
 				+'<i class="fa fa-check" style="font-size:32px;color:#2e7d32;"></i></div>'
 				+'<h4 class="fw-bold mb-2">Payment Successful!</h4>'
-				+'<p class="text-muted mb-1">You are now enrolled in your course(s).</p>'
-				+'<p class="text-muted" style="font-size:13px;">Redirecting to your student dashboard...</p>'
+				+ msg
 				+'<div class="spinner-border text-success mt-2" style="width:22px;height:22px;border-width:3px;"></div></div>';
 			document.body.appendChild(ov);
-			setTimeout(function(){ window.location.href = '/student/student-dashboard'; }, 2200);
+			var redirect = isDonation ? '/shared/welfare-programs' : '/student/student-dashboard';
+			setTimeout(function(){ window.location.href = redirect; }, 2200);
 		}
 
 		function ear(authToken){

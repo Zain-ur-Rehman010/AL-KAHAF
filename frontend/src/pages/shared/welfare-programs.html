@@ -28,7 +28,7 @@
 		/* ---- HERO ---- */
 		.wp-hero {
 			background: linear-gradient(135deg, #2c1506 0%, #522811 50%, #1a3a1a 100%);
-			padding: 110px 0 90px;
+			padding: 160px 0 140px;
 			position: relative;
 			overflow: hidden;
 		}
@@ -41,6 +41,7 @@
 			height: 150%;
 			background: radial-gradient(ellipse, rgba(34,139,34,0.12) 0%, transparent 65%);
 			pointer-events: none;
+			z-index: 0;
 		}
 		.wp-hero::after {
 			content: '';
@@ -51,8 +52,9 @@
 			height: 120%;
 			background: radial-gradient(ellipse, rgba(216,172,39,0.08) 0%, transparent 65%);
 			pointer-events: none;
+			z-index: 0;
 		}
-		.wp-hero .hero-badge {
+		.hero-badge {
 			display: inline-flex;
 			align-items: center;
 			background: rgba(34,139,34,0.2);
@@ -112,18 +114,20 @@
 		}
 		.wp-hero-img-wrap {
 			position: relative;
+			padding-bottom: 30px; /* space for the floating badge below the image */
 		}
 		.wp-hero-img-wrap img {
 			border-radius: 24px;
 			width: 100%;
+			height: 420px;
 			object-fit: cover;
-			max-height: 420px;
+			display: block;
 			box-shadow: 0 32px 80px rgba(0,0,0,0.4);
 		}
 		.wp-hero-badge-float {
 			position: absolute;
-			bottom: -20px;
-			left: -20px;
+			bottom: 0;
+			left: 10px;
 			background: #fff;
 			border-radius: 16px;
 			padding: 16px 20px;
@@ -710,9 +714,14 @@
 		}
 
 		/* ---- RESPONSIVE ---- */
+		@media (max-width: 991px) {
+			.wp-hero { padding: 120px 0 110px; }
+			.wp-hero-img-wrap img { height: 320px; }
+		}
 		@media (max-width: 767px) {
-			.wp-hero { padding: 80px 0 60px; }
+			.wp-hero { padding: 90px 0 80px; }
 			.wp-hero h1 { font-size: 32px; }
+			.wp-hero-img-wrap img { height: 260px; }
 			.wp-hero-badge-float { left: 10px; }
 			.wp-featured-card .feat-content { padding: 32px 24px; }
 			.wp-featured-card .feat-title { font-size: 22px; }
@@ -783,10 +792,10 @@
 
 	<!-- ===== HERO ===== -->
 	<section class="wp-hero">
-		<div class="container position-relative">
-			<div class="row align-items-center gy-5">
-				<div class="col-lg-6">
-					<span class="wp-hero .hero-badge">
+		<div class="container position-relative" style="z-index:1;">
+			<div class="row align-items-center gy-4">
+				<div class="col-lg-6" style="position:relative;z-index:2;">
+					<span class="hero-badge">
 						<i class="fa fa-hand-holding-heart me-2"></i>Serving Communities Since 2015
 					</span>
 					<h1>Current Projects &amp;<br><span>Welfare Programs</span></h1>
@@ -800,9 +809,9 @@
 						</a>
 					</div>
 				</div>
-				<div class="col-lg-6">
-					<div class="wp-hero-img-wrap">
-						<img src="/assets/img/bg/home-bg-01.jpg" alt="Welfare Programs" onerror="this.src='/assets/img/about/about-2.svg'">
+				<div class="col-lg-6" style="position:relative;z-index:1;">
+					<div class="wp-hero-img-wrap" style="overflow:hidden;">
+						<img src="/assets/img/bg/home-bg-01.jpg" alt="Welfare Programs" onerror="this.src='/assets/img/about/about-2.svg'" style="display:block;">
 						<div class="wp-hero-badge-float">
 							<div class="num" id="hero-counter">12,000+</div>
 							<div class="lbl">Lives Impacted This Year</div>

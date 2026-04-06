@@ -1,1018 +1,1449 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Program details and donation — Al-Kahaf Welfare Programs">
-	<title>Program Details | Al-Kahaf Welfare Programs</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Program details and donation — Al-Kahaf Welfare Programs"
+    />
+    <title>Program Details | Al-Kahaf Welfare Programs</title>
 
-	<link rel="shortcut icon" href="/assets/img/favicon.svg">
-	<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
-	<script src="/assets/js/theme-script.js"></script>
-	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
-	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
-	<link rel="stylesheet" href="/assets/plugins/slick/slick.css">
-	<link rel="stylesheet" href="/assets/plugins/slick/slick-theme.css">
-	<link rel="stylesheet" href="/assets/plugins/feather/feather.css">
-	<link rel="stylesheet" href="/assets/css/iconsax.css">
-	<link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.svg" />
+    <link rel="apple-touch-icon" href="/assets/img/apple-icon.png" />
+    <script src="/assets/js/theme-script.js"></script>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="/assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css" />
+    <link rel="stylesheet" href="/assets/plugins/slick/slick.css" />
+    <link rel="stylesheet" href="/assets/plugins/slick/slick-theme.css" />
+    <link rel="stylesheet" href="/assets/plugins/feather/feather.css" />
+    <link rel="stylesheet" href="/assets/css/iconsax.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
 
-	<style>
-		/* ============================================================
+    <style>
+      /* ============================================================
 		   WELFARE PROGRAM DETAIL PAGE — STYLES
 		   ============================================================ */
 
-		/* ---- BREADCRUMB HERO ---- */
-		.wpd-hero {
-			background: linear-gradient(135deg, #2c1506 0%, #522811 50%, #1a3a1a 100%);
-			padding: 70px 0 60px;
-			position: relative;
-			overflow: hidden;
-		}
-		.wpd-hero::before {
-			content: '';
-			position: absolute;
-			top: -30%; right: -5%;
-			width: 45%; height: 160%;
-			background: radial-gradient(ellipse, rgba(216,172,39,0.1) 0%, transparent 65%);
-			pointer-events: none;
-		}
-		.wpd-hero .cat-badge {
-			display: inline-flex;
-			align-items: center;
-			gap: 6px;
-			background: rgba(216,172,39,0.18);
-			border: 1px solid rgba(216,172,39,0.45);
-			color: #d8ac27;
-			font-size: 12px;
-			font-weight: 700;
-			padding: 5px 16px;
-			border-radius: 50px;
-			margin-bottom: 14px;
-			text-transform: uppercase;
-			letter-spacing: 0.5px;
-		}
-		.wpd-hero h1 {
-			font-size: 38px;
-			font-weight: 800;
-			color: #fff;
-			line-height: 1.25;
-			margin-bottom: 14px;
-		}
-		.wpd-hero .hero-meta {
-			display: flex;
-			flex-wrap: wrap;
-			gap: 20px;
-			margin-top: 18px;
-		}
-		.wpd-hero .hero-meta span {
-			display: flex;
-			align-items: center;
-			gap: 7px;
-			color: rgba(255,255,255,0.75);
-			font-size: 14px;
-		}
-		.wpd-hero .hero-meta i { color: #d8ac27; }
-		.wpd-breadcrumb {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			font-size: 13px;
-			color: rgba(255,255,255,0.55);
-			margin-bottom: 20px;
-		}
-		.wpd-breadcrumb a { color: rgba(255,255,255,0.7); text-decoration: none; }
-		.wpd-breadcrumb a:hover { color: #d8ac27; }
-		.wpd-breadcrumb i { font-size: 10px; }
+      /* ---- BREADCRUMB HERO ---- */
+      .wpd-hero {
+        background: linear-gradient(
+          135deg,
+          #2c1506 0%,
+          #522811 50%,
+          #1a3a1a 100%
+        );
+        padding: 140px 0 100px;
+        position: relative;
+        overflow: hidden;
+      }
+      .wpd-hero::before {
+        content: "";
+        position: absolute;
+        top: -30%;
+        right: -5%;
+        width: 45%;
+        height: 160%;
+        background: radial-gradient(
+          ellipse,
+          rgba(216, 172, 39, 0.1) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .wpd-hero .cat-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(216, 172, 39, 0.18);
+        border: 1px solid rgba(216, 172, 39, 0.45);
+        color: #d8ac27;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 5px 16px;
+        border-radius: 50px;
+        margin-bottom: 14px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .wpd-hero h1 {
+        font-size: 38px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.25;
+        margin-bottom: 14px;
+      }
+      .wpd-hero .hero-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        margin-top: 18px;
+      }
+      .wpd-hero .hero-meta span {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 14px;
+      }
+      .wpd-hero .hero-meta i {
+        color: #d8ac27;
+      }
+      .wpd-breadcrumb {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 20px;
+      }
+      .wpd-breadcrumb a {
+        color: rgba(255, 255, 255, 0.7);
+        text-decoration: none;
+      }
+      .wpd-breadcrumb a:hover {
+        color: #d8ac27;
+      }
+      .wpd-breadcrumb i {
+        font-size: 10px;
+      }
 
-		/* ---- MAIN LAYOUT ---- */
-		.wpd-body { padding: 60px 0 80px; background: #f9f7f4; }
+      /* ---- MAIN LAYOUT ---- */
+      .wpd-body {
+        padding: 60px 0 80px;
+        background: #f9f7f4;
+      }
 
-		/* ---- LEFT: Program Content ---- */
-		.wpd-img-banner {
-			width: 100%;
-			height: 400px;
-			object-fit: cover;
-			border-radius: 20px;
-			margin-bottom: 36px;
-			box-shadow: 0 12px 40px rgba(82,40,17,0.15);
-		}
-		.wpd-content-card {
-			background: #fff;
-			border-radius: 20px;
-			padding: 36px;
-			border: 1.5px solid #f0ece6;
-			margin-bottom: 28px;
-		}
-		.wpd-content-card h3 {
-			font-size: 20px;
-			font-weight: 800;
-			color: #1a1a1a;
-			margin-bottom: 16px;
-			padding-bottom: 12px;
-			border-bottom: 2px solid #f0ece6;
-			display: flex;
-			align-items: center;
-			gap: 10px;
-		}
-		.wpd-content-card h3 i { color: #d8ac27; font-size: 18px; }
-		.wpd-content-card p {
-			font-size: 15px;
-			color: #555;
-			line-height: 1.8;
-			margin-bottom: 14px;
-		}
-		.wpd-content-card p:last-child { margin-bottom: 0; }
+      /* ---- LEFT: Program Content ---- */
+      .wpd-img-banner {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 20px;
+        margin-bottom: 36px;
+        box-shadow: 0 12px 40px rgba(82, 40, 17, 0.15);
+      }
+      .wpd-content-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 36px;
+        border: 1.5px solid #f0ece6;
+        margin-bottom: 28px;
+      }
+      .wpd-content-card h3 {
+        font-size: 20px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 2px solid #f0ece6;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .wpd-content-card h3 i {
+        color: #d8ac27;
+        font-size: 18px;
+      }
+      .wpd-content-card p {
+        font-size: 15px;
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 14px;
+      }
+      .wpd-content-card p:last-child {
+        margin-bottom: 0;
+      }
 
-		/* Impact stats strip */
-		.wpd-impact-strip {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			gap: 16px;
-			margin-top: 8px;
-		}
-		@media (min-width: 576px) { .wpd-impact-strip { grid-template-columns: repeat(4, 1fr); } }
-		.wpd-impact-item {
-			background: #fdf9f2;
-			border: 1.5px solid #f0e8d0;
-			border-radius: 14px;
-			padding: 20px 16px;
-			text-align: center;
-		}
-		.wpd-impact-item .impact-num {
-			font-size: 26px;
-			font-weight: 800;
-			color: #522811;
-			line-height: 1;
-		}
-		.wpd-impact-item .impact-lbl {
-			font-size: 12px;
-			color: #888;
-			margin-top: 6px;
-			font-weight: 500;
-		}
+      /* Impact stats strip */
+      .wpd-impact-strip {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+        margin-top: 8px;
+      }
+      @media (min-width: 576px) {
+        .wpd-impact-strip {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      .wpd-impact-item {
+        background: #fdf9f2;
+        border: 1.5px solid #f0e8d0;
+        border-radius: 14px;
+        padding: 20px 16px;
+        text-align: center;
+      }
+      .wpd-impact-item .impact-num {
+        font-size: 26px;
+        font-weight: 800;
+        color: #522811;
+        line-height: 1;
+      }
+      .wpd-impact-item .impact-lbl {
+        font-size: 12px;
+        color: #888;
+        margin-top: 6px;
+        font-weight: 500;
+      }
 
-		/* Milestones / timeline */
-		.wpd-milestone {
-			display: flex;
-			gap: 16px;
-			margin-bottom: 20px;
-			align-items: flex-start;
-		}
-		.wpd-milestone:last-child { margin-bottom: 0; }
-		.wpd-milestone .ms-dot {
-			width: 40px;
-			height: 40px;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 16px;
-			flex-shrink: 0;
-		}
-		.wpd-milestone .ms-body h6 {
-			font-size: 15px;
-			font-weight: 700;
-			color: #1a1a1a;
-			margin-bottom: 4px;
-		}
-		.wpd-milestone .ms-body p {
-			font-size: 13px;
-			color: #777;
-			margin: 0;
-			line-height: 1.6;
-		}
+      /* Milestones / timeline */
+      .wpd-milestone {
+        display: flex;
+        gap: 16px;
+        margin-bottom: 20px;
+        align-items: flex-start;
+      }
+      .wpd-milestone:last-child {
+        margin-bottom: 0;
+      }
+      .wpd-milestone .ms-dot {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+      .wpd-milestone .ms-body h6 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 4px;
+      }
+      .wpd-milestone .ms-body p {
+        font-size: 13px;
+        color: #777;
+        margin: 0;
+        line-height: 1.6;
+      }
 
-		/* Gallery */
-		.wpd-gallery {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 12px;
-		}
-		.wpd-gallery img {
-			width: 100%;
-			height: 110px;
-			object-fit: cover;
-			border-radius: 12px;
-			transition: transform 0.3s;
-			cursor: pointer;
-		}
-		.wpd-gallery img:hover { transform: scale(1.04); }
+      /* Gallery */
+      .wpd-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+      .wpd-gallery img {
+        width: 100%;
+        height: 110px;
+        object-fit: cover;
+        border-radius: 12px;
+        transition: transform 0.3s;
+        cursor: pointer;
+      }
+      .wpd-gallery img:hover {
+        transform: scale(1.04);
+      }
 
-		/* ---- RIGHT: Donation Sidebar ---- */
-		.wpd-donate-sidebar {
-			position: sticky;
-			top: 90px;
-		}
-		.wpd-donate-card {
-			background: #fff;
-			border-radius: 20px;
-			padding: 32px 28px;
-			border: 1.5px solid #f0ece6;
-			box-shadow: 0 12px 40px rgba(82,40,17,0.08);
-			margin-bottom: 24px;
-		}
-		.wpd-donate-card .donate-header {
-			text-align: center;
-			margin-bottom: 24px;
-		}
-		.wpd-donate-card .donate-header .dh-label {
-			font-size: 12px;
-			font-weight: 700;
-			color: #d8ac27;
-			text-transform: uppercase;
-			letter-spacing: 1px;
-			margin-bottom: 6px;
-		}
-		.wpd-donate-card .donate-header h4 {
-			font-size: 20px;
-			font-weight: 800;
-			color: #1a1a1a;
-			margin: 0;
-		}
+      /* ---- LIGHTBOX ---- */
+      .wpd-lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: rgba(0,0,0,0.88);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+      }
+      .wpd-lightbox.active { display: flex; }
+      .wpd-lightbox img {
+        max-width: 90vw;
+        max-height: 85vh;
+        border-radius: 12px;
+        box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+        object-fit: contain;
+        animation: lbFadeIn 0.2s ease;
+      }
+      @keyframes lbFadeIn {
+        from { opacity: 0; transform: scale(0.92); }
+        to   { opacity: 1; transform: scale(1); }
+      }
+      .wpd-lb-close {
+        position: fixed;
+        top: 18px;
+        right: 22px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.15);
+        border: none;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+      .wpd-lb-close:hover { background: rgba(255,255,255,0.3); }
+      .wpd-lb-nav {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.15);
+        border: none;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s;
+      }
+      .wpd-lb-nav:hover { background: rgba(255,255,255,0.3); }
+      .wpd-lb-prev { left: 16px; }
+      .wpd-lb-next { right: 16px; }
+      .wpd-lb-counter {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255,255,255,0.7);
+        font-size: 13px;
+      }
 
-		/* Progress */
-		.wpd-progress-wrap { margin-bottom: 24px; }
-		.wpd-progress-bar-outer {
-			height: 10px;
-			background: #f0ece6;
-			border-radius: 50px;
-			margin-bottom: 8px;
-			overflow: hidden;
-		}
-		.wpd-progress-bar-inner {
-			height: 100%;
-			background: linear-gradient(90deg, #522811, #d8ac27);
-			border-radius: 50px;
-			transition: width 1.5s ease;
-		}
-		.wpd-progress-nums {
-			display: flex;
-			justify-content: space-between;
-			font-size: 13px;
-		}
-		.wpd-progress-nums .raised { font-weight: 700; color: #522811; }
-		.wpd-progress-nums .goal { color: #888; }
-		.wpd-progress-nums .pct {
-			background: rgba(82,40,17,0.1);
-			color: #522811;
-			font-weight: 700;
-			font-size: 11px;
-			padding: 2px 10px;
-			border-radius: 50px;
-		}
+      /* ---- RIGHT: Donation Sidebar ---- */
+      .wpd-donate-sidebar {
+        position: sticky;
+        top: 90px;
+      }
+      .wpd-donate-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 32px 28px;
+        border: 1.5px solid #f0ece6;
+        box-shadow: 0 12px 40px rgba(82, 40, 17, 0.08);
+        margin-bottom: 24px;
+      }
+      .wpd-donate-card .donate-header {
+        text-align: center;
+        margin-bottom: 24px;
+      }
+      .wpd-donate-card .donate-header .dh-label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #d8ac27;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 6px;
+      }
+      .wpd-donate-card .donate-header h4 {
+        font-size: 20px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin: 0;
+      }
 
-		/* Preset amounts */
-		.wpd-preset-label {
-			font-size: 13px;
-			font-weight: 600;
-			color: #444;
-			margin-bottom: 10px;
-		}
-		.wpd-preset-grid {
-			display: grid;
-			grid-template-columns: repeat(3, 1fr);
-			gap: 8px;
-			margin-bottom: 14px;
-		}
-		.wpd-preset-btn {
-			padding: 10px 6px;
-			border: 2px solid #e8e3dc;
-			border-radius: 10px;
-			background: #fdf9f2;
-			color: #522811;
-			font-size: 13px;
-			font-weight: 700;
-			cursor: pointer;
-			text-align: center;
-			transition: all 0.18s;
-		}
-		.wpd-preset-btn:hover,
-		.wpd-preset-btn.selected {
-			background: #522811;
-			border-color: #522811;
-			color: #fff;
-		}
+      /* Progress */
+      .wpd-progress-wrap {
+        margin-bottom: 24px;
+      }
+      .wpd-progress-bar-outer {
+        height: 10px;
+        background: #f0ece6;
+        border-radius: 50px;
+        margin-bottom: 8px;
+        overflow: hidden;
+      }
+      .wpd-progress-bar-inner {
+        height: 100%;
+        background: linear-gradient(90deg, #522811, #d8ac27);
+        border-radius: 50px;
+        transition: width 1.5s ease;
+      }
+      .wpd-progress-nums {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+      }
+      .wpd-progress-nums .raised {
+        font-weight: 700;
+        color: #522811;
+      }
+      .wpd-progress-nums .goal {
+        color: #888;
+      }
+      .wpd-progress-nums .pct {
+        background: rgba(82, 40, 17, 0.1);
+        color: #522811;
+        font-weight: 700;
+        font-size: 11px;
+        padding: 2px 10px;
+        border-radius: 50px;
+      }
 
-		/* Custom amount */
-		.wpd-custom-wrap {
-			position: relative;
-			margin-bottom: 18px;
-		}
-		.wpd-custom-wrap .pkr-label {
-			position: absolute;
-			left: 14px;
-			top: 50%;
-			transform: translateY(-50%);
-			font-size: 13px;
-			font-weight: 700;
-			color: #888;
-		}
-		.wpd-custom-wrap input {
-			width: 100%;
-			padding: 12px 14px 12px 52px;
-			border: 2px solid #e8e3dc;
-			border-radius: 10px;
-			font-size: 15px;
-			font-weight: 600;
-			color: #1a1a1a;
-			outline: none;
-			transition: border-color 0.2s;
-		}
-		.wpd-custom-wrap input:focus { border-color: #522811; }
+      /* Preset amounts */
+      .wpd-preset-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 10px;
+      }
+      .wpd-preset-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+      .wpd-preset-btn {
+        padding: 10px 6px;
+        border: 2px solid #e8e3dc;
+        border-radius: 10px;
+        background: #fdf9f2;
+        color: #522811;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.18s;
+      }
+      .wpd-preset-btn:hover,
+      .wpd-preset-btn.selected {
+        background: #522811;
+        border-color: #522811;
+        color: #fff;
+      }
 
-		/* Payment method */
-		.wpd-pay-methods {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 10px;
-			margin-bottom: 20px;
-		}
-		.wpd-pay-method {
-			border: 2px solid #e8e3dc;
-			border-radius: 12px;
-			padding: 12px 10px;
-			cursor: pointer;
-			text-align: center;
-			transition: all 0.18s;
-			background: #fdf9f2;
-		}
-		.wpd-pay-method:hover,
-		.wpd-pay-method.selected {
-			border-color: #522811;
-			background: rgba(82,40,17,0.05);
-		}
-		.wpd-pay-method img {
-			height: 28px;
-			object-fit: contain;
-			margin-bottom: 4px;
-		}
-		.wpd-pay-method .pm-name {
-			font-size: 11px;
-			font-weight: 600;
-			color: #555;
-			display: block;
-		}
-		.wpd-pay-method .pm-check {
-			display: none;
-			width: 18px;
-			height: 18px;
-			background: #522811;
-			border-radius: 50%;
-			color: #fff;
-			font-size: 10px;
-			align-items: center;
-			justify-content: center;
-			margin: 0 auto 4px;
-		}
-		.wpd-pay-method.selected .pm-check { display: flex; }
-		.wpd-pay-method.selected img { display: none; }
+      /* Custom amount */
+      .wpd-custom-wrap {
+        position: relative;
+        margin-bottom: 18px;
+      }
+      .wpd-custom-wrap .pkr-label {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 13px;
+        font-weight: 700;
+        color: #888;
+      }
+      .wpd-custom-wrap input {
+        width: 100%;
+        padding: 12px 14px 12px 52px;
+        border: 2px solid #e8e3dc;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 600;
+        color: #1a1a1a;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .wpd-custom-wrap input:focus {
+        border-color: #522811;
+      }
 
-		/* Donor form fields */
-		.wpd-donor-fields { margin-bottom: 20px; }
-		.wpd-donor-fields .form-label {
-			font-size: 12px;
-			font-weight: 600;
-			color: #555;
-			margin-bottom: 5px;
-		}
-		.wpd-donor-fields .form-control {
-			border: 2px solid #e8e3dc;
-			border-radius: 10px;
-			padding: 10px 14px;
-			font-size: 14px;
-			transition: border-color 0.2s;
-		}
-		.wpd-donor-fields .form-control:focus {
-			border-color: #522811;
-			box-shadow: 0 0 0 3px rgba(82,40,17,0.08);
-		}
+      /* Payment method */
+      .wpd-pay-methods {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+      .wpd-pay-method {
+        border: 2px solid #e8e3dc;
+        border-radius: 12px;
+        padding: 12px 10px;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.18s;
+        background: #fdf9f2;
+      }
+      .wpd-pay-method:hover,
+      .wpd-pay-method.selected {
+        border-color: #522811;
+        background: rgba(82, 40, 17, 0.05);
+      }
+      .wpd-pay-method img {
+        height: 28px;
+        object-fit: contain;
+        margin-bottom: 4px;
+      }
+      .wpd-pay-method .pm-name {
+        font-size: 11px;
+        font-weight: 600;
+        color: #555;
+        display: block;
+      }
+      .wpd-pay-method .pm-check {
+        display: none;
+        width: 18px;
+        height: 18px;
+        background: #522811;
+        border-radius: 50%;
+        color: #fff;
+        font-size: 10px;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 4px;
+      }
+      .wpd-pay-method.selected .pm-check {
+        display: flex;
+      }
+      .wpd-pay-method.selected img {
+        display: none;
+      }
 
-		/* Donate button */
-		.btn-donate-now {
-			width: 100%;
-			padding: 14px;
-			background: linear-gradient(135deg, #d8ac27, #f0c842);
-			color: #1a1a1a;
-			font-size: 16px;
-			font-weight: 800;
-			border: none;
-			border-radius: 12px;
-			transition: transform 0.2s, box-shadow 0.2s;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 8px;
-		}
-		.btn-donate-now:hover {
-			transform: translateY(-2px);
-			box-shadow: 0 10px 28px rgba(216,172,39,0.4);
-			color: #1a1a1a;
-		}
-		.btn-donate-now:disabled {
-			opacity: 0.65;
-			cursor: not-allowed;
-			transform: none;
-			box-shadow: none;
-		}
-		.wpd-secure-note {
-			text-align: center;
-			font-size: 12px;
-			color: #aaa;
-			margin-top: 12px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			gap: 5px;
-		}
-		.wpd-secure-note i { color: #5cb85c; }
+      /* Donor form fields */
+      .wpd-donor-fields {
+        margin-bottom: 20px;
+      }
+      .wpd-donor-fields .form-label {
+        font-size: 12px;
+        font-weight: 600;
+        color: #555;
+        margin-bottom: 5px;
+      }
+      .wpd-donor-fields .form-control {
+        border: 2px solid #e8e3dc;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 14px;
+        transition: border-color 0.2s;
+      }
+      .wpd-donor-fields .form-control:focus {
+        border-color: #522811;
+        box-shadow: 0 0 0 3px rgba(82, 40, 17, 0.08);
+      }
 
-		/* Donors count strip */
-		.wpd-donors-strip {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			background: #fdf9f2;
-			border: 1.5px solid #f0e8d0;
-			border-radius: 12px;
-			padding: 12px 16px;
-			margin-top: 20px;
-		}
-		.wpd-donors-strip .avatars { display: flex; }
-		.wpd-donors-strip .avatars span {
-			width: 28px;
-			height: 28px;
-			border-radius: 50%;
-			background: linear-gradient(135deg, #522811, #d8ac27);
-			border: 2px solid #fff;
-			margin-right: -8px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			color: #fff;
-			font-size: 10px;
-			font-weight: 700;
-		}
-		.wpd-donors-strip .donors-text {
-			font-size: 12px;
-			color: #666;
-			margin-left: 16px;
-		}
-		.wpd-donors-strip .donors-text strong { color: #522811; }
+      /* Donate button */
+      .btn-donate-now {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #d8ac27, #f0c842);
+        color: #1a1a1a;
+        font-size: 16px;
+        font-weight: 800;
+        border: none;
+        border-radius: 12px;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+      .btn-donate-now:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(216, 172, 39, 0.4);
+        color: #1a1a1a;
+      }
+      .btn-donate-now:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+      .wpd-secure-note {
+        text-align: center;
+        font-size: 12px;
+        color: #aaa;
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+      }
+      .wpd-secure-note i {
+        color: #5cb85c;
+      }
 
-		/* Sidebar info card */
-		.wpd-info-card {
-			background: #fff;
-			border-radius: 16px;
-			padding: 24px;
-			border: 1.5px solid #f0ece6;
-		}
-		.wpd-info-card .info-row {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			padding: 10px 0;
-			border-bottom: 1px solid #f5f2ee;
-			font-size: 13px;
-		}
-		.wpd-info-card .info-row:last-child { border-bottom: none; }
-		.wpd-info-card .info-row .lbl {
-			color: #888;
-			display: flex;
-			align-items: center;
-			gap: 7px;
-		}
-		.wpd-info-card .info-row .lbl i { color: #d8ac27; width: 14px; }
-		.wpd-info-card .info-row .val {
-			font-weight: 600;
-			color: #1a1a1a;
-		}
-		.wpd-info-card .info-row .val.urgent { color: #e53935; }
-		.wpd-info-card .info-row .val.active { color: #228B22; }
+      /* Donors count strip */
+      .wpd-donors-strip {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #fdf9f2;
+        border: 1.5px solid #f0e8d0;
+        border-radius: 12px;
+        padding: 12px 16px;
+        margin-top: 20px;
+      }
+      .wpd-donors-strip .avatars {
+        display: flex;
+      }
+      .wpd-donors-strip .avatars span {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #522811, #d8ac27);
+        border: 2px solid #fff;
+        margin-right: -8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+      }
+      .wpd-donors-strip .donors-text {
+        font-size: 12px;
+        color: #666;
+        margin-left: 16px;
+      }
+      .wpd-donors-strip .donors-text strong {
+        color: #522811;
+      }
 
-		/* ---- SUCCESS MODAL ---- */
-		.wpd-success-overlay {
-			display: none;
-			position: fixed;
-			inset: 0;
-			background: rgba(0,0,0,0.55);
-			z-index: 9999;
-			align-items: center;
-			justify-content: center;
-		}
-		.wpd-success-overlay.show { display: flex; }
-		.wpd-success-box {
-			background: #fff;
-			border-radius: 24px;
-			padding: 48px 40px;
-			text-align: center;
-			max-width: 420px;
-			width: 92%;
-			box-shadow: 0 32px 80px rgba(0,0,0,0.25);
-			animation: popIn 0.3s ease;
-		}
-		@keyframes popIn {
-			from { transform: scale(0.85); opacity: 0; }
-			to   { transform: scale(1);    opacity: 1; }
-		}
-		.wpd-success-box .success-icon {
-			width: 72px;
-			height: 72px;
-			border-radius: 50%;
-			background: rgba(34,139,34,0.12);
-			color: #228B22;
-			font-size: 32px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin: 0 auto 20px;
-		}
-		.wpd-success-box h4 { font-size: 22px; font-weight: 800; color: #1a1a1a; margin-bottom: 10px; }
-		.wpd-success-box p { font-size: 14px; color: #777; line-height: 1.7; margin-bottom: 28px; }
-		.wpd-success-box .btn-close-success {
-			background: linear-gradient(135deg, #522811, #7a3d18);
-			color: #fff;
-			border: none;
-			border-radius: 50px;
-			padding: 12px 36px;
-			font-weight: 700;
-			font-size: 14px;
-		}
+      /* Sidebar info card */
+      .wpd-info-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 24px;
+        border: 1.5px solid #f0ece6;
+      }
+      .wpd-info-card .info-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #f5f2ee;
+        font-size: 13px;
+      }
+      .wpd-info-card .info-row:last-child {
+        border-bottom: none;
+      }
+      .wpd-info-card .info-row .lbl {
+        color: #888;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .wpd-info-card .info-row .lbl i {
+        color: #d8ac27;
+        width: 14px;
+      }
+      .wpd-info-card .info-row .val {
+        font-weight: 600;
+        color: #1a1a1a;
+      }
+      .wpd-info-card .info-row .val.urgent {
+        color: #e53935;
+      }
+      .wpd-info-card .info-row .val.active {
+        color: #228b22;
+      }
 
-		/* ---- Related programs ---- */
-		.wpd-related { padding: 60px 0; background: #f9f7f4; }
-		.wpd-related-card {
-			background: #fff;
-			border-radius: 16px;
-			overflow: hidden;
-			border: 1.5px solid #f0ece6;
-			transition: box-shadow 0.25s, transform 0.25s;
-		}
-		.wpd-related-card:hover {
-			box-shadow: 0 12px 36px rgba(82,40,17,0.1);
-			transform: translateY(-3px);
-		}
-		.wpd-related-card img {
-			width: 100%;
-			height: 160px;
-			object-fit: cover;
-		}
-		.wpd-related-card .rc-body { padding: 18px; }
-		.wpd-related-card .rc-cat {
-			font-size: 11px;
-			font-weight: 700;
-			color: #d8ac27;
-			text-transform: uppercase;
-			letter-spacing: 0.5px;
-			margin-bottom: 6px;
-		}
-		.wpd-related-card .rc-title {
-			font-size: 15px;
-			font-weight: 700;
-			color: #1a1a1a;
-			margin-bottom: 12px;
-			line-height: 1.4;
-		}
-		.wpd-related-card .rc-link {
-			font-size: 13px;
-			font-weight: 600;
-			color: #522811;
-			text-decoration: none;
-			display: flex;
-			align-items: center;
-			gap: 5px;
-		}
-		.wpd-related-card .rc-link:hover { color: #d8ac27; }
+      /* ---- SUCCESS MODAL ---- */
+      .wpd-success-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.55);
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+      }
+      .wpd-success-overlay.show {
+        display: flex;
+      }
+      .wpd-success-box {
+        background: #fff;
+        border-radius: 24px;
+        padding: 48px 40px;
+        text-align: center;
+        max-width: 420px;
+        width: 92%;
+        box-shadow: 0 32px 80px rgba(0, 0, 0, 0.25);
+        animation: popIn 0.3s ease;
+      }
+      @keyframes popIn {
+        from {
+          transform: scale(0.85);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+      .wpd-success-box .success-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 50%;
+        background: rgba(34, 139, 34, 0.12);
+        color: #228b22;
+        font-size: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+      }
+      .wpd-success-box h4 {
+        font-size: 22px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 10px;
+      }
+      .wpd-success-box p {
+        font-size: 14px;
+        color: #777;
+        line-height: 1.7;
+        margin-bottom: 28px;
+      }
+      .wpd-success-box .btn-close-success {
+        background: linear-gradient(135deg, #522811, #7a3d18);
+        color: #fff;
+        border: none;
+        border-radius: 50px;
+        padding: 12px 36px;
+        font-weight: 700;
+        font-size: 14px;
+      }
 
-		/* ---- RESPONSIVE ---- */
-		@media (max-width: 991px) {
-			.wpd-hero h1 { font-size: 28px; }
-			.wpd-donate-sidebar { position: static; }
-		}
-		@media (max-width: 575px) {
-			.wpd-preset-grid { grid-template-columns: repeat(2, 1fr); }
-			.wpd-content-card { padding: 24px 18px; }
-		}
-	</style>
-</head>
-<body>
+      /* ---- Related programs ---- */
+      .wpd-related {
+        padding: 60px 0;
+        background: #f9f7f4;
+      }
+      .wpd-related-card {
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1.5px solid #f0ece6;
+        transition:
+          box-shadow 0.25s,
+          transform 0.25s;
+      }
+      .wpd-related-card:hover {
+        box-shadow: 0 12px 36px rgba(82, 40, 17, 0.1);
+        transform: translateY(-3px);
+      }
+      .wpd-related-card img {
+        width: 100%;
+        height: 160px;
+        object-fit: cover;
+      }
+      .wpd-related-card .rc-body {
+        padding: 18px;
+      }
+      .wpd-related-card .rc-cat {
+        font-size: 11px;
+        font-weight: 700;
+        color: #d8ac27;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 6px;
+      }
+      .wpd-related-card .rc-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+      .wpd-related-card .rc-link {
+        font-size: 13px;
+        font-weight: 600;
+        color: #522811;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+      .wpd-related-card .rc-link:hover {
+        color: #d8ac27;
+      }
 
-<div class="main-wrapper">
+      /* ---- RESPONSIVE ---- */
+      @media (max-width: 991px) {
+        .wpd-hero h1 {
+          font-size: 28px;
+        }
+        .wpd-donate-sidebar {
+          position: static;
+        }
+      }
+      @media (max-width: 575px) {
+        .wpd-preset-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .wpd-content-card {
+          padding: 24px 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <!-- Header -->
+      <header class="header-one">
+        <div class="container">
+          <div class="header-nav">
+            <div class="navbar-header">
+              <a id="mobile_btn" href="javascript:void(0);">
+                <span class="bar-icon"><i class="isax isax-menu"></i></span>
+              </a>
+              <div class="navbar-logo">
+                <a class="logo-white header-logo" href="/">
+                  <img
+                    src="/assets/img/white-logo.png"
+                    style="width: 150px; height: 110px"
+                    class="logo"
+                    alt="Logo"
+                  />
+                </a>
+                <a class="logo-dark header-logo" href="/">
+                  <img
+                    src="/assets/img/white-logo.png"
+                    style="width: 150px; height: 110px"
+                    class="logo"
+                    alt="Logo"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="main-menu-wrapper">
+              <div class="menu-header">
+                <a href="/" class="menu-logo">
+                  <img
+                    src="/assets/img/white-logo.png"
+                    style="width: 150px; height: 110px"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
+                </a>
+                <a
+                  id="menu_close"
+                  class="menu-close"
+                  href="javascript:void(0);"
+                >
+                  <i class="fas fa-times"></i>
+                </a>
+              </div>
+              <ul class="main-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/courses/course-grid">Courses</a></li>
+                <li><a href="/shared/about-us">About Us</a></li>
+                <li><a href="/shared/welfare-programs">Welfare Programs</a></li>
+                <li><a href="/shared/contact-us">Contact Us</a></li>
+              </ul>
+              <div class="menu-login">
+                <a href="/auth/login" class="btn btn-primary w-100 mb-2"
+                  ><i class="isax isax-user me-2"></i>Sign In</a
+                >
+                <a href="/auth/register" class="btn btn-secondary w-100"
+                  ><i class="isax isax-user-edit me-2"></i>Register</a
+                >
+              </div>
+            </div>
+            <div class="header-btn d-flex align-items-center">
+              <a
+                href="/auth/login"
+                class="btn btn-light d-inline-flex align-items-center me-2"
+              >
+                <i class="isax isax-user me-2"></i>Sign In
+              </a>
+              <a
+                href="/auth/register"
+                class="btn btn-dark d-inline-flex align-items-center me-2"
+              >
+                <i class="isax isax-user-edit me-2"></i>Register
+              </a>
+              <a href="#donate-form" class="btn btn-secondary btn-donate me-0">
+                <i class="isax isax-heart5 me-1"></i>Donate
+              </a>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- /Header -->
 
-	<!-- Header -->
-	<header class="header-one">
-		<div class="container">
-			<div class="header-nav">
-				<div class="navbar-header">
-					<a id="mobile_btn" href="javascript:void(0);">
-						<span class="bar-icon"><i class="isax isax-menu"></i></span>
-					</a>
-					<div class="navbar-logo">
-						<a class="logo-white header-logo" href="/">
-							<img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="logo" alt="Logo">
-						</a>
-						<a class="logo-dark header-logo" href="/">
-							<img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="logo" alt="Logo">
-						</a>
-					</div>
-				</div>
-				<div class="main-menu-wrapper">
-					<div class="menu-header">
-						<a href="/" class="menu-logo">
-							<img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="img-fluid" alt="Logo">
-						</a>
-						<a id="menu_close" class="menu-close" href="javascript:void(0);">
-							<i class="fas fa-times"></i>
-						</a>
-					</div>
-					<ul class="main-nav">
-						<li><a href="/">Home</a></li>
-						<li><a href="/courses/course-grid">Courses</a></li>
-						<li><a href="/shared/about-us">About Us</a></li>
-						<li><a href="/shared/welfare-programs">Welfare Programs</a></li>
-						<li><a href="/shared/contact-us">Contact Us</a></li>
-					</ul>
-					<div class="menu-login">
-						<a href="/auth/login" class="btn btn-primary w-100 mb-2"><i class="isax isax-user me-2"></i>Sign In</a>
-						<a href="/auth/register" class="btn btn-secondary w-100"><i class="isax isax-user-edit me-2"></i>Register</a>
-					</div>
-				</div>
-				<div class="header-btn d-flex align-items-center">
-					<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
-						<i class="isax isax-user me-2"></i>Sign In
-					</a>
-					<a href="/auth/register" class="btn btn-dark d-inline-flex align-items-center me-2">
-						<i class="isax isax-user-edit me-2"></i>Register
-					</a>
-					<a href="#donate-form" class="btn btn-secondary btn-donate me-0">
-						<i class="isax isax-heart5 me-1"></i>Donate
-					</a>
-				</div>
-			</div>
-		</div>
-	</header>
-	<!-- /Header -->
+      <!-- ===== HERO ===== -->
+      <section class="wpd-hero">
+        <div class="container">
+          <div class="wpd-breadcrumb">
+            <a href="/">Home</a>
+            <i class="fa fa-chevron-right"></i>
+            <a href="/shared/welfare-programs">Welfare Programs</a>
+            <i class="fa fa-chevron-right"></i>
+            <span id="bc-title">Program Details</span>
+          </div>
+          <span class="cat-badge" id="hero-cat-badge"
+            ><i class="fa fa-tag"></i>
+            <span id="hero-cat-text">Category</span></span
+          >
+          <h1 id="hero-title">Loading program...</h1>
+          <div class="hero-meta">
+            <span
+              ><i class="fa fa-map-marker-alt"></i>
+              <span id="hero-location">Pakistan</span></span
+            >
+            <span
+              ><i class="fa fa-users"></i>
+              <span id="hero-beneficiaries">—</span> beneficiaries</span
+            >
+            <span
+              ><i class="fa fa-calendar-alt"></i> Started
+              <span id="hero-started">—</span></span
+            >
+            <span id="hero-urgent-wrap" style="display: none">
+              <span
+                style="
+                  background: #e53935;
+                  color: #fff;
+                  padding: 3px 12px;
+                  border-radius: 50px;
+                  font-size: 12px;
+                  font-weight: 700;
+                "
+              >
+                <i class="fa fa-bolt me-1"></i>Urgent
+              </span>
+            </span>
+          </div>
+        </div>
+      </section>
+      <!-- /Hero -->
 
-	<!-- ===== HERO ===== -->
-	<section class="wpd-hero">
-		<div class="container">
-			<div class="wpd-breadcrumb">
-				<a href="/">Home</a>
-				<i class="fa fa-chevron-right"></i>
-				<a href="/shared/welfare-programs">Welfare Programs</a>
-				<i class="fa fa-chevron-right"></i>
-				<span id="bc-title">Program Details</span>
-			</div>
-			<span class="cat-badge" id="hero-cat-badge"><i class="fa fa-tag"></i> <span id="hero-cat-text">Category</span></span>
-			<h1 id="hero-title">Loading program...</h1>
-			<div class="hero-meta">
-				<span><i class="fa fa-map-marker-alt"></i> <span id="hero-location">Pakistan</span></span>
-				<span><i class="fa fa-users"></i> <span id="hero-beneficiaries">—</span> beneficiaries</span>
-				<span><i class="fa fa-calendar-alt"></i> Started <span id="hero-started">—</span></span>
-				<span id="hero-urgent-wrap" style="display:none;">
-					<span style="background:#e53935;color:#fff;padding:3px 12px;border-radius:50px;font-size:12px;font-weight:700;">
-						<i class="fa fa-bolt me-1"></i>Urgent
-					</span>
-				</span>
-			</div>
-		</div>
-	</section>
-	<!-- /Hero -->
+      <!-- ===== BODY ===== -->
+      <section class="wpd-body">
+        <div class="container">
+          <div class="row g-4">
+            <!-- ── LEFT COLUMN ── -->
+            <div class="col-lg-8">
+              <!-- Banner image -->
+              <img
+                id="prog-banner"
+                src="/assets/img/about/about-2.svg"
+                alt="Program"
+                class="wpd-img-banner"
+              />
 
-	<!-- ===== BODY ===== -->
-	<section class="wpd-body">
-		<div class="container">
-			<div class="row g-4">
+              <!-- About the Program -->
+              <div class="wpd-content-card">
+                <h3><i class="fa fa-info-circle"></i> About This Program</h3>
+                <div id="prog-about"></div>
+              </div>
 
-				<!-- ── LEFT COLUMN ── -->
-				<div class="col-lg-8">
+              <!-- Impact Statistics -->
+              <div class="wpd-content-card">
+                <h3><i class="fa fa-chart-bar"></i> Our Impact So Far</h3>
+                <div class="wpd-impact-strip" id="prog-impact-strip"></div>
+              </div>
 
-					<!-- Banner image -->
-					<img id="prog-banner" src="/assets/img/about/about-2.svg" alt="Program" class="wpd-img-banner">
+              <!-- How Funds Are Used -->
+              <div class="wpd-content-card">
+                <h3>
+                  <i class="fa fa-hand-holding-heart"></i> How Your Donation
+                  Helps
+                </h3>
+                <div id="prog-fund-use"></div>
+              </div>
 
-					<!-- About the Program -->
-					<div class="wpd-content-card">
-						<h3><i class="fa fa-info-circle"></i> About This Program</h3>
-						<div id="prog-about"></div>
-					</div>
+              <!-- Milestones -->
+              <div class="wpd-content-card">
+                <h3><i class="fa fa-flag-checkered"></i> Program Milestones</h3>
+                <div id="prog-milestones"></div>
+              </div>
 
-					<!-- Impact Statistics -->
-					<div class="wpd-content-card">
-						<h3><i class="fa fa-chart-bar"></i> Our Impact So Far</h3>
-						<div class="wpd-impact-strip" id="prog-impact-strip"></div>
-					</div>
+              <!-- Gallery -->
+              <div class="wpd-content-card">
+                <h3><i class="fa fa-images"></i> Program Gallery</h3>
+                <div class="wpd-gallery" id="prog-gallery"></div>
+              </div>
+            </div>
 
-					<!-- How Funds Are Used -->
-					<div class="wpd-content-card">
-						<h3><i class="fa fa-hand-holding-heart"></i> How Your Donation Helps</h3>
-						<div id="prog-fund-use"></div>
-					</div>
+            <!-- ── RIGHT: DONATE SIDEBAR ── -->
+            <div class="col-lg-4">
+              <div class="wpd-donate-sidebar" id="donate-form">
+                <!-- Donation Card -->
+                <div class="wpd-donate-card">
+                  <div class="donate-header">
+                    <div class="dh-label">Support This Program</div>
+                    <h4>Make a Donation</h4>
+                  </div>
 
-					<!-- Milestones -->
-					<div class="wpd-content-card">
-						<h3><i class="fa fa-flag-checkered"></i> Program Milestones</h3>
-						<div id="prog-milestones"></div>
-					</div>
+                  <!-- Progress -->
+                  <div class="wpd-progress-wrap">
+                    <div class="wpd-progress-bar-outer">
+                      <div
+                        class="wpd-progress-bar-inner"
+                        id="donate-progress-bar"
+                        style="width: 0%"
+                      ></div>
+                    </div>
+                    <div class="wpd-progress-nums">
+                      <span class="raised" id="donate-raised">PKR 0</span>
+                      <span class="pct" id="donate-pct">0%</span>
+                      <span class="goal" id="donate-goal">of PKR 0</span>
+                    </div>
+                  </div>
 
-					<!-- Gallery -->
-					<div class="wpd-content-card">
-						<h3><i class="fa fa-images"></i> Program Gallery</h3>
-						<div class="wpd-gallery" id="prog-gallery"></div>
-					</div>
+                  <form
+                    id="donate-form-inner"
+                    onsubmit="submitDonation(event)"
+                    novalidate
+                  >
+                    <!-- Preset amounts -->
+                    <div class="wpd-preset-label">Choose an amount (PKR)</div>
+                    <div class="wpd-preset-grid">
+                      <div
+                        class="wpd-preset-btn"
+                        onclick="selectPreset(this, 500)"
+                      >
+                        500
+                      </div>
+                      <div
+                        class="wpd-preset-btn"
+                        onclick="selectPreset(this, 1000)"
+                      >
+                        1,000
+                      </div>
+                      <div
+                        class="wpd-preset-btn"
+                        onclick="selectPreset(this, 2500)"
+                      >
+                        2,500
+                      </div>
+                      <div
+                        class="wpd-preset-btn"
+                        onclick="selectPreset(this, 5000)"
+                      >
+                        5,000
+                      </div>
+                      <div
+                        class="wpd-preset-btn"
+                        onclick="selectPreset(this, 10000)"
+                      >
+                        10,000
+                      </div>
+                      <div
+                        class="wpd-preset-btn"
+                        onclick="selectPreset(this, 25000)"
+                      >
+                        25,000
+                      </div>
+                    </div>
 
-				</div>
+                    <!-- Custom amount -->
+                    <div class="wpd-custom-wrap">
+                      <span class="pkr-label">PKR</span>
+                      <input
+                        type="number"
+                        id="donation-amount"
+                        placeholder="Enter custom amount"
+                        min="100"
+                        required
+                      />
+                    </div>
 
-				<!-- ── RIGHT: DONATE SIDEBAR ── -->
-				<div class="col-lg-4">
-					<div class="wpd-donate-sidebar" id="donate-form">
+                    <!-- Payment method -->
+                    <div class="wpd-preset-label">Payment Method</div>
+                    <div class="wpd-pay-methods">
+                      <div
+                        class="wpd-pay-method"
+                        onclick="selectPayMethod(this, 'jazzcash')"
+                        id="pm-jazzcash"
+                      >
+                        <div class="pm-check"><i class="fa fa-check"></i></div>
+                        <img
+                          src="/assets/img/payment/jazzcash.png"
+                          alt="JazzCash"
+                          onerror="
+                            this.style.display = 'none';
+                            this.nextSibling.style.display = 'block';
+                          "
+                        />
+                        <span
+                          style="
+                            display: none;
+                            font-weight: 700;
+                            font-size: 13px;
+                            color: #c62828;
+                          "
+                          >JazzCash</span
+                        >
+                        <span class="pm-name">JazzCash</span>
+                      </div>
+                      <div
+                        class="wpd-pay-method"
+                        onclick="selectPayMethod(this, 'card')"
+                        id="pm-card"
+                      >
+                        <div class="pm-check"><i class="fa fa-check"></i></div>
+                        <img
+                          src="/assets/img/payment/stripe.png"
+                          alt="Card"
+                          onerror="
+                            this.style.display = 'none';
+                            this.nextSibling.style.display = 'block';
+                          "
+                        />
+                        <span
+                          style="
+                            display: none;
+                            font-weight: 700;
+                            font-size: 13px;
+                            color: #3d5afe;
+                          "
+                          >Credit Card</span
+                        >
+                        <span class="pm-name">Credit / Debit Card</span>
+                      </div>
+                    </div>
 
-						<!-- Donation Card -->
-						<div class="wpd-donate-card">
-							<div class="donate-header">
-								<div class="dh-label">Support This Program</div>
-								<h4>Make a Donation</h4>
-							</div>
+                    <!-- Donor details -->
+                    <div class="wpd-donor-fields">
+                      <div class="mb-2">
+                        <label class="form-label">Full Name</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="donor-name"
+                          placeholder="Your name"
+                          required
+                        />
+                      </div>
+                      <div class="mb-2">
+                        <label class="form-label">Phone Number</label>
+                        <input
+                          type="tel"
+                          class="form-control"
+                          id="donor-phone"
+                          placeholder="+92 3XX XXXXXXX"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label class="form-label">Email (optional)</label>
+                        <input
+                          type="email"
+                          class="form-control"
+                          id="donor-email"
+                          placeholder="your@email.com"
+                        />
+                      </div>
+                    </div>
 
-							<!-- Progress -->
-							<div class="wpd-progress-wrap">
-								<div class="wpd-progress-bar-outer">
-									<div class="wpd-progress-bar-inner" id="donate-progress-bar" style="width:0%"></div>
-								</div>
-								<div class="wpd-progress-nums">
-									<span class="raised" id="donate-raised">PKR 0</span>
-									<span class="pct" id="donate-pct">0%</span>
-									<span class="goal" id="donate-goal">of PKR 0</span>
-								</div>
-							</div>
+                    <!-- Anonymous checkbox -->
+                    <div class="form-check mb-18" style="margin-bottom: 18px">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="donor-anon"
+                      />
+                      <label
+                        class="form-check-label"
+                        for="donor-anon"
+                        style="font-size: 13px; color: #666"
+                      >
+                        Donate anonymously
+                      </label>
+                    </div>
 
-							<form id="donate-form-inner" onsubmit="submitDonation(event)" novalidate>
+                    <button
+                      type="submit"
+                      class="btn-donate-now btn"
+                      id="donate-btn"
+                    >
+                      <i class="fa fa-heart"></i> Donate Now
+                    </button>
 
-								<!-- Preset amounts -->
-								<div class="wpd-preset-label">Choose an amount (PKR)</div>
-								<div class="wpd-preset-grid">
-									<div class="wpd-preset-btn" onclick="selectPreset(this, 500)">500</div>
-									<div class="wpd-preset-btn" onclick="selectPreset(this, 1000)">1,000</div>
-									<div class="wpd-preset-btn" onclick="selectPreset(this, 2500)">2,500</div>
-									<div class="wpd-preset-btn" onclick="selectPreset(this, 5000)">5,000</div>
-									<div class="wpd-preset-btn" onclick="selectPreset(this, 10000)">10,000</div>
-									<div class="wpd-preset-btn" onclick="selectPreset(this, 25000)">25,000</div>
-								</div>
+                    <div class="wpd-secure-note">
+                      <i class="fa fa-lock"></i> Secure &amp; encrypted
+                      transaction
+                    </div>
+                  </form>
 
-								<!-- Custom amount -->
-								<div class="wpd-custom-wrap">
-									<span class="pkr-label">PKR</span>
-									<input type="number" id="donation-amount" placeholder="Enter custom amount" min="100" required>
-								</div>
+                  <!-- Donors strip -->
+                  <div class="wpd-donors-strip">
+                    <div class="avatars">
+                      <span>A</span><span>F</span><span>M</span><span>Z</span>
+                    </div>
+                    <div class="donors-text">
+                      <strong id="donor-count">1,240</strong> people have
+                      already donated
+                    </div>
+                  </div>
+                </div>
 
-								<!-- Payment method -->
-								<div class="wpd-preset-label">Payment Method</div>
-								<div class="wpd-pay-methods">
-									<div class="wpd-pay-method" onclick="selectPayMethod(this, 'jazzcash')" id="pm-jazzcash">
-										<div class="pm-check"><i class="fa fa-check"></i></div>
-										<img src="/assets/img/payment/jazzcash.png" alt="JazzCash" onerror="this.style.display='none';this.nextSibling.style.display='block'">
-										<span style="display:none;font-weight:700;font-size:13px;color:#c62828;">JazzCash</span>
-										<span class="pm-name">JazzCash</span>
-									</div>
-									<div class="wpd-pay-method" onclick="selectPayMethod(this, 'card')" id="pm-card">
-										<div class="pm-check"><i class="fa fa-check"></i></div>
-										<img src="/assets/img/payment/stripe.png" alt="Card" onerror="this.style.display='none';this.nextSibling.style.display='block'">
-										<span style="display:none;font-weight:700;font-size:13px;color:#3d5afe;">Credit Card</span>
-										<span class="pm-name">Credit / Debit Card</span>
-									</div>
-								</div>
+                <!-- Info Card -->
+                <div class="wpd-info-card">
+                  <div class="info-row">
+                    <span class="lbl"><i class="fa fa-tag"></i> Category</span>
+                    <span class="val" id="info-cat">—</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="lbl"
+                      ><i class="fa fa-map-marker-alt"></i> Location</span
+                    >
+                    <span class="val" id="info-location">Pakistan</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="lbl"
+                      ><i class="fa fa-calendar"></i> Started</span
+                    >
+                    <span class="val" id="info-started">—</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="lbl"><i class="fa fa-clock"></i> Status</span>
+                    <span class="val active" id="info-status">Active</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="lbl"
+                      ><i class="fa fa-users"></i> Beneficiaries</span
+                    >
+                    <span class="val" id="info-beneficiaries">—</span>
+                  </div>
+                  <div class="info-row">
+                    <span class="lbl"
+                      ><i class="fa fa-hourglass-half"></i> Days Left</span
+                    >
+                    <span class="val" id="info-days">Ongoing</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /Body -->
 
-								<!-- Donor details -->
-								<div class="wpd-donor-fields">
-									<div class="mb-2">
-										<label class="form-label">Full Name</label>
-										<input type="text" class="form-control" id="donor-name" placeholder="Your name" required>
-									</div>
-									<div class="mb-2">
-										<label class="form-label">Phone Number</label>
-										<input type="tel" class="form-control" id="donor-phone" placeholder="+92 3XX XXXXXXX" required>
-									</div>
-									<div>
-										<label class="form-label">Email (optional)</label>
-										<input type="email" class="form-control" id="donor-email" placeholder="your@email.com">
-									</div>
-								</div>
+      <!-- ===== RELATED PROGRAMS ===== -->
+      <section class="wpd-related">
+        <div class="container">
+          <div class="text-center mb-4">
+            <span
+              style="
+                font-size: 13px;
+                font-weight: 700;
+                color: #d8ac27;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+              "
+              >More Initiatives</span
+            >
+            <h2
+              style="
+                font-size: 28px;
+                font-weight: 800;
+                color: #1a1a1a;
+                margin-top: 8px;
+              "
+            >
+              Related Programs
+            </h2>
+          </div>
+          <div class="row g-4" id="related-grid"></div>
+        </div>
+      </section>
+      <!-- /Related -->
 
-								<!-- Anonymous checkbox -->
-								<div class="form-check mb-18" style="margin-bottom:18px;">
-									<input class="form-check-input" type="checkbox" id="donor-anon">
-									<label class="form-check-label" for="donor-anon" style="font-size:13px;color:#666;">
-										Donate anonymously
-									</label>
-								</div>
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-bg">
+          <img
+            src="/assets/img/bg/footer-bg-01.png"
+            class="footer-bg-1"
+            alt=""
+          />
+          <img
+            src="/assets/img/bg/footer-bg-02.png"
+            class="footer-bg-2"
+            alt=""
+          />
+        </div>
+        <div class="footer-top">
+          <div class="container">
+            <div class="row row-gap-4">
+              <div class="col-lg-4">
+                <div class="footer-about">
+                  <div class="footer-logo">
+                    <img
+                      src="/assets/img/white-logo.png"
+                      style="width: 200px; height: 150px"
+                      alt=""
+                    />
+                  </div>
+                  <p>
+                    Platform designed to help organizations, educators, and
+                    learners manage, deliver, and track learning and training
+                    activities.
+                  </p>
+                  <div class="d-flex align-items-center">
+                    <a href="#" class="me-2"
+                      ><img src="/assets/img/icon/appstore.svg" alt=""
+                    /></a>
+                    <a href="#"
+                      ><img src="/assets/img/icon/googleplay.svg" alt=""
+                    /></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="row row-gap-4">
+                  <div class="col-lg-3">
+                    <div class="footer-widget footer-menu">
+                      <h5 class="footer-title">For Instructor</h5>
+                      <ul>
+                        <li>
+                          <a href="/shared/become-an-instructor"
+                            >Become an Instructor</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/instructor/instructor-dashboard"
+                            >Instructor Dashboard</a
+                          >
+                        </li>
+                        <li><a href="/auth/login">Login</a></li>
+                        <li><a href="/auth/register">Register</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="footer-widget footer-menu">
+                      <h5 class="footer-title">For Student</h5>
+                      <ul>
+                        <li>
+                          <a href="/courses/course-grid">Browse Courses</a>
+                        </li>
+                        <li>
+                          <a href="/student/student-dashboard"
+                            >Student Dashboard</a
+                          >
+                        </li>
+                        <li><a href="/auth/login">Login</a></li>
+                        <li><a href="/auth/register">Register</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="footer-widget footer-contact">
+                      <h5 class="footer-title">Contact</h5>
+                      <div class="footer-contact-info">
+                        <div class="footer-address d-flex align-items-center">
+                          <img
+                            src="/assets/img/icon/icon-20.svg"
+                            alt=""
+                            class="img-fluid me-2"
+                          />
+                          <p>Al-Kahaf Online Academy, Pakistan</p>
+                        </div>
+                        <div class="footer-address d-flex align-items-center">
+                          <img
+                            src="/assets/img/icon/icon-19.svg"
+                            alt=""
+                            class="img-fluid me-2"
+                          />
+                          <p>info@alkahafonlineacademy.com</p>
+                        </div>
+                        <div class="footer-address d-flex align-items-center">
+                          <img
+                            src="/assets/img/icon/icon-21.svg"
+                            alt=""
+                            class="img-fluid me-2"
+                          />
+                          <p>+92 300 0000000</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="container">
+            <div class="row row-gap-2">
+              <div class="col-md-6">
+                <p class="text-white text-center text-md-start">
+                  Copyright 2025
+                  <span class="text-secondary">Al-Kahaf Online Academy</span>.
+                  All rights reserved.
+                </p>
+              </div>
+              <div class="col-md-6">
+                <ul
+                  class="d-flex align-items-center justify-content-center justify-content-md-end footer-link"
+                >
+                  <li>
+                    <a href="/shared/terms-and-conditions"
+                      >Terms &amp; Conditions</a
+                    >
+                  </li>
+                  <li><a href="/shared/privacy-policy">Privacy Policy</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <!-- /Main Wrapper -->
 
-								<button type="submit" class="btn-donate-now btn" id="donate-btn">
-									<i class="fa fa-heart"></i> Donate Now
-								</button>
+    <!-- Success Modal -->
+    <div class="wpd-success-overlay" id="successOverlay">
+      <div class="wpd-success-box">
+        <div class="success-icon"><i class="fa fa-check"></i></div>
+        <h4>JazakAllah Khair!</h4>
+        <p id="success-msg">
+          Your donation has been received. May Allah accept your generosity and
+          reward you abundantly. A confirmation will be sent to your phone
+          shortly.
+        </p>
+        <button
+          class="btn btn-donate-now btn-close-success"
+          onclick="closeSuccess()"
+        >
+          Done
+        </button>
+      </div>
+    </div>
 
-								<div class="wpd-secure-note">
-									<i class="fa fa-lock"></i> Secure &amp; encrypted transaction
-								</div>
+    <!-- jQuery -->
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/plugins/select2/js/select2.min.js"></script>
+    <script src="/assets/plugins/slick/slick.js"></script>
+    <script src="/assets/js/counter.js"></script>
+    <script src="/assets/js/script.js"></script>
 
-							</form>
-
-							<!-- Donors strip -->
-							<div class="wpd-donors-strip">
-								<div class="avatars">
-									<span>A</span><span>F</span><span>M</span><span>Z</span>
-								</div>
-								<div class="donors-text">
-									<strong id="donor-count">1,240</strong> people have already donated
-								</div>
-							</div>
-						</div>
-
-						<!-- Info Card -->
-						<div class="wpd-info-card">
-							<div class="info-row">
-								<span class="lbl"><i class="fa fa-tag"></i> Category</span>
-								<span class="val" id="info-cat">—</span>
-							</div>
-							<div class="info-row">
-								<span class="lbl"><i class="fa fa-map-marker-alt"></i> Location</span>
-								<span class="val" id="info-location">Pakistan</span>
-							</div>
-							<div class="info-row">
-								<span class="lbl"><i class="fa fa-calendar"></i> Started</span>
-								<span class="val" id="info-started">—</span>
-							</div>
-							<div class="info-row">
-								<span class="lbl"><i class="fa fa-clock"></i> Status</span>
-								<span class="val active" id="info-status">Active</span>
-							</div>
-							<div class="info-row">
-								<span class="lbl"><i class="fa fa-users"></i> Beneficiaries</span>
-								<span class="val" id="info-beneficiaries">—</span>
-							</div>
-							<div class="info-row">
-								<span class="lbl"><i class="fa fa-hourglass-half"></i> Days Left</span>
-								<span class="val" id="info-days">Ongoing</span>
-							</div>
-						</div>
-
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
-	<!-- /Body -->
-
-	<!-- ===== RELATED PROGRAMS ===== -->
-	<section class="wpd-related">
-		<div class="container">
-			<div class="text-center mb-4">
-				<span style="font-size:13px;font-weight:700;color:#d8ac27;text-transform:uppercase;letter-spacing:1.5px;">More Initiatives</span>
-				<h2 style="font-size:28px;font-weight:800;color:#1a1a1a;margin-top:8px;">Related Programs</h2>
-			</div>
-			<div class="row g-4" id="related-grid"></div>
-		</div>
-	</section>
-	<!-- /Related -->
-
-	<!-- Footer -->
-	<footer class="footer">
-		<div class="footer-bg">
-			<img src="/assets/img/bg/footer-bg-01.png" class="footer-bg-1" alt="">
-			<img src="/assets/img/bg/footer-bg-02.png" class="footer-bg-2" alt="">
-		</div>
-		<div class="footer-top">
-			<div class="container">
-				<div class="row row-gap-4">
-					<div class="col-lg-4">
-						<div class="footer-about">
-							<div class="footer-logo">
-								<img src="/assets/img/white-logo.png" style="width:200px;height:150px;" alt="">
-							</div>
-							<p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
-							<div class="d-flex align-items-center">
-								<a href="#" class="me-2"><img src="/assets/img/icon/appstore.svg" alt=""></a>
-								<a href="#"><img src="/assets/img/icon/googleplay.svg" alt=""></a>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-8">
-						<div class="row row-gap-4">
-							<div class="col-lg-3">
-								<div class="footer-widget footer-menu">
-									<h5 class="footer-title">For Instructor</h5>
-									<ul>
-										<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
-										<li><a href="/instructor/instructor-dashboard">Instructor Dashboard</a></li>
-										<li><a href="/auth/login">Login</a></li>
-										<li><a href="/auth/register">Register</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-3">
-								<div class="footer-widget footer-menu">
-									<h5 class="footer-title">For Student</h5>
-									<ul>
-										<li><a href="/courses/course-grid">Browse Courses</a></li>
-										<li><a href="/student/student-dashboard">Student Dashboard</a></li>
-										<li><a href="/auth/login">Login</a></li>
-										<li><a href="/auth/register">Register</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="footer-widget footer-contact">
-									<h5 class="footer-title">Contact</h5>
-									<div class="footer-contact-info">
-										<div class="footer-address d-flex align-items-center">
-											<img src="/assets/img/icon/icon-20.svg" alt="" class="img-fluid me-2">
-											<p>Al-Kahaf Online Academy, Pakistan</p>
-										</div>
-										<div class="footer-address d-flex align-items-center">
-											<img src="/assets/img/icon/icon-19.svg" alt="" class="img-fluid me-2">
-											<p>info@alkahafonlineacademy.com</p>
-										</div>
-										<div class="footer-address d-flex align-items-center">
-											<img src="/assets/img/icon/icon-21.svg" alt="" class="img-fluid me-2">
-											<p>+92 300 0000000</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row row-gap-2">
-					<div class="col-md-6">
-						<p class="text-white text-center text-md-start">Copyright 2025 <span class="text-secondary">Al-Kahaf Online Academy</span>. All rights reserved.</p>
-					</div>
-					<div class="col-md-6">
-						<ul class="d-flex align-items-center justify-content-center justify-content-md-end footer-link">
-							<li><a href="/shared/terms-and-conditions">Terms &amp; Conditions</a></li>
-							<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-</div>
-<!-- /Main Wrapper -->
-
-<!-- Success Modal -->
-<div class="wpd-success-overlay" id="successOverlay">
-	<div class="wpd-success-box">
-		<div class="success-icon"><i class="fa fa-check"></i></div>
-		<h4>JazakAllah Khair!</h4>
-		<p id="success-msg">Your donation has been received. May Allah accept your generosity and reward you abundantly. A confirmation will be sent to your phone shortly.</p>
-		<button class="btn btn-donate-now btn-close-success" onclick="closeSuccess()">Done</button>
-	</div>
-</div>
-
-<!-- jQuery -->
-<script src="/assets/js/jquery-3.7.1.min.js"></script>
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
-<script src="/assets/plugins/select2/js/select2.min.js"></script>
-<script src="/assets/plugins/slick/slick.js"></script>
-<script src="/assets/js/counter.js"></script>
-<script src="/assets/js/script.js"></script>
-
-<script>
-// ── Program data ─────────────────────────────────────────────────────────────
-var PROGRAMS = {
-	'food-distribution': {
-		title: 'Free Food Distribution (Dastarkhwan)',
-		cat: 'Food & Relief',
-		catIcon: 'fa-utensils',
-		urgent: true,
-		location: 'Nationwide — 18 cities',
-		beneficiaries: '15,000+ monthly',
-		started: 'January 2018',
-		daysLeft: 'Ongoing',
-		status: 'Active',
-		raised: 730000,
-		goal: 1000000,
-		donors: '2,840',
-		banner: '/assets/img/course/course-01.jpg',
-		about: `
+    <script>
+      // ── Program data ─────────────────────────────────────────────────────────────
+      var PROGRAMS = {
+        "food-distribution": {
+          title: "Free Food Distribution (Dastarkhwan)",
+          cat: "Food & Relief",
+          catIcon: "fa-utensils",
+          urgent: true,
+          location: "Nationwide — 18 cities",
+          beneficiaries: "15,000+ monthly",
+          started: "January 2018",
+          daysLeft: "Ongoing",
+          status: "Active",
+          raised: 730000,
+          goal: 1000000,
+          donors: "2,840",
+          banner: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&h=650&fit=crop&q=80",
+          about: `
 			<p>Al-Kahaf's Dastarkhwan program provides hot, nutritious meals to underprivileged families, orphans, daily wage workers, and the homeless through a network of community kitchens across 18 cities in Pakistan.</p>
 			<p>Every day, thousands of people who would otherwise go hungry receive a dignified meal at no cost. Our kitchens operate 365 days a year, with additional capacity during Ramadan when need is greatest.</p>
 			<p>The program is staffed primarily by volunteers and relies entirely on public donations. Every rupee you give goes directly toward purchasing ingredients, operating the kitchens, and expanding to new areas.</p>
 		`,
-		impact: [
-			{ num: '15,000+', lbl: 'Meals served daily' },
-			{ num: '18', lbl: 'Cities covered' },
-			{ num: '2.1M+', lbl: 'Meals since launch' },
-			{ num: '365', lbl: 'Days per year' }
-		],
-		fundUse: `
+          impact: [
+            { num: "15,000+", lbl: "Meals served daily" },
+            { num: "18", lbl: "Cities covered" },
+            { num: "2.1M+", lbl: "Meals since launch" },
+            { num: "365", lbl: "Days per year" },
+          ],
+          fundUse: `
 			<p>Your donation is allocated as follows:</p>
 			<p><strong>60%</strong> — Raw ingredients (rice, dal, vegetables, meat)</p>
 			<p><strong>20%</strong> — Kitchen operations (gas, utilities, equipment maintenance)</p>
@@ -1020,48 +1451,76 @@ var PROGRAMS = {
 			<p><strong>8%</strong> — Staff stipends and volunteer coordination</p>
 			<p>A donation of <strong>PKR 500</strong> feeds a family of 5 for one day. <strong>PKR 15,000</strong> covers an entire month for one family.</p>
 		`,
-		milestones: [
-			{ icon: 'fa-flag', color: '#d8ac27', bg: 'rgba(216,172,39,0.12)', title: 'Program Launch', date: 'January 2018', desc: 'Started with a single kitchen in Lahore serving 200 meals daily.' },
-			{ icon: 'fa-expand-alt', color: '#522811', bg: 'rgba(82,40,17,0.1)', title: 'Expanded to 10 Cities', date: 'March 2020', desc: 'Rapid expansion during COVID-19 to serve those who lost livelihoods.' },
-			{ icon: 'fa-star', color: '#228B22', bg: 'rgba(34,139,34,0.1)', title: '1 Million Meals', date: 'August 2022', desc: 'Reached the milestone of 1 million meals served since inception.' },
-			{ icon: 'fa-city', color: '#3d5afe', bg: 'rgba(61,90,254,0.1)', title: '18 Cities Active', date: 'December 2024', desc: 'Now operating in 18 cities with 24 community kitchens.' }
-		],
-		gallery: [
-			'/assets/img/course/course-01.jpg',
-			'/assets/img/course/course-02.jpg',
-			'/assets/img/course/course-03.jpg',
-			'/assets/img/course/course-04.jpg',
-			'/assets/img/course/course-05.jpg',
-			'/assets/img/course/course-06.jpg'
-		],
-		related: ['it-education', 'medical-assistance', 'clean-water']
-	},
-	'it-education': {
-		title: 'Free IT & Vocational Training Program',
-		cat: 'Education',
-		catIcon: 'fa-graduation-cap',
-		urgent: false,
-		location: 'Lahore, Karachi, Islamabad',
-		beneficiaries: '3,200+ students',
-		started: 'March 2019',
-		daysLeft: 'Ongoing',
-		status: 'Active',
-		raised: 580000,
-		goal: 1000000,
-		donors: '1,120',
-		banner: '/assets/img/course/course-02.jpg',
-		about: `
+          milestones: [
+            {
+              icon: "fa-flag",
+              color: "#d8ac27",
+              bg: "rgba(216,172,39,0.12)",
+              title: "Program Launch",
+              date: "January 2018",
+              desc: "Started with a single kitchen in Lahore serving 200 meals daily.",
+            },
+            {
+              icon: "fa-expand-alt",
+              color: "#522811",
+              bg: "rgba(82,40,17,0.1)",
+              title: "Expanded to 10 Cities",
+              date: "March 2020",
+              desc: "Rapid expansion during COVID-19 to serve those who lost livelihoods.",
+            },
+            {
+              icon: "fa-star",
+              color: "#228B22",
+              bg: "rgba(34,139,34,0.1)",
+              title: "1 Million Meals",
+              date: "August 2022",
+              desc: "Reached the milestone of 1 million meals served since inception.",
+            },
+            {
+              icon: "fa-city",
+              color: "#3d5afe",
+              bg: "rgba(61,90,254,0.1)",
+              title: "18 Cities Active",
+              date: "December 2024",
+              desc: "Now operating in 18 cities with 24 community kitchens.",
+            },
+          ],
+          gallery: [
+            "https://images.unsplash.com/photo-1593113630400-ea4288922497?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1547592180-85f173990554?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1504754011387-9ad0d29e73a9?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1565299624596-13dd7b0c738f?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800&h=500&fit=crop&q=80"
+          ],
+          related: ["it-education", "medical-assistance", "clean-water"],
+        },
+        "it-education": {
+          title: "Free IT & Vocational Training Program",
+          cat: "Education",
+          catIcon: "fa-graduation-cap",
+          urgent: false,
+          location: "Lahore, Karachi, Islamabad",
+          beneficiaries: "3,200+ students",
+          started: "March 2019",
+          daysLeft: "Ongoing",
+          status: "Active",
+          raised: 580000,
+          goal: 1000000,
+          donors: "1,120",
+          banner: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=650&fit=crop&q=80",
+          about: `
 			<p>Our Free IT & Vocational Training Program equips youth from low-income backgrounds with marketable digital skills — web development, graphic design, freelancing, and digital marketing — enabling them to earn a sustainable income.</p>
 			<p>Classes run 6 days a week across three campuses. Students receive laptops on loan for the duration of the course, internet access, and mentorship from industry professionals.</p>
 			<p>Upon graduation, students are connected with freelance platforms and local employers. Over 80% of our graduates secure income within 3 months of completing the program.</p>
 		`,
-		impact: [
-			{ num: '3,200+', lbl: 'Students enrolled' },
-			{ num: '80%', lbl: 'Employment rate' },
-			{ num: '3', lbl: 'Training campuses' },
-			{ num: '12+', lbl: 'Courses offered' }
-		],
-		fundUse: `
+          impact: [
+            { num: "3,200+", lbl: "Students enrolled" },
+            { num: "80%", lbl: "Employment rate" },
+            { num: "3", lbl: "Training campuses" },
+            { num: "12+", lbl: "Courses offered" },
+          ],
+          fundUse: `
 			<p>Your donation is allocated as follows:</p>
 			<p><strong>45%</strong> — Instructor salaries and curriculum development</p>
 			<p><strong>25%</strong> — Equipment (laptops, projectors, internet)</p>
@@ -1069,96 +1528,152 @@ var PROGRAMS = {
 			<p><strong>12%</strong> — Student support (transport stipends, lunch)</p>
 			<p>A donation of <strong>PKR 2,500</strong> covers one student's monthly costs. <strong>PKR 30,000</strong> fully sponsors a student through a 6-month course.</p>
 		`,
-		milestones: [
-			{ icon: 'fa-flag', color: '#d8ac27', bg: 'rgba(216,172,39,0.12)', title: 'Program Launch', date: 'March 2019', desc: 'First batch of 50 students in Lahore campus.' },
-			{ icon: 'fa-laptop', color: '#522811', bg: 'rgba(82,40,17,0.1)', title: 'Karachi Campus Opens', date: 'January 2021', desc: 'Second campus launched in Karachi with 150 student capacity.' },
-			{ icon: 'fa-trophy', color: '#228B22', bg: 'rgba(34,139,34,0.1)', title: '1,000 Graduates', date: 'June 2022', desc: 'Celebrated our 1,000th graduate earning income through freelancing.' },
-			{ icon: 'fa-university', color: '#3d5afe', bg: 'rgba(61,90,254,0.1)', title: 'Islamabad Campus', date: 'September 2023', desc: 'Third campus opens, expanding to serve federal capital youth.' }
-		],
-		gallery: [
-			'/assets/img/course/course-02.jpg',
-			'/assets/img/course/course-01.jpg',
-			'/assets/img/course/course-04.jpg',
-			'/assets/img/course/course-03.jpg',
-			'/assets/img/course/course-05.jpg',
-			'/assets/img/course/course-06.jpg'
-		],
-		related: ['quran-education', 'microfinance', 'food-distribution']
-	},
-	'microfinance': {
-		title: 'Interest-Free Loan Scheme (Qarz-e-Hasna)',
-		cat: 'Microfinance',
-		catIcon: 'fa-hand-holding-usd',
-		urgent: false,
-		location: 'All major cities',
-		beneficiaries: '8,500+ families',
-		started: 'June 2016',
-		daysLeft: 'Ongoing',
-		status: 'Active',
-		raised: 1640000,
-		goal: 2000000,
-		donors: '4,210',
-		banner: '/assets/img/course/course-03.jpg',
-		about: `
+          milestones: [
+            {
+              icon: "fa-flag",
+              color: "#d8ac27",
+              bg: "rgba(216,172,39,0.12)",
+              title: "Program Launch",
+              date: "March 2019",
+              desc: "First batch of 50 students in Lahore campus.",
+            },
+            {
+              icon: "fa-laptop",
+              color: "#522811",
+              bg: "rgba(82,40,17,0.1)",
+              title: "Karachi Campus Opens",
+              date: "January 2021",
+              desc: "Second campus launched in Karachi with 150 student capacity.",
+            },
+            {
+              icon: "fa-trophy",
+              color: "#228B22",
+              bg: "rgba(34,139,34,0.1)",
+              title: "1,000 Graduates",
+              date: "June 2022",
+              desc: "Celebrated our 1,000th graduate earning income through freelancing.",
+            },
+            {
+              icon: "fa-university",
+              color: "#3d5afe",
+              bg: "rgba(61,90,254,0.1)",
+              title: "Islamabad Campus",
+              date: "September 2023",
+              desc: "Third campus opens, expanding to serve federal capital youth.",
+            },
+          ],
+          gallery: [
+            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1550439062-609e1531270e?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&h=500&fit=crop&q=80"
+          ],
+          related: ["quran-education", "microfinance", "food-distribution"],
+        },
+        microfinance: {
+          title: "Interest-Free Loan Scheme (Qarz-e-Hasna)",
+          cat: "Microfinance",
+          catIcon: "fa-hand-holding-usd",
+          urgent: false,
+          location: "All major cities",
+          beneficiaries: "8,500+ families",
+          started: "June 2016",
+          daysLeft: "Ongoing",
+          status: "Active",
+          raised: 1640000,
+          goal: 2000000,
+          donors: "4,210",
+          banner: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=650&fit=crop&q=80",
+          about: `
 			<p>The Qarz-e-Hasna scheme provides interest-free microloans to small business owners, artisans, and entrepreneurs from low-income backgrounds — helping them grow without falling into exploitative debt cycles.</p>
 			<p>Loans range from PKR 10,000 to PKR 200,000 and are repaid in easy monthly instalments over 12–24 months. No collateral is required for loans under PKR 50,000. Applications are reviewed by a community committee to ensure fair access.</p>
 			<p>This model is inspired by the Islamic principle of Qarz-e-Hasna — a benevolent loan given without expectation of profit. Repaid funds are recycled back into new loans, creating a self-sustaining cycle of empowerment.</p>
 		`,
-		impact: [
-			{ num: '8,500+', lbl: 'Families supported' },
-			{ num: 'PKR 42M+', lbl: 'Total disbursed' },
-			{ num: '94%', lbl: 'Repayment rate' },
-			{ num: '68%', lbl: 'Women beneficiaries' }
-		],
-		fundUse: `
+          impact: [
+            { num: "8,500+", lbl: "Families supported" },
+            { num: "PKR 42M+", lbl: "Total disbursed" },
+            { num: "94%", lbl: "Repayment rate" },
+            { num: "68%", lbl: "Women beneficiaries" },
+          ],
+          fundUse: `
 			<p>Your donation directly grows the loan pool:</p>
 			<p><strong>88%</strong> — Goes directly into the revolving loan fund (recycled after repayment)</p>
 			<p><strong>7%</strong> — Case management, verification, and community officer salaries</p>
 			<p><strong>5%</strong> — Administrative overhead</p>
 			<p>A donation of <strong>PKR 10,000</strong> can be the seed loan that helps a tailor or street vendor build a sustainable livelihood.</p>
 		`,
-		milestones: [
-			{ icon: 'fa-flag', color: '#d8ac27', bg: 'rgba(216,172,39,0.12)', title: 'Scheme Launched', date: 'June 2016', desc: 'Started with 50 beneficiaries in Lahore with a PKR 500,000 seed fund.' },
-			{ icon: 'fa-female', color: '#e91e63', bg: 'rgba(233,30,99,0.1)', title: 'Women Focus Initiative', date: 'March 2019', desc: 'Dedicated 50% of new loans to women entrepreneurs.' },
-			{ icon: 'fa-sync', color: '#228B22', bg: 'rgba(34,139,34,0.1)', title: 'PKR 20M Recycled', date: 'December 2021', desc: 'Repaid funds recycled — meaning every rupee has been lent twice.' },
-			{ icon: 'fa-chart-line', color: '#3d5afe', bg: 'rgba(61,90,254,0.1)', title: 'PKR 42M Disbursed', date: 'March 2025', desc: 'Crossed PKR 42 million in total loans disbursed.' }
-		],
-		gallery: [
-			'/assets/img/course/course-03.jpg',
-			'/assets/img/course/course-01.jpg',
-			'/assets/img/course/course-05.jpg',
-			'/assets/img/course/course-02.jpg',
-			'/assets/img/course/course-04.jpg',
-			'/assets/img/course/course-06.jpg'
-		],
-		related: ['it-education', 'food-distribution', 'medical-assistance']
-	},
-	'medical-assistance': {
-		title: 'Free Medical & Medicine Assistance',
-		cat: 'Healthcare',
-		catIcon: 'fa-heartbeat',
-		urgent: true,
-		location: '8 cities + mobile clinics',
-		beneficiaries: '6,000+ patients',
-		started: 'August 2017',
-		daysLeft: '45 days left',
-		status: 'Active',
-		raised: 450000,
-		goal: 1000000,
-		donors: '980',
-		banner: '/assets/img/course/course-04.jpg',
-		about: `
+          milestones: [
+            {
+              icon: "fa-flag",
+              color: "#d8ac27",
+              bg: "rgba(216,172,39,0.12)",
+              title: "Scheme Launched",
+              date: "June 2016",
+              desc: "Started with 50 beneficiaries in Lahore with a PKR 500,000 seed fund.",
+            },
+            {
+              icon: "fa-female",
+              color: "#e91e63",
+              bg: "rgba(233,30,99,0.1)",
+              title: "Women Focus Initiative",
+              date: "March 2019",
+              desc: "Dedicated 50% of new loans to women entrepreneurs.",
+            },
+            {
+              icon: "fa-sync",
+              color: "#228B22",
+              bg: "rgba(34,139,34,0.1)",
+              title: "PKR 20M Recycled",
+              date: "December 2021",
+              desc: "Repaid funds recycled — meaning every rupee has been lent twice.",
+            },
+            {
+              icon: "fa-chart-line",
+              color: "#3d5afe",
+              bg: "rgba(61,90,254,0.1)",
+              title: "PKR 42M Disbursed",
+              date: "March 2025",
+              desc: "Crossed PKR 42 million in total loans disbursed.",
+            },
+          ],
+          gallery: [
+            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1573164574511-73c773193279?w=800&h=500&fit=crop&q=80"
+          ],
+          related: ["it-education", "food-distribution", "medical-assistance"],
+        },
+        "medical-assistance": {
+          title: "Free Medical & Medicine Assistance",
+          cat: "Healthcare",
+          catIcon: "fa-heartbeat",
+          urgent: true,
+          location: "8 cities + mobile clinics",
+          beneficiaries: "6,000+ patients",
+          started: "August 2017",
+          daysLeft: "45 days left",
+          status: "Active",
+          raised: 450000,
+          goal: 1000000,
+          donors: "980",
+          banner: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&h=650&fit=crop&q=80",
+          about: `
 			<p>Thousands of Pakistanis skip critical medical care because they simply cannot afford it. Our Free Medical & Medicine Assistance program bridges this gap — providing free consultations, medicines, diagnostics, and surgical support to patients who have nowhere else to turn.</p>
 			<p>We operate fixed clinics in 8 cities and 3 mobile clinic units that travel to remote villages on a monthly rotation. Each clinic is staffed by volunteer doctors and nurses who dedicate their time to serving the community.</p>
 			<p>In emergencies, we also assist with hospital referrals, paying for surgeries, and covering ICU costs for patients who cannot afford it.</p>
 		`,
-		impact: [
-			{ num: '6,000+', lbl: 'Patients treated' },
-			{ num: '8', lbl: 'Fixed clinics' },
-			{ num: '3', lbl: 'Mobile clinic units' },
-			{ num: '120+', lbl: 'Volunteer doctors' }
-		],
-		fundUse: `
+          impact: [
+            { num: "6,000+", lbl: "Patients treated" },
+            { num: "8", lbl: "Fixed clinics" },
+            { num: "3", lbl: "Mobile clinic units" },
+            { num: "120+", lbl: "Volunteer doctors" },
+          ],
+          fundUse: `
 			<p>Your donation is used as follows:</p>
 			<p><strong>55%</strong> — Medicines and medical supplies</p>
 			<p><strong>20%</strong> — Diagnostic tests (blood work, X-rays, ultrasounds)</p>
@@ -1166,48 +1681,76 @@ var PROGRAMS = {
 			<p><strong>10%</strong> — Mobile clinic fuel, maintenance, and operations</p>
 			<p><strong>PKR 1,000</strong> covers a full consultation + medicines for one patient. <strong>PKR 25,000</strong> can fund a life-saving surgery for someone in need.</p>
 		`,
-		milestones: [
-			{ icon: 'fa-flag', color: '#d8ac27', bg: 'rgba(216,172,39,0.12)', title: 'First Clinic Opens', date: 'August 2017', desc: 'Launched in Lahore with 8 volunteer doctors and 200 patients in month one.' },
-			{ icon: 'fa-ambulance', color: '#e53935', bg: 'rgba(229,57,53,0.1)', title: 'Mobile Clinics Launch', date: 'April 2020', desc: 'Deployed 3 mobile units to serve flood-affected rural communities.' },
-			{ icon: 'fa-syringe', color: '#228B22', bg: 'rgba(34,139,34,0.1)', title: 'Free Vaccination Drive', date: 'March 2023', desc: 'Vaccinated 5,000 children in under-served areas against preventable diseases.' },
-			{ icon: 'fa-hospital', color: '#3d5afe', bg: 'rgba(61,90,254,0.1)', title: '8 Cities Active', date: 'January 2025', desc: 'Expanded to 8 cities with 120+ volunteer healthcare professionals.' }
-		],
-		gallery: [
-			'/assets/img/course/course-04.jpg',
-			'/assets/img/course/course-02.jpg',
-			'/assets/img/course/course-06.jpg',
-			'/assets/img/course/course-01.jpg',
-			'/assets/img/course/course-03.jpg',
-			'/assets/img/course/course-05.jpg'
-		],
-		related: ['food-distribution', 'clean-water', 'microfinance']
-	},
-	'clean-water': {
-		title: 'Clean Water & Sanitation Projects',
-		cat: 'Clean Water',
-		catIcon: 'fa-tint',
-		urgent: false,
-		location: 'Rural Pakistan — 12 districts',
-		beneficiaries: '25,000+ villagers',
-		started: 'February 2018',
-		daysLeft: 'Ongoing',
-		status: 'Active',
-		raised: 660000,
-		goal: 1000000,
-		donors: '1,560',
-		banner: '/assets/img/course/course-05.jpg',
-		about: `
+          milestones: [
+            {
+              icon: "fa-flag",
+              color: "#d8ac27",
+              bg: "rgba(216,172,39,0.12)",
+              title: "First Clinic Opens",
+              date: "August 2017",
+              desc: "Launched in Lahore with 8 volunteer doctors and 200 patients in month one.",
+            },
+            {
+              icon: "fa-ambulance",
+              color: "#e53935",
+              bg: "rgba(229,57,53,0.1)",
+              title: "Mobile Clinics Launch",
+              date: "April 2020",
+              desc: "Deployed 3 mobile units to serve flood-affected rural communities.",
+            },
+            {
+              icon: "fa-syringe",
+              color: "#228B22",
+              bg: "rgba(34,139,34,0.1)",
+              title: "Free Vaccination Drive",
+              date: "March 2023",
+              desc: "Vaccinated 5,000 children in under-served areas against preventable diseases.",
+            },
+            {
+              icon: "fa-hospital",
+              color: "#3d5afe",
+              bg: "rgba(61,90,254,0.1)",
+              title: "8 Cities Active",
+              date: "January 2025",
+              desc: "Expanded to 8 cities with 120+ volunteer healthcare professionals.",
+            },
+          ],
+          gallery: [
+            "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1638202993928-7d113b8e4519?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1576765608622-067973a79f53?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=800&h=500&fit=crop&q=80"
+          ],
+          related: ["food-distribution", "clean-water", "microfinance"],
+        },
+        "clean-water": {
+          title: "Clean Water & Sanitation Projects",
+          cat: "Clean Water",
+          catIcon: "fa-tint",
+          urgent: false,
+          location: "Rural Pakistan — 12 districts",
+          beneficiaries: "25,000+ villagers",
+          started: "February 2018",
+          daysLeft: "Ongoing",
+          status: "Active",
+          raised: 660000,
+          goal: 1000000,
+          donors: "1,560",
+          banner: "https://images.unsplash.com/photo-1548407260-da850faa5e2d?w=1200&h=650&fit=crop&q=80",
+          about: `
 			<p>Millions of Pakistanis in rural areas lack access to clean, safe drinking water. Our Clean Water & Sanitation program installs hand pumps, water filtration plants, and sanitation facilities in flood-affected and drought-prone villages across 12 districts.</p>
 			<p>Each installation is a permanent, community-owned asset maintained by a local volunteer committee. We also run hygiene education sessions in schools and mosques to ensure communities know how to maintain their infrastructure.</p>
 			<p>Our solar-powered filtration units require zero electricity from the grid, making them ideal for off-grid villages. A single unit provides safe water for up to 500 families indefinitely.</p>
 		`,
-		impact: [
-			{ num: '25,000+', lbl: 'Villagers served' },
-			{ num: '340+', lbl: 'Hand pumps installed' },
-			{ num: '28', lbl: 'Filtration plants' },
-			{ num: '12', lbl: 'Districts covered' }
-		],
-		fundUse: `
+          impact: [
+            { num: "25,000+", lbl: "Villagers served" },
+            { num: "340+", lbl: "Hand pumps installed" },
+            { num: "28", lbl: "Filtration plants" },
+            { num: "12", lbl: "Districts covered" },
+          ],
+          fundUse: `
 			<p>Your donation enables:</p>
 			<p><strong>70%</strong> — Equipment and installation (pumps, filtration units, pipes)</p>
 			<p><strong>15%</strong> — Community training and maintenance workshops</p>
@@ -1215,48 +1758,80 @@ var PROGRAMS = {
 			<p><strong>5%</strong> — Program management and monitoring</p>
 			<p><strong>PKR 5,000</strong> installs a hand pump serving 20 families. <strong>PKR 150,000</strong> funds a solar-powered filtration plant for a whole village.</p>
 		`,
-		milestones: [
-			{ icon: 'fa-flag', color: '#d8ac27', bg: 'rgba(216,172,39,0.12)', title: 'Program Launched', date: 'February 2018', desc: 'Installed first 20 hand pumps in Tharparkar district.' },
-			{ icon: 'fa-solar-panel', color: '#228B22', bg: 'rgba(34,139,34,0.1)', title: 'Solar Units Deployed', date: 'June 2021', desc: 'Launched solar-powered filtration, removing dependency on electricity.' },
-			{ icon: 'fa-faucet', color: '#3d5afe', bg: 'rgba(61,90,254,0.1)', title: '300 Pumps Milestone', date: 'May 2023', desc: 'Reached 300+ hand pumps installed across 9 districts.' },
-			{ icon: 'fa-water', color: '#522811', bg: 'rgba(82,40,17,0.1)', title: '25,000 People Served', date: 'January 2025', desc: 'Clean water now reaches over 25,000 people in 12 districts.' }
-		],
-		gallery: [
-			'/assets/img/course/course-05.jpg',
-			'/assets/img/course/course-03.jpg',
-			'/assets/img/course/course-01.jpg',
-			'/assets/img/course/course-06.jpg',
-			'/assets/img/course/course-02.jpg',
-			'/assets/img/course/course-04.jpg'
-		],
-		related: ['medical-assistance', 'food-distribution', 'quran-education']
-	},
-	'quran-education': {
-		title: 'Free Quran & Islamic Education for Orphans',
-		cat: 'Education',
-		catIcon: 'fa-book',
-		urgent: false,
-		location: 'Online + 5 centres',
-		beneficiaries: '1,800+ children',
-		started: 'October 2015',
-		daysLeft: 'Ongoing',
-		status: 'Active',
-		raised: 900000,
-		goal: 1000000,
-		donors: '3,400',
-		banner: '/assets/img/course/course-06.jpg',
-		about: `
+          milestones: [
+            {
+              icon: "fa-flag",
+              color: "#d8ac27",
+              bg: "rgba(216,172,39,0.12)",
+              title: "Program Launched",
+              date: "February 2018",
+              desc: "Installed first 20 hand pumps in Tharparkar district.",
+            },
+            {
+              icon: "fa-solar-panel",
+              color: "#228B22",
+              bg: "rgba(34,139,34,0.1)",
+              title: "Solar Units Deployed",
+              date: "June 2021",
+              desc: "Launched solar-powered filtration, removing dependency on electricity.",
+            },
+            {
+              icon: "fa-faucet",
+              color: "#3d5afe",
+              bg: "rgba(61,90,254,0.1)",
+              title: "300 Pumps Milestone",
+              date: "May 2023",
+              desc: "Reached 300+ hand pumps installed across 9 districts.",
+            },
+            {
+              icon: "fa-water",
+              color: "#522811",
+              bg: "rgba(82,40,17,0.1)",
+              title: "25,000 People Served",
+              date: "January 2025",
+              desc: "Clean water now reaches over 25,000 people in 12 districts.",
+            },
+          ],
+          gallery: [
+            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1575425186775-b8de9a427e67?w=800&h=500&fit=crop&q=80"
+          ],
+          related: [
+            "medical-assistance",
+            "food-distribution",
+            "quran-education",
+          ],
+        },
+        "quran-education": {
+          title: "Free Quran & Islamic Education for Orphans",
+          cat: "Education",
+          catIcon: "fa-book",
+          urgent: false,
+          location: "Online + 5 centres",
+          beneficiaries: "1,800+ children",
+          started: "October 2015",
+          daysLeft: "Ongoing",
+          status: "Active",
+          raised: 900000,
+          goal: 1000000,
+          donors: "3,400",
+          banner: "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=1200&h=650&fit=crop&q=80",
+          about: `
 			<p>Every orphaned child deserves access to Islamic education — the foundation of a righteous, purposeful life. Our program sponsors Quran memorisation (Hifz), Tajweed, Arabic, and Islamic Studies for orphaned and underprivileged children through certified tutors both online and at our five residential centres.</p>
 			<p>Children enrolled in the program receive not just education, but also mentorship, counselling, and a supportive community. Many of our graduates have become Hafiz-e-Quran and are now teaching others.</p>
 			<p>The online track uses our Al-Kahaf platform, enabling students in remote areas to access certified tutors from anywhere in Pakistan.</p>
 		`,
-		impact: [
-			{ num: '1,800+', lbl: 'Children enrolled' },
-			{ num: '340+', lbl: 'Hafiz graduates' },
-			{ num: '5', lbl: 'Learning centres' },
-			{ num: '60+', lbl: 'Certified tutors' }
-		],
-		fundUse: `
+          impact: [
+            { num: "1,800+", lbl: "Children enrolled" },
+            { num: "340+", lbl: "Hafiz graduates" },
+            { num: "5", lbl: "Learning centres" },
+            { num: "60+", lbl: "Certified tutors" },
+          ],
+          fundUse: `
 			<p>Your Sadqah and Zakat are used as:</p>
 			<p><strong>50%</strong> — Tutor salaries and curriculum materials</p>
 			<p><strong>25%</strong> — Centre operations (rent, utilities, books)</p>
@@ -1264,207 +1839,385 @@ var PROGRAMS = {
 			<p><strong>10%</strong> — Technology for online learning (tablets, internet)</p>
 			<p><strong>PKR 2,000/month</strong> fully sponsors one child's complete Islamic education. This Sadqah Jariyah continues to reward you as long as the child teaches others.</p>
 		`,
-		milestones: [
-			{ icon: 'fa-flag', color: '#d8ac27', bg: 'rgba(216,172,39,0.12)', title: 'Program Founded', date: 'October 2015', desc: 'Started with 30 orphan children at a single centre in Lahore.' },
-			{ icon: 'fa-laptop', color: '#3d5afe', bg: 'rgba(61,90,254,0.1)', title: 'Online Classes Begin', date: 'March 2020', desc: 'Launched online Quran classes to reach students across Pakistan.' },
-			{ icon: 'fa-medal', color: '#d8ac27', bg: 'rgba(216,172,39,0.12)', title: '100 Hafiz Graduates', date: 'December 2022', desc: 'Celebrated 100th Hafiz-e-Quran graduation ceremony.' },
-			{ icon: 'fa-heart', color: '#e53935', bg: 'rgba(229,57,53,0.1)', title: '1,800 Children Enrolled', date: 'April 2025', desc: '1,800+ orphaned children now learning Quran through our platform.' }
-		],
-		gallery: [
-			'/assets/img/course/course-06.jpg',
-			'/assets/img/course/course-04.jpg',
-			'/assets/img/course/course-02.jpg',
-			'/assets/img/course/course-05.jpg',
-			'/assets/img/course/course-01.jpg',
-			'/assets/img/course/course-03.jpg'
-		],
-		related: ['it-education', 'food-distribution', 'medical-assistance']
-	}
-};
+          milestones: [
+            {
+              icon: "fa-flag",
+              color: "#d8ac27",
+              bg: "rgba(216,172,39,0.12)",
+              title: "Program Founded",
+              date: "October 2015",
+              desc: "Started with 30 orphan children at a single centre in Lahore.",
+            },
+            {
+              icon: "fa-laptop",
+              color: "#3d5afe",
+              bg: "rgba(61,90,254,0.1)",
+              title: "Online Classes Begin",
+              date: "March 2020",
+              desc: "Launched online Quran classes to reach students across Pakistan.",
+            },
+            {
+              icon: "fa-medal",
+              color: "#d8ac27",
+              bg: "rgba(216,172,39,0.12)",
+              title: "100 Hafiz Graduates",
+              date: "December 2022",
+              desc: "Celebrated 100th Hafiz-e-Quran graduation ceremony.",
+            },
+            {
+              icon: "fa-heart",
+              color: "#e53935",
+              bg: "rgba(229,57,53,0.1)",
+              title: "1,800 Children Enrolled",
+              date: "April 2025",
+              desc: "1,800+ orphaned children now learning Quran through our platform.",
+            },
+          ],
+          gallery: [
+            "https://images.unsplash.com/photo-1584186195022-d6f53b5f43b3?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1537655780520-1e315b66504b?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1564939782595-3b2b5ee5f7c9?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1605101100278-5d1deb2b6498?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1594731804060-bec2d6c3adca?w=800&h=500&fit=crop&q=80",
+            "https://images.unsplash.com/photo-1560785496-3c9d27877182?w=800&h=500&fit=crop&q=80"
+          ],
+          related: ["it-education", "food-distribution", "medical-assistance"],
+        },
+      };
 
-// ── Related card data (brief) ──────────────────────────────────────────────
-var RELATED_BRIEF = {
-	'food-distribution': { title: 'Free Food Distribution', cat: 'Food & Relief', img: '/assets/img/course/course-01.jpg' },
-	'it-education':      { title: 'Free IT Training Program', cat: 'Education', img: '/assets/img/course/course-02.jpg' },
-	'microfinance':      { title: 'Interest-Free Loan Scheme', cat: 'Microfinance', img: '/assets/img/course/course-03.jpg' },
-	'medical-assistance':{ title: 'Free Medical Assistance', cat: 'Healthcare', img: '/assets/img/course/course-04.jpg' },
-	'clean-water':       { title: 'Clean Water Projects', cat: 'Clean Water', img: '/assets/img/course/course-05.jpg' },
-	'quran-education':   { title: 'Quran Education for Orphans', cat: 'Education', img: '/assets/img/course/course-06.jpg' }
-};
+      // ── Related card data (brief) ──────────────────────────────────────────────
+      var RELATED_BRIEF = {
+        "food-distribution": {
+          title: "Free Food Distribution",
+          cat: "Food & Relief",
+          img: "/assets/img/course/course-01.jpg",
+        },
+        "it-education": {
+          title: "Free IT Training Program",
+          cat: "Education",
+          img: "/assets/img/course/course-02.jpg",
+        },
+        microfinance: {
+          title: "Interest-Free Loan Scheme",
+          cat: "Microfinance",
+          img: "/assets/img/course/course-03.jpg",
+        },
+        "medical-assistance": {
+          title: "Free Medical Assistance",
+          cat: "Healthcare",
+          img: "/assets/img/course/course-04.jpg",
+        },
+        "clean-water": {
+          title: "Clean Water Projects",
+          cat: "Clean Water",
+          img: "/assets/img/course/course-05.jpg",
+        },
+        "quran-education": {
+          title: "Quran Education for Orphans",
+          cat: "Education",
+          img: "/assets/img/course/course-06.jpg",
+        },
+      };
 
-// ── State ──────────────────────────────────────────────────────────────────
-var selectedPayMethod = null;
-var selectedAmount = 0;
+      // ── State ──────────────────────────────────────────────────────────────────
+      var selectedPayMethod = null;
+      var selectedAmount = 0;
 
-// ── Bootstrap page from URL param ─────────────────────────────────────────
-(function() {
-	var params = new URLSearchParams(window.location.search);
-	var id = params.get('id') || 'food-distribution';
-	var prog = PROGRAMS[id];
-	if (!prog) { id = 'food-distribution'; prog = PROGRAMS[id]; }
+      // ── Bootstrap page from URL param ─────────────────────────────────────────
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var id = params.get("id") || "food-distribution";
+        var prog = PROGRAMS[id];
+        if (!prog) {
+          id = "food-distribution";
+          prog = PROGRAMS[id];
+        }
 
-	// Meta / title
-	document.title = prog.title + ' | Al-Kahaf Welfare Programs';
+        // Meta / title
+        document.title = prog.title + " | Al-Kahaf Welfare Programs";
 
-	// Hero
-	document.getElementById('bc-title').textContent = prog.title;
-	document.getElementById('hero-cat-text').textContent = prog.cat;
-	document.getElementById('hero-title').textContent = prog.title;
-	document.getElementById('hero-location').textContent = prog.location;
-	document.getElementById('hero-beneficiaries').textContent = prog.beneficiaries;
-	document.getElementById('hero-started').textContent = prog.started;
-	if (prog.urgent) document.getElementById('hero-urgent-wrap').style.display = '';
+        // Hero
+        document.getElementById("bc-title").textContent = prog.title;
+        document.getElementById("hero-cat-text").textContent = prog.cat;
+        document.getElementById("hero-title").textContent = prog.title;
+        document.getElementById("hero-location").textContent = prog.location;
+        document.getElementById("hero-beneficiaries").textContent =
+          prog.beneficiaries;
+        document.getElementById("hero-started").textContent = prog.started;
+        if (prog.urgent)
+          document.getElementById("hero-urgent-wrap").style.display = "";
 
-	// Banner
-	document.getElementById('prog-banner').src = prog.banner;
-	document.getElementById('prog-banner').alt = prog.title;
+        // Banner
+        document.getElementById("prog-banner").src = prog.banner;
+        document.getElementById("prog-banner").alt = prog.title;
 
-	// About
-	document.getElementById('prog-about').innerHTML = prog.about;
+        // About
+        document.getElementById("prog-about").innerHTML = prog.about;
 
-	// Impact strip
-	var strip = document.getElementById('prog-impact-strip');
-	strip.innerHTML = prog.impact.map(function(item) {
-		return '<div class="wpd-impact-item"><div class="impact-num">' + item.num + '</div><div class="impact-lbl">' + item.lbl + '</div></div>';
-	}).join('');
+        // Impact strip
+        var strip = document.getElementById("prog-impact-strip");
+        strip.innerHTML = prog.impact
+          .map(function (item) {
+            return (
+              '<div class="wpd-impact-item"><div class="impact-num">' +
+              item.num +
+              '</div><div class="impact-lbl">' +
+              item.lbl +
+              "</div></div>"
+            );
+          })
+          .join("");
 
-	// Fund use
-	document.getElementById('prog-fund-use').innerHTML = prog.fundUse;
+        // Fund use
+        document.getElementById("prog-fund-use").innerHTML = prog.fundUse;
 
-	// Milestones
-	var msHtml = prog.milestones.map(function(ms) {
-		return '<div class="wpd-milestone">' +
-			'<div class="ms-dot" style="background:' + ms.bg + ';color:' + ms.color + '"><i class="fa ' + ms.icon + '"></i></div>' +
-			'<div class="ms-body"><h6>' + ms.title + ' <small style="color:#aaa;font-weight:500;font-size:12px;">— ' + ms.date + '</small></h6><p>' + ms.desc + '</p></div>' +
-			'</div>';
-	}).join('');
-	document.getElementById('prog-milestones').innerHTML = msHtml;
+        // Milestones
+        var msHtml = prog.milestones
+          .map(function (ms) {
+            return (
+              '<div class="wpd-milestone">' +
+              '<div class="ms-dot" style="background:' +
+              ms.bg +
+              ";color:" +
+              ms.color +
+              '"><i class="fa ' +
+              ms.icon +
+              '"></i></div>' +
+              '<div class="ms-body"><h6>' +
+              ms.title +
+              ' <small style="color:#aaa;font-weight:500;font-size:12px;">— ' +
+              ms.date +
+              "</small></h6><p>" +
+              ms.desc +
+              "</p></div>" +
+              "</div>"
+            );
+          })
+          .join("");
+        document.getElementById("prog-milestones").innerHTML = msHtml;
 
-	// Gallery
-	var galHtml = prog.gallery.map(function(src) {
-		return '<img src="' + src + '" alt="Gallery" onerror="this.src=\'/assets/img/about/about-2.svg\'">';
-	}).join('');
-	document.getElementById('prog-gallery').innerHTML = galHtml;
+        // Gallery
+        var galHtml = prog.gallery
+          .map(function (src, idx) {
+            return (
+              '<img src="' + src + '" alt="Gallery" data-lb-index="' + idx + '"' +
+              ' onerror="this.src=\'/assets/img/about/about-2.svg\'" style="cursor:zoom-in">'
+            );
+          })
+          .join("");
+        document.getElementById("prog-gallery").innerHTML = galHtml;
 
-	// Donate sidebar
-	var pct = Math.round((prog.raised / prog.goal) * 100);
-	document.getElementById('donate-raised').textContent = 'PKR ' + prog.raised.toLocaleString();
-	document.getElementById('donate-pct').textContent = pct + '%';
-	document.getElementById('donate-goal').textContent = 'of PKR ' + prog.goal.toLocaleString();
-	document.getElementById('donor-count').textContent = prog.donors;
+        // Bind lightbox clicks
+        document.querySelectorAll('#prog-gallery img').forEach(function(img) {
+          img.addEventListener('click', function() {
+            openLightbox(prog.gallery, parseInt(this.dataset.lbIndex));
+          });
+        });
 
-	// Animate progress bar on load
-	setTimeout(function() {
-		document.getElementById('donate-progress-bar').style.width = pct + '%';
-	}, 400);
+        // Donate sidebar
+        var pct = Math.round((prog.raised / prog.goal) * 100);
+        document.getElementById("donate-raised").textContent =
+          "PKR " + prog.raised.toLocaleString();
+        document.getElementById("donate-pct").textContent = pct + "%";
+        document.getElementById("donate-goal").textContent =
+          "of PKR " + prog.goal.toLocaleString();
+        document.getElementById("donor-count").textContent = prog.donors;
 
-	// Info card
-	document.getElementById('info-cat').textContent = prog.cat;
-	document.getElementById('info-location').textContent = prog.location;
-	document.getElementById('info-started').textContent = prog.started;
-	document.getElementById('info-status').textContent = prog.status;
-	document.getElementById('info-beneficiaries').textContent = prog.beneficiaries;
-	document.getElementById('info-days').textContent = prog.daysLeft;
+        // Animate progress bar on load
+        setTimeout(function () {
+          document.getElementById("donate-progress-bar").style.width =
+            pct + "%";
+        }, 400);
 
-	// Related
-	var relGrid = document.getElementById('related-grid');
-	prog.related.forEach(function(relId) {
-		var r = RELATED_BRIEF[relId];
-		if (!r) return;
-		relGrid.innerHTML += '<div class="col-md-4">' +
-			'<div class="wpd-related-card">' +
-			'<img src="' + r.img + '" alt="' + r.title + '" onerror="this.src=\'/assets/img/about/about-2.svg\'">' +
-			'<div class="rc-body">' +
-			'<div class="rc-cat">' + r.cat + '</div>' +
-			'<div class="rc-title">' + r.title + '</div>' +
-			'<a href="/shared/welfare-program-detail?id=' + relId + '" class="rc-link"><i class="fa fa-arrow-right"></i> View Details</a>' +
-			'</div></div></div>';
-	});
-})();
+        // Info card
+        document.getElementById("info-cat").textContent = prog.cat;
+        document.getElementById("info-location").textContent = prog.location;
+        document.getElementById("info-started").textContent = prog.started;
+        document.getElementById("info-status").textContent = prog.status;
+        document.getElementById("info-beneficiaries").textContent =
+          prog.beneficiaries;
+        document.getElementById("info-days").textContent = prog.daysLeft;
 
-// ── Preset amount selection ────────────────────────────────────────────────
-function selectPreset(el, amount) {
-	document.querySelectorAll('.wpd-preset-btn').forEach(function(b) { b.classList.remove('selected'); });
-	el.classList.add('selected');
-	document.getElementById('donation-amount').value = amount;
-	selectedAmount = amount;
-}
+        // Related
+        var relGrid = document.getElementById("related-grid");
+        prog.related.forEach(function (relId) {
+          var r = RELATED_BRIEF[relId];
+          if (!r) return;
+          relGrid.innerHTML +=
+            '<div class="col-md-4">' +
+            '<div class="wpd-related-card">' +
+            '<img src="' +
+            r.img +
+            '" alt="' +
+            r.title +
+            '" onerror="this.src=\'/assets/img/about/about-2.svg\'">' +
+            '<div class="rc-body">' +
+            '<div class="rc-cat">' +
+            r.cat +
+            "</div>" +
+            '<div class="rc-title">' +
+            r.title +
+            "</div>" +
+            '<a href="/shared/welfare-program-detail?id=' +
+            relId +
+            '" class="rc-link"><i class="fa fa-arrow-right"></i> View Details</a>' +
+            "</div></div></div>";
+        });
+      })();
 
-// ── Payment method selection ───────────────────────────────────────────────
-function selectPayMethod(el, method) {
-	document.querySelectorAll('.wpd-pay-method').forEach(function(m) { m.classList.remove('selected'); });
-	el.classList.add('selected');
-	selectedPayMethod = method;
-}
+      // ── Preset amount selection ────────────────────────────────────────────────
+      function selectPreset(el, amount) {
+        document.querySelectorAll(".wpd-preset-btn").forEach(function (b) {
+          b.classList.remove("selected");
+        });
+        el.classList.add("selected");
+        document.getElementById("donation-amount").value = amount;
+        selectedAmount = amount;
+      }
 
-// ── Donation submit ────────────────────────────────────────────────────────
-function submitDonation(e) {
-	e.preventDefault();
-	var amount = parseInt(document.getElementById('donation-amount').value);
-	var name = document.getElementById('donor-name').value.trim();
-	var phone = document.getElementById('donor-phone').value.trim();
+      // ── Payment method selection ───────────────────────────────────────────────
+      function selectPayMethod(el, method) {
+        document.querySelectorAll(".wpd-pay-method").forEach(function (m) {
+          m.classList.remove("selected");
+        });
+        el.classList.add("selected");
+        selectedPayMethod = method;
+      }
 
-	if (!amount || amount < 100) {
-		showFormError('Please enter a donation amount of at least PKR 100.');
-		return;
-	}
-	if (!name) {
-		showFormError('Please enter your full name.');
-		return;
-	}
-	if (!phone) {
-		showFormError('Please enter your phone number.');
-		return;
-	}
-	if (!selectedPayMethod) {
-		showFormError('Please select a payment method.');
-		return;
-	}
+      // ── Donation submit — redirect to checkout ─────────────────────────────
+      function submitDonation(e) {
+        e.preventDefault();
+        var amount = parseInt(document.getElementById("donation-amount").value);
+        var name   = document.getElementById("donor-name").value.trim();
+        var phone  = document.getElementById("donor-phone").value.trim();
+        var email  = document.getElementById("donor-email").value.trim();
+        var anon   = document.getElementById("donor-anon").checked;
 
-	var btn = document.getElementById('donate-btn');
-	btn.disabled = true;
-	btn.innerHTML = '<i class="fa fa-spinner fa-spin me-2"></i>Processing...';
+        if (!amount || amount < 100) {
+          showFormError("Please enter a donation amount of at least PKR 100.");
+          return;
+        }
+        if (!name) {
+          showFormError("Please enter your full name.");
+          return;
+        }
+        if (!phone) {
+          showFormError("Please enter your phone number.");
+          return;
+        }
 
-	// Simulate payment processing
-	setTimeout(function() {
-		btn.disabled = false;
-		btn.innerHTML = '<i class="fa fa-heart me-1"></i> Donate Now';
-		var anon = document.getElementById('donor-anon').checked;
-		document.getElementById('success-msg').textContent =
-			'JazakAllah Khair' + (anon ? '' : ', ' + name) +
-			'! Your donation of PKR ' + amount.toLocaleString() +
-			' has been received via ' + (selectedPayMethod === 'jazzcash' ? 'JazzCash' : 'Credit Card') +
-			'. May Allah accept your generosity. A confirmation will be sent to your phone shortly.';
-		document.getElementById('successOverlay').classList.add('show');
-		document.getElementById('donate-form-inner').reset();
-		document.querySelectorAll('.wpd-preset-btn').forEach(function(b) { b.classList.remove('selected'); });
-		document.querySelectorAll('.wpd-pay-method').forEach(function(m) { m.classList.remove('selected'); });
-		selectedPayMethod = null;
-	}, 1800);
-}
+        var params  = new URLSearchParams(window.location.search);
+        var progId  = params.get("id") || "food-distribution";
+        var prog    = PROGRAMS[progId] || {};
 
-function showFormError(msg) {
-	var existing = document.getElementById('form-error-msg');
-	if (existing) existing.remove();
-	var div = document.createElement('div');
-	div.id = 'form-error-msg';
-	div.className = 'alert alert-danger mt-2 mb-0';
-	div.style.fontSize = '13px';
-	div.style.padding = '8px 14px';
-	div.style.borderRadius = '10px';
-	div.textContent = msg;
-	document.getElementById('donate-form-inner').appendChild(div);
-	setTimeout(function() { if (div.parentNode) div.remove(); }, 4000);
-}
+        // Save donation context so checkout page can read it
+        localStorage.setItem("alkahaf_donation", JSON.stringify({
+          amount:    amount,
+          programId: progId,
+          programTitle: prog.title || progId,
+          donorName:  name,
+          donorPhone: phone,
+          donorEmail: email,
+          anonymous:  anon,
+          payMethod:  selectedPayMethod || "jazzcash"
+        }));
 
-function closeSuccess() {
-	document.getElementById('successOverlay').classList.remove('show');
-}
-</script>
+        // Add as a cart item so checkout totals work
+        var donationItem = {
+          id:        "donation-" + progId,
+          title:     (prog.title || "Welfare Donation") + " — Donation",
+          price:     amount,
+          thumbnail: prog.banner || ""
+        };
+        var cart = [];
+        try { cart = JSON.parse(localStorage.getItem("alkahaf_cart") || "[]"); } catch(e) {}
+        // Remove any previous donation item for this program, then add fresh
+        cart = cart.filter(function(i) { return !String(i.id).startsWith("donation-"); });
+        cart.push(donationItem);
+        localStorage.setItem("alkahaf_cart", JSON.stringify(cart));
 
-<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
-	<i class="fas fa-arrow-up"></i>
-</button>
+        window.location.href = "/shared/checkout";
+      }
 
-</body>
+      function showFormError(msg) {
+        var existing = document.getElementById("form-error-msg");
+        if (existing) existing.remove();
+        var div = document.createElement("div");
+        div.id = "form-error-msg";
+        div.className = "alert alert-danger mt-2 mb-0";
+        div.style.fontSize = "13px";
+        div.style.padding = "8px 14px";
+        div.style.borderRadius = "10px";
+        div.textContent = msg;
+        document.getElementById("donate-form-inner").appendChild(div);
+        setTimeout(function () {
+          if (div.parentNode) div.remove();
+        }, 4000);
+      }
+
+      function closeSuccess() {
+        document.getElementById("successOverlay").classList.remove("show");
+      }
+    </script>
+
+    <!-- Lightbox -->
+    <div class="wpd-lightbox" id="wpd-lightbox" role="dialog" aria-modal="true">
+      <button class="wpd-lb-close" id="lb-close" aria-label="Close"><i class="fas fa-times"></i></button>
+      <button class="wpd-lb-nav wpd-lb-prev" id="lb-prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+      <img id="lb-img" src="" alt="Gallery image">
+      <button class="wpd-lb-nav wpd-lb-next" id="lb-next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+      <div class="wpd-lb-counter" id="lb-counter"></div>
+    </div>
+
+    <script>
+      var _lbImages = [];
+      var _lbIndex  = 0;
+
+      function openLightbox(images, index) {
+        _lbImages = images;
+        _lbIndex  = index;
+        showLbImage();
+        document.getElementById('wpd-lightbox').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeLightbox() {
+        document.getElementById('wpd-lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      function showLbImage() {
+        var img = document.getElementById('lb-img');
+        img.style.animation = 'none';
+        img.offsetHeight; // reflow
+        img.style.animation = '';
+        img.src = _lbImages[_lbIndex];
+        document.getElementById('lb-counter').textContent = (_lbIndex + 1) + ' / ' + _lbImages.length;
+      }
+
+      document.getElementById('lb-close').addEventListener('click', closeLightbox);
+      document.getElementById('wpd-lightbox').addEventListener('click', function(e) {
+        if (e.target === this) closeLightbox();
+      });
+      document.getElementById('lb-prev').addEventListener('click', function() {
+        _lbIndex = (_lbIndex - 1 + _lbImages.length) % _lbImages.length;
+        showLbImage();
+      });
+      document.getElementById('lb-next').addEventListener('click', function() {
+        _lbIndex = (_lbIndex + 1) % _lbImages.length;
+        showLbImage();
+      });
+      document.addEventListener('keydown', function(e) {
+        var lb = document.getElementById('wpd-lightbox');
+        if (!lb.classList.contains('active')) return;
+        if (e.key === 'Escape')     closeLightbox();
+        if (e.key === 'ArrowLeft')  { _lbIndex = (_lbIndex - 1 + _lbImages.length) % _lbImages.length; showLbImage(); }
+        if (e.key === 'ArrowRight') { _lbIndex = (_lbIndex + 1) % _lbImages.length; showLbImage(); }
+      });
+    </script>
+
+    <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </body>
 </html>
