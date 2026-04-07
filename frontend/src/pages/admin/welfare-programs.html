@@ -305,7 +305,7 @@
     var _allProgs  = [];          // cache for donation filter dropdown
 
     /* ── Auth ─────────────────────────────────────────────────────── */
-    var token = localStorage.getItem('accessToken') || localStorage.getItem('token') || localStorage.getItem('authToken') || localStorage.getItem('adminToken');
+    var token = localStorage.getItem('accessToken');
     if (!token) { window.location.href = '/auth/login'; }
 
     function authHdr() { return { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }; }

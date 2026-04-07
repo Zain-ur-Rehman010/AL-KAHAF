@@ -1062,7 +1062,7 @@
 	<!-- Welfare Widget Script -->
 	<script>
 		(async function loadWelfareWidget() {
-			var token = localStorage.getItem('accessToken') || localStorage.getItem('token') || localStorage.getItem('authToken') || localStorage.getItem('adminToken');
+			var token = localStorage.getItem('accessToken');
 			if (!token) return;
 			var hdr = { 'Authorization': 'Bearer ' + token };
 
