@@ -1414,656 +1414,158 @@
     <script src="/assets/plugins/slick/slick.js"></script>
     <script src="/assets/js/counter.js"></script>
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/api-config.js"></script>
 
     <script>
-      // ── Program data ─────────────────────────────────────────────────────────────
-      var PROGRAMS = {
-        "food-distribution": {
-          title: "Free Food Distribution (Dastarkhwan)",
-          cat: "Food & Relief",
-          catIcon: "fa-utensils",
-          urgent: true,
-          location: "Nationwide — 18 cities",
-          beneficiaries: "15,000+ monthly",
-          started: "January 2018",
-          daysLeft: "Ongoing",
-          status: "Active",
-          raised: 730000,
-          goal: 1000000,
-          donors: "2,840",
-          banner: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1200&h=650&fit=crop&q=80",
-          about: `
-			<p>Al-Kahaf's Dastarkhwan program provides hot, nutritious meals to underprivileged families, orphans, daily wage workers, and the homeless through a network of community kitchens across 18 cities in Pakistan.</p>
-			<p>Every day, thousands of people who would otherwise go hungry receive a dignified meal at no cost. Our kitchens operate 365 days a year, with additional capacity during Ramadan when need is greatest.</p>
-			<p>The program is staffed primarily by volunteers and relies entirely on public donations. Every rupee you give goes directly toward purchasing ingredients, operating the kitchens, and expanding to new areas.</p>
-		`,
-          impact: [
-            { num: "15,000+", lbl: "Meals served daily" },
-            { num: "18", lbl: "Cities covered" },
-            { num: "2.1M+", lbl: "Meals since launch" },
-            { num: "365", lbl: "Days per year" },
-          ],
-          fundUse: `
-			<p>Your donation is allocated as follows:</p>
-			<p><strong>60%</strong> — Raw ingredients (rice, dal, vegetables, meat)</p>
-			<p><strong>20%</strong> — Kitchen operations (gas, utilities, equipment maintenance)</p>
-			<p><strong>12%</strong> — Packaging and distribution logistics</p>
-			<p><strong>8%</strong> — Staff stipends and volunteer coordination</p>
-			<p>A donation of <strong>PKR 500</strong> feeds a family of 5 for one day. <strong>PKR 15,000</strong> covers an entire month for one family.</p>
-		`,
-          milestones: [
-            {
-              icon: "fa-flag",
-              color: "#d8ac27",
-              bg: "rgba(216,172,39,0.12)",
-              title: "Program Launch",
-              date: "January 2018",
-              desc: "Started with a single kitchen in Lahore serving 200 meals daily.",
-            },
-            {
-              icon: "fa-expand-alt",
-              color: "#522811",
-              bg: "rgba(82,40,17,0.1)",
-              title: "Expanded to 10 Cities",
-              date: "March 2020",
-              desc: "Rapid expansion during COVID-19 to serve those who lost livelihoods.",
-            },
-            {
-              icon: "fa-star",
-              color: "#228B22",
-              bg: "rgba(34,139,34,0.1)",
-              title: "1 Million Meals",
-              date: "August 2022",
-              desc: "Reached the milestone of 1 million meals served since inception.",
-            },
-            {
-              icon: "fa-city",
-              color: "#3d5afe",
-              bg: "rgba(61,90,254,0.1)",
-              title: "18 Cities Active",
-              date: "December 2024",
-              desc: "Now operating in 18 cities with 24 community kitchens.",
-            },
-          ],
-          gallery: [
-            "https://images.unsplash.com/photo-1593113630400-ea4288922497?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1547592180-85f173990554?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1504754011387-9ad0d29e73a9?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1565299624596-13dd7b0c738f?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800&h=500&fit=crop&q=80"
-          ],
-          related: ["it-education", "medical-assistance", "clean-water"],
-        },
-        "it-education": {
-          title: "Free IT & Vocational Training Program",
-          cat: "Education",
-          catIcon: "fa-graduation-cap",
-          urgent: false,
-          location: "Lahore, Karachi, Islamabad",
-          beneficiaries: "3,200+ students",
-          started: "March 2019",
-          daysLeft: "Ongoing",
-          status: "Active",
-          raised: 580000,
-          goal: 1000000,
-          donors: "1,120",
-          banner: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&h=650&fit=crop&q=80",
-          about: `
-			<p>Our Free IT & Vocational Training Program equips youth from low-income backgrounds with marketable digital skills — web development, graphic design, freelancing, and digital marketing — enabling them to earn a sustainable income.</p>
-			<p>Classes run 6 days a week across three campuses. Students receive laptops on loan for the duration of the course, internet access, and mentorship from industry professionals.</p>
-			<p>Upon graduation, students are connected with freelance platforms and local employers. Over 80% of our graduates secure income within 3 months of completing the program.</p>
-		`,
-          impact: [
-            { num: "3,200+", lbl: "Students enrolled" },
-            { num: "80%", lbl: "Employment rate" },
-            { num: "3", lbl: "Training campuses" },
-            { num: "12+", lbl: "Courses offered" },
-          ],
-          fundUse: `
-			<p>Your donation is allocated as follows:</p>
-			<p><strong>45%</strong> — Instructor salaries and curriculum development</p>
-			<p><strong>25%</strong> — Equipment (laptops, projectors, internet)</p>
-			<p><strong>18%</strong> — Campus facilities and utilities</p>
-			<p><strong>12%</strong> — Student support (transport stipends, lunch)</p>
-			<p>A donation of <strong>PKR 2,500</strong> covers one student's monthly costs. <strong>PKR 30,000</strong> fully sponsors a student through a 6-month course.</p>
-		`,
-          milestones: [
-            {
-              icon: "fa-flag",
-              color: "#d8ac27",
-              bg: "rgba(216,172,39,0.12)",
-              title: "Program Launch",
-              date: "March 2019",
-              desc: "First batch of 50 students in Lahore campus.",
-            },
-            {
-              icon: "fa-laptop",
-              color: "#522811",
-              bg: "rgba(82,40,17,0.1)",
-              title: "Karachi Campus Opens",
-              date: "January 2021",
-              desc: "Second campus launched in Karachi with 150 student capacity.",
-            },
-            {
-              icon: "fa-trophy",
-              color: "#228B22",
-              bg: "rgba(34,139,34,0.1)",
-              title: "1,000 Graduates",
-              date: "June 2022",
-              desc: "Celebrated our 1,000th graduate earning income through freelancing.",
-            },
-            {
-              icon: "fa-university",
-              color: "#3d5afe",
-              bg: "rgba(61,90,254,0.1)",
-              title: "Islamabad Campus",
-              date: "September 2023",
-              desc: "Third campus opens, expanding to serve federal capital youth.",
-            },
-          ],
-          gallery: [
-            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1550439062-609e1531270e?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&h=500&fit=crop&q=80"
-          ],
-          related: ["quran-education", "microfinance", "food-distribution"],
-        },
-        microfinance: {
-          title: "Interest-Free Loan Scheme (Qarz-e-Hasna)",
-          cat: "Microfinance",
-          catIcon: "fa-hand-holding-usd",
-          urgent: false,
-          location: "All major cities",
-          beneficiaries: "8,500+ families",
-          started: "June 2016",
-          daysLeft: "Ongoing",
-          status: "Active",
-          raised: 1640000,
-          goal: 2000000,
-          donors: "4,210",
-          banner: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&h=650&fit=crop&q=80",
-          about: `
-			<p>The Qarz-e-Hasna scheme provides interest-free microloans to small business owners, artisans, and entrepreneurs from low-income backgrounds — helping them grow without falling into exploitative debt cycles.</p>
-			<p>Loans range from PKR 10,000 to PKR 200,000 and are repaid in easy monthly instalments over 12–24 months. No collateral is required for loans under PKR 50,000. Applications are reviewed by a community committee to ensure fair access.</p>
-			<p>This model is inspired by the Islamic principle of Qarz-e-Hasna — a benevolent loan given without expectation of profit. Repaid funds are recycled back into new loans, creating a self-sustaining cycle of empowerment.</p>
-		`,
-          impact: [
-            { num: "8,500+", lbl: "Families supported" },
-            { num: "PKR 42M+", lbl: "Total disbursed" },
-            { num: "94%", lbl: "Repayment rate" },
-            { num: "68%", lbl: "Women beneficiaries" },
-          ],
-          fundUse: `
-			<p>Your donation directly grows the loan pool:</p>
-			<p><strong>88%</strong> — Goes directly into the revolving loan fund (recycled after repayment)</p>
-			<p><strong>7%</strong> — Case management, verification, and community officer salaries</p>
-			<p><strong>5%</strong> — Administrative overhead</p>
-			<p>A donation of <strong>PKR 10,000</strong> can be the seed loan that helps a tailor or street vendor build a sustainable livelihood.</p>
-		`,
-          milestones: [
-            {
-              icon: "fa-flag",
-              color: "#d8ac27",
-              bg: "rgba(216,172,39,0.12)",
-              title: "Scheme Launched",
-              date: "June 2016",
-              desc: "Started with 50 beneficiaries in Lahore with a PKR 500,000 seed fund.",
-            },
-            {
-              icon: "fa-female",
-              color: "#e91e63",
-              bg: "rgba(233,30,99,0.1)",
-              title: "Women Focus Initiative",
-              date: "March 2019",
-              desc: "Dedicated 50% of new loans to women entrepreneurs.",
-            },
-            {
-              icon: "fa-sync",
-              color: "#228B22",
-              bg: "rgba(34,139,34,0.1)",
-              title: "PKR 20M Recycled",
-              date: "December 2021",
-              desc: "Repaid funds recycled — meaning every rupee has been lent twice.",
-            },
-            {
-              icon: "fa-chart-line",
-              color: "#3d5afe",
-              bg: "rgba(61,90,254,0.1)",
-              title: "PKR 42M Disbursed",
-              date: "March 2025",
-              desc: "Crossed PKR 42 million in total loans disbursed.",
-            },
-          ],
-          gallery: [
-            "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1573164574511-73c773193279?w=800&h=500&fit=crop&q=80"
-          ],
-          related: ["it-education", "food-distribution", "medical-assistance"],
-        },
-        "medical-assistance": {
-          title: "Free Medical & Medicine Assistance",
-          cat: "Healthcare",
-          catIcon: "fa-heartbeat",
-          urgent: true,
-          location: "8 cities + mobile clinics",
-          beneficiaries: "6,000+ patients",
-          started: "August 2017",
-          daysLeft: "45 days left",
-          status: "Active",
-          raised: 450000,
-          goal: 1000000,
-          donors: "980",
-          banner: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&h=650&fit=crop&q=80",
-          about: `
-			<p>Thousands of Pakistanis skip critical medical care because they simply cannot afford it. Our Free Medical & Medicine Assistance program bridges this gap — providing free consultations, medicines, diagnostics, and surgical support to patients who have nowhere else to turn.</p>
-			<p>We operate fixed clinics in 8 cities and 3 mobile clinic units that travel to remote villages on a monthly rotation. Each clinic is staffed by volunteer doctors and nurses who dedicate their time to serving the community.</p>
-			<p>In emergencies, we also assist with hospital referrals, paying for surgeries, and covering ICU costs for patients who cannot afford it.</p>
-		`,
-          impact: [
-            { num: "6,000+", lbl: "Patients treated" },
-            { num: "8", lbl: "Fixed clinics" },
-            { num: "3", lbl: "Mobile clinic units" },
-            { num: "120+", lbl: "Volunteer doctors" },
-          ],
-          fundUse: `
-			<p>Your donation is used as follows:</p>
-			<p><strong>55%</strong> — Medicines and medical supplies</p>
-			<p><strong>20%</strong> — Diagnostic tests (blood work, X-rays, ultrasounds)</p>
-			<p><strong>15%</strong> — Surgical assistance and hospital referrals</p>
-			<p><strong>10%</strong> — Mobile clinic fuel, maintenance, and operations</p>
-			<p><strong>PKR 1,000</strong> covers a full consultation + medicines for one patient. <strong>PKR 25,000</strong> can fund a life-saving surgery for someone in need.</p>
-		`,
-          milestones: [
-            {
-              icon: "fa-flag",
-              color: "#d8ac27",
-              bg: "rgba(216,172,39,0.12)",
-              title: "First Clinic Opens",
-              date: "August 2017",
-              desc: "Launched in Lahore with 8 volunteer doctors and 200 patients in month one.",
-            },
-            {
-              icon: "fa-ambulance",
-              color: "#e53935",
-              bg: "rgba(229,57,53,0.1)",
-              title: "Mobile Clinics Launch",
-              date: "April 2020",
-              desc: "Deployed 3 mobile units to serve flood-affected rural communities.",
-            },
-            {
-              icon: "fa-syringe",
-              color: "#228B22",
-              bg: "rgba(34,139,34,0.1)",
-              title: "Free Vaccination Drive",
-              date: "March 2023",
-              desc: "Vaccinated 5,000 children in under-served areas against preventable diseases.",
-            },
-            {
-              icon: "fa-hospital",
-              color: "#3d5afe",
-              bg: "rgba(61,90,254,0.1)",
-              title: "8 Cities Active",
-              date: "January 2025",
-              desc: "Expanded to 8 cities with 120+ volunteer healthcare professionals.",
-            },
-          ],
-          gallery: [
-            "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1638202993928-7d113b8e4519?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1576765608622-067973a79f53?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1631815589968-fdb09a223b1e?w=800&h=500&fit=crop&q=80"
-          ],
-          related: ["food-distribution", "clean-water", "microfinance"],
-        },
-        "clean-water": {
-          title: "Clean Water & Sanitation Projects",
-          cat: "Clean Water",
-          catIcon: "fa-tint",
-          urgent: false,
-          location: "Rural Pakistan — 12 districts",
-          beneficiaries: "25,000+ villagers",
-          started: "February 2018",
-          daysLeft: "Ongoing",
-          status: "Active",
-          raised: 660000,
-          goal: 1000000,
-          donors: "1,560",
-          banner: "https://images.unsplash.com/photo-1548407260-da850faa5e2d?w=1200&h=650&fit=crop&q=80",
-          about: `
-			<p>Millions of Pakistanis in rural areas lack access to clean, safe drinking water. Our Clean Water & Sanitation program installs hand pumps, water filtration plants, and sanitation facilities in flood-affected and drought-prone villages across 12 districts.</p>
-			<p>Each installation is a permanent, community-owned asset maintained by a local volunteer committee. We also run hygiene education sessions in schools and mosques to ensure communities know how to maintain their infrastructure.</p>
-			<p>Our solar-powered filtration units require zero electricity from the grid, making them ideal for off-grid villages. A single unit provides safe water for up to 500 families indefinitely.</p>
-		`,
-          impact: [
-            { num: "25,000+", lbl: "Villagers served" },
-            { num: "340+", lbl: "Hand pumps installed" },
-            { num: "28", lbl: "Filtration plants" },
-            { num: "12", lbl: "Districts covered" },
-          ],
-          fundUse: `
-			<p>Your donation enables:</p>
-			<p><strong>70%</strong> — Equipment and installation (pumps, filtration units, pipes)</p>
-			<p><strong>15%</strong> — Community training and maintenance workshops</p>
-			<p><strong>10%</strong> — Logistics and transportation to remote areas</p>
-			<p><strong>5%</strong> — Program management and monitoring</p>
-			<p><strong>PKR 5,000</strong> installs a hand pump serving 20 families. <strong>PKR 150,000</strong> funds a solar-powered filtration plant for a whole village.</p>
-		`,
-          milestones: [
-            {
-              icon: "fa-flag",
-              color: "#d8ac27",
-              bg: "rgba(216,172,39,0.12)",
-              title: "Program Launched",
-              date: "February 2018",
-              desc: "Installed first 20 hand pumps in Tharparkar district.",
-            },
-            {
-              icon: "fa-solar-panel",
-              color: "#228B22",
-              bg: "rgba(34,139,34,0.1)",
-              title: "Solar Units Deployed",
-              date: "June 2021",
-              desc: "Launched solar-powered filtration, removing dependency on electricity.",
-            },
-            {
-              icon: "fa-faucet",
-              color: "#3d5afe",
-              bg: "rgba(61,90,254,0.1)",
-              title: "300 Pumps Milestone",
-              date: "May 2023",
-              desc: "Reached 300+ hand pumps installed across 9 districts.",
-            },
-            {
-              icon: "fa-water",
-              color: "#522811",
-              bg: "rgba(82,40,17,0.1)",
-              title: "25,000 People Served",
-              date: "January 2025",
-              desc: "Clean water now reaches over 25,000 people in 12 districts.",
-            },
-          ],
-          gallery: [
-            "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1584515933487-779824d29309?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1575425186775-b8de9a427e67?w=800&h=500&fit=crop&q=80"
-          ],
-          related: [
-            "medical-assistance",
-            "food-distribution",
-            "quran-education",
-          ],
-        },
-        "quran-education": {
-          title: "Free Quran & Islamic Education for Orphans",
-          cat: "Education",
-          catIcon: "fa-book",
-          urgent: false,
-          location: "Online + 5 centres",
-          beneficiaries: "1,800+ children",
-          started: "October 2015",
-          daysLeft: "Ongoing",
-          status: "Active",
-          raised: 900000,
-          goal: 1000000,
-          donors: "3,400",
-          banner: "https://images.unsplash.com/photo-1609599006353-e629aaabfeae?w=1200&h=650&fit=crop&q=80",
-          about: `
-			<p>Every orphaned child deserves access to Islamic education — the foundation of a righteous, purposeful life. Our program sponsors Quran memorisation (Hifz), Tajweed, Arabic, and Islamic Studies for orphaned and underprivileged children through certified tutors both online and at our five residential centres.</p>
-			<p>Children enrolled in the program receive not just education, but also mentorship, counselling, and a supportive community. Many of our graduates have become Hafiz-e-Quran and are now teaching others.</p>
-			<p>The online track uses our Al-Kahaf platform, enabling students in remote areas to access certified tutors from anywhere in Pakistan.</p>
-		`,
-          impact: [
-            { num: "1,800+", lbl: "Children enrolled" },
-            { num: "340+", lbl: "Hafiz graduates" },
-            { num: "5", lbl: "Learning centres" },
-            { num: "60+", lbl: "Certified tutors" },
-          ],
-          fundUse: `
-			<p>Your Sadqah and Zakat are used as:</p>
-			<p><strong>50%</strong> — Tutor salaries and curriculum materials</p>
-			<p><strong>25%</strong> — Centre operations (rent, utilities, books)</p>
-			<p><strong>15%</strong> — Student welfare (meals, transport, clothing)</p>
-			<p><strong>10%</strong> — Technology for online learning (tablets, internet)</p>
-			<p><strong>PKR 2,000/month</strong> fully sponsors one child's complete Islamic education. This Sadqah Jariyah continues to reward you as long as the child teaches others.</p>
-		`,
-          milestones: [
-            {
-              icon: "fa-flag",
-              color: "#d8ac27",
-              bg: "rgba(216,172,39,0.12)",
-              title: "Program Founded",
-              date: "October 2015",
-              desc: "Started with 30 orphan children at a single centre in Lahore.",
-            },
-            {
-              icon: "fa-laptop",
-              color: "#3d5afe",
-              bg: "rgba(61,90,254,0.1)",
-              title: "Online Classes Begin",
-              date: "March 2020",
-              desc: "Launched online Quran classes to reach students across Pakistan.",
-            },
-            {
-              icon: "fa-medal",
-              color: "#d8ac27",
-              bg: "rgba(216,172,39,0.12)",
-              title: "100 Hafiz Graduates",
-              date: "December 2022",
-              desc: "Celebrated 100th Hafiz-e-Quran graduation ceremony.",
-            },
-            {
-              icon: "fa-heart",
-              color: "#e53935",
-              bg: "rgba(229,57,53,0.1)",
-              title: "1,800 Children Enrolled",
-              date: "April 2025",
-              desc: "1,800+ orphaned children now learning Quran through our platform.",
-            },
-          ],
-          gallery: [
-            "https://images.unsplash.com/photo-1584186195022-d6f53b5f43b3?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1537655780520-1e315b66504b?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1564939782595-3b2b5ee5f7c9?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1605101100278-5d1deb2b6498?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1594731804060-bec2d6c3adca?w=800&h=500&fit=crop&q=80",
-            "https://images.unsplash.com/photo-1560785496-3c9d27877182?w=800&h=500&fit=crop&q=80"
-          ],
-          related: ["it-education", "food-distribution", "medical-assistance"],
-        },
+      // ── Live program loaded from API ─────────────────────────────────────────────
+      var _currentProg = null; // set after API load, used by submitDonation
+
+      var CAT_LABEL = {
+        'food-relief': 'Food & Relief',
+        'education':   'Education',
+        'healthcare':  'Healthcare',
+        'microfinance':'Microfinance',
+        'clean-water': 'Clean Water',
+        'other':       'Other'
       };
 
-      // ── Related card data (brief) ──────────────────────────────────────────────
-      var RELATED_BRIEF = {
-        "food-distribution": {
-          title: "Free Food Distribution",
-          cat: "Food & Relief",
-          img: "/assets/img/course/course-01.jpg",
-        },
-        "it-education": {
-          title: "Free IT Training Program",
-          cat: "Education",
-          img: "/assets/img/course/course-02.jpg",
-        },
-        microfinance: {
-          title: "Interest-Free Loan Scheme",
-          cat: "Microfinance",
-          img: "/assets/img/course/course-03.jpg",
-        },
-        "medical-assistance": {
-          title: "Free Medical Assistance",
-          cat: "Healthcare",
-          img: "/assets/img/course/course-04.jpg",
-        },
-        "clean-water": {
-          title: "Clean Water Projects",
-          cat: "Clean Water",
-          img: "/assets/img/course/course-05.jpg",
-        },
-        "quran-education": {
-          title: "Quran Education for Orphans",
-          cat: "Education",
-          img: "/assets/img/course/course-06.jpg",
-        },
-      };
+      function renderProgram(prog) {
+        var catLabel  = CAT_LABEL[prog.category] || prog.category || 'General';
+        var raised    = parseFloat(prog.raised)  || 0;
+        var goal      = parseFloat(prog.goal)    || 1;
+        var pct       = Math.min(100, Math.round(raised / goal * 100));
+        var started   = prog.startedDate ? new Date(prog.startedDate).toLocaleDateString('en-GB',{month:'long',year:'numeric'}) : '—';
 
-      // ── State ──────────────────────────────────────────────────────────────────
-      var selectedPayMethod = null;
-      var selectedAmount = 0;
-
-      // ── Bootstrap page from URL param ─────────────────────────────────────────
-      (function () {
-        var params = new URLSearchParams(window.location.search);
-        var id = params.get("id") || "food-distribution";
-        var prog = PROGRAMS[id];
-        if (!prog) {
-          id = "food-distribution";
-          prog = PROGRAMS[id];
-        }
-
-        // Meta / title
-        document.title = prog.title + " | Al-Kahaf Welfare Programs";
+        document.title = prog.title + ' | Al-Kahaf Welfare Programs';
 
         // Hero
-        document.getElementById("bc-title").textContent = prog.title;
-        document.getElementById("hero-cat-text").textContent = prog.cat;
-        document.getElementById("hero-title").textContent = prog.title;
-        document.getElementById("hero-location").textContent = prog.location;
-        document.getElementById("hero-beneficiaries").textContent =
-          prog.beneficiaries;
-        document.getElementById("hero-started").textContent = prog.started;
-        if (prog.urgent)
-          document.getElementById("hero-urgent-wrap").style.display = "";
+        document.getElementById('bc-title').textContent           = prog.title;
+        document.getElementById('hero-cat-text').textContent      = catLabel;
+        document.getElementById('hero-title').textContent         = prog.title;
+        document.getElementById('hero-location').textContent      = prog.location    || 'Pakistan';
+        document.getElementById('hero-beneficiaries').textContent = prog.beneficiaries || '—';
+        document.getElementById('hero-started').textContent       = started;
+        if (prog.urgent) document.getElementById('hero-urgent-wrap').style.display = '';
 
         // Banner
-        document.getElementById("prog-banner").src = prog.banner;
-        document.getElementById("prog-banner").alt = prog.title;
+        var bannerEl = document.getElementById('prog-banner');
+        bannerEl.src = prog.banner || '/assets/img/about/about-2.svg';
+        bannerEl.alt = prog.title;
 
         // About
-        document.getElementById("prog-about").innerHTML = prog.about;
+        document.getElementById('prog-about').innerHTML = prog.description
+          ? prog.description.replace(/\n/g, '<br>')
+          : '<p class="text-muted">No description provided.</p>';
 
         // Impact strip
-        var strip = document.getElementById("prog-impact-strip");
-        strip.innerHTML = prog.impact
-          .map(function (item) {
-            return (
-              '<div class="wpd-impact-item"><div class="impact-num">' +
-              item.num +
-              '</div><div class="impact-lbl">' +
-              item.lbl +
-              "</div></div>"
-            );
-          })
-          .join("");
+        var impacts = Array.isArray(prog.impact) ? prog.impact : [];
+        var strip = document.getElementById('prog-impact-strip');
+        strip.innerHTML = impacts.length
+          ? impacts.map(function(item) {
+              return '<div class="wpd-impact-item"><div class="impact-num">' + item.num +
+                     '</div><div class="impact-lbl">' + item.lbl + '</div></div>';
+            }).join('')
+          : '<div class="wpd-impact-item"><div class="impact-num">' + (prog.beneficiaries||'—') +
+            '</div><div class="impact-lbl">Beneficiaries</div></div>';
 
         // Fund use
-        document.getElementById("prog-fund-use").innerHTML = prog.fundUse;
+        var fundUseEl = document.getElementById('prog-fund-use');
+        if (prog.fundUse) {
+          fundUseEl.innerHTML = prog.fundUse.replace(/\n/g, '<br>');
+        } else {
+          fundUseEl.innerHTML = '<p class="text-muted">Fund allocation details will be added soon.</p>';
+        }
 
         // Milestones
-        var msHtml = prog.milestones
-          .map(function (ms) {
-            return (
-              '<div class="wpd-milestone">' +
-              '<div class="ms-dot" style="background:' +
-              ms.bg +
-              ";color:" +
-              ms.color +
-              '"><i class="fa ' +
-              ms.icon +
-              '"></i></div>' +
-              '<div class="ms-body"><h6>' +
-              ms.title +
-              ' <small style="color:#aaa;font-weight:500;font-size:12px;">— ' +
-              ms.date +
-              "</small></h6><p>" +
-              ms.desc +
-              "</p></div>" +
-              "</div>"
-            );
-          })
-          .join("");
-        document.getElementById("prog-milestones").innerHTML = msHtml;
+        var milestones = Array.isArray(prog.milestones) ? prog.milestones : [];
+        var colors = ['#522811','#d8ac27','#228B22','#1565c0','#e53935'];
+        var icons  = ['fa-flag','fa-star','fa-check-circle','fa-trophy','fa-heart'];
+        var msHtml = milestones.length
+          ? milestones.map(function(ms, i) {
+              var bg    = colors[i % colors.length];
+              var icon  = icons[i % icons.length];
+              return '<div class="wpd-milestone">' +
+                '<div class="ms-dot" style="background:' + bg + ';color:#fff"><i class="fa ' + icon + '"></i></div>' +
+                '<div class="ms-body"><h6>' + ms.title +
+                (ms.date ? ' <small style="color:#aaa;font-weight:500;font-size:12px;">— ' + ms.date + '</small>' : '') +
+                '</h6><p>' + (ms.desc||'') + '</p></div>' +
+                '</div>';
+            }).join('')
+          : '<p class="text-muted">No milestones recorded yet.</p>';
+        document.getElementById('prog-milestones').innerHTML = msHtml;
 
         // Gallery
-        var galHtml = prog.gallery
-          .map(function (src, idx) {
-            return (
-              '<img src="' + src + '" alt="Gallery" data-lb-index="' + idx + '"' +
-              ' onerror="this.src=\'/assets/img/about/about-2.svg\'" style="cursor:zoom-in">'
-            );
-          })
-          .join("");
-        document.getElementById("prog-gallery").innerHTML = galHtml;
-
-        // Bind lightbox clicks
+        var gallery = Array.isArray(prog.gallery) ? prog.gallery : [];
+        var galHtml = gallery.map(function(src, idx) {
+          return '<img src="' + src + '" alt="Gallery" data-lb-index="' + idx + '"' +
+            ' onerror="this.src=\'/assets/img/about/about-2.svg\'" style="cursor:zoom-in">';
+        }).join('');
+        document.getElementById('prog-gallery').innerHTML = galHtml || '<p class="text-muted small">No gallery photos yet.</p>';
         document.querySelectorAll('#prog-gallery img').forEach(function(img) {
           img.addEventListener('click', function() {
-            openLightbox(prog.gallery, parseInt(this.dataset.lbIndex));
+            openLightbox(gallery, parseInt(this.dataset.lbIndex));
           });
         });
 
         // Donate sidebar
-        var pct = Math.round((prog.raised / prog.goal) * 100);
-        document.getElementById("donate-raised").textContent =
-          "PKR " + prog.raised.toLocaleString();
-        document.getElementById("donate-pct").textContent = pct + "%";
-        document.getElementById("donate-goal").textContent =
-          "of PKR " + prog.goal.toLocaleString();
-        document.getElementById("donor-count").textContent = prog.donors;
-
-        // Animate progress bar on load
-        setTimeout(function () {
-          document.getElementById("donate-progress-bar").style.width =
-            pct + "%";
+        document.getElementById('donate-raised').textContent = 'PKR ' + raised.toLocaleString();
+        document.getElementById('donate-pct').textContent    = pct + '%';
+        document.getElementById('donate-goal').textContent   = 'of PKR ' + goal.toLocaleString();
+        document.getElementById('donor-count').textContent   = prog.donors || 0;
+        setTimeout(function() {
+          document.getElementById('donate-progress-bar').style.width = pct + '%';
         }, 400);
 
         // Info card
-        document.getElementById("info-cat").textContent = prog.cat;
-        document.getElementById("info-location").textContent = prog.location;
-        document.getElementById("info-started").textContent = prog.started;
-        document.getElementById("info-status").textContent = prog.status;
-        document.getElementById("info-beneficiaries").textContent =
-          prog.beneficiaries;
-        document.getElementById("info-days").textContent = prog.daysLeft;
+        document.getElementById('info-cat').textContent          = catLabel;
+        document.getElementById('info-location').textContent     = prog.location    || '—';
+        document.getElementById('info-started').textContent      = started;
+        document.getElementById('info-status').textContent       = prog.status      || '—';
+        document.getElementById('info-beneficiaries').textContent= prog.beneficiaries || '—';
+        document.getElementById('info-days').textContent         = prog.status === 'completed' ? 'Completed' : 'Ongoing';
+      }
 
-        // Related
-        var relGrid = document.getElementById("related-grid");
-        prog.related.forEach(function (relId) {
-          var r = RELATED_BRIEF[relId];
-          if (!r) return;
-          relGrid.innerHTML +=
-            '<div class="col-md-4">' +
-            '<div class="wpd-related-card">' +
-            '<img src="' +
-            r.img +
-            '" alt="' +
-            r.title +
-            '" onerror="this.src=\'/assets/img/about/about-2.svg\'">' +
-            '<div class="rc-body">' +
-            '<div class="rc-cat">' +
-            r.cat +
-            "</div>" +
-            '<div class="rc-title">' +
-            r.title +
-            "</div>" +
-            '<a href="/shared/welfare-program-detail?id=' +
-            relId +
-            '" class="rc-link"><i class="fa fa-arrow-right"></i> View Details</a>' +
-            "</div></div></div>";
-        });
+      // ── Bootstrap page from API ────────────────────────────────────────────────
+      (function() {
+        var slug = new URLSearchParams(window.location.search).get('id');
+        if (!slug) { document.getElementById('hero-title').textContent = 'Program not found'; return; }
+
+        fetch(API_CONFIG.BASE_URL + '/welfare/programs/' + encodeURIComponent(slug))
+          .then(function(r) { return r.json(); })
+          .then(function(d) {
+            if (!d.success || !d.program) {
+              document.getElementById('hero-title').textContent = 'Program not found';
+              return;
+            }
+            _currentProg = d.program;
+            renderProgram(d.program);
+
+            // Related: fetch other active programs (exclude current)
+            return fetch(API_CONFIG.BASE_URL + '/welfare/programs?status=active&limit=10')
+              .then(function(r2) { return r2.json(); })
+              .then(function(d2) {
+                if (!d2.success) return;
+                var others = (d2.programs || []).filter(function(p) { return p.slug !== slug; }).slice(0,3);
+                var relGrid = document.getElementById('related-grid');
+                relGrid.innerHTML = '';
+                if (!others.length) { relGrid.innerHTML = '<div class="col-12 text-center text-muted small">No related programs found.</div>'; return; }
+                var catLabel = {'food-relief':'Food & Relief','education':'Education','healthcare':'Healthcare','microfinance':'Microfinance','clean-water':'Clean Water','other':'Other'};
+                others.forEach(function(r) {
+                  relGrid.innerHTML +=
+                    '<div class="col-md-4"><div class="wpd-related-card">' +
+                    '<img src="' + (r.banner||'/assets/img/about/about-2.svg') + '" alt="' + r.title + '" onerror="this.src=\'/assets/img/about/about-2.svg\'">' +
+                    '<div class="rc-body"><div class="rc-cat">' + (catLabel[r.category]||r.category) + '</div>' +
+                    '<div class="rc-title">' + r.title + '</div>' +
+                    '<a href="/shared/welfare-program-detail?id=' + r.slug + '" class="rc-link"><i class="fa fa-arrow-right"></i> View Details</a>' +
+                    '</div></div></div>';
+                });
+              });
+          })
+          .catch(function() {
+            document.getElementById('hero-title').textContent = 'Failed to load program';
+          });
       })();
+
 
       // ── Preset amount selection ────────────────────────────────────────────────
       function selectPreset(el, amount) {
@@ -2106,14 +1608,13 @@
           return;
         }
 
-        var params  = new URLSearchParams(window.location.search);
-        var progId  = params.get("id") || "food-distribution";
-        var prog    = PROGRAMS[progId] || {};
+        var prog   = _currentProg || {};
+        var progId = prog.slug || new URLSearchParams(window.location.search).get('id') || '';
 
         // Save donation context so checkout page can read it
         localStorage.setItem("alkahaf_donation", JSON.stringify({
           amount:    amount,
-          programId: progId,
+          programId: prog.id || progId,
           programTitle: prog.title || progId,
           donorName:  name,
           donorPhone: phone,

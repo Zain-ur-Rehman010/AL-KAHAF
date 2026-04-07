@@ -20,6 +20,7 @@ const freeTrialRoutes = require('./routes/freeTrialRoutes');
 const uploadRoutes = require('./routes/uploadRoutes');
 const instructorStudentRoutes = require('./routes/instructorStudentRoutes');
 const paymentRoutes = require('./routes/paymentRoutes');
+const welfareRoutes = require('./routes/welfareRoutes');
 const { startTrialEmailJob } = require('./jobs/trialEmailJob');
 
 const app = express();
@@ -106,6 +107,7 @@ apiV1.use('/free-trial', freeTrialRoutes);
 apiV1.use('/upload', uploadRoutes);
 apiV1.use('/instructor-students', instructorStudentRoutes);
 apiV1.use('/payments', paymentRoutes);
+apiV1.use('/welfare', welfareRoutes);
 
 // Mount routes at both /v1 and /api/v1 for flexibility
 app.use('/v1', apiV1);

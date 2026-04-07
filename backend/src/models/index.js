@@ -16,6 +16,8 @@ const TrialEmailLog = require('./TrialEmailLog');
 const PredefinedCourse = require('./PredefinedCourse');
 const InstructorCourse = require('./InstructorCourse');
 const InstructorStudent = require('./InstructorStudent');
+const WelfareProgram = require('./WelfareProgram');
+const WelfareDonation = require('./WelfareDonation');
 
 // User associations
 User.hasMany(Course, { foreignKey: 'instructorId', as: 'instructedCourses' });
@@ -101,6 +103,10 @@ PredefinedCourse.belongsToMany(User, {
 });
 InstructorCourse.belongsTo(User, { foreignKey: 'instructorId', as: 'instructor' });
 InstructorCourse.belongsTo(PredefinedCourse, { foreignKey: 'predefinedCourseId', as: 'course' });
+
+// Welfare associations
+WelfareDonation.belongsTo(WelfareProgram, { foreignKey: 'programId', as: 'program' });
+WelfareProgram.hasMany(WelfareDonation, { foreignKey: 'programId', as: 'donations' });
 
 // Instructor ↔ Student (many-to-many via InstructorStudents junction table)
 User.belongsToMany(User, {
