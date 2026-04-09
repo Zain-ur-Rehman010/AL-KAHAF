@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(node migrations/migrate.js)",
-      "Bash(node -e \":*)"
+      "Bash(node -e \":*)",
+      "Bash(cmd /c \"netstat -ano | findstr 5000\")"
     ]
   }
 }

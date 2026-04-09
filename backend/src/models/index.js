@@ -18,6 +18,7 @@ const InstructorCourse = require('./InstructorCourse');
 const InstructorStudent = require('./InstructorStudent');
 const WelfareProgram = require('./WelfareProgram');
 const WelfareDonation = require('./WelfareDonation');
+const InstructorApplication = require('./InstructorApplication');
 
 // User associations
 User.hasMany(Course, { foreignKey: 'instructorId', as: 'instructedCourses' });
@@ -143,4 +144,5 @@ module.exports = {
   PredefinedCourse,
   InstructorCourse,
   InstructorStudent,
+  InstructorApplication,
 };

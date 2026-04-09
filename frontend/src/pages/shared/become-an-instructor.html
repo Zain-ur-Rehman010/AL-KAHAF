@@ -1,590 +1,936 @@
-﻿<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-	
-		<!-- Meta Tags -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Al-Kahaf LMS is a powerful Learning Management System template designed for educators, training institutions, and businesses. Manage courses, track student progress, conduct virtual classes, and enhance e-learning experiences with an intuitive and feature-rich platform.">
-		<meta name="keywords" content="LMS template, Learning Management System, e-learning software, online course platform, student management, education portal, virtual classroom, training management system, course tracking, online education">
-		<meta name="author" content="Dreams Technologies">
-		<meta name="robots" content="index, follow">
-		
-		<title>Become an Instructor | Al-Kahaf Online Academy</title>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Apply to become an instructor at Al-Kahaf Online Academy. Share your expertise and inspire learners across Pakistan.">
+    <title>Become an Instructor | Al-Kahaf Online Academy</title>
+    <link rel="shortcut icon" href="/assets/img/favicon.svg">
+    <link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+    <script src="/assets/js/theme-script.js"></script>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/iconsax.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 
-		<!-- Favicon -->
-		<link rel="shortcut icon" href="/assets/img/favicon.svg"> 
-		<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+    <style>
+        /* ── HERO ── */
+        .bi-hero {
+            background: linear-gradient(135deg, #2c1506 0%, #522811 55%, #1a3a1a 100%);
+            padding: 160px 0 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        .bi-hero::before {
+            content: '';
+            position: absolute;
+            top: -20%; right: -5%;
+            width: 50%; height: 150%;
+            background: radial-gradient(ellipse, rgba(216,172,39,.10) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .bi-hero .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(216,172,39,.15);
+            border: 1px solid rgba(216,172,39,.4);
+            color: #d8ac27;
+            font-size: 13px; font-weight: 700;
+            padding: 5px 16px; border-radius: 50px;
+            text-transform: uppercase; letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        .bi-hero h1 { font-size: 46px; font-weight: 800; color: #fff; line-height: 1.15; margin-bottom: 18px; }
+        .bi-hero h1 span { color: #d8ac27; }
+        .bi-hero p.lead { color: rgba(255,255,255,.75); font-size: 16px; line-height: 1.8; margin-bottom: 32px; }
+        .bi-hero-stats { display: flex; flex-wrap: wrap; gap: 28px; }
+        .bi-hero-stat .num { font-size: 28px; font-weight: 800; color: #d8ac27; }
+        .bi-hero-stat .lbl { font-size: 13px; color: rgba(255,255,255,.6); }
 
-		<!-- Theme Settings Js -->
-		<script src="/assets/js/theme-script.js"></script>
-		
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-		
-		<!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
-		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+        /* ── WHY JOIN ── */
+        .bi-why { padding: 80px 0; background: #f9f7f4; }
+        .bi-why-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 32px 28px;
+            border: 1.5px solid #f0ece6;
+            height: 100%;
+            transition: box-shadow .25s, transform .25s;
+        }
+        .bi-why-card:hover { box-shadow: 0 12px 40px rgba(82,40,17,.1); transform: translateY(-3px); }
+        .bi-why-card .icon-wrap {
+            width: 56px; height: 56px; border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; margin-bottom: 18px;
+        }
+        .bi-why-card h5 { font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; }
+        .bi-why-card p { font-size: 14px; color: #777; line-height: 1.7; margin: 0; }
 
-		<!-- Select2 CSS -->
-		<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
-		
-		<!-- Feathericon CSS -->
-        <link rel="stylesheet" href="/assets/plugins/feather/feather.css">
+        /* ── HOW IT WORKS ── */
+        .bi-steps { padding: 80px 0; background: #fff; }
+        .bi-step {
+            display: flex; align-items: flex-start; gap: 20px;
+            padding: 24px; border-radius: 16px;
+            border: 1.5px solid #f0ece6;
+            margin-bottom: 16px;
+            background: #fafaf8;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .bi-step:hover { border-color: #d8ac27; box-shadow: 0 6px 20px rgba(216,172,39,.1); }
+        .bi-step-num {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, #522811, #d8ac27);
+            color: #fff; font-size: 16px; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+        }
+        .bi-step h6 { font-size: 15px; font-weight: 700; color: #522811; margin-bottom: 4px; }
+        .bi-step p { font-size: 13px; color: #888; margin: 0; line-height: 1.6; }
 
-		<!-- Tabler Icon CSS -->
-		<link rel="stylesheet" href="/assets/plugins/tabler-icons/tabler-icons.css">
+        /* ── SECTION HEADER ── */
+        .bi-section-header { text-align: center; margin-bottom: 50px; }
+        .bi-section-header .eyebrow {
+            display: inline-block; font-size: 13px; font-weight: 700;
+            color: #d8ac27; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px;
+        }
+        .bi-section-header h2 { font-size: 32px; font-weight: 800; color: #1a1a1a; margin-bottom: 12px; }
+        .bi-section-header p { font-size: 15px; color: #777; max-width: 540px; margin: 0 auto; line-height: 1.75; }
 
-        <!-- Iconsax CSS -->
-		<link rel="stylesheet" href="/assets/css/iconsax.css">
+        /* ── APPLICATION FORM ── */
+        .bi-form-section { padding: 80px 0; background: linear-gradient(135deg, #2c1506 0%, #522811 100%); position: relative; overflow: hidden; }
+        .bi-form-section::before {
+            content: '';
+            position: absolute; top: -30%; right: -5%;
+            width: 40%; height: 160%;
+            background: radial-gradient(ellipse, rgba(216,172,39,.08) 0%, transparent 65%);
+        }
+        .bi-form-card {
+            background: #fff;
+            border-radius: 24px;
+            padding: 48px 44px;
+            box-shadow: 0 32px 80px rgba(0,0,0,.2);
+            position: relative; z-index: 1;
+        }
+        .bi-form-card h3 { font-size: 26px; font-weight: 800; color: #522811; margin-bottom: 6px; }
+        .bi-form-card .subtitle { font-size: 15px; color: #888; margin-bottom: 32px; }
+        .bi-form-card .form-label { font-weight: 600; font-size: 14px; color: #333; margin-bottom: 6px; }
+        .bi-form-card .form-control, .bi-form-card .form-select {
+            border-radius: 10px;
+            border: 1.5px solid #e5e5e5;
+            padding: 11px 14px;
+            font-size: 14px;
+            transition: border-color .2s, box-shadow .2s;
+        }
+        .bi-form-card .form-control:focus, .bi-form-card .form-select:focus {
+            border-color: #522811;
+            box-shadow: 0 0 0 3px rgba(82,40,17,.1);
+        }
+        .bi-form-card .form-control.is-invalid { border-color: #dc3545; }
+        .bi-form-card .invalid-feedback { font-size: 12px; }
+        .bi-form-card .btn-submit {
+            background: linear-gradient(135deg, #522811, #8b4513);
+            color: #fff; font-weight: 700; font-size: 16px;
+            padding: 14px 32px; border-radius: 12px; border: none;
+            width: 100%; transition: opacity .2s, transform .2s;
+        }
+        .bi-form-card .btn-submit:hover { opacity: .9; transform: translateY(-1px); }
+        .bi-form-card .btn-submit:disabled { opacity: .6; transform: none; }
+        .field-group { position: relative; }
+        .cv-upload-zone {
+            border: 2px dashed #d8ac27; border-radius: 10px;
+            padding: 22px 20px; text-align: center;
+            background: #fffdf5; cursor: default;
+            transition: border-color .2s, background .2s;
+        }
+        .cv-upload-zone.drag-over { border-color: #522811; background: #fff5ee; }
+        .cv-upload-zone.has-file { text-align: left; cursor: default; }
+        #cv-preview { display: none; }
+        .toggle-pw {
+            position: absolute; right: 14px; top: 50%;
+            transform: translateY(-50%); cursor: pointer;
+            color: #aaa; font-size: 16px; border: none; background: none; padding: 0;
+        }
+        .char-count { font-size: 11px; color: #aaa; text-align: right; margin-top: 3px; }
 
-		<!-- Main CSS -->
-		<link rel="stylesheet" href="/assets/css/style.css">
-	
-	</head>
-	<body>
+        /* Sidebar info */
+        .bi-sidebar-card {
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.15);
+            border-radius: 18px; padding: 28px;
+            color: #fff; margin-bottom: 20px;
+        }
+        .bi-sidebar-card h5 { font-size: 16px; font-weight: 700; color: #d8ac27; margin-bottom: 16px; }
+        .bi-sidebar-card ul { padding-left: 0; list-style: none; margin: 0; }
+        .bi-sidebar-card ul li {
+            display: flex; align-items: flex-start; gap: 10px;
+            font-size: 14px; color: rgba(255,255,255,.8);
+            padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.08);
+        }
+        .bi-sidebar-card ul li:last-child { border-bottom: none; }
+        .bi-sidebar-card ul li i { color: #d8ac27; margin-top: 2px; flex-shrink: 0; }
 
-		<!-- Main Wrapper -->
-		<div class="main-wrapper">
+        /* Alert */
+        .bi-alert {
+            border-radius: 12px; padding: 14px 18px;
+            font-size: 14px; font-weight: 500; display: none;
+            margin-bottom: 20px;
+        }
+        .bi-alert.success { background: #d1e7dd; color: #0a3622; border: 1px solid #a3cfbb; }
+        .bi-alert.danger  { background: #f8d7da; color: #58151c; border: 1px solid #f1aeb5; }
 
-			<!-- Header -->
-			<header class="header-one">
-				<div class="container">
-					<div class="header-nav">
-						<div class="navbar-header">
-							<a id="mobile_btn" href="javascript:void(0);">
-								<span class="bar-icon">
-									<i class="isax isax-menu"></i>
-								</span>
-							</a>
-							<div class="navbar-logo">
-								<a class="logo-white header-logo" href="/shared/index">
-									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
-								</a>
-								<a class="logo-dark header-logo" href="/shared/index">
-									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
-								</a>
-							</div>
-						</div>
-						<div class="main-menu-wrapper">								
-							<div class="menu-header">
-								<a href="/shared/index" class="menu-logo">
-									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="img-fluid" alt="Logo">
-								</a>
-								<a id="menu_close" class="menu-close" href="javascript:void(0);">
-									<i class="fas fa-times"></i>
-								</a>
-							</div>
-							<ul class="main-nav">
-								<li><a href="/">Home</a></li>
-								<li><a href="/courses/course-grid">Courses</a></li>
-								<li><a href="/shared/about-us">About Us</a></li>
-								<li><a href="#">Projects</a></li>
-								<li><a href="#">Download</a></li>
-							</ul>
-							
-							<div class="menu-dropdown">
+        /* Success state */
+        .success-state { text-align: center; padding: 40px 20px; display: none; }
+        .success-state .check-circle {
+            width: 80px; height: 80px; border-radius: 50%;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px; font-size: 36px; color: #fff;
+        }
+        .success-state h4 { font-size: 22px; font-weight: 800; color: #522811; margin-bottom: 8px; }
+        .success-state p { color: #777; font-size: 15px; }
 
-								<div class="dropdown flag-dropdown mb-2">
-									<a href="javascript:void(0);" class="dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-										<img src="/assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-									</a>
-									<ul class="dropdown-menu p-2 mt-2">
-										<li>
-											<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-												<img src="/assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-											</a>
-										</li>
-										<li>
-											<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-												<img src="/assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA
-											</a>
-										</li>
-										<li>
-											<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-												<img src="/assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRE
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="dropdown mb-2">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-										USD
-									</a>
-									<ul class="dropdown-menu p-2 mt-2">
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">USD</a></li>
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
-									</ul>
-								</div>
-								<div class="dropdown mb-2">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-										Light
-									</a>
-									<ul class="dropdown-menu p-2 mt-2">
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">Light</a></li>
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">Dark</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="menu-login">
-								<a href="/auth/login" class="btn btn-primary w-100 mb-2"><i class="isax isax-user me-2"></i>Sign In</a>
-								<a href="/auth/register" class="btn btn-secondary w-100"><i class="isax isax-user-edit me-2"></i>Register</a>
-							</div>
-						</div>
-						<div class="header-btn d-flex align-items-center">
-							<!-------Language changer-------->							
-							<div class="dropdown language-dropdown">
-								<a href="javascript:void(0);" class="dropdown-toggle lang-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-									<img src="/assets/img/flags/us-flag.svg" class="lang-flag" alt="flag">
-									<span class="lang-text">EN</span>
-								</a>
-								<ul class="dropdown-menu lang-menu">
-									<li>
-										<a class="dropdown-item lang-item active" href="javascript:void(0);">
-											<img src="/assets/img/flags/us-flag.svg" alt="flag">
-											<span>English</span>
-											<i class="isax isax-tick-circle5 check-icon"></i>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item lang-item" href="javascript:void(0);">
-											<img src="/assets/img/flags/arab-flag.svg" alt="flag">
-											<span>العربية</span>
-											<i class="isax isax-tick-circle5 check-icon"></i>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item lang-item" href="javascript:void(0);">
-											<img src="/assets/img/flags/france-flag.svg" alt="flag">
-											<span>Français</span>
-											<i class="isax isax-tick-circle5 check-icon"></i>
-										</a>
-									</li>
-								</ul>
-							</div>
+        /* Responsive */
+        @media (max-width: 991px) {
+            .bi-hero { padding: 120px 0 80px; }
+            .bi-hero h1 { font-size: 32px; }
+            .bi-form-card { padding: 32px 24px; }
+        }
+        @media (max-width: 767px) {
+            .bi-hero { padding: 100px 0 60px; }
+            .bi-hero h1 { font-size: 26px; }
+            .bi-hero-stats { gap: 20px; }
+            .bi-form-card { padding: 24px 18px; }
+            .bi-form-card h3 { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+<div class="main-wrapper">
 
+<!-- Header -->
+<header class="header-one">
+    <div class="container">
+        <div class="header-nav">
+            <div class="navbar-header">
+                <a id="mobile_btn" href="javascript:void(0);">
+                    <span class="bar-icon"><i class="isax isax-menu"></i></span>
+                </a>
+                <div class="navbar-logo">
+                    <a class="logo-white header-logo" href="/">
+                        <img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="logo" alt="Logo">
+                    </a>
+                    <a class="logo-dark header-logo" href="/">
+                        <img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="logo" alt="Logo">
+                    </a>
+                </div>
+            </div>
+            <div class="main-menu-wrapper">
+                <div class="menu-header">
+                    <a href="/" class="menu-logo">
+                        <img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="img-fluid" alt="Logo">
+                    </a>
+                    <a id="menu_close" class="menu-close" href="javascript:void(0);">
+                        <i class="fas fa-times"></i>
+                    </a>
+                </div>
+                <ul class="main-nav">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/courses/course-grid">Courses</a></li>
+                    <li><a href="/shared/about-us">About Us</a></li>
+                    <li class="active"><a href="/shared/become-an-instructor">Become Instructor</a></li>
+                    <li><a href="/shared/contact-us">Contact Us</a></li>
+                </ul>
+                <div class="menu-login">
+                    <a href="/auth/login" class="btn btn-primary w-100 mb-2"><i class="isax isax-user me-2"></i>Sign In</a>
+                    <a href="/auth/register" class="btn btn-secondary w-100"><i class="isax isax-user-edit me-2"></i>Register</a>
+                </div>
+            </div>
+            <div class="header-btn d-flex align-items-center">
+                <a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
+                    <i class="isax isax-user me-2"></i>Sign In
+                </a>
+                <a href="/auth/register" class="btn btn-dark d-inline-flex align-items-center me-2">
+                    <i class="isax isax-user-edit me-2"></i>Register
+                </a>
+                <a href="/shared/welfare-programs#donate" class="btn btn-secondary btn-donate me-0">
+                    <i class="isax isax-heart5 me-1"></i>Donate
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- /Header -->
 
+<!-- ===== HERO ===== -->
+<section class="bi-hero">
+    <div class="container position-relative" style="z-index:1;">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-6">
+                <span class="eyebrow"><i class="fa fa-chalkboard-teacher"></i> Join Our Faculty</span>
+                <h1>Teach at Al-Kahaf &<br><span>Inspire Thousands</span></h1>
+                <p class="lead">Share your expertise with motivated learners across Pakistan. Build your brand, earn income, and make a real difference — all from one platform.</p>
+                <div class="bi-hero-stats">
+                    <div class="bi-hero-stat">
+                        <div class="num">10,000+</div>
+                        <div class="lbl">Active Students</div>
+                    </div>
+                    <div class="bi-hero-stat">
+                        <div class="num">50+</div>
+                        <div class="lbl">Expert Instructors</div>
+                    </div>
+                    <div class="bi-hero-stat">
+                        <div class="num">PKR</div>
+                        <div class="lbl">Earnings in PKR</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="/assets/img/bg/home-bg-01.jpg" alt="Become an Instructor"
+                    onerror="this.src='/assets/img/about/about-2.svg'"
+                    style="width:100%;max-height:380px;object-fit:cover;border-radius:20px;box-shadow:0 24px 60px rgba(0,0,0,.3);">
+            </div>
+        </div>
+    </div>
+</section>
 
-							<!--SigIn || Register-->
-														<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
-								<i class="isax isax-user me-2"></i>Sign In
-							</a>
-<a href="/auth/register" class="btn btn-dark d-inline-flex align-items-center me-2">
-	<i class="isax isax-user-edit me-2"></i>Register
-</a>
-							<a href="/auth/register" class="btn btn-secondary btn-donate me-0">
-								<i class="isax isax-heart5 me-1"></i>Donate
-							</a>
-						</div>
-					</div>
-				</div>
-			</header>
-			<!-- /Header -->		
+<!-- ===== WHY TEACH ===== -->
+<section class="bi-why">
+    <div class="container">
+        <div class="bi-section-header">
+            <span class="eyebrow">Why Al-Kahaf?</span>
+            <h2>Everything You Need to Teach & Thrive</h2>
+            <p>We give you the tools, support, and audience — you bring the knowledge.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-sm-6 col-lg-3">
+                <div class="bi-why-card">
+                    <div class="icon-wrap" style="background:rgba(82,40,17,.1);color:#522811;">
+                        <i class="fa fa-users"></i>
+                    </div>
+                    <h5>Large Student Base</h5>
+                    <p>Reach 10,000+ motivated learners enrolled across Pakistan without building your audience from scratch.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="bi-why-card">
+                    <div class="icon-wrap" style="background:rgba(216,172,39,.12);color:#d8ac27;">
+                        <i class="fa fa-money-bill-wave"></i>
+                    </div>
+                    <h5>Earn in PKR</h5>
+                    <p>Get paid directly in Pakistani Rupees via JazzCash or bank transfer — no currency conversion hassle.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="bi-why-card">
+                    <div class="icon-wrap" style="background:rgba(34,139,34,.1);color:#228B22;">
+                        <i class="fa fa-headset"></i>
+                    </div>
+                    <h5>Dedicated Support</h5>
+                    <p>Our team helps you set up, upload content, and promote your courses every step of the way.</p>
+                </div>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+                <div class="bi-why-card">
+                    <div class="icon-wrap" style="background:rgba(21,101,192,.1);color:#1565c0;">
+                        <i class="fa fa-chart-line"></i>
+                    </div>
+                    <h5>Track Your Growth</h5>
+                    <p>Real-time dashboard showing enrollments, earnings, student progress, and course ratings.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-			<!-- Breadcrumb -->
-			<div class="breadcrumb-bar text-center">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 col-12">
-							<h2 class="breadcrumb-title mb-2">Become an Instructor</h2>
-							<nav aria-label="breadcrumb">
-								<ol class="breadcrumb justify-content-center mb-0">
-									<li class="breadcrumb-item"><a href="/shared/index">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Become an Instructor</li>
-								</ol>
-							</nav>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /Breadcrumb -->
+<!-- ===== HOW IT WORKS ===== -->
+<section class="bi-steps">
+    <div class="container">
+        <div class="row align-items-center gy-5">
+            <div class="col-lg-5">
+                <div class="bi-section-header text-start mb-0">
+                    <span class="eyebrow">The Process</span>
+                    <h2>How to Get Started</h2>
+                    <p class="mt-2">From application to your first student — here's what the journey looks like.</p>
+                </div>
+            </div>
+            <div class="col-lg-7">
+                <div class="bi-step">
+                    <div class="bi-step-num">1</div>
+                    <div>
+                        <h6>Submit Your Application</h6>
+                        <p>Fill out the form below with your background, specialization, and why you want to teach. Takes less than 5 minutes.</p>
+                    </div>
+                </div>
+                <div class="bi-step">
+                    <div class="bi-step-num">2</div>
+                    <div>
+                        <h6>Application Review</h6>
+                        <p>Our team reviews your application within 2–3 business days and contacts you if we need more information.</p>
+                    </div>
+                </div>
+                <div class="bi-step">
+                    <div class="bi-step-num">3</div>
+                    <div>
+                        <h6>Account Activation</h6>
+                        <p>Upon approval, you'll receive login credentials for your instructor dashboard. No extra setup needed.</p>
+                    </div>
+                </div>
+                <div class="bi-step">
+                    <div class="bi-step-num">4</div>
+                    <div>
+                        <h6>Start Teaching & Earning</h6>
+                        <p>Create your first course, publish it with admin approval, and start earning as students enroll.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
-            <!-- share your knowledge -->
-			<div class="share-your-knowledge">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-7 pe-xl-5">
-							<div class="share-knowledge-content">
-								<div class="section-header">
-									<span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Share Knowledge</span>
-									<h2>Share Your Knowledge. Inspire the Future.</h2>
-									<p>Share your knowledge, inspire learners worldwide, and earn while doing what you love. Join a community of experts transforming education through engaging and accessible content.</p>
-								</div>
-								<div class="row">
-									<div class="col-lg-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="d-flex align-items-center">
-													<div class="me-2">
-														<span class="bg-secondary-transparent d-flex justify-content-center align-items-center p-3 rounded-pill"><img src="/assets/img/icons/instructor-icon1.svg" alt="img"></span>
-													</div>    
-													<div>
-														<h6 class="mb-1">Flexible Work</h6>
-														<p class="text-truncate line-clamb-1">Teach at your own pace.</p>
-													</div>
-												</div>
-											</div>	
-										</div>
-									</div>
-									<div class="col-lg-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="d-flex align-items-center">
-													<div class="me-2">
-														<span class="bg-secondary-transparent d-flex justify-content-center align-items-center p-3 rounded-pill"><img src="/assets/img/icons/instructor-icon2.svg" alt="img"></span>
-													</div>    
-													<div>
-														<h6 class="mb-1">Earning Potential</h6>
-														<p class="text-truncate line-clamb-1">Monetize your expertise.</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="d-flex align-items-center">
-													<div class="me-2">
-														<span class="bg-secondary-transparent d-flex justify-content-center align-items-center p-3 rounded-pill"><img src="/assets/img/icons/instructor-icon3.svg" alt="img"></span>
-													</div>    
-													<div>
-														<h6 class="mb-1">Impact</h6>
-														<p class="text-truncate line-clamb-1">Reach and educate </p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="col-lg-6">
-										<div class="card">
-											<div class="card-body">
-												<div class="d-flex align-items-center">
-													<div class="me-2">
-														<span class="bg-secondary-transparent d-flex justify-content-center align-items-center p-3 rounded-pill"><img src="/assets/img/icons/instructor-icon4.svg" alt="img"></span>
-													</div>    
-													<div>
-														<h6 class="mb-1">Support</h6>
-														<p class="text-truncate line-clamb-1">Access to dedicated support</p>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<a href="javascript:void(0);" class="btn register-btn-1 d-inline-flex align-items-center">Register Now <i class="isax isax-arrow-right-3 ms-1"></i></a>
-							</div>
-						</div>
-						<div class="col-lg-5">
-							<div class="share-your-knowledge-img d-none d-lg-flex">
-								<img src="/assets/img/shapes/shape-4.png" alt="img" class="img-fluid become-instructor-bg-02">
-								<img src="/assets/img/shapes/shape-5.png" alt="img" class="img-fluid become-instructor-bg-01">
-								<img src="/assets/img/shapes/shape-3.png" alt="img" class="img-fluid become-instructor-bg-03"> 
-								<img src="/assets/img/feature/feature-5.jpg" alt="img" class="img-fluid rounded-4 become-instructor-bg-04"> 
-								<img src="/assets/img/feature/feature-6.jpg" alt="img" class="img-fluid rounded-4 become-instructor-bg-05"> 
-								<img src="/assets/img/shapes/shape-7.svg" alt="img" class="img-fluid become-instructor-bg-06"> 
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- share your knowledge -->
+<!-- ===== APPLICATION FORM ===== -->
+<section class="bi-form-section" id="apply">
+    <div class="container position-relative" style="z-index:1;">
+        <div class="row gy-5">
 
-			<!-- how it works -->
-			<div class="how-it-works-sec bg-light-900">
-				<div class="container">
-					<div class="section-header">
-						<span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Our Workflow</span>
-						<h2>How It Works</h2>
-						<p>Turn Your Expertise into Impact in Just 3 Simple Steps!</p>
-					</div>
-					<div class="row row-gap-4">
-						<div class="col-lg-4">
-							<div class="share-knowledge-item-2">
-								<img src="/assets/img/icons/how-it-works-1.svg" alt="img">
-								<h5 class="mt-3 mb-2">Apply & Get Approved</h5>
-								<p class="text-truncate line-clamb-2">Submit your application and get approved to access the platform</p>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="share-knowledge-item-2">
-								<img src="/assets/img/icons/how-it-works-2.svg" alt="img">
-								<h5 class="mt-3 mb-2">Create & Upload Content</h5>
-								<p class="text-truncate line-clamb-2">Develop and upload your courses, including videos, lessons, quizzes, and assignments.</p>
-							</div>
-						</div>
-						<div class="col-lg-4">
-							<div class="share-knowledge-item-2">
-								<img src="/assets/img/icons/how-it-works-3.svg" alt="img">
-								<h5 class="mt-3 mb-2">Teach & Earn</h5>
-								<p class="text-truncate line-clamb-2">Reach learners worldwide, teach, and start earning while making an impact.</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- how it works -->
+            <!-- Sidebar -->
+            <div class="col-lg-4 order-lg-2">
+                <div class="bi-sidebar-card">
+                    <h5><i class="fa fa-info-circle me-2"></i>What Happens Next?</h5>
+                    <ul>
+                        <li><i class="fa fa-check-circle"></i> We review your application within 2–3 business days.</li>
+                        <li><i class="fa fa-check-circle"></i> You'll receive an email with the decision.</li>
+                        <li><i class="fa fa-check-circle"></i> On approval, your instructor login is created automatically.</li>
+                        <li><i class="fa fa-check-circle"></i> Our team will schedule a brief onboarding call.</li>
+                    </ul>
+                </div>
+                <div class="bi-sidebar-card">
+                    <h5><i class="fa fa-star me-2"></i>Who Should Apply?</h5>
+                    <ul>
+                        <li><i class="fa fa-arrow-right"></i> Subject matter experts in any field</li>
+                        <li><i class="fa fa-arrow-right"></i> Quran / Islamic Studies teachers</li>
+                        <li><i class="fa fa-arrow-right"></i> IT, programming, design professionals</li>
+                        <li><i class="fa fa-arrow-right"></i> Language teachers (Urdu, Arabic, English)</li>
+                        <li><i class="fa fa-arrow-right"></i> Business, finance & entrepreneurship mentors</li>
+                    </ul>
+                </div>
+                <div class="bi-sidebar-card">
+                    <h5><i class="fa fa-file-alt me-2"></i>CV Tips</h5>
+                    <ul>
+                        <li><i class="fa fa-check-circle"></i> Keep it to 1–2 pages — concise wins.</li>
+                        <li><i class="fa fa-check-circle"></i> Highlight your teaching or training experience first.</li>
+                        <li><i class="fa fa-check-circle"></i> List relevant certifications and qualifications.</li>
+                        <li><i class="fa fa-check-circle"></i> Upload as PDF for best compatibility.</li>
+                        <li><i class="fa fa-check-circle"></i> Make sure your contact email matches the form.</li>
+                    </ul>
+                </div>
 
-			<!-- counter -->
-			<div class="counter-sec">
-				<div class="container">
-					<div class="row row-gap-4">
-						<div class="col-xl-3 col-md-6">
-							<div class="become-instructor-item-3 mb-0">
-								<div class="d-flex align-items-center">
-									<div class="counter-icon">
-										<img src="/assets/img/icons/counter-icon1.svg" alt="img">
-									</div>
-									<div class="count-content ps-1 pb-2">
-										<h4 class="text-info"><span class="count-digit">10</span>K</h4>
-										<p class="fw-medium text-truncate">Online Courses</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="become-instructor-item-3 mb-0">
-								<div class="d-flex align-items-center">
-									<div class="counter-icon">
-										<img src="/assets/img/icons/counter-icon2.svg" alt="img">
-									</div>
-									<div class="count-content ps-1 pb-2">
-										<h4 class="text-warning"><span class="count-digit">200</span>+</h4>
-										<p class="fw-medium text-truncate">Expert Tutors</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="become-instructor-item-3 mb-0">
-								<div class="d-flex align-items-center">
-									<div class="counter-icon">
-										<img src="/assets/img/icons/counter-icon3.svg" alt="img">
-									</div>
-									<div class="count-content ps-1 pb-2">
-										<h4 class="text-skyblue"><span class="count-digit">6</span>K+</h4>
-										<p class="fw-medium text-truncate">Certified Courses</p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="become-instructor-item-3 mb-0">
-								<div class="d-flex align-items-center">
-									<div class="counter-icon">
-										<img src="/assets/img/icons/counter-icon4.svg" alt="img">
-									</div>
-									<div class="count-content ps-1 pb-2">
-										<h4 class="text-lightgreen"><span class="count-digit">60</span>K+</h4>
-										<p class="fw-medium text-truncate">Online Students</p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- counter -->
+                <div class="bi-sidebar-card" style="background:rgba(216,172,39,.12);border-color:rgba(216,172,39,.3);">
+                    <h5 style="color:#f0c842;"><i class="fa fa-question-circle me-2"></i>Already Registered?</h5>
+                    <p style="color:rgba(255,255,255,.8);font-size:14px;margin:0;">If you already have a student account, we'll upgrade it to instructor on approval — no new account needed.</p>
+                </div>
+            </div>
 
-			<!-- register -->
-			<div class="register-sec">
-				<div class="container">
-					<div class="row align-items-center">
-						<div class="col-lg-6">
-							<div class="rounded-4 pe-lg-5">
-								<img class="img-fluid rounded-5 d-none d-lg-flex" src="/assets/img/feature/feature-4.jpg" alt="img">
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="register-section p-4 p-sm-5 p-md-6">
-								<h5 class="mb-2">Register</h5>
-								<p>Your email address will not be published. Required fields are marked *</p>
-								<form>
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="mb-3">
-												<label class="form-label mb-1">Name<span class="ms-1 text-danger">*</span></label>
-												<input type="text" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="mb-3">
-												<label class="form-label mb-1">Email<span class="ms-1 text-danger">*</span></label>
-												<input type="email" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="mb-3">
-												<label class="form-label mb-1">Phone Number<span class="ms-1 text-danger">*</span></label>
-												<input type="tel" class="form-control">
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="mb-3 position-relative">
-												<label class="form-label mb-1">Password<span class="ms-1 text-danger">*</span></label>
-												<div class="position-relative">
-													<input type="password" class="pass-inputs form-control">
-													<span class="isax toggle-passwords isax-eye-slash text-gray-7 fs-14"></span>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<div class="mb-4">
-												<label class="form-label mb-1">Confirm Password<span class="ms-1 text-danger">*</span></label>
-												<div class="position-relative">
-													<input type="password" class="pass-input form-control">
-													<span class="isax toggle-password isax-eye-slash text-gray-7 fs-14"></span>
-												</div>
-											</div>
-										</div>
-										<div class="col-lg-12">
-											<button type="submit" class="btn btn-secondary btn-lg w-100 justify-content-center">Submit</button>
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
+            <!-- Form -->
+            <div class="col-lg-8 order-lg-1">
+                <div class="bi-form-card">
+                    <h3><i class="fa fa-chalkboard-teacher me-2" style="color:#522811;"></i>Apply to Become an Instructor</h3>
+                    <p class="subtitle">Fill in all fields marked with <span class="text-danger">*</span>. We'll review your application and get back to you within 2–3 business days.</p>
 
-					<div class="become-an-instructor rounded-2 bg-primary position-relative mt-5 p-5">
-						<img src="/assets/img/shapes/instructor-bg-1.png" alt="img" class="instructor-bg-1">
-						<img src="/assets/img/shapes/instructor-bg-2.png" alt="img" class="instructor-bg-2">
-						<div class="row align-items-center">
-							<div class="col-lg-8">
-								<h3 class="text-white mb-2 mblg-3">Become an Instructor</h3>
-								<p class="text-light">Turn your expertise into impactful courses and inspire learners worldwide. Join our community of instructors and start your journey today!</p>
-							</div>
-							<div class="col-lg-4 d-flex justify-content-lg-end justify-content-center">
-								<a href="#" class="btn btn-secondary btn-lg mt-3 mt-lg-0">Start Teaching Today</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- register -->
+                    <!-- Alert -->
+                    <div class="bi-alert" id="form-alert"></div>
 
-        	<!-- Footer -->
-			<footer class="footer">
-				<div class="footer-bg">
-					<img src="/assets/img/bg/footer-bg-01.png" class="footer-bg-1" alt="">
-					<img src="/assets/img/bg/footer-bg-02.png" class="footer-bg-2" alt="">
-				</div>
-				<div class="footer-top">
-					<div class="container">
-						<div class="row row-gap-4">
-							<div class="col-lg-4">
-								<div class="footer-about">
-									<div class="footer-logo"><img src="/assets/img/white-logo.png" style="width: 200px;height: 150px;" alt="">
-									</div>
-									<p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
-									<div class="d-flex align-items-center">
-										<a href="#" class="me-2"><img src="/assets/img/icon/appstore.svg" alt=""></a>
-										<a href="#"><img src="/assets/img/icon/googleplay.svg" alt=""></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-8">
-								<div class="row row-gap-4">
-									<div class="col-lg-3">
-										<div class="footer-widget footer-menu">
-											<h5 class="footer-title">For Instructor</h5>
-											<ul>
-                                            <li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
-                                            <li><a href="/instructor/instructor-dashboard">Instructor Dashboard</a></li>
-                                            <li><a href="/courses/add-course">Add New Course</a></li>
-                                            <li><a href="/auth/login">Login</a></li>
-                                            <li><a href="/auth/register">Register</a></li>
-                                        </ul>
-										</div>
-									</div>
-									<div class="col-lg-3">
-										<div class="footer-widget footer-menu">
-											<h5 class="footer-title">For Student</h5>
-											<ul>
-                                            <li><a href="/courses/course-grid">Browse Courses</a></li>
-                                            <li><a href="/student/student-dashboard">Student Dashboard</a></li>
-                                            <li><a href="/student/student-certificates">My Certificates</a></li>
-                                            <li><a href="/auth/login">Login</a></li>
-                                            <li><a href="/auth/register">Register</a></li>
-                                        </ul>
-										</div>
-									</div>
-									<div class="col-lg-6">
-										<div class="footer-widget footer-contact">
-											<h5 class="footer-title">Newsletter</h5>
-											<div class="subscribe-input">
-												<form action="javascript:void(0);">
-													<input type="email" class="form-control" placeholder="Enter your Email Address">
-													<button type="submit" class="btn btn-primary btn-sm inline-flex align-items-center"><i class="isax isax-send-2 me-1"></i>Subscribe</button>
-												</form>
-											</div>
-											<div class="footer-contact-info">
-												<div class="footer-address d-flex align-items-center">
-													<img src="/assets/img/icon/icon-20.svg" alt="Img" class="img-fluid me-2">
-													<p> 3556  Beech Street, San Francisco,<br> California, CA 94108 </p>
-												</div>
-												<div class="footer-address d-flex align-items-center">
-													<img src="/assets/img/icon/icon-19.svg" alt="Img" class="img-fluid me-2">
-													<p>Al-Kahaf LMS@example.com</p>
-												</div>
-												<div class="footer-address d-flex align-items-center">
-													<img src="/assets/img/icon/icon-21.svg" alt="Img" class="img-fluid me-2">
-													<p>+19 123-456-7890</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="footer-bottom">
-					<div class="container">
-						<div class="row row-gap-2">
-							<div class="col-md-6">
-								<div class="text-center text-md-start">
-									<p class="text-white">Copyright 2025  <span class="text-secondary">Al-KahafOnlineAcademy</span>. All rights reserved.</p>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div>
-									<ul class="d-flex align-items-center justify-content-center justify-content-md-end footer-link">
-										<li><a href="/shared/terms-and-conditions">Terms & Conditions</a></li>
-										<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</footer>
-			<!-- /Footer -->
+                    <!-- Form -->
+                    <form id="instructor-form" novalidate>
+                        <div class="row g-3">
 
-		</div>
-	   <!-- /Main Wrapper -->
-	  
-		<!-- jQuery -->
-		<script src="/assets/js/jquery-3.7.1.min.js"></script>
-		
-		<!-- Bootstrap Core JS -->
-		<script src="/assets/js/bootstrap.bundle.min.js"></script>
-		
-		<!-- Select2 JS -->
-	  	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+                            <!-- First Name / Last Name -->
+                            <div class="col-sm-6">
+                                <label class="form-label">First Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="firstName" placeholder="e.g. Ahmed" maxlength="50" autocomplete="given-name">
+                                <div class="invalid-feedback">Please enter your first name.</div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="form-label">Last Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="lastName" placeholder="e.g. Khan" maxlength="50" autocomplete="family-name">
+                                <div class="invalid-feedback">Please enter your last name.</div>
+                            </div>
 
-        <!-- counterup JS -->
-        <script src="/assets/js/counter.js"></script>
-		
-		<!-- Custom JS -->
-		<script src="/assets/js/script.js"></script>
-	<!-- Scroll to Top Button -->
-	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
-		<i class="fas fa-arrow-up"></i>
-	</button>
+                            <!-- Email -->
+                            <div class="col-sm-6">
+                                <label class="form-label">Email Address <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="email" placeholder="you@example.com" autocomplete="email">
+                                <div class="invalid-feedback">Please enter a valid email address.</div>
+                            </div>
 
-		
-	</body>
+                            <!-- Phone -->
+                            <div class="col-sm-6">
+                                <label class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" placeholder="03XX-XXXXXXX" maxlength="20" autocomplete="tel">
+                                <div class="invalid-feedback">Please enter a valid Pakistani phone number (03XX-XXXXXXX).</div>
+                            </div>
+
+                            <!-- Specialization -->
+                            <div class="col-sm-6">
+                                <label class="form-label">Area of Specialization <span class="text-danger">*</span></label>
+                                <select class="form-select" id="specialization">
+                                    <option value="">— Select your field —</option>
+                                    <option>Quran &amp; Islamic Studies</option>
+                                    <option>Arabic Language</option>
+                                    <option>Urdu Language &amp; Literature</option>
+                                    <option>English Language</option>
+                                    <option>IT &amp; Programming</option>
+                                    <option>Graphic Design &amp; Multimedia</option>
+                                    <option>Business &amp; Finance</option>
+                                    <option>Mathematics &amp; Science</option>
+                                    <option>Health &amp; Wellness</option>
+                                    <option>Other</option>
+                                </select>
+                                <div class="invalid-feedback">Please select your area of specialization.</div>
+                            </div>
+
+                            <!-- Experience -->
+                            <div class="col-sm-6">
+                                <label class="form-label">Teaching Experience <span class="text-danger">*</span></label>
+                                <select class="form-select" id="experience">
+                                    <option value="">— Select experience —</option>
+                                    <option value="0-1">Less than 1 year</option>
+                                    <option value="1-3">1–3 years</option>
+                                    <option value="3-5">3–5 years</option>
+                                    <option value="5-10">5–10 years</option>
+                                    <option value="10+">10+ years</option>
+                                </select>
+                                <div class="invalid-feedback">Please select your experience level.</div>
+                            </div>
+
+                            <!-- LinkedIn -->
+                            <div class="col-12">
+                                <label class="form-label">LinkedIn / Portfolio URL <small class="text-muted fw-normal">(optional)</small></label>
+                                <input type="url" class="form-control" id="linkedinUrl" placeholder="https://linkedin.com/in/yourprofile">
+                                <div class="invalid-feedback">Please enter a valid URL (must start with https://).</div>
+                            </div>
+
+                            <!-- Motivation -->
+                            <div class="col-12">
+                                <label class="form-label">Why do you want to teach at Al-Kahaf? <span class="text-danger">*</span></label>
+                                <div class="field-group">
+                                    <textarea class="form-control" id="motivation" rows="5"
+                                        placeholder="Tell us about your teaching philosophy, what topics you'd cover, and what value you'd bring to our students (min. 50 characters)..."
+                                        maxlength="1000"></textarea>
+                                </div>
+                                <div class="d-flex justify-content-between">
+                                    <div class="invalid-feedback d-block" id="motivation-err" style="display:none!important;"></div>
+                                    <div class="char-count ms-auto"><span id="mot-count">0</span>/1000</div>
+                                </div>
+                            </div>
+
+                            <!-- CV Upload -->
+                            <div class="col-12">
+                                <label class="form-label">CV / Resume <span class="text-danger">*</span> <small class="text-muted fw-normal">(PDF or Word, max 5MB)</small></label>
+                                <div class="cv-upload-zone" id="cv-upload-zone">
+                                    <input type="file" id="cv-file-input" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" style="display:none;">
+                                    <div id="cv-placeholder" onclick="document.getElementById('cv-file-input').click()" style="cursor:pointer;">
+                                        <i class="fa fa-file-upload" style="font-size:28px;color:#c8a46e;margin-bottom:8px;"></i>
+                                        <div style="font-weight:600;color:#522811;margin-bottom:4px;">Click to upload your CV</div>
+                                        <div style="font-size:12px;color:#999;">PDF, DOC, DOCX — max 5MB</div>
+                                    </div>
+                                    <div id="cv-preview" style="display:none;align-items:center;gap:12px;">
+                                        <i class="fa fa-file-pdf" style="font-size:26px;color:#dc3545;"></i>
+                                        <div style="flex:1;min-width:0;">
+                                            <div id="cv-filename" style="font-weight:600;color:#1a1a1a;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;"></div>
+                                            <div id="cv-filesize" style="font-size:12px;color:#888;"></div>
+                                        </div>
+                                        <button type="button" onclick="removeCv()" style="background:none;border:none;color:#dc3545;font-size:18px;cursor:pointer;padding:0 4px;" title="Remove">
+                                            <i class="fa fa-times-circle"></i>
+                                        </button>
+                                    </div>
+                                    <div id="cv-uploading" style="display:none;align-items:center;gap:10px;justify-content:center;">
+                                        <span class="spinner-border spinner-border-sm" style="color:#522811;"></span>
+                                        <span style="font-size:14px;color:#555;">Uploading CV…</span>
+                                    </div>
+                                </div>
+                                <div id="cv-error" class="invalid-feedback" style="display:none;"></div>
+                            </div>
+
+                            <!-- Terms -->
+                            <div class="col-12">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="terms">
+                                    <label class="form-check-label" for="terms" style="font-size:13px;color:#555;">
+                                        I agree to Al-Kahaf's <a href="/shared/terms-and-conditions" target="_blank" style="color:#522811;">Terms & Conditions</a> and understand that my application will be reviewed before account creation.
+                                    </label>
+                                    <div class="invalid-feedback">You must agree to the terms to continue.</div>
+                                </div>
+                            </div>
+
+                            <!-- Submit -->
+                            <div class="col-12 mt-2">
+                                <button type="submit" class="btn-submit" id="submit-btn">
+                                    <span id="btn-spinner" class="spinner-border spinner-border-sm me-2 d-none"></span>
+                                    <i class="fa fa-paper-plane me-2" id="btn-icon"></i>
+                                    <span id="btn-label">Submit Application</span>
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <!-- Success state (shown after submit) -->
+                    <div class="success-state" id="success-state">
+                        <div class="check-circle"><i class="fa fa-check"></i></div>
+                        <h4>Application Submitted!</h4>
+                        <p>Thank you for applying. Our team will review your application and contact you at the email provided within 2–3 business days.</p>
+                        <a href="/" class="btn mt-3" style="background:#522811;color:#fff;border-radius:10px;padding:11px 28px;font-weight:700;">
+                            <i class="fa fa-home me-2"></i>Back to Home
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row row-gap-4">
+                <div class="col-lg-4">
+                    <div class="footer-about">
+                        <div class="footer-logo">
+                            <img src="/assets/img/white-logo.png" style="width:200px;height:150px;" alt="">
+                        </div>
+                        <p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning activities.</p>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="row row-gap-4">
+                        <div class="col-lg-4">
+                            <div class="footer-widget footer-menu">
+                                <h5 class="footer-title">Quick Links</h5>
+                                <ul>
+                                    <li><a href="/">Home</a></li>
+                                    <li><a href="/courses/course-grid">Browse Courses</a></li>
+                                    <li><a href="/shared/welfare-programs">Welfare Programs</a></li>
+                                    <li><a href="/shared/about-us">About Us</a></li>
+                                    <li><a href="/shared/contact-us">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="footer-widget footer-menu">
+                                <h5 class="footer-title">For Instructors</h5>
+                                <ul>
+                                    <li><a href="/shared/become-an-instructor">Apply Now</a></li>
+                                    <li><a href="/instructor/instructor-dashboard">Instructor Dashboard</a></li>
+                                    <li><a href="/auth/login">Login</a></li>
+                                    <li><a href="/auth/register">Register</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="footer-widget footer-contact">
+                                <h5 class="footer-title">Contact</h5>
+                                <div class="footer-contact-info">
+                                    <div class="footer-address d-flex align-items-center">
+                                        <img src="/assets/img/icon/icon-20.svg" alt="" class="img-fluid me-2">
+                                        <p>Al-Kahaf Online Academy, Pakistan</p>
+                                    </div>
+                                    <div class="footer-address d-flex align-items-center">
+                                        <img src="/assets/img/icon/icon-19.svg" alt="" class="img-fluid me-2">
+                                        <p>info@alkahafonlineacademy.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row row-gap-2">
+                <div class="col-md-6">
+                    <p class="text-white text-center text-md-start">Copyright 2025 <span class="text-secondary">Al-Kahaf Online Academy</span>. All rights reserved.</p>
+                </div>
+                <div class="col-md-6">
+                    <ul class="d-flex align-items-center justify-content-center justify-content-md-end footer-link">
+                        <li><a href="/shared/terms-and-conditions">Terms & Conditions</a></li>
+                        <li><a href="/shared/privacy-policy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</div>
+<!-- /Main Wrapper -->
+
+<script src="/assets/js/jquery-3.7.1.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/js/script.js"></script>
+<script src="/assets/js/api-config.js"></script>
+
+<script>
+(function () {
+    'use strict';
+
+    /* ── CV Upload ───────────────────────────────────────────── */
+    var _cvUrl = null;
+
+    var cvInput = document.getElementById('cv-file-input');
+    var cvZone  = document.getElementById('cv-upload-zone');
+
+    cvInput.addEventListener('change', function () {
+        if (this.files && this.files[0]) handleCvFile(this.files[0]);
+    });
+
+    // Drag-and-drop support
+    cvZone.addEventListener('dragover', function (e) { e.preventDefault(); cvZone.classList.add('drag-over'); });
+    cvZone.addEventListener('dragleave', function () { cvZone.classList.remove('drag-over'); });
+    cvZone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        cvZone.classList.remove('drag-over');
+        var file = e.dataTransfer.files[0];
+        if (file) handleCvFile(file);
+    });
+
+    function handleCvFile(file) {
+        var allowed = ['application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+        var cvErr = document.getElementById('cv-error');
+        if (!allowed.includes(file.type) && !/\.(pdf|doc|docx)$/i.test(file.name)) {
+            cvErr.textContent = 'Only PDF, DOC, or DOCX files are allowed.';
+            cvErr.style.display = 'block';
+            return;
+        }
+        if (file.size > 5 * 1024 * 1024) {
+            cvErr.textContent = 'File is too large. Maximum size is 5MB.';
+            cvErr.style.display = 'block';
+            return;
+        }
+        cvErr.style.display = 'none';
+        uploadCv(file);
+    }
+
+    async function uploadCv(file) {
+        document.getElementById('cv-placeholder').style.display = 'none';
+        document.getElementById('cv-preview').style.display = 'none';
+        document.getElementById('cv-uploading').style.display = 'flex';
+
+        try {
+            var fd = new FormData();
+            fd.append('image', file); // upload endpoint accepts 'image' key for any file
+            var token = localStorage.getItem('accessToken');
+            var headers = token ? { 'Authorization': 'Bearer ' + token } : {};
+            var res = await fetch(API_CONFIG.BASE_URL + '/upload?folder=instructor-cvs', {
+                method: 'POST',
+                headers: headers,
+                body: fd,
+            });
+            var data = await res.json();
+
+            if (data.url || data.secure_url) {
+                _cvUrl = data.url || data.secure_url;
+                document.getElementById('cv-filename').textContent = file.name;
+                document.getElementById('cv-filesize').textContent = (file.size / 1024).toFixed(0) + ' KB';
+                document.getElementById('cv-uploading').style.display = 'none';
+                document.getElementById('cv-preview').style.display = 'flex';
+                document.getElementById('cv-error').style.display = 'none';
+                cvZone.style.borderColor = '#d8ac27';
+                cvZone.classList.add('has-file');
+                // update icon based on type
+                var icon = document.querySelector('#cv-preview .fa');
+                if (icon) icon.className = /pdf/i.test(file.name) ? 'fa fa-file-pdf' : 'fa fa-file-word';
+                if (icon && /word/i.test(file.name)) icon.style.color = '#2b579a';
+            } else {
+                throw new Error(data.message || 'Upload failed');
+            }
+        } catch (err) {
+            _cvUrl = null;
+            document.getElementById('cv-uploading').style.display = 'none';
+            document.getElementById('cv-placeholder').style.display = 'block';
+            var cvErr = document.getElementById('cv-error');
+            cvErr.textContent = 'CV upload failed. You can still submit without it.';
+            cvErr.style.display = 'block';
+        }
+    }
+
+    function removeCv() {
+        _cvUrl = null;
+        cvInput.value = '';
+        document.getElementById('cv-preview').style.display = 'none';
+        document.getElementById('cv-placeholder').style.display = 'block';
+        document.getElementById('cv-error').style.display = 'none';
+        cvZone.classList.remove('has-file');
+    }
+
+    /* ── Character counter for motivation ───────────────────── */
+    var motEl  = document.getElementById('motivation');
+    var motCnt = document.getElementById('mot-count');
+    motEl.addEventListener('input', function () {
+        motCnt.textContent = this.value.length;
+    });
+
+    /* ── Phone formatting ────────────────────────────────────── */
+    document.getElementById('phone').addEventListener('input', function () {
+        this.value = this.value.replace(/[^0-9+\-\s]/g, '');
+    });
+
+    /* ── Alert helper ────────────────────────────────────────── */
+    function showAlert(type, msg) {
+        var el = document.getElementById('form-alert');
+        el.className = 'bi-alert ' + type;
+        el.innerHTML = msg;
+        el.style.display = 'block';
+        el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    function hideAlert() {
+        var el = document.getElementById('form-alert');
+        el.style.display = 'none';
+    }
+
+    /* ── Field validators ────────────────────────────────────── */
+    function markValid(id)   { var el = document.getElementById(id); el.classList.remove('is-invalid'); el.classList.add('is-valid'); }
+    function markInvalid(id) { var el = document.getElementById(id); el.classList.add('is-invalid'); el.classList.remove('is-valid'); }
+    function val(id)         { return document.getElementById(id).value.trim(); }
+
+    function validateForm() {
+        var ok = true;
+
+        // First name
+        if (!val('firstName')) { markInvalid('firstName'); ok = false; } else { markValid('firstName'); }
+        // Last name
+        if (!val('lastName'))  { markInvalid('lastName');  ok = false; } else { markValid('lastName'); }
+        // Email
+        var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRe.test(val('email'))) { markInvalid('email'); ok = false; } else { markValid('email'); }
+        // Phone (optional but if filled must be valid)
+        var phone = val('phone');
+        if (phone && !/^(\+92|0)[3][0-9]{9}$/.test(phone.replace(/[\s\-]/g, ''))) {
+            markInvalid('phone'); ok = false;
+        } else { markValid('phone'); }
+        // Specialization
+        if (!val('specialization')) { markInvalid('specialization'); ok = false; } else { markValid('specialization'); }
+        // Experience
+        if (!val('experience'))     { markInvalid('experience');     ok = false; } else { markValid('experience'); }
+        // LinkedIn URL (optional but if filled must be valid)
+        var url = val('linkedinUrl');
+        if (url && !/^https?:\/\/.+/.test(url)) { markInvalid('linkedinUrl'); ok = false; } else { markValid('linkedinUrl'); }
+        // Motivation
+        var mot = val('motivation');
+        var motErr = document.getElementById('motivation-err');
+        if (mot.length < 50) {
+            markInvalid('motivation');
+            motErr.textContent = mot.length === 0
+                ? 'Please tell us why you want to teach.'
+                : 'Please write at least 50 characters (' + mot.length + '/50).';
+            motErr.style.display = 'block';
+            ok = false;
+        } else {
+            markValid('motivation');
+            motErr.style.display = 'none';
+        }
+        // Terms
+        // CV required
+        var cvErr = document.getElementById('cv-error');
+        if (!_cvUrl) {
+            cvErr.textContent = 'Please upload your CV before submitting.';
+            cvErr.style.display = 'block';
+            document.getElementById('cv-upload-zone').style.borderColor = '#dc3545';
+            ok = false;
+        } else {
+            cvErr.style.display = 'none';
+            document.getElementById('cv-upload-zone').style.borderColor = '#d8ac27';
+        }
+
+        if (!document.getElementById('terms').checked) {
+            document.getElementById('terms').classList.add('is-invalid'); ok = false;
+        } else {
+            document.getElementById('terms').classList.remove('is-invalid');
+        }
+
+        return ok;
+    }
+
+    /* ── Submit ──────────────────────────────────────────────── */
+    document.getElementById('instructor-form').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        hideAlert();
+
+        if (!validateForm()) {
+            showAlert('danger', '<i class="fa fa-exclamation-circle me-2"></i>Please fix the highlighted fields before submitting.');
+            return;
+        }
+
+        var btn     = document.getElementById('submit-btn');
+        var spinner = document.getElementById('btn-spinner');
+        var icon    = document.getElementById('btn-icon');
+        var label   = document.getElementById('btn-label');
+
+        btn.disabled = true;
+        spinner.classList.remove('d-none');
+        icon.classList.add('d-none');
+        label.textContent = 'Submitting…';
+
+        var payload = {
+            firstName:      val('firstName'),
+            lastName:       val('lastName'),
+            email:          val('email'),
+            phone:          val('phone'),
+            specialization: val('specialization'),
+            experience:     val('experience'),
+            linkedinUrl:    val('linkedinUrl'),
+            motivation:     val('motivation'),
+            cvUrl:          _cvUrl || undefined,
+        };
+
+        try {
+            var res = await fetch(API_CONFIG.BASE_URL + '/instructor-applications', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+            var data = await res.json();
+
+            if (data.success) {
+                document.getElementById('instructor-form').style.display = 'none';
+                document.getElementById('success-state').style.display = 'block';
+            } else {
+                showAlert('danger', '<i class="fa fa-exclamation-circle me-2"></i>' + (data.message || 'Submission failed. Please try again.'));
+            }
+        } catch (err) {
+            showAlert('danger', '<i class="fa fa-exclamation-circle me-2"></i>Could not connect to the server. Please check your connection and try again.');
+        } finally {
+            btn.disabled = false;
+            spinner.classList.add('d-none');
+            icon.classList.remove('d-none');
+            label.textContent = 'Submit Application';
+        }
+    });
+
+    /* ── Live validation on blur ─────────────────────────────── */
+    ['firstName','lastName','email','specialization','experience'].forEach(function(id) {
+        document.getElementById(id).addEventListener('blur', function() {
+            if (this.value.trim()) markValid(id); else markInvalid(id);
+        });
+    });
+    document.getElementById('motivation').addEventListener('blur', function() {
+        if (this.value.trim().length >= 50) {
+            markValid('motivation');
+            document.getElementById('motivation-err').style.display = 'none';
+        }
+    });
+
+})();
+</script>
+
+<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+</body>
 </html>

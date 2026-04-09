@@ -79,6 +79,44 @@
             }
         },
 
+        // Verify login OTP (2FA for instructors)
+        verifyLoginOtp: async function(email, otp) {
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/auth/verify-login-otp', {
+                    method: 'POST',
+                    headers: API_CONFIG.getHeaders(false),
+                    body: JSON.stringify({ email, otp })
+                });
+                const data = await response.json();
+                if (response.ok && data.success) {
+                    this.saveTokens(data.data.accessToken, data.data.refreshToken);
+                    this.saveUser(data.data.user);
+                    return { success: true, message: data.message, user: data.data.user };
+                }
+                return { success: false, message: data.message || 'Invalid or expired OTP.' };
+            } catch (error) {
+                return { success: false, message: 'Network error. Please try again.' };
+            }
+        },
+
+        // Resend login OTP (instructor 2FA)
+        resendLoginOtp: async function(email) {
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/auth/resend-login-otp', {
+                    method: 'POST',
+                    headers: API_CONFIG.getHeaders(false),
+                    body: JSON.stringify({ email })
+                });
+                const data = await response.json();
+                if (response.ok && data.success) {
+                    return { success: true, message: data.message || 'OTP resent. Please check your email.' };
+                }
+                return { success: false, message: data.message || 'Failed to resend OTP.' };
+            } catch (error) {
+                return { success: false, message: 'Network error. Please try again.' };
+            }
+        },
+
         // Resend verification OTP
         resendOtp: async function(email) {
             try {
@@ -371,15 +409,33 @@
                     AuthManager.redirectToDashboard(result.user);
                 }, 1500);
             } else {
-                // If backend says email isn't verified, show OTP verification UI on login page
                 if (result.code === 'EMAIL_NOT_VERIFIED') {
+                    // Email not verified — show OTP box in verification mode
                     const otpBox = document.getElementById('otp-verify-box');
-                    if (otpBox) otpBox.classList.remove('d-none');
-
+                    if (otpBox) {
+                        otpBox.dataset.otpMode = 'verify';
+                        document.getElementById('otp-box-title').textContent = 'Verify Your Account';
+                        document.getElementById('otp-box-desc').textContent = 'We sent an OTP to your email. Enter it to verify and continue.';
+                        otpBox.classList.remove('d-none');
+                    }
                     if (result.otpSent === false) {
                         AuthManager.showAlert('We could not send OTP email. Please click "Resend OTP" or try again later.', 'danger');
                     } else {
                         AuthManager.showAlert('OTP sent to your email. Please enter it below.', 'info');
+                    }
+                } else if (result.code === 'LOGIN_OTP_REQUIRED') {
+                    // Instructor 2FA — show OTP box in login mode
+                    const otpBox = document.getElementById('otp-verify-box');
+                    if (otpBox) {
+                        otpBox.dataset.otpMode = 'login';
+                        document.getElementById('otp-box-title').textContent = 'Two-Factor Authentication';
+                        document.getElementById('otp-box-desc').textContent = 'For security, an OTP has been sent to your registered email. Enter it below to complete login.';
+                        otpBox.classList.remove('d-none');
+                    }
+                    if (result.otpSent === false) {
+                        AuthManager.showAlert('Could not send OTP email. Please click "Resend OTP" or try again.', 'danger');
+                    } else {
+                        AuthManager.showAlert('OTP sent to your email. Please enter it to continue.', 'info');
                     }
                 } else {
                     AuthManager.showAlert(result.message, 'danger');
@@ -403,7 +459,10 @@
                 }
 
                 AuthManager.showLoading(resendBtn);
-                const result = await AuthManager.resendOtp(email);
+                const mode = otpVerifyBox.dataset.otpMode;
+                const result = mode === 'login'
+                    ? await AuthManager.resendLoginOtp(email)
+                    : await AuthManager.resendOtp(email);
                 AuthManager.hideLoading(resendBtn);
 
                 AuthManager.showAlert(result.message, result.success ? 'success' : 'danger');
@@ -425,7 +484,10 @@
                 }
 
                 AuthManager.showLoading(verifyBtn);
-                const result = await AuthManager.verifyOtp(email, otp);
+                const mode = otpVerifyBox.dataset.otpMode;
+                const result = mode === 'login'
+                    ? await AuthManager.verifyLoginOtp(email, otp)
+                    : await AuthManager.verifyOtp(email, otp);
                 AuthManager.hideLoading(verifyBtn);
 
                 if (result.success) {
