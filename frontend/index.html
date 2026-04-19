@@ -407,6 +407,15 @@ Dependencies:
 			   Features: Quran, Tajweed, Arabic, Islamic Studies
 			   Slider: Autoplay, Draggable, Arrow Navigation
 			   ========================================== */
+			.sk-box {
+				background: linear-gradient(90deg,#ececec 25%,#e0e0e0 50%,#ececec 75%);
+				background-size: 200% 100%;
+				animation: sk-shimmer 1.4s infinite;
+				display: block;
+			}
+			@keyframes sk-shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+			.course-sk .course-img { overflow: hidden; }
+
 			.featured-courses-section {
 				background: linear-gradient(180deg, #FDFBF7 0%, #FFF9F0 50%, #FFFDF9 100%);
 				padding: 20px 0 80px;
@@ -1788,162 +1797,11 @@ Dependencies:
                             <h3>Unlock The Treasures Of Arabic And The Quran</h3>
                             
                         </div>
-                        <div class="feature-course-slider-2">
-                            <div>
-                                <div class="course-item-two course-item mb-0">
-                                    <div class="course-img">
-                                        <a href="/courses/course-details">
-                                            <img src="assets/img/course/_course1.jpeg" alt="img" class="img-fluid">
-                                        </a>
-                                        <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="course-content">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:void(0);" class="avatar avatar-sm">
-                                                    <img src="assets/img/user/user-06.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-                                                </a>
-                                                <div class="ms-2">
-                                                    <a href="javascript:void(0);" class="link-default fs-14">Sheikh Ahmed</a>
-                                                </div>
-                                            </div>
-                                            <span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">Quran</span>
-                                        </div>
-                                        <h6 class="title mb-2"><a href="/courses/course-details">Quran Reading with Tajweed Rules</a></h6>
-                                        <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>5.0 (120 Reviews)</p>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h5 class="text-secondary mb-0">Rs500</h5>
-                                            <a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="course-item-two course-item mb-0">
-                                    <div class="course-img">
-                                        <a href="/courses/course-details">
-                                            <img src="assets/img/course/course-37.jpg" alt="img" class="img-fluid">
-                                        </a>
-                                        <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="course-content">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:void(0);" class="avatar avatar-sm">
-                                                    <img src="assets/img/user/user-07.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-                                                </a>
-                                                <div class="ms-2">
-                                                    <a href="javascript:void(0);" class="link-default fs-14">Ustadh Khalid</a>
-                                                </div>
-                                            </div>
-                                            <span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">Arabic</span>
-                                        </div>
-                                        <h6 class="title mb-2"><a href="/courses/course-details">Arabic Language Fundamentals Course</a></h6>
-                                        <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>5.0 (95 Reviews)</p>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h5 class="text-secondary mb-0">Rs300</h5>
-                                            <a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="course-item-two course-item mb-0">
-                                    <div class="course-img">
-                                        <a href="/courses/course-details">
-                                            <img src="assets/img/course/course-38.jpg" alt="img" class="img-fluid">
-                                        </a>
-                                        <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="course-content">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:void(0);" class="avatar avatar-sm">
-                                                    <img src="assets/img/user/user-08.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-                                                </a>
-                                                <div class="ms-2">
-                                                    <a href="javascript:void(0);" class="link-default fs-14">Sheikh Yusuf</a>
-                                                </div>
-                                            </div>
-                                            <span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">Tajweed</span>
-                                        </div>
-                                        <h6 class="title mb-2"><a href="/courses/course-details">Advanced Tajweed & Quran Memorization</a></h6>
-                                        <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>5.0 (80 Reviews)</p>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h5 class="text-secondary mb-0">Rs350</h5>
-                                            <a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="course-item-two course-item mb-0">
-                                    <div class="course-img">
-                                        <a href="/courses/course-details">
-                                            <img src="assets/img/course/course-39.jpg" alt="img" class="img-fluid">
-                                        </a>
-                                        <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="course-content">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:void(0);" class="avatar avatar-sm">
-                                                    <img src="assets/img/user/user-09.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-                                                </a>
-                                                <div class="ms-2">
-                                                    <a href="javascript:void(0);" class="link-default fs-14">Ustadha Fatima</a>
-                                                </div>
-                                            </div>
-                                            <span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">Islamic Studies</span>
-                                        </div>
-                                        <h6 class="title mb-2"><a href="/courses/course-details">Islamic Sciences & Fiqh Essentials</a></h6>
-                                        <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>5.0 (150 Reviews)</p>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h5 class="text-secondary mb-0">Rs500</h5>
-                                            <a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="course-item-two course-item mb-0">
-                                    <div class="course-img">
-                                        <a href="/courses/course-details">
-                                            <img src="assets/img/course/course-37.jpg" alt="img" class="img-fluid">
-                                        </a>
-                                        <div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">
-                                            
-                                        </div>
-                                    </div>
-                                    <div class="course-content">
-                                        <div class="d-flex justify-content-between mb-2">
-                                            <div class="d-flex align-items-center">
-                                                <a href="javascript:void(0);" class="avatar avatar-sm">
-                                                    <img src="assets/img/user/user-07.jpg" alt="img" class="img-fluid avatar avatar-sm rounded-circle">
-                                                </a>
-                                                <div class="ms-2">
-                                                    <a href="javascript:void(0);" class="link-default fs-14">Ustadha Aisha</a>
-                                                </div>
-                                            </div>
-                                            <span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-13 fw-medium mb-0">Kids Quran</span>
-                                        </div>
-                                        <h6 class="title mb-2"><a href="/courses/course-details">Quran for Kids - Interactive Learning</a></h6>
-                                        <p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>5.0 (110 Reviews)</p>
-                                        <div class="d-flex align-items-center justify-content-between">
-                                            <h5 class="text-secondary mb-0">Rs300</h5>
-                                            <a href="/courses/course-details" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="feature-course-slider-2" id="featured-courses-slider">
+                            <div><div class="course-item-two course-item mb-0 course-sk"><div class="course-img sk-box" style="height:200px;border-radius:12px 12px 0 0;"></div><div class="course-content"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center gap-2"><span class="sk-box" style="width:34px;height:34px;border-radius:50%;"></span><span class="sk-box" style="width:90px;height:13px;border-radius:6px;"></span></div><span class="sk-box" style="width:60px;height:22px;border-radius:20px;"></span></div><span class="sk-box d-block mb-2" style="width:100%;height:14px;border-radius:6px;"></span><span class="sk-box d-block mb-3" style="width:70%;height:14px;border-radius:6px;"></span><span class="sk-box d-block mb-3" style="width:110px;height:13px;border-radius:6px;"></span><div class="d-flex justify-content-between align-items-center"><span class="sk-box" style="width:60px;height:20px;border-radius:6px;"></span><span class="sk-box" style="width:100px;height:32px;border-radius:8px;"></span></div></div></div></div>
+                            <div><div class="course-item-two course-item mb-0 course-sk"><div class="course-img sk-box" style="height:200px;border-radius:12px 12px 0 0;"></div><div class="course-content"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center gap-2"><span class="sk-box" style="width:34px;height:34px;border-radius:50%;"></span><span class="sk-box" style="width:90px;height:13px;border-radius:6px;"></span></div><span class="sk-box" style="width:60px;height:22px;border-radius:20px;"></span></div><span class="sk-box d-block mb-2" style="width:100%;height:14px;border-radius:6px;"></span><span class="sk-box d-block mb-3" style="width:70%;height:14px;border-radius:6px;"></span><span class="sk-box d-block mb-3" style="width:110px;height:13px;border-radius:6px;"></span><div class="d-flex justify-content-between align-items-center"><span class="sk-box" style="width:60px;height:20px;border-radius:6px;"></span><span class="sk-box" style="width:100px;height:32px;border-radius:8px;"></span></div></div></div></div>
+                            <div><div class="course-item-two course-item mb-0 course-sk"><div class="course-img sk-box" style="height:200px;border-radius:12px 12px 0 0;"></div><div class="course-content"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center gap-2"><span class="sk-box" style="width:34px;height:34px;border-radius:50%;"></span><span class="sk-box" style="width:90px;height:13px;border-radius:6px;"></span></div><span class="sk-box" style="width:60px;height:22px;border-radius:20px;"></span></div><span class="sk-box d-block mb-2" style="width:100%;height:14px;border-radius:6px;"></span><span class="sk-box d-block mb-3" style="width:70%;height:14px;border-radius:6px;"></span><span class="sk-box d-block mb-3" style="width:110px;height:13px;border-radius:6px;"></span><div class="d-flex justify-content-between align-items-center"><span class="sk-box" style="width:60px;height:20px;border-radius:6px;"></span><span class="sk-box" style="width:100px;height:32px;border-radius:8px;"></span></div></div></div></div>
+                            <div><div class="course-item-two course-item mb-0 course-sk"><div class="course-img sk-box" style="height:200px;border-radius:12px 12px 0 0;"></div><div class="course-content"><div class="d-flex justify-content-between mb-3"><div class="d-flex align-items-center gap-2"><span class="sk-box" style="width:34px;height:34px;border-radius:50%;"></span><span class="sk-box" style="width:90px;height:13px;border-radius:6px;"></span></div><span class="sk-box" style="width:60px;height:22px;border-radius:20px;"></span></div><span class="sk-box d-block mb-2" style="width:100%;height:14px;border-radius:6px;"></span><span class="sk-box d-block mb-3" style="width:70%;height:14px;border-radius:6px;"></span><span class="sk-box d-block mb-3" style="width:110px;height:13px;border-radius:6px;"></span><div class="d-flex justify-content-between align-items-center"><span class="sk-box" style="width:60px;height:20px;border-radius:6px;"></span><span class="sk-box" style="width:100px;height:32px;border-radius:8px;"></span></div></div></div></div>
                         </div>
                         <div class="d-flex align-items-center justify-content-center">
                             <a href="/courses/course-grid" class="btn btn-primary btn-md">View All Courses</a>
@@ -3268,13 +3126,19 @@ Dependencies:
 				})
 				.then(function (data) {
 					var courses = data.courses || [];
-					if (!courses.length) return; // keep static fallback
+					if (!courses.length) {
+						// No courses yet — show a friendly empty state
+						var $slider = $('.feature-course-slider-2');
+						if ($slider.hasClass('slick-initialized')) $slider.slick('unslick');
+						$slider.html('<div style="text-align:center;padding:48px 0;color:#aaa;"><i class="fa fa-book-open" style="font-size:40px;margin-bottom:12px;display:block;"></i>No courses available yet. Check back soon!</div>');
+						return;
+					}
 					var slidesHTML = courses.map(buildSlideHTML).join('');
 					reinitSlider(slidesHTML);
 				})
 				.catch(function (err) {
-					// Silent fail — static fallback slides remain visible
-					console.warn('Featured courses: using static fallback.', err.message);
+					console.warn('Featured courses load failed:', err.message);
+					// On error keep skeletons visible — don't crash the page
 				});
 		}
 

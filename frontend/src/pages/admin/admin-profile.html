@@ -52,6 +52,7 @@
             height: 110px;
             border-radius: 50%;
             object-fit: cover;
+            background: #fff;
             border: 4px solid #fff;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             display: block;
@@ -189,11 +190,11 @@
                                 <div class="dropdown-menu dropdown-menu-end" style="min-width:220px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15);border:none;padding:0;overflow:hidden;">
                                     <div class="profile-header d-flex align-items-center" style="padding:16px;background:#f8f9fa;border-bottom:1px solid #eee;">
                                         <div style="width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#522811;display:flex;align-items:center;justify-content:center;" class="me-3">
-                                            <img src="/assets/img/user/user-01.jpg" alt="Admin" style="width:100%;height:100%;object-fit:cover;">
+                                            <img id="dropdown-avatar-img" src="/assets/img/user/user-01.jpg" alt="Admin" style="width:100%;height:100%;object-fit:cover;background:#fff;">
                                         </div>
                                         <div>
                                             <h6 class="mb-0 fw-semibold" id="admin-name-nav">Administrator</h6>
-                                            <small class="text-muted">Admin</small>
+                                            <small class="text-muted" id="dropdown-role-label">Admin</small>
                                         </div>
                                     </div>
                                     <ul class="profile-body list-unstyled mb-0" style="padding:8px 0 8px 8px;">
@@ -403,12 +404,17 @@
             const navImg = document.getElementById('admin-avatar-img');
             const navInitials = document.getElementById('admin-initials-nav');
 
+            const dropdownImg  = document.getElementById('dropdown-avatar-img');
+            const dropdownRole = document.getElementById('dropdown-role-label');
+            if (dropdownRole) dropdownRole.textContent = (u.role || 'admin').charAt(0).toUpperCase() + (u.role || 'admin').slice(1);
+
             if (avatar) {
                 avatarImg.src = avatar;
                 avatarImg.style.display = 'block';
                 avatarInitials.style.display = 'none';
                 if (navImg) { navImg.src = avatar; navImg.style.display = 'block'; }
                 if (navInitials) navInitials.style.display = 'none';
+                if (dropdownImg) { dropdownImg.src = avatar; dropdownImg.style.display = 'block'; }
             } else {
                 avatarImg.style.display = 'none';
                 const ini = ((u.firstName || 'A')[0] + (u.lastName || '')[0]).toUpperCase();
@@ -416,6 +422,7 @@
                 avatarInitials.style.display = 'flex';
                 if (navImg) navImg.style.display = 'none';
                 if (navInitials) { navInitials.textContent = (u.firstName || 'A')[0].toUpperCase(); navInitials.style.display = 'flex'; }
+                if (dropdownImg) dropdownImg.style.display = 'none';
             }
         }
 
@@ -444,6 +451,8 @@
                 const data = await res.json();
                 const user = extractUser(data);
                 if (user) {
+                    // Sync localStorage so admin-header.js on all pages gets fresh data
+                    localStorage.setItem('user', JSON.stringify(user));
                     populateCard(user);
                     populateForm(user);
                 } else {
@@ -532,7 +541,7 @@
             const overlay = document.querySelector('.avatar-overlay');
             if (overlay) overlay.innerHTML = '<i class="fas fa-spinner fa-spin"></i><span>Uploading...</span>';
             const formData = new FormData();
-            formData.append('file', file);
+            formData.append('image', file);
             try {
                 const uploadRes = await fetch(API_BASE + '/upload', {
                     method: 'POST',
@@ -548,12 +557,23 @@
                     body: JSON.stringify({ profileImage: uploadData.url }),
                 });
                 if (res.ok) {
+                    const saved = await res.json();
+                    // Update localStorage so every page reflects the new photo
+                    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+                    storedUser.profileImage = uploadData.url;
+                    localStorage.setItem('user', JSON.stringify(storedUser));
+
                     showAlert('Profile photo updated.', 'success');
+                    // Large profile avatar
                     document.getElementById('profile-avatar').src = uploadData.url;
                     document.getElementById('profile-avatar').style.display = 'block';
                     document.getElementById('avatar-initials').style.display = 'none';
+                    // Navbar icon
                     const navImg = document.getElementById('admin-avatar-img');
                     if (navImg) { navImg.src = uploadData.url; navImg.style.display = 'block'; }
+                    // Dropdown avatar
+                    const dropImg = document.getElementById('dropdown-avatar-img');
+                    if (dropImg) { dropImg.src = uploadData.url; dropImg.style.display = 'block'; }
                 } else {
                     const data = await res.json();
                     showAlert(data.message || 'Failed to save photo.', 'danger');

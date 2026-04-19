@@ -37,12 +37,11 @@
     return ((user.firstName || '')[0] + (user.lastName || '')[0]).toUpperCase() || 'A';
   }
 
-  /* ─── Update user avatar & name in navbar ──────────── */
-  function updateUserInfo() {
-    const user = JSON.parse(localStorage.getItem('user') || 'null');
+  /* ─── Apply user data to all navbar elements ───────── */
+  function applyUserInfo(user) {
     if (!user) return;
 
-    // Update admin name — support both id variants used across admin pages
+    // Name — support both id variants used across admin pages
     const nameEl = document.getElementById('admin-name') || document.getElementById('adminName');
     if (nameEl) nameEl.textContent = (user.firstName || '') + ' ' + (user.lastName || '');
 
@@ -56,31 +55,68 @@
     userImgSpans.forEach(function (userImg) {
       if (user.profileImage) {
         var img = userImg.querySelector('img');
-        if (img) img.src = user.profileImage;
+        if (img) {
+          img.src = user.profileImage;
+          img.style.cssText = 'width:38px;height:38px;min-width:38px;border-radius:50%;object-fit:cover;background:#fff;';
+        } else {
+          // Some pages use the span itself — replace content with img
+          userImg.style.cssText = 'width:38px;height:38px;min-width:38px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;';
+          userImg.innerHTML = '<img src="' + user.profileImage + '" style="width:100%;height:100%;object-fit:cover;background:#fff;" alt="Admin">';
+        }
       } else {
-        // Convert .user-img itself into the initials badge — avoids alignment issues
-        // caused by replacing the <img> with a sibling <span>
         var initials = getUserInitials(user);
         userImg.style.cssText = [
-          'width:38px',
-          'height:38px',
-          'min-width:38px',
-          'border-radius:50%',
-          'background:#522811',
-          'display:inline-flex',
-          'align-items:center',
-          'justify-content:center',
-          'margin-right:8px',
-          'flex-shrink:0',
-          'position:relative',
-          'cursor:pointer',
+          'width:38px', 'height:38px', 'min-width:38px',
+          'border-radius:50%', 'background:#522811',
+          'display:inline-flex', 'align-items:center', 'justify-content:center',
+          'margin-right:8px', 'flex-shrink:0', 'position:relative', 'cursor:pointer',
         ].join(';');
-        userImg.innerHTML =
-          '<span style="font-size:13px;font-weight:700;color:#fff;line-height:1;letter-spacing:.5px;">'
-          + initials
-          + '</span>';
+        userImg.innerHTML = '<span style="font-size:13px;font-weight:700;color:#fff;line-height:1;letter-spacing:.5px;">' + initials + '</span>';
       }
     });
+
+    // Also update any standalone admin-avatar-img / dropdown-avatar-img elements
+    // used on admin-profile.html and similar pages
+    ['admin-avatar-img', 'dropdown-avatar-img'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      if (user.profileImage) {
+        el.src = user.profileImage;
+        el.style.display = 'block';
+        el.style.background = '#fff';
+      }
+    });
+
+    // Update dropdown name/role if present (admin-profile.html)
+    var dropName = document.getElementById('admin-name-nav');
+    if (dropName) dropName.textContent = (user.firstName || '') + ' ' + (user.lastName || '');
+    var dropRole = document.getElementById('dropdown-role-label');
+    if (dropRole) dropRole.textContent = (user.role || 'admin').charAt(0).toUpperCase() + (user.role || 'admin').slice(1);
+  }
+
+  /* ─── Fetch fresh user from API then apply ──────────── */
+  async function updateUserInfo() {
+    // 1. Apply localStorage immediately (instant, no flash)
+    const cached = JSON.parse(localStorage.getItem('user') || 'null');
+    if (cached) applyUserInfo(cached);
+
+    // 2. Fetch fresh data from API and sync localStorage
+    const token = localStorage.getItem('accessToken');
+    if (!token) return;
+    try {
+      const res  = await fetch(API_CONFIG.BASE_URL + '/auth/me', {
+        headers: { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' },
+      });
+      if (!res.ok) return;
+      const data = await res.json();
+      // Handle both response shapes
+      const user = (data.data && data.data.user) ? data.data.user
+                 : (data.data && data.data.firstName) ? data.data
+                 : data.user || (data.firstName ? data : null);
+      if (!user) return;
+      localStorage.setItem('user', JSON.stringify(user));
+      applyUserInfo(user);
+    } catch (e) { /* silent — cached data already applied */ }
   }
 
   /* ─── Load & render notifications ──────────────────── */
@@ -102,9 +138,20 @@
   }
 
   function renderNotifications(notifications, unreadCount) {
-    // Update badge
-    const badges = document.querySelectorAll('.noti-dropdown .badge');
-    badges.forEach(b => {
+    // Update badge — support both structures:
+    //   Structure A (most pages): <span id="notif-badge">
+    //   Structure B (legacy):     .noti-dropdown .badge
+    const notifBadge = document.getElementById('notif-badge');
+    if (notifBadge) {
+      if (unreadCount > 0) {
+        notifBadge.textContent = unreadCount > 99 ? '99+' : unreadCount;
+        notifBadge.style.display = 'inline-flex';
+      } else {
+        notifBadge.style.display = 'none';
+      }
+    }
+    const legacyBadges = document.querySelectorAll('.noti-dropdown .badge');
+    legacyBadges.forEach(b => {
       if (unreadCount > 0) {
         b.textContent = unreadCount > 99 ? '99+' : unreadCount;
         b.style.display = '';

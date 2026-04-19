@@ -235,3 +235,38 @@ exports.issueCertificate = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// GET /api/v1/enrollments/my-certificates
+exports.getMyCertificates = async (req, res) => {
+  try {
+    const certificates = await Certificate.findAll({
+      where: { studentId: req.user.userId },
+      include: [
+        {
+          model: Enrollment,
+          as: 'enrollment',
+          include: [{ model: Course, as: 'course' }],
+        },
+      ],
+      order: [['createdAt', 'DESC']],
+    });
+
+    const data = certificates.map(cert => ({
+      id: cert.id,
+      verificationCode: cert.verificationCode,
+      status: cert.status,
+      issuedAt: cert.createdAt,
+      course: cert.enrollment && cert.enrollment.course
+        ? {
+            id: cert.enrollment.course.id,
+            title: cert.enrollment.course.title,
+            thumbnail: cert.enrollment.course.thumbnail,
+          }
+        : null,
+    }));
+
+    res.json({ success: true, data });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};

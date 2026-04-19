@@ -322,60 +322,9 @@
 								</ul>
 									<div class="card mb-0">
 									<div class="card-body">
-										<div class="row">
-											<div class="col-md-12">
-												<div class="d-flex align-items-center border-bottom mb-4 pb-4">
-													<div class="flex-shrink-0 me-3">
-														<img src="/assets/img/icon/fb-icon.svg" alt="Img">
-													</div>
-													<div class="d-sm-flex align-items-center justify-content-between w-100">
-													<div class="mb-2 mb-sm-0">
-														<h6 class="mb-1">Facebook</h6>
-														<p class="mb-0">Facebook is a social platform for connecting, sharing, and building communities globally.</p>
-														
-													</div>
-													<a href="#" class="btn btn-dark flex-shrink-0">Remove</a>
-												</div>
-												</div>
-												<div class="d-flex align-items-center border-bottom mb-4 pb-4">
-													<div class="flex-shrink-0 me-3">
-														<img src="/assets/img/icon/google-icon.svg" alt="Img">
-													</div>
-													<div class="d-sm-flex align-items-center justify-content-between w-100">
-														<div class="mb-2 mb-sm-0">
-														<h6 class="mb-1">Google</h6>
-														<p class="mb-0">Google is widely used for search, maps, email, and other services.</p>
-													  </div>
-														<a href="#" class="btn btn-light flex-shrink-0">Link Account</a>
-													</div>
-												</div>
-												<div class="d-flex align-items-center border-bottom mb-4 pb-4">
-													<div class="flex-shrink-0 me-3">
-														<img src="/assets/img/icon/github-icon.svg" alt="Img">
-													</div>
-													<div class="d-sm-flex align-items-center justify-content-between w-100">
-													<div class="mb-2 mb-sm-0">
-														<h6 class="mb-1">Github</h6>
-														<p class="mb-0">GitHub is a version control and collaboration platform for hosting, managing, and sharing code.</p>
-												
-													</div>
-													<a href="#" class="btn btn-light flex-shrink-0">Link Account</a>
-												</div>
-												</div>
-												<div class="d-flex align-items-center">
-													<div class="flex-shrink-0 me-3">
-														<img src="/assets/img/icon/twitter-x-icon.svg" alt="Img">
-													</div>
-													<div class="d-sm-flex align-items-center justify-content-between w-100">
-													<div class="mb-2 mb-sm-0">
-														<h6 class="mb-1">Twitter</h6>
-														<p class="mb-0">Twitter is a platform for sharing news, updates, and global conversations.</p>
-														
-													</div>
-													<a href="#" class="btn btn-light flex-shrink-0">Link Account</a>
-												</div>
-												</div>
-											</div>
+										<div id="linked-alert" class="alert d-none mb-3" role="alert"></div>
+										<div id="linked-accounts-list">
+											<p class="text-muted text-center py-3">Loading...</p>
 										</div>
 									</div>
 								</div>						
@@ -502,6 +451,95 @@
 		<i class="fas fa-arrow-up"></i>
 	</button>
 
-		
+	<script>
+	(function() {
+		const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+		const API = isLocal ? 'http://localhost:5000/api/v1' : 'https://alkahafonlineacademy.com/api/v1';
+		const token = localStorage.getItem('accessToken');
+		if (!token) { window.location.href = '/auth/login'; return; }
+		const authH = () => ({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+		const PLATFORMS = [
+			{ key: 'facebook',  label: 'Facebook',  desc: 'Connect to share your profile on Facebook.',       icon: '/assets/img/icon/fb-icon.svg' },
+			{ key: 'twitter',   label: 'Twitter / X', desc: 'Connect to share updates on Twitter.',           icon: '/assets/img/icon/twitter-x-icon.svg' },
+			{ key: 'linkedin',  label: 'LinkedIn',  desc: 'Connect to share your professional profile.',       icon: '/assets/img/icon/linkedin-icon.svg' },
+			{ key: 'instagram', label: 'Instagram', desc: 'Connect to share your learning journey.',           icon: '/assets/img/icon/instagram-icon.svg' },
+			{ key: 'youtube',   label: 'YouTube',   desc: 'Connect your YouTube channel.',                    icon: '/assets/img/icon/youtube-icon.svg' },
+		];
+
+		let socialLinks = {};
+
+		function showAlert(msg, type) {
+			const box = document.getElementById('linked-alert');
+			box.className = 'alert alert-' + type;
+			box.textContent = msg;
+			box.classList.remove('d-none');
+			setTimeout(() => box.classList.add('d-none'), 4000);
+		}
+
+		function render() {
+			const container = document.getElementById('linked-accounts-list');
+			container.innerHTML = PLATFORMS.map((p, i) => {
+				const linked = !!(socialLinks[p.key]);
+				const isLast = i === PLATFORMS.length - 1;
+				return `<div class="d-flex align-items-center ${isLast ? '' : 'border-bottom mb-4 pb-4'}">
+					<div class="flex-shrink-0 me-3">
+						<img src="${p.icon}" alt="${p.label}" style="width:36px;height:36px;object-fit:contain;"
+							onerror="this.style.display='none'">
+					</div>
+					<div class="d-sm-flex align-items-center justify-content-between w-100">
+						<div class="mb-2 mb-sm-0">
+							<h6 class="mb-1">${p.label} ${linked ? '<span class="badge bg-success ms-1" style="font-size:10px;">Connected</span>' : ''}</h6>
+							<p class="mb-0 text-muted" style="font-size:13px;">${linked ? socialLinks[p.key] : p.desc}</p>
+						</div>
+						${linked
+							? `<button class="btn btn-danger btn-sm flex-shrink-0" onclick="unlinkAccount('${p.key}')">Remove</button>`
+							: `<button class="btn btn-outline-secondary btn-sm flex-shrink-0" onclick="linkAccount('${p.key}')">Link Account</button>`
+						}
+					</div>
+				</div>`;
+			}).join('');
+		}
+
+		window.linkAccount = function(key) {
+			const url = prompt(`Enter your ${key.charAt(0).toUpperCase()+key.slice(1)} profile URL:`);
+			if (!url || !url.trim()) return;
+			socialLinks[key] = url.trim();
+			save();
+		};
+
+		window.unlinkAccount = function(key) {
+			if (!confirm(`Remove ${key} account link?`)) return;
+			socialLinks[key] = '';
+			save();
+		};
+
+		async function save() {
+			try {
+				const res = await fetch(API + '/auth/profile', {
+					method: 'PUT', headers: authH(), body: JSON.stringify({ socialLinks })
+				});
+				if (res.ok) { showAlert('Linked accounts updated.', 'success'); render(); }
+				else { const d = await res.json(); showAlert(d.message || 'Failed to save.', 'danger'); }
+			} catch(e) { showAlert('Something went wrong.', 'danger'); }
+		}
+
+		// Load
+		fetch(API + '/auth/me', { headers: authH() }).then(r => r.json()).then(res => {
+			const u = (res.data && res.data.user) ? res.data.user : (res.data || res);
+			socialLinks = u.socialLinks || {};
+			render();
+		}).catch(() => {
+			document.getElementById('linked-accounts-list').innerHTML = '<p class="text-danger text-center">Failed to load.</p>';
+		});
+
+		// Logout
+		document.querySelectorAll('[href="/auth/login"]').forEach(a => {
+			if (a.textContent.trim() === 'Logout') {
+				a.addEventListener('click', e => { e.preventDefault(); localStorage.clear(); window.location.href = '/auth/login'; });
+			}
+		});
+	})();
+	</script>
 	</body>
 </html>

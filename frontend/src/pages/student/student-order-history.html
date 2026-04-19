@@ -169,8 +169,8 @@
 											<img src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
 										</div>
 										<div>
-											<h6>Ronald Richard</h6>
-											<p>studentdemo@example.com</p>
+											<h6 data-user-name>Student</h6>
+											<p data-user-email></p>
 										</div>
 									</div>
 									<ul class="profile-body">
@@ -192,7 +192,7 @@
 									</ul>
 									<div class="profile-footer">
 										<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/auth/login"><i class="isax isax-arrow-2 me-2"></i>Log in as Instructor</a>
-										<a href="/" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+										<a href="#" id="logoutBtn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
 									</div>
                                 </div>
                             </div>
@@ -235,7 +235,7 @@
 												<span class="verify-tick"><i class="isax isax-verify5"></i></span>
 											</span>
 											<div>
-												<h5 class="mb-1 text-white d-inline-flex align-items-center">Ronald Richard<a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+												<h5 class="mb-1 text-white d-inline-flex align-items-center"><span data-user-name>Student</span><a href="/student/student-settings" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
 												<p class="text-light">Student</p>
 											</div>
 										</div>
@@ -294,7 +294,7 @@
 											<a href="/student/student-settings" class="d-inline-flex align-items-center"><i class="isax isax-setting-25 me-2"></i>Settings</a>
 										</li>
 										<li>
-											<a href="/auth/login" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
+											<a href="#" class="d-inline-flex align-items-center" onclick="localStorage.clear();window.location.href='/auth/login'"><i class="isax isax-logout5 me-2"></i>Logout</a>
 										</li>
 									</ul>
 								</div>
@@ -310,15 +310,14 @@
 										<div class="mb-3">
 											<div class="dropdown">
 												<a href="javascript:void(0);" class="dropdown-toggle btn rounded border d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-													Status
+													<span id="filter-label">All Status</span>
 												</a>
 												<ul class="dropdown-menu dropdown-menu-end p-3">
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item rounded-1">Completed</a>
-													</li>
-													<li>
-														<a href="javascript:void(0);" class="dropdown-item rounded-1">Pending</a>
-													</li>
+													<li><a href="javascript:void(0);" class="dropdown-item rounded-1" data-status-filter="all">All</a></li>
+													<li><a href="javascript:void(0);" class="dropdown-item rounded-1" data-status-filter="completed">Completed</a></li>
+													<li><a href="javascript:void(0);" class="dropdown-item rounded-1" data-status-filter="paid">Paid</a></li>
+													<li><a href="javascript:void(0);" class="dropdown-item rounded-1" data-status-filter="pending">Pending</a></li>
+													<li><a href="javascript:void(0);" class="dropdown-item rounded-1" data-status-filter="failed">Failed</a></li>
 												</ul>
 											</div>
 										</div>
@@ -328,7 +327,7 @@
 											<span class="input-icon-addon">
 												<i class="isax isax-search-normal-14"></i>
 											</span>
-											<input type="email" class="form-control form-control-md" placeholder="Search">
+											<input type="text" id="order-search" class="form-control form-control-md" placeholder="Search by course or order ID">
 										</div>
 									</div>
 								</div>
@@ -343,79 +342,8 @@
 													<th></th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td><a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#view_invoice">#ORD010</a></td>
-													<td>22 Aug 2025</td>
-													<td>$160</td>
-													<td><span class="badge bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Completed</span></td>
-													<td>
-														<div class="d-flex align-items-center">
-															<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_invoice"><i class="isax isax-eye"></i></a>
-															<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td><a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#view_invoice">#ORD009</a></td>
-													<td>10 Aug 2025</td>
-													<td>$180</td>
-													<td><span class="badge bg-info d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Pending</span></td>
-													<td>
-														<div class="d-flex align-items-center">
-															<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_invoice"><i class="isax isax-eye"></i></a>
-															<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td><a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#view_invoice">#ORD008</a></td>
-													<td>26 Jul 2025</td>
-													<td>$200</td>
-													<td><span class="badge bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Completed</span></td>
-													<td>
-														<div class="d-flex align-items-center">
-															<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_invoice"><i class="isax isax-eye"></i></a>
-															<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td><a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#view_invoice">#ORD007</a></td>
-													<td>12 Jul 2025</td>
-													<td>$220</td>
-													<td><span class="badge bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Completed</span></td>
-													<td>
-														<div class="d-flex align-items-center">
-															<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_invoice"><i class="isax isax-eye"></i></a>
-															<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td><a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#view_invoice">#ORD006</a></td>
-													<td>02 Jul 2025</td>
-													<td>$170</td>
-													<td><span class="badge bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Completed</span></td>
-													<td>
-														<div class="d-flex align-items-center">
-															<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_invoice"><i class="isax isax-eye"></i></a>
-															<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-														</div>
-													</td>
-												</tr>
-												<tr>
-													<td><a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#view_invoice">#ORD005</a></td>
-													<td>25 Jun 2025</td>
-													<td>$150</td>
-													<td><span class="badge bg-success d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>Completed</span></td>
-													<td>
-														<div class="d-flex align-items-center">
-															<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_invoice"><i class="isax isax-eye"></i></a>
-															<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-														</div>
-													</td>
-												</tr>
+											<tbody id="order-tbody">
+												<tr><td colspan="5" class="text-center py-4"><div class="spinner-border spinner-border-sm text-secondary me-2"></div>Loading...</td></tr>
 											</tbody>
 										</table>
 									</div>
@@ -564,7 +492,7 @@
                                     <div class="col-lg-5">
                                         <span class="mb-3 d-flex">To</span>
                                         <div>
-                                            <h6 class="mb-2">Ronald Richard</h6>
+                                            <h6 class="mb-2" id="inv-to-name">Student</h6>
                                             <p class="fs-14 mb-1">3103 Trainer Avenue Peoria, IL 61602</p>
                                             <p class="fs-14 mb-1">Email : <a href="#">adre3@example.com</a></p>
                                             <p class="fs-14">Phone : <a href="#">+1 987 471 6589</a></p>
@@ -573,7 +501,7 @@
                                     <div class="col-lg-2">
                                         <div class="mb-3 text-end">
                                             <span class="mb-1 d-block">Payment Status</span>
-                                            <span class="badge bg-success badge-sm d-inline-flex align-items-center fs-10 fw-normal mb-4"><i class="fa-solid fa-circle fs-5 me-1"></i>Completed</span>
+                                            <span id="inv-status"></span>
                                             <div>
                                                 <img src="/assets/img/icon/qr.svg" class="img-fluid" alt="QR">
                                             </div>
@@ -596,7 +524,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <p class="text-gray-9">Information About UI/UX Design Degree</p>
+                                                    <p class="text-gray-9" id="inv-course">Course</p>
                                                 </td>
                                                 <td class="text-gray text-center">1</td>
                                                 <td class="text-gray text-end">$120</td>
@@ -680,6 +608,166 @@
 		<i class="fas fa-arrow-up"></i>
 	</button>
 
-		
+	<script>
+	(function () {
+		const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+		const API = isLocal ? 'http://localhost:5000/api/v1' : 'https://alkahafonlineacademy.com/api/v1';
+		const token = localStorage.getItem('accessToken');
+		if (!token) { window.location.href = '/auth/login'; return; }
+
+		function headers() {
+			return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token };
+		}
+
+		function formatDate(d) {
+			return new Date(d).toLocaleDateString('en-PK', { day: '2-digit', month: 'short', year: 'numeric' });
+		}
+
+		function formatPKR(amount) {
+			return 'PKR ' + Number(amount || 0).toLocaleString('en-PK');
+		}
+
+		function statusBadge(status) {
+			const map = {
+				completed:  ['bg-success', 'Completed'],
+				paid:       ['bg-success', 'Paid'],
+				pending:    ['bg-warning text-dark', 'Pending'],
+				failed:     ['bg-danger',  'Failed'],
+				refunded:   ['bg-info',    'Refunded'],
+			};
+			const [cls, label] = map[(status || '').toLowerCase()] || ['bg-secondary', status || 'Unknown'];
+			return `<span class="badge ${cls} d-inline-flex align-items-center me-1"><i class="fa-solid fa-circle fs-5 me-1"></i>${label}</span>`;
+		}
+
+		// ── Load user info ──────────────────────────────────────────────
+		async function loadUser() {
+			try {
+				const res = await fetch(API + '/auth/me', { headers: headers() });
+				const d = await res.json();
+				const u = (d.data && d.data.user) ? d.data.user : (d.data || d);
+				if (!u || !u.firstName) return;
+				const name = (u.firstName + ' ' + u.lastName).trim();
+				document.querySelectorAll('[data-user-name]').forEach(el => el.textContent = name);
+				document.querySelectorAll('[data-user-email]').forEach(el => el.textContent = u.email || '');
+				if (u.profileImage) {
+					document.querySelectorAll('[data-user-avatar]').forEach(el => el.src = u.profileImage);
+				}
+			} catch (e) {}
+		}
+
+		// ── All payments cache ──────────────────────────────────────────
+		let allPayments = [];
+		let activeFilter = 'all';
+		let searchQuery = '';
+
+		// ── Load payments ───────────────────────────────────────────────
+		async function loadPayments() {
+			const tbody = document.getElementById('order-tbody');
+			const empty = document.getElementById('order-empty');
+			tbody.innerHTML = `<tr><td colspan="5" class="text-center py-4"><div class="spinner-border spinner-border-sm text-secondary me-2"></div>Loading...</td></tr>`;
+
+			try {
+				const res = await fetch(API + '/payments/my-payments', { headers: headers() });
+				const d = await res.json();
+				allPayments = d.data || [];
+				renderTable();
+			} catch (e) {
+				tbody.innerHTML = `<tr><td colspan="5" class="text-center text-danger py-4">Failed to load payments. Please try again.</td></tr>`;
+			}
+		}
+
+		function renderTable() {
+			const tbody = document.getElementById('order-tbody');
+			const empty = document.getElementById('order-empty');
+
+			let filtered = allPayments.filter(p => {
+				const matchStatus = activeFilter === 'all' || (p.status || '').toLowerCase() === activeFilter;
+				const title = (p.course && p.course.title) ? p.course.title.toLowerCase() : '';
+				const id = (p.id || '').toLowerCase();
+				const matchSearch = !searchQuery || title.includes(searchQuery) || id.includes(searchQuery);
+				return matchStatus && matchSearch;
+			});
+
+			if (!filtered.length) {
+				tbody.innerHTML = `<tr><td colspan="5" class="text-center text-muted py-4">No orders found.</td></tr>`;
+				return;
+			}
+
+			tbody.innerHTML = filtered.map((p, i) => {
+				const orderId = '#ORD' + String(p.id || i).slice(-6).toUpperCase();
+				return `<tr>
+					<td>
+						<a href="javascript:void(0);" class="text-primary" onclick="openInvoice(${i})" data-payment-index="${i}">${orderId}</a>
+					</td>
+					<td>${formatDate(p.createdAt)}</td>
+					<td>${formatPKR(p.amount)}</td>
+					<td>${statusBadge(p.status)}</td>
+					<td>
+						<div class="d-flex align-items-center">
+							<a href="javascript:void(0);" class="d-inline-flex fs-14 me-1 action-icon" onclick="openInvoice(${i})" title="View"><i class="isax isax-eye"></i></a>
+						</div>
+					</td>
+				</tr>`;
+			}).join('');
+
+			// store filtered for invoice lookup
+			window._filteredPayments = filtered;
+		}
+
+		// ── Invoice modal ───────────────────────────────────────────────
+		window.openInvoice = function(idx) {
+			const p = window._filteredPayments[idx];
+			if (!p) return;
+			const orderId = '#ORD' + String(p.id || idx).slice(-6).toUpperCase();
+			const courseTitle = (p.course && p.course.title) ? p.course.title : 'Course Purchase';
+			const amount = Number(p.amount || 0);
+
+			document.getElementById('inv-order-id').textContent = orderId;
+			document.getElementById('inv-date').textContent = formatDate(p.createdAt);
+			document.getElementById('inv-course').textContent = courseTitle;
+			document.getElementById('inv-amount').textContent = formatPKR(amount);
+			const inv2 = document.getElementById('inv-amount2');
+			if (inv2) inv2.textContent = formatPKR(amount);
+			document.getElementById('inv-subtotal').textContent = formatPKR(amount);
+			document.getElementById('inv-total').textContent = formatPKR(amount);
+			document.getElementById('inv-status').innerHTML = statusBadge(p.status);
+			document.getElementById('inv-method').textContent = p.paymentMethod || 'Online';
+			const toName = document.getElementById('inv-to-name');
+			if (toName) {
+				const names = document.querySelectorAll('[data-user-name]');
+				if (names.length) toName.textContent = names[0].textContent;
+			}
+
+			const modal = new bootstrap.Modal(document.getElementById('view_invoice'));
+			modal.show();
+		};
+
+		// ── Status filter ───────────────────────────────────────────────
+		document.querySelectorAll('[data-status-filter]').forEach(el => {
+			el.addEventListener('click', function (e) {
+				e.preventDefault();
+				activeFilter = this.dataset.statusFilter;
+				document.getElementById('filter-label').textContent = this.textContent;
+				renderTable();
+			});
+		});
+
+		// ── Search ──────────────────────────────────────────────────────
+		document.getElementById('order-search').addEventListener('input', function () {
+			searchQuery = this.value.trim().toLowerCase();
+			renderTable();
+		});
+
+		// ── Logout ──────────────────────────────────────────────────────
+		document.getElementById('logoutBtn') && document.getElementById('logoutBtn').addEventListener('click', function (e) {
+			e.preventDefault();
+			localStorage.clear();
+			window.location.href = '/auth/login';
+		});
+
+		loadUser();
+		loadPayments();
+	})();
+	</script>
 	</body>
 </html>
