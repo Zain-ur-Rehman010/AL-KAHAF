@@ -3,6 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDefinition = require('./config/swagger');
 const sequelize = require('./config/database');
 const rateLimitMiddleware = require('./middleware/rateLimitMiddleware');
 const errorHandler = require('./middleware/errorHandler');
@@ -26,8 +28,23 @@ const { startTrialEmailJob } = require('./jobs/trialEmailJob');
 
 const app = express();
 
-// Security middleware
-app.use(helmet());
+// Security middleware — relax CSP only for the Swagger UI path
+app.use((req, res, next) => {
+  if (req.path.startsWith('/api-docs')) {
+    // swagger-ui needs inline scripts/styles
+    return helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc:  ["'self'", "'unsafe-inline'"],
+          styleSrc:   ["'self'", "'unsafe-inline'"],
+          imgSrc:     ["'self'", 'data:', 'https://validator.swagger.io'],
+        },
+      },
+    })(req, res, next);
+  }
+  return helmet()(req, res, next);
+});
 
 // CORS configuration - Allow common local origins + env-configured origins.
 // Supports both a single origin and comma-separated values in CORS_ORIGIN.
@@ -86,6 +103,21 @@ app.use(express.static(staticPath, { dotfiles: 'deny' }));
 
 // Note: Local /uploads folder removed — images now served via Cloudinary CDN
 
+// ── Swagger UI (/api-docs) ─────────────────────────────────────────────────────
+app.use(
+  '/api-docs',
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDefinition, {
+    customSiteTitle: 'AlKahaf LMS API Docs',
+    swaggerOptions: {
+      persistAuthorization: true,   // keep the JWT token between page refreshes
+      displayRequestDuration: true,
+      filter: true,
+      docExpansion: 'none',         // start collapsed — less overwhelming
+    },
+  })
+);
+
 // Health check (accessible at both /health and /api/health)
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', timestamp: new Date() });
@@ -141,8 +173,10 @@ async function startServer() {
     await sequelize.authenticate();
     console.log('Database connected successfully');
 
-    // Use alter only in development — never in production (risk of data loss / table locks)
-    await sequelize.sync({ alter: process.env.NODE_ENV !== 'production' });
+    // sync() with no options = create tables that don't exist, leave existing ones alone.
+    // Never use { alter: true } — it causes infinite ALTER loops on BOOLEAN columns in MySQL
+    // and risks data loss. Use migrations (sequelize-cli) for schema changes.
+    await sequelize.sync();
     console.log('Database synchronized');
 
     app.listen(PORT, () => {
