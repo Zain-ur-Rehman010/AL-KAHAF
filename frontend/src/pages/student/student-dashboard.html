@@ -1,760 +1,1490 @@
-<!DOCTYPE html> 
+<!doctype html>
 <html lang="en">
-	<head>
-	
-		<!-- Meta Tags -->
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Al-Kahaf LMS is a powerful Learning Management System template designed for educators, training institutions, and businesses. Manage courses, track student progress, conduct virtual classes, and enhance e-learning experiences with an intuitive and feature-rich platform.">
-		<meta name="keywords" content="LMS template, Learning Management System, e-learning software, online course platform, student management, education portal, virtual classroom, training management system, course tracking, online education">
-		<meta name="author" content="Dreams Technologies">
-		<meta name="robots" content="index, follow">
-		
-		<title>Student Dashboard | Al-Kahaf Online Academy</title>
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Al-Kahaf LMS is a powerful Learning Management System template designed for educators, training institutions, and businesses. Manage courses, track student progress, conduct virtual classes, and enhance e-learning experiences with an intuitive and feature-rich platform."
+    />
+    <meta
+      name="keywords"
+      content="LMS template, Learning Management System, e-learning software, online course platform, student management, education portal, virtual classroom, training management system, course tracking, online education"
+    />
+    <meta name="author" content="Dreams Technologies" />
+    <meta name="robots" content="index, follow" />
 
-		<!-- Favicon -->
-		<link rel="shortcut icon" href="/assets/img/favicon.svg"> 
-		<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+    <title>Student Dashboard | Al-Kahaf Online Academy</title>
 
-		<!-- Theme Settings Js -->
-		<script src="/assets/js/theme-script.js"></script>
-		
-		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-		
-		<!-- Fontawesome CSS -->
-		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
-		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/img/favicon.svg" />
+    <link rel="apple-touch-icon" href="/assets/img/apple-icon.png" />
 
-		<!-- Feather CSS -->
-		<link rel="stylesheet" href="/assets/css/feather.css">
+    <!-- Theme Settings Js -->
+    <script src="/assets/js/theme-script.js"></script>
 
-		<!-- Iconsax CSS -->
-		<link rel="stylesheet" href="/assets/css/iconsax.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
 
-		<!-- Main CSS -->
-		<link rel="stylesheet" href="/assets/css/style.css">
-	
-		<style>
-	.profile-dropdown>a::after{display:none!important}
-	.header-inst-name{color:#fff!important}
-	</style>
-	<style>
-	.sk{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sk-shimmer 1.4s infinite;border-radius:6px;display:block}
-	@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
-	.sk-text{height:14px;margin-bottom:10px}
-	.sk-title{height:22px;margin-bottom:12px}
-	.sk-img{width:100%;border-radius:8px}
-	</style>
-</head>
-	<body>
+    <!-- Fontawesome CSS -->
+    <link
+      rel="stylesheet"
+      href="/assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css" />
 
-		<!-- Main Wrapper -->
-		<div class="main-wrapper">
+    <!-- Feather CSS -->
+    <link rel="stylesheet" href="/assets/css/feather.css" />
 
-			<!-- Header Topbar-->
-			<div class="header-topbar text-center">
-				<div class="container">
-					<div class="row">
-						<div class="col-lg-6">
-							<div class="d-flex align-items-center ">
-								<p class="d-flex align-items-center fw-medium fs-14 mb-2 me-3"><i class="isax isax-location me-2"></i>1442 Crosswind Drive Madisonville</p>
-								<p class="d-flex align-items-center fw-medium fs-14 mb-2"><i class="isax isax-call-calling5 me-2"></i>+1 45887 77874</p>
-							</div>
-						</div>
-						<div class="col-lg-6">
-							<div class="d-flex align-items-center justify-content-end">
-								<div class="dropdown flag-dropdown mb-2 me-3">
-									<a href="javascript:void(0);" class="dropdown-toggle d-inline-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-										<img src="/assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-									</a>
-									<ul class="dropdown-menu p-2 mt-2" style="">
-										<li>
-											<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-												<img src="/assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
-											</a>
-										</li>
-										<li>
-											<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-												<img src="/assets/img/flags/arab-flag.svg" class="me-2" alt="flag">ARA
-											</a>
-										</li>
-										<li>
-											<a class="dropdown-item rounded d-flex align-items-center" href="javascript:void(0);">
-												<img src="/assets/img/flags/france-flag.svg" class="me-2" alt="flag">FRE
-											</a>
-										</li>
-									</ul>
-								</div>
-								<div class="dropdown mb-2 me-3">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-										PKR
-									</a>
-									<ul class="dropdown-menu p-2 mt-2">
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">PKR</a></li>
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
-									</ul>
-								</div>
-								<ul class="social-icon d-flex align-items-center mb-2">
-                                    <li class="me-2">
-                                        <a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a>
-                                    </li>
-                                    <li class="me-2">
-                                        <a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a>
-                                    </li>
-									<li class="me-2">
-                                        <a href="javascript:void(0);"><i class="fa-brands fa-x-twitter"></i></a>
-                                    </li>
-									<li class="me-2">
-                                        <a href="javascript:void(0);"><i class="fa-brands fa-youtube"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="javascript:void(0);"><i class="fa-brands fa-linkedin"></i></a>
-                                    </li>
-                                </ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /Header Topbar-->
-		
-			<!-- Header -->
-			<header class="header-one">
-				<div class="container">
-					<div class="header-nav">
-						<div class="navbar-header">
-							<a id="mobile_btn" href="javascript:void(0);">
-								<span class="bar-icon">
-									<span></span>
-									<span></span>
-									<span></span>
-								</span>
-							</a>
-							<div class="navbar-logo">
-								<a class="logo-white header-logo" href="/">
-									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
-								</a>
-								<a class="logo-dark header-logo" href="/">
-									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
-								</a>
-							</div>
-						</div>
-						<div class="main-menu-wrapper">								
-							<div class="menu-header">
-								<a href="/" class="menu-logo">
-									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="img-fluid" alt="Logo">
-								</a>
-								<a id="menu_close" class="menu-close" href="javascript:void(0);">
-									<i class="fas fa-times"></i>
-								</a>
-							</div>
-							<ul class="main-nav">
-								<li><a href="/">Home</a></li>
-								<li><a href="/courses/course-grid">Courses</a></li>
-								<li><a href="/shared/about-us">About Us</a></li>
-							</ul>
-						</div>
-						<div class="header-btn d-flex align-items-center">
+    <!-- Iconsax CSS -->
+    <link rel="stylesheet" href="/assets/css/iconsax.css" />
 
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css" />
 
-							<div class="me-2 position-relative" id="notif-bell-wrap" style="display:none;">
-								<a href="/student/student-notifications" class="position-relative d-flex align-items-center justify-content-center" style="width:36px;height:36px;" title="Notifications">
-									<i class="isax isax-notification5" style="font-size:22px;color:#fff;"></i>
-									<span id="notif-badge" style="display:none;position:absolute;top:0;right:0;min-width:16px;height:16px;font-size:9px;border-radius:50px;background:#e53935;color:#fff;align-items:center;justify-content:center;padding:0 3px;">0</span>
-								</a>
-							</div>
-							<div class="dropdown profile-dropdown">
-                                <a href="javascript:void(0);" class="d-flex align-items-center gap-2" data-bs-toggle="dropdown" title="My Account">
-                                	<span class="avatar">
-                                		<img id="header-avatar" src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
-                                	</span>
-                                	<span class="d-none d-md-flex flex-column lh-1">
-                                		<span class="fw-semibold" style="font-size:13px;color:#d8ac27;">My Account</span>
-                                		<span id="header-name" class="header-inst-name" style="font-size:11px;">Student</span>
-                                	</span>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-end">
-									<div class="profile-header d-flex align-items-center">
-										<div class="avatar">
-											<img id="dropdown-avatar" src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
-										</div>
-										<div>
-											<h6 id="dropdown-name">Ronald Richard</h6>
-											<p id="dropdown-email">studentdemo@example.com</p>
-										</div>
-									</div>
-									<ul class="profile-body">
-										<li>
-											<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/student/student-profile"><i class="isax isax-security-user me-2"></i>My Profile</a>
-										</li>
-										<li>
-											<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/student/student-quiz"><i class="isax isax-award me-2"></i>Quiz Attempts</a>
-										</li>
-										<li>
-											<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium2" href="/student/student-order-history"><i class="isax isax-shopping-cart me-2"></i>Order History</a>
-										</li>
-										<li>
-											<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/student/student-messages"><i class="isax isax-messages-3 me-2"></i>Messages<span class="message-count">2</span></a>
-										</li>
-										<li>
-											<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/student/student-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a>
-										</li>										
-									</ul>
-									<div class="profile-footer">
-										<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/auth/login"><i class="isax isax-arrow-2 me-2"></i>Log in as Instructor</a>
-										<a href="#" id="logout-btn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
-									</div>
-                                </div>
-                            </div>
-						</div>
-					</div>
-				</div>
-			</header>
-			<!-- /Header -->
-		   
-			<!-- Breadcrumb -->
-			<div class="breadcrumb-bar text-center">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12 col-12">
-							<h2 class="breadcrumb-title mb-2">Dashboard</h2>
-							<nav aria-label="breadcrumb">
-								<ol class="breadcrumb justify-content-center mb-0">
-									<li class="breadcrumb-item"><a href="#">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
-								</ol>
-							</nav>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- /Breadcrumb -->
+    <style>
+      .profile-dropdown > a::after {
+        display: none !important;
+      }
+      .header-inst-name {
+        color: #fff !important;
+      }
+    </style>
+    <style>
+      .sk {
+        background: linear-gradient(
+          90deg,
+          #f0f0f0 25%,
+          #e8e8e8 50%,
+          #f0f0f0 75%
+        );
+        background-size: 200% 100%;
+        animation: sk-shimmer 1.4s infinite;
+        border-radius: 6px;
+        display: block;
+      }
+      @keyframes sk-shimmer {
+        0% {
+          background-position: 200% 0;
+        }
+        100% {
+          background-position: -200% 0;
+        }
+      }
+      .sk-text {
+        height: 14px;
+        margin-bottom: 10px;
+      }
+      .sk-title {
+        height: 22px;
+        margin-bottom: 12px;
+      }
+      .sk-img {
+        width: 100%;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+      <!-- Header Topbar-->
+      <div class="header-topbar text-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="d-flex align-items-center">
+                <p class="d-flex align-items-center fw-medium fs-14 mb-2 me-3">
+                  <i class="isax isax-location me-2"></i>1442 Crosswind Drive
+                  Madisonville
+                </p>
+                <p class="d-flex align-items-center fw-medium fs-14 mb-2">
+                  <i class="isax isax-call-calling5 me-2"></i>+1 45887 77874
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="d-flex align-items-center justify-content-end">
+                <div class="dropdown flag-dropdown mb-2 me-3">
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-toggle d-inline-flex align-items-center"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <img
+                      src="/assets/img/flags/us-flag.svg"
+                      class="me-2"
+                      alt="flag"
+                    />ENG
+                  </a>
+                  <ul class="dropdown-menu p-2 mt-2" style="">
+                    <li>
+                      <a
+                        class="dropdown-item rounded d-flex align-items-center"
+                        href="javascript:void(0);"
+                      >
+                        <img
+                          src="/assets/img/flags/us-flag.svg"
+                          class="me-2"
+                          alt="flag"
+                        />ENG
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item rounded d-flex align-items-center"
+                        href="javascript:void(0);"
+                      >
+                        <img
+                          src="/assets/img/flags/arab-flag.svg"
+                          class="me-2"
+                          alt="flag"
+                        />ARA
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item rounded d-flex align-items-center"
+                        href="javascript:void(0);"
+                      >
+                        <img
+                          src="/assets/img/flags/france-flag.svg"
+                          class="me-2"
+                          alt="flag"
+                        />FRE
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="dropdown mb-2 me-3">
+                  <a
+                    href="javascript:void(0);"
+                    class="dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    PKR
+                  </a>
+                  <ul class="dropdown-menu p-2 mt-2">
+                    <li>
+                      <a
+                        class="dropdown-item rounded"
+                        href="javascript:void(0);"
+                        >PKR</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item rounded"
+                        href="javascript:void(0);"
+                        >YEN</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item rounded"
+                        href="javascript:void(0);"
+                        >EURO</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+                <ul class="social-icon d-flex align-items-center mb-2">
+                  <li class="me-2">
+                    <a href="javascript:void(0);"
+                      ><i class="fa-brands fa-facebook-f"></i
+                    ></a>
+                  </li>
+                  <li class="me-2">
+                    <a href="javascript:void(0);"
+                      ><i class="fa-brands fa-instagram"></i
+                    ></a>
+                  </li>
+                  <li class="me-2">
+                    <a href="javascript:void(0);"
+                      ><i class="fa-brands fa-x-twitter"></i
+                    ></a>
+                  </li>
+                  <li class="me-2">
+                    <a href="javascript:void(0);"
+                      ><i class="fa-brands fa-youtube"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);"
+                      ><i class="fa-brands fa-linkedin"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Header Topbar-->
 
-			<!-- Trial Countdown Banner -->
-			<div id="trialBanner" style="display:none;background:linear-gradient(135deg,#2c1506,#522811);padding:14px 0;border-bottom:3px solid #d8ac27;">
-				<div class="container">
-					<div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
-						<div class="d-flex align-items-center gap-3">
-							<span style="background:#d8ac27;color:#1a0a00;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;">Free Trial</span>
-							<span id="trialBannerText" style="color:#fff;font-size:14px;font-weight:500;"></span>
-						</div>
-						<a href="/src/pages/courses/course-grid.html" style="background:#d8ac27;color:#1a0a00;padding:8px 22px;border-radius:6px;font-weight:700;font-size:13px;text-decoration:none;white-space:nowrap;">
-							<i class="fa-solid fa-bolt me-1"></i>Enroll Now
-						</a>
-					</div>
-				</div>
-			</div>
-			<!-- /Trial Countdown Banner -->
+      <!-- Header -->
+      <header class="header-one">
+        <div class="container">
+          <div class="header-nav">
+            <div class="navbar-header">
+              <a id="mobile_btn" href="javascript:void(0);">
+                <span class="bar-icon">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </span>
+              </a>
+              <div class="navbar-logo">
+                <a class="logo-white header-logo" href="/">
+                  <img
+                    src="/assets/img/white-logo.png"
+                    style="width: 150px; height: 110px"
+                    class="logo"
+                    alt="Logo"
+                  />
+                </a>
+                <a class="logo-dark header-logo" href="/">
+                  <img
+                    src="/assets/img/white-logo.png"
+                    style="width: 150px; height: 110px"
+                    class="logo"
+                    alt="Logo"
+                  />
+                </a>
+              </div>
+            </div>
+            <div class="main-menu-wrapper">
+              <div class="menu-header">
+                <a href="/" class="menu-logo">
+                  <img
+                    src="/assets/img/white-logo.png"
+                    style="width: 150px; height: 110px"
+                    class="img-fluid"
+                    alt="Logo"
+                  />
+                </a>
+                <a
+                  id="menu_close"
+                  class="menu-close"
+                  href="javascript:void(0);"
+                >
+                  <i class="fas fa-times"></i>
+                </a>
+              </div>
+              <ul class="main-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/courses/course-grid">Courses</a></li>
+                <li><a href="/shared/about-us">About Us</a></li>
+              </ul>
+            </div>
+            <div class="header-btn d-flex align-items-center">
+              <div
+                class="me-2 position-relative"
+                id="notif-bell-wrap"
+                style="display: none"
+              >
+                <a
+                  href="/student/student-notifications"
+                  class="position-relative d-flex align-items-center justify-content-center"
+                  style="width: 36px; height: 36px"
+                  title="Notifications"
+                >
+                  <i
+                    class="isax isax-notification5"
+                    style="font-size: 22px; color: #fff"
+                  ></i>
+                  <span
+                    id="notif-badge"
+                    style="
+                      display: none;
+                      position: absolute;
+                      top: 0;
+                      right: 0;
+                      min-width: 16px;
+                      height: 16px;
+                      font-size: 9px;
+                      border-radius: 50px;
+                      background: #e53935;
+                      color: #fff;
+                      align-items: center;
+                      justify-content: center;
+                      padding: 0 3px;
+                    "
+                    >0</span
+                  >
+                </a>
+              </div>
+              <div class="dropdown profile-dropdown">
+                <a
+                  href="javascript:void(0);"
+                  class="d-flex align-items-center gap-2"
+                  data-bs-toggle="dropdown"
+                  title="My Account"
+                >
+                  <span class="avatar">
+                    <img
+                      id="header-avatar"
+                      src="/assets/img/user/user-02.jpg"
+                      alt="Img"
+                      class="img-fluid rounded-circle"
+                    />
+                  </span>
+                  <span class="d-none d-md-flex flex-column lh-1">
+                    <span
+                      class="fw-semibold"
+                      style="font-size: 13px; color: #d8ac27"
+                      >My Account</span
+                    >
+                    <span
+                      id="header-name"
+                      class="header-inst-name"
+                      style="font-size: 11px"
+                      >Student</span
+                    >
+                  </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                  <div class="profile-header d-flex align-items-center">
+                    <div class="avatar">
+                      <img
+                        id="dropdown-avatar"
+                        src="/assets/img/user/user-02.jpg"
+                        alt="Img"
+                        class="img-fluid rounded-circle"
+                      />
+                    </div>
+                    <div>
+                      <h6 id="dropdown-name">Ronald Richard</h6>
+                      <p id="dropdown-email">studentdemo@example.com</p>
+                    </div>
+                  </div>
+                  <ul class="profile-body">
+                    <li>
+                      <a
+                        class="dropdown-item d-inline-flex align-items-center rounded fw-medium"
+                        href="/student/student-profile"
+                        ><i class="isax isax-security-user me-2"></i>My
+                        Profile</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item d-inline-flex align-items-center rounded fw-medium"
+                        href="/student/student-quiz"
+                        ><i class="isax isax-award me-2"></i>Quiz Attempts</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item d-inline-flex align-items-center rounded fw-medium2"
+                        href="/student/student-order-history"
+                        ><i class="isax isax-shopping-cart me-2"></i>Order
+                        History</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item d-inline-flex align-items-center rounded fw-medium"
+                        href="/student/student-messages"
+                        ><i class="isax isax-messages-3 me-2"></i>Messages<span
+                          class="message-count"
+                          >2</span
+                        ></a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item d-inline-flex align-items-center rounded fw-medium"
+                        href="/student/student-settings"
+                        ><i class="isax isax-setting-2 me-2"></i>Settings</a
+                      >
+                    </li>
+                  </ul>
+                  <div class="profile-footer">
+                    <a
+                      class="dropdown-item d-inline-flex align-items-center rounded fw-medium"
+                      href="/auth/login"
+                      ><i class="isax isax-arrow-2 me-2"></i>Log in as
+                      Instructor</a
+                    >
+                    <a
+                      href="#"
+                      id="logout-btn"
+                      class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"
+                      ><i class="isax isax-logout me-2"></i>Logout</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- /Header -->
 
-			<div class="content">
-				<div class="container">
-				<!-- profile box -->
-				<div class="profile-card overflow-hidden bg-blue-gradient2 mb-5 p-5">
-					<div class="profile-card-bg">
-						<img src="/assets/img/bg/card-bg-01.png" class="profile-card-bg-1" alt="">
-					</div>
-						<div class="row align-items-center row-gap-3">
-							<div class="col-lg-6">
-								<div class="d-flex align-items-center">
-									<span class="avatar avatar-xxl avatar-rounded me-3 border border-white border-2 position-relative">
-										<img id="dash-profile-avatar" src="/assets/img/user/user-02.jpg" alt="">
-										<span class="verify-tick"><i class="isax isax-verify5"></i></span>
-									</span>
-									<div>
-										<h5 class="mb-1 text-white d-inline-flex align-items-center"><a href="/student/student-details" id="dash-profile-name">Ronald Richard</a><a href="/student/student-settings" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
-										<p class="text-light">Student</p>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="d-flex align-items-center justify-content-lg-end flex-wrap gap-2">
-									
-									
-								</div>
-							</div>
-						</div>
-				</div>
-				<!-- profile box -->
-					<div class="row">
-						<!-- sidebar -->
-						<div class="col-lg-3 theiaStickySidebar">
-							<div class="settings-sidebar">
-									<div>
-										<h6 class="mb-3">Main Menu</h6>
-										<ul class="mb-3 pb-1">
-											<li>
-												<a href="/student/student-dashboard" class="d-inline-flex align-items-center active"><i class="isax isax-grid-35 me-2"></i>Dashboard</a>
-											</li>
-											<li>
-												<a href="/student/student-profile" class="d-inline-flex align-items-center"><i class="fa-solid fa-user me-2"></i>My Profile</a>
-											</li>
-											<li>
-												<a href="/student/student-courses" class="d-inline-flex align-items-center"><i class="isax isax-teacher5 me-2"></i>Enrolled Courses</a>
-											</li>
-											<li>
-												<a href="/student/student-certificates" class="d-inline-flex align-items-center"><i class="isax isax-note-215 me-2"></i>My Certificates</a>
-											</li>
-											<li>
-												<a href="/student/student-reviews" class="d-inline-flex align-items-center"><i class="isax isax-star5 me-2"></i>Reviews</a>
-											</li>
-											<li>
-												<a href="/student/student-quiz" class="d-inline-flex align-items-center"><i class="isax isax-award5 me-2"></i>My Quiz Attempts</a>
-											</li>
-											<li>
-												<a href="/student/student-order-history" class="d-inline-flex align-items-center"><i class="isax isax-shopping-cart5 me-2"></i>Order History</a>
-											</li>
-											<li>
-												<a href="/student/student-referral" class="d-inline-flex align-items-center"><i class="isax isax-tag-user5 me-2"></i>Referrals</a>
-											</li>
-											<li>
-												<a href="/student/student-messages" class="d-inline-flex align-items-center"><i class="isax isax-messages-35 me-2"></i>Messages</a>
-											</li>
-											<li>
-												<a href="/student/student-tickets" class="d-inline-flex align-items-center"><i class="isax isax-ticket5 me-2"></i>Support Tickets</a>
-											</li>
-										</ul>
-										<hr>
-										<h6 class="mb-3">Account Settings</h6>
-										<ul>
-											<li>
-												<a href="/student/student-settings" class="d-inline-flex align-items-center"><i class="isax isax-setting-25 me-2"></i>Settings</a>
-											</li>
-											<li>
-												<a href="#" id="sidebar-logout-btn" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
-											</li>
-										</ul>
-									</div>
-							</div>
-						</div>
-						<!-- sidebar -->
-						<div class="col-lg-9">
-							<div class="row g-3 mb-4">
-						<div class="col-md-6 col-xl-3">
-							<div class="card h-100">
-								<div class="card-body d-flex align-items-center">
-									<div class="flex-shrink-0 me-3" style="width:48px;height:48px;border-radius:10px;background:rgba(82,40,17,.1);display:flex;align-items:center;justify-content:center;">
-										<i class="isax isax-book-1" style="font-size:22px;color:#522811;"></i>
-									</div>
-									<div>
-										<p class="text-muted mb-1" style="font-size:12px;">Enrolled Courses</p>
-										<h4 class="mb-0 fw-bold" id="stat-enrolled">—</h4>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-xl-3">
-							<div class="card h-100">
-								<div class="card-body d-flex align-items-center">
-									<div class="flex-shrink-0 me-3" style="width:48px;height:48px;border-radius:10px;background:rgba(216,172,39,.1);display:flex;align-items:center;justify-content:center;">
-										<i class="isax isax-clock" style="font-size:22px;color:#d8ac27;"></i>
-									</div>
-									<div>
-										<p class="text-muted mb-1" style="font-size:12px;">Active Courses</p>
-										<h4 class="mb-0 fw-bold" id="stat-active">—</h4>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-xl-3">
-							<div class="card h-100">
-								<div class="card-body d-flex align-items-center">
-									<div class="flex-shrink-0 me-3" style="width:48px;height:48px;border-radius:10px;background:rgba(40,167,69,.1);display:flex;align-items:center;justify-content:center;">
-										<i class="isax isax-tick-circle" style="font-size:22px;color:#28a745;"></i>
-									</div>
-									<div>
-										<p class="text-muted mb-1" style="font-size:12px;">Completed</p>
-										<h4 class="mb-0 fw-bold" id="stat-completed">—</h4>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 col-xl-3">
-							<div class="card h-100">
-								<div class="card-body d-flex align-items-center">
-									<div class="flex-shrink-0 me-3" style="width:48px;height:48px;border-radius:10px;background:rgba(13,110,253,.1);display:flex;align-items:center;justify-content:center;">
-										<i class="isax isax-medal" style="font-size:22px;color:#0d6efd;"></i>
-									</div>
-									<div>
-										<p class="text-muted mb-1" style="font-size:12px;">Certificates</p>
-										<h4 class="mb-0 fw-bold" id="stat-certificates">—</h4>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<h5 class="mb-3 fs-18">Recently Enrolled Courses</h5>
-							<div class="row" id="dash-courses-grid">
-								
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0" style="overflow:hidden;">
-										<div class="course-img"><span class="sk sk-img" style="height:185px;"></span></div>
-										<div class="course-content p-3">
-											<div class="d-flex align-items-center gap-2 mb-2">
-												<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
-												<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
-											</div>
-											<span class="sk sk-title" style="width:90%;"></span>
-											<span class="sk sk-text" style="width:60%;"></span>
-											<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0" style="overflow:hidden;">
-										<div class="course-img"><span class="sk sk-img" style="height:185px;"></span></div>
-										<div class="course-content p-3">
-											<div class="d-flex align-items-center gap-2 mb-2">
-												<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
-												<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
-											</div>
-											<span class="sk sk-title" style="width:90%;"></span>
-											<span class="sk sk-text" style="width:60%;"></span>
-											<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
-										</div>
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6">
-									<div class="course-item-two course-item mx-0" style="overflow:hidden;">
-										<div class="course-img"><span class="sk sk-img" style="height:185px;"></span></div>
-										<div class="course-content p-3">
-											<div class="d-flex align-items-center gap-2 mb-2">
-												<span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;"></span>
-												<span class="sk sk-text" style="width:100px;margin-bottom:0;"></span>
-											</div>
-											<span class="sk sk-title" style="width:90%;"></span>
-											<span class="sk sk-text" style="width:60%;"></span>
-											<span class="sk" style="width:100%;height:6px;border-radius:10px;margin-top:12px;"></span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div>
+      <!-- Breadcrumb -->
+      <div class="breadcrumb-bar text-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-12">
+              <h2 class="breadcrumb-title mb-2">Dashboard</h2>
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb justify-content-center mb-0">
+                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Dashboard
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Breadcrumb -->
 
-								<div class="row">
-									<div class="col-xl-7">
-										<div class="card">
-											<div class="card-body">
-												<h5 class="mb-3 border-bottom pb-3 fs-18">Recent Invoices</h5>
-												<div id="dash-invoices">
-													<p class="text-muted text-center py-3 mb-0">Loading...</p>
-												</div>											</div>
-										</div>
-									</div>
-									<div class="col-xl-5">
-										<div class="card mb-0">
-											<div class="card-body">
-												<h5 class="mb-3 fs-18 border-bottom pb-3">Course Progress</h5>
-												<div id="dash-progress-list">
-													<p class="text-muted text-center py-3 mb-0">Loading...</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+      <!-- Trial Countdown Banner -->
+      <div
+        id="trialBanner"
+        style="
+          display: none;
+          background: linear-gradient(135deg, #2c1506, #522811);
+          padding: 14px 0;
+          border-bottom: 3px solid #d8ac27;
+        "
+      >
+        <div class="container">
+          <div
+            class="d-flex align-items-center justify-content-between flex-wrap gap-2"
+          >
+            <div class="d-flex align-items-center gap-3">
+              <span
+                style="
+                  background: #d8ac27;
+                  color: #1a0a00;
+                  font-size: 11px;
+                  font-weight: 700;
+                  padding: 4px 10px;
+                  border-radius: 20px;
+                  letter-spacing: 0.5px;
+                  text-transform: uppercase;
+                "
+                >Free Trial</span
+              >
+              <span
+                id="trialBannerText"
+                style="color: #fff; font-size: 14px; font-weight: 500"
+              ></span>
+            </div>
+            <a
+              href="/src/pages/courses/course-grid.html"
+              style="
+                background: #d8ac27;
+                color: #1a0a00;
+                padding: 8px 22px;
+                border-radius: 6px;
+                font-weight: 700;
+                font-size: 13px;
+                text-decoration: none;
+                white-space: nowrap;
+              "
+            >
+              <i class="fa-solid fa-bolt me-1"></i>Enroll Now
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- /Trial Countdown Banner -->
 
-		<!-- Footer -->
-		<footer class="footer">
-			<div class="footer-bg">
-				<img src="/assets/img/bg/footer-bg-01.png" class="footer-bg-1" alt="">
-				<img src="/assets/img/bg/footer-bg-02.png" class="footer-bg-2" alt="">
-			</div>
-			<div class="footer-top">
-				<div class="container">
-					<div class="row row-gap-4">
-						<div class="col-lg-4">
-							<div class="footer-about">
-								<div class="footer-logo"><img src="/assets/img/white-logo.png" style="width: 200px;height: 150px;" alt="">
-								</div>
-								<p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
-								<div class="d-flex align-items-center">
-									<a href="#" class="me-2"><img src="/assets/img/icon/appstore.svg" alt=""></a>
-									<a href="#"><img src="/assets/img/icon/googleplay.svg" alt=""></a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-8">
-							<div class="row row-gap-4">
-								<div class="col-lg-3">
-									<div class="footer-widget footer-menu">
-										<h5 class="footer-title">For Instructor</h5>
-										<ul>
-                                            <li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
-                                            <li><a href="/instructor/instructor-dashboard">Instructor Dashboard</a></li>
-                                            <li><a href="/courses/add-course">Add New Course</a></li>
-                                            <li><a href="/auth/login">Login</a></li>
-                                            <li><a href="/auth/register">Register</a></li>
-                                        </ul>
-									</div>
-								</div>
-								<div class="col-lg-3">
-									<div class="footer-widget footer-menu">
-										<h5 class="footer-title">For Student</h5>
-										<ul>
-                                            <li><a href="/courses/course-grid">Browse Courses</a></li>
-                                            <li><a href="/student/student-dashboard">Student Dashboard</a></li>
-                                            <li><a href="/student/student-certificates">My Certificates</a></li>
-                                            <li><a href="/auth/login">Login</a></li>
-                                            <li><a href="/auth/register">Register</a></li>
-                                        </ul>
-									</div>
-								</div>
-								<div class="col-lg-6">
-									<div class="footer-widget footer-contact">
-										<h5 class="footer-title">Newsletter</h5>
-										<div class="subscribe-input">
-											<form action="javascript:void(0);">
-												<input type="email" class="form-control" placeholder="Enter your Email Address">
-												<button type="submit" class="btn btn-primary btn-sm inline-flex align-items-center"><i class="isax isax-send-2 me-1"></i>Subscribe</button>
-											</form>
-										</div>
-										<div class="footer-contact-info">
-											<div class="footer-address d-flex align-items-center">
-												<img src="/assets/img/icon/icon-20.svg" alt="Img" class="img-fluid me-2">
-												<p> 3556  Beech Street, San Francisco,<br> California, CA 94108 </p>
-											</div>
-											<div class="footer-address d-flex align-items-center">
-												<img src="/assets/img/icon/icon-19.svg" alt="Img" class="img-fluid me-2">
-												<p>Al-Kahaf LMS@example.com</p>
-											</div>
-											<div class="footer-address d-flex align-items-center">
-												<img src="/assets/img/icon/icon-21.svg" alt="Img" class="img-fluid me-2">
-												<p>+19 123-456-7890</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="footer-bottom">
-				<div class="container">
-					<div class="row row-gap-2">
-						<div class="col-md-6">
-							<div class="text-center text-md-start">
-								<p class="text-white">Copyright 2025  <span class="text-secondary">Al-KahafOnlineAcademy</span>. All rights reserved.</p>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div>
-								<ul class="d-flex align-items-center justify-content-center justify-content-md-end footer-link">
-									<li><a href="/shared/terms-and-conditions">Terms & Conditions</a></li>
-									<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</footer>
-		<!-- /Footer -->
+      <div class="content">
+        <div class="container">
+          <!-- profile box -->
+          <div class="profile-card overflow-hidden bg-blue-gradient2 mb-5 p-5">
+            <div class="profile-card-bg">
+              <img
+                src="/assets/img/bg/card-bg-01.png"
+                class="profile-card-bg-1"
+                alt=""
+              />
+            </div>
+            <div class="row align-items-center row-gap-3">
+              <div class="col-lg-6">
+                <div class="d-flex align-items-center">
+                  <span
+                    class="avatar avatar-xxl avatar-rounded me-3 border border-white border-2 position-relative"
+                  >
+                    <img
+                      id="dash-profile-avatar"
+                      src="/assets/img/user/user-02.jpg"
+                      alt=""
+                    />
+                    <span class="verify-tick"
+                      ><i class="isax isax-verify5"></i
+                    ></span>
+                  </span>
+                  <div>
+                    <h5
+                      class="mb-1 text-white d-inline-flex align-items-center"
+                    >
+                      <a href="/student/student-details" id="dash-profile-name"
+                        >Ronald Richard</a
+                      ><a
+                        href="/student/student-settings"
+                        class="link-light fs-16 ms-2"
+                        ><i class="isax isax-edit-2"></i
+                      ></a>
+                    </h5>
+                    <p class="text-light">Student</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div
+                  class="d-flex align-items-center justify-content-lg-end flex-wrap gap-2"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <!-- profile box -->
+          <div class="row">
+            <!-- sidebar -->
+            <div class="col-lg-3 theiaStickySidebar">
+              <div class="settings-sidebar">
+                <div>
+                  <h6 class="mb-3">Main Menu</h6>
+                  <ul class="mb-3 pb-1">
+                    <li>
+                      <a
+                        href="/student/student-dashboard"
+                        class="d-inline-flex align-items-center active"
+                        ><i class="isax isax-grid-35 me-2"></i>Dashboard</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/student/student-profile"
+                        class="d-inline-flex align-items-center"
+                        ><i class="fa-solid fa-user me-2"></i>My Profile</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/student/student-courses"
+                        class="d-inline-flex align-items-center"
+                        ><i class="isax isax-teacher5 me-2"></i>Enrolled
+                        Courses</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/student/student-certificates"
+                        class="d-inline-flex align-items-center"
+                        ><i class="isax isax-note-215 me-2"></i>My
+                        Certificates</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/student/student-reviews"
+                        class="d-inline-flex align-items-center"
+                        ><i class="isax isax-star5 me-2"></i>Reviews</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/student/student-quiz"
+                        class="d-inline-flex align-items-center"
+                        ><i class="isax isax-award5 me-2"></i>My Quiz
+                        Attempts</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/student/student-order-history"
+                        class="d-inline-flex align-items-center"
+                        ><i class="isax isax-shopping-cart5 me-2"></i>Order
+                        History</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/student/student-referral"
+                        class="d-inline-flex align-items-center"
+                        ><i class="isax isax-tag-user5 me-2"></i>Referrals</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/student/student-messages"
+                        class="d-inline-flex align-items-center"
+                        ><i class="isax isax-messages-35 me-2"></i>Messages</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="/student/student-tickets"
+                        class="d-inline-flex align-items-center"
+                        ><i class="isax isax-ticket5 me-2"></i>Support
+                        Tickets</a
+                      >
+                    </li>
+                  </ul>
+                  <hr />
+                  <h6 class="mb-3">Account Settings</h6>
+                  <ul>
+                    <li>
+                      <a
+                        href="/student/student-settings"
+                        class="d-inline-flex align-items-center"
+                        ><i class="isax isax-setting-25 me-2"></i>Settings</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        href="#"
+                        id="sidebar-logout-btn"
+                        class="d-inline-flex align-items-center"
+                        ><i class="isax isax-logout5 me-2"></i>Logout</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <!-- sidebar -->
+            <div class="col-lg-9">
+              <div class="row g-3 mb-4">
+                <div class="col-md-6 col-xl-3">
+                  <div class="card h-100">
+                    <div class="card-body d-flex align-items-center">
+                      <div
+                        class="flex-shrink-0 me-3"
+                        style="
+                          width: 48px;
+                          height: 48px;
+                          border-radius: 10px;
+                          background: rgba(82, 40, 17, 0.1);
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                        "
+                      >
+                        <i
+                          class="isax isax-book-1"
+                          style="font-size: 22px; color: #522811"
+                        ></i>
+                      </div>
+                      <div>
+                        <p class="text-muted mb-1" style="font-size: 12px">
+                          Enrolled Courses
+                        </p>
+                        <h4 class="mb-0 fw-bold" id="stat-enrolled">—</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                  <div class="card h-100">
+                    <div class="card-body d-flex align-items-center">
+                      <div
+                        class="flex-shrink-0 me-3"
+                        style="
+                          width: 48px;
+                          height: 48px;
+                          border-radius: 10px;
+                          background: rgba(216, 172, 39, 0.1);
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                        "
+                      >
+                        <i
+                          class="isax isax-clock"
+                          style="font-size: 22px; color: #d8ac27"
+                        ></i>
+                      </div>
+                      <div>
+                        <p class="text-muted mb-1" style="font-size: 12px">
+                          Active Courses
+                        </p>
+                        <h4 class="mb-0 fw-bold" id="stat-active">—</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                  <div class="card h-100">
+                    <div class="card-body d-flex align-items-center">
+                      <div
+                        class="flex-shrink-0 me-3"
+                        style="
+                          width: 48px;
+                          height: 48px;
+                          border-radius: 10px;
+                          background: rgba(40, 167, 69, 0.1);
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                        "
+                      >
+                        <i
+                          class="isax isax-tick-circle"
+                          style="font-size: 22px; color: #28a745"
+                        ></i>
+                      </div>
+                      <div>
+                        <p class="text-muted mb-1" style="font-size: 12px">
+                          Completed
+                        </p>
+                        <h4 class="mb-0 fw-bold" id="stat-completed">—</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                  <div class="card h-100">
+                    <div class="card-body d-flex align-items-center">
+                      <div
+                        class="flex-shrink-0 me-3"
+                        style="
+                          width: 48px;
+                          height: 48px;
+                          border-radius: 10px;
+                          background: rgba(13, 110, 253, 0.1);
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                        "
+                      >
+                        <i
+                          class="isax isax-medal"
+                          style="font-size: 22px; color: #0d6efd"
+                        ></i>
+                      </div>
+                      <div>
+                        <p class="text-muted mb-1" style="font-size: 12px">
+                          Certificates
+                        </p>
+                        <h4 class="mb-0 fw-bold" id="stat-certificates">—</h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h5 class="mb-3 fs-18">Recently Enrolled Courses</h5>
+              <div class="row" id="dash-courses-grid">
+                <div class="col-xl-4 col-md-6">
+                  <div
+                    class="course-item-two course-item mx-0"
+                    style="overflow: hidden"
+                  >
+                    <div class="course-img">
+                      <span class="sk sk-img" style="height: 185px"></span>
+                    </div>
+                    <div class="course-content p-3">
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <span
+                          class="sk"
+                          style="
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 50%;
+                            flex-shrink: 0;
+                          "
+                        ></span>
+                        <span
+                          class="sk sk-text"
+                          style="width: 100px; margin-bottom: 0"
+                        ></span>
+                      </div>
+                      <span class="sk sk-title" style="width: 90%"></span>
+                      <span class="sk sk-text" style="width: 60%"></span>
+                      <span
+                        class="sk"
+                        style="
+                          width: 100%;
+                          height: 6px;
+                          border-radius: 10px;
+                          margin-top: 12px;
+                        "
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                  <div
+                    class="course-item-two course-item mx-0"
+                    style="overflow: hidden"
+                  >
+                    <div class="course-img">
+                      <span class="sk sk-img" style="height: 185px"></span>
+                    </div>
+                    <div class="course-content p-3">
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <span
+                          class="sk"
+                          style="
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 50%;
+                            flex-shrink: 0;
+                          "
+                        ></span>
+                        <span
+                          class="sk sk-text"
+                          style="width: 100px; margin-bottom: 0"
+                        ></span>
+                      </div>
+                      <span class="sk sk-title" style="width: 90%"></span>
+                      <span class="sk sk-text" style="width: 60%"></span>
+                      <span
+                        class="sk"
+                        style="
+                          width: 100%;
+                          height: 6px;
+                          border-radius: 10px;
+                          margin-top: 12px;
+                        "
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                  <div
+                    class="course-item-two course-item mx-0"
+                    style="overflow: hidden"
+                  >
+                    <div class="course-img">
+                      <span class="sk sk-img" style="height: 185px"></span>
+                    </div>
+                    <div class="course-content p-3">
+                      <div class="d-flex align-items-center gap-2 mb-2">
+                        <span
+                          class="sk"
+                          style="
+                            width: 32px;
+                            height: 32px;
+                            border-radius: 50%;
+                            flex-shrink: 0;
+                          "
+                        ></span>
+                        <span
+                          class="sk sk-text"
+                          style="width: 100px; margin-bottom: 0"
+                        ></span>
+                      </div>
+                      <span class="sk sk-title" style="width: 90%"></span>
+                      <span class="sk sk-text" style="width: 60%"></span>
+                      <span
+                        class="sk"
+                        style="
+                          width: 100%;
+                          height: 6px;
+                          border-radius: 10px;
+                          margin-top: 12px;
+                        "
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="row">
+                  <div class="col-xl-7">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="mb-3 border-bottom pb-3 fs-18">
+                          Recent Invoices
+                        </h5>
+                        <div id="dash-invoices">
+                          <p class="text-muted text-center py-3 mb-0">
+                            Loading...
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-5">
+                    <div class="card mb-0">
+                      <div class="card-body">
+                        <h5 class="mb-3 fs-18 border-bottom pb-3">
+                          Course Progress
+                        </h5>
+                        <div id="dash-progress-list">
+                          <p class="text-muted text-center py-3 mb-0">
+                            Loading...
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-		</div>
-		<!-- /Main Wrapper -->
-	  
-		<!-- jQuery -->
-		<script src="/assets/js/jquery-3.7.1.min.js"></script>
-		
-		<!-- Bootstrap Core JS -->
-		<script src="/assets/js/bootstrap.bundle.min.js"></script>
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-bg">
+          <img
+            src="/assets/img/bg/footer-bg-01.png"
+            class="footer-bg-1"
+            alt=""
+          />
+          <img
+            src="/assets/img/bg/footer-bg-02.png"
+            class="footer-bg-2"
+            alt=""
+          />
+        </div>
+        <div class="footer-top">
+          <div class="container">
+            <div class="row row-gap-4">
+              <div class="col-lg-4">
+                <div class="footer-about">
+                  <div class="footer-logo">
+                    <img
+                      src="/assets/img/white-logo.png"
+                      style="width: 200px; height: 150px"
+                      alt=""
+                    />
+                  </div>
+                  <p>
+                    Platform designed to help organizations, educators, and
+                    learners manage, deliver, and track learning and training
+                    activities.
+                  </p>
+                  <div class="d-flex align-items-center">
+                    <a href="#" class="me-2"
+                      ><img src="/assets/img/icon/appstore.svg" alt=""
+                    /></a>
+                    <a href="#"
+                      ><img src="/assets/img/icon/googleplay.svg" alt=""
+                    /></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="row row-gap-4">
+                  <div class="col-lg-3">
+                    <div class="footer-widget footer-menu">
+                      <h5 class="footer-title">For Instructor</h5>
+                      <ul>
+                        <li>
+                          <a href="/shared/become-an-instructor"
+                            >Become an Instructor</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/instructor/instructor-dashboard"
+                            >Instructor Dashboard</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/courses/add-course">Add New Course</a>
+                        </li>
+                        <li><a href="/auth/login">Login</a></li>
+                        <li><a href="/auth/register">Register</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="footer-widget footer-menu">
+                      <h5 class="footer-title">For Student</h5>
+                      <ul>
+                        <li>
+                          <a href="/courses/course-grid">Browse Courses</a>
+                        </li>
+                        <li>
+                          <a href="/student/student-dashboard"
+                            >Student Dashboard</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/student/student-certificates"
+                            >My Certificates</a
+                          >
+                        </li>
+                        <li><a href="/auth/login">Login</a></li>
+                        <li><a href="/auth/register">Register</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="footer-widget footer-contact">
+                      <h5 class="footer-title">Newsletter</h5>
+                      <div class="subscribe-input">
+                        <form action="javascript:void(0);">
+                          <input
+                            type="email"
+                            class="form-control"
+                            placeholder="Enter your Email Address"
+                          />
+                          <button
+                            type="submit"
+                            class="btn btn-primary btn-sm inline-flex align-items-center"
+                          >
+                            <i class="isax isax-send-2 me-1"></i>Subscribe
+                          </button>
+                        </form>
+                      </div>
+                      <div class="footer-contact-info">
+                        <div class="footer-address d-flex align-items-center">
+                          <img
+                            src="/assets/img/icon/icon-20.svg"
+                            alt="Img"
+                            class="img-fluid me-2"
+                          />
+                          <p>
+                            3556 Beech Street, San Francisco,<br />
+                            California, CA 94108
+                          </p>
+                        </div>
+                        <div class="footer-address d-flex align-items-center">
+                          <img
+                            src="/assets/img/icon/icon-19.svg"
+                            alt="Img"
+                            class="img-fluid me-2"
+                          />
+                          <p>Al-Kahaf LMS@example.com</p>
+                        </div>
+                        <div class="footer-address d-flex align-items-center">
+                          <img
+                            src="/assets/img/icon/icon-21.svg"
+                            alt="Img"
+                            class="img-fluid me-2"
+                          />
+                          <p>+19 123-456-7890</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="container">
+            <div class="row row-gap-2">
+              <div class="col-md-6">
+                <div class="text-center text-md-start">
+                  <p class="text-white">
+                    Copyright 2025
+                    <span class="text-secondary">Al-KahafOnlineAcademy</span>.
+                    All rights reserved.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div>
+                  <ul
+                    class="d-flex align-items-center justify-content-center justify-content-md-end footer-link"
+                  >
+                    <li>
+                      <a href="/shared/terms-and-conditions"
+                        >Terms & Conditions</a
+                      >
+                    </li>
+                    <li><a href="/shared/privacy-policy">Privacy Policy</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- /Footer -->
+    </div>
+    <!-- /Main Wrapper -->
 
-		<!-- Sticky Sidebar JS -->
-        <script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
-        <script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
-		
-		<!-- Session + API -->
-		<script src="/assets/js/session-store.js"></script>
-		<script src="/assets/js/api-config.js"></script>
+    <!-- jQuery -->
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
 
-		<!-- Auth JS -->
-		<script src="/assets/js/auth.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
 
-		<!-- Custom JS -->
-		<script src="/assets/js/script.js"></script>
-	<!-- Scroll to Top Button -->
-	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
-		<i class="fas fa-arrow-up"></i>
-	</button>
+    <!-- Sticky Sidebar JS -->
+    <script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+    <script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 
-		
-	<script>
-	(function() {
-		var API = (typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : null)
-			|| (location.hostname === 'localhost' ? 'http://localhost:5000/api/v1' : 'https://alkahafonlineacademy.com/api/v1');
-		var token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
-		if (!token) { window.location.href = '/auth/login?redirect=' + encodeURIComponent(window.location.pathname); return; }
+    <!-- Session + API -->
+    <script src="/assets/js/session-store.js"></script>
+    <script src="/assets/js/api-config.js"></script>
 
-		function el(id) { return document.getElementById(id); }
-		function set(id, v) { var e = el(id); if (e) e.textContent = v; }
-		function authH() { return { 'Authorization': 'Bearer ' + token }; }
+    <!-- Auth JS -->
+    <script src="/assets/js/auth.js"></script>
 
-		// ── Trial countdown banner ──────────────────────────────────────
-		try {
-			var payload = JSON.parse(atob(token.split('.')[1]));
-			if (payload.isTrial && payload.trialExpiresAt) {
-				var expiry = new Date(payload.trialExpiresAt);
-				var banner = el('trialBanner'), bannerText = el('trialBannerText');
-				if (banner && bannerText) {
-					(function tick() {
-						var diff = expiry - Date.now();
-						if (diff <= 0) { banner.style.display = 'none'; window.location.href = '/courses/course-grid?reason=trial_expired'; return; }
-						var h = Math.floor(diff / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
-						bannerText.textContent = (h > 0 ? h + 'h ' + m + 'm' : m + 'm ' + s + 's') + ' remaining in your free trial';
-						banner.style.display = 'block';
-						setTimeout(tick, 1000);
-					})();
-				}
-			}
-		} catch(e) {}
+    <!-- Custom JS -->
+    <script src="/assets/js/script.js"></script>
+    <!-- Scroll to Top Button -->
+    <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
 
-		// ── Logout ──────────────────────────────────────────────────────
-		function doLogout(e) { e.preventDefault(); if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth(); else localStorage.clear(); window.location.href = '/auth/login'; }
-		['logout-btn','sidebar-logout-btn'].forEach(function(id){ var b=el(id); if(b) b.addEventListener('click',doLogout); });
+    <script>
+      (function () {
+        var API =
+          (typeof API_CONFIG !== "undefined" ? API_CONFIG.BASE_URL : null) ||
+          (location.hostname === "localhost"
+            ? "http://localhost:5000/api/v1"
+            : "https://alkahafonlineacademy.com/api/v1");
+        var token =
+          typeof AlKahafSession !== "undefined"
+            ? AlKahafSession.getAccessToken()
+            : localStorage.getItem("accessToken");
+        if (!token) {
+          window.location.href =
+            "/auth/login?redirect=" +
+            encodeURIComponent(window.location.pathname);
+          return;
+        }
+        var cachedUser =
+          typeof AlKahafSession !== "undefined"
+            ? AlKahafSession.getUser()
+            : (function () {
+                try {
+                  return JSON.parse(localStorage.getItem("user") || "null");
+                } catch (e) {
+                  return null;
+                }
+              })();
+        if (cachedUser && cachedUser.role && cachedUser.role !== "student") {
+          window.location.href =
+            cachedUser.role === "admin"
+              ? "/admin/admin-dashboard"
+              : "/instructor/instructor-dashboard";
+          return;
+        }
 
-		// ── Load user from API ──────────────────────────────────────────
-		fetch(API + '/auth/me', { headers: authH() }).then(function(r) {
-			if (r.status === 401) { doLogout({ preventDefault: function(){} }); return null; }
-			return r.json();
-		}).then(function(res) {
-			if (!res) return;
-			var u = (res.data && res.data.user) ? res.data.user : (res.data || res);
-			if (!u || !u.firstName) return;
-			var fn = (u.firstName + ' ' + u.lastName).trim();
-			var av = u.profileImage || '/assets/img/user/user-02.jpg';
-			if (el('dash-profile-name'))  el('dash-profile-name').textContent = fn;
-			if (el('dash-profile-avatar')) el('dash-profile-avatar').src = av;
-			if (el('header-avatar'))      el('header-avatar').src = av;
-			if (el('header-name'))        el('header-name').textContent = fn;
-			if (el('dropdown-avatar'))    el('dropdown-avatar').src = av;
-			if (el('dropdown-name'))      el('dropdown-name').textContent = fn;
-			if (el('dropdown-email'))     el('dropdown-email').textContent = u.email || '';
-			// sync persisted user cache (enrollments stay in memory above)
-			try { if (typeof AlKahafSession !== 'undefined') AlKahafSession.mergeUser({ profileImage: av }); else { var s = JSON.parse(localStorage.getItem('user')||'{}'); s.profileImage = av; localStorage.setItem('user', JSON.stringify(s)); } } catch(e){}
-		}).catch(function(){});
+        function el(id) {
+          return document.getElementById(id);
+        }
+        function set(id, v) {
+          var e = el(id);
+          if (e) e.textContent = v;
+        }
+        function authH() {
+          return { Authorization: "Bearer " + token };
+        }
 
-		// ── Load enrollments ────────────────────────────────────────────
-		fetch(API + '/enrollments/my-enrollments?limit=100', { headers: authH() })
-		.then(function(r) { return r.json(); })
-		.then(function(res) {
-			var E = res.enrollments || (res.data && res.data.enrollments) || (Array.isArray(res.data) ? res.data : []);
+        // ── Trial countdown banner ──────────────────────────────────────
+        try {
+          var payload = JSON.parse(atob(token.split(".")[1]));
+          if (payload.isTrial && payload.trialExpiresAt) {
+            var expiry = new Date(payload.trialExpiresAt);
+            var banner = el("trialBanner"),
+              bannerText = el("trialBannerText");
+            if (banner && bannerText) {
+              (function tick() {
+                var diff = expiry - Date.now();
+                if (diff <= 0) {
+                  banner.style.display = "none";
+                  window.location.href =
+                    "/courses/course-grid?reason=trial_expired";
+                  return;
+                }
+                var h = Math.floor(diff / 3600000),
+                  m = Math.floor((diff % 3600000) / 60000),
+                  s = Math.floor((diff % 60000) / 1000);
+                bannerText.textContent =
+                  (h > 0 ? h + "h " + m + "m" : m + "m " + s + "s") +
+                  " remaining in your free trial";
+                banner.style.display = "block";
+                setTimeout(tick, 1000);
+              })();
+            }
+          }
+        } catch (e) {}
 
-			// Stats
-			var tot = E.length;
-			var act = E.filter(function(e){ return e.status==='in_progress'||e.status==='enrolled'; }).length;
-			var com = E.filter(function(e){ return e.status==='completed'; }).length;
-			set('stat-enrolled',  tot);
-			set('stat-active',    act);
-			set('stat-completed', com);
+        // ── Logout ──────────────────────────────────────────────────────
+        function doLogout(e) {
+          e.preventDefault();
+          if (typeof AlKahafSession !== "undefined") AlKahafSession.clearAuth();
+          else localStorage.clear();
+          window.location.href = "/auth/login";
+        }
+        ["logout-btn", "sidebar-logout-btn"].forEach(function (id) {
+          var b = el(id);
+          if (b) b.addEventListener("click", doLogout);
+        });
 
-			// Course cards
-			var grid = el('dash-courses-grid');
-			if (grid) {
-				if (!E.length) {
-					grid.innerHTML = '<div class="col-12 text-center py-4"><p class="text-muted">No courses yet. <a href="/courses/course-grid">Browse Courses</a></p></div>';
-				} else {
-					grid.innerHTML = E.slice(0,3).map(function(enr) {
-						var c = enr.course || {};
-						var th = c.thumbnail ? '<img src="'+c.thumbnail+'" alt="" class="img-fluid">' : '<img src="/assets/img/course/course-01.jpg" alt="" class="img-fluid">';
-						var pg = enr.progress || 0;
-						var barColor = pg >= 100 ? 'bg-success' : pg >= 50 ? 'bg-primary' : 'bg-warning';
-						var ur = '/courses/course-details?id=' + (c.id || '');
-						return '<div class="col-xl-4 col-md-6"><div class="course-item-two course-item mx-0">'
-							+ '<div class="course-img"><a href="'+ur+'">'+th+'</a></div>'
-							+ '<div class="course-content p-3"><h6 class="title mb-2"><a href="'+ur+'">'+(c.title||'Untitled')+'</a></h6>'
-							+ '<div class="progress mb-1" style="height:6px"><div class="progress-bar '+barColor+'" style="width:'+pg+'%"></div></div>'
-							+ '<div class="d-flex justify-content-between align-items-center mb-2"><small class="text-muted">'+pg+'% complete</small>'
-							+ (pg>=100 ? '<span class="badge bg-success" style="font-size:10px;">Completed</span>' : '')
-							+ '</div>'
-							+ '<a href="'+ur+'" class="btn btn-dark btn-sm w-100">'+(pg>0?'Continue':'Start')+'</a>'
-							+ '</div></div></div>';
-					}).join('');
-				}
-			}
+        // ── Load user from API ──────────────────────────────────────────
+        fetch(API + "/auth/me", { headers: authH() })
+          .then(function (r) {
+            if (r.status === 401) {
+              doLogout({ preventDefault: function () {} });
+              return null;
+            }
+            return r.json();
+          })
+          .then(function (res) {
+            if (!res) return;
+            var u = res.data && res.data.user ? res.data.user : res.data || res;
+            if (!u || !u.firstName) return;
+            var fn = (u.firstName + " " + u.lastName).trim();
+            var av = u.profileImage || "/assets/img/user/user-02.jpg";
+            if (el("dash-profile-name"))
+              el("dash-profile-name").textContent = fn;
+            if (el("dash-profile-avatar")) el("dash-profile-avatar").src = av;
+            if (el("header-avatar")) el("header-avatar").src = av;
+            if (el("header-name")) el("header-name").textContent = fn;
+            if (el("dropdown-avatar")) el("dropdown-avatar").src = av;
+            if (el("dropdown-name")) el("dropdown-name").textContent = fn;
+            if (el("dropdown-email"))
+              el("dropdown-email").textContent = u.email || "";
+            // sync persisted user cache (enrollments stay in memory above)
+            try {
+              if (typeof AlKahafSession !== "undefined")
+                AlKahafSession.mergeUser({ profileImage: av });
+              else {
+                var s = JSON.parse(localStorage.getItem("user") || "{}");
+                s.profileImage = av;
+                localStorage.setItem("user", JSON.stringify(s));
+              }
+            } catch (e) {}
+          })
+          .catch(function () {});
 
-			// Course Progress panel (right side)
-			var prog = el('dash-progress-list');
-			if (prog) {
-				if (!E.length) {
-					prog.innerHTML = '<p class="text-muted text-center py-3 mb-0">No courses yet.</p>';
-				} else {
-					prog.innerHTML = E.slice(0,5).map(function(enr, i) {
-						var c = enr.course || {};
-						var pg = enr.progress || 0;
-						var barColor = pg >= 100 ? '#28a745' : pg >= 50 ? '#0d6efd' : '#d8ac27';
-						var isLast = i === Math.min(E.length, 5) - 1;
-						return '<div class="'+(isLast?'':'mb-3 border-bottom pb-3')+'">'
-							+ '<div class="d-flex justify-content-between align-items-center mb-1">'
-							+ '<h6 class="mb-0" style="font-size:13px;font-weight:600;">'+(c.title||'Course')+'</h6>'
-							+ '<span style="font-size:12px;font-weight:700;color:'+barColor+';">'+pg+'%</span>'
-							+ '</div>'
-							+ '<div class="progress" style="height:6px;border-radius:10px;">'
-							+ '<div class="progress-bar" style="width:'+pg+'%;background:'+barColor+';"></div></div>'
-							+ '<small class="text-muted" style="font-size:11px;">'
-							+ (pg>=100 ? '✓ Completed' : (enr.status==='enrolled'?'Not started':'In progress'))
-							+ '</small></div>';
-					}).join('');
-				}
-			}
-		}).catch(function() {
-			var grid = el('dash-courses-grid');
-			if (grid) grid.innerHTML = '<div class="col-12 text-center py-3 text-muted">Could not load courses.</div>';
-			var prog = el('dash-progress-list');
-			if (prog) prog.innerHTML = '<p class="text-muted text-center py-3 mb-0">Could not load progress.</p>';
-		});
+        // ── Load enrollments ────────────────────────────────────────────
+        fetch(API + "/enrollments/my-enrollments?limit=100", {
+          headers: authH(),
+        })
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (res) {
+            var E =
+              res.enrollments ||
+              (res.data && res.data.enrollments) ||
+              (Array.isArray(res.data) ? res.data : []);
 
-		// ── Load payments for invoices + certificates count ─────────────
-		Promise.all([
-			fetch(API + '/payments/my-payments', { headers: authH() }).then(function(r){ return r.json(); }).catch(function(){ return {}; }),
-			fetch(API + '/enrollments/my-certificates', { headers: authH() }).then(function(r){ return r.json(); }).catch(function(){ return {}; })
-		]).then(function(results) {
-			var payments = results[0].data || [];
-			var certs = results[1].data || [];
+            // Stats
+            var tot = E.length;
+            var act = E.filter(function (e) {
+              return e.status === "in_progress" || e.status === "enrolled";
+            }).length;
+            var com = E.filter(function (e) {
+              return e.status === "completed";
+            }).length;
+            set("stat-enrolled", tot);
+            set("stat-active", act);
+            set("stat-completed", com);
 
-			// Certificate stat
-			set('stat-certificates', certs.length);
+            // Course cards
+            var grid = el("dash-courses-grid");
+            if (grid) {
+              if (!E.length) {
+                grid.innerHTML =
+                  '<div class="col-12 text-center py-4"><p class="text-muted">No courses yet. <a href="/courses/course-grid">Browse Courses</a></p></div>';
+              } else {
+                grid.innerHTML = E.slice(0, 3)
+                  .map(function (enr) {
+                    var c = enr.course || {};
+                    var th = c.thumbnail
+                      ? '<img src="' +
+                        c.thumbnail +
+                        '" alt="" class="img-fluid">'
+                      : '<img src="/assets/img/course/course-01.jpg" alt="" class="img-fluid">';
+                    var pg = enr.progress || 0;
+                    var barColor =
+                      pg >= 100
+                        ? "bg-success"
+                        : pg >= 50
+                          ? "bg-primary"
+                          : "bg-warning";
+                    var ur = "/courses/course-details?id=" + (c.id || "");
+                    return (
+                      '<div class="col-xl-4 col-md-6"><div class="course-item-two course-item mx-0">' +
+                      '<div class="course-img"><a href="' +
+                      ur +
+                      '">' +
+                      th +
+                      "</a></div>" +
+                      '<div class="course-content p-3"><h6 class="title mb-2"><a href="' +
+                      ur +
+                      '">' +
+                      (c.title || "Untitled") +
+                      "</a></h6>" +
+                      '<div class="progress mb-1" style="height:6px"><div class="progress-bar ' +
+                      barColor +
+                      '" style="width:' +
+                      pg +
+                      '%"></div></div>' +
+                      '<div class="d-flex justify-content-between align-items-center mb-2"><small class="text-muted">' +
+                      pg +
+                      "% complete</small>" +
+                      (pg >= 100
+                        ? '<span class="badge bg-success" style="font-size:10px;">Completed</span>'
+                        : "") +
+                      "</div>" +
+                      '<a href="' +
+                      ur +
+                      '" class="btn btn-dark btn-sm w-100">' +
+                      (pg > 0 ? "Continue" : "Start") +
+                      "</a>" +
+                      "</div></div></div>"
+                    );
+                  })
+                  .join("");
+              }
+            }
 
-			// Invoices panel
-			var inv = el('dash-invoices');
-			if (inv) {
-				if (!payments.length) {
-					inv.innerHTML = '<p class="text-muted text-center py-3 mb-0">No payments yet.</p>';
-				} else {
-					inv.innerHTML = payments.slice(0,5).map(function(p, i) {
-						var c = p.course || {};
-						var am = parseFloat(p.amount || 0);
-						var nm = '#ORD' + String(p.id || i).slice(-6).toUpperCase();
-						var isLast = i === Math.min(payments.length, 5) - 1;
-						var statusCls = (p.status||'').toLowerCase() === 'completed' || (p.status||'').toLowerCase() === 'paid' ? 'bg-success' : 'bg-warning text-dark';
-						var statusLabel = (p.status||'paid').charAt(0).toUpperCase() + (p.status||'paid').slice(1);
-						return '<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2'+(isLast?'':' mb-3')+'">'
-							+ '<div><h6 class="mb-1">'+(c.title||'Course Purchase')+'</h6>'
-							+ '<div class="d-flex align-items-center"><span class="badge badge-sm bg-light border d-inline-flex me-3">'+nm+'</span>'
-							+ '<p class="small mb-0">PKR <span class="heading-color fw-semibold">'+am.toLocaleString('en-PK',{maximumFractionDigits:0})+'</span></p></div></div>'
-							+ '<span class="badge fw-normal '+statusCls+' d-inline-flex align-items-center"><i class="fa-solid fa-circle fs-5 me-1"></i>'+statusLabel+'</span></div>';
-					}).join('');
-				}
-			}
-		});
+            // Course Progress panel (right side)
+            var prog = el("dash-progress-list");
+            if (prog) {
+              if (!E.length) {
+                prog.innerHTML =
+                  '<p class="text-muted text-center py-3 mb-0">No courses yet.</p>';
+              } else {
+                prog.innerHTML = E.slice(0, 5)
+                  .map(function (enr, i) {
+                    var c = enr.course || {};
+                    var pg = enr.progress || 0;
+                    var barColor =
+                      pg >= 100 ? "#28a745" : pg >= 50 ? "#0d6efd" : "#d8ac27";
+                    var isLast = i === Math.min(E.length, 5) - 1;
+                    return (
+                      '<div class="' +
+                      (isLast ? "" : "mb-3 border-bottom pb-3") +
+                      '">' +
+                      '<div class="d-flex justify-content-between align-items-center mb-1">' +
+                      '<h6 class="mb-0" style="font-size:13px;font-weight:600;">' +
+                      (c.title || "Course") +
+                      "</h6>" +
+                      '<span style="font-size:12px;font-weight:700;color:' +
+                      barColor +
+                      ';">' +
+                      pg +
+                      "%</span>" +
+                      "</div>" +
+                      '<div class="progress" style="height:6px;border-radius:10px;">' +
+                      '<div class="progress-bar" style="width:' +
+                      pg +
+                      "%;background:" +
+                      barColor +
+                      ';"></div></div>' +
+                      '<small class="text-muted" style="font-size:11px;">' +
+                      (pg >= 100
+                        ? "✓ Completed"
+                        : enr.status === "enrolled"
+                          ? "Not started"
+                          : "In progress") +
+                      "</small></div>"
+                    );
+                  })
+                  .join("");
+              }
+            }
+          })
+          .catch(function () {
+            var grid = el("dash-courses-grid");
+            if (grid)
+              grid.innerHTML =
+                '<div class="col-12 text-center py-3 text-muted">Could not load courses.</div>';
+            var prog = el("dash-progress-list");
+            if (prog)
+              prog.innerHTML =
+                '<p class="text-muted text-center py-3 mb-0">Could not load progress.</p>';
+          });
 
-		// ── Notification badge ──────────────────────────────────────────
-		var bellBadge = el('notif-badge');
-		fetch(API + '/notifications?unreadOnly=true&limit=1', { headers: authH() })
-		.then(function(r){ if(r.ok) return r.json(); })
-		.then(function(res){
-			if(!res) return;
-			var cnt = res.unreadCount || 0;
-			if(bellBadge){ bellBadge.textContent = cnt>99?'99+':cnt; bellBadge.style.display = cnt>0?'flex':'none'; }
-		}).catch(function(){});
-	})();
-	</script>
-	</body>
+        // ── Load payments for invoices + certificates count ─────────────
+        Promise.all([
+          fetch(API + "/payments/my-payments", { headers: authH() })
+            .then(function (r) {
+              return r.json();
+            })
+            .catch(function () {
+              return {};
+            }),
+          fetch(API + "/enrollments/my-certificates", { headers: authH() })
+            .then(function (r) {
+              return r.json();
+            })
+            .catch(function () {
+              return {};
+            }),
+        ]).then(function (results) {
+          var payments = results[0].data || [];
+          var certs = results[1].data || [];
+
+          // Certificate stat
+          set("stat-certificates", certs.length);
+
+          // Invoices panel
+          var inv = el("dash-invoices");
+          if (inv) {
+            if (!payments.length) {
+              inv.innerHTML =
+                '<p class="text-muted text-center py-3 mb-0">No payments yet.</p>';
+            } else {
+              inv.innerHTML = payments
+                .slice(0, 5)
+                .map(function (p, i) {
+                  var c = p.course || {};
+                  var am = parseFloat(p.amount || 0);
+                  var nm =
+                    "#ORD" +
+                    String(p.id || i)
+                      .slice(-6)
+                      .toUpperCase();
+                  var isLast = i === Math.min(payments.length, 5) - 1;
+                  var statusCls =
+                    (p.status || "").toLowerCase() === "completed" ||
+                    (p.status || "").toLowerCase() === "paid"
+                      ? "bg-success"
+                      : "bg-warning text-dark";
+                  var statusLabel =
+                    (p.status || "paid").charAt(0).toUpperCase() +
+                    (p.status || "paid").slice(1);
+                  return (
+                    '<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2' +
+                    (isLast ? "" : " mb-3") +
+                    '">' +
+                    '<div><h6 class="mb-1">' +
+                    (c.title || "Course Purchase") +
+                    "</h6>" +
+                    '<div class="d-flex align-items-center"><span class="badge badge-sm bg-light border d-inline-flex me-3">' +
+                    nm +
+                    "</span>" +
+                    '<p class="small mb-0">PKR <span class="heading-color fw-semibold">' +
+                    am.toLocaleString("en-PK", { maximumFractionDigits: 0 }) +
+                    "</span></p></div></div>" +
+                    '<span class="badge fw-normal ' +
+                    statusCls +
+                    ' d-inline-flex align-items-center"><i class="fa-solid fa-circle fs-5 me-1"></i>' +
+                    statusLabel +
+                    "</span></div>"
+                  );
+                })
+                .join("");
+            }
+          }
+        });
+
+        // ── Notification badge ──────────────────────────────────────────
+        var bellBadge = el("notif-badge");
+        fetch(API + "/notifications?unreadOnly=true&limit=1", {
+          headers: authH(),
+        })
+          .then(function (r) {
+            if (r.ok) return r.json();
+          })
+          .then(function (res) {
+            if (!res) return;
+            var cnt = res.unreadCount || 0;
+            if (bellBadge) {
+              bellBadge.textContent = cnt > 99 ? "99+" : cnt;
+              bellBadge.style.display = cnt > 0 ? "flex" : "none";
+            }
+          })
+          .catch(function () {});
+      })();
+    </script>
+  </body>
 </html>
