@@ -438,6 +438,8 @@
 		<!-- Bootstrap Core JS -->
 		<script src="/assets/js/bootstrap.bundle.min.js"></script>
 
+		<!-- Session (auth keys) — must load before api-config -->
+		<script src="/assets/js/session-store.js"></script>
 		<!-- API Config -->
 		<script src="/assets/js/api-config.js"></script>
 		<script src="/assets/js/auth.js"></script>
@@ -537,12 +539,12 @@
 		}
 
 		// Hide account section + pre-fill for logged-in users
-		var token = localStorage.getItem('accessToken');
+		var token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
 		var acctSec = el('co-account-section');
 		if(token && acctSec){
 			acctSec.style.display = 'none';
 			try {
-				var u = JSON.parse(localStorage.getItem('user')||'null');
+				var u = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getUser() : JSON.parse(localStorage.getItem('user')||'null');
 				if(u){
 					if(el('co-firstName')) el('co-firstName').value = u.firstName||'';
 					if(el('co-lastName'))  el('co-lastName').value  = u.lastName||'';
@@ -581,9 +583,13 @@
 				body: JSON.stringify({firstName:fn,lastName:ln,email:em,password:pw,confirmPassword:pw,role:'student'})
 			}).then(function(r){return r.json();}).then(function(res){
 				if(res.success){
-					localStorage.setItem('accessToken',  res.data.accessToken);
-					localStorage.setItem('refreshToken', res.data.refreshToken);
-					localStorage.setItem('user', JSON.stringify(res.data.user));
+					if (typeof AlKahafSession !== 'undefined') {
+						AlKahafSession.setSessionFromLogin(res.data.accessToken, res.data.refreshToken, res.data.user);
+					} else {
+						localStorage.setItem('accessToken',  res.data.accessToken);
+						localStorage.setItem('refreshToken', res.data.refreshToken);
+						localStorage.setItem('user', JSON.stringify(res.data.user));
+					}
 					cb(res.data.accessToken);
 				} else {
 					alert(res.message || 'Registration failed. Please try again.');

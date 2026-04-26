@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html> 
+<!DOCTYPE html> 
 <html lang="en">
 	<head>
 	
@@ -182,6 +182,7 @@
 		
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
+		<script src="/assets/js/session-store.js"></script>
 	<!-- Scroll to Top Button -->
 	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
 		<i class="fas fa-arrow-up"></i>
@@ -270,13 +271,15 @@
 					const data = await res.json();
 					if (data.success) {
 						if (mode === 'reset') {
-							localStorage.setItem('passwordResetToken', data.data.resetToken);
+							if (typeof AlKahafSession !== 'undefined') AlKahafSession.setPasswordResetToken(data.data.resetToken);
+							else localStorage.setItem('passwordResetToken', data.data.resetToken);
 							showAlert('OTP verified! Redirecting to set new password...', 'success');
 							setTimeout(() => {
 								window.location.href = '/auth/set-password';
 							}, 1500);
 						} else {
-							localStorage.setItem('registeredEmail', email);
+							if (typeof AlKahafSession !== 'undefined') AlKahafSession.setRegisteredEmail(email);
+							else localStorage.setItem('registeredEmail', email);
 							showAlert('Email verified! Redirecting to login...', 'success');
 							setTimeout(() => {
 								window.location.href = '/auth/login';

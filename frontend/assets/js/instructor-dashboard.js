@@ -235,7 +235,9 @@
       .then(function (u) { renderProfileCompletion(u); })
       .catch(function () {
         // Fallback to localStorage if API fails
-        var user = JSON.parse(localStorage.getItem('user') || 'null');
+        var user = typeof AlKahafSession !== 'undefined'
+          ? AlKahafSession.getUser()
+          : JSON.parse(localStorage.getItem('user') || 'null');
         renderProfileCompletion(user);
       });
   }

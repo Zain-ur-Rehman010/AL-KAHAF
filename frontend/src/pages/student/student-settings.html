@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html> 
+<!DOCTYPE html> 
 <html lang="en">
 	<head>
 	
@@ -545,6 +545,8 @@
         <script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 		
 		<!-- API Config -->
+		<script src="/assets/js/session-store.js"></script>
+
 		<script src="/assets/js/api-config.js"></script>
 
 		<!-- Auth JS -->
@@ -560,14 +562,15 @@
 		
 	<script>
 	(function(){
-		var token=localStorage.getItem('accessToken');
+		var token=typeof AlKahafSession!=='undefined'?AlKahafSession.getAccessToken():localStorage.getItem('accessToken');
 		if(!token){window.location.href='/auth/login?redirect='+encodeURIComponent(window.location.pathname);return;}
 
 		function el(id){return document.getElementById(id);}
 
 		function doLogout(e){
 			e.preventDefault();
-			['accessToken','refreshToken','user'].forEach(function(k){localStorage.removeItem(k);});
+			if(typeof AlKahafSession!=='undefined')AlKahafSession.clearAuth();
+			else{['accessToken','refreshToken','user'].forEach(function(k){localStorage.removeItem(k);});}
 			window.location.href='/auth/login';
 		}
 		['logout-btn','sidebar-logout-btn'].forEach(function(id){
@@ -594,15 +597,15 @@
 			if(el('settings-bio'))       el('settings-bio').value=u.bio||'';
 		}
 
-		// Fill immediately from localStorage
+		// Fill immediately from persisted user cache (then refresh from API)
 		try{
-			var u=JSON.parse(localStorage.getItem('user')||'null');
+			var u=typeof AlKahafSession!=='undefined'?AlKahafSession.getUser():JSON.parse(localStorage.getItem('user')||'null');
 			if(u){fillHeader(u);fillForm(u);}
 		}catch(e){}
 
 		// Fetch fresh profile from API
 		try{
-			var uid=JSON.parse(localStorage.getItem('user')||'null');
+			var uid=typeof AlKahafSession!=='undefined'?AlKahafSession.getUser():JSON.parse(localStorage.getItem('user')||'null');
 			uid=uid&&(uid.id||uid.userId);
 			if(uid){
 				fetch(API_CONFIG.BASE_URL+'/users/'+uid+'/profile',{
@@ -634,7 +637,7 @@
 					body:JSON.stringify({profileImage:url})
 				}).then(function(r){return r.json();})
 				.then(function(res){
-					if(res.user){var cu=JSON.parse(localStorage.getItem('user')||'null')||{};Object.assign(cu,res.user);localStorage.setItem('user',JSON.stringify(cu));}
+					if(res.user){if(typeof AlKahafSession!=='undefined')AlKahafSession.mergeUser(res.user);else{var cu=JSON.parse(localStorage.getItem('user')||'null')||{};Object.assign(cu,res.user);localStorage.setItem('user',JSON.stringify(cu));}}
 				}).catch(function(){});
 			}).catch(function(){alert('Photo upload failed. Please try again.');});
 		});
@@ -658,9 +661,8 @@
 				saveBtn.disabled=false;saveBtn.textContent='Update Profile';
 				if(!res)return;
 				if(res.user){
-					var cu=JSON.parse(localStorage.getItem('user')||'null')||{};
-					Object.assign(cu,res.user);
-					localStorage.setItem('user',JSON.stringify(cu));
+					if(typeof AlKahafSession!=='undefined')AlKahafSession.mergeUser(res.user);
+					else{var cu=JSON.parse(localStorage.getItem('user')||'null')||{};Object.assign(cu,res.user);localStorage.setItem('user',JSON.stringify(cu));}
 					fillHeader(res.user);
 				}
 				alert(res.message||'Profile updated successfully!');

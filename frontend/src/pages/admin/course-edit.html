@@ -502,6 +502,8 @@
     <script src="/assets/plugins/select2/js/select2.min.js"></script>
     <!-- Custom JS -->
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/session-store.js"></script>
+
     <script src="/assets/js/api-config.js"></script>
     <script src="/assets/js/admin-header.js"></script>
 
@@ -532,8 +534,8 @@
         });
 
         function checkAuth() {
-            const token = localStorage.getItem('accessToken');
-            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
+            const user = typeof AlKahafSession !== 'undefined' ? (AlKahafSession.getUser() || {}) : JSON.parse(localStorage.getItem('user') || '{}');
             if (!token || user.role !== 'admin') {
                 window.location.href = '/auth/login';
                 return;
@@ -723,7 +725,7 @@
         async function uploadImage(file, folder) {
             const formData = new FormData();
             formData.append('image', file);
-            const token = localStorage.getItem('accessToken');
+            const token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
             const res = await fetch(API_CONFIG.BASE_URL + '/upload?folder=' + folder, {
                 method: 'POST',
                 headers: { 'Authorization': 'Bearer ' + token },
@@ -1049,9 +1051,12 @@
 
         document.getElementById('logoutBtn').addEventListener('click', function (e) {
             e.preventDefault();
+            if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth();
+            else {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('user');
+            }
             window.location.href = '/auth/login';
         });
     </script>

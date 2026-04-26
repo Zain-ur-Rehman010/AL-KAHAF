@@ -8,8 +8,8 @@
 
   /* ─── Auth Guard ────────────────────────────────────── */
   function checkAuth() {
-    const token = localStorage.getItem('accessToken');
-    const user  = JSON.parse(localStorage.getItem('user') || 'null');
+    const token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
+    const user  = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getUser() : JSON.parse(localStorage.getItem('user') || 'null');
 
     if (!token || !user) {
       window.location.href = '/auth/login';
@@ -85,9 +85,12 @@
       if (link.textContent.trim().toLowerCase().includes('logout')) {
         link.addEventListener('click', function (e) {
           e.preventDefault();
-          localStorage.removeItem('accessToken');
-          localStorage.removeItem('refreshToken');
-          localStorage.removeItem('user');
+          if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth();
+          else {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('user');
+          }
           window.location.href = '/auth/login';
         });
       }
@@ -97,9 +100,12 @@
     if (logoutBtn) {
       logoutBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        localStorage.removeItem('user');
+        if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth();
+        else {
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+          localStorage.removeItem('user');
+        }
         window.location.href = '/auth/login';
       });
     }

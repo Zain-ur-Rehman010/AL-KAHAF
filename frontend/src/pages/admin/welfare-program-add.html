@@ -378,10 +378,12 @@
 <script src="/assets/js/jquery-3.7.1.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/script.js"></script>
+<script src="/assets/js/session-store.js"></script>
+
 <script src="/assets/js/api-config.js"></script>
 <script>
     /* ── Auth ─────────────────────────────────────────────────── */
-    var token = localStorage.getItem('accessToken');
+    var token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
     if (!token) { window.location.href = '/auth/login'; }
     function authHdr(json) {
         var h = { 'Authorization': 'Bearer ' + token };
@@ -779,7 +781,10 @@
     /* ── Logout ───────────────────────────────────────────────── */
     var logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) logoutBtn.addEventListener('click', function(e) {
-        e.preventDefault(); localStorage.clear(); window.location.href = '/auth/login';
+        e.preventDefault();
+        if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth();
+        else localStorage.clear();
+        window.location.href = '/auth/login';
     });
 </script>
 </body>

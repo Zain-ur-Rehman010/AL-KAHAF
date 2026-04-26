@@ -153,14 +153,18 @@
   // ─── Load profile from API ────────────────────────────────────────────────
 
   async function loadProfile() {
-    var cached = JSON.parse(localStorage.getItem('user') || 'null');
+    var cached = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getUser() : JSON.parse(localStorage.getItem('user') || 'null');
     if (cached) populateForm(cached);
 
     try {
       var res = await fetch(BASE_URL + '/auth/me', { headers: API_CONFIG.getHeaders(true) });
       if (res.ok) {
-        var user = await res.json();
-        localStorage.setItem('user', JSON.stringify(user));
+        var raw = await res.json();
+        var user = typeof AlKahafSession !== 'undefined'
+          ? (AlKahafSession.normalizeUserPayload(raw) || raw)
+          : raw;
+        if (typeof AlKahafSession !== 'undefined') AlKahafSession.setUser(user);
+        else localStorage.setItem('user', JSON.stringify(user));
         populateForm(user);
       }
     } catch (e) {
@@ -224,9 +228,12 @@
       var data = await res.json();
 
       if (res.ok) {
-        var current = JSON.parse(localStorage.getItem('user') || '{}');
-        Object.assign(current, payload);
-        localStorage.setItem('user', JSON.stringify(current));
+        if (typeof AlKahafSession !== 'undefined') AlKahafSession.mergeUser(payload);
+        else {
+          var current = JSON.parse(localStorage.getItem('user') || '{}');
+          Object.assign(current, payload);
+          localStorage.setItem('user', JSON.stringify(current));
+        }
         showAlert('Profile updated successfully!', 'success');
       } else {
         showAlert(data.message || 'Failed to update profile.', 'danger');

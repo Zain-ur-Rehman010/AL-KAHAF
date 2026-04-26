@@ -47,7 +47,9 @@ const API_CONFIG = {
         };
 
         if (includeAuth) {
-            const token = localStorage.getItem('accessToken');
+            const token = typeof AlKahafSession !== 'undefined'
+                ? AlKahafSession.getAccessToken()
+                : localStorage.getItem('accessToken');
             if (token) {
                 headers['Authorization'] = `Bearer ${token}`;
             }

@@ -469,6 +469,8 @@
 	<script src="/assets/js/script.js"></script>
 
 	<!-- API Configuration -->
+	<script src="/assets/js/session-store.js"></script>
+
 	<script src="/assets/js/api-config.js"></script>
 	<!-- Admin Header: dynamic notifications + user info -->
 	<script src="/assets/js/admin-header.js"></script>
@@ -480,7 +482,7 @@
 		let cachedEnrollments = {};
 
 		document.addEventListener('DOMContentLoaded', function() {
-			const user = JSON.parse(localStorage.getItem('user') || '{}');
+			const user = typeof AlKahafSession !== 'undefined' ? (AlKahafSession.getUser() || {}) : JSON.parse(localStorage.getItem('user') || '{}');
 			if (!user || user.role !== 'admin') {
 				window.location.href = '/auth/login';
 				return;

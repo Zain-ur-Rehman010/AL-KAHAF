@@ -97,11 +97,11 @@
   /* ─── Fetch fresh user from API then apply ──────────── */
   async function updateUserInfo() {
     // 1. Apply localStorage immediately (instant, no flash)
-    const cached = JSON.parse(localStorage.getItem('user') || 'null');
+    const cached = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getUser() : JSON.parse(localStorage.getItem('user') || 'null');
     if (cached) applyUserInfo(cached);
 
-    // 2. Fetch fresh data from API and sync localStorage
-    const token = localStorage.getItem('accessToken');
+    // 2. Fetch fresh data from API and sync persisted user cache
+    const token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
     if (!token) return;
     try {
       const res  = await fetch(API_CONFIG.BASE_URL + '/auth/me', {
@@ -114,14 +114,17 @@
                  : (data.data && data.data.firstName) ? data.data
                  : data.user || (data.firstName ? data : null);
       if (!user) return;
-      localStorage.setItem('user', JSON.stringify(user));
+      if (typeof AlKahafSession !== 'undefined') AlKahafSession.setUser(user);
+      else localStorage.setItem('user', JSON.stringify(user));
       applyUserInfo(user);
     } catch (e) { /* silent — cached data already applied */ }
   }
 
   /* ─── Load & render notifications ──────────────────── */
   async function loadNotifications() {
-    const token = localStorage.getItem('accessToken');
+    const token = typeof AlKahafSession !== 'undefined'
+      ? AlKahafSession.getAccessToken()
+      : localStorage.getItem('accessToken');
     if (!token) return;
 
     try {
@@ -248,9 +251,12 @@
     if (logoutBtn) {
       logoutBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        localStorage.removeItem('user');
+        if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth();
+        else {
+          localStorage.removeItem('accessToken');
+          localStorage.removeItem('refreshToken');
+          localStorage.removeItem('user');
+        }
         window.location.href = '/auth/login';
       });
     }

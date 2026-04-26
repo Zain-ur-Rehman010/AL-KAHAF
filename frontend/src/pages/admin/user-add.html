@@ -299,6 +299,8 @@
 	<script src="/assets/js/script.js"></script>
 
 	<!-- API Configuration -->
+	<script src="/assets/js/session-store.js"></script>
+
 	<script src="/assets/js/api-config.js"></script>
 	<!-- Admin Header: dynamic notifications + user info -->
 	<script src="/assets/js/admin-header.js"></script>
@@ -380,7 +382,7 @@
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
-							'Authorization': 'Bearer ' + localStorage.getItem('accessToken')
+							'Authorization': 'Bearer ' + (typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken'))
 						},
 						body: JSON.stringify(formData)
 					});

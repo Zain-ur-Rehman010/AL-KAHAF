@@ -296,6 +296,8 @@
 <script src="/assets/js/jquery-3.7.1.min.js"></script>
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 <script src="/assets/js/script.js"></script>
+<script src="/assets/js/session-store.js"></script>
+
 <script src="/assets/js/api-config.js"></script>
 <script>
     var _progPage  = 1;
@@ -305,7 +307,7 @@
     var _allProgs  = [];          // cache for donation filter dropdown
 
     /* ── Auth ─────────────────────────────────────────────────────── */
-    var token = localStorage.getItem('accessToken');
+    var token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
     if (!token) { window.location.href = '/auth/login'; }
 
     function authHdr() { return { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' }; }
@@ -512,11 +514,17 @@
     /* ── Admin name / logout ────────────────────────────────────────── */
     (function() {
         try {
-            var u = JSON.parse(localStorage.getItem('user') || '{}');
-            if (u.name) document.getElementById('admin-name').textContent = u.name;
+            var u = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getUser() : JSON.parse(localStorage.getItem('user') || '{}');
+            if (u) {
+                var disp = (u.name || ((u.firstName || '') + ' ' + (u.lastName || '')).trim()) || '';
+                if (disp) document.getElementById('admin-name').textContent = disp;
+            }
         } catch(e) {}
         document.getElementById('logoutBtn').addEventListener('click', function(e) {
-            e.preventDefault(); localStorage.clear(); window.location.href = '/auth/login';
+            e.preventDefault();
+            if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth();
+            else localStorage.clear();
+            window.location.href = '/auth/login';
         });
     })();
 

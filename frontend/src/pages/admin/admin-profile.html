@@ -360,6 +360,7 @@
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <!-- Custom JS -->
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/session-store.js"></script>
     <script src="/assets/js/api-config.js"></script>
     <script src="/assets/js/admin-header.js"></script>
 
@@ -370,7 +371,7 @@
     <script>
     (function () {
         const API_BASE = (typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : null) || window.API_BASE_URL || 'http://localhost:5000/api/v1';
-        const token = localStorage.getItem('accessToken');
+        const token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
 
         if (!token) { window.location.href = '/auth/login'; return; }
 
@@ -451,8 +452,9 @@
                 const data = await res.json();
                 const user = extractUser(data);
                 if (user) {
-                    // Sync localStorage so admin-header.js on all pages gets fresh data
-                    localStorage.setItem('user', JSON.stringify(user));
+                    // Sync persisted user cache so admin-header.js on all pages gets fresh data
+                    if (typeof AlKahafSession !== 'undefined') AlKahafSession.setUser(user);
+                    else localStorage.setItem('user', JSON.stringify(user));
                     populateCard(user);
                     populateForm(user);
                 } else {
@@ -558,10 +560,13 @@
                 });
                 if (res.ok) {
                     const saved = await res.json();
-                    // Update localStorage so every page reflects the new photo
-                    const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
-                    storedUser.profileImage = uploadData.url;
-                    localStorage.setItem('user', JSON.stringify(storedUser));
+                    // Update persisted user cache so every page reflects the new photo
+                    if (typeof AlKahafSession !== 'undefined') AlKahafSession.mergeUser({ profileImage: uploadData.url });
+                    else {
+                        const storedUser = JSON.parse(localStorage.getItem('user') || '{}');
+                        storedUser.profileImage = uploadData.url;
+                        localStorage.setItem('user', JSON.stringify(storedUser));
+                    }
 
                     showAlert('Profile photo updated.', 'success');
                     // Large profile avatar
@@ -588,7 +593,8 @@
         // Logout
         document.getElementById('logoutBtn').addEventListener('click', function (e) {
             e.preventDefault();
-            localStorage.clear();
+            if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth();
+            else localStorage.clear();
             window.location.href = '/auth/login';
         });
 

@@ -103,7 +103,7 @@
 
   // Load profile data: first from localStorage (fast), then refresh from API
   async function loadProfile() {
-    var cached = JSON.parse(localStorage.getItem('user') || 'null');
+    var cached = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getUser() : JSON.parse(localStorage.getItem('user') || 'null');
     if (cached) populateProfile(cached);
 
     try {
@@ -111,8 +111,12 @@
         headers: API_CONFIG.getHeaders(true)
       });
       if (res.ok) {
-        var user = await res.json();
-        localStorage.setItem('user', JSON.stringify(user));
+        var raw = await res.json();
+        var user = typeof AlKahafSession !== 'undefined'
+          ? (AlKahafSession.normalizeUserPayload(raw) || raw)
+          : raw;
+        if (typeof AlKahafSession !== 'undefined') AlKahafSession.setUser(user);
+        else localStorage.setItem('user', JSON.stringify(user));
         populateProfile(user);
       }
     } catch (e) {

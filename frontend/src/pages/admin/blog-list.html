@@ -412,10 +412,11 @@
 <script src="/assets/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<script src="/assets/js/session-store.js"></script>
 
 <script>
 var API_BASE = 'http://localhost:5000/api/v1';
-var token = localStorage.getItem('accessToken') || '';
+var token = (typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken')) || '';
 var blogModal, deleteModal, loginModal, viewModal, toastEl, toastObj;
 var deleteTargetId = null;
 
@@ -458,7 +459,13 @@ function verifyAndLoad() {
 	fetch(API_BASE + '/blogs/admin/all?limit=1', { headers: authHeaders() })
 		.then(function(r) {
 			if (r.status === 401 || r.status === 403) {
-				localStorage.removeItem('adminToken');
+				if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth();
+				else {
+					localStorage.removeItem('accessToken');
+					localStorage.removeItem('refreshToken');
+					localStorage.removeItem('user');
+					localStorage.removeItem('adminToken');
+				}
 				token = '';
 				loginModal.show();
 			} else {
@@ -491,7 +498,13 @@ function adminLogin() {
 				return;
 			}
 			token = j.data.accessToken;
-			localStorage.setItem('adminToken', token);
+			if (typeof AlKahafSession !== 'undefined') {
+				AlKahafSession.setSessionFromLogin(j.data.accessToken, j.data.refreshToken, j.data.user);
+			} else {
+				localStorage.setItem('accessToken', token);
+				if (j.data.refreshToken) localStorage.setItem('refreshToken', j.data.refreshToken);
+				if (j.data.user) localStorage.setItem('user', JSON.stringify(j.data.user));
+			}
 			loginModal.hide();
 			loadBlogs();
 		} else {

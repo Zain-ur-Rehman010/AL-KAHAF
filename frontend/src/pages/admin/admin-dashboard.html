@@ -751,12 +751,14 @@
 	<script src="/assets/js/script.js"></script>
 
 	<!-- API Configuration -->
+	<script src="/assets/js/session-store.js"></script>
+
 	<script src="/assets/js/api-config.js"></script>
 
 	<!-- Admin Dashboard JS -->
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {
-			var user = JSON.parse(localStorage.getItem('user') || '{}');
+			var user = typeof AlKahafSession !== 'undefined' ? (AlKahafSession.getUser() || {}) : JSON.parse(localStorage.getItem('user') || '{}');
 			if (!user || user.role !== 'admin') { window.location.href = '/auth/login'; return; }
 
 			var lastLoginEl = document.getElementById('last-login');
@@ -777,15 +779,18 @@
 			if (logoutBtn) {
 				logoutBtn.addEventListener('click', function(e) {
 					e.preventDefault();
+					if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth();
+					else {
 					localStorage.removeItem('accessToken');
 					localStorage.removeItem('refreshToken');
 					localStorage.removeItem('user');
+					}
 					window.location.href = '/auth/login';
 				});
 			}
 
 			// Load notification unread count into bell badge
-			var _token = localStorage.getItem('accessToken');
+			var _token = (typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken'));
 			if (_token) {
 				fetch(API_CONFIG.BASE_URL + '/notifications?limit=1', {
 					headers: { 'Authorization': 'Bearer ' + _token }
@@ -837,7 +842,7 @@
 		}
 
 		async function loadDashboardData(enrollmentChart, userDistChart) {
-			var token = localStorage.getItem('accessToken');
+			var token = (typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken'));
 			if (!token) { window.location.href = '/auth/login'; return; }
 
 			try {
@@ -964,7 +969,7 @@
 	function loadFreeTrialRequests(statusFilter) {
 		var tbody = document.getElementById('free-trial-tbody');
 		if (!tbody) return;
-		var token = localStorage.getItem('accessToken');
+		var token = (typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken'));
 		var url = 'http://localhost:5000/api/v1/free-trial?limit=10&page=1';
 		if (statusFilter) url += '&status=' + statusFilter;
 		fetch(url, { headers: { 'Authorization': 'Bearer ' + token } })
@@ -1018,7 +1023,7 @@
 	}
 
 	function updateFtStatus(id, status) {
-		var token = localStorage.getItem('accessToken');
+		var token = (typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken'));
 		fetch('http://localhost:5000/api/v1/free-trial/' + id + '/status', {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
@@ -1062,7 +1067,7 @@
 	<!-- Welfare Widget Script -->
 	<script>
 		(async function loadWelfareWidget() {
-			var token = localStorage.getItem('accessToken');
+			var token = (typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken'));
 			if (!token) return;
 			var hdr = { 'Authorization': 'Bearer ' + token };
 

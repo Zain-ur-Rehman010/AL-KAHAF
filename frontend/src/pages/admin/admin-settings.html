@@ -875,6 +875,8 @@
 
     <!-- Custom JS -->
     <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/session-store.js"></script>
+
     <script src="/assets/js/api-config.js"></script>
     <script src="/assets/js/admin-header.js"></script>
 
@@ -890,8 +892,8 @@
 
         // Check if user is logged in and is admin
         function checkAuth() {
-            const token = localStorage.getItem('accessToken');
-            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
+            const user = typeof AlKahafSession !== 'undefined' ? (AlKahafSession.getUser() || {}) : JSON.parse(localStorage.getItem('user') || '{}');
 
             if (!token || user.role !== 'admin') {
                 window.location.href = '/auth/login';
@@ -1175,9 +1177,12 @@
         // Logout
         document.getElementById('logoutBtn').addEventListener('click', function(e) {
             e.preventDefault();
+            if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth();
+            else {
             localStorage.removeItem('accessToken');
             localStorage.removeItem('refreshToken');
             localStorage.removeItem('user');
+            }
             window.location.href = '/auth/login';
         });
     </script>
@@ -1215,7 +1220,7 @@
 		btn.disabled = true; btn.textContent = 'Saving...';
 
 		try {
-			const token = localStorage.getItem('accessToken');
+			const token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
 			const res = await fetch(API_BASE + '/auth/change-password', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },

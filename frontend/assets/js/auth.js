@@ -168,7 +168,9 @@
         // Logout user
         logout: async function() {
             try {
-                const refreshToken = localStorage.getItem('refreshToken');
+                const refreshToken = typeof AlKahafSession !== 'undefined'
+                    ? AlKahafSession.getRefreshToken()
+                    : localStorage.getItem('refreshToken');
 
                 await fetch(API_CONFIG.getURL(API_CONFIG.ENDPOINTS.LOGOUT), {
                     method: 'POST',
@@ -186,31 +188,49 @@
 
         // Save authentication tokens
         saveTokens: function(accessToken, refreshToken) {
-            localStorage.setItem('accessToken', accessToken);
-            localStorage.setItem('refreshToken', refreshToken);
+            if (typeof AlKahafSession !== 'undefined') {
+                AlKahafSession.setTokens(accessToken, refreshToken);
+            } else {
+                localStorage.setItem('accessToken', accessToken);
+                localStorage.setItem('refreshToken', refreshToken);
+            }
         },
 
         // Save user data
         saveUser: function(user) {
-            localStorage.setItem('user', JSON.stringify(user));
+            if (typeof AlKahafSession !== 'undefined') {
+                AlKahafSession.setUser(user);
+            } else {
+                localStorage.setItem('user', JSON.stringify(user));
+            }
         },
 
         // Get current user
         getUser: function() {
+            if (typeof AlKahafSession !== 'undefined') {
+                return AlKahafSession.getUser();
+            }
             const userStr = localStorage.getItem('user');
             return userStr ? JSON.parse(userStr) : null;
         },
 
         // Check if user is authenticated
         isAuthenticated: function() {
+            if (typeof AlKahafSession !== 'undefined') {
+                return !!AlKahafSession.getAccessToken();
+            }
             return !!localStorage.getItem('accessToken');
         },
 
         // Clear session data
         clearSession: function() {
-            localStorage.removeItem('accessToken');
-            localStorage.removeItem('refreshToken');
-            localStorage.removeItem('user');
+            if (typeof AlKahafSession !== 'undefined') {
+                AlKahafSession.clearAuth();
+            } else {
+                localStorage.removeItem('accessToken');
+                localStorage.removeItem('refreshToken');
+                localStorage.removeItem('user');
+            }
         },
 
         // Redirect based on user role
@@ -364,13 +384,17 @@
     const loginForm = document.getElementById('login-form');
     if (loginForm) {
         // Auto-fill email if user just registered
-        const registeredEmail = localStorage.getItem('registeredEmail');
+        const registeredEmail = typeof AlKahafSession !== 'undefined'
+            ? AlKahafSession.consumeRegisteredEmail()
+            : (function () {
+                var e = localStorage.getItem('registeredEmail');
+                if (e) localStorage.removeItem('registeredEmail');
+                return e;
+            })();
         if (registeredEmail) {
             const emailInput = document.getElementById('email');
             if (emailInput) {
                 emailInput.value = registeredEmail;
-                // Clear the stored email
-                localStorage.removeItem('registeredEmail');
                 // Focus on password field for convenience
                 const passwordInput = document.getElementById('password');
                 if (passwordInput) {

@@ -571,7 +571,8 @@
         <script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
         <script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
 		
-		<!-- API Config -->
+		<!-- Session + API -->
+		<script src="/assets/js/session-store.js"></script>
 		<script src="/assets/js/api-config.js"></script>
 
 		<!-- Auth JS -->
@@ -589,7 +590,7 @@
 	(function() {
 		var API = (typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : null)
 			|| (location.hostname === 'localhost' ? 'http://localhost:5000/api/v1' : 'https://alkahafonlineacademy.com/api/v1');
-		var token = localStorage.getItem('accessToken');
+		var token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
 		if (!token) { window.location.href = '/auth/login?redirect=' + encodeURIComponent(window.location.pathname); return; }
 
 		function el(id) { return document.getElementById(id); }
@@ -616,7 +617,7 @@
 		} catch(e) {}
 
 		// ── Logout ──────────────────────────────────────────────────────
-		function doLogout(e) { e.preventDefault(); localStorage.clear(); window.location.href = '/auth/login'; }
+		function doLogout(e) { e.preventDefault(); if (typeof AlKahafSession !== 'undefined') AlKahafSession.clearAuth(); else localStorage.clear(); window.location.href = '/auth/login'; }
 		['logout-btn','sidebar-logout-btn'].forEach(function(id){ var b=el(id); if(b) b.addEventListener('click',doLogout); });
 
 		// ── Load user from API ──────────────────────────────────────────
@@ -636,8 +637,8 @@
 			if (el('dropdown-avatar'))    el('dropdown-avatar').src = av;
 			if (el('dropdown-name'))      el('dropdown-name').textContent = fn;
 			if (el('dropdown-email'))     el('dropdown-email').textContent = u.email || '';
-			// update localStorage
-			try { var s = JSON.parse(localStorage.getItem('user')||'{}'); s.profileImage = av; localStorage.setItem('user', JSON.stringify(s)); } catch(e){}
+			// sync persisted user cache (enrollments stay in memory above)
+			try { if (typeof AlKahafSession !== 'undefined') AlKahafSession.mergeUser({ profileImage: av }); else { var s = JSON.parse(localStorage.getItem('user')||'{}'); s.profileImage = av; localStorage.setItem('user', JSON.stringify(s)); } } catch(e){}
 		}).catch(function(){});
 
 		// ── Load enrollments ────────────────────────────────────────────

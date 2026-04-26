@@ -425,6 +425,8 @@
 	<script src="/assets/js/script.js"></script>
 
 	<!-- API Configuration -->
+	<script src="/assets/js/session-store.js"></script>
+
 	<script src="/assets/js/api-config.js"></script>
 	<!-- Admin Header: dynamic notifications + user info -->
 	<script src="/assets/js/admin-header.js"></script>
@@ -440,7 +442,7 @@
 		async function uploadImage(file, folder) {
 			const formData = new FormData();
 			formData.append('image', file);
-			const token = localStorage.getItem('accessToken');
+			const token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
 			const res = await fetch(API_CONFIG.BASE_URL + '/upload?folder=' + folder, {
 				method: 'POST',
 				headers: { 'Authorization': 'Bearer ' + token },
@@ -538,7 +540,7 @@
 
 		document.addEventListener('DOMContentLoaded', function() {
 			// Check if user is admin
-			const user = JSON.parse(localStorage.getItem('user') || '{}');
+			const user = typeof AlKahafSession !== 'undefined' ? (AlKahafSession.getUser() || {}) : JSON.parse(localStorage.getItem('user') || '{}');
 			if (!user || user.role !== 'admin') {
 				window.location.href = '/auth/login';
 				return;
@@ -604,7 +606,7 @@
 					data.profileImage = newProfileImageUrl;
 				}
 
-				const token = localStorage.getItem('accessToken');
+				const token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
 				const response = await fetch(API_CONFIG.BASE_URL + '/auth/register', {
 					method: 'POST',
 					headers: {

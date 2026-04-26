@@ -435,6 +435,8 @@
 	<script src="/assets/js/script.js"></script>
 
 	<!-- API Configuration -->
+	<script src="/assets/js/session-store.js"></script>
+
 	<script src="/assets/js/api-config.js"></script>
 	<!-- Admin Header: dynamic notifications + user info -->
 	<script src="/assets/js/admin-header.js"></script>
@@ -447,7 +449,7 @@
 
 		document.addEventListener('DOMContentLoaded', function() {
 			// Check if user is admin
-			const user = JSON.parse(localStorage.getItem('user') || '{}');
+			const user = typeof AlKahafSession !== 'undefined' ? (AlKahafSession.getUser() || {}) : JSON.parse(localStorage.getItem('user') || '{}');
 			if (!user || user.role !== 'admin') {
 				window.location.href = '/auth/login';
 				return;
@@ -495,7 +497,7 @@
 
 		async function loadCourses(params = {}) {
 			try {
-				const token = localStorage.getItem('accessToken');
+				const token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
 				if (!token) {
 					window.location.href = '/auth/login';
 					return;
