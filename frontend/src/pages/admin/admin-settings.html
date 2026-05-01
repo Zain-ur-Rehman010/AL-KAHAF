@@ -619,6 +619,34 @@
                         <!-- Security Settings Tab -->
                         <div class="tab-content-item" id="security">
 
+                            <!-- Admin Change Password -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Change Password</h3>
+                                <div id="admin-cp-alert" class="alert d-none mb-3" role="alert"></div>
+                                <form id="admin-change-password-form">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Current Password <span class="text-danger">*</span></label>
+                                            <input type="password" id="adminCurrentPassword" class="form-control" placeholder="Enter current password">
+                                            <div class="mt-1">
+                                                <a href="/auth/forgot-password" class="fs-13 text-decoration-underline text-muted">Forgot current password?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">New Password <span class="text-danger">*</span></label>
+                                            <input type="password" id="adminNewPassword" class="form-control" placeholder="Enter new password">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                                            <input type="password" id="adminConfirmPassword" class="form-control" placeholder="Confirm new password">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-secondary">Update Password</button>
+                                </form>
+                            </div>
+
                             <!-- Password Requirements -->
                             <div class="settings-section">
                                 <h3 class="settings-section-title">Password Requirements</h3>
@@ -1142,6 +1170,52 @@
 	</button>
 
 
+
+<script>
+(function () {
+	const API_BASE = window.API_BASE_URL || 'http://localhost:5000/api/v1';
+	const form = document.getElementById('admin-change-password-form');
+	if (!form) return;
+
+	form.addEventListener('submit', async function (e) {
+		e.preventDefault();
+		const currentPassword = document.getElementById('adminCurrentPassword').value.trim();
+		const newPassword     = document.getElementById('adminNewPassword').value.trim();
+		const confirmPassword = document.getElementById('adminConfirmPassword').value.trim();
+		const box = document.getElementById('admin-cp-alert');
+
+		if (!currentPassword || !newPassword || !confirmPassword) {
+			box.className = 'alert alert-warning'; box.textContent = 'Please fill in all fields.'; return;
+		}
+		if (newPassword.length < 6) {
+			box.className = 'alert alert-warning'; box.textContent = 'New password must be at least 6 characters.'; return;
+		}
+		if (newPassword !== confirmPassword) {
+			box.className = 'alert alert-warning'; box.textContent = 'Passwords do not match.'; return;
+		}
+
+		const btn = form.querySelector('[type="submit"]');
+		btn.disabled = true; btn.textContent = 'Saving...';
+
+		try {
+			const token = localStorage.getItem('accessToken');
+			const res = await fetch(API_BASE + '/auth/change-password', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+				body: JSON.stringify({ currentPassword, newPassword }),
+			});
+			const data = await res.json();
+			const ok = res.ok && data.message === 'Password changed successfully';
+			box.className = 'alert alert-' + (ok ? 'success' : 'danger');
+			box.textContent = ok ? 'Password updated successfully!' : (data.message || 'Failed to update password.');
+			if (ok) form.reset();
+		} catch (err) {
+			box.className = 'alert alert-danger'; box.textContent = 'Something went wrong. Please try again.';
+		}
+		btn.disabled = false; btn.textContent = 'Update Password';
+	});
+})();
+</script>
 </body>
 
 </html>

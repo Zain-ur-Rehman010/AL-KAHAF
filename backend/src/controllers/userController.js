@@ -113,12 +113,21 @@ exports.getAllUsers = async (req, res) => {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
-    const { page = 1, limit = 10, role, status } = req.query;
+    const { page = 1, limit = 10, role, status, emailVerified, search } = req.query;
     const offset = (page - 1) * limit;
 
     const where = {};
     if (role) where.role = role;
     if (status) where.status = status;
+    if (emailVerified !== undefined && emailVerified !== '') where.emailVerified = emailVerified === 'true';
+    if (search) {
+      const { Op } = require('sequelize');
+      where[Op.or] = [
+        { firstName: { [Op.like]: `%${search}%` } },
+        { lastName: { [Op.like]: `%${search}%` } },
+        { email: { [Op.like]: `%${search}%` } },
+      ];
+    }
 
     const { count, rows } = await User.findAndCountAll({
       where,
@@ -157,19 +166,41 @@ exports.updateUserStatus = async (req, res) => {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
-    const { status } = req.body;
+    const { status, role, emailVerified } = req.body;
     const user = await User.findByPk(req.params.userId);
 
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    await user.update({ status });
+    const updateData = {};
+    if (status !== undefined) {
+      if (!['active', 'inactive', 'banned'].includes(status)) {
+        return res.status(400).json({ message: 'Invalid status' });
+      }
+      updateData.status = status;
+    }
+    if (role !== undefined) {
+      if (!['admin', 'instructor', 'student'].includes(role)) {
+        return res.status(400).json({ message: 'Invalid role' });
+      }
+      updateData.role = role;
+    }
+    if (emailVerified !== undefined) {
+      updateData.emailVerified = Boolean(emailVerified);
+      // If admin marks unverified, clear any previous OTP to force fresh verification flow
+      if (!updateData.emailVerified) {
+        updateData.verificationOtp = null;
+        updateData.otpExpiresAt = null;
+      }
+    }
+
+    await user.update(updateData);
 
     notifyAdmins({
       type: 'general',
       title: 'User Status Updated',
-      message: `${user.firstName} ${user.lastName}'s account status changed to "${status}".`,
+      message: `${user.firstName} ${user.lastName}'s account was updated by admin.`,
       actionUrl: '/admin/users-list',
     });
 

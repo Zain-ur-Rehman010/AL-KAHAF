@@ -18,16 +18,10 @@
                 const data = await response.json();
 
                 if (response.ok && data.success) {
-                    // Save tokens
-                    this.saveTokens(data.data.accessToken, data.data.refreshToken);
-
-                    // Save user data
-                    this.saveUser(data.data.user);
-
                     return {
                         success: true,
                         message: data.message || 'Registration successful!',
-                        user: data.data.user
+                        email: data.data?.email
                     };
                 } else {
                     return {
@@ -70,7 +64,10 @@
                 } else {
                     return {
                         success: false,
-                        message: data.message || 'Invalid email or password.'
+                        message: data.message || 'Invalid email or password.',
+                        code: data.code,
+                        email: data.data?.email,
+                        otpSent: data.data?.otpSent
                     };
                 }
             } catch (error) {
@@ -79,6 +76,54 @@
                     success: false,
                     message: 'Network error. Please check your connection and try again.'
                 };
+            }
+        },
+
+        // Resend verification OTP
+        resendOtp: async function(email) {
+            try {
+                const response = await fetch(API_CONFIG.getURL(API_CONFIG.ENDPOINTS.RESEND_OTP), {
+                    method: 'POST',
+                    headers: API_CONFIG.getHeaders(false),
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    return { success: true, message: data.message || 'OTP resent. Please check your email.' };
+                }
+
+                return { success: false, message: data.message || 'Failed to resend OTP. Please try again.' };
+            } catch (error) {
+                console.error('Resend OTP error:', error);
+                return { success: false, message: 'Network error. Please try again.' };
+            }
+        },
+
+        // Verify OTP (email verification) and start session
+        verifyOtp: async function(email, otp) {
+            try {
+                const response = await fetch(API_CONFIG.getURL(API_CONFIG.ENDPOINTS.VERIFY_OTP), {
+                    method: 'POST',
+                    headers: API_CONFIG.getHeaders(false),
+                    body: JSON.stringify({ email, otp })
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    // Save tokens returned by verify endpoint
+                    this.saveTokens(data.data.accessToken, data.data.refreshToken);
+                    this.saveUser(data.data.user);
+
+                    return { success: true, message: data.message || 'Verified successfully!', user: data.data.user };
+                }
+
+                return { success: false, message: data.message || 'Invalid or expired OTP. Please try again.' };
+            } catch (error) {
+                console.error('Verify OTP error:', error);
+                return { success: false, message: 'Network error. Please try again.' };
             }
         },
 
@@ -243,6 +288,12 @@
                 return;
             }
 
+            const termsChecked = document.getElementById('flexCheckDefault')?.checked;
+            if (!termsChecked) {
+                AuthManager.showAlert('You must agree to the Terms of Service and Privacy Policy to continue.', 'danger');
+                return;
+            }
+
             // Get submit button
             const submitButton = registerForm.querySelector('button[type="submit"]');
             AuthManager.showLoading(submitButton);
@@ -260,19 +311,10 @@
             AuthManager.hideLoading(submitButton);
 
             if (result.success) {
-                AuthManager.showAlert('Registration successful! Please login to continue.', 'success');
+                AuthManager.showAlert('Registration successful! Please check your email for the OTP.', 'success');
 
-                // Save email to localStorage for auto-fill on login page
-                localStorage.setItem('registeredEmail', email);
-
-                // Preserve ?redirect= param when going to login page
-                const params = new URLSearchParams(window.location.search);
-                const redirect = params.get('redirect');
-                const loginUrl = '/auth/login' + (redirect ? '?redirect=' + encodeURIComponent(redirect) : '');
-
-                // Redirect to login page after 1.5 seconds
                 setTimeout(() => {
-                    window.location.href = loginUrl;
+                    window.location.href = '/auth/otp?email=' + encodeURIComponent(email);
                 }, 1500);
             } else {
                 AuthManager.showAlert(result.message, 'danger');
@@ -329,9 +371,73 @@
                     AuthManager.redirectToDashboard(result.user);
                 }, 1500);
             } else {
-                AuthManager.showAlert(result.message, 'danger');
+                // If backend says email isn't verified, show OTP verification UI on login page
+                if (result.code === 'EMAIL_NOT_VERIFIED') {
+                    const otpBox = document.getElementById('otp-verify-box');
+                    if (otpBox) otpBox.classList.remove('d-none');
+
+                    if (result.otpSent === false) {
+                        AuthManager.showAlert('We could not send OTP email. Please click "Resend OTP" or try again later.', 'danger');
+                    } else {
+                        AuthManager.showAlert('OTP sent to your email. Please enter it below.', 'info');
+                    }
+                } else {
+                    AuthManager.showAlert(result.message, 'danger');
+                }
             }
         });
+    }
+
+    // OTP verification UI wiring (on login page)
+    const otpVerifyBox = document.getElementById('otp-verify-box');
+    if (otpVerifyBox) {
+        const resendBtn = document.getElementById('otp-resend-btn');
+        const verifyBtn = document.getElementById('otp-verify-btn');
+
+        if (resendBtn) {
+            resendBtn.addEventListener('click', async function() {
+                const email = document.getElementById('email')?.value;
+                if (!email) {
+                    AuthManager.showAlert('Please enter your email first.', 'danger');
+                    return;
+                }
+
+                AuthManager.showLoading(resendBtn);
+                const result = await AuthManager.resendOtp(email);
+                AuthManager.hideLoading(resendBtn);
+
+                AuthManager.showAlert(result.message, result.success ? 'success' : 'danger');
+            });
+        }
+
+        if (verifyBtn) {
+            verifyBtn.addEventListener('click', async function() {
+                const email = document.getElementById('email')?.value;
+                const otp = document.getElementById('otp')?.value?.trim();
+
+                if (!email) {
+                    AuthManager.showAlert('Please enter your email first.', 'danger');
+                    return;
+                }
+                if (!otp || otp.length < 6) {
+                    AuthManager.showAlert('Please enter the 6-digit OTP.', 'danger');
+                    return;
+                }
+
+                AuthManager.showLoading(verifyBtn);
+                const result = await AuthManager.verifyOtp(email, otp);
+                AuthManager.hideLoading(verifyBtn);
+
+                if (result.success) {
+                    AuthManager.showAlert(result.message, 'success');
+                    setTimeout(() => {
+                        AuthManager.redirectToDashboard(result.user);
+                    }, 800);
+                } else {
+                    AuthManager.showAlert(result.message, 'danger');
+                }
+            });
+        }
     }
 
     // Handle logout
