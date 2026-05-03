@@ -1,10 +1,5 @@
 {
   "permissions": {
-    "allow": [
-      "Bash(node migrations/migrate.js)",
-      "Bash(node -e \":*)",
-      "Bash(cmd /c \"netstat -ano | findstr 5000\")",
-      "Bash(grep -l \"Ronald Richard\\\\|UI/UX Design Certificate\\\\|Wordpress Certificate\" \"/d/Personal_Projects/AlKahaf/frontend/src/pages/student\"/*.html)"
-    ]
+    "allow": ["Bash(node migrations/migrate.js)", "Bash(node -e \":*)"]
   }
 }

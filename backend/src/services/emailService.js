@@ -1,5 +1,5 @@
-const nodemailer = require('nodemailer');
-const config = require('../config/config');
+const nodemailer = require("nodemailer");
+const config = require("../config/config");
 
 const transporter = nodemailer.createTransport({
   host: config.smtpHost,
@@ -19,7 +19,7 @@ module.exports = {
       await transporter.sendMail({
         from: config.smtpFrom,
         to: email,
-        subject: 'Welcome to Al-Kahaf LMS',
+        subject: "Welcome to Al-Kahaf LMS",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
             <h1 style="color: #2c3e50;">Welcome ${firstName}!</h1>
@@ -42,7 +42,7 @@ module.exports = {
         `,
       });
     } catch (error) {
-      console.error('Email sending failed:', error);
+      console.error("Email sending failed:", error);
     }
   },
 
@@ -51,7 +51,7 @@ module.exports = {
       await transporter.sendMail({
         from: config.smtpFrom,
         to: email,
-        subject: 'Your Al-Kahaf Verification Code',
+        subject: "Your Al-Kahaf Verification Code",
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
             <h2 style="color: #2c3e50;">Email Verification</h2>
@@ -70,7 +70,7 @@ module.exports = {
       });
       return true;
     } catch (error) {
-      console.error('OTP email sending failed:', error);
+      console.error("OTP email sending failed:", error);
       return false;
     }
   },
@@ -89,16 +89,23 @@ module.exports = {
         `,
       });
     } catch (error) {
-      console.error('Email sending failed:', error);
+      console.error("Email sending failed:", error);
     }
   },
 
-  async sendAdminEnrollmentEmail(adminEmails, studentName, studentEmail, courseTitle, amount, txnRef) {
+  async sendAdminEnrollmentEmail(
+    adminEmails,
+    studentName,
+    studentEmail,
+    courseTitle,
+    amount,
+    txnRef,
+  ) {
     const dashboardUrl = `${config.frontendUrl}/admin/enrollments-list`;
     try {
       await transporter.sendMail({
         from: config.smtpFrom,
-        to: adminEmails.join(','),
+        to: adminEmails.join(","),
         subject: `New Enrollment via JazzCash — ${courseTitle}`,
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 8px;">
@@ -142,32 +149,34 @@ module.exports = {
         `,
       });
     } catch (error) {
-      console.error('Admin enrollment email failed:', error);
+      console.error("Admin enrollment email failed:", error);
     }
   },
 
   async sendTrialReminderEmail(email, firstName, emailType, courseUrl) {
     const variants = {
       day1: {
-        subject: 'Your Free Trial at Al-Kahaf Has Started!',
-        heading: 'Welcome to Your Free Trial!',
-        body: 'Your 3-day free trial has officially started. You now have full access to your assigned course. Dive in and explore — we\'re excited to have you learning with us.',
-        ctaText: 'Start Learning Now',
-        urgencyNote: '',
+        subject: "Your Free Trial at Al-Kahaf Has Started!",
+        heading: "Welcome to Your Free Trial!",
+        body: "Your 3-day free trial has officially started. You now have full access to your assigned course. Dive in and explore — we're excited to have you learning with us.",
+        ctaText: "Start Learning Now",
+        urgencyNote: "",
       },
       day2: {
-        subject: 'Reminder: 1 Day Left in Your Free Trial — Al-Kahaf',
-        heading: 'Only 1 Day Left in Your Trial',
-        body: 'Your free trial expires tomorrow. Don\'t let your learning momentum stop here! Enroll now and continue your journey without any interruption.',
-        ctaText: 'Enroll Now — Don\'t Miss Out',
-        urgencyNote: '<p style="color:#e74c3c;font-weight:bold;text-align:center;font-size:15px;">Your trial expires in 24 hours</p>',
+        subject: "Reminder: 1 Day Left in Your Free Trial — Al-Kahaf",
+        heading: "Only 1 Day Left in Your Trial",
+        body: "Your free trial expires tomorrow. Don't let your learning momentum stop here! Enroll now and continue your journey without any interruption.",
+        ctaText: "Enroll Now — Don't Miss Out",
+        urgencyNote:
+          '<p style="color:#e74c3c;font-weight:bold;text-align:center;font-size:15px;">Your trial expires in 24 hours</p>',
       },
       day3: {
-        subject: 'Last Day of Your Free Trial — Enroll Before It Ends',
-        heading: 'Today Is Your Last Day',
-        body: 'This is your final reminder — your free trial ends today. Enroll now to keep your progress, retain course access, and continue learning without interruption.',
-        ctaText: 'Enroll Now',
-        urgencyNote: '<p style="color:#e74c3c;font-weight:bold;text-align:center;font-size:15px;">Trial expires today — act now</p>',
+        subject: "Last Day of Your Free Trial — Enroll Before It Ends",
+        heading: "Today Is Your Last Day",
+        body: "This is your final reminder — your free trial ends today. Enroll now to keep your progress, retain course access, and continue learning without interruption.",
+        ctaText: "Enroll Now",
+        urgencyNote:
+          '<p style="color:#e74c3c;font-weight:bold;text-align:center;font-size:15px;">Trial expires today — act now</p>',
       },
     };
 
@@ -208,7 +217,13 @@ module.exports = {
     }
   },
 
-  async sendFreeTrialApprovedEmail(email, fullName, courseInterest, loginUrl, password = null) {
+  async sendFreeTrialApprovedEmail(
+    email,
+    fullName,
+    courseInterest,
+    loginUrl,
+    password = null,
+  ) {
     try {
       const credentialsBlock = password
         ? `
@@ -225,7 +240,8 @@ module.exports = {
       await transporter.sendMail({
         from: config.smtpFrom,
         to: email,
-        subject: 'Your Free Trial Request Has Been Approved — Al-Kahaf Online Academy',
+        subject:
+          "Your Free Trial Request Has Been Approved — Al-Kahaf Online Academy",
         html: `
           <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;padding:20px;border:1px solid #eee;border-radius:8px;">
             <div style="background:linear-gradient(135deg,#2c1506,#522811);padding:20px 24px;border-radius:6px 6px 0 0;text-align:center;">
@@ -250,7 +266,7 @@ module.exports = {
         `,
       });
     } catch (error) {
-      console.error('Free trial approval email failed:', error);
+      console.error("Free trial approval email failed:", error);
     }
   },
 
@@ -357,7 +373,7 @@ module.exports = {
         `,
       });
     } catch (error) {
-      console.error('Email sending failed:', error);
+      console.error("Email sending failed:", error);
     }
   },
 
