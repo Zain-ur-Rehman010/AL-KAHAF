@@ -19,6 +19,23 @@
 	<link rel="stylesheet" href="/assets/css/style.css">
 
 	<style>
+		/* Free trial form validation */
+		.ft-err-msg { font-size:12px; margin-top:4px; color:#dc3545; display:none; }
+		.ft-err-msg.show { display:block; }
+		#freeTrialForm .form-control.is-invalid,
+		#freeTrialForm .form-select.is-invalid { border-color:#dc3545 !important; }
+		#freeTrialForm .form-control.is-valid,
+		#freeTrialForm .form-select.is-valid { border-color:#159F46 !important; }
+		/* Remove Bootstrap's checkmark/cross background icons from password fields — eye icon is already there */
+		#passwordInput input.is-valid,
+		#passwordInput input.is-invalid,
+		#freeTrialForm #trialConfirmPassword.is-valid,
+		#freeTrialForm #trialConfirmPassword.is-invalid {
+			background-image: none !important;
+			padding-right: 2.5rem !important;
+		}
+	</style>
+	<style>
 		/* ======================================
 		   FREE TRIAL PAGE - CUSTOM STYLES
 		   ====================================== */
@@ -689,10 +706,7 @@
 					</div>
 				</div>
 				<div class="header-btn d-flex align-items-center">
-					<div class="icon-btn me-2">
-						<a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle activate"><i class="isax isax-sun-15"></i></a>
-						<a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle"><i class="isax isax-moon"></i></a>
-					</div>
+
 					<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2"><i class="isax isax-lock-circle me-2"></i>Sign In</a>
 					<a href="/auth/register" class="btn btn-secondary me-0"><i class="isax isax-user-edit me-2"></i>Register</a>
 				</div>
@@ -755,21 +769,32 @@
 
 						<form id="freeTrialForm" action="javascript:void(0);" novalidate>
 							<div class="row g-3">
+
+								<!-- Full Name -->
 								<div class="col-sm-6">
 									<label class="form-label">Full Name <span class="text-danger">*</span></label>
-									<input type="text" class="form-control" placeholder="Your full name" required>
+									<input type="text" id="ft-fullName" class="form-control" placeholder="Your full name" required autocomplete="name">
+									<div id="ft-fullName-err" class="ft-err-msg"></div>
 								</div>
+
+								<!-- Email -->
 								<div class="col-sm-6">
 									<label class="form-label">Email Address <span class="text-danger">*</span></label>
-									<input type="email" class="form-control" placeholder="your@email.com" required>
+									<input type="email" id="ft-email" class="form-control" placeholder="your@email.com" required autocomplete="email">
+									<div id="ft-email-err" class="ft-err-msg"></div>
 								</div>
+
+								<!-- Phone -->
 								<div class="col-sm-6">
 									<label class="form-label">WhatsApp / Phone <span class="text-danger">*</span></label>
-									<input type="tel" class="form-control" placeholder="+1 234 567 8900" required>
+									<input type="tel" id="ft-phone" class="form-control" placeholder="+92 300 1234567" required autocomplete="tel">
+									<div id="ft-phone-err" class="ft-err-msg"></div>
 								</div>
+
+								<!-- Country -->
 								<div class="col-sm-6">
 									<label class="form-label">Country</label>
-									<select class="form-select">
+									<select id="ft-country" class="form-select">
 										<option value="">Select Country</option>
 										<option>United States</option>
 										<option>United Kingdom</option>
@@ -784,22 +809,47 @@
 										<option>Other</option>
 									</select>
 								</div>
+
+								<!-- Password -->
+								<div class="col-sm-6">
+									<label class="form-label">Password <span class="text-danger">*</span></label>
+									<div class="position-relative" id="passwordInput">
+										<input type="password" id="trialPassword" class="pass-inputs form-control" placeholder="Create a password" required autocomplete="new-password">
+										<span class="isax toggle-passwords isax-eye-slash text-gray-7 fs-14"></span>
+									</div>
+									<div class="password-strength" id="passwordStrength">
+										<span id="poor"></span>
+										<span id="weak"></span>
+										<span id="strong"></span>
+										<span id="heavy"></span>
+									</div>
+									<div class="mt-1" id="passwordInfo"></div>
+									<div id="ft-password-err" class="ft-err-msg"></div>
+								</div>
+
+								<!-- Confirm Password -->
+								<div class="col-sm-6">
+									<label class="form-label">Confirm Password <span class="text-danger">*</span></label>
+									<div class="position-relative">
+										<input type="password" id="trialConfirmPassword" class="pass-inputa form-control" placeholder="Repeat your password" required autocomplete="new-password">
+										<span class="isax toggle-passworda isax-eye-slash text-gray-7 fs-14"></span>
+									</div>
+									<div id="ft-confirm-err" class="ft-err-msg"></div>
+								</div>
+
+								<!-- Course Interest -->
 								<div class="col-sm-6">
 									<label class="form-label">Course Interest <span class="text-danger">*</span></label>
-									<select class="form-select" required>
-										<option value="">Select Course</option>
-										<option>Quran Reading (Nazra)</option>
-										<option>Quran Memorization (Hifz)</option>
-										<option>Tajweed Rules</option>
-										<option>Arabic Language</option>
-										<option>Islamic Studies</option>
-										<option>Noorani Qaida (Beginners)</option>
-										<option>Tafseer (Quran Explanation)</option>
+									<select id="courseInterestSelect" class="form-select" required>
+										<option value="">Loading courses...</option>
 									</select>
+									<div id="ft-course-err" class="ft-err-msg"></div>
 								</div>
+
+								<!-- Preferred Schedule -->
 								<div class="col-sm-6">
 									<label class="form-label">Preferred Schedule</label>
-									<select class="form-select">
+									<select id="ft-schedule" class="form-select">
 										<option value="">Select Time</option>
 										<option>Morning (6am – 12pm)</option>
 										<option>Afternoon (12pm – 5pm)</option>
@@ -807,12 +857,15 @@
 										<option>Flexible / Any Time</option>
 									</select>
 								</div>
+
+								<!-- Message -->
 								<div class="col-12">
 									<label class="form-label">Message (Optional)</label>
-									<textarea class="form-control" rows="3" placeholder="Tell us about your learning goals or any special requirements..."></textarea>
+									<textarea id="ft-message" class="form-control" rows="3" placeholder="Tell us about your learning goals or any special requirements..."></textarea>
 								</div>
+
 								<div class="col-12">
-									<button type="submit" class="btn-submit-trial">
+									<button type="submit" class="btn-submit-trial" id="ft-submit-btn">
 										<i class="fa-solid fa-paper-plane me-2"></i>Book My Free Trial Class
 									</button>
 									<p class="no-credit"><i class="fa-solid fa-shield-halved"></i>100% Free · No Credit Card · No Commitment</p>
@@ -1403,6 +1456,33 @@
 	</div>
 	<!-- /Thank You Modal -->
 
+	<!-- Trial Already Used Modal -->
+	<div class="modal fade" id="trialAlreadyUsedModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content border-0" style="border-radius:20px;overflow:hidden;">
+				<div style="background:linear-gradient(135deg,#2c1506,#522811,#3d1d0a);padding:40px 30px 30px;text-align:center;position:relative;">
+					<button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+					<div style="width:80px;height:80px;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+						<i class="fa-solid fa-circle-info" style="font-size:36px;color:#d8ac27;"></i>
+					</div>
+					<h4 style="color:#fff;font-weight:800;margin-bottom:8px;">Already Availed</h4>
+					<p style="color:rgba(255,255,255,0.75);font-size:14px;margin:0;">You have already availed your free trial demo.</p>
+				</div>
+				<div class="modal-body" style="padding:32px 30px;text-align:center;">
+					<div style="background:#fff8e8;border:1px solid #f0c842;border-radius:12px;padding:20px;margin-bottom:24px;">
+						<i class="fa-solid fa-graduation-cap" style="font-size:28px;color:#d8ac27;margin-bottom:10px;display:block;"></i>
+						<p style="font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:4px;">Ready to continue learning?</p>
+						<p style="font-size:13px;color:#777;margin:0;">Enroll in one of our courses and take your knowledge to the next level.</p>
+					</div>
+					<a href="/src/pages/courses/course-grid.html" class="btn btn-primary w-100" style="border-radius:10px;padding:13px;font-weight:700;font-size:15px;" data-bs-dismiss="modal">
+						<i class="fa-solid fa-book-open me-2"></i>Explore Courses
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Trial Already Used Modal -->
+
 </div>
 <!-- /Main Wrapper -->
 
@@ -1493,65 +1573,327 @@
 
 	document.addEventListener('DOMContentLoaded', loadFeaturedCourses);
 
-	// Form submit handler
+	// Populate course interest dropdown from predefined courses
+	document.addEventListener('DOMContentLoaded', function() {
+		var sel = document.getElementById('courseInterestSelect');
+		if (!sel) return;
+		fetch(API_BASE + '/free-trial/courses')
+			.then(function(res) { return res.json(); })
+			.then(function(data) {
+				sel.innerHTML = '<option value="">Select Course</option>';
+				if (data.success && data.data && data.data.length > 0) {
+					data.data.forEach(function(c) {
+						var opt = document.createElement('option');
+						opt.value = c.courseName;
+						opt.textContent = c.courseName;
+						sel.appendChild(opt);
+					});
+				} else {
+					sel.innerHTML = '<option value="">No courses available</option>';
+				}
+			})
+			.catch(function() {
+				sel.innerHTML = '<option value="">Select Course</option>';
+			});
+	});
+
+	// ── Free Trial Form Validation & Submit ─────────────────────────────────
 	document.addEventListener('DOMContentLoaded', function() {
 		var form = document.getElementById('freeTrialForm');
-		if (form) {
-			form.addEventListener('submit', function(e) {
-				e.preventDefault();
-				var btn = form.querySelector('.btn-submit-trial');
+		if (!form) return;
 
-				var inputs   = form.querySelectorAll('input, select, textarea');
-				var fullName       = inputs[0].value.trim();
-				var email          = inputs[1].value.trim();
-				var phone          = inputs[2].value.trim();
-				var country        = inputs[3].value.trim();
-				var courseInterest = inputs[4].value.trim();
-				var schedule       = inputs[5].value.trim();
-				var message        = inputs[6].value.trim();
+		var emailRegex    = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+		var phoneRegex    = /^[\+]?[\d\s\-\(\)]{7,15}$/;
+		var nameRegex     = /^[a-zA-Z\u0600-\u06FF\s'.,\-]{2,}$/;
+		var lowercaseRE   = /[a-z]/;
+		var uppercaseRE   = /[A-Z]/;
+		var numberRE      = /[0-9]/;
+		var specialRE     = /[^a-zA-Z0-9\s]/;
 
-				if (!fullName || !email || !phone || !courseInterest) {
-					inputs[0].style.borderColor = fullName ? '' : '#dc3545';
-					inputs[1].style.borderColor = email ? '' : '#dc3545';
-					inputs[2].style.borderColor = phone ? '' : '#dc3545';
-					inputs[4].style.borderColor = courseInterest ? '' : '#dc3545';
+		var disposableDomains = [
+			'mailinator.com','tempmail.com','guerrillamail.com','yopmail.com',
+			'sharklasers.com','grr.la','spam4.me','trashmail.com','trashmail.me',
+			'trashmail.net','10minutemail.com','10minutemail.net','mailnull.com',
+			'discard.email','tempinbox.com','mailsac.com','getnada.com','tempr.email',
+			'throwaway.email','mintemail.com','mytemp.email','tmpmail.net','tmpmail.org'
+		];
+
+		var domainCorrections = {
+			'gmial.com':'gmail.com','gmal.com':'gmail.com','gmail.co':'gmail.com',
+			'gmail.comm':'gmail.com','gamil.com':'gmail.com','gnail.com':'gmail.com',
+			'yahooo.com':'yahoo.com','yaho.com':'yahoo.com','yahoo.co':'yahoo.com',
+			'hotmial.com':'hotmail.com','hotmal.com':'hotmail.com','hotmail.co':'hotmail.com',
+			'outlok.com':'outlook.com','outloook.com':'outlook.com','outlook.co':'outlook.com'
+		};
+
+		function showErr(id, msg) {
+			var el = document.getElementById(id);
+			if (!el) return;
+			el.textContent = msg;
+			el.classList.add('show');
+		}
+		function clearErr(id) {
+			var el = document.getElementById(id);
+			if (!el) return;
+			el.textContent = '';
+			el.classList.remove('show');
+		}
+		function setInvalid(id) { var el = document.getElementById(id); if (el) { el.classList.remove('is-valid'); el.classList.add('is-invalid'); } }
+		function setValid(id)   { var el = document.getElementById(id); if (el) { el.classList.remove('is-invalid'); el.classList.add('is-valid'); } }
+		function clearState(id) { var el = document.getElementById(id); if (el) { el.classList.remove('is-valid','is-invalid'); } }
+
+		// ── Real-time: Full Name ──────────────────────────────────────────────
+		var nameInput = document.getElementById('ft-fullName');
+		if (nameInput) {
+			nameInput.addEventListener('input', function() {
+				var v = this.value.trim();
+				clearErr('ft-fullName-err');
+				if (!v) { clearState('ft-fullName'); return; }
+				if (!nameRegex.test(v)) {
+					showErr('ft-fullName-err', 'Please enter a valid full name');
+					setInvalid('ft-fullName');
+				} else {
+					setValid('ft-fullName');
+				}
+			});
+		}
+
+		// ── Real-time: Email ──────────────────────────────────────────────────
+		var emailInput = document.getElementById('ft-email');
+		var emailCheckTimer = null;
+		if (emailInput) {
+			emailInput.addEventListener('input', function() {
+				var v = this.value.trim();
+				clearErr('ft-email-err');
+				if (!v) { clearState('ft-email'); return; }
+				if (!emailRegex.test(v)) {
+					showErr('ft-email-err', 'Please enter a valid email address');
+					setInvalid('ft-email');
+				} else {
+					clearState('ft-email');
+				}
+			});
+			emailInput.addEventListener('blur', function() {
+				var v = this.value.trim();
+				if (!v || !emailRegex.test(v)) return;
+				var domain = v.split('@')[1].toLowerCase();
+				clearErr('ft-email-err');
+
+				// Typo suggestion
+				if (domainCorrections[domain]) {
+					var corrected = v.split('@')[0] + '@' + domainCorrections[domain];
+					showErr('ft-email-err', 'Did you mean ' + corrected + '?');
+					setInvalid('ft-email');
+					return;
+				}
+				// Disposable check
+				if (disposableDomains.indexOf(domain) !== -1) {
+					showErr('ft-email-err', 'Disposable email addresses are not allowed');
+					setInvalid('ft-email');
+					return;
+				}
+				setValid('ft-email');
+			});
+		}
+
+		// ── Real-time: Phone ──────────────────────────────────────────────────
+		var phoneInput = document.getElementById('ft-phone');
+		if (phoneInput) {
+			phoneInput.addEventListener('input', function() {
+				var v = this.value.trim();
+				clearErr('ft-phone-err');
+				if (!v) { clearState('ft-phone'); return; }
+				if (!phoneRegex.test(v)) {
+					showErr('ft-phone-err', 'Please enter a valid phone number');
+					setInvalid('ft-phone');
+				} else {
+					setValid('ft-phone');
+				}
+			});
+		}
+
+		// ── Real-time: Password strength ──────────────────────────────────────
+		var passInput = document.getElementById('trialPassword');
+		if (passInput) {
+			passInput.addEventListener('input', function() {
+				var v = this.value;
+				var len = v.length;
+				clearErr('ft-password-err');
+
+				var pBar  = document.getElementById('passwordStrength');
+				var pInfo = document.getElementById('passwordInfo');
+				var poor = document.querySelector('#passwordStrength #poor');
+				var weak = document.querySelector('#passwordStrength #weak');
+				var strong = document.querySelector('#passwordStrength #strong');
+				var heavy = document.querySelector('#passwordStrength #heavy');
+
+				if (!v) {
+					if (pBar)  { pBar.style.display='none'; pBar.className='password-strength'; }
+					if (pInfo) pInfo.style.display = 'none';
+					clearState('trialPassword');
 					return;
 				}
 
-				btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Submitting...';
-				btn.disabled = true;
+				if (pBar) pBar.style.display = 'flex';
+				if (pInfo) pInfo.style.display = 'block';
 
-				fetch('http://localhost:5000/api/v1/free-trial', {
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						fullName: fullName,
-						email: email,
-						phone: phone,
-						country: country || null,
-						courseInterest: courseInterest,
-						preferredSchedule: schedule || null,
-						message: message || null,
-					}),
-				})
-				.then(function(res) { return res.json(); })
-				.then(function(data) {
-					btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i>Book My Free Trial Class';
-					btn.disabled = false;
-					form.reset();
-					var modal = new bootstrap.Modal(document.getElementById('thankYouModal'));
-					modal.show();
-				})
-				.catch(function() {
-					// Still show modal even if API is down (graceful fallback)
-					btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i>Book My Free Trial Class';
-					btn.disabled = false;
-					form.reset();
-					var modal = new bootstrap.Modal(document.getElementById('thankYouModal'));
-					modal.show();
-				});
+				var hasLow  = lowercaseRE.test(v);
+				var hasUp   = uppercaseRE.test(v);
+				var hasNum  = numberRE.test(v);
+				var hasSp   = specialRE.test(v);
+
+				if (pBar) pBar.className = 'password-strength';
+				[poor,weak,strong,heavy].forEach(function(s){ if(s) s.classList.remove('active'); });
+
+				if (len < 8) {
+					if (poor) poor.classList.add('active');
+					if (pBar) pBar.classList.add('poor-active');
+					if (pInfo) { pInfo.textContent = 'Too short — minimum 8 characters'; pInfo.style.color='#FF0000'; }
+					setInvalid('trialPassword');
+				} else if (hasLow && hasUp && hasNum && hasSp) {
+					[poor,weak,strong,heavy].forEach(function(s){ if(s) s.classList.add('active'); });
+					if (pBar) pBar.classList.add('heavy-active');
+					if (pInfo) { pInfo.textContent = 'Password is strong!'; pInfo.style.color='#159F46'; }
+					setValid('trialPassword');
+				} else if (hasLow && hasUp && (hasNum || hasSp)) {
+					[poor,weak,strong].forEach(function(s){ if(s) s.classList.add('active'); });
+					if (pBar) pBar.classList.add('strong-active');
+					if (pInfo) { pInfo.textContent = 'Almost — add a special character'; pInfo.style.color='#1D9CFD'; }
+					clearState('trialPassword');
+				} else {
+					[poor,weak].forEach(function(s){ if(s) s.classList.add('active'); });
+					if (pBar) pBar.classList.add('avg-active');
+					if (pInfo) { pInfo.textContent = 'Weak — add uppercase, numbers & symbols'; pInfo.style.color='#FFB54A'; }
+					setInvalid('trialPassword');
+				}
+
+				// Re-check confirm field if already filled
+				var confirmInput = document.getElementById('trialConfirmPassword');
+				if (confirmInput && confirmInput.value) {
+					if (confirmInput.value !== v) {
+						showErr('ft-confirm-err', 'Passwords do not match');
+						setInvalid('trialConfirmPassword');
+					} else {
+						clearErr('ft-confirm-err');
+						setValid('trialConfirmPassword');
+					}
+				}
 			});
 		}
+
+		// ── Real-time: Confirm Password ───────────────────────────────────────
+		var confirmInput = document.getElementById('trialConfirmPassword');
+		if (confirmInput) {
+			confirmInput.addEventListener('input', function() {
+				var pass = document.getElementById('trialPassword').value;
+				clearErr('ft-confirm-err');
+				if (!this.value) { clearState('trialConfirmPassword'); return; }
+				if (this.value !== pass) {
+					showErr('ft-confirm-err', 'Passwords do not match');
+					setInvalid('trialConfirmPassword');
+				} else {
+					setValid('trialConfirmPassword');
+				}
+			});
+		}
+
+		// ── Real-time: Course Interest ────────────────────────────────────────
+		var courseSelect = document.getElementById('courseInterestSelect');
+		if (courseSelect) {
+			courseSelect.addEventListener('change', function() {
+				if (this.value) { clearErr('ft-course-err'); setValid('courseInterestSelect'); }
+				else { clearState('courseInterestSelect'); }
+			});
+		}
+
+		// ── Form Submit ───────────────────────────────────────────────────────
+		form.addEventListener('submit', function(e) {
+			e.preventDefault();
+			var btn = document.getElementById('ft-submit-btn');
+
+			var fullName       = document.getElementById('ft-fullName').value.trim();
+			var email          = document.getElementById('ft-email').value.trim();
+			var phone          = document.getElementById('ft-phone').value.trim();
+			var password       = document.getElementById('trialPassword').value;
+			var confirmPass    = document.getElementById('trialConfirmPassword').value;
+			var country        = document.getElementById('ft-country').value.trim();
+			var courseInterest = document.getElementById('courseInterestSelect').value.trim();
+			var schedule       = document.getElementById('ft-schedule').value.trim();
+			var message        = document.getElementById('ft-message').value.trim();
+
+			var hasError = false;
+
+			if (!fullName || !nameRegex.test(fullName)) {
+				showErr('ft-fullName-err', 'Please enter a valid full name');
+				setInvalid('ft-fullName'); hasError = true;
+			}
+			if (!email || !emailRegex.test(email)) {
+				showErr('ft-email-err', 'Please enter a valid email address');
+				setInvalid('ft-email'); hasError = true;
+			}
+			if (!phone || !phoneRegex.test(phone)) {
+				showErr('ft-phone-err', 'Please enter a valid phone number');
+				setInvalid('ft-phone'); hasError = true;
+			}
+			if (!password || password.length < 8) {
+				showErr('ft-password-err', 'Password must be at least 8 characters');
+				setInvalid('trialPassword'); hasError = true;
+			}
+			if (!confirmPass || confirmPass !== password) {
+				showErr('ft-confirm-err', confirmPass ? 'Passwords do not match' : 'Please confirm your password');
+				setInvalid('trialConfirmPassword'); hasError = true;
+			}
+			if (!courseInterest) {
+				showErr('ft-course-err', 'Please select a course');
+				setInvalid('courseInterestSelect'); hasError = true;
+			}
+
+			if (hasError) return;
+
+			btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Submitting...';
+			btn.disabled = true;
+
+			fetch(API_BASE + '/free-trial', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					fullName: fullName,
+					email: email,
+					phone: phone,
+					password: password,
+					country: country || null,
+					courseInterest: courseInterest,
+					preferredSchedule: schedule || null,
+					message: message || null,
+				}),
+			})
+			.then(function(res) { return res.json(); })
+			.then(function(data) {
+				btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i>Book My Free Trial Class';
+				btn.disabled = false;
+				if (data.code === 'TRIAL_ALREADY_USED') {
+					var dupModal = new bootstrap.Modal(document.getElementById('trialAlreadyUsedModal'));
+					dupModal.show();
+				} else if (data.success) {
+					form.reset();
+					// Clear validation states after reset
+					form.querySelectorAll('.is-valid,.is-invalid').forEach(function(el){ el.classList.remove('is-valid','is-invalid'); });
+					document.getElementById('passwordStrength').style.display = 'none';
+					document.getElementById('passwordInfo').style.display = 'none';
+					var modal = new bootstrap.Modal(document.getElementById('thankYouModal'));
+					modal.show();
+				} else {
+					// Show server error inline
+					showErr('ft-email-err', data.message || 'Submission failed. Please try again.');
+					setInvalid('ft-email');
+				}
+			})
+			.catch(function() {
+				btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i>Book My Free Trial Class';
+				btn.disabled = false;
+				showErr('ft-course-err', 'Network error. Please check your connection and try again.');
+			});
+		});
 
 		// Smooth scroll for anchor links
 		document.querySelectorAll('a[href="#freeTrialForm"], a[href="#trial-form"]').forEach(function(a) {

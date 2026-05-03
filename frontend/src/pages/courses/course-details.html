@@ -105,15 +105,7 @@
 							</ul>
 							
 							<div class="menu-dropdown">
-								<div class="cart-item">
-									<h6>Cart & Wishlist</h6>                                
-									<div class="icon-btn">
-										<a href="/shared/cart" class="position-relative">
-											<i class="isax isax-shopping-cart5"></i>
-											<span class="count-icon bg-success p-1 rounded-pill text-white fs-10 fw-bold">1</span>
-										</a>
-									</div>
-								</div>
+
 								<div class="dropdown flag-dropdown mb-2">
 									<a href="javascript:void(0);" class="dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
 										<img src="/assets/img/flags/us-flag.svg" class="me-2" alt="flag">ENG
@@ -136,16 +128,7 @@
 										</li>
 									</ul>
 								</div>
-								<div class="dropdown mb-2">
-									<a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-										PKR
-									</a>
-									<ul class="dropdown-menu p-2 mt-2">
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">PKR</a></li>
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">YEN</a></li>
-										<li><a class="dropdown-item rounded" href="javascript:void(0);">EURO</a></li>
-									</ul>
-								</div>
+
 								<div class="dropdown mb-2">
 									<a href="javascript:void(0);" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 										Light
@@ -192,56 +175,15 @@
 									</li>
 								</ul>
 							</div>
-							<!-------Currency changer-------->
-							<div class="dropdown currency-dropdown">
-								<a href="javascript:void(0);" class="dropdown-toggle currency-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="isax isax-dollar-circle4 currency-icon"></i>
-									<span class="currency-text">PKR</span>
-								</a>
-								<ul class="dropdown-menu currency-menu">
-									<li>
-										<a class="dropdown-item currency-item active" href="javascript:void(0);">
-											<span class="currency-symbol">Rs</span>
-											<span>PKR - Pakistani Rupee</span>
-											<i class="isax isax-tick-circle5 check-icon"></i>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item currency-item" href="javascript:void(0);">
-											<span class="currency-symbol">¥</span>
-											<span>YEN - Japanese Yen</span>
-											<i class="isax isax-tick-circle5 check-icon"></i>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item currency-item" href="javascript:void(0);">
-											<span class="currency-symbol">€</span>
-											<span>EUR - Euro</span>
-											<i class="isax isax-tick-circle5 check-icon"></i>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<!-------Light Mode || Dark Mode--------->
-							<div class="icon-btn">
-								<a href="javascript:void(0);" id="dark-mode-toggle" class="theme-toggle activate">
-									<i class="isax isax-sun-15"></i>
-								</a>
-								<a href="javascript:void(0);" id="light-mode-toggle" class="theme-toggle">
-									<i class="isax isax-moon"></i>
-								</a>
-							</div>
-							<!--Cart-->
-							<div class="icon-btn">
-								<a href="/shared/cart" class="position-relative">
-									<i class="isax isax-shopping-cart5"></i>
-									<span class="count-icon bg-success p-1 rounded-pill text-white fs-10 fw-bold">1</span>
-								</a>
-							</div>
+
+
 							<!--SigIn || Register-->
-							<a href="/auth/login" class="btn btn-primary d-inline-flex align-items-center me-2">
-								<i class="fa fa-paper-plane me-2"></i>Enroll Now
+														<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
+								<i class="isax isax-user me-2"></i>Sign In
 							</a>
+<a href="/auth/register" class="btn btn-dark d-inline-flex align-items-center me-2">
+	<i class="isax isax-user-edit me-2"></i>Register
+</a>
 							<a href="/auth/register" class="btn btn-secondary btn-donate me-0">
 								<i class="isax isax-heart5 me-1"></i>Donate
 							</a>
@@ -351,7 +293,7 @@
 						<i class="fas fa-exclamation-circle fs-1 text-danger mb-3 d-block"></i>
 						<h5>Could not load course</h5>
 						<p class="text-muted">Please check your connection and try again.</p>
-						<a href="/courses/course-list" class="btn btn-primary mt-2">Browse Courses</a>
+						<a href="/courses/course-grid" class="btn btn-primary mt-2">Browse Courses</a>
 					</div>
 
 					<!-- Real content (shown after API responds) -->
@@ -495,8 +437,7 @@
                                  <div class="d-flex justify-content-between align-items-center mb-4">
                                       <h2 class="text-success fs-30" id="cd-price">FREE</h2>
                                     </div>
-                                    <div class="d-flex justify-content-between gap-3 wishlist-btns">
-                                       <a class="btn d-flex btn-wish" href="/student/student-wishlist"><i class="isax isax-heart me-1 fs-18"></i>Add to Wishlist</a>
+                                    <div class="d-flex gap-3">
                                        <a class="btn d-flex btn-wish" href="#"><i class="ti ti-share me-1 fs-18"></i>Share</a>
                                     </div>
                                     <a href="/shared/cart" class="btn btn-primary w-100 mt-3 btn-enroll"><i class="fa fa-paper-plane me-2"></i>Enroll Now</a>
@@ -901,11 +842,11 @@
 		var redirect = encodeURIComponent(window.location.pathname + window.location.search);
 
 		if (!token && isFree) {
-			// Not logged in, free course: go to register; on return auto-enroll
+			// Not logged in, free course: go to login; on return auto-enroll
 			var courseUrl = window.location.pathname + window.location.search;
 			var sep = courseUrl.indexOf('?') !== -1 ? '&' : '?';
 			var redirectWithEnroll = encodeURIComponent(courseUrl + sep + 'autoEnroll=1');
-			btn.href = '/auth/register?redirect=' + redirectWithEnroll;
+			btn.href = '/auth/login?redirect=' + redirectWithEnroll;
 		} else if (!token && !isFree) {
 			// Not logged in, paid course: add to cart (no login needed) then go to cart
 			btn.addEventListener('click', function(e) {
@@ -993,10 +934,10 @@
 			<div class="modal-content text-center p-4">
 				<div class="mb-3"><i class="fa fa-lock" style="font-size:48px;color:#d8ac27;"></i></div>
 				<h5 class="fw-bold mb-2">This Content is Locked</h5>
-				<p class="text-muted mb-4">Register and enroll in this course to unlock all lessons and start your learning journey.</p>
+				<p class="text-muted mb-4">Login to enroll in this course and unlock all lessons.</p>
 				<div class="d-flex justify-content-center gap-3 flex-wrap">
-					<a id="enroll-modal-register" href="/auth/register" class="btn btn-primary px-4"><i class="fa fa-user-plus me-2"></i>Register</a>
-					<a id="enroll-modal-login" href="/auth/login" class="btn btn-outline-primary px-4"><i class="fa fa-sign-in-alt me-2"></i>Already have account? Login</a>
+					<a id="enroll-modal-login" href="/auth/login" class="btn btn-primary px-4"><i class="fa fa-sign-in-alt me-2"></i>Login</a>
+					<a id="enroll-modal-register" href="/auth/register" class="btn btn-outline-primary px-4"><i class="fa fa-user-plus me-2"></i>New user? Register</a>
 				</div>
 				<button type="button" class="btn btn-link text-muted mt-2" data-bs-dismiss="modal">Cancel</button>
 			</div>
@@ -1005,8 +946,8 @@
 	<script>
 	function showEnrollModal() {
 		var redirect = encodeURIComponent(window.location.pathname + window.location.search);
-		document.getElementById('enroll-modal-register').href = '/auth/register?redirect=' + redirect;
 		document.getElementById('enroll-modal-login').href = '/auth/login?redirect=' + redirect;
+		document.getElementById('enroll-modal-register').href = '/auth/register?redirect=' + redirect;
 		new bootstrap.Modal(document.getElementById('enrollModal')).show();
 	}
 	</script>

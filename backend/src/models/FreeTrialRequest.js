@@ -35,9 +35,17 @@ const FreeTrialRequest = sequelize.define('FreeTrialRequest', {
     type: DataTypes.TEXT,
     allowNull: true,
   },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   status: {
     type: DataTypes.ENUM('pending', 'contacted', 'enrolled', 'cancelled'),
     defaultValue: 'pending',
+  },
+  trialUsed: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
   },
 });
 

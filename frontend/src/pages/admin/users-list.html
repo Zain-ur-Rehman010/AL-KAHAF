@@ -1188,12 +1188,14 @@
 
 		function showAlert(type, message) {
 			const cls = type === 'success' ? 'alert-success' : type === 'info' ? 'alert-info' : 'alert-danger';
+			const isTokenErr = type !== 'success' && /expired|token|unauthorized|401/i.test(message);
+			const loginLink = isTokenErr ? ` <a href="/auth/login" class="alert-link ms-2">Go to Login</a>` : '';
 			document.body.insertAdjacentHTML('beforeend', `
 				<div class="alert ${cls} alert-dismissible fade show position-fixed top-0 end-0 m-3" role="alert" style="z-index:9999;min-width:260px">
-					${message}
+					${message}${loginLink}
 					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 				</div>`);
-			setTimeout(() => document.querySelectorAll('.alert').forEach(a => a.remove()), 3500);
+			setTimeout(() => document.querySelectorAll('.alert').forEach(a => a.remove()), isTokenErr ? 8000 : 3500);
 		}
 
 		// ── Assign Students: show/hide picker when role = Instructor ──

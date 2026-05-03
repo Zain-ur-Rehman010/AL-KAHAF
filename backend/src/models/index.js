@@ -12,6 +12,7 @@ const Message = require('./Message');
 const Notification = require('./Notification');
 const Blog = require('./Blog');
 const FreeTrialRequest = require('./FreeTrialRequest');
+const TrialEmailLog = require('./TrialEmailLog');
 const PredefinedCourse = require('./PredefinedCourse');
 const InstructorCourse = require('./InstructorCourse');
 const InstructorStudent = require('./InstructorStudent');
@@ -74,6 +75,10 @@ Message.belongsTo(User, { foreignKey: 'senderId', as: 'sender' });
 Message.belongsTo(User, { foreignKey: 'recipientId', as: 'recipient' });
 Message.belongsTo(Course, { foreignKey: 'courseId', as: 'course' });
 
+// TrialEmailLog associations
+TrialEmailLog.belongsTo(User, { foreignKey: 'userId', as: 'user' });
+User.hasMany(TrialEmailLog, { foreignKey: 'userId', as: 'trialEmailLogs' });
+
 // Notification associations
 Notification.belongsTo(User, { foreignKey: 'userId', as: 'user' });
 
@@ -128,6 +133,7 @@ module.exports = {
   Notification,
   Blog,
   FreeTrialRequest,
+  TrialEmailLog,
   PredefinedCourse,
   InstructorCourse,
   InstructorStudent,

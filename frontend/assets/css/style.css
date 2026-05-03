@@ -7938,7 +7938,7 @@ header.header-two.fixed .navbar-header #mobile_btn .bar-icon span {
 header.header-one {
   position: fixed;
   background: linear-gradient(135deg, #522811 0%, #8B4513 100%);
-  padding: 12px 0;
+  padding: 0 0 2px;
 }
 header.header-one.fixed {
   background: linear-gradient(135deg, #522811 0%, #8B4513 100%);

@@ -111,7 +111,8 @@ exports.login = async (req, res) => {
 
     await user.update({ lastLogin: new Date() });
 
-    const tokens = tokenService.generateTokens(user.id, user.role);
+    const trialData = user.isTrial ? { isTrial: true, trialExpiresAt: user.trialExpiresAt } : null;
+    const tokens = tokenService.generateTokens(user.id, user.role, trialData);
     res.json({
       success: true,
       message: 'Login successful',

@@ -117,6 +117,26 @@ const User = sequelize.define('User', {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  isTrial: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
+  },
+  trialStartedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  trialExpiresAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  trialEmailsSent: {
+    type: DataTypes.TINYINT,
+    defaultValue: 0,
+  },
+  trialCourseId: {
+    type: DataTypes.UUID,
+    allowNull: true,
+  },
   lastLogin: {
     type: DataTypes.DATE,
     allowNull: true,

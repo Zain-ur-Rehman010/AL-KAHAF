@@ -377,7 +377,7 @@
 				<div class="modal-body">
 					<p class="mb-0">Are you sure you want to delete <strong>all</strong> notifications? This cannot be undone.</p>
 				</div>
-				<div class="modal-footer">
+				<div class="modal-footer gap-2">
 					<button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
 					<button type="button" class="btn btn-danger btn-sm" onclick="clearAllNotifications()">Delete All</button>
 				</div>
@@ -667,14 +667,16 @@
 
 		function showAlert(type, message) {
 			const cls = type === 'success' ? 'alert-success' : 'alert-danger';
+			const isTokenErr = type !== 'success' && /expired|token|unauthorized|401/i.test(message);
+			const loginLink = isTokenErr ? ` <a href="/auth/login" class="alert-link ms-2">Go to Login</a>` : '';
 			document.body.insertAdjacentHTML('beforeend', `
 				<div class="alert ${cls} alert-dismissible fade show position-fixed top-0 end-0 m-3" role="alert" style="z-index:9999;">
-					${message}
+					${message}${loginLink}
 					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 				</div>`);
 			setTimeout(() => {
 				document.querySelectorAll('.alert').forEach(a => a.remove());
-			}, 3000);
+			}, isTokenErr ? 8000 : 3000);
 		}
 	</script>
 

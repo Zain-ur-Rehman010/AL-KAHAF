@@ -534,11 +534,12 @@
 		}
 
 		function showAlert(type, message) {
-			// Simple alert for now - can be replaced with better notification system
 			const alertClass = type === 'success' ? 'alert-success' : 'alert-danger';
+			const isTokenErr = type !== 'success' && /expired|token|unauthorized|401/i.test(message);
+			const loginLink = isTokenErr ? ` <a href="/auth/login" class="alert-link ms-2">Go to Login</a>` : '';
 			const alertHtml = `
 				<div class="alert ${alertClass} alert-dismissible fade show position-fixed top-0 end-0 m-3" role="alert" style="z-index: 9999;">
-					${message}
+					${message}${loginLink}
 					<button type="button" class="btn-close" data-bs-dismiss="alert"></button>
 				</div>
 			`;
@@ -547,7 +548,7 @@
 			setTimeout(() => {
 				const alerts = document.querySelectorAll('.alert');
 				alerts.forEach(alert => alert.remove());
-			}, 3000);
+			}, isTokenErr ? 8000 : 3000);
 		}
 
 		// Search functionality

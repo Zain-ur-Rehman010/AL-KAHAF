@@ -1,7 +1,5 @@
 {
   "permissions": {
-    "allow": [
-      "Bash(node migrations/migrate.js)"
-    ]
+    "allow": ["Bash(node migrations/migrate.js)", "Bash(node -e \":*)"]
   }
 }
