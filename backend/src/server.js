@@ -21,6 +21,24 @@ const instructorStudentRoutes = require("./routes/instructorStudentRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const { startTrialEmailJob } = require("./jobs/trialEmailJob");
 
+// Swagger UI
+const swaggerUi = require("swagger-ui-express");
+const swaggerDefinition = {
+  openapi: "3.0.0",
+  info: {
+    title: "AlKahaf LMS API",
+    version: "1.0.0",
+    description: "API documentation for AlKahaf Learning Management System",
+  },
+  servers: [
+    { url: "http://localhost:5000/api/v1", description: "Development" },
+    {
+      url: "https://alkahafonlineacademy.com/api/v1",
+      description: "Production",
+    },
+  ],
+};
+
 const app = express();
 
 // Security middleware — relax CSP only for the Swagger UI path
@@ -174,7 +192,7 @@ async function startServer() {
     await sequelize.authenticate();
     console.log("Database connected successfully");
 
-    await sequelize.sync({ alter: true });
+    await sequelize.sync({ alter: false });
     console.log("Database synchronized");
 
     app.listen(PORT, () => {
