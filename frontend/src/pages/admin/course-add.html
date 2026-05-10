@@ -256,13 +256,13 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <label class="form-label">Course Title (Predefined Catalog) <span class="text-danger">*</span></label>
-                                    <select class="form-select" id="predefinedCourseId">
+                                    <select class="form-select" id="predefinedCourseId" disabled>
                                         <option value="">Loading predefined courses...</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label">Assign To Instructor <span class="text-danger">*</span></label>
-                                    <select class="form-select instructor-select" id="assignInstructorId">
+                                    <select class="form-select instructor-select" id="assignInstructorId" disabled>
                                         <option value="">Loading instructors...</option>
                                     </select>
                                 </div>
@@ -390,7 +390,7 @@
                             <div class="step-title"><h5><i class="iconsax me-2" data-icon="teacher"></i> Assign Instructor</h5></div>
                             <div class="mb-3">
                                 <label class="form-label">Select Instructor <span class="text-danger">*</span></label>
-                                <select class="form-select instructor-select" id="instructorId">
+                                <select class="form-select instructor-select" id="instructorId" disabled>
                                     <option value="">Loading instructors...</option>
                                 </select>
                                 <small class="text-muted">The course will be listed under this instructor's name.</small>
@@ -562,7 +562,7 @@
     <!-- Bootstrap Bundle JS -->
     <script src="/assets/js/bootstrap.bundle.min.js"></script>
     <!-- Iconsax Icons -->
-    <script src="/assets/plugins/iconsax/index.js"></script>
+    
     <!-- Select2 JS -->
     <script src="/assets/plugins/select2/js/select2.min.js"></script>
     <!-- Custom JS -->
@@ -606,18 +606,21 @@
                 window.location.href = '/auth/login';
                 return;
             }
-            document.getElementById('adminName').textContent = user.firstName + ' ' + user.lastName;
+            const nameEl = document.getElementById('adminName') || document.getElementById('admin-name');
+            if (nameEl) nameEl.textContent = user.firstName + ' ' + user.lastName;
         }
 
         async function loadInstructors() {
+            const selects = Array.from(document.querySelectorAll('.instructor-select'));
+            selects.forEach(function(s) { s.disabled = true; });
             try {
-                const res = await fetch(API_CONFIG.BASE_URL + '/admin/instructors', {
+                const res = await fetch(API_CONFIG.BASE_URL + '/admin/instructors?limit=200', {
                     headers: API_CONFIG.getHeaders(true)
                 });
                 const result = await res.json();
-                const selects = Array.from(document.querySelectorAll('.instructor-select'));
                 selects.forEach(function(select) {
                     select.innerHTML = '<option value="">Select Instructor</option>';
+                    select.disabled = false;
                 });
 
                 if (result.success && result.data && result.data.length > 0) {
@@ -629,48 +632,68 @@
                             select.appendChild(opt);
                         });
                     });
+                } else if (!result.success) {
+                    selects.forEach(function(s) {
+                        s.innerHTML = '<option value="">Error loading instructors</option>';
+                    });
+                    console.error('loadInstructors failed:', result.message);
                 }
             } catch (e) {
                 Array.from(document.querySelectorAll('.instructor-select')).forEach(function(select) {
                     select.innerHTML = '<option value="">Could not load instructors</option>';
+                    select.disabled = false;
                 });
+                console.error('loadInstructors error:', e);
             }
         }
 
         async function loadPredefinedCoursesForAssignment() {
             const select = document.getElementById('predefinedCourseId');
             if (!select) return;
+            select.disabled = true;
             try {
                 const res = await fetch(API_CONFIG.BASE_URL + '/admin/predefined-courses', {
                     headers: API_CONFIG.getHeaders(true)
                 });
+                if (!res.ok) {
+                    const err = await res.json().catch(() => ({}));
+                    throw new Error(err.message || 'HTTP ' + res.status);
+                }
                 const result = await res.json();
                 select.innerHTML = '<option value="">Select Course Title</option>';
                 predefinedCourseById.clear();
 
-                if (!res.ok || !result.success) {
+                if (!result.success) {
                     throw new Error(result.message || 'Failed to load predefined courses');
                 }
 
                 const grouped = result.data?.grouped || {};
-                Object.keys(grouped).sort().forEach(function(category) {
-                    const group = document.createElement('optgroup');
-                    group.label = category;
-                    grouped[category].forEach(function(item) {
-                        predefinedCourseById.set(item.id, {
-                            id: item.id,
-                            courseName: item.courseName,
-                            category: category
+                const categories = Object.keys(grouped).sort();
+                if (categories.length === 0) {
+                    select.innerHTML = '<option value="">No courses in catalog yet</option>';
+                } else {
+                    categories.forEach(function(category) {
+                        const group = document.createElement('optgroup');
+                        group.label = category;
+                        grouped[category].forEach(function(item) {
+                            predefinedCourseById.set(item.id, {
+                                id: item.id,
+                                courseName: item.courseName,
+                                category: category
+                            });
+                            const opt = document.createElement('option');
+                            opt.value = item.id;
+                            opt.textContent = item.courseName;
+                            group.appendChild(opt);
                         });
-                        const opt = document.createElement('option');
-                        opt.value = item.id;
-                        opt.textContent = item.courseName;
-                        group.appendChild(opt);
+                        select.appendChild(group);
                     });
-                    select.appendChild(group);
-                });
+                }
+                select.disabled = false;
             } catch (error) {
-                select.innerHTML = '<option value="">Could not load predefined courses</option>';
+                console.error('loadPredefinedCoursesForAssignment error:', error);
+                select.innerHTML = '<option value="">Failed: ' + error.message + '</option>';
+                select.disabled = false;
             }
         }
 
