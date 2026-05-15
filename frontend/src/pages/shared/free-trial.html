@@ -1,1920 +1,2763 @@
-<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Book your free trial class at Al-Kahaf Online Academy. Learn Quran, Arabic, Tajweed, and Islamic Studies with certified tutors.">
-	<title>Free Trial Class | Al-Kahaf Online Academy</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Book your free trial class at Al-Kahaf Online Academy. Learn Quran, Arabic, Tajweed, and Islamic Studies with certified tutors."
+    />
+    <title>Free Trial Class | Al-Kahaf Online Academy</title>
 
-	<link rel="shortcut icon" href="/assets/img/favicon.svg">
-	<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
-	<script src="/assets/js/theme-script.js"></script>
-	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
-	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
-	<link rel="stylesheet" href="/assets/plugins/feather/feather.css">
-	<link rel="stylesheet" href="/assets/css/iconsax.css">
-	<link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.svg" />
+    <link rel="apple-touch-icon" href="/assets/img/apple-icon.png" />
+    <script src="/assets/js/theme-script.js"></script>
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="/assets/plugins/fontawesome/css/fontawesome.min.css"
+    />
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css" />
+    <link rel="stylesheet" href="/assets/plugins/feather/feather.css" />
+    <link rel="stylesheet" href="/assets/css/iconsax.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
 
-	<style>
-		/* Free trial form validation */
-		.ft-err-msg { font-size:12px; margin-top:4px; color:#dc3545; display:none; }
-		.ft-err-msg.show { display:block; }
-		#freeTrialForm .form-control.is-invalid,
-		#freeTrialForm .form-select.is-invalid { border-color:#dc3545 !important; }
-		#freeTrialForm .form-control.is-valid,
-		#freeTrialForm .form-select.is-valid { border-color:#159F46 !important; }
-		/* Remove Bootstrap's checkmark/cross background icons from password fields — eye icon is already there */
-		#passwordInput input.is-valid,
-		#passwordInput input.is-invalid,
-		#freeTrialForm #trialConfirmPassword.is-valid,
-		#freeTrialForm #trialConfirmPassword.is-invalid {
-			background-image: none !important;
-			padding-right: 2.5rem !important;
-		}
-	</style>
-	<style>
-		/* ======================================
+    <style>
+      /* Free trial form validation */
+      .ft-err-msg {
+        font-size: 12px;
+        margin-top: 4px;
+        color: #dc3545;
+        display: none;
+      }
+      .ft-err-msg.show {
+        display: block;
+      }
+      #freeTrialForm .form-control.is-invalid,
+      #freeTrialForm .form-select.is-invalid {
+        border-color: #dc3545 !important;
+      }
+      #freeTrialForm .form-control.is-valid,
+      #freeTrialForm .form-select.is-valid {
+        border-color: #159f46 !important;
+      }
+      /* Remove Bootstrap's checkmark/cross background icons from password fields — eye icon is already there */
+      #passwordInput input.is-valid,
+      #passwordInput input.is-invalid,
+      #freeTrialForm #trialConfirmPassword.is-valid,
+      #freeTrialForm #trialConfirmPassword.is-invalid {
+        background-image: none !important;
+        padding-right: 2.5rem !important;
+      }
+    </style>
+    <style>
+      /* ======================================
 		   FREE TRIAL PAGE - CUSTOM STYLES
 		   ====================================== */
 
-		/* ---- 1. HERO + FORM SECTION ---- */
-		.free-trial-hero {
-			background: linear-gradient(135deg, #2c1506 0%, #522811 45%, #3d1d0a 100%);
-			padding: 100px 0 80px;
-			position: relative;
-			overflow: hidden;
-		}
-		.free-trial-hero::before {
-			content: '';
-			position: absolute;
-			top: -30%;
-			right: -10%;
-			width: 55%;
-			height: 160%;
-			background: radial-gradient(ellipse, rgba(216,172,39,0.1) 0%, transparent 65%);
-			pointer-events: none;
-		}
-		.free-trial-hero .hero-content {
-			color: #fff;
-		}
-		.free-trial-hero .hero-badge {
-			display: inline-flex;
-			align-items: center;
-			background: rgba(216,172,39,0.15);
-			border: 1px solid rgba(216,172,39,0.4);
-			color: #d8ac27;
-			font-size: 13px;
-			font-weight: 600;
-			padding: 6px 16px;
-			border-radius: 50px;
-			margin-bottom: 20px;
-			letter-spacing: 0.5px;
-		}
-		.free-trial-hero h1 {
-			font-size: 42px;
-			font-weight: 800;
-			color: #fff;
-			line-height: 1.2;
-			margin-bottom: 18px;
-		}
-		.free-trial-hero h1 span {
-			color: #d8ac27;
-		}
-		.free-trial-hero .hero-desc {
-			font-size: 16px;
-			color: rgba(255,255,255,0.75);
-			margin-bottom: 32px;
-			line-height: 1.7;
-		}
-		.free-trial-hero .benefit-list {
-			list-style: none;
-			padding: 0;
-			margin: 0 0 36px;
-		}
-		.free-trial-hero .benefit-list li {
-			display: flex;
-			align-items: center;
-			color: rgba(255,255,255,0.85);
-			font-size: 15px;
-			margin-bottom: 12px;
-		}
-		.free-trial-hero .benefit-list li i {
-			width: 24px;
-			height: 24px;
-			background: #d8ac27;
-			color: #fff;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 11px;
-			margin-right: 12px;
-			flex-shrink: 0;
-		}
-		.free-trial-hero .trust-strip {
-			display: flex;
-			gap: 24px;
-			flex-wrap: wrap;
-		}
-		.free-trial-hero .trust-item {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-		}
-		.free-trial-hero .trust-item strong {
-			font-size: 22px;
-			font-weight: 800;
-			color: #d8ac27;
-		}
-		.free-trial-hero .trust-item span {
-			font-size: 12px;
-			color: rgba(255,255,255,0.65);
-		}
+      /* ---- 1. HERO + FORM SECTION ---- */
+      .free-trial-hero {
+        background: linear-gradient(
+          135deg,
+          #2c1506 0%,
+          #522811 45%,
+          #3d1d0a 100%
+        );
+        padding: 100px 0 80px;
+        position: relative;
+        overflow: hidden;
+      }
+      .free-trial-hero::before {
+        content: "";
+        position: absolute;
+        top: -30%;
+        right: -10%;
+        width: 55%;
+        height: 160%;
+        background: radial-gradient(
+          ellipse,
+          rgba(216, 172, 39, 0.1) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .free-trial-hero .hero-content {
+        color: #fff;
+      }
+      .free-trial-hero .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        background: rgba(216, 172, 39, 0.15);
+        border: 1px solid rgba(216, 172, 39, 0.4);
+        color: #d8ac27;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 6px 16px;
+        border-radius: 50px;
+        margin-bottom: 20px;
+        letter-spacing: 0.5px;
+      }
+      .free-trial-hero h1 {
+        font-size: 42px;
+        font-weight: 800;
+        color: #fff;
+        line-height: 1.2;
+        margin-bottom: 18px;
+      }
+      .free-trial-hero h1 span {
+        color: #d8ac27;
+      }
+      .free-trial-hero .hero-desc {
+        font-size: 16px;
+        color: rgba(255, 255, 255, 0.75);
+        margin-bottom: 32px;
+        line-height: 1.7;
+      }
+      .free-trial-hero .benefit-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 36px;
+      }
+      .free-trial-hero .benefit-list li {
+        display: flex;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.85);
+        font-size: 15px;
+        margin-bottom: 12px;
+      }
+      .free-trial-hero .benefit-list li i {
+        width: 24px;
+        height: 24px;
+        background: #d8ac27;
+        color: #fff;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        margin-right: 12px;
+        flex-shrink: 0;
+      }
+      .free-trial-hero .trust-strip {
+        display: flex;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .free-trial-hero .trust-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .free-trial-hero .trust-item strong {
+        font-size: 22px;
+        font-weight: 800;
+        color: #d8ac27;
+      }
+      .free-trial-hero .trust-item span {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.65);
+      }
 
-		/* Form Card */
-		.trial-form-card {
-			background: #fff;
-			border-radius: 20px;
-			padding: 40px 36px;
-			box-shadow: 0 24px 60px rgba(0,0,0,0.25);
-			position: relative;
-		}
-		.trial-form-card .form-header {
-			text-align: center;
-			margin-bottom: 28px;
-		}
-		.trial-form-card .form-header .free-badge {
-			display: inline-block;
-			background: linear-gradient(135deg, #d8ac27, #f0c842);
-			color: #fff;
-			font-size: 12px;
-			font-weight: 700;
-			padding: 4px 14px;
-			border-radius: 50px;
-			margin-bottom: 10px;
-			letter-spacing: 1px;
-			text-transform: uppercase;
-		}
-		.trial-form-card .form-header h3 {
-			font-size: 22px;
-			font-weight: 700;
-			color: #1a1a1a;
-			margin-bottom: 4px;
-		}
-		.trial-form-card .form-header p {
-			font-size: 13px;
-			color: #777;
-			margin: 0;
-		}
-		.trial-form-card .form-label {
-			font-size: 13px;
-			font-weight: 600;
-			color: #444;
-			margin-bottom: 6px;
-		}
-		.trial-form-card .form-control,
-		.trial-form-card .form-select {
-			border: 1.5px solid #e8e8e8;
-			border-radius: 10px;
-			padding: 10px 14px;
-			font-size: 14px;
-			transition: border-color 0.25s;
-		}
-		.trial-form-card .form-control:focus,
-		.trial-form-card .form-select:focus {
-			border-color: #522811;
-			box-shadow: 0 0 0 3px rgba(82,40,17,0.08);
-		}
-		.trial-form-card .btn-submit-trial {
-			background: linear-gradient(135deg, #522811, #7a3d18);
-			color: #fff;
-			border: none;
-			border-radius: 10px;
-			padding: 13px 20px;
-			font-size: 15px;
-			font-weight: 700;
-			width: 100%;
-			transition: all 0.3s ease;
-			letter-spacing: 0.3px;
-		}
-		.trial-form-card .btn-submit-trial:hover {
-			background: linear-gradient(135deg, #d8ac27, #f0c842);
-			color: #fff;
-			transform: translateY(-2px);
-			box-shadow: 0 8px 20px rgba(216,172,39,0.4);
-		}
-		.trial-form-card .no-credit {
-			text-align: center;
-			font-size: 12px;
-			color: #999;
-			margin-top: 12px;
-		}
-		.trial-form-card .no-credit i {
-			color: #2e7d32;
-			margin-right: 4px;
-		}
+      /* Form Card */
+      .trial-form-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 40px 36px;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
+        position: relative;
+      }
+      .trial-form-card .form-header {
+        text-align: center;
+        margin-bottom: 28px;
+      }
+      .trial-form-card .form-header .free-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #d8ac27, #f0c842);
+        color: #fff;
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 50px;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+      }
+      .trial-form-card .form-header h3 {
+        font-size: 22px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 4px;
+      }
+      .trial-form-card .form-header p {
+        font-size: 13px;
+        color: #777;
+        margin: 0;
+      }
+      .trial-form-card .form-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #444;
+        margin-bottom: 6px;
+      }
+      .trial-form-card .form-control,
+      .trial-form-card .form-select {
+        border: 1.5px solid #e8e8e8;
+        border-radius: 10px;
+        padding: 10px 14px;
+        font-size: 14px;
+        transition: border-color 0.25s;
+      }
+      .trial-form-card .form-control:focus,
+      .trial-form-card .form-select:focus {
+        border-color: #522811;
+        box-shadow: 0 0 0 3px rgba(82, 40, 17, 0.08);
+      }
+      .trial-form-card .btn-submit-trial {
+        background: linear-gradient(135deg, #522811, #7a3d18);
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        padding: 13px 20px;
+        font-size: 15px;
+        font-weight: 700;
+        width: 100%;
+        transition: all 0.3s ease;
+        letter-spacing: 0.3px;
+      }
+      .trial-form-card .btn-submit-trial:hover {
+        background: linear-gradient(135deg, #d8ac27, #f0c842);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(216, 172, 39, 0.4);
+      }
+      .trial-form-card .no-credit {
+        text-align: center;
+        font-size: 12px;
+        color: #999;
+        margin-top: 12px;
+      }
+      .trial-form-card .no-credit i {
+        color: #2e7d32;
+        margin-right: 4px;
+      }
 
-		/* ---- 2. COURSES SECTION ---- */
-		.ft-courses-section {
-			padding: 80px 0;
-			background: #f8f9fa;
-		}
-		.ft-section-title {
-			font-size: 34px;
-			font-weight: 800;
-			color: #1a1a1a;
-			margin-bottom: 8px;
-		}
-		.ft-section-subtitle {
-			font-size: 15px;
-			color: #666;
-			margin-bottom: 48px;
-		}
+      /* ---- 2. COURSES SECTION ---- */
+      .ft-courses-section {
+        padding: 80px 0;
+        background: #f8f9fa;
+      }
+      .ft-section-title {
+        font-size: 34px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+      }
+      .ft-section-subtitle {
+        font-size: 15px;
+        color: #666;
+        margin-bottom: 48px;
+      }
 
-		/* ---- 3. PRICING SECTION ---- */
-		.ft-pricing-section {
-			padding: 80px 0;
-			background: #fff;
-		}
-		.pricing-badge-label {
-			display: inline-block;
-			background: rgba(82,40,17,0.08);
-			color: #522811;
-			font-size: 13px;
-			font-weight: 600;
-			padding: 5px 16px;
-			border-radius: 50px;
-			margin-bottom: 14px;
-		}
-		.ft-pricing-card {
-			background: #fff;
-			border: 2px solid #f0f0f0;
-			border-radius: 16px;
-			padding: 32px 28px;
-			height: 100%;
-			transition: all 0.3s ease;
-			position: relative;
-			overflow: hidden;
-		}
-		.ft-pricing-card:hover {
-			border-color: #d8ac27;
-			transform: translateY(-4px);
-			box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-		}
-		.ft-pricing-card.popular {
-			border-color: #522811;
-			background: linear-gradient(160deg, #522811 0%, #7a3d18 100%);
-			color: #fff;
-		}
-		.ft-pricing-card.popular:hover {
-			border-color: #d8ac27;
-		}
-		.ft-pricing-card .popular-tag {
-			position: absolute;
-			top: 18px;
-			right: 18px;
-			background: #d8ac27;
-			color: #fff;
-			font-size: 11px;
-			font-weight: 700;
-			padding: 3px 12px;
-			border-radius: 50px;
-			text-transform: uppercase;
-			letter-spacing: 0.5px;
-		}
-		.ft-pricing-card .plan-name {
-			font-size: 14px;
-			font-weight: 600;
-			color: #522811;
-			text-transform: uppercase;
-			letter-spacing: 1px;
-			margin-bottom: 8px;
-		}
-		.ft-pricing-card.popular .plan-name {
-			color: rgba(255,255,255,0.7);
-		}
-		.ft-pricing-card .plan-price {
-			font-size: 40px;
-			font-weight: 800;
-			color: #1a1a1a;
-			line-height: 1;
-			margin-bottom: 4px;
-		}
-		.ft-pricing-card.popular .plan-price {
-			color: #fff;
-		}
-		.ft-pricing-card .plan-price sup {
-			font-size: 20px;
-			font-weight: 600;
-			vertical-align: super;
-		}
-		.ft-pricing-card .plan-period {
-			font-size: 13px;
-			color: #888;
-			margin-bottom: 16px;
-		}
-		.ft-pricing-card.popular .plan-period {
-			color: rgba(255,255,255,0.6);
-		}
-		.ft-pricing-card .plan-desc {
-			font-size: 13px;
-			color: #666;
-			margin-bottom: 20px;
-			padding-bottom: 20px;
-			border-bottom: 1px solid #f0f0f0;
-		}
-		.ft-pricing-card.popular .plan-desc {
-			color: rgba(255,255,255,0.7);
-			border-bottom-color: rgba(255,255,255,0.15);
-		}
-		.ft-pricing-card .feature-list {
-			list-style: none;
-			padding: 0;
-			margin: 0 0 24px;
-		}
-		.ft-pricing-card .feature-list li {
-			display: flex;
-			align-items: center;
-			font-size: 14px;
-			color: #444;
-			margin-bottom: 10px;
-		}
-		.ft-pricing-card.popular .feature-list li {
-			color: rgba(255,255,255,0.85);
-		}
-		.ft-pricing-card .feature-list li i {
-			color: #2e7d32;
-			font-size: 15px;
-			margin-right: 10px;
-			flex-shrink: 0;
-		}
-		.ft-pricing-card.popular .feature-list li i {
-			color: #d8ac27;
-		}
-		.ft-pricing-card .btn-plan {
-			display: block;
-			width: 100%;
-			text-align: center;
-			padding: 12px;
-			border-radius: 10px;
-			font-size: 14px;
-			font-weight: 600;
-			border: 2px solid #522811;
-			color: #522811;
-			background: transparent;
-			transition: all 0.3s ease;
-			text-decoration: none;
-		}
-		.ft-pricing-card .btn-plan:hover {
-			background: #522811;
-			color: #fff;
-		}
-		.ft-pricing-card.popular .btn-plan {
-			border-color: #d8ac27;
-			background: #d8ac27;
-			color: #fff;
-		}
-		.ft-pricing-card.popular .btn-plan:hover {
-			background: #f0c842;
-			border-color: #f0c842;
-		}
+      /* ---- 3. PRICING SECTION ---- */
+      .ft-pricing-section {
+        padding: 80px 0;
+        background: #fff;
+      }
+      .pricing-badge-label {
+        display: inline-block;
+        background: rgba(82, 40, 17, 0.08);
+        color: #522811;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 5px 16px;
+        border-radius: 50px;
+        margin-bottom: 14px;
+      }
+      .ft-pricing-card {
+        background: #fff;
+        border: 2px solid #f0f0f0;
+        border-radius: 16px;
+        padding: 32px 28px;
+        height: 100%;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+      .ft-pricing-card:hover {
+        border-color: #d8ac27;
+        transform: translateY(-4px);
+        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+      }
+      .ft-pricing-card.popular {
+        border-color: #522811;
+        background: linear-gradient(160deg, #522811 0%, #7a3d18 100%);
+        color: #fff;
+      }
+      .ft-pricing-card.popular:hover {
+        border-color: #d8ac27;
+      }
+      .ft-pricing-card .popular-tag {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        background: #d8ac27;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 12px;
+        border-radius: 50px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .ft-pricing-card .plan-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #522811;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 8px;
+      }
+      .ft-pricing-card.popular .plan-name {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      .ft-pricing-card .plan-price {
+        font-size: 40px;
+        font-weight: 800;
+        color: #1a1a1a;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .ft-pricing-card.popular .plan-price {
+        color: #fff;
+      }
+      .ft-pricing-card .plan-price sup {
+        font-size: 20px;
+        font-weight: 600;
+        vertical-align: super;
+      }
+      .ft-pricing-card .plan-period {
+        font-size: 13px;
+        color: #888;
+        margin-bottom: 16px;
+      }
+      .ft-pricing-card.popular .plan-period {
+        color: rgba(255, 255, 255, 0.6);
+      }
+      .ft-pricing-card .plan-desc {
+        font-size: 13px;
+        color: #666;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #f0f0f0;
+      }
+      .ft-pricing-card.popular .plan-desc {
+        color: rgba(255, 255, 255, 0.7);
+        border-bottom-color: rgba(255, 255, 255, 0.15);
+      }
+      .ft-pricing-card .feature-list {
+        list-style: none;
+        padding: 0;
+        margin: 0 0 24px;
+      }
+      .ft-pricing-card .feature-list li {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        color: #444;
+        margin-bottom: 10px;
+      }
+      .ft-pricing-card.popular .feature-list li {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .ft-pricing-card .feature-list li i {
+        color: #2e7d32;
+        font-size: 15px;
+        margin-right: 10px;
+        flex-shrink: 0;
+      }
+      .ft-pricing-card.popular .feature-list li i {
+        color: #d8ac27;
+      }
+      .ft-pricing-card .btn-plan {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+        border-radius: 10px;
+        font-size: 14px;
+        font-weight: 600;
+        border: 2px solid #522811;
+        color: #522811;
+        background: transparent;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      .ft-pricing-card .btn-plan:hover {
+        background: #522811;
+        color: #fff;
+      }
+      .ft-pricing-card.popular .btn-plan {
+        border-color: #d8ac27;
+        background: #d8ac27;
+        color: #fff;
+      }
+      .ft-pricing-card.popular .btn-plan:hover {
+        background: #f0c842;
+        border-color: #f0c842;
+      }
 
-		/* ---- 4. TESTIMONIALS SECTION ---- */
-		.ft-testimonials-section {
-			padding: 80px 0;
-			background: linear-gradient(135deg, #2c1506 0%, #522811 50%, #3d1d0a 100%);
-			position: relative;
-			overflow: hidden;
-		}
-		.ft-testimonials-section::before {
-			content: '';
-			position: absolute;
-			top: 0; left: 0; right: 0; bottom: 0;
-			background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d8ac27' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-			pointer-events: none;
-		}
-		.ft-testimonials-section .section-title-white {
-			font-size: 34px;
-			font-weight: 800;
-			color: #fff;
-			margin-bottom: 8px;
-		}
-		.ft-testimonials-section .section-sub-white {
-			font-size: 15px;
-			color: rgba(255,255,255,0.65);
-			margin-bottom: 48px;
-		}
-		.testimonial-card {
-			background: rgba(255,255,255,0.07);
-			border: 1px solid rgba(216,172,39,0.2);
-			border-radius: 16px;
-			padding: 30px 28px;
-			height: 100%;
-			backdrop-filter: blur(4px);
-			transition: all 0.3s ease;
-		}
-		.testimonial-card:hover {
-			background: rgba(216,172,39,0.1);
-			border-color: rgba(216,172,39,0.5);
-			transform: translateY(-4px);
-		}
-		.testimonial-card .quote-icon {
-			font-size: 36px;
-			color: #d8ac27;
-			line-height: 1;
-			margin-bottom: 16px;
-			opacity: 0.8;
-		}
-		.testimonial-card .review-text {
-			font-size: 14px;
-			color: rgba(255,255,255,0.8);
-			line-height: 1.7;
-			margin-bottom: 20px;
-			font-style: italic;
-		}
-		.testimonial-card .stars {
-			color: #d8ac27;
-			font-size: 13px;
-			margin-bottom: 14px;
-			letter-spacing: 2px;
-		}
-		.testimonial-card .reviewer-info {
-			display: flex;
-			align-items: center;
-			gap: 12px;
-		}
-		.testimonial-card .reviewer-avatar {
-			width: 44px;
-			height: 44px;
-			border-radius: 50%;
-			background: linear-gradient(135deg, #d8ac27, #f0c842);
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 16px;
-			font-weight: 700;
-			color: #fff;
-			flex-shrink: 0;
-		}
-		.testimonial-card .reviewer-name {
-			font-size: 14px;
-			font-weight: 700;
-			color: #fff;
-			margin-bottom: 2px;
-		}
-		.testimonial-card .reviewer-loc {
-			font-size: 12px;
-			color: rgba(255,255,255,0.5);
-		}
+      /* ---- 4. TESTIMONIALS SECTION ---- */
+      .ft-testimonials-section {
+        padding: 80px 0;
+        background: linear-gradient(
+          135deg,
+          #2c1506 0%,
+          #522811 50%,
+          #3d1d0a 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+      .ft-testimonials-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d8ac27' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        pointer-events: none;
+      }
+      .ft-testimonials-section .section-title-white {
+        font-size: 34px;
+        font-weight: 800;
+        color: #fff;
+        margin-bottom: 8px;
+      }
+      .ft-testimonials-section .section-sub-white {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.65);
+        margin-bottom: 48px;
+      }
+      .testimonial-card {
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(216, 172, 39, 0.2);
+        border-radius: 16px;
+        padding: 30px 28px;
+        height: 100%;
+        backdrop-filter: blur(4px);
+        transition: all 0.3s ease;
+      }
+      .testimonial-card:hover {
+        background: rgba(216, 172, 39, 0.1);
+        border-color: rgba(216, 172, 39, 0.5);
+        transform: translateY(-4px);
+      }
+      .testimonial-card .quote-icon {
+        font-size: 36px;
+        color: #d8ac27;
+        line-height: 1;
+        margin-bottom: 16px;
+        opacity: 0.8;
+      }
+      .testimonial-card .review-text {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.8);
+        line-height: 1.7;
+        margin-bottom: 20px;
+        font-style: italic;
+      }
+      .testimonial-card .stars {
+        color: #d8ac27;
+        font-size: 13px;
+        margin-bottom: 14px;
+        letter-spacing: 2px;
+      }
+      .testimonial-card .reviewer-info {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .testimonial-card .reviewer-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #d8ac27, #f0c842);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .testimonial-card .reviewer-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 2px;
+      }
+      .testimonial-card .reviewer-loc {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+      }
 
-		/* ---- 5. CLASS REQUIREMENTS SECTION ---- */
-		.ft-requirements-section {
-			padding: 80px 0;
-			background: #f8f9fa;
-		}
-		.requirement-card {
-			background: #fff;
-			border-radius: 14px;
-			padding: 28px 24px;
-			text-align: center;
-			height: 100%;
-			border: 1.5px solid #f0f0f0;
-			transition: all 0.3s ease;
-		}
-		.requirement-card:hover {
-			border-color: #d8ac27;
-			transform: translateY(-4px);
-			box-shadow: 0 12px 30px rgba(0,0,0,0.07);
-		}
-		.requirement-card .req-icon {
-			width: 64px;
-			height: 64px;
-			background: linear-gradient(135deg, rgba(82,40,17,0.08), rgba(82,40,17,0.12));
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin: 0 auto 16px;
-			transition: all 0.3s ease;
-		}
-		.requirement-card:hover .req-icon {
-			filter: brightness(0.88) saturate(1.2);
-			transform: scale(1.08);
-		}
-		.requirement-card .req-icon i {
-			font-size: 26px;
-			transition: color 0.3s ease;
-		}
-		.requirement-card h6 {
-			font-size: 15px;
-			font-weight: 700;
-			color: #1a1a1a;
-			margin-bottom: 8px;
-		}
-		.requirement-card p {
-			font-size: 13px;
-			color: #777;
-			margin: 0;
-			line-height: 1.6;
-		}
+      /* ---- 5. CLASS REQUIREMENTS SECTION ---- */
+      .ft-requirements-section {
+        padding: 80px 0;
+        background: #f8f9fa;
+      }
+      .requirement-card {
+        background: #fff;
+        border-radius: 14px;
+        padding: 28px 24px;
+        text-align: center;
+        height: 100%;
+        border: 1.5px solid #f0f0f0;
+        transition: all 0.3s ease;
+      }
+      .requirement-card:hover {
+        border-color: #d8ac27;
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.07);
+      }
+      .requirement-card .req-icon {
+        width: 64px;
+        height: 64px;
+        background: linear-gradient(
+          135deg,
+          rgba(82, 40, 17, 0.08),
+          rgba(82, 40, 17, 0.12)
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 16px;
+        transition: all 0.3s ease;
+      }
+      .requirement-card:hover .req-icon {
+        filter: brightness(0.88) saturate(1.2);
+        transform: scale(1.08);
+      }
+      .requirement-card .req-icon i {
+        font-size: 26px;
+        transition: color 0.3s ease;
+      }
+      .requirement-card h6 {
+        font-size: 15px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 8px;
+      }
+      .requirement-card p {
+        font-size: 13px;
+        color: #777;
+        margin: 0;
+        line-height: 1.6;
+      }
 
-		/* ---- 6. STUDENT REVIEWS SECTION ---- */
-		.ft-reviews-section {
-			padding: 80px 0;
-			background: #fff;
-		}
-		.overall-rating-box {
-			background: linear-gradient(135deg, #522811, #7a3d18);
-			border-radius: 16px;
-			padding: 40px 30px;
-			text-align: center;
-			color: #fff;
-		}
-		.overall-rating-box .big-score {
-			font-size: 64px;
-			font-weight: 900;
-			color: #d8ac27;
-			line-height: 1;
-			margin-bottom: 8px;
-		}
-		.overall-rating-box .big-stars {
-			color: #d8ac27;
-			font-size: 20px;
-			letter-spacing: 3px;
-			margin-bottom: 8px;
-		}
-		.overall-rating-box .total-reviews {
-			font-size: 13px;
-			color: rgba(255,255,255,0.65);
-		}
-		.rating-bar-row {
-			display: flex;
-			align-items: center;
-			gap: 10px;
-			margin-bottom: 8px;
-		}
-		.rating-bar-row .bar-label {
-			font-size: 13px;
-			color: #555;
-			width: 30px;
-			text-align: right;
-			flex-shrink: 0;
-		}
-		.rating-bar-row .bar-track {
-			flex: 1;
-			height: 8px;
-			background: #f0f0f0;
-			border-radius: 4px;
-			overflow: hidden;
-		}
-		.rating-bar-row .bar-fill {
-			height: 100%;
-			background: linear-gradient(90deg, #d8ac27, #f0c842);
-			border-radius: 4px;
-			transition: width 0.6s ease;
-		}
-		.rating-bar-row .bar-count {
-			font-size: 12px;
-			color: #999;
-			width: 30px;
-			flex-shrink: 0;
-		}
-		.student-review-card {
-			border: 1.5px solid #f0f0f0;
-			border-radius: 14px;
-			padding: 24px;
-			margin-bottom: 20px;
-			transition: border-color 0.3s ease;
-		}
-		.student-review-card:hover {
-			border-color: #d8ac27;
-		}
-		.student-review-card .rev-header {
-			display: flex;
-			align-items: center;
-			gap: 12px;
-			margin-bottom: 12px;
-		}
-		.student-review-card .rev-avatar {
-			width: 42px;
-			height: 42px;
-			border-radius: 50%;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			font-size: 15px;
-			font-weight: 700;
-			color: #fff;
-			flex-shrink: 0;
-		}
-		.student-review-card .rev-name {
-			font-size: 14px;
-			font-weight: 700;
-			color: #1a1a1a;
-			margin-bottom: 2px;
-		}
-		.student-review-card .rev-meta {
-			font-size: 12px;
-			color: #999;
-		}
-		.student-review-card .rev-stars {
-			color: #d8ac27;
-			font-size: 13px;
-			margin-bottom: 8px;
-		}
-		.student-review-card .rev-text {
-			font-size: 14px;
-			color: #555;
-			line-height: 1.65;
-			margin: 0;
-		}
+      /* ---- 6. STUDENT REVIEWS SECTION ---- */
+      .ft-reviews-section {
+        padding: 80px 0;
+        background: #fff;
+      }
+      .overall-rating-box {
+        background: linear-gradient(135deg, #522811, #7a3d18);
+        border-radius: 16px;
+        padding: 40px 30px;
+        text-align: center;
+        color: #fff;
+      }
+      .overall-rating-box .big-score {
+        font-size: 64px;
+        font-weight: 900;
+        color: #d8ac27;
+        line-height: 1;
+        margin-bottom: 8px;
+      }
+      .overall-rating-box .big-stars {
+        color: #d8ac27;
+        font-size: 20px;
+        letter-spacing: 3px;
+        margin-bottom: 8px;
+      }
+      .overall-rating-box .total-reviews {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.65);
+      }
+      .rating-bar-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 8px;
+      }
+      .rating-bar-row .bar-label {
+        font-size: 13px;
+        color: #555;
+        width: 30px;
+        text-align: right;
+        flex-shrink: 0;
+      }
+      .rating-bar-row .bar-track {
+        flex: 1;
+        height: 8px;
+        background: #f0f0f0;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+      .rating-bar-row .bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, #d8ac27, #f0c842);
+        border-radius: 4px;
+        transition: width 0.6s ease;
+      }
+      .rating-bar-row .bar-count {
+        font-size: 12px;
+        color: #999;
+        width: 30px;
+        flex-shrink: 0;
+      }
+      .student-review-card {
+        border: 1.5px solid #f0f0f0;
+        border-radius: 14px;
+        padding: 24px;
+        margin-bottom: 20px;
+        transition: border-color 0.3s ease;
+      }
+      .student-review-card:hover {
+        border-color: #d8ac27;
+      }
+      .student-review-card .rev-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+      .student-review-card .rev-avatar {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+        font-weight: 700;
+        color: #fff;
+        flex-shrink: 0;
+      }
+      .student-review-card .rev-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 2px;
+      }
+      .student-review-card .rev-meta {
+        font-size: 12px;
+        color: #999;
+      }
+      .student-review-card .rev-stars {
+        color: #d8ac27;
+        font-size: 13px;
+        margin-bottom: 8px;
+      }
+      .student-review-card .rev-text {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.65;
+        margin: 0;
+      }
 
-		/* Responsive */
-		@media (max-width: 991px) {
-			.free-trial-hero { padding: 80px 0 60px; }
-			.free-trial-hero h1 { font-size: 30px; }
-			.trial-form-card { margin-top: 40px; }
-			.ft-section-title, .ft-testimonials-section .section-title-white { font-size: 26px; }
-		}
-		@media (max-width: 768px) {
-			.free-trial-hero h1 { font-size: 26px; }
-			.ft-pricing-section, .ft-courses-section, .ft-testimonials-section,
-			.ft-requirements-section, .ft-reviews-section { padding: 60px 0; }
-		}
-	</style>
-</head>
-<body>
-<div class="main-wrapper">
+      /* Responsive */
+      @media (max-width: 991px) {
+        .free-trial-hero {
+          padding: 80px 0 60px;
+        }
+        .free-trial-hero h1 {
+          font-size: 30px;
+        }
+        .trial-form-card {
+          margin-top: 40px;
+        }
+        .ft-section-title,
+        .ft-testimonials-section .section-title-white {
+          font-size: 26px;
+        }
+      }
+      @media (max-width: 768px) {
+        .free-trial-hero h1 {
+          font-size: 26px;
+        }
+        .ft-pricing-section,
+        .ft-courses-section,
+        .ft-testimonials-section,
+        .ft-requirements-section,
+        .ft-reviews-section {
+          padding: 60px 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-wrapper">
+      <!-- Header Topbar -->
+      <div class="header-topbar text-center">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6">
+              <div
+                class="d-flex align-items-center justify-content-center justify-content-lg-start"
+              >
+                <p class="d-flex align-items-center fw-medium fs-14 mb-2 me-3">
+                  <i class="isax isax-location5 me-2"></i>1442 Crosswind Drive
+                  Madisonville
+                </p>
+                <p class="d-flex align-items-center fw-medium fs-14 mb-2">
+                  <i class="isax isax-call-calling5 me-2"></i>+1 45887 77874
+                </p>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div
+                class="d-flex align-items-center justify-content-center justify-content-lg-end"
+              >
+                <ul class="social-icon d-flex align-items-center mb-2">
+                  <li class="me-2">
+                    <a href="javascript:void(0);"
+                      ><i class="fa-brands fa-facebook-f"></i
+                    ></a>
+                  </li>
+                  <li class="me-2">
+                    <a href="javascript:void(0);"
+                      ><i class="fa-brands fa-instagram"></i
+                    ></a>
+                  </li>
+                  <li class="me-2">
+                    <a href="javascript:void(0);"
+                      ><i class="fa-brands fa-x-twitter"></i
+                    ></a>
+                  </li>
+                  <li class="me-2">
+                    <a href="javascript:void(0);"
+                      ><i class="fa-brands fa-youtube"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);"
+                      ><i class="fa-brands fa-linkedin"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Header Topbar -->
 
-	<!-- Header Topbar -->
-	<div class="header-topbar text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6">
-					<div class="d-flex align-items-center justify-content-center justify-content-lg-start">
-						<p class="d-flex align-items-center fw-medium fs-14 mb-2 me-3"><i class="isax isax-location5 me-2"></i>1442 Crosswind Drive Madisonville</p>
-						<p class="d-flex align-items-center fw-medium fs-14 mb-2"><i class="isax isax-call-calling5 me-2"></i>+1 45887 77874</p>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="d-flex align-items-center justify-content-center justify-content-lg-end">
-						<ul class="social-icon d-flex align-items-center mb-2">
-							<li class="me-2"><a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a></li>
-							<li class="me-2"><a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a></li>
-							<li class="me-2"><a href="javascript:void(0);"><i class="fa-brands fa-x-twitter"></i></a></li>
-							<li class="me-2"><a href="javascript:void(0);"><i class="fa-brands fa-youtube"></i></a></li>
-							<li><a href="javascript:void(0);"><i class="fa-brands fa-linkedin"></i></a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- /Header Topbar -->
+      <!-- Header -->
+      <header class="header-one">
+        <div class="container">
+          <div class="header-nav">
+            <div class="navbar-header">
+              <a id="mobile_btn" href="javascript:void(0);">
+                <span class="bar-icon"
+                  ><span></span><span></span><span></span
+                ></span>
+              </a>
+              <div class="navbar-logo">
+                <a class="logo-white header-logo" href="/"
+                  ><img
+                    src="/assets/img/white-logo.png"
+                    style="width: 150px; height: 110px"
+                    class="logo"
+                    alt="Logo"
+                /></a>
+                <a class="logo-dark header-logo" href="/"
+                  ><img
+                    src="/assets/img/white-logo.png"
+                    style="width: 150px; height: 110px"
+                    class="logo"
+                    alt="Logo"
+                /></a>
+              </div>
+            </div>
+            <div class="main-menu-wrapper">
+              <div class="menu-header">
+                <a href="/" class="menu-logo"
+                  ><img
+                    src="/assets/img/white-logo.png"
+                    style="width: 150px; height: 110px"
+                    class="img-fluid"
+                    alt="Logo"
+                /></a>
+                <a id="menu_close" class="menu-close" href="javascript:void(0);"
+                  ><i class="fas fa-times"></i
+                ></a>
+              </div>
+              <ul class="main-nav">
+                <li><a href="/">Home</a></li>
+                <li><a href="/courses/course-grid">Courses</a></li>
+                <li><a href="/shared/about-us">About Us</a></li>
+                <li>
+                  <a href="/shared/free-trial" class="active">Free Trial</a>
+                </li>
+                <li><a href="/shared/pricing-plan">Pricing</a></li>
+              </ul>
+              <div class="menu-login">
+                <a href="/auth/login" class="btn btn-primary w-100 mb-2"
+                  ><i class="isax isax-user me-2"></i>Sign In</a
+                >
+                <a href="/auth/register" class="btn btn-secondary w-100"
+                  ><i class="isax isax-user-edit me-2"></i>Register</a
+                >
+              </div>
+            </div>
+            <div class="header-btn d-flex align-items-center">
+              <a
+                href="/auth/login"
+                class="btn btn-light d-inline-flex align-items-center me-2"
+                ><i class="isax isax-lock-circle me-2"></i>Sign In</a
+              >
+              <a href="/auth/register" class="btn btn-secondary me-0"
+                ><i class="isax isax-user-edit me-2"></i>Register</a
+              >
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- /Header -->
 
-	<!-- Header -->
-	<header class="header-one">
-		<div class="container">
-			<div class="header-nav">
-				<div class="navbar-header">
-					<a id="mobile_btn" href="javascript:void(0);">
-						<span class="bar-icon"><span></span><span></span><span></span></span>
-					</a>
-					<div class="navbar-logo">
-						<a class="logo-white header-logo" href="/"><img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="logo" alt="Logo"></a>
-						<a class="logo-dark header-logo" href="/"><img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="logo" alt="Logo"></a>
-					</div>
-				</div>
-				<div class="main-menu-wrapper">
-					<div class="menu-header">
-						<a href="/" class="menu-logo"><img src="/assets/img/white-logo.png" style="width:150px;height:110px;" class="img-fluid" alt="Logo"></a>
-						<a id="menu_close" class="menu-close" href="javascript:void(0);"><i class="fas fa-times"></i></a>
-					</div>
-					<ul class="main-nav">
-						<li><a href="/">Home</a></li>
-						<li><a href="/courses/course-grid">Courses</a></li>
-						<li><a href="/shared/about-us">About Us</a></li>
-						<li><a href="/shared/free-trial" class="active">Free Trial</a></li>
-						<li><a href="/shared/pricing-plan">Pricing</a></li>
-					</ul>
-					<div class="menu-login">
-						<a href="/auth/login" class="btn btn-primary w-100 mb-2"><i class="isax isax-user me-2"></i>Sign In</a>
-						<a href="/auth/register" class="btn btn-secondary w-100"><i class="isax isax-user-edit me-2"></i>Register</a>
-					</div>
-				</div>
-				<div class="header-btn d-flex align-items-center">
-
-					<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2"><i class="isax isax-lock-circle me-2"></i>Sign In</a>
-					<a href="/auth/register" class="btn btn-secondary me-0"><i class="isax isax-user-edit me-2"></i>Register</a>
-				</div>
-			</div>
-		</div>
-	</header>
-	<!-- /Header -->
-
-	<!-- ============================================================
+      <!-- ============================================================
 	     SECTION 1 — HERO + FREE TRIAL FORM
 	     ============================================================ -->
-	<section class="free-trial-hero">
-		<div class="container">
-			<div class="row align-items-center g-5">
+      <section class="free-trial-hero">
+        <div class="container">
+          <div class="row align-items-center g-5">
+            <!-- Left: Content -->
+            <div class="col-lg-6">
+              <div class="hero-content">
+                <div class="hero-badge">
+                  <i class="fa-solid fa-star me-2"></i>100% Free — No Credit
+                  Card Required
+                </div>
+                <h1>Start Your Islamic Learning Journey <span>Today</span></h1>
+                <p class="hero-desc">
+                  Book a free 3-day trial with our certified tutors and
+                  experience personalized 1-on-1 online classes in Quran,
+                  Arabic, Tajweed & Islamic Studies.
+                </p>
 
-				<!-- Left: Content -->
-				<div class="col-lg-6">
-					<div class="hero-content">
-						<div class="hero-badge"><i class="fa-solid fa-star me-2"></i>100% Free — No Credit Card Required</div>
-						<h1>Start Your Islamic Learning Journey <span>Today</span></h1>
-						<p class="hero-desc">Book a free 3-day trial with our certified tutors and experience personalized 1-on-1 online classes in Quran, Arabic, Tajweed & Islamic Studies.</p>
+                <ul class="benefit-list">
+                  <li>
+                    <i class="fa-solid fa-check"></i>3 Free Trial Classes — No
+                    commitment needed
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-check"></i>1-on-1 live sessions with
+                    certified tutors
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-check"></i>Flexible scheduling —
+                    Morning, Evening, Weekend
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-check"></i>Classes for Kids & Adults
+                    at every level
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-check"></i>Female tutors available on
+                    request
+                  </li>
+                </ul>
 
-						<ul class="benefit-list">
-							<li><i class="fa-solid fa-check"></i>3 Free Trial Classes — No commitment needed</li>
-							<li><i class="fa-solid fa-check"></i>1-on-1 live sessions with certified tutors</li>
-							<li><i class="fa-solid fa-check"></i>Flexible scheduling — Morning, Evening, Weekend</li>
-							<li><i class="fa-solid fa-check"></i>Classes for Kids & Adults at every level</li>
-							<li><i class="fa-solid fa-check"></i>Female tutors available on request</li>
-						</ul>
+                <div class="trust-strip">
+                  <div class="trust-item">
+                    <strong>5,000+</strong>
+                    <span>Students</span>
+                  </div>
+                  <div class="trust-item">
+                    <strong>100+</strong>
+                    <span>Certified Tutors</span>
+                  </div>
+                  <div class="trust-item">
+                    <strong>50+</strong>
+                    <span>Countries</span>
+                  </div>
+                  <div class="trust-item">
+                    <strong>9+ Yrs</strong>
+                    <span>Experience</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-						<div class="trust-strip">
-							<div class="trust-item">
-								<strong>5,000+</strong>
-								<span>Students</span>
-							</div>
-							<div class="trust-item">
-								<strong>100+</strong>
-								<span>Certified Tutors</span>
-							</div>
-							<div class="trust-item">
-								<strong>50+</strong>
-								<span>Countries</span>
-							</div>
-							<div class="trust-item">
-								<strong>9+ Yrs</strong>
-								<span>Experience</span>
-							</div>
-						</div>
-					</div>
-				</div>
+            <!-- Right: Form -->
+            <div class="col-lg-6">
+              <div class="trial-form-card">
+                <div class="form-header">
+                  <div class="free-badge">FREE TRIAL</div>
+                  <h3>Book Your Free Class Now</h3>
+                  <p>
+                    Fill in your details and we'll contact you within 24 hours
+                  </p>
+                </div>
 
-				<!-- Right: Form -->
-				<div class="col-lg-6">
-					<div class="trial-form-card">
-						<div class="form-header">
-							<div class="free-badge">FREE TRIAL</div>
-							<h3>Book Your Free Class Now</h3>
-							<p>Fill in your details and we'll contact you within 24 hours</p>
-						</div>
+                <form
+                  id="freeTrialForm"
+                  action="javascript:void(0);"
+                  novalidate
+                >
+                  <div class="row g-3">
+                    <!-- Full Name -->
+                    <div class="col-sm-6">
+                      <label class="form-label"
+                        >Full Name <span class="text-danger">*</span></label
+                      >
+                      <input
+                        type="text"
+                        id="ft-fullName"
+                        class="form-control"
+                        placeholder="Your full name"
+                        required
+                        autocomplete="name"
+                      />
+                      <div id="ft-fullName-err" class="ft-err-msg"></div>
+                    </div>
 
-						<form id="freeTrialForm" action="javascript:void(0);" novalidate>
-							<div class="row g-3">
+                    <!-- Email -->
+                    <div class="col-sm-6">
+                      <label class="form-label"
+                        >Email Address <span class="text-danger">*</span></label
+                      >
+                      <input
+                        type="email"
+                        id="ft-email"
+                        class="form-control"
+                        placeholder="your@email.com"
+                        required
+                        autocomplete="email"
+                      />
+                      <div id="ft-email-err" class="ft-err-msg"></div>
+                    </div>
 
-								<!-- Full Name -->
-								<div class="col-sm-6">
-									<label class="form-label">Full Name <span class="text-danger">*</span></label>
-									<input type="text" id="ft-fullName" class="form-control" placeholder="Your full name" required autocomplete="name">
-									<div id="ft-fullName-err" class="ft-err-msg"></div>
-								</div>
+                    <!-- Phone -->
+                    <div class="col-sm-6">
+                      <label class="form-label"
+                        >WhatsApp / Phone
+                        <span class="text-danger">*</span></label
+                      >
+                      <input
+                        type="tel"
+                        id="ft-phone"
+                        class="form-control"
+                        placeholder="+92 300 1234567"
+                        required
+                        autocomplete="tel"
+                      />
+                      <div id="ft-phone-err" class="ft-err-msg"></div>
+                    </div>
 
-								<!-- Email -->
-								<div class="col-sm-6">
-									<label class="form-label">Email Address <span class="text-danger">*</span></label>
-									<input type="email" id="ft-email" class="form-control" placeholder="your@email.com" required autocomplete="email">
-									<div id="ft-email-err" class="ft-err-msg"></div>
-								</div>
+                    <!-- Country -->
+                    <div class="col-sm-6">
+                      <label class="form-label">Country</label>
+                      <select id="ft-country" class="form-select">
+                        <option value="">Select Country</option>
+                        <option>United States</option>
+                        <option>United Kingdom</option>
+                        <option>Pakistan</option>
+                        <option>Saudi Arabia</option>
+                        <option>United Arab Emirates</option>
+                        <option>Canada</option>
+                        <option>Australia</option>
+                        <option>Germany</option>
+                        <option>France</option>
+                        <option>Malaysia</option>
+                        <option>Other</option>
+                      </select>
+                    </div>
 
-								<!-- Phone -->
-								<div class="col-sm-6">
-									<label class="form-label">WhatsApp / Phone <span class="text-danger">*</span></label>
-									<input type="tel" id="ft-phone" class="form-control" placeholder="+92 300 1234567" required autocomplete="tel">
-									<div id="ft-phone-err" class="ft-err-msg"></div>
-								</div>
+                    <!-- Password -->
+                    <div class="col-sm-6">
+                      <label class="form-label"
+                        >Password <span class="text-danger">*</span></label
+                      >
+                      <div class="position-relative" id="passwordInput">
+                        <input
+                          type="password"
+                          id="trialPassword"
+                          class="pass-inputs form-control"
+                          placeholder="Create a password"
+                          required
+                          autocomplete="new-password"
+                        />
+                        <span
+                          class="isax toggle-passwords isax-eye-slash text-gray-7 fs-14"
+                        ></span>
+                      </div>
+                      <div class="password-strength" id="passwordStrength">
+                        <span id="poor"></span>
+                        <span id="weak"></span>
+                        <span id="strong"></span>
+                        <span id="heavy"></span>
+                      </div>
+                      <div class="mt-1" id="passwordInfo"></div>
+                      <div id="ft-password-err" class="ft-err-msg"></div>
+                    </div>
 
-								<!-- Country -->
-								<div class="col-sm-6">
-									<label class="form-label">Country</label>
-									<select id="ft-country" class="form-select">
-										<option value="">Select Country</option>
-										<option>United States</option>
-										<option>United Kingdom</option>
-										<option>Pakistan</option>
-										<option>Saudi Arabia</option>
-										<option>United Arab Emirates</option>
-										<option>Canada</option>
-										<option>Australia</option>
-										<option>Germany</option>
-										<option>France</option>
-										<option>Malaysia</option>
-										<option>Other</option>
-									</select>
-								</div>
+                    <!-- Confirm Password -->
+                    <div class="col-sm-6">
+                      <label class="form-label"
+                        >Confirm Password
+                        <span class="text-danger">*</span></label
+                      >
+                      <div class="position-relative">
+                        <input
+                          type="password"
+                          id="trialConfirmPassword"
+                          class="pass-inputa form-control"
+                          placeholder="Repeat your password"
+                          required
+                          autocomplete="new-password"
+                        />
+                        <span
+                          class="isax toggle-passworda isax-eye-slash text-gray-7 fs-14"
+                        ></span>
+                      </div>
+                      <div id="ft-confirm-err" class="ft-err-msg"></div>
+                    </div>
 
-								<!-- Password -->
-								<div class="col-sm-6">
-									<label class="form-label">Password <span class="text-danger">*</span></label>
-									<div class="position-relative" id="passwordInput">
-										<input type="password" id="trialPassword" class="pass-inputs form-control" placeholder="Create a password" required autocomplete="new-password">
-										<span class="isax toggle-passwords isax-eye-slash text-gray-7 fs-14"></span>
-									</div>
-									<div class="password-strength" id="passwordStrength">
-										<span id="poor"></span>
-										<span id="weak"></span>
-										<span id="strong"></span>
-										<span id="heavy"></span>
-									</div>
-									<div class="mt-1" id="passwordInfo"></div>
-									<div id="ft-password-err" class="ft-err-msg"></div>
-								</div>
+                    <!-- Course Interest -->
+                    <div class="col-sm-6">
+                      <label class="form-label"
+                        >Course Interest
+                        <span class="text-danger">*</span></label
+                      >
+                      <select
+                        id="courseInterestSelect"
+                        class="form-select"
+                        required
+                      >
+                        <option value="">Loading courses...</option>
+                      </select>
+                      <div id="ft-course-err" class="ft-err-msg"></div>
+                    </div>
 
-								<!-- Confirm Password -->
-								<div class="col-sm-6">
-									<label class="form-label">Confirm Password <span class="text-danger">*</span></label>
-									<div class="position-relative">
-										<input type="password" id="trialConfirmPassword" class="pass-inputa form-control" placeholder="Repeat your password" required autocomplete="new-password">
-										<span class="isax toggle-passworda isax-eye-slash text-gray-7 fs-14"></span>
-									</div>
-									<div id="ft-confirm-err" class="ft-err-msg"></div>
-								</div>
+                    <!-- Preferred Schedule -->
+                    <div class="col-sm-6">
+                      <label class="form-label">Preferred Schedule</label>
+                      <select id="ft-schedule" class="form-select">
+                        <option value="">Select Time</option>
+                        <option>Morning (6am – 12pm)</option>
+                        <option>Afternoon (12pm – 5pm)</option>
+                        <option>Evening (5pm – 10pm)</option>
+                        <option>Flexible / Any Time</option>
+                      </select>
+                    </div>
 
-								<!-- Course Interest -->
-								<div class="col-sm-6">
-									<label class="form-label">Course Interest <span class="text-danger">*</span></label>
-									<select id="courseInterestSelect" class="form-select" required>
-										<option value="">Loading courses...</option>
-									</select>
-									<div id="ft-course-err" class="ft-err-msg"></div>
-								</div>
+                    <!-- Message -->
+                    <div class="col-12">
+                      <label class="form-label">Message (Optional)</label>
+                      <textarea
+                        id="ft-message"
+                        class="form-control"
+                        rows="3"
+                        placeholder="Tell us about your learning goals or any special requirements..."
+                      ></textarea>
+                    </div>
 
-								<!-- Preferred Schedule -->
-								<div class="col-sm-6">
-									<label class="form-label">Preferred Schedule</label>
-									<select id="ft-schedule" class="form-select">
-										<option value="">Select Time</option>
-										<option>Morning (6am – 12pm)</option>
-										<option>Afternoon (12pm – 5pm)</option>
-										<option>Evening (5pm – 10pm)</option>
-										<option>Flexible / Any Time</option>
-									</select>
-								</div>
+                    <div class="col-12">
+                      <button
+                        type="submit"
+                        class="btn-submit-trial"
+                        id="ft-submit-btn"
+                      >
+                        <i class="fa-solid fa-paper-plane me-2"></i>Book My Free
+                        Trial Class
+                      </button>
+                      <p class="no-credit">
+                        <i class="fa-solid fa-shield-halved"></i>100% Free · No
+                        Credit Card · No Commitment
+                      </p>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /Section 1 -->
 
-								<!-- Message -->
-								<div class="col-12">
-									<label class="form-label">Message (Optional)</label>
-									<textarea id="ft-message" class="form-control" rows="3" placeholder="Tell us about your learning goals or any special requirements..."></textarea>
-								</div>
-
-								<div class="col-12">
-									<button type="submit" class="btn-submit-trial" id="ft-submit-btn">
-										<i class="fa-solid fa-paper-plane me-2"></i>Book My Free Trial Class
-									</button>
-									<p class="no-credit"><i class="fa-solid fa-shield-halved"></i>100% Free · No Credit Card · No Commitment</p>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
-	<!-- /Section 1 -->
-
-	<!-- ============================================================
+      <!-- ============================================================
 	     SECTION 2 — FEATURED COURSES
 	     ============================================================ -->
-	<section class="ft-courses-section">
-		<div class="container">
-			<div class="text-center">
-				<h2 class="ft-section-title">Our Popular Courses</h2>
-				<p class="ft-section-subtitle">Explore our most enrolled Islamic learning programs taught by certified instructors</p>
-			</div>
+      <section class="ft-courses-section">
+        <div class="container">
+          <div class="text-center">
+            <h2 class="ft-section-title">Our Popular Courses</h2>
+            <p class="ft-section-subtitle">
+              Explore our most enrolled Islamic learning programs taught by
+              certified instructors
+            </p>
+          </div>
 
-			<!-- Courses Grid (dynamically loaded) -->
-			<div id="ft-courses-grid" class="row g-4">
-				<div class="col-12 text-center py-4">
-					<div class="spinner-border text-primary" role="status"></div>
-					<p class="mt-2 text-muted">Loading courses...</p>
-				</div>
-			</div>
+          <!-- Courses Grid (dynamically loaded) -->
+          <div id="ft-courses-grid" class="row g-4">
+            <div class="col-12 text-center py-4">
+              <div class="spinner-border text-primary" role="status"></div>
+              <p class="mt-2 text-muted">Loading courses...</p>
+            </div>
+          </div>
 
-			<div class="text-center mt-5">
-				<a href="/courses/course-grid" class="btn btn-primary btn-md px-5">View All Courses <i class="isax isax-arrow-right-3 ms-1"></i></a>
-			</div>
-		</div>
-	</section>
-	<!-- /Section 2 -->
+          <div class="text-center mt-5">
+            <a href="/courses/course-grid" class="btn btn-primary btn-md px-5"
+              >View All Courses <i class="isax isax-arrow-right-3 ms-1"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+      <!-- /Section 2 -->
 
-	<!-- ============================================================
+      <!-- ============================================================
 	     SECTION 3 — PRICING PLANS
 	     ============================================================ -->
-	<section class="ft-pricing-section">
-		<div class="container">
-			<div class="text-center mb-5">
-				<span class="pricing-badge-label">Simple & Transparent</span>
-				<h2 class="ft-section-title">Choose Your Learning Plan</h2>
-				<p class="ft-section-subtitle">Start free, then pick the plan that fits your schedule and budget</p>
-			</div>
+      <section class="ft-pricing-section">
+        <div class="container">
+          <div class="text-center mb-5">
+            <span class="pricing-badge-label">Simple & Transparent</span>
+            <h2 class="ft-section-title">Choose Your Learning Plan</h2>
+            <p class="ft-section-subtitle">
+              Start free, then pick the plan that fits your schedule and budget
+            </p>
+          </div>
 
-			<div class="row g-4 justify-content-center">
+          <div class="row g-4 justify-content-center">
+            <!-- Plan 1: Starter -->
+            <div class="col-lg-3 col-md-6 d-flex">
+              <div class="ft-pricing-card w-100">
+                <div class="plan-name">Starter</div>
+                <div class="plan-price"><sup>$</sup>15</div>
+                <div class="plan-period">per month · 3 days/week</div>
+                <p class="plan-desc">
+                  Great for beginners taking their first steps in Islamic
+                  learning.
+                </p>
+                <ul class="feature-list">
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>12 live classes per
+                    month
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>30-min 1-on-1
+                    sessions
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Progress tracking
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Course study
+                    materials
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>WhatsApp support
+                  </li>
+                </ul>
+                <a href="/shared/free-trial#trial-form" class="btn-plan"
+                  >Start Free Trial</a
+                >
+              </div>
+            </div>
 
-				<!-- Plan 1: Starter -->
-				<div class="col-lg-3 col-md-6 d-flex">
-					<div class="ft-pricing-card w-100">
-						<div class="plan-name">Starter</div>
-						<div class="plan-price"><sup>$</sup>15</div>
-						<div class="plan-period">per month · 3 days/week</div>
-						<p class="plan-desc">Great for beginners taking their first steps in Islamic learning.</p>
-						<ul class="feature-list">
-							<li><i class="fa-solid fa-circle-check"></i>12 live classes per month</li>
-							<li><i class="fa-solid fa-circle-check"></i>30-min 1-on-1 sessions</li>
-							<li><i class="fa-solid fa-circle-check"></i>Progress tracking</li>
-							<li><i class="fa-solid fa-circle-check"></i>Course study materials</li>
-							<li><i class="fa-solid fa-circle-check"></i>WhatsApp support</li>
-						</ul>
-						<a href="/shared/free-trial#trial-form" class="btn-plan">Start Free Trial</a>
-					</div>
-				</div>
+            <!-- Plan 2: Standard (Popular) -->
+            <div class="col-lg-3 col-md-6 d-flex">
+              <div class="ft-pricing-card popular w-100">
+                <div class="popular-tag">Most Popular</div>
+                <div class="plan-name">Standard</div>
+                <div class="plan-price"><sup>$</sup>25</div>
+                <div class="plan-period">per month · 4 days/week</div>
+                <p class="plan-desc">
+                  Most popular plan for students who want consistent progress.
+                </p>
+                <ul class="feature-list">
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>16 live classes per
+                    month
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>45-min 1-on-1
+                    sessions
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Detailed progress
+                    reports
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>All study materials
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Priority support
+                  </li>
+                </ul>
+                <a href="/shared/free-trial#trial-form" class="btn-plan"
+                  >Start Free Trial</a
+                >
+              </div>
+            </div>
 
-				<!-- Plan 2: Standard (Popular) -->
-				<div class="col-lg-3 col-md-6 d-flex">
-					<div class="ft-pricing-card popular w-100">
-						<div class="popular-tag">Most Popular</div>
-						<div class="plan-name">Standard</div>
-						<div class="plan-price"><sup>$</sup>25</div>
-						<div class="plan-period">per month · 4 days/week</div>
-						<p class="plan-desc">Most popular plan for students who want consistent progress.</p>
-						<ul class="feature-list">
-							<li><i class="fa-solid fa-circle-check"></i>16 live classes per month</li>
-							<li><i class="fa-solid fa-circle-check"></i>45-min 1-on-1 sessions</li>
-							<li><i class="fa-solid fa-circle-check"></i>Detailed progress reports</li>
-							<li><i class="fa-solid fa-circle-check"></i>All study materials</li>
-							<li><i class="fa-solid fa-circle-check"></i>Priority support</li>
-						</ul>
-						<a href="/shared/free-trial#trial-form" class="btn-plan">Start Free Trial</a>
-					</div>
-				</div>
+            <!-- Plan 3: Intensive -->
+            <div class="col-lg-3 col-md-6 d-flex">
+              <div class="ft-pricing-card w-100">
+                <div class="plan-name">Intensive</div>
+                <div class="plan-price"><sup>$</sup>35</div>
+                <div class="plan-period">per month · 5 days/week</div>
+                <p class="plan-desc">
+                  For dedicated students who want to accelerate their learning.
+                </p>
+                <ul class="feature-list">
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>20 live classes per
+                    month
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>60-min 1-on-1
+                    sessions
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Weekly assessment
+                    reports
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Certificate of
+                    completion
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>24/7 dedicated
+                    support
+                  </li>
+                </ul>
+                <a href="/shared/free-trial#trial-form" class="btn-plan"
+                  >Start Free Trial</a
+                >
+              </div>
+            </div>
 
-				<!-- Plan 3: Intensive -->
-				<div class="col-lg-3 col-md-6 d-flex">
-					<div class="ft-pricing-card w-100">
-						<div class="plan-name">Intensive</div>
-						<div class="plan-price"><sup>$</sup>35</div>
-						<div class="plan-period">per month · 5 days/week</div>
-						<p class="plan-desc">For dedicated students who want to accelerate their learning.</p>
-						<ul class="feature-list">
-							<li><i class="fa-solid fa-circle-check"></i>20 live classes per month</li>
-							<li><i class="fa-solid fa-circle-check"></i>60-min 1-on-1 sessions</li>
-							<li><i class="fa-solid fa-circle-check"></i>Weekly assessment reports</li>
-							<li><i class="fa-solid fa-circle-check"></i>Certificate of completion</li>
-							<li><i class="fa-solid fa-circle-check"></i>24/7 dedicated support</li>
-						</ul>
-						<a href="/shared/free-trial#trial-form" class="btn-plan">Start Free Trial</a>
-					</div>
-				</div>
+            <!-- Plan 4: Family -->
+            <div class="col-lg-3 col-md-6 d-flex">
+              <div class="ft-pricing-card w-100">
+                <div class="plan-name">Family</div>
+                <div class="plan-price"><sup>$</sup>50</div>
+                <div class="plan-period">per month · up to 3 members</div>
+                <p class="plan-desc">
+                  Learn together as a family with shared scheduling and savings.
+                </p>
+                <ul class="feature-list">
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Up to 3 family
+                    members
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Individual sessions
+                    per member
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Flexible scheduling
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Family progress
+                    dashboard
+                  </li>
+                  <li>
+                    <i class="fa-solid fa-circle-check"></i>Best value for
+                    families
+                  </li>
+                </ul>
+                <a href="/shared/free-trial#trial-form" class="btn-plan"
+                  >Start Free Trial</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /Section 3 -->
 
-				<!-- Plan 4: Family -->
-				<div class="col-lg-3 col-md-6 d-flex">
-					<div class="ft-pricing-card w-100">
-						<div class="plan-name">Family</div>
-						<div class="plan-price"><sup>$</sup>50</div>
-						<div class="plan-period">per month · up to 3 members</div>
-						<p class="plan-desc">Learn together as a family with shared scheduling and savings.</p>
-						<ul class="feature-list">
-							<li><i class="fa-solid fa-circle-check"></i>Up to 3 family members</li>
-							<li><i class="fa-solid fa-circle-check"></i>Individual sessions per member</li>
-							<li><i class="fa-solid fa-circle-check"></i>Flexible scheduling</li>
-							<li><i class="fa-solid fa-circle-check"></i>Family progress dashboard</li>
-							<li><i class="fa-solid fa-circle-check"></i>Best value for families</li>
-						</ul>
-						<a href="/shared/free-trial#trial-form" class="btn-plan">Start Free Trial</a>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
-	<!-- /Section 3 -->
-
-	<!-- ============================================================
+      <!-- ============================================================
 	     SECTION 4 — TESTIMONIALS
 	     ============================================================ -->
-	<section class="ft-testimonials-section">
-		<div class="container">
-			<div class="text-center">
-				<h2 class="section-title-white">What Parents & Students Say</h2>
-				<p class="section-sub-white">Real stories from families around the world learning at Al-Kahaf</p>
-			</div>
+      <section class="ft-testimonials-section">
+        <div class="container">
+          <div class="text-center">
+            <h2 class="section-title-white">What Parents & Students Say</h2>
+            <p class="section-sub-white">
+              Real stories from families around the world learning at Al-Kahaf
+            </p>
+          </div>
 
-			<div class="row g-4">
+          <div class="row g-4">
+            <div class="col-lg-4 col-md-6 d-flex">
+              <div class="testimonial-card w-100">
+                <div class="quote-icon">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                  My daughter started with zero Arabic knowledge. After just 3
+                  months at Al-Kahaf, she can now read the Quran fluently. The
+                  teachers are so patient and dedicated. Alhamdulillah!
+                </p>
+                <div class="reviewer-info">
+                  <div class="reviewer-avatar">FA</div>
+                  <div>
+                    <div class="reviewer-name">Fatima Al-Rashidi</div>
+                    <div class="reviewer-loc">Toronto, Canada</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-				<div class="col-lg-4 col-md-6 d-flex">
-					<div class="testimonial-card w-100">
-						<div class="quote-icon">"</div>
-						<div class="stars">★★★★★</div>
-						<p class="review-text">My daughter started with zero Arabic knowledge. After just 3 months at Al-Kahaf, she can now read the Quran fluently. The teachers are so patient and dedicated. Alhamdulillah!</p>
-						<div class="reviewer-info">
-							<div class="reviewer-avatar">FA</div>
-							<div>
-								<div class="reviewer-name">Fatima Al-Rashidi</div>
-								<div class="reviewer-loc">Toronto, Canada</div>
-							</div>
-						</div>
-					</div>
-				</div>
+            <div class="col-lg-4 col-md-6 d-flex">
+              <div class="testimonial-card w-100">
+                <div class="quote-icon">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                  Excellent academy! My son was struggling with Tajweed rules
+                  and now he recites so beautifully. The flexible scheduling
+                  works perfectly with our busy family life in the UK.
+                </p>
+                <div class="reviewer-info">
+                  <div class="reviewer-avatar">ZK</div>
+                  <div>
+                    <div class="reviewer-name">Zainab Khan</div>
+                    <div class="reviewer-loc">London, United Kingdom</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-				<div class="col-lg-4 col-md-6 d-flex">
-					<div class="testimonial-card w-100">
-						<div class="quote-icon">"</div>
-						<div class="stars">★★★★★</div>
-						<p class="review-text">Excellent academy! My son was struggling with Tajweed rules and now he recites so beautifully. The flexible scheduling works perfectly with our busy family life in the UK.</p>
-						<div class="reviewer-info">
-							<div class="reviewer-avatar">ZK</div>
-							<div>
-								<div class="reviewer-name">Zainab Khan</div>
-								<div class="reviewer-loc">London, United Kingdom</div>
-							</div>
-						</div>
-					</div>
-				</div>
+            <div class="col-lg-4 col-md-6 d-flex">
+              <div class="testimonial-card w-100">
+                <div class="quote-icon">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                  I enrolled my three kids in the family plan and it has been
+                  worth every penny. The teachers communicate progress regularly
+                  and the classes are very engaging for kids.
+                </p>
+                <div class="reviewer-info">
+                  <div class="reviewer-avatar">AM</div>
+                  <div>
+                    <div class="reviewer-name">Ahmed Malik</div>
+                    <div class="reviewer-loc">Houston, United States</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-				<div class="col-lg-4 col-md-6 d-flex">
-					<div class="testimonial-card w-100">
-						<div class="quote-icon">"</div>
-						<div class="stars">★★★★★</div>
-						<p class="review-text">I enrolled my three kids in the family plan and it has been worth every penny. The teachers communicate progress regularly and the classes are very engaging for kids.</p>
-						<div class="reviewer-info">
-							<div class="reviewer-avatar">AM</div>
-							<div>
-								<div class="reviewer-name">Ahmed Malik</div>
-								<div class="reviewer-loc">Houston, United States</div>
-							</div>
-						</div>
-					</div>
-				</div>
+            <div class="col-lg-4 col-md-6 d-flex">
+              <div class="testimonial-card w-100">
+                <div class="quote-icon">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                  I'm an adult who always wanted to learn proper Quran
+                  recitation. Al-Kahaf made it possible with evening classes
+                  that fit my work schedule. The 1-on-1 format is perfect.
+                </p>
+                <div class="reviewer-info">
+                  <div class="reviewer-avatar">OA</div>
+                  <div>
+                    <div class="reviewer-name">Omar Abdullah</div>
+                    <div class="reviewer-loc">Dubai, UAE</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-				<div class="col-lg-4 col-md-6 d-flex">
-					<div class="testimonial-card w-100">
-						<div class="quote-icon">"</div>
-						<div class="stars">★★★★★</div>
-						<p class="review-text">I'm an adult who always wanted to learn proper Quran recitation. Al-Kahaf made it possible with evening classes that fit my work schedule. The 1-on-1 format is perfect.</p>
-						<div class="reviewer-info">
-							<div class="reviewer-avatar">OA</div>
-							<div>
-								<div class="reviewer-name">Omar Abdullah</div>
-								<div class="reviewer-loc">Dubai, UAE</div>
-							</div>
-						</div>
-					</div>
-				</div>
+            <div class="col-lg-4 col-md-6 d-flex">
+              <div class="testimonial-card w-100">
+                <div class="quote-icon">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                  The free trial convinced me immediately. The teacher was
+                  knowledgeable, kind, and the lesson plan was structured
+                  beautifully. We signed up the same day after the trial.
+                </p>
+                <div class="reviewer-info">
+                  <div class="reviewer-avatar">SB</div>
+                  <div>
+                    <div class="reviewer-name">Shabina Begum</div>
+                    <div class="reviewer-loc">Sydney, Australia</div>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-				<div class="col-lg-4 col-md-6 d-flex">
-					<div class="testimonial-card w-100">
-						<div class="quote-icon">"</div>
-						<div class="stars">★★★★★</div>
-						<p class="review-text">The free trial convinced me immediately. The teacher was knowledgeable, kind, and the lesson plan was structured beautifully. We signed up the same day after the trial.</p>
-						<div class="reviewer-info">
-							<div class="reviewer-avatar">SB</div>
-							<div>
-								<div class="reviewer-name">Shabina Begum</div>
-								<div class="reviewer-loc">Sydney, Australia</div>
-							</div>
-						</div>
-					</div>
-				</div>
+            <div class="col-lg-4 col-md-6 d-flex">
+              <div class="testimonial-card w-100">
+                <div class="quote-icon">"</div>
+                <div class="stars">★★★★★</div>
+                <p class="review-text">
+                  My husband and I both take Arabic classes here. The teachers
+                  speak clearly and adapt to our pace. In 6 months we can hold
+                  basic conversations in Modern Standard Arabic.
+                </p>
+                <div class="reviewer-info">
+                  <div class="reviewer-avatar">NR</div>
+                  <div>
+                    <div class="reviewer-name">Nadia Rahman</div>
+                    <div class="reviewer-loc">Berlin, Germany</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /Section 4 -->
 
-				<div class="col-lg-4 col-md-6 d-flex">
-					<div class="testimonial-card w-100">
-						<div class="quote-icon">"</div>
-						<div class="stars">★★★★★</div>
-						<p class="review-text">My husband and I both take Arabic classes here. The teachers speak clearly and adapt to our pace. In 6 months we can hold basic conversations in Modern Standard Arabic.</p>
-						<div class="reviewer-info">
-							<div class="reviewer-avatar">NR</div>
-							<div>
-								<div class="reviewer-name">Nadia Rahman</div>
-								<div class="reviewer-loc">Berlin, Germany</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
-	<!-- /Section 4 -->
-
-	<!-- ============================================================
+      <!-- ============================================================
 	     SECTION 5 — SIMPLE CLASS REQUIREMENTS
 	     ============================================================ -->
-	<section class="ft-requirements-section">
-		<div class="container">
-			<div class="text-center mb-5">
-				<h2 class="ft-section-title">Simple Class Requirements</h2>
-				<p class="ft-section-subtitle">Getting started is easy — you just need these basic things</p>
-			</div>
+      <section class="ft-requirements-section">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h2 class="ft-section-title">Simple Class Requirements</h2>
+            <p class="ft-section-subtitle">
+              Getting started is easy — you just need these basic things
+            </p>
+          </div>
 
-			<div class="row g-4 justify-content-center">
+          <div class="row g-4 justify-content-center">
+            <!-- Device — slate blue (tech/hardware) -->
+            <div class="col-lg-2 col-md-4 col-6 d-flex">
+              <div class="requirement-card w-100">
+                <div class="req-icon" style="background: #e8eaf6">
+                  <i class="fa-solid fa-laptop" style="color: #3949ab"></i>
+                </div>
+                <h6>Device</h6>
+                <p>PC, Laptop, Tablet or Smartphone</p>
+              </div>
+            </div>
 
-				<!-- Device — slate blue (tech/hardware) -->
-				<div class="col-lg-2 col-md-4 col-6 d-flex">
-					<div class="requirement-card w-100">
-						<div class="req-icon" style="background:#e8eaf6"><i class="fa-solid fa-laptop" style="color:#3949ab"></i></div>
-						<h6>Device</h6>
-						<p>PC, Laptop, Tablet or Smartphone</p>
-					</div>
-				</div>
+            <!-- Internet — telecom blue (like broadband providers) -->
+            <div class="col-lg-2 col-md-4 col-6 d-flex">
+              <div class="requirement-card w-100">
+                <div class="req-icon" style="background: #e3f2fd">
+                  <i class="fa-solid fa-wifi" style="color: #0277bd"></i>
+                </div>
+                <h6>Internet</h6>
+                <p>Stable broadband or mobile data connection</p>
+              </div>
+            </div>
 
-				<!-- Internet — telecom blue (like broadband providers) -->
-				<div class="col-lg-2 col-md-4 col-6 d-flex">
-					<div class="requirement-card w-100">
-						<div class="req-icon" style="background:#e3f2fd"><i class="fa-solid fa-wifi" style="color:#0277bd"></i></div>
-						<h6>Internet</h6>
-						<p>Stable broadband or mobile data connection</p>
-					</div>
-				</div>
+            <!-- Zoom — Zoom brand blue #2D8CFF -->
+            <div class="col-lg-2 col-md-4 col-6 d-flex">
+              <div class="requirement-card w-100">
+                <div class="req-icon" style="background: #e8f4ff">
+                  <i class="fa-solid fa-video" style="color: #2d8cff"></i>
+                </div>
+                <h6>Zoom / Skype</h6>
+                <p>Free video call app installed on your device</p>
+              </div>
+            </div>
 
-				<!-- Zoom — Zoom brand blue #2D8CFF -->
-				<div class="col-lg-2 col-md-4 col-6 d-flex">
-					<div class="requirement-card w-100">
-						<div class="req-icon" style="background:#e8f4ff"><i class="fa-solid fa-video" style="color:#2D8CFF"></i></div>
-						<h6>Zoom / Skype</h6>
-						<p>Free video call app installed on your device</p>
-					</div>
-				</div>
+            <!-- Microphone — podcast/recording red -->
+            <div class="col-lg-2 col-md-4 col-6 d-flex">
+              <div class="requirement-card w-100">
+                <div class="req-icon" style="background: #fce4ec">
+                  <i class="fa-solid fa-microphone" style="color: #c62828"></i>
+                </div>
+                <h6>Microphone</h6>
+                <p>Headset or built-in microphone for audio</p>
+              </div>
+            </div>
 
-				<!-- Microphone — podcast/recording red -->
-				<div class="col-lg-2 col-md-4 col-6 d-flex">
-					<div class="requirement-card w-100">
-						<div class="req-icon" style="background:#fce4ec"><i class="fa-solid fa-microphone" style="color:#c62828"></i></div>
-						<h6>Microphone</h6>
-						<p>Headset or built-in microphone for audio</p>
-					</div>
-				</div>
+            <!-- Quran / Book — Islamic green -->
+            <div class="col-lg-2 col-md-4 col-6 d-flex">
+              <div class="requirement-card w-100">
+                <div class="req-icon" style="background: #e8f5e9">
+                  <i
+                    class="fa-solid fa-book-open-reader"
+                    style="color: #2e7d32"
+                  ></i>
+                </div>
+                <h6>Quran / Book</h6>
+                <p>Physical or digital Quran (we provide PDF materials)</p>
+              </div>
+            </div>
 
-				<!-- Quran / Book — Islamic green -->
-				<div class="col-lg-2 col-md-4 col-6 d-flex">
-					<div class="requirement-card w-100">
-						<div class="req-icon" style="background:#e8f5e9"><i class="fa-solid fa-book-open-reader" style="color:#2e7d32"></i></div>
-						<h6>Quran / Book</h6>
-						<p>Physical or digital Quran (we provide PDF materials)</p>
-					</div>
-				</div>
+            <!-- Enthusiasm — fire orange -->
+            <div class="col-lg-2 col-md-4 col-6 d-flex">
+              <div class="requirement-card w-100">
+                <div class="req-icon" style="background: #fff3e0">
+                  <i
+                    class="fa-solid fa-fire-flame-curved"
+                    style="color: #e65100"
+                  ></i>
+                </div>
+                <h6>Enthusiasm</h6>
+                <p>Willingness to learn — that's the most important!</p>
+              </div>
+            </div>
+          </div>
 
-				<!-- Enthusiasm — fire orange -->
-				<div class="col-lg-2 col-md-4 col-6 d-flex">
-					<div class="requirement-card w-100">
-						<div class="req-icon" style="background:#fff3e0"><i class="fa-solid fa-fire-flame-curved" style="color:#e65100"></i></div>
-						<h6>Enthusiasm</h6>
-						<p>Willingness to learn — that's the most important!</p>
-					</div>
-				</div>
+          <!-- CTA Strip -->
+          <div class="text-center mt-5 pt-2">
+            <p class="text-muted mb-3">
+              That's all you need — it's that simple!
+            </p>
+            <a href="#freeTrialForm" class="btn btn-primary btn-md px-5"
+              >Book Free Trial Now <i class="fa-solid fa-arrow-right ms-2"></i
+            ></a>
+          </div>
+        </div>
+      </section>
+      <!-- /Section 5 -->
 
-			</div>
-
-			<!-- CTA Strip -->
-			<div class="text-center mt-5 pt-2">
-				<p class="text-muted mb-3">That's all you need — it's that simple!</p>
-				<a href="#freeTrialForm" class="btn btn-primary btn-md px-5">Book Free Trial Now <i class="fa-solid fa-arrow-right ms-2"></i></a>
-			</div>
-		</div>
-	</section>
-	<!-- /Section 5 -->
-
-	<!-- ============================================================
+      <!-- ============================================================
 	     SECTION 6 — STUDENT REVIEWS
 	     ============================================================ -->
-	<section class="ft-reviews-section">
-		<div class="container">
-			<div class="text-center mb-5">
-				<h2 class="ft-section-title">Student Reviews</h2>
-				<p class="ft-section-subtitle">Honest feedback from our verified students and parents</p>
-			</div>
+      <section class="ft-reviews-section">
+        <div class="container">
+          <div class="text-center mb-5">
+            <h2 class="ft-section-title">Student Reviews</h2>
+            <p class="ft-section-subtitle">
+              Honest feedback from our verified students and parents
+            </p>
+          </div>
 
-			<div class="row g-4">
+          <div class="row g-4">
+            <!-- Overall Rating -->
+            <div class="col-lg-3 d-flex">
+              <div class="overall-rating-box w-100">
+                <div class="big-score">4.9</div>
+                <div class="big-stars">★★★★★</div>
+                <div class="total-reviews">Based on 1,240 reviews</div>
 
-				<!-- Overall Rating -->
-				<div class="col-lg-3 d-flex">
-					<div class="overall-rating-box w-100">
-						<div class="big-score">4.9</div>
-						<div class="big-stars">★★★★★</div>
-						<div class="total-reviews">Based on 1,240 reviews</div>
+                <div class="mt-4">
+                  <div class="rating-bar-row">
+                    <span class="bar-label text-white">5★</span>
+                    <div class="bar-track">
+                      <div class="bar-fill" style="width: 88%"></div>
+                    </div>
+                    <span class="bar-count text-white-50">1,091</span>
+                  </div>
+                  <div class="rating-bar-row">
+                    <span class="bar-label text-white">4★</span>
+                    <div class="bar-track">
+                      <div class="bar-fill" style="width: 9%"></div>
+                    </div>
+                    <span class="bar-count text-white-50">112</span>
+                  </div>
+                  <div class="rating-bar-row">
+                    <span class="bar-label text-white">3★</span>
+                    <div class="bar-track">
+                      <div class="bar-fill" style="width: 2%"></div>
+                    </div>
+                    <span class="bar-count text-white-50">25</span>
+                  </div>
+                  <div class="rating-bar-row">
+                    <span class="bar-label text-white">2★</span>
+                    <div class="bar-track">
+                      <div class="bar-fill" style="width: 1%"></div>
+                    </div>
+                    <span class="bar-count text-white-50">8</span>
+                  </div>
+                  <div class="rating-bar-row">
+                    <span class="bar-label text-white">1★</span>
+                    <div class="bar-track">
+                      <div class="bar-fill" style="width: 0.3%"></div>
+                    </div>
+                    <span class="bar-count text-white-50">4</span>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-						<div class="mt-4">
-							<div class="rating-bar-row">
-								<span class="bar-label text-white">5★</span>
-								<div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
-								<span class="bar-count text-white-50">1,091</span>
-							</div>
-							<div class="rating-bar-row">
-								<span class="bar-label text-white">4★</span>
-								<div class="bar-track"><div class="bar-fill" style="width:9%"></div></div>
-								<span class="bar-count text-white-50">112</span>
-							</div>
-							<div class="rating-bar-row">
-								<span class="bar-label text-white">3★</span>
-								<div class="bar-track"><div class="bar-fill" style="width:2%"></div></div>
-								<span class="bar-count text-white-50">25</span>
-							</div>
-							<div class="rating-bar-row">
-								<span class="bar-label text-white">2★</span>
-								<div class="bar-track"><div class="bar-fill" style="width:1%"></div></div>
-								<span class="bar-count text-white-50">8</span>
-							</div>
-							<div class="rating-bar-row">
-								<span class="bar-label text-white">1★</span>
-								<div class="bar-track"><div class="bar-fill" style="width:0.3%"></div></div>
-								<span class="bar-count text-white-50">4</span>
-							</div>
-						</div>
-					</div>
-				</div>
+            <!-- Individual Reviews -->
+            <div class="col-lg-9">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="student-review-card">
+                    <div class="rev-header">
+                      <div
+                        class="rev-avatar"
+                        style="
+                          background: linear-gradient(135deg, #522811, #7a3d18);
+                        "
+                      >
+                        MH
+                      </div>
+                      <div>
+                        <div class="rev-name">Muhammad Hassan</div>
+                        <div class="rev-meta">
+                          Quran Memorization · Pakistan
+                        </div>
+                      </div>
+                    </div>
+                    <div class="rev-stars">★★★★★</div>
+                    <p class="rev-text">
+                      My Hifz journey started here 8 months ago. I've memorized
+                      15 Juz so far with the help of my dedicated teacher. The
+                      accountability system keeps me on track every week.
+                    </p>
+                  </div>
+                </div>
 
-				<!-- Individual Reviews -->
-				<div class="col-lg-9">
-					<div class="row g-3">
+                <div class="col-md-6">
+                  <div class="student-review-card">
+                    <div class="rev-header">
+                      <div
+                        class="rev-avatar"
+                        style="
+                          background: linear-gradient(135deg, #1565c0, #1e88e5);
+                        "
+                      >
+                        LA
+                      </div>
+                      <div>
+                        <div class="rev-name">Layla Ahmed</div>
+                        <div class="rev-meta">Arabic Language · Canada</div>
+                      </div>
+                    </div>
+                    <div class="rev-stars">★★★★★</div>
+                    <p class="rev-text">
+                      I wanted to understand the Quran in Arabic. The Arabic
+                      course here is structured perfectly for non-native
+                      speakers. My teacher is incredibly patient and explains
+                      everything clearly.
+                    </p>
+                  </div>
+                </div>
 
-						<div class="col-md-6">
-							<div class="student-review-card">
-								<div class="rev-header">
-									<div class="rev-avatar" style="background:linear-gradient(135deg,#522811,#7a3d18)">MH</div>
-									<div>
-										<div class="rev-name">Muhammad Hassan</div>
-										<div class="rev-meta">Quran Memorization · Pakistan</div>
-									</div>
-								</div>
-								<div class="rev-stars">★★★★★</div>
-								<p class="rev-text">My Hifz journey started here 8 months ago. I've memorized 15 Juz so far with the help of my dedicated teacher. The accountability system keeps me on track every week.</p>
-							</div>
-						</div>
+                <div class="col-md-6">
+                  <div class="student-review-card">
+                    <div class="rev-header">
+                      <div
+                        class="rev-avatar"
+                        style="
+                          background: linear-gradient(135deg, #2e7d32, #43a047);
+                        "
+                      >
+                        YS
+                      </div>
+                      <div>
+                        <div class="rev-name">Yusuf Siddiqui</div>
+                        <div class="rev-meta">Tajweed · United Kingdom</div>
+                      </div>
+                    </div>
+                    <div class="rev-stars">★★★★★</div>
+                    <p class="rev-text">
+                      I've been reading Quran for years but my Tajweed was not
+                      correct. After 2 months here, my recitation has improved
+                      dramatically. The teacher corrects every mistake
+                      patiently.
+                    </p>
+                  </div>
+                </div>
 
-						<div class="col-md-6">
-							<div class="student-review-card">
-								<div class="rev-header">
-									<div class="rev-avatar" style="background:linear-gradient(135deg,#1565c0,#1e88e5)">LA</div>
-									<div>
-										<div class="rev-name">Layla Ahmed</div>
-										<div class="rev-meta">Arabic Language · Canada</div>
-									</div>
-								</div>
-								<div class="rev-stars">★★★★★</div>
-								<p class="rev-text">I wanted to understand the Quran in Arabic. The Arabic course here is structured perfectly for non-native speakers. My teacher is incredibly patient and explains everything clearly.</p>
-							</div>
-						</div>
+                <div class="col-md-6">
+                  <div class="student-review-card">
+                    <div class="rev-header">
+                      <div
+                        class="rev-avatar"
+                        style="
+                          background: linear-gradient(135deg, #6a1b9a, #8e24aa);
+                        "
+                      >
+                        RI
+                      </div>
+                      <div>
+                        <div class="rev-name">Ruqayyah Ibrahim</div>
+                        <div class="rev-meta">Islamic Studies · UAE</div>
+                      </div>
+                    </div>
+                    <div class="rev-stars">★★★★★</div>
+                    <p class="rev-text">
+                      The Islamic Studies course is very well organized. We
+                      cover Fiqh, Seerah, and Aqeedah in a systematic way. My
+                      kids have become more knowledgeable about their Deen.
+                    </p>
+                  </div>
+                </div>
 
-						<div class="col-md-6">
-							<div class="student-review-card">
-								<div class="rev-header">
-									<div class="rev-avatar" style="background:linear-gradient(135deg,#2e7d32,#43a047)">YS</div>
-									<div>
-										<div class="rev-name">Yusuf Siddiqui</div>
-										<div class="rev-meta">Tajweed · United Kingdom</div>
-									</div>
-								</div>
-								<div class="rev-stars">★★★★★</div>
-								<p class="rev-text">I've been reading Quran for years but my Tajweed was not correct. After 2 months here, my recitation has improved dramatically. The teacher corrects every mistake patiently.</p>
-							</div>
-						</div>
+                <div class="col-md-6">
+                  <div class="student-review-card">
+                    <div class="rev-header">
+                      <div
+                        class="rev-avatar"
+                        style="
+                          background: linear-gradient(135deg, #e65100, #fb8c00);
+                        "
+                      >
+                        KM
+                      </div>
+                      <div>
+                        <div class="rev-name">Khalid Mahmood</div>
+                        <div class="rev-meta">Noorani Qaida · Australia</div>
+                      </div>
+                    </div>
+                    <div class="rev-stars">★★★★★</div>
+                    <p class="rev-text">
+                      My 5-year-old started with Noorani Qaida here. The teacher
+                      knows exactly how to keep young children engaged. She uses
+                      games and activities which my daughter absolutely loves!
+                    </p>
+                  </div>
+                </div>
 
-						<div class="col-md-6">
-							<div class="student-review-card">
-								<div class="rev-header">
-									<div class="rev-avatar" style="background:linear-gradient(135deg,#6a1b9a,#8e24aa)">RI</div>
-									<div>
-										<div class="rev-name">Ruqayyah Ibrahim</div>
-										<div class="rev-meta">Islamic Studies · UAE</div>
-									</div>
-								</div>
-								<div class="rev-stars">★★★★★</div>
-								<p class="rev-text">The Islamic Studies course is very well organized. We cover Fiqh, Seerah, and Aqeedah in a systematic way. My kids have become more knowledgeable about their Deen.</p>
-							</div>
-						</div>
+                <div class="col-md-6">
+                  <div class="student-review-card">
+                    <div class="rev-header">
+                      <div
+                        class="rev-avatar"
+                        style="
+                          background: linear-gradient(135deg, #00838f, #00acc1);
+                        "
+                      >
+                        SP
+                      </div>
+                      <div>
+                        <div class="rev-name">Sara Patel</div>
+                        <div class="rev-meta">Quran Reading · USA</div>
+                      </div>
+                    </div>
+                    <div class="rev-stars">★★★★★</div>
+                    <p class="rev-text">
+                      As a revert Muslim I was nervous about learning Quran.
+                      Al-Kahaf welcomed me warmly and matched me with a patient
+                      teacher. Within 3 months I can read Surah Al-Fatiha
+                      correctly!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- /Section 6 -->
 
-						<div class="col-md-6">
-							<div class="student-review-card">
-								<div class="rev-header">
-									<div class="rev-avatar" style="background:linear-gradient(135deg,#e65100,#fb8c00)">KM</div>
-									<div>
-										<div class="rev-name">Khalid Mahmood</div>
-										<div class="rev-meta">Noorani Qaida · Australia</div>
-									</div>
-								</div>
-								<div class="rev-stars">★★★★★</div>
-								<p class="rev-text">My 5-year-old started with Noorani Qaida here. The teacher knows exactly how to keep young children engaged. She uses games and activities which my daughter absolutely loves!</p>
-							</div>
-						</div>
+      <!-- Footer -->
+      <footer class="footer">
+        <div class="footer-bg">
+          <img
+            src="/assets/img/bg/footer-bg-01.png"
+            class="footer-bg-1"
+            alt=""
+          />
+          <img
+            src="/assets/img/bg/footer-bg-02.png"
+            class="footer-bg-2"
+            alt=""
+          />
+        </div>
+        <div class="footer-top">
+          <div class="container">
+            <div class="row row-gap-4">
+              <div class="col-lg-4">
+                <div class="footer-about">
+                  <div class="footer-logo">
+                    <img
+                      src="/assets/img/white-logo.png"
+                      style="width: 200px; height: 150px"
+                      alt=""
+                    />
+                  </div>
+                  <p>
+                    Platform designed to help organizations, educators, and
+                    learners manage, deliver, and track learning and training
+                    activities.
+                  </p>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="row row-gap-4">
+                  <div class="col-lg-3">
+                    <div class="footer-widget footer-menu">
+                      <h5 class="footer-title">For Student</h5>
+                      <ul>
+                        <li>
+                          <a href="/courses/course-grid">Browse Courses</a>
+                        </li>
+                        <li><a href="/shared/free-trial">Free Trial</a></li>
+                        <li><a href="/shared/pricing-plan">Pricing</a></li>
+                        <li><a href="/auth/login">Login</a></li>
+                        <li><a href="/auth/register">Register</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-3">
+                    <div class="footer-widget footer-menu">
+                      <h5 class="footer-title">Quick Links</h5>
+                      <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/shared/about-us">About Us</a></li>
+                        <li><a href="/shared/pricing-plan">Pricing Plan</a></li>
+                        <li>
+                          <a href="/shared/terms-and-conditions">Terms</a>
+                        </li>
+                        <li>
+                          <a href="/shared/privacy-policy">Privacy Policy</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="footer-widget footer-contact">
+                      <h5 class="footer-title">Newsletter</h5>
+                      <div class="subscribe-input">
+                        <form action="javascript:void(0);">
+                          <input
+                            type="email"
+                            class="form-control"
+                            placeholder="Enter your Email Address"
+                          />
+                          <button
+                            type="submit"
+                            class="btn btn-primary btn-sm inline-flex align-items-center"
+                          >
+                            <i class="isax isax-send-2 me-1"></i>Subscribe
+                          </button>
+                        </form>
+                      </div>
+                      <div class="footer-contact-info">
+                        <div class="footer-address d-flex align-items-center">
+                          <img
+                            src="/assets/img/icon/icon-20.svg"
+                            alt="Img"
+                            class="img-fluid me-2"
+                          />
+                          <p>3556 Beech Street, San Francisco, California</p>
+                        </div>
+                        <div class="footer-address d-flex align-items-center">
+                          <img
+                            src="/assets/img/icon/icon-19.svg"
+                            alt="Img"
+                            class="img-fluid me-2"
+                          />
+                          <p>info@alkahafonlineacademy.com</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="container">
+            <div class="row row-gap-2">
+              <div class="col-md-6">
+                <p class="text-white">
+                  Copyright 2025
+                  <span class="text-secondary">Al-KahafOnlineAcademy</span>. All
+                  rights reserved.
+                </p>
+              </div>
+              <div class="col-md-6">
+                <ul
+                  class="d-flex align-items-center justify-content-center justify-content-md-end footer-link"
+                >
+                  <li>
+                    <a href="/shared/terms-and-conditions"
+                      >Terms & Conditions</a
+                    >
+                  </li>
+                  <li><a href="/shared/privacy-policy">Privacy Policy</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- /Footer -->
 
-						<div class="col-md-6">
-							<div class="student-review-card">
-								<div class="rev-header">
-									<div class="rev-avatar" style="background:linear-gradient(135deg,#00838f,#00acc1)">SP</div>
-									<div>
-										<div class="rev-name">Sara Patel</div>
-										<div class="rev-meta">Quran Reading · USA</div>
-									</div>
-								</div>
-								<div class="rev-stars">★★★★★</div>
-								<p class="rev-text">As a revert Muslim I was nervous about learning Quran. Al-Kahaf welcomed me warmly and matched me with a patient teacher. Within 3 months I can read Surah Al-Fatiha correctly!</p>
-							</div>
-						</div>
+      <!-- Thank You Modal -->
+      <div
+        class="modal fade"
+        id="thankYouModal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div
+            class="modal-content border-0"
+            style="border-radius: 20px; overflow: hidden"
+          >
+            <!-- Top colored bar -->
+            <div
+              style="
+                background: linear-gradient(135deg, #2c1506, #522811, #3d1d0a);
+                padding: 40px 30px 30px;
+                text-align: center;
+                position: relative;
+              "
+            >
+              <button
+                type="button"
+                class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+              <!-- Check circle icon -->
+              <div
+                style="
+                  width: 80px;
+                  height: 80px;
+                  background: linear-gradient(135deg, #d8ac27, #f0c842);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 20px;
+                  box-shadow: 0 8px 24px rgba(216, 172, 39, 0.5);
+                "
+              >
+                <i
+                  class="fa-solid fa-check"
+                  style="font-size: 36px; color: #fff"
+                ></i>
+              </div>
+              <h4 style="color: #fff; font-weight: 800; margin-bottom: 8px">
+                JazakAllah Khair!
+              </h4>
+              <p
+                style="
+                  color: rgba(255, 255, 255, 0.75);
+                  font-size: 14px;
+                  margin: 0;
+                "
+              >
+                Your free trial request has been submitted successfully.
+              </p>
+            </div>
+            <!-- Body -->
+            <div
+              class="modal-body"
+              style="padding: 32px 30px; text-align: center"
+            >
+              <div
+                style="
+                  background: #f8f9fa;
+                  border-radius: 12px;
+                  padding: 20px;
+                  margin-bottom: 24px;
+                "
+              >
+                <i
+                  class="fa-solid fa-user-headset"
+                  style="
+                    font-size: 28px;
+                    color: #522811;
+                    margin-bottom: 10px;
+                    display: block;
+                  "
+                ></i>
+                <p
+                  style="
+                    font-size: 15px;
+                    font-weight: 600;
+                    color: #1a1a1a;
+                    margin-bottom: 4px;
+                  "
+                >
+                  Our staff will contact you shortly
+                </p>
+                <p style="font-size: 13px; color: #777; margin: 0">
+                  We typically respond within <strong>24 hours</strong> via
+                  WhatsApp or Email.
+                </p>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  justify-content: center;
+                  gap: 16px;
+                  flex-wrap: wrap;
+                  margin-bottom: 24px;
+                "
+              >
+                <div style="text-align: center">
+                  <div
+                    style="font-size: 20px; font-weight: 800; color: #522811"
+                  >
+                    3
+                  </div>
+                  <div style="font-size: 11px; color: #999">Free Classes</div>
+                </div>
+                <div style="width: 1px; background: #e8e8e8"></div>
+                <div style="text-align: center">
+                  <div
+                    style="font-size: 20px; font-weight: 800; color: #522811"
+                  >
+                    1-on-1
+                  </div>
+                  <div style="font-size: 11px; color: #999">Live Session</div>
+                </div>
+                <div style="width: 1px; background: #e8e8e8"></div>
+                <div style="text-align: center">
+                  <div
+                    style="font-size: 20px; font-weight: 800; color: #522811"
+                  >
+                    24h
+                  </div>
+                  <div style="font-size: 11px; color: #999">Response Time</div>
+                </div>
+              </div>
+              <button
+                type="button"
+                class="btn btn-primary w-100"
+                data-bs-dismiss="modal"
+                style="border-radius: 10px; padding: 12px; font-weight: 600"
+              >
+                <i class="fa-solid fa-circle-check me-2"></i>Got it, Thank you!
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Thank You Modal -->
 
-					</div>
-				</div>
+      <!-- Trial Already Used Modal -->
+      <div
+        class="modal fade"
+        id="trialAlreadyUsedModal"
+        tabindex="-1"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div
+            class="modal-content border-0"
+            style="border-radius: 20px; overflow: hidden"
+          >
+            <div
+              style="
+                background: linear-gradient(135deg, #2c1506, #522811, #3d1d0a);
+                padding: 40px 30px 30px;
+                text-align: center;
+                position: relative;
+              "
+            >
+              <button
+                type="button"
+                class="btn-close btn-close-white position-absolute top-0 end-0 m-3"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+              <div
+                style="
+                  width: 80px;
+                  height: 80px;
+                  background: rgba(255, 255, 255, 0.15);
+                  border: 2px solid rgba(255, 255, 255, 0.3);
+                  border-radius: 50%;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  margin: 0 auto 20px;
+                "
+              >
+                <i
+                  class="fa-solid fa-circle-info"
+                  style="font-size: 36px; color: #d8ac27"
+                ></i>
+              </div>
+              <h4 style="color: #fff; font-weight: 800; margin-bottom: 8px">
+                Already Availed
+              </h4>
+              <p
+                style="
+                  color: rgba(255, 255, 255, 0.75);
+                  font-size: 14px;
+                  margin: 0;
+                "
+              >
+                You have already availed your free trial demo.
+              </p>
+            </div>
+            <div
+              class="modal-body"
+              style="padding: 32px 30px; text-align: center"
+            >
+              <div
+                style="
+                  background: #fff8e8;
+                  border: 1px solid #f0c842;
+                  border-radius: 12px;
+                  padding: 20px;
+                  margin-bottom: 24px;
+                "
+              >
+                <i
+                  class="fa-solid fa-graduation-cap"
+                  style="
+                    font-size: 28px;
+                    color: #d8ac27;
+                    margin-bottom: 10px;
+                    display: block;
+                  "
+                ></i>
+                <p
+                  style="
+                    font-size: 15px;
+                    font-weight: 600;
+                    color: #1a1a1a;
+                    margin-bottom: 4px;
+                  "
+                >
+                  Ready to continue learning?
+                </p>
+                <p style="font-size: 13px; color: #777; margin: 0">
+                  Enroll in one of our courses and take your knowledge to the
+                  next level.
+                </p>
+              </div>
+              <a
+                href="/src/pages/courses/course-grid.html"
+                class="btn btn-primary w-100"
+                style="
+                  border-radius: 10px;
+                  padding: 13px;
+                  font-weight: 700;
+                  font-size: 15px;
+                "
+                data-bs-dismiss="modal"
+              >
+                <i class="fa-solid fa-book-open me-2"></i>Explore Courses
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Trial Already Used Modal -->
+    </div>
+    <!-- /Main Wrapper -->
 
-			</div>
-		</div>
-	</section>
-	<!-- /Section 6 -->
+    <!-- Scroll to Top -->
+    <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+      <i class="fas fa-arrow-up"></i>
+    </button>
 
-	<!-- Footer -->
-	<footer class="footer">
-		<div class="footer-bg">
-			<img src="/assets/img/bg/footer-bg-01.png" class="footer-bg-1" alt="">
-			<img src="/assets/img/bg/footer-bg-02.png" class="footer-bg-2" alt="">
-		</div>
-		<div class="footer-top">
-			<div class="container">
-				<div class="row row-gap-4">
-					<div class="col-lg-4">
-						<div class="footer-about">
-							<div class="footer-logo"><img src="/assets/img/white-logo.png" style="width:200px;height:150px;" alt=""></div>
-							<p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
-						</div>
-					</div>
-					<div class="col-lg-8">
-						<div class="row row-gap-4">
-							<div class="col-lg-3">
-								<div class="footer-widget footer-menu">
-									<h5 class="footer-title">For Student</h5>
-									<ul>
-										<li><a href="/courses/course-grid">Browse Courses</a></li>
-										<li><a href="/shared/free-trial">Free Trial</a></li>
-										<li><a href="/shared/pricing-plan">Pricing</a></li>
-										<li><a href="/auth/login">Login</a></li>
-										<li><a href="/auth/register">Register</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-3">
-								<div class="footer-widget footer-menu">
-									<h5 class="footer-title">Quick Links</h5>
-									<ul>
-										<li><a href="/">Home</a></li>
-										<li><a href="/shared/about-us">About Us</a></li>
-										<li><a href="/shared/pricing-plan">Pricing Plan</a></li>
-										<li><a href="/shared/terms-and-conditions">Terms</a></li>
-										<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
-									</ul>
-								</div>
-							</div>
-							<div class="col-lg-6">
-								<div class="footer-widget footer-contact">
-									<h5 class="footer-title">Newsletter</h5>
-									<div class="subscribe-input">
-										<form action="javascript:void(0);">
-											<input type="email" class="form-control" placeholder="Enter your Email Address">
-											<button type="submit" class="btn btn-primary btn-sm inline-flex align-items-center"><i class="isax isax-send-2 me-1"></i>Subscribe</button>
-										</form>
-									</div>
-									<div class="footer-contact-info">
-										<div class="footer-address d-flex align-items-center">
-											<img src="/assets/img/icon/icon-20.svg" alt="Img" class="img-fluid me-2">
-											<p>3556 Beech Street, San Francisco, California</p>
-										</div>
-										<div class="footer-address d-flex align-items-center">
-											<img src="/assets/img/icon/icon-19.svg" alt="Img" class="img-fluid me-2">
-											<p>info@alkahafonlineacademy.com</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row row-gap-2">
-					<div class="col-md-6">
-						<p class="text-white">Copyright 2025 <span class="text-secondary">Al-KahafOnlineAcademy</span>. All rights reserved.</p>
-					</div>
-					<div class="col-md-6">
-						<ul class="d-flex align-items-center justify-content-center justify-content-md-end footer-link">
-							<li><a href="/shared/terms-and-conditions">Terms & Conditions</a></li>
-							<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-	<!-- /Footer -->
+    <!-- jQuery -->
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="/assets/plugins/select2/js/select2.min.js"></script>
+    <!-- Custom JS -->
+    <script src="/assets/js/script.js"></script>
 
-	<!-- Thank You Modal -->
-	<div class="modal fade" id="thankYouModal" tabindex="-1" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content border-0" style="border-radius:20px; overflow:hidden;">
-				<!-- Top colored bar -->
-				<div style="background:linear-gradient(135deg,#2c1506,#522811,#3d1d0a); padding:40px 30px 30px; text-align:center; position:relative;">
-					<button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
-					<!-- Check circle icon -->
-					<div style="width:80px;height:80px;background:linear-gradient(135deg,#d8ac27,#f0c842);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;box-shadow:0 8px 24px rgba(216,172,39,0.5);">
-						<i class="fa-solid fa-check" style="font-size:36px;color:#fff;"></i>
-					</div>
-					<h4 style="color:#fff;font-weight:800;margin-bottom:8px;">JazakAllah Khair!</h4>
-					<p style="color:rgba(255,255,255,0.75);font-size:14px;margin:0;">Your free trial request has been submitted successfully.</p>
-				</div>
-				<!-- Body -->
-				<div class="modal-body" style="padding:32px 30px; text-align:center;">
-					<div style="background:#f8f9fa;border-radius:12px;padding:20px;margin-bottom:24px;">
-						<i class="fa-solid fa-user-headset" style="font-size:28px;color:#522811;margin-bottom:10px;display:block;"></i>
-						<p style="font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:4px;">Our staff will contact you shortly</p>
-						<p style="font-size:13px;color:#777;margin:0;">We typically respond within <strong>24 hours</strong> via WhatsApp or Email.</p>
-					</div>
-					<div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:24px;">
-						<div style="text-align:center;">
-							<div style="font-size:20px;font-weight:800;color:#522811;">3</div>
-							<div style="font-size:11px;color:#999;">Free Classes</div>
-						</div>
-						<div style="width:1px;background:#e8e8e8;"></div>
-						<div style="text-align:center;">
-							<div style="font-size:20px;font-weight:800;color:#522811;">1-on-1</div>
-							<div style="font-size:11px;color:#999;">Live Session</div>
-						</div>
-						<div style="width:1px;background:#e8e8e8;"></div>
-						<div style="text-align:center;">
-							<div style="font-size:20px;font-weight:800;color:#522811;">24h</div>
-							<div style="font-size:11px;color:#999;">Response Time</div>
-						</div>
-					</div>
-					<button type="button" class="btn btn-primary w-100" data-bs-dismiss="modal" style="border-radius:10px;padding:12px;font-weight:600;">
-						<i class="fa-solid fa-circle-check me-2"></i>Got it, Thank you!
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- /Thank You Modal -->
+    <!-- Dynamic Courses Loader -->
+    <script>
+      (function () {
+        var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+        var FALLBACK_IMG = "/assets/img/course/course-01.jpg";
 
-	<!-- Trial Already Used Modal -->
-	<div class="modal fade" id="trialAlreadyUsedModal" tabindex="-1" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content border-0" style="border-radius:20px;overflow:hidden;">
-				<div style="background:linear-gradient(135deg,#2c1506,#522811,#3d1d0a);padding:40px 30px 30px;text-align:center;position:relative;">
-					<button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
-					<div style="width:80px;height:80px;background:rgba(255,255,255,0.15);border:2px solid rgba(255,255,255,0.3);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
-						<i class="fa-solid fa-circle-info" style="font-size:36px;color:#d8ac27;"></i>
-					</div>
-					<h4 style="color:#fff;font-weight:800;margin-bottom:8px;">Already Availed</h4>
-					<p style="color:rgba(255,255,255,0.75);font-size:14px;margin:0;">You have already availed your free trial demo.</p>
-				</div>
-				<div class="modal-body" style="padding:32px 30px;text-align:center;">
-					<div style="background:#fff8e8;border:1px solid #f0c842;border-radius:12px;padding:20px;margin-bottom:24px;">
-						<i class="fa-solid fa-graduation-cap" style="font-size:28px;color:#d8ac27;margin-bottom:10px;display:block;"></i>
-						<p style="font-size:15px;font-weight:600;color:#1a1a1a;margin-bottom:4px;">Ready to continue learning?</p>
-						<p style="font-size:13px;color:#777;margin:0;">Enroll in one of our courses and take your knowledge to the next level.</p>
-					</div>
-					<a href="/src/pages/courses/course-grid.html" class="btn btn-primary w-100" style="border-radius:10px;padding:13px;font-weight:700;font-size:15px;" data-bs-dismiss="modal">
-						<i class="fa-solid fa-book-open me-2"></i>Explore Courses
-					</a>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- /Trial Already Used Modal -->
+        function getCatClass(cat) {
+          var map = {
+            IslamicStudies: "course-cat-IslamicStudies",
+            Arabic: "course-cat-Arabic",
+            Quran: "course-cat-Quran",
+            Tajweed: "course-cat-Tajweed",
+          };
+          return map[cat] || "course-cat-IslamicStudies";
+        }
 
-</div>
-<!-- /Main Wrapper -->
+        function buildCardHTML(course) {
+          var instructor = course.instructor
+            ? course.instructor.firstName + " " + course.instructor.lastName
+            : "Al-Kahaf Instructor";
+          var initials = instructor
+            .split(" ")
+            .map(function (w) {
+              return w[0];
+            })
+            .join("")
+            .substring(0, 2)
+            .toUpperCase();
+          var priceDisplay =
+            parseFloat(course.price) === 0
+              ? "Free"
+              : "Rs " + Math.round(parseFloat(course.price));
+          var rating = parseFloat(course.rating || 0).toFixed(1);
+          var students = course.enrollmentCount || 0;
+          var courseUrl = "/courses/course-details";
+          var cat = course.category || "IslamicStudies";
+          var catClass = getCatClass(cat);
+          var img = course.thumbnail || FALLBACK_IMG;
 
-<!-- Scroll to Top -->
-<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
-	<i class="fas fa-arrow-up"></i>
-</button>
+          return (
+            '<div class="col-xl-3 col-lg-4 col-md-6 d-flex">' +
+            '<div class="course-item course-item-two mb-0 w-100">' +
+            '<div class="course-img">' +
+            '<a href="' +
+            courseUrl +
+            '">' +
+            '<img src="' +
+            img +
+            '" onerror="this.src=\'' +
+            FALLBACK_IMG +
+            '\'" class="img-fluid" alt="' +
+            course.title +
+            '">' +
+            "</a>" +
+            "</div>" +
+            '<div class="course-content">' +
+            '<div class="d-flex align-items-center justify-content-between mb-2">' +
+            '<span class="course-cat-badge ' +
+            catClass +
+            '">' +
+            cat +
+            "</span>" +
+            "</div>" +
+            '<h6 class="title mb-2"><a href="' +
+            courseUrl +
+            '">' +
+            course.title +
+            "</a></h6>" +
+            '<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' +
+            rating +
+            " (" +
+            students +
+            " Students)</p>" +
+            '<div class="d-flex align-items-center justify-content-between">' +
+            '<span class="text-secondary fw-bold lh-1" style="font-size:1.25rem">' +
+            priceDisplay +
+            "</span>" +
+            '<a href="' +
+            courseUrl +
+            '" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>' +
+            "</div>" +
+            "</div>" +
+            "</div>" +
+            "</div>"
+          );
+        }
 
-<!-- jQuery -->
-<script src="/assets/js/jquery-3.7.1.min.js"></script>
-<!-- Bootstrap Core JS -->
-<script src="/assets/js/bootstrap.bundle.min.js"></script>
-<!-- Select2 JS -->
-<script src="/assets/plugins/select2/js/select2.min.js"></script>
-<!-- Custom JS -->
-<script src="/assets/js/script.js"></script>
+        function loadFeaturedCourses() {
+          var grid = document.getElementById("ft-courses-grid");
+          if (!grid) return;
+          fetch(API_BASE + "/courses?status=published&limit=4&page=1")
+            .then(function (res) {
+              return res.json();
+            })
+            .then(function (data) {
+              var courses = data.courses || [];
+              if (!courses.length) {
+                grid.innerHTML =
+                  '<div class="col-12 text-center py-4"><p class="text-muted">No courses available yet. Check back soon!</p></div>';
+                return;
+              }
+              var html = "";
+              courses.forEach(function (c) {
+                html += buildCardHTML(c);
+              });
+              grid.innerHTML = html;
+            })
+            .catch(function () {
+              grid.innerHTML =
+                '<div class="col-12 text-center py-4"><p class="text-muted">Unable to load courses. <a href="/courses/course-grid">Browse all courses</a>.</p></div>';
+            });
+        }
 
-<!-- Dynamic Courses Loader -->
-<script>
-(function() {
-	var API_BASE = 'http://localhost:5000/api/v1';
-	var FALLBACK_IMG = '/assets/img/course/course-01.jpg';
+        document.addEventListener("DOMContentLoaded", loadFeaturedCourses);
 
-	function getCatClass(cat) {
-		var map = {
-			'IslamicStudies': 'course-cat-IslamicStudies',
-			'Arabic': 'course-cat-Arabic',
-			'Quran': 'course-cat-Quran',
-			'Tajweed': 'course-cat-Tajweed'
-		};
-		return map[cat] || 'course-cat-IslamicStudies';
-	}
+        // Populate course interest dropdown from predefined courses
+        document.addEventListener("DOMContentLoaded", function () {
+          var sel = document.getElementById("courseInterestSelect");
+          if (!sel) return;
+          fetch(API_BASE + "/free-trial/courses")
+            .then(function (res) {
+              return res.json();
+            })
+            .then(function (data) {
+              sel.innerHTML = '<option value="">Select Course</option>';
+              if (data.success && data.data && data.data.length > 0) {
+                data.data.forEach(function (c) {
+                  var opt = document.createElement("option");
+                  opt.value = c.courseName;
+                  opt.textContent = c.courseName;
+                  sel.appendChild(opt);
+                });
+              } else {
+                sel.innerHTML =
+                  '<option value="">No courses available</option>';
+              }
+            })
+            .catch(function () {
+              sel.innerHTML = '<option value="">Select Course</option>';
+            });
+        });
 
-	function buildCardHTML(course) {
-		var instructor = (course.instructor)
-			? (course.instructor.firstName + ' ' + course.instructor.lastName)
-			: 'Al-Kahaf Instructor';
-		var initials = instructor.split(' ').map(function(w){ return w[0]; }).join('').substring(0,2).toUpperCase();
-		var priceDisplay = (parseFloat(course.price) === 0) ? 'Free' : 'Rs ' + Math.round(parseFloat(course.price));
-		var rating = parseFloat(course.rating || 0).toFixed(1);
-		var students = course.enrollmentCount || 0;
-		var courseUrl = '/courses/course-details';
-		var cat = course.category || 'IslamicStudies';
-		var catClass = getCatClass(cat);
-		var img = course.thumbnail || FALLBACK_IMG;
+        // ── Free Trial Form Validation & Submit ─────────────────────────────────
+        document.addEventListener("DOMContentLoaded", function () {
+          var form = document.getElementById("freeTrialForm");
+          if (!form) return;
 
-		return '<div class="col-xl-3 col-lg-4 col-md-6 d-flex">' +
-			'<div class="course-item course-item-two mb-0 w-100">' +
-				'<div class="course-img">' +
-					'<a href="' + courseUrl + '">' +
-						'<img src="' + img + '" onerror="this.src=\'' + FALLBACK_IMG + '\'" class="img-fluid" alt="' + course.title + '">' +
-					'</a>' +
-				'</div>' +
-				'<div class="course-content">' +
-					'<div class="d-flex align-items-center justify-content-between mb-2">' +
-						'<span class="course-cat-badge ' + catClass + '">' + cat + '</span>' +
-					'</div>' +
-					'<h6 class="title mb-2"><a href="' + courseUrl + '">' + course.title + '</a></h6>' +
-					'<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' + rating + ' (' + students + ' Students)</p>' +
-					'<div class="d-flex align-items-center justify-content-between">' +
-						'<span class="text-secondary fw-bold lh-1" style="font-size:1.25rem">' + priceDisplay + '</span>' +
-						'<a href="' + courseUrl + '" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></a>' +
-					'</div>' +
-				'</div>' +
-			'</div>' +
-		'</div>';
-	}
+          var emailRegex = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
+          var phoneRegex = /^[\+]?[\d\s\-\(\)]{7,15}$/;
+          var nameRegex = /^[a-zA-Z\u0600-\u06FF\s'.,\-]{2,}$/;
+          var lowercaseRE = /[a-z]/;
+          var uppercaseRE = /[A-Z]/;
+          var numberRE = /[0-9]/;
+          var specialRE = /[^a-zA-Z0-9\s]/;
 
-	function loadFeaturedCourses() {
-		var grid = document.getElementById('ft-courses-grid');
-		if (!grid) return;
-		fetch(API_BASE + '/courses?status=published&limit=4&page=1')
-			.then(function(res){ return res.json(); })
-			.then(function(data) {
-				var courses = data.courses || [];
-				if (!courses.length) {
-					grid.innerHTML = '<div class="col-12 text-center py-4"><p class="text-muted">No courses available yet. Check back soon!</p></div>';
-					return;
-				}
-				var html = '';
-				courses.forEach(function(c){ html += buildCardHTML(c); });
-				grid.innerHTML = html;
-			})
-			.catch(function() {
-				grid.innerHTML = '<div class="col-12 text-center py-4"><p class="text-muted">Unable to load courses. <a href="/courses/course-grid">Browse all courses</a>.</p></div>';
-			});
-	}
+          var disposableDomains = [
+            "mailinator.com",
+            "tempmail.com",
+            "guerrillamail.com",
+            "yopmail.com",
+            "sharklasers.com",
+            "grr.la",
+            "spam4.me",
+            "trashmail.com",
+            "trashmail.me",
+            "trashmail.net",
+            "10minutemail.com",
+            "10minutemail.net",
+            "mailnull.com",
+            "discard.email",
+            "tempinbox.com",
+            "mailsac.com",
+            "getnada.com",
+            "tempr.email",
+            "throwaway.email",
+            "mintemail.com",
+            "mytemp.email",
+            "tmpmail.net",
+            "tmpmail.org",
+          ];
 
-	document.addEventListener('DOMContentLoaded', loadFeaturedCourses);
+          var domainCorrections = {
+            "gmial.com": "gmail.com",
+            "gmal.com": "gmail.com",
+            "gmail.co": "gmail.com",
+            "gmail.comm": "gmail.com",
+            "gamil.com": "gmail.com",
+            "gnail.com": "gmail.com",
+            "yahooo.com": "yahoo.com",
+            "yaho.com": "yahoo.com",
+            "yahoo.co": "yahoo.com",
+            "hotmial.com": "hotmail.com",
+            "hotmal.com": "hotmail.com",
+            "hotmail.co": "hotmail.com",
+            "outlok.com": "outlook.com",
+            "outloook.com": "outlook.com",
+            "outlook.co": "outlook.com",
+          };
 
-	// Populate course interest dropdown from predefined courses
-	document.addEventListener('DOMContentLoaded', function() {
-		var sel = document.getElementById('courseInterestSelect');
-		if (!sel) return;
-		fetch(API_BASE + '/free-trial/courses')
-			.then(function(res) { return res.json(); })
-			.then(function(data) {
-				sel.innerHTML = '<option value="">Select Course</option>';
-				if (data.success && data.data && data.data.length > 0) {
-					data.data.forEach(function(c) {
-						var opt = document.createElement('option');
-						opt.value = c.courseName;
-						opt.textContent = c.courseName;
-						sel.appendChild(opt);
-					});
-				} else {
-					sel.innerHTML = '<option value="">No courses available</option>';
-				}
-			})
-			.catch(function() {
-				sel.innerHTML = '<option value="">Select Course</option>';
-			});
-	});
+          function showErr(id, msg) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            el.textContent = msg;
+            el.classList.add("show");
+          }
+          function clearErr(id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            el.textContent = "";
+            el.classList.remove("show");
+          }
+          function setInvalid(id) {
+            var el = document.getElementById(id);
+            if (el) {
+              el.classList.remove("is-valid");
+              el.classList.add("is-invalid");
+            }
+          }
+          function setValid(id) {
+            var el = document.getElementById(id);
+            if (el) {
+              el.classList.remove("is-invalid");
+              el.classList.add("is-valid");
+            }
+          }
+          function clearState(id) {
+            var el = document.getElementById(id);
+            if (el) {
+              el.classList.remove("is-valid", "is-invalid");
+            }
+          }
 
-	// ── Free Trial Form Validation & Submit ─────────────────────────────────
-	document.addEventListener('DOMContentLoaded', function() {
-		var form = document.getElementById('freeTrialForm');
-		if (!form) return;
+          // ── Real-time: Full Name ──────────────────────────────────────────────
+          var nameInput = document.getElementById("ft-fullName");
+          if (nameInput) {
+            nameInput.addEventListener("input", function () {
+              var v = this.value.trim();
+              clearErr("ft-fullName-err");
+              if (!v) {
+                clearState("ft-fullName");
+                return;
+              }
+              if (!nameRegex.test(v)) {
+                showErr("ft-fullName-err", "Please enter a valid full name");
+                setInvalid("ft-fullName");
+              } else {
+                setValid("ft-fullName");
+              }
+            });
+          }
 
-		var emailRegex    = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/;
-		var phoneRegex    = /^[\+]?[\d\s\-\(\)]{7,15}$/;
-		var nameRegex     = /^[a-zA-Z\u0600-\u06FF\s'.,\-]{2,}$/;
-		var lowercaseRE   = /[a-z]/;
-		var uppercaseRE   = /[A-Z]/;
-		var numberRE      = /[0-9]/;
-		var specialRE     = /[^a-zA-Z0-9\s]/;
+          // ── Real-time: Email ──────────────────────────────────────────────────
+          var emailInput = document.getElementById("ft-email");
+          var emailCheckTimer = null;
+          if (emailInput) {
+            emailInput.addEventListener("input", function () {
+              var v = this.value.trim();
+              clearErr("ft-email-err");
+              if (!v) {
+                clearState("ft-email");
+                return;
+              }
+              if (!emailRegex.test(v)) {
+                showErr("ft-email-err", "Please enter a valid email address");
+                setInvalid("ft-email");
+              } else {
+                clearState("ft-email");
+              }
+            });
+            emailInput.addEventListener("blur", function () {
+              var v = this.value.trim();
+              if (!v || !emailRegex.test(v)) return;
+              var domain = v.split("@")[1].toLowerCase();
+              clearErr("ft-email-err");
 
-		var disposableDomains = [
-			'mailinator.com','tempmail.com','guerrillamail.com','yopmail.com',
-			'sharklasers.com','grr.la','spam4.me','trashmail.com','trashmail.me',
-			'trashmail.net','10minutemail.com','10minutemail.net','mailnull.com',
-			'discard.email','tempinbox.com','mailsac.com','getnada.com','tempr.email',
-			'throwaway.email','mintemail.com','mytemp.email','tmpmail.net','tmpmail.org'
-		];
+              // Typo suggestion
+              if (domainCorrections[domain]) {
+                var corrected =
+                  v.split("@")[0] + "@" + domainCorrections[domain];
+                showErr("ft-email-err", "Did you mean " + corrected + "?");
+                setInvalid("ft-email");
+                return;
+              }
+              // Disposable check
+              if (disposableDomains.indexOf(domain) !== -1) {
+                showErr(
+                  "ft-email-err",
+                  "Disposable email addresses are not allowed",
+                );
+                setInvalid("ft-email");
+                return;
+              }
+              setValid("ft-email");
+            });
+          }
 
-		var domainCorrections = {
-			'gmial.com':'gmail.com','gmal.com':'gmail.com','gmail.co':'gmail.com',
-			'gmail.comm':'gmail.com','gamil.com':'gmail.com','gnail.com':'gmail.com',
-			'yahooo.com':'yahoo.com','yaho.com':'yahoo.com','yahoo.co':'yahoo.com',
-			'hotmial.com':'hotmail.com','hotmal.com':'hotmail.com','hotmail.co':'hotmail.com',
-			'outlok.com':'outlook.com','outloook.com':'outlook.com','outlook.co':'outlook.com'
-		};
+          // ── Real-time: Phone ──────────────────────────────────────────────────
+          var phoneInput = document.getElementById("ft-phone");
+          if (phoneInput) {
+            phoneInput.addEventListener("input", function () {
+              var v = this.value.trim();
+              clearErr("ft-phone-err");
+              if (!v) {
+                clearState("ft-phone");
+                return;
+              }
+              if (!phoneRegex.test(v)) {
+                showErr("ft-phone-err", "Please enter a valid phone number");
+                setInvalid("ft-phone");
+              } else {
+                setValid("ft-phone");
+              }
+            });
+          }
 
-		function showErr(id, msg) {
-			var el = document.getElementById(id);
-			if (!el) return;
-			el.textContent = msg;
-			el.classList.add('show');
-		}
-		function clearErr(id) {
-			var el = document.getElementById(id);
-			if (!el) return;
-			el.textContent = '';
-			el.classList.remove('show');
-		}
-		function setInvalid(id) { var el = document.getElementById(id); if (el) { el.classList.remove('is-valid'); el.classList.add('is-invalid'); } }
-		function setValid(id)   { var el = document.getElementById(id); if (el) { el.classList.remove('is-invalid'); el.classList.add('is-valid'); } }
-		function clearState(id) { var el = document.getElementById(id); if (el) { el.classList.remove('is-valid','is-invalid'); } }
+          // ── Real-time: Password strength ──────────────────────────────────────
+          var passInput = document.getElementById("trialPassword");
+          if (passInput) {
+            passInput.addEventListener("input", function () {
+              var v = this.value;
+              var len = v.length;
+              clearErr("ft-password-err");
 
-		// ── Real-time: Full Name ──────────────────────────────────────────────
-		var nameInput = document.getElementById('ft-fullName');
-		if (nameInput) {
-			nameInput.addEventListener('input', function() {
-				var v = this.value.trim();
-				clearErr('ft-fullName-err');
-				if (!v) { clearState('ft-fullName'); return; }
-				if (!nameRegex.test(v)) {
-					showErr('ft-fullName-err', 'Please enter a valid full name');
-					setInvalid('ft-fullName');
-				} else {
-					setValid('ft-fullName');
-				}
-			});
-		}
+              var pBar = document.getElementById("passwordStrength");
+              var pInfo = document.getElementById("passwordInfo");
+              var poor = document.querySelector("#passwordStrength #poor");
+              var weak = document.querySelector("#passwordStrength #weak");
+              var strong = document.querySelector("#passwordStrength #strong");
+              var heavy = document.querySelector("#passwordStrength #heavy");
 
-		// ── Real-time: Email ──────────────────────────────────────────────────
-		var emailInput = document.getElementById('ft-email');
-		var emailCheckTimer = null;
-		if (emailInput) {
-			emailInput.addEventListener('input', function() {
-				var v = this.value.trim();
-				clearErr('ft-email-err');
-				if (!v) { clearState('ft-email'); return; }
-				if (!emailRegex.test(v)) {
-					showErr('ft-email-err', 'Please enter a valid email address');
-					setInvalid('ft-email');
-				} else {
-					clearState('ft-email');
-				}
-			});
-			emailInput.addEventListener('blur', function() {
-				var v = this.value.trim();
-				if (!v || !emailRegex.test(v)) return;
-				var domain = v.split('@')[1].toLowerCase();
-				clearErr('ft-email-err');
+              if (!v) {
+                if (pBar) {
+                  pBar.style.display = "none";
+                  pBar.className = "password-strength";
+                }
+                if (pInfo) pInfo.style.display = "none";
+                clearState("trialPassword");
+                return;
+              }
 
-				// Typo suggestion
-				if (domainCorrections[domain]) {
-					var corrected = v.split('@')[0] + '@' + domainCorrections[domain];
-					showErr('ft-email-err', 'Did you mean ' + corrected + '?');
-					setInvalid('ft-email');
-					return;
-				}
-				// Disposable check
-				if (disposableDomains.indexOf(domain) !== -1) {
-					showErr('ft-email-err', 'Disposable email addresses are not allowed');
-					setInvalid('ft-email');
-					return;
-				}
-				setValid('ft-email');
-			});
-		}
+              if (pBar) pBar.style.display = "flex";
+              if (pInfo) pInfo.style.display = "block";
 
-		// ── Real-time: Phone ──────────────────────────────────────────────────
-		var phoneInput = document.getElementById('ft-phone');
-		if (phoneInput) {
-			phoneInput.addEventListener('input', function() {
-				var v = this.value.trim();
-				clearErr('ft-phone-err');
-				if (!v) { clearState('ft-phone'); return; }
-				if (!phoneRegex.test(v)) {
-					showErr('ft-phone-err', 'Please enter a valid phone number');
-					setInvalid('ft-phone');
-				} else {
-					setValid('ft-phone');
-				}
-			});
-		}
+              var hasLow = lowercaseRE.test(v);
+              var hasUp = uppercaseRE.test(v);
+              var hasNum = numberRE.test(v);
+              var hasSp = specialRE.test(v);
 
-		// ── Real-time: Password strength ──────────────────────────────────────
-		var passInput = document.getElementById('trialPassword');
-		if (passInput) {
-			passInput.addEventListener('input', function() {
-				var v = this.value;
-				var len = v.length;
-				clearErr('ft-password-err');
+              if (pBar) pBar.className = "password-strength";
+              [poor, weak, strong, heavy].forEach(function (s) {
+                if (s) s.classList.remove("active");
+              });
 
-				var pBar  = document.getElementById('passwordStrength');
-				var pInfo = document.getElementById('passwordInfo');
-				var poor = document.querySelector('#passwordStrength #poor');
-				var weak = document.querySelector('#passwordStrength #weak');
-				var strong = document.querySelector('#passwordStrength #strong');
-				var heavy = document.querySelector('#passwordStrength #heavy');
+              if (len < 8) {
+                if (poor) poor.classList.add("active");
+                if (pBar) pBar.classList.add("poor-active");
+                if (pInfo) {
+                  pInfo.textContent = "Too short — minimum 8 characters";
+                  pInfo.style.color = "#FF0000";
+                }
+                setInvalid("trialPassword");
+              } else if (hasLow && hasUp && hasNum && hasSp) {
+                [poor, weak, strong, heavy].forEach(function (s) {
+                  if (s) s.classList.add("active");
+                });
+                if (pBar) pBar.classList.add("heavy-active");
+                if (pInfo) {
+                  pInfo.textContent = "Password is strong!";
+                  pInfo.style.color = "#159F46";
+                }
+                setValid("trialPassword");
+              } else if (hasLow && hasUp && (hasNum || hasSp)) {
+                [poor, weak, strong].forEach(function (s) {
+                  if (s) s.classList.add("active");
+                });
+                if (pBar) pBar.classList.add("strong-active");
+                if (pInfo) {
+                  pInfo.textContent = "Almost — add a special character";
+                  pInfo.style.color = "#1D9CFD";
+                }
+                clearState("trialPassword");
+              } else {
+                [poor, weak].forEach(function (s) {
+                  if (s) s.classList.add("active");
+                });
+                if (pBar) pBar.classList.add("avg-active");
+                if (pInfo) {
+                  pInfo.textContent = "Weak — add uppercase, numbers & symbols";
+                  pInfo.style.color = "#FFB54A";
+                }
+                setInvalid("trialPassword");
+              }
 
-				if (!v) {
-					if (pBar)  { pBar.style.display='none'; pBar.className='password-strength'; }
-					if (pInfo) pInfo.style.display = 'none';
-					clearState('trialPassword');
-					return;
-				}
+              // Re-check confirm field if already filled
+              var confirmInput = document.getElementById(
+                "trialConfirmPassword",
+              );
+              if (confirmInput && confirmInput.value) {
+                if (confirmInput.value !== v) {
+                  showErr("ft-confirm-err", "Passwords do not match");
+                  setInvalid("trialConfirmPassword");
+                } else {
+                  clearErr("ft-confirm-err");
+                  setValid("trialConfirmPassword");
+                }
+              }
+            });
+          }
 
-				if (pBar) pBar.style.display = 'flex';
-				if (pInfo) pInfo.style.display = 'block';
+          // ── Real-time: Confirm Password ───────────────────────────────────────
+          var confirmInput = document.getElementById("trialConfirmPassword");
+          if (confirmInput) {
+            confirmInput.addEventListener("input", function () {
+              var pass = document.getElementById("trialPassword").value;
+              clearErr("ft-confirm-err");
+              if (!this.value) {
+                clearState("trialConfirmPassword");
+                return;
+              }
+              if (this.value !== pass) {
+                showErr("ft-confirm-err", "Passwords do not match");
+                setInvalid("trialConfirmPassword");
+              } else {
+                setValid("trialConfirmPassword");
+              }
+            });
+          }
 
-				var hasLow  = lowercaseRE.test(v);
-				var hasUp   = uppercaseRE.test(v);
-				var hasNum  = numberRE.test(v);
-				var hasSp   = specialRE.test(v);
+          // ── Real-time: Course Interest ────────────────────────────────────────
+          var courseSelect = document.getElementById("courseInterestSelect");
+          if (courseSelect) {
+            courseSelect.addEventListener("change", function () {
+              if (this.value) {
+                clearErr("ft-course-err");
+                setValid("courseInterestSelect");
+              } else {
+                clearState("courseInterestSelect");
+              }
+            });
+          }
 
-				if (pBar) pBar.className = 'password-strength';
-				[poor,weak,strong,heavy].forEach(function(s){ if(s) s.classList.remove('active'); });
+          // ── Form Submit ───────────────────────────────────────────────────────
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            var btn = document.getElementById("ft-submit-btn");
 
-				if (len < 8) {
-					if (poor) poor.classList.add('active');
-					if (pBar) pBar.classList.add('poor-active');
-					if (pInfo) { pInfo.textContent = 'Too short — minimum 8 characters'; pInfo.style.color='#FF0000'; }
-					setInvalid('trialPassword');
-				} else if (hasLow && hasUp && hasNum && hasSp) {
-					[poor,weak,strong,heavy].forEach(function(s){ if(s) s.classList.add('active'); });
-					if (pBar) pBar.classList.add('heavy-active');
-					if (pInfo) { pInfo.textContent = 'Password is strong!'; pInfo.style.color='#159F46'; }
-					setValid('trialPassword');
-				} else if (hasLow && hasUp && (hasNum || hasSp)) {
-					[poor,weak,strong].forEach(function(s){ if(s) s.classList.add('active'); });
-					if (pBar) pBar.classList.add('strong-active');
-					if (pInfo) { pInfo.textContent = 'Almost — add a special character'; pInfo.style.color='#1D9CFD'; }
-					clearState('trialPassword');
-				} else {
-					[poor,weak].forEach(function(s){ if(s) s.classList.add('active'); });
-					if (pBar) pBar.classList.add('avg-active');
-					if (pInfo) { pInfo.textContent = 'Weak — add uppercase, numbers & symbols'; pInfo.style.color='#FFB54A'; }
-					setInvalid('trialPassword');
-				}
+            var fullName = document.getElementById("ft-fullName").value.trim();
+            var email = document.getElementById("ft-email").value.trim();
+            var phone = document.getElementById("ft-phone").value.trim();
+            var password = document.getElementById("trialPassword").value;
+            var confirmPass = document.getElementById(
+              "trialConfirmPassword",
+            ).value;
+            var country = document.getElementById("ft-country").value.trim();
+            var courseInterest = document
+              .getElementById("courseInterestSelect")
+              .value.trim();
+            var schedule = document.getElementById("ft-schedule").value.trim();
+            var message = document.getElementById("ft-message").value.trim();
 
-				// Re-check confirm field if already filled
-				var confirmInput = document.getElementById('trialConfirmPassword');
-				if (confirmInput && confirmInput.value) {
-					if (confirmInput.value !== v) {
-						showErr('ft-confirm-err', 'Passwords do not match');
-						setInvalid('trialConfirmPassword');
-					} else {
-						clearErr('ft-confirm-err');
-						setValid('trialConfirmPassword');
-					}
-				}
-			});
-		}
+            var hasError = false;
 
-		// ── Real-time: Confirm Password ───────────────────────────────────────
-		var confirmInput = document.getElementById('trialConfirmPassword');
-		if (confirmInput) {
-			confirmInput.addEventListener('input', function() {
-				var pass = document.getElementById('trialPassword').value;
-				clearErr('ft-confirm-err');
-				if (!this.value) { clearState('trialConfirmPassword'); return; }
-				if (this.value !== pass) {
-					showErr('ft-confirm-err', 'Passwords do not match');
-					setInvalid('trialConfirmPassword');
-				} else {
-					setValid('trialConfirmPassword');
-				}
-			});
-		}
+            if (!fullName || !nameRegex.test(fullName)) {
+              showErr("ft-fullName-err", "Please enter a valid full name");
+              setInvalid("ft-fullName");
+              hasError = true;
+            }
+            if (!email || !emailRegex.test(email)) {
+              showErr("ft-email-err", "Please enter a valid email address");
+              setInvalid("ft-email");
+              hasError = true;
+            }
+            if (!phone || !phoneRegex.test(phone)) {
+              showErr("ft-phone-err", "Please enter a valid phone number");
+              setInvalid("ft-phone");
+              hasError = true;
+            }
+            if (!password || password.length < 8) {
+              showErr(
+                "ft-password-err",
+                "Password must be at least 8 characters",
+              );
+              setInvalid("trialPassword");
+              hasError = true;
+            }
+            if (!confirmPass || confirmPass !== password) {
+              showErr(
+                "ft-confirm-err",
+                confirmPass
+                  ? "Passwords do not match"
+                  : "Please confirm your password",
+              );
+              setInvalid("trialConfirmPassword");
+              hasError = true;
+            }
+            if (!courseInterest) {
+              showErr("ft-course-err", "Please select a course");
+              setInvalid("courseInterestSelect");
+              hasError = true;
+            }
 
-		// ── Real-time: Course Interest ────────────────────────────────────────
-		var courseSelect = document.getElementById('courseInterestSelect');
-		if (courseSelect) {
-			courseSelect.addEventListener('change', function() {
-				if (this.value) { clearErr('ft-course-err'); setValid('courseInterestSelect'); }
-				else { clearState('courseInterestSelect'); }
-			});
-		}
+            if (hasError) return;
 
-		// ── Form Submit ───────────────────────────────────────────────────────
-		form.addEventListener('submit', function(e) {
-			e.preventDefault();
-			var btn = document.getElementById('ft-submit-btn');
+            btn.innerHTML =
+              '<i class="fa-solid fa-spinner fa-spin me-2"></i>Submitting...';
+            btn.disabled = true;
 
-			var fullName       = document.getElementById('ft-fullName').value.trim();
-			var email          = document.getElementById('ft-email').value.trim();
-			var phone          = document.getElementById('ft-phone').value.trim();
-			var password       = document.getElementById('trialPassword').value;
-			var confirmPass    = document.getElementById('trialConfirmPassword').value;
-			var country        = document.getElementById('ft-country').value.trim();
-			var courseInterest = document.getElementById('courseInterestSelect').value.trim();
-			var schedule       = document.getElementById('ft-schedule').value.trim();
-			var message        = document.getElementById('ft-message').value.trim();
+            fetch(API_BASE + "/free-trial", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                fullName: fullName,
+                email: email,
+                phone: phone,
+                password: password,
+                country: country || null,
+                courseInterest: courseInterest,
+                preferredSchedule: schedule || null,
+                message: message || null,
+              }),
+            })
+              .then(function (res) {
+                return res.json();
+              })
+              .then(function (data) {
+                btn.innerHTML =
+                  '<i class="fa-solid fa-paper-plane me-2"></i>Book My Free Trial Class';
+                btn.disabled = false;
+                if (data.code === "TRIAL_ALREADY_USED") {
+                  var dupModal = new bootstrap.Modal(
+                    document.getElementById("trialAlreadyUsedModal"),
+                  );
+                  dupModal.show();
+                } else if (data.success) {
+                  form.reset();
+                  // Clear validation states after reset
+                  form
+                    .querySelectorAll(".is-valid,.is-invalid")
+                    .forEach(function (el) {
+                      el.classList.remove("is-valid", "is-invalid");
+                    });
+                  document.getElementById("passwordStrength").style.display =
+                    "none";
+                  document.getElementById("passwordInfo").style.display =
+                    "none";
+                  var modal = new bootstrap.Modal(
+                    document.getElementById("thankYouModal"),
+                  );
+                  modal.show();
+                } else {
+                  // Show server error inline
+                  showErr(
+                    "ft-email-err",
+                    data.message || "Submission failed. Please try again.",
+                  );
+                  setInvalid("ft-email");
+                }
+              })
+              .catch(function () {
+                btn.innerHTML =
+                  '<i class="fa-solid fa-paper-plane me-2"></i>Book My Free Trial Class';
+                btn.disabled = false;
+                showErr(
+                  "ft-course-err",
+                  "Network error. Please check your connection and try again.",
+                );
+              });
+          });
 
-			var hasError = false;
+          // Smooth scroll for anchor links
+          document
+            .querySelectorAll('a[href="#freeTrialForm"], a[href="#trial-form"]')
+            .forEach(function (a) {
+              a.addEventListener("click", function (e) {
+                e.preventDefault();
+                var form = document.getElementById("freeTrialForm");
+                if (form)
+                  form.scrollIntoView({ behavior: "smooth", block: "start" });
+              });
+            });
+        });
+      })();
+    </script>
 
-			if (!fullName || !nameRegex.test(fullName)) {
-				showErr('ft-fullName-err', 'Please enter a valid full name');
-				setInvalid('ft-fullName'); hasError = true;
-			}
-			if (!email || !emailRegex.test(email)) {
-				showErr('ft-email-err', 'Please enter a valid email address');
-				setInvalid('ft-email'); hasError = true;
-			}
-			if (!phone || !phoneRegex.test(phone)) {
-				showErr('ft-phone-err', 'Please enter a valid phone number');
-				setInvalid('ft-phone'); hasError = true;
-			}
-			if (!password || password.length < 8) {
-				showErr('ft-password-err', 'Password must be at least 8 characters');
-				setInvalid('trialPassword'); hasError = true;
-			}
-			if (!confirmPass || confirmPass !== password) {
-				showErr('ft-confirm-err', confirmPass ? 'Passwords do not match' : 'Please confirm your password');
-				setInvalid('trialConfirmPassword'); hasError = true;
-			}
-			if (!courseInterest) {
-				showErr('ft-course-err', 'Please select a course');
-				setInvalid('courseInterestSelect'); hasError = true;
-			}
-
-			if (hasError) return;
-
-			btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-2"></i>Submitting...';
-			btn.disabled = true;
-
-			fetch(API_BASE + '/free-trial', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify({
-					fullName: fullName,
-					email: email,
-					phone: phone,
-					password: password,
-					country: country || null,
-					courseInterest: courseInterest,
-					preferredSchedule: schedule || null,
-					message: message || null,
-				}),
-			})
-			.then(function(res) { return res.json(); })
-			.then(function(data) {
-				btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i>Book My Free Trial Class';
-				btn.disabled = false;
-				if (data.code === 'TRIAL_ALREADY_USED') {
-					var dupModal = new bootstrap.Modal(document.getElementById('trialAlreadyUsedModal'));
-					dupModal.show();
-				} else if (data.success) {
-					form.reset();
-					// Clear validation states after reset
-					form.querySelectorAll('.is-valid,.is-invalid').forEach(function(el){ el.classList.remove('is-valid','is-invalid'); });
-					document.getElementById('passwordStrength').style.display = 'none';
-					document.getElementById('passwordInfo').style.display = 'none';
-					var modal = new bootstrap.Modal(document.getElementById('thankYouModal'));
-					modal.show();
-				} else {
-					// Show server error inline
-					showErr('ft-email-err', data.message || 'Submission failed. Please try again.');
-					setInvalid('ft-email');
-				}
-			})
-			.catch(function() {
-				btn.innerHTML = '<i class="fa-solid fa-paper-plane me-2"></i>Book My Free Trial Class';
-				btn.disabled = false;
-				showErr('ft-course-err', 'Network error. Please check your connection and try again.');
-			});
-		});
-
-		// Smooth scroll for anchor links
-		document.querySelectorAll('a[href="#freeTrialForm"], a[href="#trial-form"]').forEach(function(a) {
-			a.addEventListener('click', function(e) {
-				e.preventDefault();
-				var form = document.getElementById('freeTrialForm');
-				if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
-			});
-		});
-	});
-})();
-</script>
-
-<!-- Inline styles for course category badges -->
-<style>
-.course-cat-badge { display:inline-flex; padding:3px 12px; border-radius:50px; font-size:12px; font-weight:500; }
-.course-cat-IslamicStudies { background:#e8f5e9; color:#2e7d32; }
-.course-cat-Arabic { background:#fff3e0; color:#e65100; }
-.course-cat-Quran { background:#e3f2fd; color:#1565c0; }
-.course-cat-Tajweed { background:#f3e5f5; color:#6a1b9a; }
-</style>
-
-</body>
+    <!-- Inline styles for course category badges -->
+    <style>
+      .course-cat-badge {
+        display: inline-flex;
+        padding: 3px 12px;
+        border-radius: 50px;
+        font-size: 12px;
+        font-weight: 500;
+      }
+      .course-cat-IslamicStudies {
+        background: #e8f5e9;
+        color: #2e7d32;
+      }
+      .course-cat-Arabic {
+        background: #fff3e0;
+        color: #e65100;
+      }
+      .course-cat-Quran {
+        background: #e3f2fd;
+        color: #1565c0;
+      }
+      .course-cat-Tajweed {
+        background: #f3e5f5;
+        color: #6a1b9a;
+      }
+    </style>
+  </body>
 </html>

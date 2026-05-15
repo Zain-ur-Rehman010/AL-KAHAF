@@ -6,6 +6,7 @@ Complete step-by-step guide to deploy your AlKahaf LMS project on cPanel hosting
 
 ✅ Your backend is now configured for MySQL
 ✅ cPanel account with:
+
 - MySQL database access
 - Node.js App support
 - SSH access (optional but recommended)
@@ -64,9 +65,9 @@ Write down these details (you'll need them later):
 ```
 Database Host: localhost
 Database Port: 3306
-Database Name: yourusername_alkahaf_lms
-Database User: yourusername_alkahaf_user
-Database Password: [your generated password]
+Database Name: tsjilueh_alkahaf_database
+Database User: tsjilueh_alkahaf_user
+Database Password: )ykvx8ivdz[GN?5(
 ```
 
 ---
@@ -89,6 +90,7 @@ Click **"Create Application"** and configure:
 **Application root:** `alkahaf-backend` (or your preferred folder name)
 
 **Application URL:** Select your domain or subdomain
+
 - Example: `api.yourdomain.com` or `yourdomain.com/api`
 
 **Application startup file:** `src/server.js`
@@ -204,6 +206,7 @@ RATE_LIMIT_MAX_REQUESTS=100
 ```
 
 **Important:**
+
 - Replace `yourusername_alkahaf_lms` with your actual database name
 - Replace `yourusername_alkahaf_user` with your actual database user
 - Replace `your_generated_database_password` with your actual password
@@ -289,7 +292,7 @@ You need to point your frontend to the backend API.
 // API Configuration
 const API_CONFIG = {
   // Update this to your actual backend URL
-  baseURL: 'https://api.yourdomain.com/api/v1',
+  baseURL: "https://api.yourdomain.com/api/v1",
   // or if backend is on same domain:
   // baseURL: 'https://yourdomain.com:5000/api/v1',
   // or subdirectory:
@@ -305,7 +308,7 @@ window.API_CONFIG = API_CONFIG;
 **Then update** `frontend/assets/js/auth.js` (when you create it):
 
 ```javascript
-const API_URL = window.API_CONFIG?.baseURL || 'http://localhost:5000/api/v1';
+const API_URL = window.API_CONFIG?.baseURL || "http://localhost:5000/api/v1";
 ```
 
 ---
@@ -332,6 +335,7 @@ Depending on your cPanel setup, your backend might be accessible at:
 Make sure your backend allows requests from your frontend domain.
 
 In your `.env`:
+
 ```env
 CORS_ORIGIN=https://yourdomain.com
 ```
@@ -361,6 +365,7 @@ You should see a response (or create a health check endpoint first).
 ### 7.3 Test Frontend
 
 Navigate to:
+
 ```
 https://yourdomain.com
 ```
@@ -381,10 +386,12 @@ Your frontend should load.
 ### Backend Not Starting
 
 **Check logs:**
+
 1. In "Setup Node.js App", view **"Passenger log file"**
 2. Look for errors
 
 **Common issues:**
+
 - Missing `.env` file
 - Wrong database credentials
 - Port conflicts
@@ -393,14 +400,16 @@ Your frontend should load.
 ### Database Connection Failed
 
 **Verify:**
+
 ```javascript
 // Create test file: backend/test-db.js
-require('dotenv').config();
-const sequelize = require('./src/config/database');
+require("dotenv").config();
+const sequelize = require("./src/config/database");
 
-sequelize.authenticate()
-  .then(() => console.log('✅ Database connected!'))
-  .catch(err => console.error('❌ Error:', err));
+sequelize
+  .authenticate()
+  .then(() => console.log("✅ Database connected!"))
+  .catch((err) => console.error("❌ Error:", err));
 ```
 
 Run: `node test-db.js`
@@ -408,6 +417,7 @@ Run: `node test-db.js`
 ### Frontend Can't Connect to Backend
 
 **Check:**
+
 - CORS settings in backend
 - Correct API URL in frontend config
 - Backend is running (check Node.js app status)
@@ -416,6 +426,7 @@ Run: `node test-db.js`
 ### Migrations Failed
 
 **Run manually:**
+
 ```bash
 cd alkahaf-backend
 npx sequelize-cli db:migrate
@@ -424,6 +435,7 @@ npx sequelize-cli db:migrate
 ### 500 Internal Server Error
 
 **Check:**
+
 - Application logs
 - `.env` configuration
 - File permissions (should be 755 for folders, 644 for files)
@@ -451,10 +463,11 @@ npx sequelize-cli db:migrate
 ### Enable Caching
 
 Add to your Node.js app:
+
 ```javascript
 // backend/src/server.js
 app.use((req, res, next) => {
-  res.set('Cache-Control', 'public, max-age=300'); // 5 minutes
+  res.set("Cache-Control", "public, max-age=300"); // 5 minutes
   next();
 });
 ```
@@ -466,7 +479,7 @@ npm install compression
 ```
 
 ```javascript
-const compression = require('compression');
+const compression = require("compression");
 app.use(compression());
 ```
 
@@ -508,16 +521,20 @@ Use cPanel's resource usage monitoring or install tools like PM2 (if you have SS
 ## 📞 Need Help?
 
 **cPanel Documentation:**
+
 - https://docs.cpanel.net/
 
 **Node.js on cPanel:**
+
 - Search for "Node.js" in your cPanel documentation
 
 **Database Issues:**
+
 - Use phpMyAdmin to inspect database
 - Check cPanel error logs
 
 **Your Backend Files:**
+
 - Check `backend/src/server.js` for startup configuration
 - Review `backend/config/config.js` for database settings
 - Check `backend/migrations/` for database schema
@@ -527,6 +544,7 @@ Use cPanel's resource usage monitoring or install tools like PM2 (if you have SS
 ## 🎉 Deployment Complete!
 
 Your AlKahaf LMS is now live on cPanel with:
+
 - ✅ MySQL database
 - ✅ Node.js backend API
 - ✅ Static HTML/CSS/JS frontend
@@ -534,6 +552,7 @@ Your AlKahaf LMS is now live on cPanel with:
 - ✅ Ready for production use
 
 **Next Steps:**
+
 - Complete authentication features (see AUTH_COMPLETION_GUIDE.md)
 - Add course content
 - Configure payment gateway (Stripe)

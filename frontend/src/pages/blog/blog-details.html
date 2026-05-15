@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+﻿<!DOCTYPE html> 
 <html lang="en">
 	<head>
 	
@@ -486,8 +486,8 @@
 	
 	<script>
 	(function () {
-		var API_BASE = 'http://localhost:5000/api/v1';
-		var BACKEND  = 'http://localhost:5000';
+		var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+		var BACKEND  = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL.replace('/api/v1', '') : 'https://api.alkahafonlineacademy.com';
 		var DEFAULT_AVATAR = '/assets/img/user/user-01.jpg';
 		var DEFAULT_THUMB  = '/assets/img/blog/blog-detail-image.jpg';
 

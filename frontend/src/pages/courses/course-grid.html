@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+﻿<!DOCTYPE html> 
 <html lang="en">
 	<head>
 	
@@ -650,7 +650,7 @@
 	(function () {
 		'use strict';
 
-		var API_BASE = 'http://localhost:5000/api/v1';
+		var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
 		var FALLBACK_IMG = '/assets/img/course/course-01.jpg';
 		var ITEMS_PER_PAGE = 9;
 
