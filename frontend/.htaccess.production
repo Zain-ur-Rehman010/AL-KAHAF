@@ -30,6 +30,9 @@ RewriteRule ^courses/course-category/?$ src/pages/courses/course-category.html [
 RewriteRule ^courses/add-course/?$ src/pages/courses/add-course.html [L]
 RewriteRule ^course-details/?$ src/pages/courses/course-details.html [L]
 
+# Projects
+RewriteRule ^projects/?$ src/pages/projects/all-projects.html [L]
+
 # Shared pages
 RewriteRule ^about/?$ src/pages/shared/about-us.html [L]
 RewriteRule ^free-trial/?$ src/pages/shared/free-trial.html [L]

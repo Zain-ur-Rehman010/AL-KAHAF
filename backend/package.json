@@ -8,6 +8,7 @@
     "dev": "nodemon src/server.js",
     "migrate": "node migrations/migrate.js",
     "migrate:rollback": "node migrations/rollback.js",
+    "seed:admin": "node seed-admin.js",
     "seed": "node migrations/seed.js",
     "test": "jest",
     "test:watch": "jest --watch"

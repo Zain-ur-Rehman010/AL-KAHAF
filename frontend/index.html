@@ -1567,15 +1567,10 @@ Dependencies:
               </div>
               <ul class="main-nav">
                 <li><a href="/">Home</a></li>
-                <li><a href="/courses/course-grid">Courses</a></li>
-                <li><a href="/shared/about-us">About Us</a></li>
-                <li><a href="/shared/free-trial">Free Trial</a></li>
-                <li><a href="#">Projects</a></li>
-                <li>
-                  <a href="/shared/become-an-instructor"
-                    >Become an Instructor</a
-                  >
-                </li>
+                <li><a href="/courses">Courses</a></li>
+                <li><a href="/free-trial">Free Trial</a></li>
+                <li><a href="/projects">Projects</a></li>
+                <li><a href="/become-instructor">Become an Instructor</a></li>
               </ul>
 
               <div class="menu-dropdown">
@@ -3010,43 +3005,9 @@ Dependencies:
               <div class="instructor-content">
                 <div>
                   <h3 class="title">
-                    <a href="/instructor/instructor-details">Joyce Pence</a>
+                    <a href="/instructor/instructor-details">Instructor</a>
                   </h3>
-                  <span class="designation">Lead Designer</span>
-                </div>
-                <p class="rating"><i class="fas fa-star me-1"></i>4.8</p>
-              </div>
-            </div>
-            <div
-              class="instructor-item instructor-item-three mb-0"
-              data-aos="flip-left"
-            >
-              <div class="instructors-img">
-                <a href="/instructor/instructor-list" tabindex="0">
-                  <img
-                    class="img-fluid"
-                    alt="Img"
-                    src="/assets/img/instructor/Instructor_with_bg.jpeg"
-                  />
-                </a>
-                <div
-                  class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2"
-                >
-                  <span class="verify">
-                    <img
-                      src="/assets/img/icons/verify-icon.svg"
-                      alt="img"
-                      class="img-fluid"
-                    />
-                  </span>
-                </div>
-              </div>
-              <div class="instructor-content instructor-img-hight">
-                <div>
-                  <h3 class="title">
-                    <a href="/instructor/instructor-details">Edith Dorsey</a>
-                  </h3>
-                  <span class="designation">Accountant</span>
+                  <span class="designation">CEO</span>
                 </div>
                 <p class="rating"><i class="fas fa-star me-1"></i>5.0</p>
               </div>
@@ -3078,11 +3039,11 @@ Dependencies:
               <div class="instructor-content">
                 <div>
                   <h3 class="title">
-                    <a href="/instructor/instructor-details">Ruben Holmes</a>
+                    <a href="/instructor/instructor-details">Instructor</a>
                   </h3>
-                  <span class="designation">Architect</span>
+                  <span class="designation">CEO</span>
                 </div>
-                <p class="rating"><i class="fas fa-star me-1"></i>4.8</p>
+                <p class="rating"><i class="fas fa-star me-1"></i>5.0</p>
               </div>
             </div>
             <div
@@ -3112,11 +3073,11 @@ Dependencies:
               <div class="instructor-content">
                 <div>
                   <h3 class="title">
-                    <a href="/instructor/instructor-details">Carol Magner</a>
+                    <a href="/instructor/instructor-details">Instructor</a>
                   </h3>
-                  <span class="designation">Lead Designer</span>
+                  <span class="designation">CEO</span>
                 </div>
-                <p class="rating"><i class="fas fa-star me-1"></i>4.5</p>
+                <p class="rating"><i class="fas fa-star me-1"></i>5.0</p>
               </div>
             </div>
             <div
@@ -3128,7 +3089,7 @@ Dependencies:
                   <img
                     class="img-fluid"
                     alt="Img"
-                    src="/assets/pages/instructor/instructor-10.jpg"
+                    src="/assets/img/instructor/_instructor-600_600.jpeg"
                   />
                 </a>
                 <div
@@ -3146,9 +3107,43 @@ Dependencies:
               <div class="instructor-content">
                 <div>
                   <h3 class="title">
-                    <a href="/instructor/instructor-details">Edith Dorsey</a>
+                    <a href="/instructor/instructor-details">Instructor</a>
                   </h3>
-                  <span class="designation">Accountant</span>
+                  <span class="designation">CEO</span>
+                </div>
+                <p class="rating"><i class="fas fa-star me-1"></i>5.0</p>
+              </div>
+            </div>
+            <div
+              class="instructor-item instructor-item-three mb-0"
+              data-aos="flip-left"
+            >
+              <div class="instructors-img">
+                <a href="/instructor/instructor-list" tabindex="0">
+                  <img
+                    class="img-fluid"
+                    alt="Img"
+                    src="/assets/img/instructor/_instructor-600_600.jpeg"
+                  />
+                </a>
+                <div
+                  class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2"
+                >
+                  <span class="verify">
+                    <img
+                      src="/assets/img/icons/verify-icon.svg"
+                      alt="img"
+                      class="img-fluid"
+                    />
+                  </span>
+                </div>
+              </div>
+              <div class="instructor-content">
+                <div>
+                  <h3 class="title">
+                    <a href="/instructor/instructor-details">Instructor</a>
+                  </h3>
+                  <span class="designation">CEO</span>
                 </div>
                 <p class="rating"><i class="fas fa-star me-1"></i>5.0</p>
               </div>
@@ -3952,7 +3947,10 @@ Dependencies:
 
       <script>
         (function () {
-          var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+          var API_BASE =
+            typeof API_CONFIG !== "undefined"
+              ? API_CONFIG.BASE_URL
+              : "https://api.alkahafonlineacademy.com/api/v1";
           var DEFAULT_THUMB = "/assets/img/blog/blog-35.jpg";
           var DEFAULT_AVATAR = "/assets/img/user/user-07.jpg";
 
@@ -4486,7 +4484,10 @@ Dependencies:
       (function () {
         "use strict";
 
-        var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+        var API_BASE =
+          typeof API_CONFIG !== "undefined"
+            ? API_CONFIG.BASE_URL
+            : "https://api.alkahafonlineacademy.com/api/v1";
         var FALLBACK_IMG = "/assets/img/course/_course1.jpeg";
 
         function formatPrice(price) {
