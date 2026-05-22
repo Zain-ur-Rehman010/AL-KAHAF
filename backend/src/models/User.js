@@ -66,6 +66,10 @@ const User = sequelize.define('User', {
     type: DataTypes.JSON,
     allowNull: true,
   },
+  billingAddress: {
+    type: DataTypes.JSON,
+    allowNull: true,
+  },
   education: {
     type: DataTypes.JSON,
     allowNull: true,

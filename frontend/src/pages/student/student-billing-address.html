@@ -325,35 +325,38 @@
 							</ul>
 							<div class="card mb-0">
 								<div class="card-body">
-									<form action="student-change-password.html">
-										<div class="d-sm-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
-											<div class="d-flex align-items-center mb-2 mb-sm-0">
-												<div>
-													<h6 class="mb-1">Home <span class="badge bg-soft-success ms-1 fs-12 fw-normal">Default</span></h6>
-													<p>16 Lake Floyd Circle, Newark, DE 19714</p>
-												</div>
+									<div id="billing-alert" class="alert d-none mb-3" role="alert"></div>
+									<form id="billing-form">
+										<div class="row g-3">
+											<div class="col-md-12">
+												<label class="form-label">Street Address <span class="text-danger">*</span></label>
+												<input type="text" id="bill-address" class="form-control" placeholder="e.g. House 12, Street 4, Block B">
 											</div>
-											<div class="d-flex align-items-center">
-												<a href="#" class="btn btn-light btn-sm border me-2" data-bs-toggle="modal" data-bs-target="#edit_billing"><i class="isax isax-edit-2 me-2"></i>Edit</a>
-												<a href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-1"></i>Delete</a>
+											<div class="col-md-6">
+												<label class="form-label">City <span class="text-danger">*</span></label>
+												<input type="text" id="bill-city" class="form-control" placeholder="e.g. Lahore">
+											</div>
+											<div class="col-md-6">
+												<label class="form-label">State / Province</label>
+												<input type="text" id="bill-state" class="form-control" placeholder="e.g. Punjab">
+											</div>
+											<div class="col-md-6">
+												<label class="form-label">Country <span class="text-danger">*</span></label>
+												<input type="text" id="bill-country" class="form-control" placeholder="e.g. Pakistan">
+											</div>
+											<div class="col-md-6">
+												<label class="form-label">Postal Code</label>
+												<input type="text" id="bill-postal" class="form-control" placeholder="e.g. 54000">
+											</div>
+											<div class="col-md-12">
+												<label class="form-label">Phone Number</label>
+												<input type="tel" id="bill-phone" class="form-control" placeholder="e.g. 03001234567">
+											</div>
+											<div class="col-12 mt-2">
+												<button type="submit" id="billing-save-btn" class="btn btn-secondary">Save Address</button>
 											</div>
 										</div>
-										<div class="d-sm-flex align-items-center justify-content-between border-bottom mb-3 pb-3">
-											<div class="d-flex align-items-center mb-2 mb-sm-0">
-												<div>
-													<h6 class="mb-1">Work</h6>
-													<p>33 Hart Country Lane, West Point, GA 31833</p>
-												</div>
-											</div>
-											<div class="d-flex align-items-center">
-												<a href="#" class="btn btn-light btn-sm border me-2" data-bs-toggle="modal" data-bs-target="#edit_billing"><i class="isax isax-edit-2 me-2"></i>Edit</a>
-												<a href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-1"></i>Delete</a>
-											</div>
-										</div>
-									</form>	
-									<div class="mt-4">
-										<a href="#" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#add_billing">Add New Address</a>
-									</div>
+									</form>
 								</div>
 							</div>						
 						</div>
@@ -662,6 +665,68 @@
 		<i class="fas fa-arrow-up"></i>
 	</button>
 
-		
+	<script>
+	(function() {
+		const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+		const API = isLocal ? 'http://localhost:5000/api/v1' : 'https://alkahafonlineacademy.com/api/v1';
+		const token = localStorage.getItem('accessToken');
+		if (!token) { window.location.href = '/auth/login'; return; }
+		const authH = () => ({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+		function showAlert(msg, type) {
+			const box = document.getElementById('billing-alert');
+			box.className = 'alert alert-' + type;
+			box.textContent = msg;
+			box.classList.remove('d-none');
+			setTimeout(() => box.classList.add('d-none'), 4000);
+		}
+
+		// Load existing billing address
+		fetch(API + '/auth/me', { headers: authH() }).then(r => r.json()).then(res => {
+			const u = (res.data && res.data.user) ? res.data.user : (res.data || res);
+			const b = u.billingAddress || {};
+			document.getElementById('bill-address').value = b.address || '';
+			document.getElementById('bill-city').value    = b.city    || '';
+			document.getElementById('bill-state').value   = b.state   || '';
+			document.getElementById('bill-country').value = b.country || '';
+			document.getElementById('bill-postal').value  = b.postal  || '';
+			document.getElementById('bill-phone').value   = b.phone   || '';
+		}).catch(() => {});
+
+		// Save
+		document.getElementById('billing-form').addEventListener('submit', async function(e) {
+			e.preventDefault();
+			const btn = document.getElementById('billing-save-btn');
+			btn.disabled = true; btn.textContent = 'Saving...';
+			const billingAddress = {
+				address: document.getElementById('bill-address').value.trim(),
+				city:    document.getElementById('bill-city').value.trim(),
+				state:   document.getElementById('bill-state').value.trim(),
+				country: document.getElementById('bill-country').value.trim(),
+				postal:  document.getElementById('bill-postal').value.trim(),
+				phone:   document.getElementById('bill-phone').value.trim(),
+			};
+			if (!billingAddress.address || !billingAddress.city || !billingAddress.country) {
+				showAlert('Address, City and Country are required.', 'warning');
+				btn.disabled = false; btn.textContent = 'Save Address'; return;
+			}
+			try {
+				const res = await fetch(API + '/auth/profile', {
+					method: 'PUT', headers: authH(), body: JSON.stringify({ billingAddress })
+				});
+				if (res.ok) { showAlert('Billing address saved successfully.', 'success'); }
+				else { const d = await res.json(); showAlert(d.message || 'Failed to save.', 'danger'); }
+			} catch(err) { showAlert('Something went wrong.', 'danger'); }
+			finally { btn.disabled = false; btn.textContent = 'Save Address'; }
+		});
+
+		// Logout
+		document.querySelectorAll('[href="/auth/login"]').forEach(a => {
+			if (a.textContent.trim() === 'Logout') {
+				a.addEventListener('click', e => { e.preventDefault(); localStorage.clear(); window.location.href = '/auth/login'; });
+			}
+		});
+	})();
+	</script>
 	</body>
 </html>

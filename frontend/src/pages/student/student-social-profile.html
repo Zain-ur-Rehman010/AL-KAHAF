@@ -324,29 +324,30 @@
 									<div class="card-body">
 										<div class="row">
 											<div class="col-md-12">
-												<form action="student-social-profile.html">
+												<div id="social-alert" class="alert d-none mb-3" role="alert"></div>
+												<form id="social-form">
 													<div class="mb-3">
-														<label class="form-label">Twitter</label>
-														<input type="text" class="form-control" placeholder="https://www.twitter.com/">
+														<label class="form-label"><i class="fa-brands fa-x-twitter me-2"></i>Twitter / X</label>
+														<input type="url" id="social-twitter" class="form-control" placeholder="https://www.twitter.com/username">
 													</div>
 													<div class="mb-3">
-														<label class="form-label">Facebook</label>
-														<input type="text" class="form-control" placeholder="https://www.facebook.com/">
+														<label class="form-label"><i class="fa-brands fa-facebook-f me-2"></i>Facebook</label>
+														<input type="url" id="social-facebook" class="form-control" placeholder="https://www.facebook.com/username">
 													</div>
 													<div class="mb-3">
-														<label class="form-label">Instagram</label>
-														<input type="text" class="form-control" placeholder="https://www.instagram.com/">
+														<label class="form-label"><i class="fa-brands fa-instagram me-2"></i>Instagram</label>
+														<input type="url" id="social-instagram" class="form-control" placeholder="https://www.instagram.com/username">
 													</div>
 													<div class="mb-3">
-														<label class="form-label">LinkedIn</label>
-														<input type="text" class="form-control" placeholder="https://www.linkedin.com/">
+														<label class="form-label"><i class="fa-brands fa-linkedin me-2"></i>LinkedIn</label>
+														<input type="url" id="social-linkedin" class="form-control" placeholder="https://www.linkedin.com/in/username">
 													</div>
 													<div class="mb-3">
-														<label class="form-label">YouTube</label>
-														<input type="text" class="form-control" placeholder="https://www.youtube.com/">
+														<label class="form-label"><i class="fa-brands fa-youtube me-2"></i>YouTube</label>
+														<input type="url" id="social-youtube" class="form-control" placeholder="https://www.youtube.com/@channel">
 													</div>
 													<div class="mt-4">
-														<button class="btn btn-secondary" type="submit">Save Social Profile</button>
+														<button class="btn btn-secondary" type="submit" id="social-save-btn">Save Social Profile</button>
 													</div>
 												</form>
 											</div>
@@ -477,6 +478,62 @@
 		<i class="fas fa-arrow-up"></i>
 	</button>
 
-		
+	<script>
+	(function() {
+		const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+		const API = isLocal ? 'http://localhost:5000/api/v1' : 'https://alkahafonlineacademy.com/api/v1';
+		const token = localStorage.getItem('accessToken');
+		if (!token) { window.location.href = '/auth/login'; return; }
+		const authH = () => ({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
+
+		function showAlert(msg, type) {
+			const box = document.getElementById('social-alert');
+			box.className = 'alert alert-' + type;
+			box.textContent = msg;
+			box.classList.remove('d-none');
+			setTimeout(() => box.classList.add('d-none'), 4000);
+		}
+
+		// Load existing social links
+		fetch(API + '/auth/me', { headers: authH() }).then(r => r.json()).then(res => {
+			const u = (res.data && res.data.user) ? res.data.user : (res.data || res);
+			const s = u.socialLinks || {};
+			document.getElementById('social-twitter').value   = s.twitter   || '';
+			document.getElementById('social-facebook').value  = s.facebook  || '';
+			document.getElementById('social-instagram').value = s.instagram || '';
+			document.getElementById('social-linkedin').value  = s.linkedin  || '';
+			document.getElementById('social-youtube').value   = s.youtube   || '';
+		}).catch(() => {});
+
+		// Save
+		document.getElementById('social-form').addEventListener('submit', async function(e) {
+			e.preventDefault();
+			const btn = document.getElementById('social-save-btn');
+			btn.disabled = true; btn.textContent = 'Saving...';
+			const socialLinks = {
+				twitter:   document.getElementById('social-twitter').value.trim(),
+				facebook:  document.getElementById('social-facebook').value.trim(),
+				instagram: document.getElementById('social-instagram').value.trim(),
+				linkedin:  document.getElementById('social-linkedin').value.trim(),
+				youtube:   document.getElementById('social-youtube').value.trim(),
+			};
+			try {
+				const res = await fetch(API + '/auth/profile', {
+					method: 'PUT', headers: authH(), body: JSON.stringify({ socialLinks })
+				});
+				if (res.ok) { showAlert('Social profile saved successfully.', 'success'); }
+				else { const d = await res.json(); showAlert(d.message || 'Failed to save.', 'danger'); }
+			} catch(err) { showAlert('Something went wrong.', 'danger'); }
+			finally { btn.disabled = false; btn.textContent = 'Save Social Profile'; }
+		});
+
+		// Logout
+		document.querySelectorAll('[href="/auth/login"]').forEach(a => {
+			if (a.textContent.trim() === 'Logout') {
+				a.addEventListener('click', e => { e.preventDefault(); localStorage.clear(); window.location.href = '/auth/login'; });
+			}
+		});
+	})();
+	</script>
 	</body>
 </html>

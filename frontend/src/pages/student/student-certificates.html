@@ -169,8 +169,8 @@
 											<img src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
 										</div>
 										<div>
-											<h6>Ronald Richard</h6>
-											<p>studentdemo@example.com</p>
+											<h6 data-user-name>Student</h6>
+											<p data-user-email></p>
 										</div>
 									</div>
 									<ul class="profile-body">
@@ -192,7 +192,7 @@
 									</ul>
 									<div class="profile-footer">
 										<a class="dropdown-item d-inline-flex align-items-center rounded fw-medium" href="/auth/login"><i class="isax isax-arrow-2 me-2"></i>Log in as Instructor</a>
-										<a href="/" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+										<a href="#" id="logoutBtn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
 									</div>
                                 </div>
                             </div>
@@ -297,7 +297,7 @@
 												<a href="/student/student-settings" class="d-inline-flex align-items-center"><i class="isax isax-setting-25 me-2"></i>Settings</a>
 											</li>
 											<li>
-												<a href="/auth/login" class="d-inline-flex align-items-center"><i class="isax isax-logout5 me-2"></i>Logout</a>
+												<a href="#" class="d-inline-flex align-items-center" onclick="localStorage.clear();window.location.href='/auth/login'"><i class="isax isax-logout5 me-2"></i>Logout</a>
 											</li>
 										</ul>
 									</div>
@@ -320,86 +320,9 @@
 											<th></th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td>01</td>
-											<td><a href="#" class="fw-semibold">UI/UX Design Certificate</a></td>
-											<td>22 Aug 2025</td>
-											<td>20</td>
-											<td>20</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_certificate"><i class="isax isax-eye"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>02</td>
-											<td><a href="#" class="fw-semibold">Wordpress Certificate</a></td>
-											<td>10 Aug 2025</td>
-											<td>18</td>
-											<td>20</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_certificate"><i class="isax isax-eye"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>03</td>
-											<td><a href="#" class="fw-semibold">HTML CSS Certificate</a></td>
-											<td>26 Jul 2025</td>
-											<td>25</td>
-											<td>30</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_certificate"><i class="isax isax-eye"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>04</td>
-											<td><a href="#" class="fw-semibold">JavaScript Certificate</a></td>
-											<td>14 Jul 2025</td>
-											<td>15</td>
-											<td>20</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_certificate"><i class="isax isax-eye"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>05</td>
-											<td><a href="#" class="fw-semibold">Photoshop Certificate</a></td>
-											<td>19 Jun 2025</td>
-											<td>20</td>
-											<td>30</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_certificate"><i class="isax isax-eye"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td>06</td>
-											<td><a href="#" class="fw-semibold">Python Certificate</a></td>
-											<td>12 Jun 2025</td>
-											<td>20</td>
-											<td>20</td>
-											<td>
-												<div class="d-flex align-items-center">
-													<a href="#" class="d-inline-flex fs-14 me-1 action-icon" data-bs-toggle="modal" data-bs-target="#view_certificate"><i class="isax isax-eye"></i></a>
-													<a href="#" class="d-inline-flex fs-14 action-icon"><i class="isax isax-import"></i></a>
-												</div>
-											</td>
-										</tr>
-									</tbody>
+									<tbody id="cert-tbody">
+							<tr><td colspan="5" class="text-center py-4"><div class="spinner-border spinner-border-sm text-secondary me-2"></div>Loading...</td></tr>
+						</tbody>
 								</table>
 							</div>
 						</div>

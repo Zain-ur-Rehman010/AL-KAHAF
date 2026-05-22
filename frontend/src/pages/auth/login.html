@@ -149,12 +149,12 @@
                                         </div>
 
                                         <!-- OTP verification (shown only if needed) -->
-                                        <div id="otp-verify-box" class="border rounded p-3 mb-3 d-none">
+                                        <div id="otp-verify-box" class="border rounded p-3 mb-3 d-none" data-otp-mode="verify">
                                             <div class="d-flex align-items-center justify-content-between mb-2">
-                                                <div class="fw-semibold">Verify your account</div>
+                                                <div class="fw-semibold" id="otp-box-title">Verify Your Account</div>
                                                 <button type="button" id="otp-resend-btn" class="btn btn-sm btn-outline-secondary">Resend OTP</button>
                                             </div>
-                                            <div class="mb-2 text-muted fs-14">
+                                            <div class="mb-2 text-muted fs-14" id="otp-box-desc">
                                                 We sent an OTP to your email. Enter it to verify and continue.
                                             </div>
                                             <div class="mb-3">

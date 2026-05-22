@@ -63,3 +63,23 @@ logs/
 *.pem
 .grunt/
 nul
+# Excel files
+*.xlsx
+*.xls
+
+
+# Applications
+*.app
+*.exe
+*.war
+
+# Large media files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+
+# Compiled Python bytecode
+*.py[cod

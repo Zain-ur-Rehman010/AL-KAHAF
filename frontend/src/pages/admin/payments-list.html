@@ -79,12 +79,13 @@
                             <li><a href="/admin/blog-list"><i class="isax isax-document-text me-2"></i>Blog Posts</a></li>
                             <li><a href="/admin/enrollments-list"><i class="isax isax-note-2 me-2"></i>Enrollments</a></li>
                             <li class="active"><a href="/admin/payments-list"><i class="isax isax-wallet me-2"></i>Payments</a></li>
+                            <li><a href="/admin/welfare-programs"><i class="isax isax-heart me-2"></i>Welfare</a></li>
                             <li><a href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
                         </ul>
                     </div>
                     <div class="d-flex align-items-center" style="gap:16px;">
-                        <a href="/admin/notifications" class="position-relative" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#fff;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);color:#333;text-decoration:none;">
-                            <i class="isax isax-notification" style="font-size:20px;"></i>
+                        <a href="/admin/notifications" class="position-relative" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#522811;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);color:#d8ac27;text-decoration:none;">
+                            <i class="isax isax-notification" style="font-size:20px;color:#d8ac27;"></i>
                             <span id="notif-badge" style="position:absolute;top:0;right:0;background:#e53935;color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 3px;line-height:1;border:2px solid #522811;">0</span>
                         </a>
                         <div class="dropdown profile-dropdown">
@@ -255,7 +256,7 @@
 <script>
 (function () {
     const API_BASE = window.API_BASE_URL || 'http://localhost:5000/api/v1';
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('accessToken');
     if (!token) { window.location.href = '/auth/login'; return; }
 
     function authHeaders() {

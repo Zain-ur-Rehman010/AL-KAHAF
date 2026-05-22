@@ -264,7 +264,7 @@
 										<span class="verify-tick"><i class="isax isax-verify5"></i></span>
 									</span>
 									<div>
-										<h5 class="mb-1 text-white d-inline-flex align-items-center"><a href="/student/student-details" id="dash-profile-name">Ronald Richard</a><a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+										<h5 class="mb-1 text-white d-inline-flex align-items-center"><a href="/student/student-details" id="dash-profile-name">Ronald Richard</a><a href="/student/student-settings" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
 										<p class="text-light">Student</p>
 									</div>
 								</div>
@@ -331,67 +331,61 @@
 						</div>
 						<!-- sidebar -->
 						<div class="col-lg-9">
-							<div class="card bg-light quiz-ans-card">
-								<img src="/assets/img/shapes/withdraw-bg1.svg" class="quiz-ans-bg1" alt="img">
-								<img src="/assets/img/shapes/withdraw-bg2.svg" class="quiz-ans-bg2" alt="img">
-								<div class="card-body">
-									<div class="row align-items-center">
-										<div class="col-md-8">
-											<div>
-												<h6 class="mb-1">Quiz : Build Responsive Real World </h6>
-												<p>Answered : 15/22</p>
-											</div>
-										</div>
-										<div class="col-md-4">
-											<div class="text-end">
-												<a href="/student/student-quiz" class="btn btn-primary rounded-pill">Continue Quiz</a>
-											</div>
-										</div>
+							<div class="row g-3 mb-4">
+						<div class="col-md-6 col-xl-3">
+							<div class="card h-100">
+								<div class="card-body d-flex align-items-center">
+									<div class="flex-shrink-0 me-3" style="width:48px;height:48px;border-radius:10px;background:rgba(82,40,17,.1);display:flex;align-items:center;justify-content:center;">
+										<i class="isax isax-book-1" style="font-size:22px;color:#522811;"></i>
+									</div>
+									<div>
+										<p class="text-muted mb-1" style="font-size:12px;">Enrolled Courses</p>
+										<h4 class="mb-0 fw-bold" id="stat-enrolled">—</h4>
 									</div>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-6 col-xl-4">
-									<div class="card">
-										<div class="card-body">
-											<div class="d-flex align-items-center">
-												<span class="sk flex-shrink-0 me-2 me-xxl-3" style="width:48px;height:48px;border-radius:10px;"></span>
-												<div style="flex:1">
-													<span class="sk sk-text" style="width:100px;"></span>
-													<span class="sk" style="width:50px;height:28px;margin-top:4px;"></span>
-												</div>
-											</div>
-										</div>
+						</div>
+						<div class="col-md-6 col-xl-3">
+							<div class="card h-100">
+								<div class="card-body d-flex align-items-center">
+									<div class="flex-shrink-0 me-3" style="width:48px;height:48px;border-radius:10px;background:rgba(216,172,39,.1);display:flex;align-items:center;justify-content:center;">
+										<i class="isax isax-clock" style="font-size:22px;color:#d8ac27;"></i>
 									</div>
-								</div>
-								<div class="col-md-6 col-xl-4">
-									<div class="card">
-										<div class="card-body">
-											<div class="d-flex align-items-center">
-												<span class="sk flex-shrink-0 me-2 me-xxl-3" style="width:48px;height:48px;border-radius:10px;"></span>
-												<div style="flex:1">
-													<span class="sk sk-text" style="width:100px;"></span>
-													<span class="sk" style="width:50px;height:28px;margin-top:4px;"></span>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-6 col-xl-4">
-									<div class="card">
-										<div class="card-body">
-											<div class="d-flex align-items-center">
-												<span class="sk flex-shrink-0 me-2 me-xxl-3" style="width:48px;height:48px;border-radius:10px;"></span>
-												<div style="flex:1">
-													<span class="sk sk-text" style="width:100px;"></span>
-													<span class="sk" style="width:50px;height:28px;margin-top:4px;"></span>
-												</div>
-											</div>
-										</div>
+									<div>
+										<p class="text-muted mb-1" style="font-size:12px;">Active Courses</p>
+										<h4 class="mb-0 fw-bold" id="stat-active">—</h4>
 									</div>
 								</div>
 							</div>
-							<h5 class="mb-3 fs-18">Recently Enrolled Courses</h5>
+						</div>
+						<div class="col-md-6 col-xl-3">
+							<div class="card h-100">
+								<div class="card-body d-flex align-items-center">
+									<div class="flex-shrink-0 me-3" style="width:48px;height:48px;border-radius:10px;background:rgba(40,167,69,.1);display:flex;align-items:center;justify-content:center;">
+										<i class="isax isax-tick-circle" style="font-size:22px;color:#28a745;"></i>
+									</div>
+									<div>
+										<p class="text-muted mb-1" style="font-size:12px;">Completed</p>
+										<h4 class="mb-0 fw-bold" id="stat-completed">—</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 col-xl-3">
+							<div class="card h-100">
+								<div class="card-body d-flex align-items-center">
+									<div class="flex-shrink-0 me-3" style="width:48px;height:48px;border-radius:10px;background:rgba(13,110,253,.1);display:flex;align-items:center;justify-content:center;">
+										<i class="isax isax-medal" style="font-size:22px;color:#0d6efd;"></i>
+									</div>
+									<div>
+										<p class="text-muted mb-1" style="font-size:12px;">Certificates</p>
+										<h4 class="mb-0 fw-bold" id="stat-certificates">—</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<h5 class="mb-3 fs-18">Recently Enrolled Courses</h5>
 							<div class="row" id="dash-courses-grid">
 								
 								<div class="col-xl-4 col-md-6">
@@ -452,91 +446,9 @@
 									<div class="col-xl-5">
 										<div class="card mb-0">
 											<div class="card-body">
-												<h5 class="mb-3 fs-18 border-bottom pb-3">Latest Quizes</h5>
-												<div class="d-flex align-items-center flex-wrap flex-md-nowrap justify-content-between row-gap-2 mb-3">
-													<div>
-														<h6 class="mb-1">Sketch from A to Z (2024)</h6>
-														<div class="d-flex align-items-center">
-															<p>Correct Answer : 15/22</p>
-														</div>
-													</div>
-													<div class="circle-progress flex-shrink-0"  data-value='95'>
-														<span class="progress-left">
-															<span class="progress-bar border-success"></span>
-														</span>
-														<span class="progress-right">
-															<span class="progress-bar border-success"></span>
-														</span>
-														<div class="progress-value">95%</div>
-													</div>
-												</div>
-												<div class="d-flex align-items-center flex-wrap flex-md-nowrap justify-content-between row-gap-2 mb-3">
-													<div>
-														<h6 class="mb-1">Build Responsive Real World </h6>
-														<div class="d-flex align-items-center">
-															<p>Correct Answer : 18/22</p>
-														</div>
-													</div>
-													<div class="circle-progress flex-shrink-0"  data-value='100'>
-														<span class="progress-left">
-															<span class="progress-bar border-success"></span>
-														</span>
-														<span class="progress-right">
-															<span class="progress-bar border-success"></span>
-														</span>
-														<div class="progress-value">100%</div>
-													</div>
-												</div>
-												<div class="d-flex align-items-center flex-wrap flex-md-nowrap justify-content-between row-gap-2 mb-3">
-													<div>
-														<h6 class="mb-1">UI/UX Design Degree</h6>
-														<div class="d-flex align-items-center">
-															<p>Correct Answer : 25/30</p>
-														</div>
-													</div>
-													<div class="circle-progress flex-shrink-0"  data-value='80'>
-														<span class="progress-left">
-															<span class="progress-bar border-success"></span>
-														</span>
-														<span class="progress-right">
-															<span class="progress-bar border-success"></span>
-														</span>
-														<div class="progress-value">80%</div>
-													</div>
-												</div>
-												<div class="d-flex align-items-center flex-wrap flex-md-nowrap justify-content-between row-gap-2 mb-3">
-													<div>
-														<h6 class="mb-1">Build Responsive Real World </h6>
-														<div class="d-flex align-items-center">
-															<p>Correct Answer : 15/20</p>
-														</div>
-													</div>
-													<div class="circle-progress flex-shrink-0"  data-value='85'>
-														<span class="progress-left">
-															<span class="progress-bar border-success"></span>
-														</span>
-														<span class="progress-right">
-															<span class="progress-bar border-success"></span>
-														</span>
-														<div class="progress-value">85%</div>
-													</div>
-												</div>
-												<div class="d-flex align-items-center flex-wrap flex-md-nowrap justify-content-between row-gap-2">
-													<div>
-														<h6 class="mb-1">Become an app designer</h6>
-														<div class="d-flex align-items-center">
-															<p>Correct Answer : 12/20</p>
-														</div>
-													</div>
-													<div class="circle-progress flex-shrink-0"  data-value='20'>
-														<span class="progress-left">
-															<span class="progress-bar border-danger"></span>
-														</span>
-														<span class="progress-right">
-															<span class="progress-bar border-danger"></span>
-														</span>
-														<div class="progress-value">20%</div>
-													</div>
+												<h5 class="mb-3 fs-18 border-bottom pb-3">Course Progress</h5>
+												<div id="dash-progress-list">
+													<p class="text-muted text-center py-3 mb-0">Loading...</p>
 												</div>
 											</div>
 										</div>
@@ -675,145 +587,171 @@
 		
 	<script>
 	(function() {
+		var API = (typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : null)
+			|| (location.hostname === 'localhost' ? 'http://localhost:5000/api/v1' : 'https://alkahafonlineacademy.com/api/v1');
 		var token = localStorage.getItem('accessToken');
 		if (!token) { window.location.href = '/auth/login?redirect=' + encodeURIComponent(window.location.pathname); return; }
 
 		function el(id) { return document.getElementById(id); }
+		function set(id, v) { var e = el(id); if (e) e.textContent = v; }
+		function authH() { return { 'Authorization': 'Bearer ' + token }; }
 
-		// Trial countdown banner
-		(function() {
-			try {
-				var payload = JSON.parse(atob(token.split('.')[1]));
-				if (!payload.isTrial || !payload.trialExpiresAt) return;
-
-				var expiry = new Date(payload.trialExpiresAt);
-				var banner = el('trialBanner');
-				var bannerText = el('trialBannerText');
-				if (!banner || !bannerText) return;
-
-				function updateBanner() {
-					var diff = expiry - Date.now();
-					if (diff <= 0) {
-						banner.style.display = 'none';
-						// Redirect to courses — trial expired
-						window.location.href = '/src/pages/courses/course-grid.html?reason=trial_expired';
-						return;
-					}
-					var h = Math.floor(diff / 3600000);
-					var m = Math.floor((diff % 3600000) / 60000);
-					var s = Math.floor((diff % 60000) / 1000);
-					var timeStr = h > 0
-						? h + 'h ' + m + 'm remaining in your free trial'
-						: m + 'm ' + s + 's remaining in your free trial';
-					bannerText.textContent = timeStr;
-					banner.style.display = 'block';
-				}
-
-				updateBanner();
-				setInterval(updateBanner, 1000);
-			} catch(e) {}
-		})();
-
+		// ── Trial countdown banner ──────────────────────────────────────
 		try {
-			var u = JSON.parse(localStorage.getItem('user') || 'null');
-			if (u) {
-				var fn = ((u.firstName||'')+' '+(u.lastName||'')).trim();
-				var av = u.avatar || '/assets/img/user/user-02.jpg';
-				if(el('dash-profile-name'))  el('dash-profile-name').textContent = fn;
-				if(el('dash-profile-avatar')) el('dash-profile-avatar').src = av;
-				if(el('header-avatar'))       el('header-avatar').src = av;
-				if(el('header-name'))         el('header-name').textContent = fn;
-				if(el('dropdown-avatar'))     el('dropdown-avatar').src = av;
-				if(el('dropdown-name'))       el('dropdown-name').textContent = fn;
-				if(el('dropdown-email'))      el('dropdown-email').textContent = u.email||'';
+			var payload = JSON.parse(atob(token.split('.')[1]));
+			if (payload.isTrial && payload.trialExpiresAt) {
+				var expiry = new Date(payload.trialExpiresAt);
+				var banner = el('trialBanner'), bannerText = el('trialBannerText');
+				if (banner && bannerText) {
+					(function tick() {
+						var diff = expiry - Date.now();
+						if (diff <= 0) { banner.style.display = 'none'; window.location.href = '/courses/course-grid?reason=trial_expired'; return; }
+						var h = Math.floor(diff / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
+						bannerText.textContent = (h > 0 ? h + 'h ' + m + 'm' : m + 'm ' + s + 's') + ' remaining in your free trial';
+						banner.style.display = 'block';
+						setTimeout(tick, 1000);
+					})();
+				}
 			}
 		} catch(e) {}
 
-		function doLogout(e) {
-			e.preventDefault();
-			['accessToken','refreshToken','user'].forEach(function(k){localStorage.removeItem(k);});
-			window.location.href = '/auth/login';
-		}
-		['logout-btn','sidebar-logout-btn'].forEach(function(id){
-			var b=el(id); if(b) b.addEventListener('click',doLogout);
-		});
+		// ── Logout ──────────────────────────────────────────────────────
+		function doLogout(e) { e.preventDefault(); localStorage.clear(); window.location.href = '/auth/login'; }
+		['logout-btn','sidebar-logout-btn'].forEach(function(id){ var b=el(id); if(b) b.addEventListener('click',doLogout); });
 
-		fetch(API_CONFIG.BASE_URL+'/enrollments/my-enrollments?limit=100',{
-			headers:{'Authorization':'Bearer '+token}
-		}).then(function(r){
-			if(r.status===401){doLogout({preventDefault:function(){}});return null;}
+		// ── Load user from API ──────────────────────────────────────────
+		fetch(API + '/auth/me', { headers: authH() }).then(function(r) {
+			if (r.status === 401) { doLogout({ preventDefault: function(){} }); return null; }
 			return r.json();
-		}).then(function(res){
-			if(!res) return;
-			var E=res.enrollments||(res.data&&res.data.enrollments)||(Array.isArray(res.data)?res.data:[]);
+		}).then(function(res) {
+			if (!res) return;
+			var u = (res.data && res.data.user) ? res.data.user : (res.data || res);
+			if (!u || !u.firstName) return;
+			var fn = (u.firstName + ' ' + u.lastName).trim();
+			var av = u.profileImage || '/assets/img/user/user-02.jpg';
+			if (el('dash-profile-name'))  el('dash-profile-name').textContent = fn;
+			if (el('dash-profile-avatar')) el('dash-profile-avatar').src = av;
+			if (el('header-avatar'))      el('header-avatar').src = av;
+			if (el('header-name'))        el('header-name').textContent = fn;
+			if (el('dropdown-avatar'))    el('dropdown-avatar').src = av;
+			if (el('dropdown-name'))      el('dropdown-name').textContent = fn;
+			if (el('dropdown-email'))     el('dropdown-email').textContent = u.email || '';
+			// update localStorage
+			try { var s = JSON.parse(localStorage.getItem('user')||'{}'); s.profileImage = av; localStorage.setItem('user', JSON.stringify(s)); } catch(e){}
+		}).catch(function(){});
 
-			var tot=E.length;
-			var act=E.filter(function(e){return e.status==='in_progress'||e.status==='enrolled';}).length;
-			var com=E.filter(function(e){return e.status==='completed';}).length;
-			if(el('stat-enrolled'))  el('stat-enrolled').textContent=tot;
-			if(el('stat-active'))    el('stat-active').textContent=(act<10?'0':'')+act;
-			if(el('stat-completed')) el('stat-completed').textContent=(com<10?'0':'')+com;
+		// ── Load enrollments ────────────────────────────────────────────
+		fetch(API + '/enrollments/my-enrollments?limit=100', { headers: authH() })
+		.then(function(r) { return r.json(); })
+		.then(function(res) {
+			var E = res.enrollments || (res.data && res.data.enrollments) || (Array.isArray(res.data) ? res.data : []);
 
-			var grid=el('dash-courses-grid');
-			if(grid){
-				if(!E.length){
-					grid.innerHTML='<div class="col-12 text-center py-4"><p class="text-muted">No courses yet. <a href="/courses/course-grid">Browse Courses</a></p></div>';
-				}else{
-					grid.innerHTML=E.slice(0,3).map(function(enr){
-						var c=enr.course||{};
-						var th=c.thumbnail?'<img src="'+c.thumbnail+'" alt="" class="img-fluid">':'<img src="/assets/img/course/course-01.jpg" alt="" class="img-fluid">';
-						var pr=parseFloat(c.price)>0?'Rs '+parseFloat(c.price).toLocaleString('en-PK',{maximumFractionDigits:0}):'Free';
-						var pg=enr.progress||0;
-						var ur='/courses/course-details?id='+(c.id||'');
+			// Stats
+			var tot = E.length;
+			var act = E.filter(function(e){ return e.status==='in_progress'||e.status==='enrolled'; }).length;
+			var com = E.filter(function(e){ return e.status==='completed'; }).length;
+			set('stat-enrolled',  tot);
+			set('stat-active',    act);
+			set('stat-completed', com);
+
+			// Course cards
+			var grid = el('dash-courses-grid');
+			if (grid) {
+				if (!E.length) {
+					grid.innerHTML = '<div class="col-12 text-center py-4"><p class="text-muted">No courses yet. <a href="/courses/course-grid">Browse Courses</a></p></div>';
+				} else {
+					grid.innerHTML = E.slice(0,3).map(function(enr) {
+						var c = enr.course || {};
+						var th = c.thumbnail ? '<img src="'+c.thumbnail+'" alt="" class="img-fluid">' : '<img src="/assets/img/course/course-01.jpg" alt="" class="img-fluid">';
+						var pg = enr.progress || 0;
+						var barColor = pg >= 100 ? 'bg-success' : pg >= 50 ? 'bg-primary' : 'bg-warning';
+						var ur = '/courses/course-details?id=' + (c.id || '');
 						return '<div class="col-xl-4 col-md-6"><div class="course-item-two course-item mx-0">'
-						+'<div class="course-img"><a href="'+ur+'">'+th+'</a></div>'
-						+'<div class="course-content"><h6 class="title mb-2"><a href="'+ur+'">'+( c.title||'Untitled')+'</a></h6>'
-						+'<div class="progress mb-2" style="height:6px"><div class="progress-bar bg-success" style="width:'+pg+'%"></div></div>'
-						+'<p class="small text-muted mb-2">Progress: '+pg+'%</p>'
-						+'<div class="d-flex align-items-center justify-content-between"><h5 class="text-secondary mb-0">'+pr+'</h5>'
-						+'<a href="'+ur+'" class="btn btn-dark btn-sm">View Course</a></div></div></div></div>';
+							+ '<div class="course-img"><a href="'+ur+'">'+th+'</a></div>'
+							+ '<div class="course-content p-3"><h6 class="title mb-2"><a href="'+ur+'">'+(c.title||'Untitled')+'</a></h6>'
+							+ '<div class="progress mb-1" style="height:6px"><div class="progress-bar '+barColor+'" style="width:'+pg+'%"></div></div>'
+							+ '<div class="d-flex justify-content-between align-items-center mb-2"><small class="text-muted">'+pg+'% complete</small>'
+							+ (pg>=100 ? '<span class="badge bg-success" style="font-size:10px;">Completed</span>' : '')
+							+ '</div>'
+							+ '<a href="'+ur+'" class="btn btn-dark btn-sm w-100">'+(pg>0?'Continue':'Start')+'</a>'
+							+ '</div></div></div>';
 					}).join('');
 				}
 			}
 
-			var inv=el('dash-invoices');
-			if(inv){
-				var pd=E.filter(function(e){return e.paymentStatus==='completed'&&parseFloat((e.course||{}).price)>0;});
-				if(!pd.length){
-					inv.innerHTML='<p class="text-muted text-center py-3 mb-0">No invoices yet.</p>';
-				}else{
-					inv.innerHTML=pd.slice(0,5).map(function(e,i){
-						var c=e.course||{};
-						var am=parseFloat(c.price||0);
-						var nm='#INV'+String(i+1).padStart(3,'0');
-						var il=i===Math.min(pd.length,5)-1;
-						return '<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2'+(il?'':' mb-3')+'">'
-						+'<div><h6 class="mb-1">'+(c.title||'Course')+'</h6>'
-						+'<div class="d-flex align-items-center"><span class="badge badge-sm bg-light border d-inline-flex me-3">'+nm+'</span>'
-						+'<p class="small">Amount: <span class="heading-color fw-semibold">Rs '+am.toLocaleString('en-PK',{maximumFractionDigits:0})+'</span></p></div></div>'
-						+'<span class="badge fw-normal bg-success d-inline-flex align-items-center"><i class="fa-solid fa-circle fs-5 me-1"></i>Paid</span></div>';
+			// Course Progress panel (right side)
+			var prog = el('dash-progress-list');
+			if (prog) {
+				if (!E.length) {
+					prog.innerHTML = '<p class="text-muted text-center py-3 mb-0">No courses yet.</p>';
+				} else {
+					prog.innerHTML = E.slice(0,5).map(function(enr, i) {
+						var c = enr.course || {};
+						var pg = enr.progress || 0;
+						var barColor = pg >= 100 ? '#28a745' : pg >= 50 ? '#0d6efd' : '#d8ac27';
+						var isLast = i === Math.min(E.length, 5) - 1;
+						return '<div class="'+(isLast?'':'mb-3 border-bottom pb-3')+'">'
+							+ '<div class="d-flex justify-content-between align-items-center mb-1">'
+							+ '<h6 class="mb-0" style="font-size:13px;font-weight:600;">'+(c.title||'Course')+'</h6>'
+							+ '<span style="font-size:12px;font-weight:700;color:'+barColor+';">'+pg+'%</span>'
+							+ '</div>'
+							+ '<div class="progress" style="height:6px;border-radius:10px;">'
+							+ '<div class="progress-bar" style="width:'+pg+'%;background:'+barColor+';"></div></div>'
+							+ '<small class="text-muted" style="font-size:11px;">'
+							+ (pg>=100 ? '✓ Completed' : (enr.status==='enrolled'?'Not started':'In progress'))
+							+ '</small></div>';
 					}).join('');
 				}
 			}
-		}).catch(function(){
-			if(el('dash-courses-grid')) el('dash-courses-grid').innerHTML='<div class="col-12 text-center py-3 text-muted">Could not load courses.</div>';
-			if(el('dash-invoices'))    el('dash-invoices').innerHTML='<p class="text-muted text-center py-3 mb-0">Could not load invoices.</p>';
+		}).catch(function() {
+			var grid = el('dash-courses-grid');
+			if (grid) grid.innerHTML = '<div class="col-12 text-center py-3 text-muted">Could not load courses.</div>';
+			var prog = el('dash-progress-list');
+			if (prog) prog.innerHTML = '<p class="text-muted text-center py-3 mb-0">Could not load progress.</p>';
 		});
-	})();
-	</script>
-	<script>
-	(function(){
-		var token=localStorage.getItem('accessToken');
-		if(!token)return;
-		var bellWrap=document.getElementById('notif-bell-wrap');
-		var bellBadge=document.getElementById('notif-badge');
-		if(bellWrap)bellWrap.style.display='block';
-		fetch(API_CONFIG.BASE_URL+'/notifications?unreadOnly=true&limit=1',{
-			headers:{'Authorization':'Bearer '+token}
-		}).then(function(r){if(r.ok)return r.json();}).then(function(res){
-			if(!res)return;
-			var cnt=res.unreadCount||0;
-			if(bellBadge){bellBadge.textContent=cnt>99?'99+':cnt;bellBadge.style.display=cnt>0?'flex':'none';}
+
+		// ── Load payments for invoices + certificates count ─────────────
+		Promise.all([
+			fetch(API + '/payments/my-payments', { headers: authH() }).then(function(r){ return r.json(); }).catch(function(){ return {}; }),
+			fetch(API + '/enrollments/my-certificates', { headers: authH() }).then(function(r){ return r.json(); }).catch(function(){ return {}; })
+		]).then(function(results) {
+			var payments = results[0].data || [];
+			var certs = results[1].data || [];
+
+			// Certificate stat
+			set('stat-certificates', certs.length);
+
+			// Invoices panel
+			var inv = el('dash-invoices');
+			if (inv) {
+				if (!payments.length) {
+					inv.innerHTML = '<p class="text-muted text-center py-3 mb-0">No payments yet.</p>';
+				} else {
+					inv.innerHTML = payments.slice(0,5).map(function(p, i) {
+						var c = p.course || {};
+						var am = parseFloat(p.amount || 0);
+						var nm = '#ORD' + String(p.id || i).slice(-6).toUpperCase();
+						var isLast = i === Math.min(payments.length, 5) - 1;
+						var statusCls = (p.status||'').toLowerCase() === 'completed' || (p.status||'').toLowerCase() === 'paid' ? 'bg-success' : 'bg-warning text-dark';
+						var statusLabel = (p.status||'paid').charAt(0).toUpperCase() + (p.status||'paid').slice(1);
+						return '<div class="d-flex align-items-center justify-content-between flex-wrap row-gap-2'+(isLast?'':' mb-3')+'">'
+							+ '<div><h6 class="mb-1">'+(c.title||'Course Purchase')+'</h6>'
+							+ '<div class="d-flex align-items-center"><span class="badge badge-sm bg-light border d-inline-flex me-3">'+nm+'</span>'
+							+ '<p class="small mb-0">PKR <span class="heading-color fw-semibold">'+am.toLocaleString('en-PK',{maximumFractionDigits:0})+'</span></p></div></div>'
+							+ '<span class="badge fw-normal '+statusCls+' d-inline-flex align-items-center"><i class="fa-solid fa-circle fs-5 me-1"></i>'+statusLabel+'</span></div>';
+					}).join('');
+				}
+			}
+		});
+
+		// ── Notification badge ──────────────────────────────────────────
+		var bellBadge = el('notif-badge');
+		fetch(API + '/notifications?unreadOnly=true&limit=1', { headers: authH() })
+		.then(function(r){ if(r.ok) return r.json(); })
+		.then(function(res){
+			if(!res) return;
+			var cnt = res.unreadCount || 0;
+			if(bellBadge){ bellBadge.textContent = cnt>99?'99+':cnt; bellBadge.style.display = cnt>0?'flex':'none'; }
 		}).catch(function(){});
 	})();
 	</script>

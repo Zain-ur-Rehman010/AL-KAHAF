@@ -109,6 +109,20 @@ exports.login = async (req, res) => {
       });
     }
 
+    // Instructors must complete a login OTP step (2FA)
+    if (user.role === 'instructor') {
+      const otp = Math.floor(100000 + Math.random() * 900000).toString();
+      const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+      await user.update({ verificationOtp: otp, otpExpiresAt });
+      const otpSent = await emailService.sendOtpEmail(user.email, user.firstName, otp);
+      return res.status(200).json({
+        success: false,
+        code: 'LOGIN_OTP_REQUIRED',
+        message: 'An OTP has been sent to your email. Please enter it to complete login.',
+        data: { email: user.email, otpSent },
+      });
+    }
+
     await user.update({ lastLogin: new Date() });
 
     const trialData = user.isTrial ? { isTrial: true, trialExpiresAt: user.trialExpiresAt } : null;
@@ -134,7 +148,19 @@ exports.refreshToken = async (req, res) => {
     }
 
     const decoded = jwt.verify(refreshToken, config.jwtRefreshSecret);
-    const tokens = tokenService.generateTokens(decoded.userId, decoded.role);
+
+    // Re-load user from DB to get current trial state — JWT payload may be stale
+    const user = await User.findByPk(decoded.userId);
+    if (!user || user.status !== 'active') {
+      return res.status(401).json({ success: false, message: 'User not found or inactive' });
+    }
+
+    let trialData = null;
+    if (user.isTrial) {
+      trialData = { isTrial: true, trialExpiresAt: user.trialExpiresAt };
+    }
+
+    const tokens = tokenService.generateTokens(decoded.userId, decoded.role, trialData);
 
     res.json({
       success: true,
@@ -176,7 +202,7 @@ exports.getCurrentUser = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const { firstName, lastName, phone, bio, profileImage, designation, specialization, education, workExperience } = req.body;
+    const { firstName, lastName, phone, bio, profileImage, designation, specialization, education, workExperience, socialLinks, billingAddress } = req.body;
     const user = await User.findByPk(req.user.userId);
 
     if (!user) {
@@ -193,6 +219,8 @@ exports.updateProfile = async (req, res) => {
       specialization: specialization !== undefined ? specialization : user.specialization,
       education: education !== undefined ? education : user.education,
       workExperience: workExperience !== undefined ? workExperience : user.workExperience,
+      socialLinks: socialLinks !== undefined ? socialLinks : user.socialLinks,
+      billingAddress: billingAddress !== undefined ? billingAddress : user.billingAddress,
     });
 
     res.json({
@@ -346,6 +374,65 @@ exports.resendOtp = async (req, res) => {
     }
 
     res.json({ success: true, message: 'OTP resent successfully. Please check your email.' });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// ── Verify OTP sent during instructor login (2FA) ─────────────────────────────
+exports.verifyLoginOtp = async (req, res) => {
+  try {
+    const { email, otp } = req.body;
+    if (!email || !otp) {
+      return res.status(400).json({ success: false, message: 'Email and OTP are required' });
+    }
+
+    const user = await User.findOne({ where: { email } });
+    if (!user) return res.status(404).json({ success: false, message: 'User not found' });
+
+    if (user.verificationOtp !== otp) {
+      return res.status(400).json({ success: false, message: 'Invalid OTP. Please try again.' });
+    }
+    if (!user.otpExpiresAt || new Date() > user.otpExpiresAt) {
+      return res.status(400).json({ success: false, message: 'OTP has expired. Please log in again.' });
+    }
+
+    await user.update({ verificationOtp: null, otpExpiresAt: null, lastLogin: new Date() });
+
+    const trialData = user.isTrial ? { isTrial: true, trialExpiresAt: user.trialExpiresAt } : null;
+    const tokens = tokenService.generateTokens(user.id, user.role, trialData);
+
+    res.json({
+      success: true,
+      message: 'Login successful',
+      data: { user: user.toJSON(), ...tokens },
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// ── Resend login OTP for instructors ──────────────────────────────────────────
+exports.resendLoginOtp = async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ success: false, message: 'Email is required' });
+
+    const user = await User.findOne({ where: { email } });
+    if (!user || user.role !== 'instructor') {
+      return res.status(404).json({ success: false, message: 'Instructor account not found' });
+    }
+
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000);
+
+    await user.update({ verificationOtp: otp, otpExpiresAt });
+    const otpSent = await emailService.sendOtpEmail(user.email, user.firstName, otp);
+    if (!otpSent) {
+      return res.status(500).json({ success: false, message: 'Failed to send OTP email. Please try again.' });
+    }
+
+    res.json({ success: true, message: 'OTP resent. Please check your email.' });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

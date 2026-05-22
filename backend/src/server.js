@@ -21,10 +21,43 @@ const instructorStudentRoutes = require("./routes/instructorStudentRoutes");
 const paymentRoutes = require("./routes/paymentRoutes");
 const { startTrialEmailJob } = require("./jobs/trialEmailJob");
 
+// Swagger UI
+const swaggerUi = require("swagger-ui-express");
+const swaggerDefinition = {
+  openapi: "3.0.0",
+  info: {
+    title: "AlKahaf LMS API",
+    version: "1.0.0",
+    description: "API documentation for AlKahaf Learning Management System",
+  },
+  servers: [
+    { url: "http://localhost:5000/api/v1", description: "Development" },
+    {
+      url: "https://alkahafonlineacademy.com/api/v1",
+      description: "Production",
+    },
+  ],
+};
+
 const app = express();
 
-// Security middleware
-app.use(helmet());
+// Security middleware — relax CSP only for the Swagger UI path
+app.use((req, res, next) => {
+  if (req.path.startsWith("/api-docs")) {
+    // swagger-ui needs inline scripts/styles
+    return helmet({
+      contentSecurityPolicy: {
+        directives: {
+          defaultSrc: ["'self'"],
+          scriptSrc: ["'self'", "'unsafe-inline'"],
+          styleSrc: ["'self'", "'unsafe-inline'"],
+          imgSrc: ["'self'", "data:", "https://validator.swagger.io"],
+        },
+      },
+    })(req, res, next);
+  }
+  return helmet()(req, res, next);
+});
 
 // CORS configuration - Allow common local origins + env-configured origins.
 // Supports both a single origin and comma-separated values in CORS_ORIGIN.
@@ -62,8 +95,21 @@ app.use(
   }),
 );
 
-// Rate limiting
+// Rate limiting — global
 app.use(rateLimitMiddleware);
+
+// Stricter rate limit for auth endpoints (brute-force protection)
+const rateLimit = require("express-rate-limit");
+const authRateLimit = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 20,
+  message: {
+    success: false,
+    message: "Too many attempts, please try again later",
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // Logging
 app.use(morgan("combined"));
@@ -78,6 +124,21 @@ const staticPath = path.join(__dirname, "../../");
 app.use(express.static(staticPath));
 
 // Note: Local /uploads folder removed — images now served via Cloudinary CDN
+
+// ── Swagger UI (/api-docs) ─────────────────────────────────────────────────────
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDefinition, {
+    customSiteTitle: "AlKahaf LMS API Docs",
+    swaggerOptions: {
+      persistAuthorization: true, // keep the JWT token between page refreshes
+      displayRequestDuration: true,
+      filter: true,
+      docExpansion: "none", // start collapsed — less overwhelming
+    },
+  }),
+);
 
 // Health check (accessible at both /health and /api/health)
 app.get("/health", (req, res) => {
@@ -118,10 +179,19 @@ const PORT = process.env.PORT || 5000;
 
 async function startServer() {
   try {
+    // Fail fast if critical secrets are missing in production
+    if (process.env.NODE_ENV === "production") {
+      const required = ["JWT_SECRET", "JWT_REFRESH_SECRET"];
+      const missing = required.filter((k) => !process.env[k]);
+      if (missing.length) {
+        console.error(`Missing required env vars: ${missing.join(", ")}`);
+        process.exit(1);
+      }
+    }
+
     await sequelize.authenticate();
     console.log("Database connected successfully");
 
-    // await sequelize.sync({ alter: true });
     await sequelize.sync({ alter: false });
     console.log("Database synchronized");
 

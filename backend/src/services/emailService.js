@@ -270,6 +270,96 @@ module.exports = {
     }
   },
 
+  async sendInstructorApprovalEmail(email, firstName, loginUrl, password = null) {
+    const credentialsBlock = password
+      ? `
+        <div style="background:#f9f6ed;border:2px solid #d8ac27;border-radius:8px;padding:20px 24px;margin:24px 0;">
+          <p style="margin:0 0 12px;font-weight:bold;color:#2c1506;font-size:15px;">Your Login Credentials</p>
+          <table style="width:100%;border-collapse:collapse;">
+            <tr>
+              <td style="padding:6px 0;color:#777;width:35%;font-size:14px;">Email</td>
+              <td style="color:#1a1a1a;font-family:monospace;font-size:14px;">${email}</td>
+            </tr>
+            <tr>
+              <td style="padding:6px 0;color:#777;font-size:14px;">Password</td>
+              <td style="color:#1a1a1a;font-family:monospace;font-size:15px;font-weight:bold;letter-spacing:1px;">${password}</td>
+            </tr>
+          </table>
+          <p style="margin:14px 0 0;color:#e74c3c;font-size:13px;">
+            &#9888; Please change your password after your first login for security.
+          </p>
+        </div>
+        <p style="color:#555;font-size:14px;">
+          When you log in for the first time, you will receive a <strong>one-time verification code (OTP)</strong> on this email address.
+          Enter it on the login page to verify your account and access your dashboard.
+        </p>`
+      : `<p style="color:#555;font-size:14px;">You can log in using your existing account credentials.</p>`;
+
+    try {
+      await transporter.sendMail({
+        from: config.smtpFrom,
+        to: email,
+        subject: 'Congratulations! Your Instructor Application Is Approved — Al-Kahaf Online Academy',
+        html: `
+          <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;border:1px solid #eee;border-radius:10px;overflow:hidden;">
+            <!-- Header -->
+            <div style="background:linear-gradient(135deg,#2c1506,#522811);padding:28px 24px;text-align:center;">
+              <h1 style="color:#d8ac27;margin:0;font-size:24px;">Application Approved!</h1>
+              <p style="color:#f5deb3;margin:8px 0 0;font-size:14px;">Al-Kahaf Online Academy</p>
+            </div>
+
+            <!-- Body -->
+            <div style="padding:28px 32px;background:#fff;">
+              <p style="font-size:16px;color:#333;margin-top:0;">Assalamu Alaikum <strong>${firstName}</strong>,</p>
+              <p style="color:#555;line-height:1.7;">
+                We are delighted to inform you that your application to become an instructor at
+                <strong>Al-Kahaf Online Academy</strong> has been <span style="color:#27ae60;font-weight:bold;">approved</span>.
+                Welcome to our teaching team!
+              </p>
+              <p style="color:#555;line-height:1.7;">
+                You now have access to your Instructor Dashboard where you can create courses,
+                manage your students, and track your teaching activity.
+              </p>
+
+              ${credentialsBlock}
+
+              <!-- Login Button -->
+              <div style="text-align:center;margin:28px 0;">
+                <a href="${loginUrl}"
+                   style="background:#d8ac27;color:#fff;padding:14px 40px;text-decoration:none;border-radius:6px;font-weight:bold;font-size:16px;display:inline-block;">
+                  Login to Instructor Dashboard
+                </a>
+              </div>
+              <p style="color:#999;font-size:12px;text-align:center;">
+                Button not working? Copy and paste this link:<br>
+                <a href="${loginUrl}" style="color:#d8ac27;">${loginUrl}</a>
+              </p>
+
+              <hr style="border:none;border-top:1px solid #eee;margin:24px 0;">
+              <p style="color:#777;font-size:13px;line-height:1.6;">
+                If you have any questions or need help getting started, please reply to this email.
+                We are here to support you on your teaching journey.
+              </p>
+              <p style="color:#333;font-size:14px;">
+                Warm regards,<br>
+                <strong>Al-Kahaf Online Academy Team</strong>
+              </p>
+            </div>
+
+            <!-- Footer -->
+            <div style="padding:14px 24px;background:#f5f5f5;text-align:center;">
+              <p style="color:#aaa;font-size:12px;margin:0;">Al-Kahaf Online Academy &mdash; Empowering learners across Pakistan.</p>
+            </div>
+          </div>
+        `,
+      });
+      return true;
+    } catch (error) {
+      console.error('Instructor approval email failed:', error);
+      return false;
+    }
+  },
+
   async sendCertificateEmail(email, firstName, courseTitle, certificateUrl) {
     try {
       await transporter.sendMail({
@@ -285,5 +375,28 @@ module.exports = {
     } catch (error) {
       console.error("Email sending failed:", error);
     }
+  },
+
+  async sendContactFormEmail({ name, email, phone, subject, message }) {
+    const adminEmail = config.smtpFrom;
+    await transporter.sendMail({
+      from: config.smtpFrom,
+      to: adminEmail,
+      replyTo: email,
+      subject: `Contact Us: ${subject || 'New Message'} — ${name}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2 style="color: #2c3e50;">New Contact Form Submission</h2>
+          <table style="width:100%; border-collapse:collapse;">
+            <tr><td style="padding:8px; font-weight:bold;">Name</td><td style="padding:8px;">${name}</td></tr>
+            <tr><td style="padding:8px; font-weight:bold;">Email</td><td style="padding:8px;">${email}</td></tr>
+            <tr><td style="padding:8px; font-weight:bold;">Phone</td><td style="padding:8px;">${phone || '—'}</td></tr>
+            <tr><td style="padding:8px; font-weight:bold;">Subject</td><td style="padding:8px;">${subject || '—'}</td></tr>
+          </table>
+          <h3 style="color: #2c3e50; margin-top: 20px;">Message</h3>
+          <p style="background:#f9f9f9; padding:15px; border-radius:4px;">${message}</p>
+        </div>
+      `,
+    });
   },
 };

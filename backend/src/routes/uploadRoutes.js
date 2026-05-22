@@ -6,7 +6,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-const ALLOWED_FOLDERS = ['courses', 'instructors', 'blogs'];
+const ALLOWED_FOLDERS = ['courses', 'instructors', 'blogs', 'welfare'];
 const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
 
 const storage = multer.memoryStorage();

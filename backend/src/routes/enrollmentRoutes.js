@@ -12,6 +12,7 @@ router.post(
 );
 
 router.get('/my-enrollments', authMiddleware, enrollmentController.getMyEnrollments);
+router.get('/my-certificates', authMiddleware, enrollmentController.getMyCertificates);
 router.get('/:enrollmentId', authMiddleware, enrollmentController.getEnrollmentById);
 
 router.put(
