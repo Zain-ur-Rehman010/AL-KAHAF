@@ -1,13 +1,13 @@
-const bcrypt = require('bcryptjs');
-require('dotenv').config({ path: './backend/.env' });
-const sequelize = require('./backend/src/config/database');
+const bcrypt = require("bcryptjs");
+require("dotenv").config();
+const sequelize = require("../src/config/database");
 
 async function seedAdmin() {
   try {
     await sequelize.authenticate();
-    console.log('Connected to MySQL');
+    console.log("Connected to MySQL");
 
-    const hash = await bcrypt.hash('Admin@123', 10);
+    const hash = await bcrypt.hash("Admin@123", 10);
 
     await sequelize.query(`
       INSERT INTO Users (id, firstName, lastName, email, password, role, status, createdAt, updatedAt)
@@ -15,12 +15,12 @@ async function seedAdmin() {
       ON DUPLICATE KEY UPDATE updatedAt = NOW();
     `);
 
-    console.log('Admin user created!');
-    console.log('Email: admin@alkahaf.com');
-    console.log('Password: Admin@123');
+    console.log("Admin user created!");
+    console.log("Email: admin@alkahaf.com");
+    console.log("Password: Admin@123");
     await sequelize.close();
   } catch (err) {
-    console.error('Error:', err.message);
+    console.error("Error:", err.message);
     process.exit(1);
   }
 }
