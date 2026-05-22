@@ -528,6 +528,9 @@
 
             Promise.all([loadCourse(courseId), loadInstructors(), loadCategoryOptions()]).then(function () {
                 document.getElementById('loadingOverlay').style.display = 'none';
+            }).catch(function (err) {
+                document.getElementById('loadingOverlay').style.display = 'none';
+                showToast('Failed to load course data. ' + (err.message || ''), 'error');
             });
         });
 
@@ -538,7 +541,8 @@
                 window.location.href = '/auth/login';
                 return;
             }
-            document.getElementById('adminName').textContent = user.firstName + ' ' + user.lastName;
+            var adminEl = document.getElementById('adminName');
+            if (adminEl) adminEl.textContent = user.firstName + ' ' + user.lastName;
         }
 
         // ── Load categories from API ─────────────────────────────────────────
