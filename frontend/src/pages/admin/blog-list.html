@@ -795,7 +795,7 @@ function uploadThumbnail(file) {
 	var formData = new FormData();
 	formData.append('image', file);
 
-	fetch(API_BASE + '/blogs/upload-image', {
+	fetch(API_BASE + '/upload?folder=blogs', {
 		method: 'POST',
 		headers: { 'Authorization': 'Bearer ' + token },
 		body: formData
@@ -806,11 +806,9 @@ function uploadThumbnail(file) {
 		zone.style.pointerEvents = '';
 		zone.style.opacity = '';
 		if (json.success && json.url) {
-			// Update URL input so user can see path; store full URL for display
-			var backendHost = API_BASE.replace('/api/v1', '');
-			var fullUrl = backendHost + json.url;
 			document.getElementById('blog-thumbnail-url').value = json.url;
-			setThumbnail(fullUrl);
+			document.getElementById('blog-thumbnail').value = json.url;
+			setThumbnail(json.url);
 			showToast('Image uploaded successfully!');
 		} else {
 			showToast(json.message || 'Upload failed', false);

@@ -169,127 +169,116 @@
             <!-- blog -->
            <div class="content">
             <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-9">
-                        <div class="blog">
-                            <div class="blog-image">
-                                <a href="/blog/blog-details">
-                                	<img class="img-fluid" src="/assets/img/blog/blog-16.jpg" alt="img">
-                                </a>
-                            </div>
-                            <div class="blog-item">
-								<h5 class="mb-2"><a href="/blog/blog-details">Learn Web App Development from Experts in 2024</a></h5>
-								<p class="text-truncate line-clamb-2">Master the art of web application development with expert-led courses that cover the latest tools, fram...</p>
-								<div class="blog-info">
-									<div class="d-flex align-items-center flex-wrap justify-content-between gap-2">
-										<div class="d-flex align-items-center user-profile">
-											<a href="/instructor/instructor-details" class="user-img"><img class="rounded-pill w-auto" src="/assets/img/user/user-52.jpg" alt="img"></a>
-											<a href="/instructor/instructor-details" class="user-name">John Miller</a>
-										</div>
-										<ul class="d-flex align-items-center flex-wrap gap-2">
-											<li>
-												<img class="me-1" src="/assets/img/icons/calendar.svg" alt="img">
-												<p>20 Apr 2024</p>
-											</li>
-											<li>
-												<img class="me-1" src="/assets/img/icons/tag.svg" alt="img">
-												<p>Programming, Web Design</p>
-											</li>
-										</ul>
-									</div>
-								</div>
-                           </div>
-                        </div>
+                <div class="row justify-content-center" id="blog-list">
+                    <div class="col-lg-9 text-center py-5">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="mt-2">Loading blogs...</p>
                     </div>
-                    <div class="col-lg-9">
-                        <div class="blog">
-                            <div class="blog-image">
-                                <a href="/blog/blog-details">
-                                	<img class="img-fluid" src="/assets/img/blog/blog-17.jpg" alt="img">
-                                </a>
-                            </div>
-                            <div class="blog-item">
-								<h5 class="mb-2"><a href="/blog/blog-details">The Complete JavaScript Course for Beginners</a></h5>
-								<p class="text-truncate line-clamb-2">Dive into the world of JavaScript with our complete beginner-friendly course! Learn essential concepts...</p>
-								<div class="blog-info">
-									<div class="d-flex align-items-center flex-wrap justify-content-between gap-2">
-										<div class="d-flex align-items-center user-profile">
-											<a href="/instructor/instructor-details" class="user-img"><img class="rounded-pill w-auto" src="/assets/img/user/user-15.jpg" alt="img"></a>
-											<a href="/instructor/instructor-details" class="user-name">Donald Vesely</a>
-										</div>
-										<ul class="d-flex align-items-center flex-wrap gap-2">
-											<li>
-												<img class="me-1" src="/assets/img/icons/calendar.svg" alt="img">
-												<p>08 Apr 2024</p>
-											</li>
-											<li>
-												<img class="me-1" src="/assets/img/icons/tag.svg" alt="img">
-												<p>Programming, Web Design</p>
-											</li>
-										</ul>
-									</div>
-								</div>
-                           </div>
-                        </div>
-                   </div>    
-                   <div class="col-lg-9">
-                    <div class="blog">
-						<div class="blog-image">
-							<a href="/blog/blog-details">
-								<img class="img-fluid" src="/assets/img/blog/blog-18.jpg" alt="img">
-							</a>
-						</div>
-						<div class="blog-item">
-							<h5 class="mb-2"><a href="/blog/blog-details">Revolutionize Learning with a Modern LMS</a></h5>
-							<p class="text-truncate line-clamb-2">Discover how a Learning Management System (LMS) can transform education and corporate training by ...</p>
-							<div class="blog-info">
-								<div class="d-flex align-items-center flex-wrap justify-content-between gap-2">
-									<div class="d-flex align-items-center user-profile">
-										<a href="/instructor/instructor-details" class="user-img"><img class="rounded-pill w-auto" src="/assets/img/user/user-05.jpg" alt="img"></a>
-										<a href="/instructor/instructor-details" class="user-name">James Barnes</a>
-									</div>
-									<ul class="d-flex align-items-center flex-wrap gap-2">
-										<li>
-											<img class="me-1" src="/assets/img/icons/calendar.svg" alt="img">
-											<p>23 Feb 2024</p>
-										</li>
-										<li>
-											<img class="me-1" src="/assets/img/icons/tag.svg" alt="img">
-											<p>Modern Learning, Innovative</p>
-										</li>
-									</ul>
-								</div>
-							</div>
-					   </div>
-					</div>
-               </div>
                 </div>
             <!-- /pagination -->
-            <div class="row align-items-center">
+            <div class="row align-items-center" id="pagination-wrapper" style="display:none!important;">
                 <div class="col-md-12">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item prev">
-                            <a class="page-link" href="javascript:void(0)" tabindex="-1"><i class="fas fa-angle-left"></i></a>
-                        </li>
-                        <li class="page-item first-page active">
-                            <a class="page-link" href="javascript:void(0)">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="javascript:void(0)">3</a>
-                        </li>
-                        <li class="page-item next">
-                            <a class="page-link" href="javascript:void(0)"><i class="fas fa-angle-right"></i></a>
-                        </li>
-                    </ul>
+                    <ul class="pagination justify-content-center" id="pagination-list"></ul>
                 </div>
             </div>
             <!-- /pagination -->
             </div>
            </div>
            <!-- blog -->
+
+<script src="/assets/js/api-config.js"></script>
+<script>
+(function () {
+    var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+    var currentPage = 1;
+    var limit = 9;
+
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        var d = new Date(dateStr);
+        return d.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    function renderBlogCard(blog) {
+        var slug = blog.slug || '';
+        var link = '/blog/blog-details?slug=' + encodeURIComponent(slug);
+        var thumb = blog.thumbnail || '/assets/img/blog/blog-16.jpg';
+        var authorName = blog.author ? ((blog.author.firstName || '') + ' ' + (blog.author.lastName || '')).trim() || blog.author.username || 'AlKahaf' : 'AlKahaf';
+        var authorAvatar = (blog.author && blog.author.profileImage) || '/assets/img/user/user-52.jpg';
+        var dateStr = formatDate(blog.publishedAt || blog.createdAt);
+        var category = blog.category || '';
+        var excerpt = blog.excerpt || '';
+        var tags = Array.isArray(blog.tags) ? blog.tags.join(', ') : (blog.tags || category);
+
+        return '<div class="col-lg-9">' +
+            '<div class="blog">' +
+                '<div class="blog-image">' +
+                    '<a href="' + link + '"><img class="img-fluid" src="' + thumb + '" alt="' + blog.title + '"></a>' +
+                '</div>' +
+                '<div class="blog-item">' +
+                    '<h5 class="mb-2"><a href="' + link + '">' + blog.title + '</a></h5>' +
+                    '<p class="text-truncate line-clamb-2">' + excerpt + '</p>' +
+                    '<div class="blog-info">' +
+                        '<div class="d-flex align-items-center flex-wrap justify-content-between gap-2">' +
+                            '<div class="d-flex align-items-center user-profile">' +
+                                '<span class="user-img"><img class="rounded-pill w-auto" src="' + authorAvatar + '" alt="author"></span>' +
+                                '<span class="user-name ms-2">' + authorName + '</span>' +
+                            '</div>' +
+                            '<ul class="d-flex align-items-center flex-wrap gap-2">' +
+                                (dateStr ? '<li><img class="me-1" src="/assets/img/icons/calendar.svg" alt=""><p>' + dateStr + '</p></li>' : '') +
+                                (tags ? '<li><img class="me-1" src="/assets/img/icons/tag.svg" alt=""><p>' + tags + '</p></li>' : '') +
+                            '</ul>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>' +
+        '</div>';
+    }
+
+    function renderPagination(total, page) {
+        var totalPages = Math.ceil(total / limit);
+        if (totalPages <= 1) { document.getElementById('pagination-wrapper').style.display = 'none'; return; }
+        document.getElementById('pagination-wrapper').style.removeProperty('display');
+        var html = '';
+        html += '<li class="page-item prev' + (page <= 1 ? ' disabled' : '') + '"><a class="page-link" href="javascript:void(0)" data-page="' + (page - 1) + '"><i class="fas fa-angle-left"></i></a></li>';
+        for (var i = 1; i <= totalPages; i++) {
+            html += '<li class="page-item' + (i === page ? ' active' : '') + '"><a class="page-link" href="javascript:void(0)" data-page="' + i + '">' + i + '</a></li>';
+        }
+        html += '<li class="page-item next' + (page >= totalPages ? ' disabled' : '') + '"><a class="page-link" href="javascript:void(0)" data-page="' + (page + 1) + '"><i class="fas fa-angle-right"></i></a></li>';
+        var paginationList = document.getElementById('pagination-list');
+        paginationList.innerHTML = html;
+        paginationList.querySelectorAll('[data-page]').forEach(function (el) {
+            el.addEventListener('click', function () {
+                var p = parseInt(this.getAttribute('data-page'));
+                if (p >= 1 && p <= totalPages) { currentPage = p; loadBlogs(); }
+            });
+        });
+    }
+
+    function loadBlogs() {
+        var container = document.getElementById('blog-list');
+        container.innerHTML = '<div class="col-lg-9 text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="mt-2">Loading blogs...</p></div>';
+        fetch(API_BASE + '/blogs?status=published&page=' + currentPage + '&limit=' + limit)
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+                var inner = (data.data) || {};
+                var blogs = inner.blogs || data.blogs || [];
+                var total = (inner.pagination && inner.pagination.total) || data.total || blogs.length;
+                if (!blogs.length) {
+                    container.innerHTML = '<div class="col-12 text-center py-5"><p>No blogs published yet.</p></div>';
+                    return;
+                }
+                container.innerHTML = blogs.map(renderBlogCard).join('');
+                renderPagination(total, currentPage);
+            })
+            .catch(function () {
+                container.innerHTML = '<div class="col-12 text-center py-5"><p>Failed to load blogs. Please try again.</p></div>';
+            });
+    }
+
+    loadBlogs();
+}());
+</script>
 
 			<!-- Footer -->
 			<footer class="footer">

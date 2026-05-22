@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AlKahaf — Generate Placeholder Images</title>
+<style>
+  body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 30px; }
+  h1 { color: #522811; }
+  .grid { display: flex; flex-wrap: wrap; gap: 20px; }
+  .card { background: #fff; border-radius: 12px; padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; }
+  canvas { display: block; margin: 0 auto 10px; border-radius: 6px; max-width: 100%; }
+  button { background: #522811; color: #fff; border: none; padding: 8px 20px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+  button:hover { background: #d8ac27; }
+  .label { font-size: 13px; color: #666; margin-bottom: 8px; }
+  .size { font-size: 11px; color: #999; margin-bottom: 10px; }
+  #download-all { background: #d8ac27; color: #fff; border: none; padding: 12px 32px; border-radius: 8px; cursor: pointer; font-size: 15px; font-weight: bold; margin-bottom: 30px; }
+  #download-all:hover { background: #522811; }
+</style>
+</head>
+<body>
+
+<h1>AlKahaf LMS — Placeholder Image Generator</h1>
+<p>Yeh images admin dashboard mein test karne ke liye hain. Download karo aur upload karo.</p>
+<button id="download-all" onclick="downloadAll()">⬇ Download All Images</button>
+
+<div class="grid" id="grid"></div>
+
+<script>
+const images = [
+  // Courses
+  { name: 'course-quran',           label: 'Quran Recitation',        w: 600, h: 360, bg: '#2c1506', text: '#d8ac27', category: 'COURSE' },
+  { name: 'course-tajweed',         label: 'Tajweed Rules',           w: 600, h: 360, bg: '#1a3a2a', text: '#4CAF50', category: 'COURSE' },
+  { name: 'course-arabic',          label: 'Arabic Language',         w: 600, h: 360, bg: '#1a2a4a', text: '#64B5F6', category: 'COURSE' },
+  { name: 'course-islamic',         label: 'Islamic Studies',         w: 600, h: 360, bg: '#3a1a2a', text: '#F48FB1', category: 'COURSE' },
+  { name: 'course-hifz',            label: 'Quran Memorization (Hifz)',w: 600, h: 360, bg: '#2a2a1a', text: '#FFD54F', category: 'COURSE' },
+  { name: 'course-duas',            label: 'Duas & Adhkar',           w: 600, h: 360, bg: '#1a3a3a', text: '#80DEEA', category: 'COURSE' },
+
+  // Course Details Banner
+  { name: 'course-banner-quran',    label: 'Course Details Banner',   w: 1200, h: 500, bg: '#2c1506', text: '#d8ac27', category: 'COURSE BANNER' },
+  { name: 'course-banner-arabic',   label: 'Arabic Course Banner',    w: 1200, h: 500, bg: '#1a2a4a', text: '#64B5F6', category: 'COURSE BANNER' },
+
+  // Blog
+  { name: 'blog-quran-tips',        label: 'Quran Learning Tips',     w: 600, h: 400, bg: '#3d1d0a', text: '#d8ac27', category: 'BLOG' },
+  { name: 'blog-arabic-guide',      label: 'Arabic Beginners Guide',  w: 600, h: 400, bg: '#1a3a2a', text: '#81C784', category: 'BLOG' },
+  { name: 'blog-tajweed-rules',     label: 'Tajweed Rules Guide',     w: 600, h: 400, bg: '#1a2a4a', text: '#90CAF9', category: 'BLOG' },
+  { name: 'blog-banner',            label: 'Blog Details Banner',     w: 1200, h: 500, bg: '#3d1d0a', text: '#d8ac27', category: 'BLOG BANNER' },
+
+  // Projects
+  { name: 'project-quran-app',      label: 'Quran Mobile App',        w: 800, h: 500, bg: '#1a1a3a', text: '#CE93D8', category: 'PROJECT' },
+  { name: 'project-arabic-platform',label: 'Arabic Learning Platform',w: 800, h: 500, bg: '#2a1a1a', text: '#FFAB91', category: 'PROJECT' },
+  { name: 'project-lms',            label: 'LMS Portal',              w: 800, h: 500, bg: '#1a3a1a', text: '#A5D6A7', category: 'PROJECT' },
+
+  // Avatars
+  { name: 'avatar-instructor-1',    label: 'Instructor Avatar',       w: 200, h: 200, bg: '#522811', text: '#fff',    category: 'AVATAR', initials: 'AH' },
+  { name: 'avatar-instructor-2',    label: 'Instructor Avatar 2',     w: 200, h: 200, bg: '#1a3a2a', text: '#fff',    category: 'AVATAR', initials: 'MK' },
+  { name: 'avatar-student-1',       label: 'Student Avatar',          w: 200, h: 200, bg: '#1a2a4a', text: '#fff',    category: 'AVATAR', initials: 'ZR' },
+  { name: 'avatar-student-2',       label: 'Student Avatar 2',        w: 200, h: 200, bg: '#3a1a2a', text: '#fff',    category: 'AVATAR', initials: 'FA' },
+  { name: 'avatar-admin',           label: 'Admin Avatar',            w: 200, h: 200, bg: '#d8ac27', text: '#fff',    category: 'AVATAR', initials: 'AD' },
+  { name: 'instructor-profile-1',  label: 'Instructor Profile',      w: 500, h: 500, bg: '#522811', text: '#d8ac27', category: 'INSTRUCTOR', initials: 'IN' },
+  { name: 'instructor-profile-2',  label: 'Instructor Profile 2',    w: 500, h: 500, bg: '#1a3a2a', text: '#81C784', category: 'INSTRUCTOR', initials: 'AH' },
+  { name: 'instructor-profile-3',  label: 'Instructor Profile 3',    w: 500, h: 500, bg: '#1a2a4a', text: '#90CAF9', category: 'INSTRUCTOR', initials: 'MK' },
+];
+
+function drawImage(canvas, img) {
+  const scale = 0.5;
+  canvas.width  = img.w * scale;
+  canvas.height = img.h * scale;
+  const ctx = canvas.getContext('2d');
+  const w = canvas.width, h = canvas.height;
+
+  // Background
+  ctx.fillStyle = img.bg;
+  ctx.fillRect(0, 0, w, h);
+
+  // Pattern overlay
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+  ctx.lineWidth = 1;
+  for (let i = 0; i < w; i += 20) {
+    ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
+  }
+  for (let i = 0; i < h; i += 20) {
+    ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(w, i); ctx.stroke();
+  }
+
+  if (img.initials) {
+    // Avatar circle
+    ctx.fillStyle = 'rgba(255,255,255,0.15)';
+    ctx.beginPath();
+    ctx.arc(w/2, h/2, Math.min(w,h)*0.38, 0, Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle = img.text;
+    ctx.font = `bold ${Math.floor(h*0.35)}px Arial`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(img.initials, w/2, h/2);
+  } else {
+    // Category badge
+    ctx.fillStyle = img.text;
+    ctx.font = `bold ${Math.floor(h*0.08)}px Arial`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(img.category, w/2, h * 0.35);
+
+    // Main label
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `bold ${Math.floor(h*0.1)}px Arial`;
+    ctx.fillText(img.label, w/2, h * 0.52);
+
+    // Size text
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    ctx.font = `${Math.floor(h*0.07)}px Arial`;
+    ctx.fillText(`${img.w} × ${img.h} px`, w/2, h * 0.68);
+  }
+
+  // Border
+  ctx.strokeStyle = img.text;
+  ctx.lineWidth = 3;
+  ctx.strokeRect(4, 4, w-8, h-8);
+}
+
+function getFullCanvas(img) {
+  const c = document.createElement('canvas');
+  c.width = img.w;
+  c.height = img.h;
+  const ctx = c.getContext('2d');
+
+  ctx.fillStyle = img.bg;
+  ctx.fillRect(0, 0, img.w, img.h);
+
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+  ctx.lineWidth = 2;
+  for (let i = 0; i < img.w; i += 40) {
+    ctx.beginPath(); ctx.moveTo(i,0); ctx.lineTo(i,img.h); ctx.stroke();
+  }
+  for (let i = 0; i < img.h; i += 40) {
+    ctx.beginPath(); ctx.moveTo(0,i); ctx.lineTo(img.w,i); ctx.stroke();
+  }
+
+  if (img.initials) {
+    ctx.fillStyle = 'rgba(255,255,255,0.15)';
+    ctx.beginPath();
+    ctx.arc(img.w/2, img.h/2, Math.min(img.w,img.h)*0.38, 0, Math.PI*2);
+    ctx.fill();
+
+    ctx.fillStyle = img.text;
+    ctx.font = `bold ${Math.floor(img.h*0.35)}px Arial`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(img.initials, img.w/2, img.h/2);
+  } else {
+    ctx.fillStyle = img.text;
+    ctx.font = `bold ${Math.floor(img.h*0.08)}px Arial`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(img.category, img.w/2, img.h * 0.35);
+
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `bold ${Math.floor(img.h*0.1)}px Arial`;
+    ctx.fillText(img.label, img.w/2, img.h * 0.52);
+
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    ctx.font = `${Math.floor(img.h*0.07)}px Arial`;
+    ctx.fillText(`${img.w} × ${img.h} px`, img.w/2, img.h * 0.68);
+  }
+
+  ctx.strokeStyle = img.text;
+  ctx.lineWidth = 6;
+  ctx.strokeRect(6, 6, img.w-12, img.h-12);
+  return c;
+}
+
+function downloadImage(img) {
+  const c = getFullCanvas(img);
+  const a = document.createElement('a');
+  a.download = img.name + '.jpg';
+  a.href = c.toDataURL('image/jpeg', 0.92);
+  a.click();
+}
+
+function downloadAll() {
+  images.forEach((img, i) => {
+    setTimeout(() => downloadImage(img), i * 300);
+  });
+}
+
+// Render all
+const grid = document.getElementById('grid');
+images.forEach(img => {
+  const card = document.createElement('div');
+  card.className = 'card';
+
+  const canvas = document.createElement('canvas');
+  drawImage(canvas, img);
+
+  const label = document.createElement('div');
+  label.className = 'label';
+  label.textContent = img.label;
+
+  const size = document.createElement('div');
+  size.className = 'size';
+  size.textContent = `${img.w} × ${img.h} px | ${img.category}`;
+
+  const btn = document.createElement('button');
+  btn.textContent = '⬇ Download';
+  btn.onclick = () => downloadImage(img);
+
+  card.appendChild(canvas);
+  card.appendChild(label);
+  card.appendChild(size);
+  card.appendChild(btn);
+  grid.appendChild(card);
+});
+</script>
+</body>
+</html>
