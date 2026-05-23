@@ -19,6 +19,7 @@ const InstructorStudent = require('./InstructorStudent');
 const WelfareProgram = require('./WelfareProgram');
 const WelfareDonation = require('./WelfareDonation');
 const InstructorApplication = require('./InstructorApplication');
+const Review = require('./Review');
 
 // User associations
 User.hasMany(Course, { foreignKey: 'instructorId', as: 'instructedCourses' });
@@ -105,6 +106,10 @@ PredefinedCourse.belongsToMany(User, {
 InstructorCourse.belongsTo(User, { foreignKey: 'instructorId', as: 'instructor' });
 InstructorCourse.belongsTo(PredefinedCourse, { foreignKey: 'predefinedCourseId', as: 'course' });
 
+// Review associations
+Review.belongsTo(User, { foreignKey: 'userId', as: 'student' });
+User.hasMany(Review, { foreignKey: 'userId', as: 'reviews' });
+
 // Welfare associations
 WelfareDonation.belongsTo(WelfareProgram, { foreignKey: 'programId', as: 'program' });
 WelfareProgram.hasMany(WelfareDonation, { foreignKey: 'programId', as: 'donations' });
@@ -145,4 +150,5 @@ module.exports = {
   InstructorCourse,
   InstructorStudent,
   InstructorApplication,
+  Review,
 };

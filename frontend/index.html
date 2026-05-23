@@ -3575,165 +3575,74 @@ Dependencies:
       <!-- featured instructor -->
 
       <!-- testimonials -->
-      <div class="testimonials-section testimonials-sec-one text-center">
+      <section class="ft-testimonials-section" id="reviews-section">
+        <style>
+          .ft-testimonials-section { padding: 80px 0; background: linear-gradient(135deg, #2c1506 0%, #522811 50%, #3d1d0a 100%); position: relative; overflow: hidden; }
+          .ft-testimonials-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d8ac27' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); pointer-events: none; }
+          .ft-testimonials-section .section-title-white { font-size: 34px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+          .ft-testimonials-section .section-sub-white { font-size: 15px; color: rgba(255,255,255,0.65); margin-bottom: 48px; }
+          .hp-testimonial-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(216,172,39,0.2); border-radius: 16px; padding: 30px 28px; height: 100%; backdrop-filter: blur(4px); transition: all 0.3s ease; }
+          .hp-testimonial-card:hover { background: rgba(216,172,39,0.1); border-color: rgba(216,172,39,0.5); transform: translateY(-4px); }
+          .hp-testimonial-card .quote-icon { font-size: 36px; color: #d8ac27; line-height: 1; margin-bottom: 16px; opacity: 0.8; }
+          .hp-testimonial-card .review-text { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+          .hp-testimonial-card .stars { color: #d8ac27; font-size: 13px; margin-bottom: 14px; letter-spacing: 2px; }
+          .hp-testimonial-card .reviewer-info { display: flex; align-items: center; gap: 12px; }
+          .hp-testimonial-card .reviewer-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #d8ac27, #f0c842); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #fff; flex-shrink: 0; }
+          .hp-testimonial-card .reviewer-avatar img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+          .hp-testimonial-card .reviewer-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+          .hp-testimonial-card .reviewer-loc { font-size: 12px; color: rgba(255,255,255,0.5); }
+          .hp-testimonial-card .review-badge { font-size: 11px; color: rgba(216,172,39,0.7); margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
+        </style>
         <div class="container">
-          <div class="section-header text-center" data-aos="fade-up">
-            <span
-              class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block"
-              >Featured Instructors</span
-            >
-            <h2>Top Class & Professional Instructors</h2>
-            <p>Words from Those Whove Experienced Real Growth</p>
+          <div class="text-center">
+            <h2 class="section-title-white">What Our Students Say</h2>
+            <p class="section-sub-white">Real experiences shared by students from the Al-Kahaf dashboard</p>
           </div>
-          <div class="testimonials-slider lazy mt-4">
-            <div>
-              <div
-                class="testimonials-item rounded-3 bg-white"
-                data-aos="flip-right"
-              >
-                <div class="position-relative d-inline-flex">
-                  <div
-                    class="avatar rounded-circle avatar-xxl border border-white border-3"
-                  >
-                    <a href="/student/student-details"
-                      ><img
-                        class="img-fluid rounded-circle"
-                        src="/assets/img/user/user-41.jpg"
-                        alt="img"
-                    /></a>
-                  </div>
-                  <i
-                    class="isax isax-quote-up5 bg-secondary quote rounded-pill fs-16 p-1"
-                  ></i>
-                </div>
-                <h6 class="mb-1">
-                  <a href="/student/student-details">Brenda Slaton</a>
-                </h6>
-                <p class="designation">Designer</p>
-                <p class="mb-3 text-truncate line-clamb-2">
-                  This mentor helped me understand concepts that I had been
-                  struggling with for weeks.
-                </p>
-                <div>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div
-                class="testimonials-item rounded-3 bg-white"
-                data-aos="flip-right"
-              >
-                <div class="position-relative d-inline-flex">
-                  <div
-                    class="avatar rounded-circle avatar-xxl border border-white border-3"
-                  >
-                    <a href="/student/student-details"
-                      ><img
-                        class="img-fluid rounded-circle"
-                        src="/assets/img/user/user-42.jpg"
-                        alt="img"
-                    /></a>
-                  </div>
-                  <i
-                    class="isax isax-quote-up5 bg-secondary quote rounded-pill fs-16 p-1"
-                  ></i>
-                </div>
-                <h6 class="mb-1">
-                  <a href="/student/student-details">Adrian Dennis</a>
-                </h6>
-                <p class="designation">Developer</p>
-                <p class="mb-3 text-truncate line-clamb-2">
-                  Ive learned so much from my mentors personal experience.
-                </p>
-                <div>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div
-                class="testimonials-item rounded-3 bg-white"
-                data-aos="flip-right"
-              >
-                <div class="position-relative d-inline-flex">
-                  <div
-                    class="avatar rounded-circle avatar-xxl border border-white border-3"
-                  >
-                    <a href="/student/student-details"
-                      ><img
-                        class="img-fluid rounded-circle"
-                        src="/assets/img/user/user-43.jpg"
-                        alt="img"
-                    /></a>
-                  </div>
-                  <i
-                    class="isax isax-quote-up5 bg-secondary quote rounded-pill fs-16 p-1"
-                  ></i>
-                </div>
-                <h6 class="mb-1">
-                  <a href="/student/student-details">Adrian Coztanza</a>
-                </h6>
-                <p class="designation">Architect</p>
-                <p class="mb-3 text-truncate line-clamb-2">
-                  The advice was useful, but I wish my mentor had been more
-                  available for follow-up discussions.
-                </p>
-                <div>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                </div>
-              </div>
-            </div>
-            <div>
-              <div class="testimonials-item rounded-3 bg-white">
-                <div class="position-relative d-inline-flex">
-                  <div
-                    class="avatar rounded-circle avatar-xxl border border-white border-3"
-                  >
-                    <a href="/student/student-details"
-                      ><img
-                        class="img-fluid rounded-circle"
-                        src="/assets/img/user/user-43.jpg"
-                        alt="img"
-                    /></a>
-                  </div>
-                  <i
-                    class="isax isax-quote-up5 bg-secondary quote rounded-pill fs-16 p-1"
-                  ></i>
-                </div>
-                <h6 class="mb-1">
-                  <a href="/student/student-details">Adrian Coztanza</a>
-                </h6>
-                <p class="designation">Architect</p>
-                <p class="mb-3 text-truncate line-clamb-2">
-                  The advice was useful, but I wish my mentor had been more
-                  available for follow-up discussions.
-                </p>
-                <div>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                  <i class="fa-solid fa-star text-warning"></i>
-                </div>
-              </div>
+          <div class="row g-4" id="hp-reviews-grid">
+            <div class="col-12 text-center py-5">
+              <div class="spinner-border text-warning" role="status"></div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
       <!-- testimonials -->
+
+      <script>
+      (function(){
+        var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+        function initials(name){ return name ? name.split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2) : 'AK'; }
+        function stars(n){ return '★'.repeat(n) + '☆'.repeat(5-n); }
+        function render(reviews){
+          var grid = document.getElementById('hp-reviews-grid');
+          if(!reviews.length){
+            grid.innerHTML = '<div class="col-12 text-center py-4"><p style="color:rgba(255,255,255,0.5)">Be the first to leave a review!</p></div>';
+            return;
+          }
+          grid.innerHTML = reviews.map(function(r){
+            var name = r.student ? ((r.student.firstName||'') + ' ' + (r.student.lastName||'')).trim() : 'Al-Kahaf Student';
+            var avatar = r.student && r.student.profileImage
+              ? '<img src="'+r.student.profileImage+'" alt="'+name+'">'
+              : initials(name);
+            var loc = r.location ? r.location : '';
+            return '<div class="col-lg-4 col-md-6 d-flex">'
+              + '<div class="hp-testimonial-card w-100">'
+              + '<div class="review-badge">Verified Student Review</div>'
+              + '<div class="quote-icon">&ldquo;</div>'
+              + '<div class="stars">'+stars(r.rating||5)+'</div>'
+              + '<p class="review-text">'+r.message+'</p>'
+              + '<div class="reviewer-info">'
+              + '<div class="reviewer-avatar">'+avatar+'</div>'
+              + '<div><div class="reviewer-name">'+name+'</div>'
+              + (loc ? '<div class="reviewer-loc">'+loc+'</div>' : '')
+              + '</div></div></div></div>';
+          }).join('');
+        }
+        fetch(API_BASE + '/reviews')
+          .then(function(r){ return r.json(); })
+          .then(function(d){ render(d.data || []); })
+          .catch(function(){ document.getElementById('hp-reviews-grid').innerHTML = ''; });
+      }());
+      </script>
 
       <!-- faq -->
       <div class="faq-section faq-banner-bg">

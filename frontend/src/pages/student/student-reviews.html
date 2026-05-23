@@ -302,174 +302,20 @@
 						</div>
 						<!-- sidebar -->
 						<div class="col-lg-9">
-							<div class="page-title d-flex align-items-center justify-content-between">
-								<h5>Reviews</h5>
+							<div class="page-title d-flex align-items-center justify-content-between mb-3">
+								<h5>My Reviews</h5>
+								<button class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#add_review_modal">
+									<i class="isax isax-add me-1"></i>Write a Review
+								</button>
 							</div>
-				
-							<div class="border mb-3 p-3 rounded-2">
-								<div class="d-flex flex-wrap gap-1 align-items-center justify-content-between mb-3">
-									<div class="d-flex align-items-center">
-										<div class="avatar avatar-lg avatar-rounded me-2">
-											<a href="/student/student-details"><img src="/assets/img/user/user-02.jpg" alt="img"></a>
-										</div>
-										<div class="reviewer-info">
-											<h6 class="mb-1"><a href="/student/student-details">Ronald Richard</a></h6>
-											<p class="fs-14">6 months ago</p>									
-										</div>
-									</div>
-									<div class="rating">
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star"></i>
-									</div>
-								</div>
-								<div class="mb-3">
-									<p>This is the second Photoshop course I have completed with Nancy Duarte.
-										Worth every penny and recommend it highly. To get the most out of this course, 
-										its best to to take the Beginner to Advanced course first. 
-										The sound and video quality is of a good standard. Thank you Nancy Duarte.
-									</p>
-								</div>
-								<div class="d-flex align-items-center justify-content-between mb-3">			
-									<div class="d-flex align-items-center">
-										<a href="javascript:void(0);" class="d-inline-flex align-items-center me-3 edit-review" data-bs-toggle="modal" data-bs-target="#edit_review"><i class="isax isax-edit-2 me-1"></i>Edit</a>
-										<a href="javascript:void(0);" class="d-inline-flex align-items-center delete-review" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-1"></i>Delete</a>
-									</div>
-								</div>
-								<div class="bg-light border p-3 rounded-2">
-									<h6 class="mb-1">Reply</h6>
-									<p class="fs-14">As a learner who has navigated through various online platforms, the sophistication and user-centric design of this website set a new</p>
+
+							<!-- Reviews list -->
+							<div id="reviews-container">
+								<div class="text-center py-4">
+									<div class="spinner-border text-primary" role="status"></div>
+									<p class="mt-2 text-muted">Loading your reviews...</p>
 								</div>
 							</div>
-							<div class="border mb-3 p-3 rounded-2">
-								<div class="d-flex flex-wrap gap-1 align-items-center justify-content-between mb-3">
-									<div class="d-flex align-items-center">
-										<div class="avatar avatar-lg avatar-rounded me-2">
-											<a href="/student/student-details"><img src="/assets/img/user/user-02.jpg" alt="img"></a>
-										</div>
-										<div class="reviewer-info">
-											<h6 class="mb-1"><a href="/student/student-details">Ronald Richard</a></h6>
-											<p class="fs-14">9 months ago</p>									
-										</div>
-									</div>
-									<div class="rating">
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star"></i>
-									</div>
-								</div>
-								<div class="mb-3">
-									<p>I've been using this LMS for several months for my online courses, and it's been
-										a game-changer. The interface is incredibly user-friendly, making it easy for both 
-										instructors and students to navigate through the courses. The variety of tools available 
-										for creating interactive and
-										engaging content has significantly enhanced the learning experience.
-									</p>
-								</div>
-								<div class="d-flex align-items-center justify-content-between">
-									<div class="d-flex align-items-center">
-										<a href="javascript:void(0);" class="d-inline-flex align-items-center me-3 edit-review" data-bs-toggle="modal" data-bs-target="#edit_review"><i class="isax isax-edit-2 me-1"></i>Edit</a>
-										<a href="javascript:void(0);" class="d-inline-flex align-items-center delete-review" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-1"></i>Delete</a>
-									</div>
-								</div>
-							</div>
-							<div class="border mb-3 p-3 rounded-2">
-								<div class="d-flex flex-wrap gap-1 align-items-center justify-content-between mb-3">
-									<div class="d-flex align-items-center">
-										<div class="avatar avatar-lg avatar-rounded me-2">
-											<a href="/student/student-details"><img src="/assets/img/user/user-02.jpg" alt="img"></a>
-										</div>
-										<div class="reviewer-info">
-											<h6 class="mb-1"><a href="/student/student-details">Ronald Richard</a></h6>
-											<p class="fs-14">9 months ago</p>									
-										</div>
-									</div>
-									<div class="rating">
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star"></i>
-									</div>
-								</div>
-								<div class="mb-3">
-									<p>Any time I've had a question or encountered a minor issue, the 
-										customer support team has been quick to respond and incredibly helpful. Moreover, 
-										the reliability of this LMS has impressed me—downtime is 
-										nearly non-existent, ensuring that  students have access to their courses 24/7.
-									</p>
-								</div>
-								<div class="d-flex align-items-center justify-content-between">
-									<div class="d-flex align-items-center">
-										<a href="javascript:void(0);" class="d-inline-flex align-items-center me-3 edit-review" data-bs-toggle="modal" data-bs-target="#edit_review"><i class="isax isax-edit-2 me-1"></i>Edit</a>
-										<a href="javascript:void(0);" class="d-inline-flex align-items-center delete-review" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-1"></i>Delete</a>
-									</div>
-								</div>
-							</div>
-							<div class="border p-3 rounded-2">
-								<div class="d-flex flex-wrap gap-1 align-items-center justify-content-between mb-3">
-									<div class="d-flex align-items-center">
-										<div class="avatar avatar-lg avatar-rounded me-2">
-											<a href="/student/student-details"><img src="/assets/img/user/user-02.jpg" alt="img"></a>
-										</div>
-										<div class="reviewer-info">
-											<h6 class="mb-1"><a href="/student/student-details">Ronald Richard</a></h6>
-											<p class="fs-14">9 months ago</p>									
-										</div>
-									</div>
-									<div class="rating">
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star filled"></i>
-										<i class="fa-solid fa-star"></i>
-									</div>
-								</div>
-								<div class="mb-3">
-									<p>From the onset, my experience with this LMS Website has been nothing 
-										short of extraordinary. As a learner who has navigated through various online platforms, 
-										the sophistication and user-centric design of this website
-										set a new benchmark for what digital education should look like.
-									</p>
-								</div>
-								<div class="d-flex align-items-center justify-content-between">
-									<div class="d-flex align-items-center">
-										<a href="javascript:void(0);" class="d-inline-flex align-items-center me-3 edit-review" data-bs-toggle="modal" data-bs-target="#edit_review"><i class="isax isax-edit-2 me-1"></i>Edit</a>
-										<a href="javascript:void(0);" class="d-inline-flex align-items-center delete-review" data-bs-toggle="modal" data-bs-target="#delete_modal"><i class="isax isax-trash me-1"></i>Delete</a>
-									</div>
-								</div>
-							</div>
-								
-							<!-- /pagination -->
-							<div class="row align-items-center mt-3">
-								<div class="col-md-2">
-                                  <p class="pagination-text">Page 1 of 2</p>
-								</div>
-								<div class="col-md-10">
-									<ul class="pagination lms-page justify-content-center justify-content-md-end mt-2 mt-md-0">
-										<li class="page-item prev">
-											<a class="page-link" href="javascript:void(0)" tabindex="-1"><i class="fas fa-angle-left"></i></a>
-										</li>
-										<li class="page-item first-page active">
-											<a class="page-link" href="javascript:void(0)">1</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">2</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">3</a>
-										</li>
-										<li class="page-item next">
-											<a class="page-link" href="javascript:void(0)"><i class="fas fa-angle-right"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<!-- /pagination -->
 						</div>
 					</div>
 				</div>
@@ -573,75 +419,115 @@
 		</footer>
 		<!-- /Footer -->
 
-			<!-- Edit Review -->
-			<div class="modal fade" id="edit_review">
-				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h5>Edit Review</h5>
-							<button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
-								<i class="isax isax-close-circle5"></i>
-							</button>
-						</div>
-						<div class="modal-body pb-0">                    
-							<div class="mb-3">
-								<label class="form-label fs-14">Your Rating <span class="text-danger">*</span></label>
-								<div class="selection-wrap">
-									<div class="d-inline-block">
-										<div class="rating-selction">
-											<input type="radio" name="rating" value="5" id="rating5" checked>
-											<label for="rating5"><i class="fa-solid fa-star"></i></label>
-											<input type="radio" name="rating" value="4" id="rating4" checked>
-											<label for="rating4"><i class="fa-solid fa-star"></i></label>
-											<input type="radio" name="rating" value="3" id="rating3" checked>
-											<label for="rating3"><i class="fa-solid fa-star"></i></label>
-											<input type="radio" name="rating" value="2" id="rating2">
-											<label for="rating2"><i class="fa-solid fa-star"></i></label>
-											<input type="radio" name="rating" value="1" id="rating1">
-											<label for="rating1"><i class="fa-solid fa-star"></i></label>
-										</div>
+		<!-- Add Review Modal -->
+		<div class="modal fade" id="add_review_modal">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5>Write a Review</h5>
+						<button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
+							<i class="isax isax-close-circle5"></i>
+						</button>
+					</div>
+					<div class="modal-body pb-0">
+						<div class="mb-3">
+							<label class="form-label fs-14">Your Rating <span class="text-danger">*</span></label>
+							<div class="selection-wrap">
+								<div class="d-inline-block">
+									<div class="rating-selction">
+										<input type="radio" name="add_rating" value="5" id="add_r5" checked><label for="add_r5"><i class="fa-solid fa-star"></i></label>
+										<input type="radio" name="add_rating" value="4" id="add_r4"><label for="add_r4"><i class="fa-solid fa-star"></i></label>
+										<input type="radio" name="add_rating" value="3" id="add_r3"><label for="add_r3"><i class="fa-solid fa-star"></i></label>
+										<input type="radio" name="add_rating" value="2" id="add_r2"><label for="add_r2"><i class="fa-solid fa-star"></i></label>
+										<input type="radio" name="add_rating" value="1" id="add_r1"><label for="add_r1"><i class="fa-solid fa-star"></i></label>
 									</div>
 								</div>
 							</div>
-							<div class="mb-3">
-								<label class="form-label fs-14">Write Your Review <span class="text-danger">*</span></label>
-								<textarea class="form-control lh-base" rows="3">This is the second Photoshop course I have completed with Nancy Duarte. Worth every penny and recommend it highly. To get the most out of this course, its best to to take the Beginner to Advanced course first. The sound and video quality is of a good standard. Thank you Nancy Duarte.</textarea>
-							</div>
 						</div>
-						<div class="modal-footer">
-							<a href="javascript:void(0);" class="btn btn-md bg-gray-100 rounded-pill me-2" data-bs-dismiss="modal">Cancel</a>   
-							<button type="submit" class="btn btn-md btn-secondary rounded-pill">Save Changes</button>                
+						<div class="mb-3">
+							<label class="form-label fs-14">Location <span class="text-muted fs-12">(optional — e.g. Karachi, Pakistan)</span></label>
+							<input type="text" id="add_location" class="form-control" placeholder="City, Country">
 						</div>
+						<div class="mb-3">
+							<label class="form-label fs-14">Your Review <span class="text-danger">*</span></label>
+							<textarea id="add_message" class="form-control lh-base" rows="4" placeholder="Share your experience at Al-Kahaf..."></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a href="javascript:void(0);" class="btn btn-md bg-gray-100 rounded-pill me-2" data-bs-dismiss="modal">Cancel</a>
+						<button id="btn-submit-review" class="btn btn-md btn-secondary rounded-pill">Submit Review</button>
 					</div>
 				</div>
 			</div>
-			<!-- /Edit Review -->
+		</div>
+		<!-- /Add Review Modal -->
 
-			<!-- Delete Modal -->
-			<div class="modal fade" id="delete_modal">
-				<div class="modal-dialog modal-dialog-centered">
-					<div class="modal-content">
-						<div class="modal-body text-center custom-modal-body">
-							<span class="avatar avatar-lg bg-secondary-transparent rounded-circle mb-2">
-								<i class="isax isax-trash fs-24 text-danger"></i>
-							</span>
-							<div>
-								<h4 class="mb-2">Delete Review</h4>
-								<p class="mb-3">Are you sure you want to delete review?</p>
-								<div class="d-flex align-items-center justify-content-center">
-									<a href="#" class="btn bg-gray-100 rounded-pill me-2" data-bs-dismiss="modal">Cancel</a>
-									<a href="#" class="btn btn-secondary rounded-pill">Yes, Remove All</a>
+		<!-- Edit Review Modal -->
+		<div class="modal fade" id="edit_review_modal">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5>Edit Review</h5>
+						<button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
+							<i class="isax isax-close-circle5"></i>
+						</button>
+					</div>
+					<div class="modal-body pb-0">
+						<input type="hidden" id="edit_review_id">
+						<div class="mb-3">
+							<label class="form-label fs-14">Your Rating <span class="text-danger">*</span></label>
+							<div class="selection-wrap">
+								<div class="d-inline-block">
+									<div class="rating-selction">
+										<input type="radio" name="edit_rating" value="5" id="edit_r5"><label for="edit_r5"><i class="fa-solid fa-star"></i></label>
+										<input type="radio" name="edit_rating" value="4" id="edit_r4"><label for="edit_r4"><i class="fa-solid fa-star"></i></label>
+										<input type="radio" name="edit_rating" value="3" id="edit_r3"><label for="edit_r3"><i class="fa-solid fa-star"></i></label>
+										<input type="radio" name="edit_rating" value="2" id="edit_r2"><label for="edit_r2"><i class="fa-solid fa-star"></i></label>
+										<input type="radio" name="edit_rating" value="1" id="edit_r1"><label for="edit_r1"><i class="fa-solid fa-star"></i></label>
+									</div>
 								</div>
 							</div>
 						</div>
+						<div class="mb-3">
+							<label class="form-label fs-14">Location</label>
+							<input type="text" id="edit_location" class="form-control" placeholder="City, Country">
+						</div>
+						<div class="mb-3">
+							<label class="form-label fs-14">Write Your Review <span class="text-danger">*</span></label>
+							<textarea id="edit_message" class="form-control lh-base" rows="4"></textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<a href="javascript:void(0);" class="btn btn-md bg-gray-100 rounded-pill me-2" data-bs-dismiss="modal">Cancel</a>
+						<button id="btn-update-review" class="btn btn-md btn-secondary rounded-pill">Save Changes</button>
 					</div>
 				</div>
 			</div>
-			<!-- /Delete Modal -->
-
 		</div>
-		<!-- /Main Wrapper -->
-	  
+		<!-- /Edit Review Modal -->
+
+		<!-- Delete Modal -->
+		<div class="modal fade" id="delete_modal">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<div class="modal-body text-center custom-modal-body">
+						<span class="avatar avatar-lg bg-secondary-transparent rounded-circle mb-2">
+							<i class="isax isax-trash fs-24 text-danger"></i>
+						</span>
+						<input type="hidden" id="delete_review_id">
+						<div>
+							<h4 class="mb-2">Delete Review</h4>
+							<p class="mb-3">Are you sure you want to delete this review?</p>
+							<div class="d-flex align-items-center justify-content-center">
+								<a href="#" class="btn bg-gray-100 rounded-pill me-2" data-bs-dismiss="modal">Cancel</a>
+								<button id="btn-confirm-delete" class="btn btn-secondary rounded-pill">Yes, Delete</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Delete Modal -->
 		<!-- jQuery -->
 		<script src="/assets/js/jquery-3.7.1.min.js"></script>
 		
@@ -655,6 +541,160 @@
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
 	<!-- Scroll to Top Button -->
+	
+	<script src="/assets/js/api-config.js"></script>
+	<script>
+	(function () {
+		var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+		var token = localStorage.getItem('accessToken');
+		var user = JSON.parse(localStorage.getItem('user') || '{}');
+
+		if (!token || user.role !== 'student') { window.location.href = '/auth/login'; }
+
+		var nameEl = document.getElementById('adminName') || document.querySelector('.header-inst-name');
+		if (nameEl) nameEl.textContent = (user.firstName || '') + ' ' + (user.lastName || '');
+
+		function authHeaders() {
+			return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token };
+		}
+
+		function starsHtml(n) {
+			var s = '';
+			for (var i = 1; i <= 5; i++) {
+				s += i <= n ? '<i class="fa-solid fa-star filled"></i>' : '<i class="fa-regular fa-star"></i>';
+			}
+			return s;
+		}
+
+		function timeAgo(dateStr) {
+			var diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
+			if (diff < 60) return 'Just now';
+			if (diff < 3600) return Math.floor(diff/60) + ' min ago';
+			if (diff < 86400) return Math.floor(diff/3600) + ' hours ago';
+			if (diff < 2592000) return Math.floor(diff/86400) + ' days ago';
+			return Math.floor(diff/2592000) + ' months ago';
+		}
+
+		function statusBadge(status) {
+			var map = { pending: 'warning', approved: 'success', rejected: 'danger' };
+			var cls = map[status] || 'secondary';
+			return '<span class="badge bg-' + cls + '-transparent text-capitalize ms-2">' + status + '</span>';
+		}
+
+		function renderReviews(reviews) {
+			var container = document.getElementById('reviews-container');
+			if (!reviews.length) {
+				container.innerHTML = '<div class="border p-4 rounded-2 text-center text-muted">'
+					+ '<i class="isax isax-star fs-36 d-block mb-2"></i>'
+					+ '<p>You have not written any reviews yet.</p>'
+					+ '<button class="btn btn-secondary btn-sm mt-2" data-bs-toggle="modal" data-bs-target="#add_review_modal">Write Your First Review</button>'
+					+ '</div>';
+				return;
+			}
+			container.innerHTML = reviews.map(function (r) {
+				var av = user.profileImage
+					? '<img src="' + user.profileImage + '" alt="img">'
+					: '<span class="avatar-title rounded-circle bg-primary text-white">' + (user.firstName || '?')[0] + '</span>';
+				return '<div class="border mb-3 p-3 rounded-2">'
+					+ '<div class="d-flex flex-wrap gap-1 align-items-center justify-content-between mb-3">'
+					+ '<div class="d-flex align-items-center">'
+					+ '<div class="avatar avatar-lg avatar-rounded me-2">' + av + '</div>'
+					+ '<div class="reviewer-info">'
+					+ '<h6 class="mb-0">' + (user.firstName||'') + ' ' + (user.lastName||'') + statusBadge(r.status) + '</h6>'
+					+ '<p class="fs-14 text-muted mb-0">' + timeAgo(r.createdAt) + (r.location ? ' &nbsp;&middot;&nbsp; ' + r.location : '') + '</p>'
+					+ '</div></div>'
+					+ '<div class="rating">' + starsHtml(r.rating) + '</div>'
+					+ '</div>'
+					+ '<div class="mb-3"><p class="mb-0">' + r.message + '</p></div>'
+					+ (r.status === 'pending' ? '<p class="text-muted fs-13 mb-2"><i class="isax isax-info-circle me-1"></i>Pending admin approval.</p>' : '')
+					+ '<div class="d-flex align-items-center">'
+					+ '<a href="javascript:void(0);" class="d-inline-flex align-items-center me-3 text-primary" onclick="openEdit(' + str(r['id']) + ',\'' + str(r['rating']) + '\',\'' + r['message'].replace("'", "\'").replace('\n', ' ') + '\',\'' + (r['location'] or '').replace("'", "\'") + '\')"><i class="isax isax-edit-2 me-1"></i>Edit</a>'
+					+ '<a href="javascript:void(0);" class="d-inline-flex align-items-center text-danger" onclick="openDelete(' + str(r['id']) + ')"><i class="isax isax-trash me-1"></i>Delete</a>'
+					+ '</div></div>';
+			}).join('');
+		}
+
+		function loadReviews() {
+			fetch(API_BASE + '/reviews/my', { headers: authHeaders() })
+				.then(function (r) { return r.json(); })
+				.then(function (d) { renderReviews(d.data || []); })
+				.catch(function () {
+					document.getElementById('reviews-container').innerHTML = '<p class="text-danger p-3">Failed to load reviews.</p>';
+				});
+		}
+
+		document.getElementById('btn-submit-review').addEventListener('click', function () {
+			var rating = document.querySelector('input[name="add_rating"]:checked');
+			var message = document.getElementById('add_message').value.trim();
+			var location = document.getElementById('add_location').value.trim();
+			if (!rating || !message) { alert('Please fill in rating and review.'); return; }
+			var btn = this; btn.disabled = true; btn.textContent = 'Submitting...';
+			fetch(API_BASE + '/reviews', {
+				method: 'POST', headers: authHeaders(),
+				body: JSON.stringify({ rating: parseInt(rating.value), message: message, location: location || null })
+			}).then(function (r) { return r.json(); })
+			.then(function (d) {
+				if (d.success) {
+					bootstrap.Modal.getInstance(document.getElementById('add_review_modal')).hide();
+					document.getElementById('add_message').value = '';
+					document.getElementById('add_location').value = '';
+					loadReviews();
+				} else { alert(d.message || 'Failed to submit review.'); }
+			}).catch(function () { alert('Network error.'); })
+			.finally(function () { btn.disabled = false; btn.textContent = 'Submit Review'; });
+		});
+
+		window.openEdit = function (id, rating, msg, loc) {
+			document.getElementById('edit_review_id').value = id;
+			document.getElementById('edit_message').value = msg;
+			document.getElementById('edit_location').value = loc;
+			var r = document.querySelector('input[name="edit_rating"][value="' + rating + '"]');
+			if (r) r.checked = true;
+			new bootstrap.Modal(document.getElementById('edit_review_modal')).show();
+		};
+
+		document.getElementById('btn-update-review').addEventListener('click', function () {
+			var id = document.getElementById('edit_review_id').value;
+			var rating = document.querySelector('input[name="edit_rating"]:checked');
+			var message = document.getElementById('edit_message').value.trim();
+			var location = document.getElementById('edit_location').value.trim();
+			if (!rating || !message) { alert('Please fill in rating and review.'); return; }
+			var btn = this; btn.disabled = true;
+			fetch(API_BASE + '/reviews/' + id, {
+				method: 'PUT', headers: authHeaders(),
+				body: JSON.stringify({ rating: parseInt(rating.value), message: message, location: location || null })
+			}).then(function (r) { return r.json(); })
+			.then(function (d) {
+				if (d.success) {
+					bootstrap.Modal.getInstance(document.getElementById('edit_review_modal')).hide();
+					loadReviews();
+				} else { alert(d.message || 'Failed to update.'); }
+			}).catch(function () { alert('Network error.'); })
+			.finally(function () { btn.disabled = false; });
+		});
+
+		window.openDelete = function (id) {
+			document.getElementById('delete_review_id').value = id;
+			new bootstrap.Modal(document.getElementById('delete_modal')).show();
+		};
+
+		document.getElementById('btn-confirm-delete').addEventListener('click', function () {
+			var id = document.getElementById('delete_review_id').value;
+			var btn = this; btn.disabled = true;
+			fetch(API_BASE + '/reviews/' + id, { method: 'DELETE', headers: authHeaders() })
+				.then(function (r) { return r.json(); })
+				.then(function (d) {
+					bootstrap.Modal.getInstance(document.getElementById('delete_modal')).hide();
+					if (d.success) loadReviews();
+					else alert(d.message || 'Failed to delete.');
+				}).catch(function () { alert('Network error.'); })
+				.finally(function () { btn.disabled = false; });
+		});
+
+		loadReviews();
+	}());
+	</script>
+
 	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
 		<i class="fas fa-arrow-up"></i>
 	</button>
