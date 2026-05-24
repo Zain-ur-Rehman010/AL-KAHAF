@@ -413,8 +413,9 @@
 <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
-<script>
-var API_BASE = 'http://localhost:5000/api/v1';
+<script src="/assets/js/api-config.js"></script>
+    <script>
+ = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
 var token = localStorage.getItem('accessToken') || '';
 var blogModal, deleteModal, loginModal, viewModal, toastEl, toastObj;
 var deleteTargetId = null;

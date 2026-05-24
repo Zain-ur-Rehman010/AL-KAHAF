@@ -191,7 +191,7 @@
 	
 	<script>
 		(function () {
-			const API_BASE = window.API_BASE_URL || 'http://localhost:5000/api/v1';
+			const API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
 			const params = new URLSearchParams(window.location.search);
 			const email = params.get('email') || '';
 			const mode = params.get('mode') || 'verify'; // 'verify' = registration, 'reset' = forgot password

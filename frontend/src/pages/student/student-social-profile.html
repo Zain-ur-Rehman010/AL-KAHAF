@@ -481,7 +481,7 @@
 	<script>
 	(function() {
 		const isLocal = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
-		const API = isLocal ? 'http://localhost:5000/api/v1' : 'https://alkahafonlineacademy.com/api/v1';
+		const API = isLocal ? 'http://localhost:5000/api/v1' : 'https://api.alkahafonlineacademy.com/api/v1';
 		const token = localStorage.getItem('accessToken');
 		if (!token) { window.location.href = '/auth/login'; return; }
 		const authH = () => ({ 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token });
