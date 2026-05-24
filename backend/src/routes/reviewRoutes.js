@@ -11,7 +11,7 @@ router.get('/', ctrl.getApprovedReviews);
 router.get('/my', authMiddleware, ctrl.getMyReviews);
 router.post('/', authMiddleware, roleMiddleware(['student']), ctrl.createReview);
 router.put('/:id', authMiddleware, roleMiddleware(['student']), ctrl.updateReview);
-router.delete('/:id', authMiddleware, roleMiddleware(['student']), ctrl.deleteReview);
+router.delete('/:id', authMiddleware, roleMiddleware(['student', 'admin']), ctrl.deleteReview);
 
 // Admin
 router.get('/admin/all', authMiddleware, roleMiddleware(['admin']), ctrl.getAllReviews);

@@ -21,7 +21,7 @@ exports.getApprovedReviews = async (req, res) => {
 exports.getMyReviews = async (req, res) => {
   try {
     const reviews = await Review.findAll({
-      where: { userId: req.user.id },
+      where: { userId: req.user.userId },
       order: [['createdAt', 'DESC']],
     });
     res.json({ success: true, data: reviews });
@@ -38,7 +38,7 @@ exports.createReview = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Message and rating are required' });
     }
     const review = await Review.create({
-      userId: req.user.id,
+      userId: req.user.userId,
       message,
       rating: parseInt(rating),
       location: location || null,
@@ -53,7 +53,7 @@ exports.createReview = async (req, res) => {
 // STUDENT — edit own review
 exports.updateReview = async (req, res) => {
   try {
-    const review = await Review.findOne({ where: { id: req.params.id, userId: req.user.id } });
+    const review = await Review.findOne({ where: { id: req.params.id, userId: req.user.userId } });
     if (!review) return res.status(404).json({ success: false, message: 'Review not found' });
     const { message, rating, location } = req.body;
     await review.update({ message, rating: parseInt(rating), location, status: 'pending' });
@@ -66,7 +66,10 @@ exports.updateReview = async (req, res) => {
 // STUDENT — delete own review
 exports.deleteReview = async (req, res) => {
   try {
-    const review = await Review.findOne({ where: { id: req.params.id, userId: req.user.id } });
+    const where = req.user.role === 'admin'
+      ? { id: req.params.id }
+      : { id: req.params.id, userId: req.user.userId };
+    const review = await Review.findOne({ where });
     if (!review) return res.status(404).json({ success: false, message: 'Review not found' });
     await review.destroy();
     res.json({ success: true, message: 'Review deleted' });

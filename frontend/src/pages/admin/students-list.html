@@ -580,6 +580,52 @@
 
                 </div>
             </div>
+
+            <!-- Student Reviews Section -->
+            <div class="container mt-5 mb-4">
+                <div class="card border-0 shadow-sm rounded-3">
+                    <div class="card-header bg-white border-0 d-flex align-items-center justify-content-between py-3 px-4">
+                        <div class="d-flex align-items-center gap-2">
+                            <h5 class="mb-0">Student Reviews</h5>
+                            <span id="pending-reviews-badge" class="badge bg-warning text-dark" style="display:none"></span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <select id="review-status-filter" class="form-select form-select-sm" style="width:140px">
+                                <option value="">All Reviews</option>
+                                <option value="pending" selected>Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table class="table table-hover mb-0">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th class="ps-4">Student</th>
+                                        <th>Review</th>
+                                        <th>Rating</th>
+                                        <th>Location</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reviews-tbody">
+                                    <tr><td colspan="7" class="text-center py-4"><span class="spinner-border spinner-border-sm text-muted me-2"></span>Loading reviews...</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-between px-4 py-3 border-top" id="reviews-pagination-wrapper" style="display:none!important">
+                            <div class="text-muted" style="font-size:13px" id="reviews-pagination-info"></div>
+                            <ul class="pagination pagination-sm mb-0" id="reviews-pagination-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Student Reviews Section -->
+
         </div>
         <!-- /Page Content -->
 
@@ -1137,6 +1183,148 @@
                 .replace(/'/g, '&#39;');
         }
     </script>
+
+    <!-- Reviews Management Script -->
+    <script>
+    (function () {
+        var token = localStorage.getItem('accessToken');
+        var allReviews = [];
+        var currentPage = 1;
+        var PAGE_SIZE = 10;
+
+        function authHdr() { return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token }; }
+
+        function starsHtml(n) {
+            var s = '';
+            for (var i = 1; i <= 5; i++) s += '<i class="fa-solid fa-star' + (i <= n ? ' text-warning' : ' text-muted') + '" style="font-size:12px"></i>';
+            return s;
+        }
+
+        function statusBadge(status) {
+            var map = { pending: 'warning', approved: 'success', rejected: 'danger' };
+            return '<span class="badge bg-' + (map[status] || 'secondary') + '">' + status + '</span>';
+        }
+
+        function formatDate(d) {
+            return d ? new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }) : '—';
+        }
+
+        function renderPage(page) {
+            currentPage = page;
+            var tbody = document.getElementById('reviews-tbody');
+            var total = allReviews.length;
+            var totalPages = Math.ceil(total / PAGE_SIZE);
+            var start = (page - 1) * PAGE_SIZE;
+            var pageData = allReviews.slice(start, start + PAGE_SIZE);
+
+            if (!pageData.length) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">No reviews found.</td></tr>';
+                document.getElementById('reviews-pagination-wrapper').style.display = 'none';
+                return;
+            }
+
+            tbody.innerHTML = pageData.map(function (r) {
+                var student = r.student || {};
+                var name = ((student.firstName || '') + ' ' + (student.lastName || '')).trim() || 'Unknown';
+                var avatar = student.profileImage
+                    ? '<img src="' + student.profileImage + '" class="rounded-circle me-2" width="32" height="32" style="object-fit:cover">'
+                    : '<span class="rounded-circle bg-primary d-inline-flex align-items-center justify-content-center me-2 text-white" style="width:32px;height:32px;font-size:13px;flex-shrink:0">' + (name[0] || '?') + '</span>';
+                var msg = r.message.length > 80 ? r.message.slice(0, 80) + '…' : r.message;
+                return '<tr>'
+                    + '<td class="ps-4"><div class="d-flex align-items-center">' + avatar + '<div><div class="fw-semibold" style="font-size:13px">' + name + '</div></div></div></td>'
+                    + '<td style="max-width:220px;font-size:13px" title="' + r.message.replace(/"/g, '&quot;') + '">' + msg + '</td>'
+                    + '<td>' + starsHtml(r.rating) + '</td>'
+                    + '<td style="font-size:13px">' + (r.location || '—') + '</td>'
+                    + '<td style="font-size:13px">' + formatDate(r.createdAt) + '</td>'
+                    + '<td>' + statusBadge(r.status) + '</td>'
+                    + '<td>'
+                    + (r.status !== 'approved' ? '<button class="btn btn-xs btn-success me-1" style="font-size:11px;padding:3px 8px" onclick="setReviewStatus(' + r.id + ',\'approved\')">Approve</button>' : '')
+                    + (r.status !== 'rejected' ? '<button class="btn btn-xs btn-danger me-1" style="font-size:11px;padding:3px 8px" onclick="setReviewStatus(' + r.id + ',\'rejected\')">Reject</button>' : '')
+                    + '<button class="btn btn-xs btn-outline-secondary" style="font-size:11px;padding:3px 8px" onclick="deleteReview(' + r.id + ')">Delete</button>'
+                    + '</td></tr>';
+            }).join('');
+
+            // pagination info
+            document.getElementById('reviews-pagination-info').textContent =
+                'Showing ' + (start + 1) + '–' + Math.min(start + PAGE_SIZE, total) + ' of ' + total + ' reviews';
+
+            // pagination buttons
+            var paginationEl = document.getElementById('reviews-pagination-list');
+            var html = '<li class="page-item' + (page <= 1 ? ' disabled' : '') + '">'
+                + '<a class="page-link" href="javascript:void(0)" data-p="' + (page - 1) + '">&laquo;</a></li>';
+            for (var i = 1; i <= totalPages; i++) {
+                html += '<li class="page-item' + (i === page ? ' active' : '') + '">'
+                    + '<a class="page-link" href="javascript:void(0)" data-p="' + i + '">' + i + '</a></li>';
+            }
+            html += '<li class="page-item' + (page >= totalPages ? ' disabled' : '') + '">'
+                + '<a class="page-link" href="javascript:void(0)" data-p="' + (page + 1) + '">&raquo;</a></li>';
+            paginationEl.innerHTML = html;
+
+            // show/hide pagination
+            var wrapper = document.getElementById('reviews-pagination-wrapper');
+            if (totalPages > 1) {
+                wrapper.style.removeProperty('display');
+            } else {
+                wrapper.style.display = 'none';
+            }
+
+            paginationEl.querySelectorAll('[data-p]').forEach(function (el) {
+                el.addEventListener('click', function () {
+                    var p = parseInt(this.getAttribute('data-p'));
+                    if (p >= 1 && p <= totalPages) renderPage(p);
+                });
+            });
+        }
+
+        function loadReviews(status) {
+            var tbody = document.getElementById('reviews-tbody');
+            tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4"><span class="spinner-border spinner-border-sm text-muted me-2"></span>Loading...</td></tr>';
+            document.getElementById('reviews-pagination-wrapper').style.display = 'none';
+            var url = API_CONFIG.BASE_URL + '/reviews/admin/all' + (status ? '?status=' + status : '');
+            fetch(url, { headers: authHdr() })
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    allReviews = d.data || [];
+                    var pending = allReviews.filter(function (r) { return r.status === 'pending'; }).length;
+                    var badge = document.getElementById('pending-reviews-badge');
+                    badge.textContent = pending + ' pending';
+                    badge.style.display = pending > 0 ? '' : 'none';
+                    renderPage(1);
+                })
+                .catch(function () {
+                    tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-danger">Failed to load reviews.</td></tr>';
+                });
+        }
+
+        window.setReviewStatus = function (id, status) {
+            fetch(API_CONFIG.BASE_URL + '/reviews/' + id + '/status', {
+                method: 'PATCH', headers: authHdr(),
+                body: JSON.stringify({ status: status })
+            }).then(function (r) { return r.json(); })
+            .then(function (d) {
+                if (d.success) loadReviews(document.getElementById('review-status-filter').value);
+                else alert(d.message || 'Failed.');
+            }).catch(function () { alert('Network error.'); });
+        };
+
+        window.deleteReview = function (id) {
+            if (!confirm('Delete this review permanently?')) return;
+            fetch(API_CONFIG.BASE_URL + '/reviews/' + id, { method: 'DELETE', headers: authHdr() })
+                .then(function (r) { return r.json(); })
+                .then(function (d) {
+                    if (d.success) loadReviews(document.getElementById('review-status-filter').value);
+                    else alert(d.message || 'Failed.');
+                }).catch(function () { alert('Network error.'); });
+        };
+
+        document.getElementById('review-status-filter').addEventListener('change', function () {
+            loadReviews(this.value);
+        });
+
+        loadReviews('pending');
+    }());
+    </script>
+
 	<!-- Scroll to Top Button -->
 	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
 		<i class="fas fa-arrow-up"></i>

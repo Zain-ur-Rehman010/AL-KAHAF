@@ -608,8 +608,8 @@
 					+ '<div class="mb-3"><p class="mb-0">' + r.message + '</p></div>'
 					+ (r.status === 'pending' ? '<p class="text-muted fs-13 mb-2"><i class="isax isax-info-circle me-1"></i>Pending admin approval.</p>' : '')
 					+ '<div class="d-flex align-items-center">'
-					+ '<a href="javascript:void(0);" class="d-inline-flex align-items-center me-3 text-primary" onclick="openEdit(' + str(r['id']) + ',\'' + str(r['rating']) + '\',\'' + r['message'].replace("'", "\'").replace('\n', ' ') + '\',\'' + (r['location'] or '').replace("'", "\'") + '\')"><i class="isax isax-edit-2 me-1"></i>Edit</a>'
-					+ '<a href="javascript:void(0);" class="d-inline-flex align-items-center text-danger" onclick="openDelete(' + str(r['id']) + ')"><i class="isax isax-trash me-1"></i>Delete</a>'
+					+ '<a href="javascript:void(0);" class="d-inline-flex align-items-center me-3 text-primary" onclick="openEdit(' + r.id + ',' + r.rating + ',this)"><i class="isax isax-edit-2 me-1"></i>Edit</a>'
+					+ '<a href="javascript:void(0);" class="d-inline-flex align-items-center text-danger" onclick="openDelete(' + r.id + ')"><i class="isax isax-trash me-1"></i>Delete</a>'
 					+ '</div></div>';
 			}).join('');
 		}
@@ -644,9 +644,18 @@
 			.finally(function () { btn.disabled = false; btn.textContent = 'Submit Review'; });
 		});
 
-		window.openEdit = function (id, rating, msg, loc) {
+		window.openEdit = function (id, rating, triggerEl) {
+			var card = triggerEl.closest('.border.mb-3');
+			var msg = card ? (card.querySelector('.mb-3 p') || {}).textContent || '' : '';
+			var locEl = card ? card.querySelector('.fs-14.text-muted') : null;
+			var loc = '';
+			if (locEl) {
+				var locText = locEl.textContent || '';
+				var parts = locText.split('·');
+				loc = parts.length > 1 ? parts[parts.length - 1].trim() : '';
+			}
 			document.getElementById('edit_review_id').value = id;
-			document.getElementById('edit_message').value = msg;
+			document.getElementById('edit_message').value = msg.trim();
 			document.getElementById('edit_location').value = loc;
 			var r = document.querySelector('input[name="edit_rating"][value="' + rating + '"]');
 			if (r) r.checked = true;
