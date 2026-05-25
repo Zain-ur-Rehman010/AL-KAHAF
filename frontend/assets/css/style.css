@@ -7062,22 +7062,12 @@ table.table-bordered thead tr th p {
 
 /****** Layout ******/
 /****** Utils ******/
+/* ── Hide Scrollbar Globally ── */
+html {
+  scrollbar-width: none;
+}
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-  border-radius: 50px !important;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--light-500);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--gray-200);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--gray-200);
+  display: none;
 }
 
 .swal2-header .swal2-title {
