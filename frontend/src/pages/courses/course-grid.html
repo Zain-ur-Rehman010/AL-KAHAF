@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+﻿<!DOCTYPE html> 
 <html lang="en">
 	<head>
 	
@@ -104,11 +104,10 @@
 							</div>
 							<ul class="main-nav">
 								<li><a href="/">Home</a></li>
-								<li><a href="/courses/course-grid">Courses</a></li>
-								<li><a href="/shared/about-us">About Us</a></li>
-								<li><a href="/shared/free-trial">Free Trial</a></li>
-								<li><a href="#">Projects</a></li>
-								<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
+								<li><a href="/courses">Courses</a></li>
+								<li><a href="/free-trial">Free Trial</a></li>
+								<li><a href="/projects">Projects</a></li>
+								<li><a href="/become-instructor">Become an Instructor</a></li>
 							</ul>
 							
 							<div class="menu-dropdown">
@@ -650,7 +649,7 @@
 	(function () {
 		'use strict';
 
-		var API_BASE = 'http://localhost:5000/api/v1';
+		var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
 		var FALLBACK_IMG = '/assets/img/course/course-01.jpg';
 		var ITEMS_PER_PAGE = 9;
 

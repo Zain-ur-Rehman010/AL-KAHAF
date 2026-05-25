@@ -1,4 +1,4 @@
-(function($) {
+﻿(function($) {
     "use strict";
 
 	if($('#passwordInput').length > 0) {
@@ -340,7 +340,7 @@
 				// 3. Duplicate check via API
 				showEmailMsg('Checking availability\u2026', '#888');
 				try {
-					var apiBase = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'http://localhost:5000/api/v1';
+					var apiBase = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
 					var resp = await fetch(apiBase + '/auth/check-email?email=' + encodeURIComponent(val));
 					var data = await resp.json();
 					if (!data.available) {

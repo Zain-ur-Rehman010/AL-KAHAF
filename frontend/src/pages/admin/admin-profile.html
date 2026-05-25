@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -370,7 +370,7 @@
 
     <script>
     (function () {
-        const API_BASE = (typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : null) || window.API_BASE_URL || 'http://localhost:5000/api/v1';
+        const API_BASE = (typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : null) || window.API_BASE_URL || 'https://api.alkahafonlineacademy.com/api/v1';
         const token = typeof AlKahafSession !== 'undefined' ? AlKahafSession.getAccessToken() : localStorage.getItem('accessToken');
 
         if (!token) { window.location.href = '/auth/login'; return; }
