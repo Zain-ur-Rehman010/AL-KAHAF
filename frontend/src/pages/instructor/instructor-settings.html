@@ -365,17 +365,18 @@
 											<a href="/instructor/instructor-profile" class="avatar flex-shrink-0 avatar-xxxl avatar-rounded border me-3"><img src="/assets/img/user/user-01.jpg" alt="Img" class="img-fluid"></a>
 											<div class="profile-upload-head">
 												<h6><a href="/instructor/instructor-profile">Your Avatar</a></h6>
-												<p class="fs-14 mb-0">PNG or JPG no bigger than 800px width and height</p>
+												<p class="fs-14 mb-0">Required: Square (1:1), min 300×300px · Max 5MB</p>
 												<div class="new-employee-field">
 													<div class="d-flex align-items-center mt-2">
 														<div class="image-upload position-relative mb-0 me-2">
-															<input type="file">
+															<input type="file" id="profileImageInput" accept="image/*" onchange="validateProfileImage(event)">
 															<a href="#" class="btn bg-gray-100 btn-sm rounded-pill image-uploads">Upload</a>
 														</div>
 														<div class="img-delete">
-															<a href="#" class="btn btn-secondary btn-sm rounded-pill">Delete</a>
+															<a href="#" class="btn btn-secondary btn-sm rounded-pill" onclick="clearProfileImage(); return false;">Delete</a>
 														</div>
 													</div>
+													<div id="profile-img-error" class="text-danger mt-1" style="font-size:13px;display:none;"></div>
 												</div>
 											</div>
 										</div>											
@@ -670,6 +671,59 @@
 		
 	
 	<script>
+	function validateProfileImage(event) {
+		const file = event.target.files[0];
+		const errEl = document.getElementById('profile-img-error');
+		errEl.style.display = 'none';
+		errEl.textContent = '';
+		if (!file) return;
+
+		if (!file.type.startsWith('image/')) {
+			errEl.textContent = 'Please select a valid image file (PNG, JPG, or WebP).';
+			errEl.style.display = 'block';
+			event.target.value = '';
+			return;
+		}
+		if (file.size > 5 * 1024 * 1024) {
+			errEl.textContent = 'Image size must be less than 5MB.';
+			errEl.style.display = 'block';
+			event.target.value = '';
+			return;
+		}
+
+		const reader = new FileReader();
+		reader.onload = function(e) {
+			const img = new Image();
+			img.onload = function() {
+				if (img.width < 300 || img.height < 300) {
+					errEl.textContent = 'Image must be at least 300×300 pixels. Your image is ' + img.width + '×' + img.height + 'px. Please upload a larger square image.';
+					errEl.style.display = 'block';
+					event.target.value = '';
+					return;
+				}
+				const ratio = img.width / img.height;
+				if (ratio < 0.85 || ratio > 1.15) {
+					errEl.textContent = 'Image must be roughly square (1:1 ratio). Your image is ' + img.width + '×' + img.height + 'px. Please crop to a square before uploading.';
+					errEl.style.display = 'block';
+					event.target.value = '';
+					return;
+				}
+				// Valid — preview the image
+				var avatarEl = document.querySelector('.profile-upload-group .avatar img');
+				if (avatarEl) avatarEl.src = e.target.result;
+			};
+			img.src = e.target.result;
+		};
+		reader.readAsDataURL(file);
+	}
+
+	function clearProfileImage() {
+		var input = document.getElementById('profileImageInput');
+		if (input) input.value = '';
+		var errEl = document.getElementById('profile-img-error');
+		if (errEl) { errEl.style.display = 'none'; errEl.textContent = ''; }
+	}
+
 	// Load instructor profile with skeleton shimmer
 	(async function loadProfile() {
 		const nameEl  = document.getElementById('profile-name');

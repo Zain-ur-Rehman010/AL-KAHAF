@@ -567,7 +567,7 @@
                                         </button>
                                         <input type="file" id="profileImage" name="profileImage" accept="image/*" onchange="previewImage(event)">
                                     </div>
-                                    <small class="text-muted text-center" style="font-size:12px;">500×500px recommended · Max 2MB</small>
+                                    <small class="text-muted text-center" style="font-size:12px;">Required: Square (1:1), min 300×300px · Max 5MB</small>
                                 </div>
                             </div>
 
@@ -802,7 +802,17 @@
                     throw new Error('GIF stays large. Use PNG/WebP for around 100KB.');
                 return file;
             }
-            const img   = await loadImageFromFile(file);
+            const img = await loadImageFromFile(file);
+
+            // Dimension validation — must be at least 300×300px and roughly square
+            if (img.width < 300 || img.height < 300) {
+                throw new Error('Image must be at least 300×300 pixels. Your image is ' + img.width + '×' + img.height + 'px. Please upload a larger square image.');
+            }
+            const aspectRatio = img.width / img.height;
+            if (aspectRatio < 0.85 || aspectRatio > 1.15) {
+                throw new Error('Image must be roughly square (1:1 ratio). Your image is ' + img.width + '×' + img.height + 'px. Please crop it to a square before uploading.');
+            }
+
             const ratio = Math.min(1, PROFILE_IMAGE_MAX_DIMENSION / Math.max(img.width, img.height));
             let width   = Math.max(1, Math.round(img.width  * ratio));
             let height  = Math.max(1, Math.round(img.height * ratio));
