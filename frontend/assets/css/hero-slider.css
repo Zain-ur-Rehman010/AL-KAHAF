@@ -93,6 +93,16 @@
 	transform: scale(1);
 }
 
+.slide-bg img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+}
+
 .swiper-slide-active .slide-bg {
 	animation: kenburns 8s ease-in-out forwards;
 }
@@ -457,6 +467,22 @@
 }
 
 @media (max-width: 992px) {
+	.hero-slider-section {
+		height: auto;
+	}
+
+	.modern-swiper,
+	.modern-swiper .swiper-wrapper {
+		height: auto;
+		min-height: unset;
+	}
+
+	.modern-swiper .swiper-slide {
+		height: auto;
+		min-height: 420px;
+		position: relative;
+	}
+
 	.slide-content-wrapper {
 		flex-direction: column;
 		text-align: center;
@@ -485,9 +511,20 @@
 }
 
 @media (max-width: 768px) {
-	.modern-swiper {
+	.hero-slider-section {
 		height: auto;
-		min-height: 100vh;
+	}
+
+	.modern-swiper,
+	.modern-swiper .swiper-wrapper {
+		height: auto;
+		min-height: unset;
+	}
+
+	.modern-swiper .swiper-slide {
+		height: auto;
+		min-height: 380px;
+		position: relative;
 	}
 
 	.slide-content-wrapper {
@@ -546,4 +583,29 @@
 	.swiper-button-prev {
 		display: none;
 	}
+}
+
+/* ── Responsive Site Logo ───────────────────────────────────────────────── */
+/* Override style.css 32px cap */
+header .header-logo .logo a img.site-logo,
+header .header-logo .logo img.site-logo {
+	max-height: 55px !important;
+	width: auto !important;
+}
+
+.site-logo        { max-height: 55px; width: auto; max-width: 150px; display: block; object-fit: contain; }
+.site-logo-footer { max-height: 90px; width: auto; max-width: 180px; display: block; object-fit: contain; }
+.site-logo-auth   { max-height: 80px; width: auto; max-width: 160px; object-fit: contain; }
+.site-logo-sm     { max-height: 45px; width: auto; max-width: 130px; display: block; object-fit: contain; }
+
+@media (max-width: 991px) {
+	.site-logo        { width: 130px !important; height: 70px !important; max-height: none; max-width: none; }
+	.site-logo-footer { max-height: 75px; max-width: 150px; }
+	.site-logo-auth   { max-height: 65px; max-width: 130px; }
+}
+
+@media (max-width: 575px) {
+	.site-logo        { width: 130px !important; height: 70px !important; max-height: none; max-width: none; }
+	.site-logo-footer { max-height: 60px; max-width: 130px; }
+	.site-logo-auth   { max-height: 55px; max-width: 110px; }
 }
