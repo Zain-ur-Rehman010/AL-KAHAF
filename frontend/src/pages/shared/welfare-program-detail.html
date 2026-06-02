@@ -830,7 +830,7 @@
               	<li><a href="/courses/course-grid">Courses</a></li>
               	<li><a href="/shared/about-us">About Us</a></li>
               	<li><a href="/shared/free-trial">Free Trial</a></li>
-              	<li><a href="#">Projects</a></li>
+              	<li><a href="/shared/welfare-programs">Projects</a></li>
               	<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
               </ul>
               <div class="menu-login">
@@ -1073,29 +1073,22 @@
                       </div>
                       <div
                         class="wpd-pay-method"
-                        onclick="selectPayMethod(this, 'card')"
-                        id="pm-card"
+                        onclick="selectPayMethod(this, 'bank_transfer')"
+                        id="pm-bank"
                       >
                         <div class="pm-check"><i class="fa fa-check"></i></div>
-                        <img
-                          src="/assets/img/payment/stripe.png"
-                          alt="Card"
-                          onerror="
-                            this.style.display = 'none';
-                            this.nextSibling.style.display = 'block';
-                          "
-                        />
-                        <span
-                          style="
-                            display: none;
-                            font-weight: 700;
-                            font-size: 13px;
-                            color: #3d5afe;
-                          "
-                          >Credit Card</span
-                        >
-                        <span class="pm-name">Credit / Debit Card</span>
+                        <i class="fa fa-university" style="font-size:28px;color:#522811;display:block;margin-bottom:4px;"></i>
+                        <span class="pm-name">Bank Transfer</span>
                       </div>
+                    </div>
+
+                    <!-- Bank transfer details (shown only when bank selected) -->
+                    <div id="bank-details" style="display:none;background:#f8f4e9;border:1px solid #d8ac27;border-radius:10px;padding:14px;margin-bottom:14px;font-size:13px;">
+                      <p class="fw-bold mb-1" style="color:#522811;">Bank Transfer Details</p>
+                      <p class="mb-1"><strong>Bank:</strong> Meezan Bank</p>
+                      <p class="mb-1"><strong>Account Title:</strong> Al-Kahaf Welfare Fund</p>
+                      <p class="mb-1"><strong>IBAN:</strong> PK00MEZN0000000000000000</p>
+                      <p class="mb-0 text-muted" style="font-size:12px;">After transfer, fill the form below and click Donate Now. We'll verify and confirm.</p>
                     </div>
 
                     <!-- Donor details -->
@@ -1274,7 +1267,7 @@
 											<ul>
 												<li><a href="/shared/about-us">About Us</a></li>
 												<li><a href="/courses/course-grid">Courses</a></li>
-												<li><a href="#">Projects</a></li>
+												<li><a href="/shared/welfare-programs">Projects</a></li>
 												<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
 											<li><a href="/shared/welfare-programs">Welfare Program</a></li>
 											</ul>
@@ -1541,9 +1534,11 @@
         });
         el.classList.add("selected");
         selectedPayMethod = method;
+        var bankDetails = document.getElementById("bank-details");
+        if (bankDetails) bankDetails.style.display = method === "bank_transfer" ? "block" : "none";
       }
 
-      // ── Donation submit — redirect to checkout ─────────────────────────────
+      // ── Donation submit ────────────────────────────────────────────────────
       function submitDonation(e) {
         e.preventDefault();
         var amount = parseInt(document.getElementById("donation-amount").value);
@@ -1551,50 +1546,59 @@
         var phone  = document.getElementById("donor-phone").value.trim();
         var email  = document.getElementById("donor-email").value.trim();
         var anon   = document.getElementById("donor-anon").checked;
+        var method = selectedPayMethod || "jazzcash";
 
-        if (!amount || amount < 100) {
-          showFormError("Please enter a donation amount of at least PKR 100.");
-          return;
-        }
-        if (!name) {
-          showFormError("Please enter your full name.");
-          return;
-        }
-        if (!phone) {
-          showFormError("Please enter your phone number.");
-          return;
-        }
+        if (!amount || amount < 100) { showFormError("Please enter a donation amount of at least PKR 100."); return; }
+        if (!name)  { showFormError("Please enter your full name."); return; }
+        if (!phone) { showFormError("Please enter your phone number."); return; }
 
         var prog   = _currentProg || {};
-        var progId = prog.slug || new URLSearchParams(window.location.search).get('id') || '';
+        var progId = prog.id || new URLSearchParams(window.location.search).get('id') || '';
+        if (!progId) { showFormError("Program not found. Please refresh the page."); return; }
 
-        // Save donation context so checkout page can read it
-        localStorage.setItem("alkahaf_donation", JSON.stringify({
-          amount:    amount,
-          programId: prog.id || progId,
-          programTitle: prog.title || progId,
+        var btn = document.getElementById("donate-btn");
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Processing…';
+
+        var payload = {
+          programId:  progId,
           donorName:  name,
           donorPhone: phone,
-          donorEmail: email,
+          donorEmail: email || undefined,
+          amount:     amount,
+          payMethod:  method,
           anonymous:  anon,
-          payMethod:  selectedPayMethod || "jazzcash"
-        }));
-
-        // Add as a cart item so checkout totals work
-        var donationItem = {
-          id:        "donation-" + progId,
-          title:     (prog.title || "Welfare Donation") + " — Donation",
-          price:     amount,
-          thumbnail: prog.banner || ""
+          notes:      method === "bank_transfer" ? "Pending bank transfer verification" : undefined,
+          status:     method === "bank_transfer" ? "pending" : "completed",
         };
-        var cart = [];
-        try { cart = JSON.parse(localStorage.getItem("alkahaf_cart") || "[]"); } catch(e) {}
-        // Remove any previous donation item for this program, then add fresh
-        cart = cart.filter(function(i) { return !String(i.id).startsWith("donation-"); });
-        cart.push(donationItem);
-        localStorage.setItem("alkahaf_cart", JSON.stringify(cart));
 
-        window.location.href = "/shared/checkout";
+        fetch(API_CONFIG.BASE_URL + "/welfare/donations", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        })
+          .then(function(r) { return r.json(); })
+          .then(function(res) {
+            if (!res.success) throw new Error(res.message || "Submission failed");
+            var form = document.getElementById("donate-form-inner");
+            form.innerHTML =
+              '<div style="text-align:center;padding:32px 16px;">' +
+              '<i class="fa fa-check-circle" style="font-size:52px;color:#2e7d32;margin-bottom:16px;display:block;"></i>' +
+              '<h5 style="color:#522811;margin-bottom:8px;">JazakAllah Khair!</h5>' +
+              (method === "bank_transfer"
+                ? '<p style="color:#555;font-size:14px;">Your donation request of <strong>PKR ' + amount.toLocaleString() + '</strong> has been recorded. Once we verify your bank transfer, it will be confirmed.</p>'
+                : '<p style="color:#555;font-size:14px;">Your donation of <strong>PKR ' + amount.toLocaleString() + '</strong> has been received. May Allah accept it!</p>') +
+              '<a href="/shared/welfare-programs" class="btn btn-secondary mt-3">View All Programs</a>' +
+              '</div>';
+            // Update donor count display
+            var dc = document.getElementById("donor-count");
+            if (dc) dc.textContent = (parseInt(dc.textContent.replace(/,/g, "")) + 1).toLocaleString();
+          })
+          .catch(function(err) {
+            showFormError(err.message || "Something went wrong. Please try again.");
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fa fa-heart"></i> Donate Now';
+          });
       }
 
       function showFormError(msg) {

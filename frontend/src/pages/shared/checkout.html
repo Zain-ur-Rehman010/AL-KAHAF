@@ -80,7 +80,7 @@
 								<li><a href="/courses/course-grid">Courses</a></li>
 								<li><a href="/shared/about-us">About Us</a></li>
 								<li><a href="/shared/free-trial">Free Trial</a></li>
-								<li><a href="#">Projects</a></li>
+								<li><a href="/shared/welfare-programs">Projects</a></li>
 								<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
 							</ul>
 							
@@ -165,7 +165,7 @@
 <a href="/auth/register" class="btn btn-dark d-inline-flex align-items-center me-2">
 	<i class="isax isax-user-edit me-2"></i>Register
 </a>
-							<a href="/auth/register" class="btn btn-secondary btn-donate me-0">
+							<a href="/shared/welfare-programs" class="btn btn-secondary btn-donate me-0">
 								<i class="isax isax-heart5 me-1"></i>Donate
 							</a>
 						</div>
@@ -196,11 +196,36 @@
 			<div class="content">
 				<div class="container">
 					<div class="checkout-content">
-						<div class="row">
-							<div class="col-lg-8">
+						<div class="row justify-content-center">
+							<div class="col-lg-8" id="checkout-order-col">
+
+								<!-- Order Summary -->
+								<div class="checkout-item-1" id="checkout-order-wrap">
+									<div class="border-bottom pb-3 mb-3 d-flex align-items-center justify-content-between">
+										<h5 class="mb-0"><i class="isax isax-shopping-cart me-2" style="color:#522811;"></i>Order Summary</h5>
+										<span id="checkout-item-count" class="badge" style="background:#f8f4e9;color:#522811;font-size:12px;font-weight:600;padding:5px 12px;border-radius:20px;">0 items</span>
+									</div>
+									<div id="checkout-items"></div>
+									<div class="border-top pt-3 mt-3">
+										<div class="d-flex justify-content-between align-items-center mb-2 fs-14">
+											<span class="text-muted">Subtotal</span>
+											<span id="checkout-subtotal" class="fw-medium">Rs 0</span>
+										</div>
+										<div class="d-flex justify-content-between align-items-center mb-2 fs-14">
+											<span class="text-muted">Tax (5%)</span>
+											<span id="checkout-tax" class="fw-medium">Rs 0</span>
+										</div>
+										<div class="d-flex justify-content-between align-items-center fw-bold mt-2 pt-2 border-top" style="font-size:1.1rem;">
+											<span>Total</span>
+											<span id="checkout-total" style="color:#d8ac27;font-size:1.25rem;">Rs 0</span>
+										</div>
+									</div>
+								</div>
+
+								<!-- Billing Address -->
 								<div class="checkout-item-1">
 									<div class="border-bottom pb-3 mb-3">
-										<h5>Billing Address</h5>
+										<h5><i class="isax isax-location me-2" style="color:#522811;"></i>Billing Address</h5>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
@@ -255,80 +280,95 @@
 											<div class="d-flex align-items-center mb-3">
 												<div class="form-check d-flex">
 													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
-													<label class="form-check-label" for="flexCheckDefault1">
-														Shipping address is the same as my billing address
-													</label>
-												  </div>
+													<label class="form-check-label" for="flexCheckDefault1">Shipping address is the same as my billing address</label>
+												</div>
 											</div>
 											<div class="d-flex align-items-center">
 												<div class="form-check d-flex">
 													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-													<label class="form-check-label" for="flexCheckDefault">
-														Save this information for next time
-													</label>
-												  </div>
+													<label class="form-check-label" for="flexCheckDefault">Save this information for next time</label>
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+
+								<!-- Account Information -->
 								<div class="checkout-item-1">
-						<div id="co-account-section">
-							<div class="border-bottom pb-3 mb-3 mt-2"><h5>Account Information</h5>
-							<p class="text-muted mb-0" style="font-size:13px;">Create your account to access your courses after payment.</p></div>
-							<div class="row">
-								<div class="col-md-12"><div class="input-block"><label class="form-label">Email Address<span class="text-danger ms-1">*</span></label>
-								<input type="email" id="co-email" class="form-control" placeholder="you@example.com"></div></div>
-								<div class="col-md-6"><div class="input-block"><label class="form-label">Password<span class="text-danger ms-1">*</span></label>
-								<input type="password" id="co-password" class="form-control" placeholder="Min 6 characters"></div></div>
-								<div class="col-md-6"><div class="input-block"><label class="form-label">Confirm Password<span class="text-danger ms-1">*</span></label>
-								<input type="password" id="co-confirmPassword" class="form-control" placeholder="Repeat password"></div></div>
-							</div>
-						</div>
-						<div class="border-bottom pb-3 mb-3 mt-4"><h5>Payment Method</h5></div>
-						<ul class="nav-tabs mb-3 nav-justified border-0 nav-style-1 d-sm-flex d-block" role="tablist">
-							<li class="nav-item active"><a class="btn nav-link p-3 active" data-bs-toggle="tab" role="tab" href="#pay-jazzcash" aria-selected="true">
-								<div class="d-flex justify-content-center align-items-center gap-2"><span style="background:#cc0000;color:#fff;font-weight:700;font-size:12px;padding:2px 8px;border-radius:4px;">JazzCash</span><p class="fw-medium mb-0">JazzCash</p></div></a></li>
-							<li class="nav-item"><a class="btn nav-link p-3" data-bs-toggle="tab" role="tab" href="#pay-card" aria-selected="false">
-								<div class="d-flex justify-content-center align-items-center gap-2"><img src="/assets/img/icons/card.svg" alt="card" class="img-fluid" style="height:20px;"><p class="fw-medium mb-0">Card</p></div></a></li>
-						</ul>
-						<div class="tab-content">
-							<div class="tab-pane active show" id="pay-jazzcash" role="tabpanel">
-								<div class="p-3 rounded-3 border mb-3" style="background:#fff8f8;">
-									<div class="d-flex align-items-center gap-3 mb-3"><span style="background:#cc0000;color:#fff;font-weight:700;font-size:15px;padding:3px 10px;border-radius:6px;">JazzCash</span>
-									<p class="mb-0 text-muted" style="font-size:13px;">You will be redirected to JazzCash to complete payment securely.</p></div>
-									<ul class="mb-0 ps-3" style="font-size:13px;color:#555;"><li>Pay via JazzCash Mobile Account or Debit/Credit Card</li><li>Supports all Pakistani banks</li><li>Auto-enrolled after successful payment</li></ul>
+									<div id="co-account-section">
+										<div class="border-bottom pb-3 mb-3">
+											<h5><i class="isax isax-user me-2" style="color:#522811;"></i>Account Information</h5>
+											<p class="text-muted mb-0 mt-1" style="font-size:13px;">Create your account to access your courses after payment.</p>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="input-block">
+													<label class="form-label">Email Address<span class="text-danger ms-1">*</span></label>
+													<input type="email" id="co-email" class="form-control" placeholder="you@example.com">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="input-block">
+													<label class="form-label">Password<span class="text-danger ms-1">*</span></label>
+													<input type="password" id="co-password" class="form-control" placeholder="Min 6 characters">
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="input-block">
+													<label class="form-label">Confirm Password<span class="text-danger ms-1">*</span></label>
+													<input type="password" id="co-confirmPassword" class="form-control" placeholder="Repeat password">
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
-								<div class="d-flex align-items-center justify-content-end">
-									<button id="btn-pay-jazzcash" class="btn rounded-pill px-4" style="background:#cc0000;border-color:#cc0000;color:#fff;">
-										<i class="fa fa-lock me-2"></i>Pay <span id="jazzcash-amount">Rs 0</span> via JazzCash
-									</button>
+
+								<!-- Payment Method -->
+								<div class="checkout-item-1">
+									<div class="border-bottom pb-3 mb-3">
+										<h5><i class="isax isax-wallet me-2" style="color:#522811;"></i>Payment Method</h5>
+									</div>
+									<ul class="nav-tabs mb-3 nav-justified border-0 nav-style-1 d-sm-flex d-block" role="tablist">
+										<li class="nav-item active"><a class="btn nav-link p-3 active" data-bs-toggle="tab" role="tab" href="#pay-jazzcash" aria-selected="true">
+											<div class="d-flex justify-content-center align-items-center gap-2"><span style="background:#cc0000;color:#fff;font-weight:700;font-size:12px;padding:2px 8px;border-radius:4px;">JazzCash</span><p class="fw-medium mb-0">JazzCash</p></div></a></li>
+										<li class="nav-item"><a class="btn nav-link p-3" data-bs-toggle="tab" role="tab" href="#pay-card" aria-selected="false">
+											<div class="d-flex justify-content-center align-items-center gap-2"><img src="/assets/img/icons/card.svg" alt="card" class="img-fluid" style="height:20px;"><p class="fw-medium mb-0">Card</p></div></a></li>
+									</ul>
+									<div class="tab-content">
+										<div class="tab-pane active show" id="pay-jazzcash" role="tabpanel">
+											<div class="p-3 rounded-3 border mb-3" style="background:#fff8f8;">
+												<div class="d-flex align-items-center gap-3 mb-3">
+													<span style="background:#cc0000;color:#fff;font-weight:700;font-size:15px;padding:3px 10px;border-radius:6px;">JazzCash</span>
+													<p class="mb-0 text-muted" style="font-size:13px;">You will be redirected to JazzCash to complete payment securely.</p>
+												</div>
+												<ul class="mb-0 ps-3" style="font-size:13px;color:#555;">
+													<li>Pay via JazzCash Mobile Account or Debit/Credit Card</li>
+													<li>Supports all Pakistani banks</li>
+													<li>Auto-enrolled after successful payment</li>
+												</ul>
+											</div>
+											<div class="d-flex align-items-center justify-content-end">
+												<button id="btn-pay-jazzcash" class="btn rounded-pill px-4" style="background:#cc0000;border-color:#cc0000;color:#fff;">
+													<i class="fa fa-lock me-2"></i>Pay <span id="jazzcash-amount">Rs 0</span> via JazzCash
+												</button>
+											</div>
+										</div>
+										<div class="tab-pane" id="pay-card" role="tabpanel">
+											<div class="row">
+												<div class="col-md-6"><div class="input-block"><label class="form-label">Card Number<span class="text-danger ms-1">*</span></label><input type="text" id="co-cardNumber" class="form-control" placeholder="1234 5678 9012 3456"></div></div>
+												<div class="col-md-6"><div class="input-block"><label class="form-label">Name on Card<span class="text-danger ms-1">*</span></label><input type="text" id="co-cardName" class="form-control"></div></div>
+												<div class="col-md-6"><div class="input-block"><label class="form-label">Expiry Date<span class="text-danger ms-1">*</span></label><input type="text" id="co-expiry" class="form-control" placeholder="MM/YY"></div></div>
+												<div class="col-md-6"><div class="input-block"><label class="form-label">CVV<span class="text-danger ms-1">*</span></label><input type="text" id="co-cvv" class="form-control" placeholder="123"></div></div>
+												<div class="col-md-12"><div class="d-flex align-items-center justify-content-end"><button id="btn-pay-card" class="btn btn-secondary rounded-pill px-4"><i class="fa fa-lock me-2"></i>Pay <span id="card-amount">Rs 0</span></button></div></div>
+											</div>
+										</div>
+									</div>
 								</div>
-							</div>
-							<div class="tab-pane" id="pay-card" role="tabpanel">
-								<div class="row">
-									<div class="col-md-6"><div class="input-block"><label class="form-label">Card Number<span class="text-danger ms-1">*</span></label><input type="text" id="co-cardNumber" class="form-control" placeholder="1234 5678 9012 3456"></div></div>
-									<div class="col-md-6"><div class="input-block"><label class="form-label">Name on Card<span class="text-danger ms-1">*</span></label><input type="text" id="co-cardName" class="form-control"></div></div>
-									<div class="col-md-6"><div class="input-block"><label class="form-label">Expiry Date<span class="text-danger ms-1">*</span></label><input type="text" id="co-expiry" class="form-control" placeholder="MM/YY"></div></div>
-									<div class="col-md-6"><div class="input-block"><label class="form-label">CVV<span class="text-danger ms-1">*</span></label><input type="text" id="co-cvv" class="form-control" placeholder="123"></div></div>
-									<div class="col-md-12"><div class="d-flex align-items-center justify-content-end"><button id="btn-pay-card" class="btn btn-secondary rounded-pill px-4"><i class="fa fa-lock me-2"></i>Pay <span id="card-amount">Rs 0</span></button></div></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Donation Order Summary (shown only for welfare donations) -->
-					<div class="col-lg-4" id="checkout-order-col">
-						<div class="checkout-item-1" id="checkout-order-wrap">
-							<div class="border-bottom pb-3 mb-3"><h5>Order Summary</h5></div>
-							<div id="checkout-items"></div>
-							<div class="border-top pt-3 mt-3">
-								<div class="d-flex justify-content-between mb-2 fs-14"><span class="text-muted">Subtotal</span><span id="checkout-subtotal" class="fw-medium">Rs 0</span></div>
-								<div class="d-flex justify-content-between mb-2 fs-14"><span class="text-muted">Tax (5%)</span><span id="checkout-tax" class="fw-medium">Rs 0</span></div>
-								<div class="d-flex justify-content-between fw-bold fs-16 mt-2 pt-2 border-top"><span>Total</span><span id="checkout-total" style="color:#d8ac27;">Rs 0</span></div>
+
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 			<!-- /Checkout -->
 			
@@ -361,7 +401,7 @@
 											<ul>
 												<li><a href="/shared/about-us">About Us</a></li>
 												<li><a href="/courses/course-grid">Courses</a></li>
-												<li><a href="#">Projects</a></li>
+												<li><a href="/shared/welfare-programs">Projects</a></li>
 												<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
 											<li><a href="/shared/welfare-programs">Welfare Program</a></li>
 											</ul>

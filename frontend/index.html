@@ -1547,7 +1547,7 @@ Dependencies:
                 <li><a href="/courses/course-grid">Courses</a></li>
                 <li><a href="/shared/about-us">About Us</a></li>
                 <li><a href="/shared/free-trial">Free Trial</a></li>
-                <li><a href="#">Projects</a></li>
+                <li><a href="/shared/welfare-programs">Projects</a></li>
                 <li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
               </ul>
 
@@ -1737,7 +1737,7 @@ Dependencies:
                 <i class="isax isax-user-edit me-2"></i>Register
               </a>
               <a
-                href="/auth/register"
+                href="/shared/welfare-programs"
                 class="btn btn-secondary btn-donate me-0"
               >
                 <i class="isax isax-heart5 me-1"></i>Donate
@@ -2686,355 +2686,15 @@ Dependencies:
             </button>
           </div>
 
-          <!-- Projects Card Grid (Filtered via JavaScript) -->
+          <!-- Projects Card Grid (Loaded dynamically from API) -->
           <div class="projects-grid" id="projects-grid">
-            <!-- ========== URGENT PROJECTS ========== -->
-            <div class="project-card show" data-category="urgent">
-              <div class="project-card-img">
-                <img
-                  src="assets/img/course/course-37.jpg"
-                  alt="Emergency Quran Classes"
-                />
-                <span class="project-card-category">Quran Education</span>
-                <span class="project-card-urgent"
-                  ><i class="fa-solid fa-bolt"></i> Urgent</span
-                >
-              </div>
-              <div class="project-card-body">
-                <h4 class="project-card-title">
-                  <a href="project-details.html"
-                    >Emergency Quran Classes for Orphans</a
-                  >
-                </h4>
-                <p class="project-card-desc">
-                  Providing free Quran education to 50 orphan children in
-                  underprivileged communities who have no access to Islamic
-                  education.
-                </p>
-                <div class="project-card-progress">
-                  <div class="progress-info">
-                    <span class="progress-raised">Rs 45,000 raised</span>
-                    <span class="progress-goal">of Rs 100,000</span>
-                  </div>
-                  <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" style="width: 45%"></div>
-                  </div>
-                </div>
-                <div class="project-card-footer">
-                  <a href="donate.html" class="btn-donate">Donate Now</a>
-                  <a href="project-details.html" class="btn-details">Details</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="project-card show" data-category="urgent">
-              <div class="project-card-img">
-                <img
-                  src="assets/img/course/course-38.jpg"
-                  alt="Ramadan Food Distribution"
-                />
-                <span class="project-card-category">Community</span>
-                <span class="project-card-urgent"
-                  ><i class="fa-solid fa-bolt"></i> Urgent</span
-                >
-              </div>
-              <div class="project-card-body">
-                <h4 class="project-card-title">
-                  <a href="project-details.html"
-                    >Ramadan Food Package Distribution</a
-                  >
-                </h4>
-                <p class="project-card-desc">
-                  Distributing essential food packages to 200 families during
-                  the blessed month of Ramadan in rural areas.
-                </p>
-                <div class="project-card-progress">
-                  <div class="progress-info">
-                    <span class="progress-raised">Rs 78,000 raised</span>
-                    <span class="progress-goal">of Rs 150,000</span>
-                  </div>
-                  <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" style="width: 52%"></div>
-                  </div>
-                </div>
-                <div class="project-card-footer">
-                  <a href="donate.html" class="btn-donate">Donate Now</a>
-                  <a href="project-details.html" class="btn-details">Details</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Quran Education Projects -->
-            <div class="project-card show" data-category="quran">
-              <div class="project-card-img">
-                <img src="assets/img/course/course-39.jpg" alt="Hifz Program" />
-                <span class="project-card-category">Quran Education</span>
-              </div>
-              <div class="project-card-body">
-                <h4 class="project-card-title">
-                  <a href="project-details.html"
-                    >Complete Hifz Program Sponsorship</a
-                  >
-                </h4>
-                <p class="project-card-desc">
-                  Sponsor a student's complete Quran memorization journey with
-                  certified Hafiz teachers over 3 years.
-                </p>
-                <div class="project-card-progress">
-                  <div class="progress-info">
-                    <span class="progress-raised">Rs 120,000 raised</span>
-                    <span class="progress-goal">of Rs 300,000</span>
-                  </div>
-                  <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" style="width: 40%"></div>
-                  </div>
-                </div>
-                <div class="project-card-footer">
-                  <a href="donate.html" class="btn-donate">Donate Now</a>
-                  <a href="project-details.html" class="btn-details">Details</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="project-card show" data-category="quran">
-              <div class="project-card-img">
-                <img
-                  src="assets/img/course/_course1.jpeg"
-                  alt="Tajweed Classes"
-                />
-                <span class="project-card-category">Quran Education</span>
-              </div>
-              <div class="project-card-body">
-                <h4 class="project-card-title">
-                  <a href="project-details.html"
-                    >Free Tajweed Classes for Women</a
-                  >
-                </h4>
-                <p class="project-card-desc">
-                  Weekly Tajweed classes for sisters who want to perfect their
-                  Quran recitation with female instructors.
-                </p>
-                <div class="project-card-progress">
-                  <div class="progress-info">
-                    <span class="progress-raised">Rs 25,000 raised</span>
-                    <span class="progress-goal">of Rs 50,000</span>
-                  </div>
-                  <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" style="width: 50%"></div>
-                  </div>
-                </div>
-                <div class="project-card-footer">
-                  <a href="donate.html" class="btn-donate">Donate Now</a>
-                  <a href="project-details.html" class="btn-details">Details</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Arabic Learning Projects -->
-            <div class="project-card show" data-category="arabic">
-              <div class="project-card-img">
-                <img
-                  src="assets/img/course/coursee-24.jpg"
-                  alt="Arabic for Kids"
-                />
-                <span class="project-card-category">Arabic Learning</span>
-              </div>
-              <div class="project-card-body">
-                <h4 class="project-card-title">
-                  <a href="project-details.html"
-                    >Arabic Language for Kids Program</a
-                  >
-                </h4>
-                <p class="project-card-desc">
-                  Interactive Arabic language learning program designed
-                  specifically for children aged 5-12 years.
-                </p>
-                <div class="project-card-progress">
-                  <div class="progress-info">
-                    <span class="progress-raised">Rs 35,000 raised</span>
-                    <span class="progress-goal">of Rs 80,000</span>
-                  </div>
-                  <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" style="width: 44%"></div>
-                  </div>
-                </div>
-                <div class="project-card-footer">
-                  <a href="donate.html" class="btn-donate">Donate Now</a>
-                  <a href="project-details.html" class="btn-details">Details</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="project-card show" data-category="arabic">
-              <div class="project-card-img">
-                <img
-                  src="assets/img/course/coursee-25.jpg"
-                  alt="Classical Arabic"
-                />
-                <span class="project-card-category">Arabic Learning</span>
-              </div>
-              <div class="project-card-body">
-                <h4 class="project-card-title">
-                  <a href="project-details.html"
-                    >Classical Arabic (Fusha) Scholarship</a
-                  >
-                </h4>
-                <p class="project-card-desc">
-                  Scholarships for students to learn classical Arabic to
-                  understand Quran and Islamic texts directly.
-                </p>
-                <div class="project-card-progress">
-                  <div class="progress-info">
-                    <span class="progress-raised">Rs 60,000 raised</span>
-                    <span class="progress-goal">of Rs 120,000</span>
-                  </div>
-                  <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" style="width: 50%"></div>
-                  </div>
-                </div>
-                <div class="project-card-footer">
-                  <a href="donate.html" class="btn-donate">Donate Now</a>
-                  <a href="project-details.html" class="btn-details">Details</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Community Support Projects -->
-            <div class="project-card show" data-category="community">
-              <div class="project-card-img">
-                <img src="assets/img/blog/blog-06.jpg" alt="Widow Support" />
-                <span class="project-card-category">Community</span>
-              </div>
-              <div class="project-card-body">
-                <h4 class="project-card-title">
-                  <a href="project-details.html"
-                    >Widow & Single Mother Support Fund</a
-                  >
-                </h4>
-                <p class="project-card-desc">
-                  Monthly financial assistance for widows and single mothers to
-                  support their families with dignity.
-                </p>
-                <div class="project-card-progress">
-                  <div class="progress-info">
-                    <span class="progress-raised">Rs 90,000 raised</span>
-                    <span class="progress-goal">of Rs 200,000</span>
-                  </div>
-                  <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" style="width: 45%"></div>
-                  </div>
-                </div>
-                <div class="project-card-footer">
-                  <a href="donate.html" class="btn-donate">Donate Now</a>
-                  <a href="project-details.html" class="btn-details">Details</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="project-card show" data-category="community">
-              <div class="project-card-img">
-                <img src="assets/img/blog/blog-07.jpg" alt="Eid Gifts" />
-                <span class="project-card-category">Community</span>
-              </div>
-              <div class="project-card-body">
-                <h4 class="project-card-title">
-                  <a href="project-details.html"
-                    >Eid Gifts for Underprivileged Children</a
-                  >
-                </h4>
-                <p class="project-card-desc">
-                  Bringing joy to 500 underprivileged children with new clothes
-                  and gifts during Eid celebrations.
-                </p>
-                <div class="project-card-progress">
-                  <div class="progress-info">
-                    <span class="progress-raised">Rs 55,000 raised</span>
-                    <span class="progress-goal">of Rs 100,000</span>
-                  </div>
-                  <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" style="width: 55%"></div>
-                  </div>
-                </div>
-                <div class="project-card-footer">
-                  <a href="donate.html" class="btn-donate">Donate Now</a>
-                  <a href="project-details.html" class="btn-details">Details</a>
-                </div>
-              </div>
-            </div>
-
-            <!-- Student Sponsorship Projects -->
-            <div class="project-card show" data-category="sponsorship">
-              <div class="project-card-img">
-                <img
-                  src="assets/img/instructor/instructor-01.jpg"
-                  alt="Student Sponsorship"
-                />
-                <span class="project-card-category">Sponsorship</span>
-              </div>
-              <div class="project-card-body">
-                <h4 class="project-card-title">
-                  <a href="project-details.html"
-                    >Sponsor a Quran Student for 1 Year</a
-                  >
-                </h4>
-                <p class="project-card-desc">
-                  Full annual sponsorship covering tuition, books, and materials
-                  for one dedicated Quran student.
-                </p>
-                <div class="project-card-progress">
-                  <div class="progress-info">
-                    <span class="progress-raised">Rs 15,000 raised</span>
-                    <span class="progress-goal">of Rs 36,000</span>
-                  </div>
-                  <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" style="width: 42%"></div>
-                  </div>
-                </div>
-                <div class="project-card-footer">
-                  <a href="donate.html" class="btn-donate">Donate Now</a>
-                  <a href="project-details.html" class="btn-details">Details</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="project-card show" data-category="sponsorship">
-              <div class="project-card-img">
-                <img
-                  src="assets/img/instructor/instructor-02.jpg"
-                  alt="Teacher Training"
-                />
-                <span class="project-card-category">Sponsorship</span>
-              </div>
-              <div class="project-card-body">
-                <h4 class="project-card-title">
-                  <a href="project-details.html"
-                    >Teacher Training & Certification Fund</a
-                  >
-                </h4>
-                <p class="project-card-desc">
-                  Help train and certify new Quran teachers who will serve
-                  communities that lack qualified instructors.
-                </p>
-                <div class="project-card-progress">
-                  <div class="progress-info">
-                    <span class="progress-raised">Rs 85,000 raised</span>
-                    <span class="progress-goal">of Rs 150,000</span>
-                  </div>
-                  <div class="progress-bar-wrapper">
-                    <div class="progress-bar-fill" style="width: 57%"></div>
-                  </div>
-                </div>
-                <div class="project-card-footer">
-                  <a href="donate.html" class="btn-donate">Donate Now</a>
-                  <a href="project-details.html" class="btn-details">Details</a>
-                </div>
-              </div>
-            </div>
+            <div id="projects-loading" style="width:100%;text-align:center;padding:40px 0;color:#888;font-size:15px;"><i class="fa fa-spinner fa-spin"></i> Loading programs…</div>
+            <!-- ========== STATIC FALLBACK (removed – cards loaded via JS) ========== -->
           </div>
 
           <!-- View All Projects Button -->
           <div class="view-all-projects">
-            <a href="/projects/all-projects" class="btn">
+            <a href="/shared/welfare-programs" class="btn">
               View All Projects <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
@@ -4263,7 +3923,7 @@ Dependencies:
 											<ul>
 												<li><a href="/shared/about-us">About Us</a></li>
 												<li><a href="/courses/course-grid">Courses</a></li>
-												<li><a href="#">Projects</a></li>
+												<li><a href="/shared/welfare-programs">Projects</a></li>
 												<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
 											<li><a href="/shared/welfare-programs">Welfare Program</a></li>
 											</ul>
@@ -4448,69 +4108,103 @@ Dependencies:
     <!-- Hero Slider Initialization -->
     <script src="assets/js/hero-slider.js"></script>
 
-    <!-- ============================================================
-		     PROJECTS TAB FILTERING JAVASCRIPT
-		     
-		     Functionality:
-		     - Listens for clicks on category tab buttons
-		     - Filters project cards based on data-category attribute
-		     - Applies fade animation when showing/hiding cards
-		     
-		     Usage:
-		     - Add data-category="categoryName" to project cards
-		     - Add data-category="categoryName" to tab buttons
-		     - Use "all" to show all projects
-		     ============================================================ -->
+    <!-- Projects Section: dynamic API loader + tab filtering -->
     <script>
       (function () {
-        // ========================================
-        // PROJECTS TAB FILTERING
-        // IIFE to avoid global scope pollution
-        // ========================================
+        var API_BASE = "http://localhost:5000/api/v1";
 
-        // Get all tab buttons and project cards
-        const projectTabs = document.querySelectorAll(".project-tab-btn");
-        const projectCards = document.querySelectorAll(".project-card");
+        // category mapping: API category value → tab data-category
+        var CAT_MAP = {
+          "quran": "quran",
+          "arabic": "arabic",
+          "community": "community",
+          "sponsorship": "sponsorship",
+          "urgent": "urgent"
+        };
 
-        // Only initialize if elements exist
-        if (projectTabs.length > 0 && projectCards.length > 0) {
-          // Add click handler to each tab button
-          projectTabs.forEach((tab) => {
-            tab.addEventListener("click", function () {
-              // Step 1: Update active tab styling
-              projectTabs.forEach((t) => t.classList.remove("active"));
-              this.classList.add("active");
+        function formatPKR(n) {
+          n = Number(n) || 0;
+          return n.toLocaleString("en-PK");
+        }
 
-              // Step 2: Get selected category from data attribute
-              const category = this.getAttribute("data-category");
+        function buildCard(p) {
+          var raised = Number(p.raisedAmount) || 0;
+          var goal   = Number(p.goalAmount)   || 1;
+          var pct    = Math.min(100, Math.round((raised / goal) * 100));
+          var img    = p.imageUrl || "assets/img/course/course-37.jpg";
+          var slug   = p.slug || p.id;
+          var detailUrl = "/shared/welfare-program-detail?id=" + slug;
+          var catVal = (p.category || "").toLowerCase();
+          var tabCat = CAT_MAP[catVal] || "community";
+          if (p.isUrgent) tabCat = "urgent";
 
-              // Step 3: Filter cards with fade animation
-              projectCards.forEach((card) => {
-                // Start fade out
-                card.classList.remove("show");
-                card.style.opacity = "0";
-                card.style.transform = "translateY(20px)";
+          var urgentBadge = p.isUrgent
+            ? '<span class="project-card-urgent"><i class="fa-solid fa-bolt"></i> Urgent</span>'
+            : "";
+          var catLabel = p.category || "General";
 
-                // After brief delay, show/hide based on category
-                setTimeout(() => {
-                  const cardCategory = card.getAttribute("data-category");
+          return '<div class="project-card show" data-category="' + tabCat + '">' +
+            '<div class="project-card-img">' +
+              '<img src="' + img + '" alt="' + p.title + '" onerror="this.src=\'assets/img/course/course-37.jpg\'">' +
+              '<span class="project-card-category">' + catLabel + '</span>' +
+              urgentBadge +
+            '</div>' +
+            '<div class="project-card-body">' +
+              '<h4 class="project-card-title"><a href="' + detailUrl + '">' + p.title + '</a></h4>' +
+              '<p class="project-card-desc">' + (p.description || '').slice(0, 130) + '</p>' +
+              '<div class="project-card-progress">' +
+                '<div class="progress-info">' +
+                  '<span class="progress-raised">Rs ' + formatPKR(raised) + ' raised</span>' +
+                  '<span class="progress-goal">of Rs ' + formatPKR(goal) + '</span>' +
+                '</div>' +
+                '<div class="progress-bar-wrapper"><div class="progress-bar-fill" style="width:' + pct + '%"></div></div>' +
+              '</div>' +
+              '<div class="project-card-footer">' +
+                '<a href="' + detailUrl + '" class="btn-donate">Donate Now</a>' +
+                '<a href="' + detailUrl + '" class="btn-details">Details</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
+        }
 
-                  if (category === "all" || cardCategory === category) {
-                    // Show matching card with animation
-                    card.classList.add("show");
-                    card.style.display = "";
-                    card.offsetHeight; // Force reflow for CSS transition
-                    card.style.opacity = "1";
-                    card.style.transform = "translateY(0)";
-                  } else {
-                    // Hide non-matching card
-                    card.style.display = "none";
-                  }
-                }, 150); // 150ms delay for smooth transition
-              });
-            });
+        function applyFilter(category) {
+          document.querySelectorAll(".project-tab-btn").forEach(function(t) {
+            t.classList.toggle("active", t.getAttribute("data-category") === category);
+          });
+          document.querySelectorAll(".project-card").forEach(function(card) {
+            var match = category === "all" || card.getAttribute("data-category") === category;
+            card.style.display = match ? "" : "none";
           });
         }
+
+        // Wire tab clicks
+        document.querySelectorAll(".project-tab-btn").forEach(function(btn) {
+          btn.addEventListener("click", function() {
+            applyFilter(this.getAttribute("data-category"));
+          });
+        });
+
+        // Fetch programs from API
+        fetch(API_BASE + "/welfare/programs?status=active&limit=12")
+          .then(function(r) { return r.json(); })
+          .then(function(d) {
+            var grid    = document.getElementById("projects-grid");
+            var loading = document.getElementById("projects-loading");
+            if (loading) loading.remove();
+
+            if (!d.success || !d.programs || !d.programs.length) {
+              grid.innerHTML = '<div style="width:100%;text-align:center;padding:40px 0;color:#888;">No active programs found.</div>';
+              return;
+            }
+
+            var html = "";
+            d.programs.forEach(function(p) { html += buildCard(p); });
+            grid.innerHTML = html;
+          })
+          .catch(function() {
+            var loading = document.getElementById("projects-loading");
+            if (loading) loading.innerHTML = '<span style="color:#c00">Could not load programs.</span>';
+          });
       })();
     </script>
     <!-- Scroll to Top Button -->
