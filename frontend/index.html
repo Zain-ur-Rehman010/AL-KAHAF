@@ -4563,7 +4563,7 @@ Dependencies:
             "\" onkeydown=\"if(event.key==='Enter')window.location.href='" +
             courseUrl +
             "'\">" +
-            '<div class="course-img">' +
+            '<div class="course-img" style="position:relative">' +
             '<img src="' +
             imgSrc +
             '" alt="' +
@@ -4571,12 +4571,10 @@ Dependencies:
             '" class="img-fluid" onerror="this.src=\'' +
             FALLBACK_IMG +
             "'\">" +
-            '<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">' +
-            "</div>" +
+            (course.category ? '<span style="position:absolute;top:8px;left:8px;background:#522811;color:#d8ac27;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.3px;">' + course.category + '</span>' : '') +
             "</div>" +
             '<div class="course-content">' +
-            '<div class="d-flex align-items-center justify-content-between mb-2" style="gap:6px;min-width:0">' +
-            '<div class="d-flex align-items-center" style="min-width:0;flex:1 1 0;overflow:hidden">' +
+            '<div class="d-flex align-items-center mb-2" style="min-width:0">' +
             '<div class="avatar avatar-sm rounded-circle d-flex align-items-center justify-content-center text-white fw-bold flex-shrink-0" style="background:#522811;width:32px;height:32px;font-size:14px">' +
             getInitial(instructorName) +
             "</div>" +
@@ -4586,16 +4584,10 @@ Dependencies:
             "</span>" +
             "</div>" +
             "</div>" +
-            '<span class="badge badge-light rounded-pill bg-light d-inline-flex align-items-center fs-12 fw-medium flex-shrink-0" style="white-space:nowrap;max-width:90px;overflow:hidden;text-overflow:ellipsis">' +
-            (course.category || "") +
-            "</span>" +
-            "</div>" +
             '<h6 class="title mb-2">' +
             course.title +
             "</h6>" +
-            '<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' +
-            ratingDisplay +
-            "</p>" +
+            (rating > 0 ? '<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' + ratingDisplay + "</p>" : '') +
             '<div class="d-flex align-items-center justify-content-between">' +
             '<span class="text-secondary fw-bold lh-1" style="font-size:1.25rem">' +
             priceDisplay +
