@@ -2,6 +2,7 @@ const { Enrollment, Course, User, Payment, Certificate } = require('../models');
 const crypto = require('crypto');
 const { notifyAdmins } = require('../services/notificationService');
 const tokenService = require('../services/tokenService');
+const emailService = require('../services/emailService');
 
 exports.enrollCourse = async (req, res) => {
   try {
@@ -35,6 +36,13 @@ exports.enrollCourse = async (req, res) => {
       message: `A student enrolled in "${course.title}".`,
       actionUrl: '/admin/enrollments-list',
     });
+
+    try {
+      const student = await User.findByPk(req.user.userId, { attributes: ['email', 'firstName'] });
+      if (student) {
+        emailService.sendEnrollmentConfirmation(student.email, student.firstName, course.title);
+      }
+    } catch (_) {}
 
     // If this was a trial user, clear the trial flag and issue fresh tokens
     let newTokens = null;
@@ -233,6 +241,14 @@ exports.issueCertificate = async (req, res) => {
       message: `Certificate issued for course "${enrollment.course.title}" (student ID: ${enrollment.studentId}).`,
       actionUrl: '/admin/enrollments-list',
     });
+
+    try {
+      const student = await User.findByPk(enrollment.studentId, { attributes: ['email', 'firstName'] });
+      if (student) {
+        const certUrl = `${require('../config/config').frontendUrl}/student/student-certificates`;
+        emailService.sendCertificateEmail(student.email, student.firstName, enrollment.course.title, certUrl);
+      }
+    } catch (_) {}
 
     res.status(201).json({
       message: 'Certificate issued',
