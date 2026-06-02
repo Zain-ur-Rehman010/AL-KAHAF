@@ -11,14 +11,23 @@ module.exports = (req, res, next) => {
 
     const decoded = jwt.verify(token, config.jwtSecret);
 
-    // Trial expiry check — runs on every protected request
+    // Trial expiry check — blocks expired trial users except on endpoints needed to recover
     if (decoded.isTrial && decoded.trialExpiresAt) {
       if (new Date() > new Date(decoded.trialExpiresAt)) {
-        return res.status(403).json({
-          success: false,
-          code: 'TRIAL_EXPIRED',
-          message: 'Your free trial has expired. Please enroll in a course to continue.',
-        });
+        const url = req.originalUrl.split('?')[0];
+        const allowed =
+          (req.method === 'POST' && /\/enrollments\/?$/.test(url)) ||   // enroll
+          (req.method === 'GET'  && /\/enrollments/.test(url))        || // view enrollments
+          (req.method === 'GET'  && /\/auth\/me\/?$/.test(url))       || // profile
+          (req.method === 'POST' && /\/auth\/refresh\/?$/.test(url))  || // token refresh
+          (req.method === 'POST' && /\/reviews\/?$/.test(url));          // submit review
+        if (!allowed) {
+          return res.status(403).json({
+            success: false,
+            code: 'TRIAL_EXPIRED',
+            message: 'Your free trial has expired. Please enroll in a course to continue.',
+          });
+        }
       }
     }
 

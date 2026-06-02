@@ -470,25 +470,21 @@
 														<div class="col-md-8">
 															<div class="input-block-link">
 																<label class="form-label">&nbsp;</label>
-																<input type="text" class="form-control" placeholder="External URL Link">
+																<input type="text" id="course-preview-video" class="form-control" placeholder="Paste YouTube URL (e.g. https://youtu.be/abc123)">
 															</div>
 														</div>
 													</div>
 												</div>
-												<div class="col-md-12">
-													<div class="position-relative">
-														<a href="https://www.youtube.com/embed/1trvO6dqQUI" id="openVideoBtn" target="_blank">
-															<img class="img-fluid rounded" src="/assets/img/course/add-course-1.jpg" alt="img">
-															<div class="play-icon">
-																<i class="fa-solid fa-play"></i>
-															</div>
-														</a>
-													</div>
-													<div id="videoModal">
-														<div class="modal-content1">
-															<span class="close-btn" id="closeModal">&times;</span>
-															<iframe id="youtubeIframe" allowfullscreen></iframe>
+												<div class="col-md-12 mt-2">
+													<div class="position-relative" id="ac-video-preview-wrap" style="display:none;">
+														<img id="ac-video-thumb" class="img-fluid rounded" src="" alt="Video preview" style="width:100%;cursor:pointer;">
+														<div class="play-icon" id="ac-play-btn" style="cursor:pointer;">
+															<i class="fa-solid fa-play"></i>
 														</div>
+													</div>
+													<div id="ac-video-placeholder" style="background:#f0f0f0;border-radius:8px;height:180px;display:flex;align-items:center;justify-content:center;color:#aaa;flex-direction:column;gap:8px;">
+														<i class="fa-brands fa-youtube" style="font-size:40px;"></i>
+														<span style="font-size:13px;">Paste a YouTube URL above to see a preview</span>
 													</div>
 												</div>
 											</div>
@@ -964,10 +960,64 @@
 	})();
 
 	// ── Module/Lesson data model ──────────────────────────────────────────────
-	var courseModules = []; // [{title, description, lessons:[{title,videoUrl,description,status}]}]
+	var courseModules = []; // [{title, description, lessons:[{title,videoUrl,description,student}]}]
 	var topicCount = 0;
 	var targetModuleIndex = null;
 	var courseThumbnailUrl = null;
+
+	function getYouTubeVideoId(url) {
+		if (!url) return null;
+		var patterns = [
+			/youtu\.be\/([\w-]{11})/,
+			/[?&]v=([\w-]{11})/,
+			/\/embed\/([\w-]{11})/,
+			/\/v\/([\w-]{11})/
+		];
+		for (var i = 0; i < patterns.length; i++) {
+			var m = url.match(patterns[i]);
+			if (m) return m[1];
+		}
+		return null;
+	}
+
+	function updateAcVideoPreview() {
+		var url = (document.getElementById('course-preview-video') || {}).value || '';
+		var vid = getYouTubeVideoId(url.trim());
+		var wrap = document.getElementById('ac-video-preview-wrap');
+		var placeholder = document.getElementById('ac-video-placeholder');
+		var thumb = document.getElementById('ac-video-thumb');
+		if (!wrap || !placeholder || !thumb) return;
+		if (vid) {
+			thumb.src = 'https://img.youtube.com/vi/' + vid + '/hqdefault.jpg';
+			wrap.style.display = 'block';
+			placeholder.style.display = 'none';
+		} else {
+			wrap.style.display = 'none';
+			placeholder.style.display = 'flex';
+		}
+	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+		var pvInput = document.getElementById('course-preview-video');
+		if (pvInput) {
+			pvInput.addEventListener('input', updateAcVideoPreview);
+			pvInput.addEventListener('paste', function() { setTimeout(updateAcVideoPreview, 50); });
+		}
+		var playBtn = document.getElementById('ac-play-btn');
+		var thumb = document.getElementById('ac-video-thumb');
+		function openAcModal() {
+			var url = (document.getElementById('course-preview-video') || {}).value || '';
+			var vid = getYouTubeVideoId(url.trim());
+			if (!vid) return;
+			var modal = document.createElement('div');
+			modal.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;';
+			modal.innerHTML = '<div style="position:relative;width:90%;max-width:860px;aspect-ratio:16/9;"><iframe src="https://www.youtube.com/embed/' + vid + '?autoplay=1" style="width:100%;height:100%;border:0;" allowfullscreen allow="autoplay"></iframe><button onclick="this.parentElement.parentElement.remove();" style="position:absolute;top:-36px;right:0;background:none;border:none;color:#fff;font-size:28px;cursor:pointer;">&times;</button></div>';
+			modal.addEventListener('click', function(e) { if (e.target === modal) modal.remove(); });
+			document.body.appendChild(modal);
+		}
+		if (playBtn) playBtn.addEventListener('click', openAcModal);
+		if (thumb) thumb.addEventListener('click', openAcModal);
+	});
 
 	async function uploadImage(file, folder) {
 		const formData = new FormData();
@@ -1345,6 +1395,7 @@
 						language:           language && language !== 'Select' ? language : 'en',
 						duration:           duration ? parseFloat(duration) : undefined,
 						thumbnail:          courseThumbnailUrl || null,
+						previewVideo:       (document.getElementById('course-preview-video') ? document.getElementById('course-preview-video').value.trim() : '') || undefined,
 						isFeatured:         isFeatured,
 						outcomes:           outcomes.length ? outcomes : undefined,
 						requirements:       requirements.length ? requirements : undefined,

@@ -2,7 +2,8 @@
   "scripts": {
     "start": "node server.js",
     "sass": "sass --watch assets/scss/main.scss:assets/css/style.css",
-    "dev": "concurrently \"npm start\" \"npm run sass\""
+    "dev": "concurrently \"npm start\" \"npm run sass\"",
+    "check": "node check-js.js"
   },
   "dependencies": {
     "express": "^4.22.1"

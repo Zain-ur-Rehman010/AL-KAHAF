@@ -603,14 +603,25 @@
 				var expiry = new Date(payload.trialExpiresAt);
 				var banner = el('trialBanner'), bannerText = el('trialBannerText');
 				if (banner && bannerText) {
-					(function tick() {
-						var diff = expiry - Date.now();
-						if (diff <= 0) { banner.style.display = 'none'; window.location.href = '/courses/course-grid?reason=trial_expired'; return; }
-						var h = Math.floor(diff / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
-						bannerText.textContent = (h > 0 ? h + 'h ' + m + 'm' : m + 'm ' + s + 's') + ' remaining in your free trial';
+					var diff = expiry - Date.now();
+					if (diff <= 0) {
+						bannerText.textContent = 'Your free trial has expired. Enroll in a course to continue learning.';
+						banner.style.background = 'linear-gradient(135deg,#1a0505,#4a1010)';
+						banner.style.borderBottomColor = '#e05252';
+						banner.querySelector('span').style.background = '#e05252';
+						banner.querySelector('span').style.color = '#fff';
+						banner.querySelector('span').textContent = 'Trial Expired';
 						banner.style.display = 'block';
-						setTimeout(tick, 1000);
-					})();
+					} else {
+						(function tick() {
+							var d = expiry - Date.now();
+							if (d <= 0) { window.location.reload(); return; }
+							var h = Math.floor(d / 3600000), m = Math.floor((d % 3600000) / 60000), s = Math.floor((d % 60000) / 1000);
+							bannerText.textContent = (h > 0 ? h + 'h ' + m + 'm' : m + 'm ' + s + 's') + ' remaining in your free trial';
+							banner.style.display = 'block';
+							setTimeout(tick, 1000);
+						})();
+					}
 				}
 			}
 		} catch(e) {}

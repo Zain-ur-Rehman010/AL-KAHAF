@@ -999,6 +999,11 @@ exports.createEnrollment = async (req, res) => {
       paymentStatus
     });
 
+    // If the student was a trial user, clear the trial flag so their next login gets a clean token
+    if (student.isTrial) {
+      await student.update({ isTrial: false, trialExpiresAt: null });
+    }
+
     res.status(201).json({
       success: true,
       message: 'Enrollment created successfully',

@@ -1,6 +1,7 @@
 const { Enrollment, Course, User, Payment, Certificate } = require('../models');
 const crypto = require('crypto');
 const { notifyAdmins } = require('../services/notificationService');
+const tokenService = require('../services/tokenService');
 
 exports.enrollCourse = async (req, res) => {
   try {
@@ -35,10 +36,16 @@ exports.enrollCourse = async (req, res) => {
       actionUrl: '/admin/enrollments-list',
     });
 
-    res.status(201).json({
-      message: 'Enrolled successfully',
-      enrollment,
-    });
+    // If this was a trial user, clear the trial flag and issue fresh tokens
+    let newTokens = null;
+    if (req.user.isTrial) {
+      await User.update({ isTrial: false, trialExpiresAt: null }, { where: { id: req.user.userId } });
+      newTokens = tokenService.generateTokens(req.user.userId, req.user.role);
+    }
+
+    const response = { success: true, message: 'Enrolled successfully', enrollment };
+    if (newTokens) response.tokens = newTokens;
+    res.status(201).json(response);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

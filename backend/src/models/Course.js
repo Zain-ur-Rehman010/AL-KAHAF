@@ -102,6 +102,10 @@ const Course = sequelize.define('Course', {
     type: DataTypes.DECIMAL(10, 2),
     allowNull: true,
   },
+  previewVideo: {
+    type: DataTypes.STRING(500),
+    allowNull: true,
+  },
   createdAt: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,

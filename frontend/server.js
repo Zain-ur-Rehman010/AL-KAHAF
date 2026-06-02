@@ -35,7 +35,8 @@ app.get('/', (req, res) => {
 app.get('/src/pages/:section/:page', (req, res) => {
   const { section, page } = req.params;
   const cleanPage = page.replace('.html', '');
-  res.redirect(301, `/${section}/${cleanPage}`);
+  const qs = req.url.includes('?') ? '?' + req.url.split('?')[1] : '';
+  res.redirect(301, `/${section}/${cleanPage}${qs}`);
 });
 
 // Fallback: serve any .html file that exists at the requested path

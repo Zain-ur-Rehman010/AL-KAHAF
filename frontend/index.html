@@ -4434,10 +4434,10 @@ Dependencies:
           +   verifiedBadge
           + '</div>'
           + '<div class="ins-body">'
-          +   '<h3 class="ins-name"><a href="/src/pages/instructor/instructor-details.html">' + name + '</a></h3>'
+          +   '<h3 class="ins-name"><a href="/instructor/instructor-details?id=' + ins.id + '">' + name + '</a></h3>'
           +   '<p class="ins-role">' + designation + '</p>'
           +   '<div class="ins-rating">' + renderStars(ratingVal) + '<span class="ins-rating-val">' + ratingVal + '</span></div>'
-          +   '<a href="/src/pages/instructor/instructor-details.html" class="ins-btn">View Profile <i class="fas fa-arrow-right"></i></a>'
+          +   '<a href="/instructor/instructor-details?id=' + ins.id + '" class="ins-btn">View Profile <i class="fas fa-arrow-right"></i></a>'
           + '</div>'
           + '</div>';
       }

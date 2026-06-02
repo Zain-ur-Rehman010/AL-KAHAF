@@ -4,7 +4,7 @@ const { notifyAdmins, notifyUser } = require('../services/notificationService');
 
 exports.createCourse = async (req, res) => {
   try {
-    const { title, description, detailedDescription, category, price, discountPrice, level, language, duration, thumbnail, learningOutcomes, outcomes, requirements, tags, faqs, isFeatured, certificateAvailable, maxStudents, accessDuration, visibility, instructorId } = req.body;
+    const { title, description, detailedDescription, category, price, discountPrice, level, language, duration, thumbnail, previewVideo, learningOutcomes, outcomes, requirements, tags, faqs, isFeatured, certificateAvailable, maxStudents, accessDuration, visibility, instructorId } = req.body;
     const isAdminCreator = req.user.role === 'admin';
     const assignedInstructorId = instructorId || req.user.userId;
     const isAssignedToAnotherInstructor = Boolean(isAdminCreator && instructorId && instructorId !== req.user.userId);
@@ -22,6 +22,7 @@ exports.createCourse = async (req, res) => {
       language,
       duration,
       thumbnail,
+      previewVideo: previewVideo || null,
       outcomes: outcomes || learningOutcomes,
       requirements,
       tags,
@@ -111,16 +112,17 @@ exports.getMyCourses = async (req, res) => {
 
 exports.getCourses = async (req, res) => {
   try {
-    const { page = 1, limit = 10, category, level, status } = req.query;
+    const { page = 1, limit = 10, category, level, status, instructorId } = req.query;
     const offset = (page - 1) * limit;
 
     const where = status === 'published' ? { status: 'published' } : {};
     if (category) where.category = category;
     if (level) where.level = level;
+    if (instructorId) where.instructorId = instructorId;
 
     const { count, rows } = await Course.findAndCountAll({
       where,
-      include: [{ model: User, as: 'instructor', attributes: ['id', 'firstName', 'lastName'] }],
+      include: [{ model: User, as: 'instructor', attributes: ['id', 'firstName', 'lastName', 'profileImage'] }],
       limit: parseInt(limit),
       offset,
       order: [['createdAt', 'DESC']],

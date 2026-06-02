@@ -302,20 +302,14 @@
                         <div class="col-12">
                             <div class="card bg-light">
                                 <div class="card-body d-lg-flex align-items-center">
-                                    <div class="position-relative">
-                                        <a href="https://www.youtube.com/watch?v=a7rTLpjJ4FA&list=PLTTivcB2vDyAnbHG-hFc5Hie0CsG9Gdgd" id="openVideoBtn" target="_blank">
-                                            <img class="img-fluid rounded-2" src="/assets/img/course/_Yvideoimg.png" alt="img">
-                                            <div class="play-icon">
-                                                <i class="ti ti-player-play-filled fs-28"></i>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    <div id="videoModal">
-                                        <div class="modal-content1">
-                                          <span class="close-btn" id="closeModal">&times;</span>
-                                          <iframe id="youtubeIframe" allowfullscreen></iframe>
+                                    <div class="position-relative" id="cd-preview-video-wrap">
+                                        <img class="img-fluid rounded-2" id="cd-preview-thumb" src="/assets/img/course/_Yvideoimg.png" alt="img">
+                                        <div class="play-icon" id="cd-play-btn" style="display:none;">
+                                            <a href="#" id="openVideoBtn" onclick="openVideoModal(event)" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
+                                                <i class="ti ti-player-play-filled" style="font-size:28px;color:#fff;margin-left:4px;"></i>
+                                            </a>
                                         </div>
-                                      </div>
+                                    </div>
                                     <div class="w-100 ps-lg-4">
                                         <h3 class="mb-2" id="cd-title"></h3>
                                         <p class="fs-14 mb-3" id="cd-short-desc"></p>
@@ -335,13 +329,7 @@
                                                 <p class="fs-14">Instructor</p>
                                             </div>
                                             </div>
-                                            <div class="d-flex mt-sm-0 mt-2 align-items-center">
-                                                <i class="fa-solid fa-star text-warning me-1"></i>
-                                                <i class="fa-solid fa-star text-warning me-1"></i>
-                                                <i class="fa-solid fa-star text-warning me-1"></i>
-                                                <i class="fa-solid fa-star text-warning me-1"></i>
-                                                <i class="fa-solid fa-star text-gray-1 me-1"></i>
-                                                <p class=" fs-14"><span class="text-gray-9">4.0</span> (15) </p>
+                                            <div class="d-flex mt-sm-0 mt-2 align-items-center" id="cd-rating-stars-wrap">
                                             </div>
                                         </div>
                                     </div>
@@ -394,38 +382,33 @@
                               </div>
                               <div class="card">
                                 <div class="card-body">
-                                <h5 class="subs-title mb-3">Post A comment</h5>
-                                <form class="course-details-form">
+                                  <h5 class="subs-title mb-3">Leave a Review</h5>
+                                  <div id="review-gate"></div>
+                                  <form id="review-form" class="course-details-form" style="display:none;">
                                     <div class="row">
-                                        <div class="col-sm-6">
-                                        <div class="mb-3">
-                                          <label class="form-label">Name</label>
-                                          <input class="form-control" type="text">
+                                      <div class="col-12 mb-3">
+                                        <label class="form-label">Your Rating</label>
+                                        <div id="star-rating" style="font-size:28px;cursor:pointer;line-height:1;user-select:none;">
+                                          <span data-val="1" style="color:#ccc;">&#9733;</span>
+                                          <span data-val="2" style="color:#ccc;">&#9733;</span>
+                                          <span data-val="3" style="color:#ccc;">&#9733;</span>
+                                          <span data-val="4" style="color:#ccc;">&#9733;</span>
+                                          <span data-val="5" style="color:#ccc;">&#9733;</span>
                                         </div>
-                                        </div>
-                                        <div class="col-sm-6">
-                                        <div class="mb-3">
-                                          <label class="form-label">Email</label>
-                                          <input class="form-control" type="email">
-                                        </div>
-                                        </div>
-                                         <div class="col-12">
-                                        <div class="mb-3">
-                                          <label class="form-label">Subject</label>
-                                          <input class="form-control" type="text">
-                                        </div>
-                                        </div>
-                                        <div class="col-12">
-                                        <div class="mb-3">
-                                          <label class="form-label">Comments</label>
-                                         <textarea class="form-control"></textarea>
-                                        </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <button type="submit" class="btn post-btn">Submit</button>
-                                        </div>
+                                        <input type="hidden" id="review-rating" value="0">
+                                      </div>
+                                      <div class="col-12 mb-3">
+                                        <label class="form-label">Your Review</label>
+                                        <textarea id="review-message" class="form-control" rows="4" placeholder="Share your experience with this course..."></textarea>
+                                      </div>
+                                      <div class="col-12">
+                                        <button type="submit" class="btn post-btn">Submit Review</button>
+                                      </div>
                                     </div>
-                                </form>
+                                  </form>
+                                  <div id="review-success" style="display:none;" class="alert alert-success mt-2">
+                                    Thank you! Your review has been submitted and is pending approval.
+                                  </div>
                                 </div>
                               </div>
                            </div>
@@ -606,19 +589,52 @@
 			if (el && value !== undefined && value !== null) el.textContent = value;
 		}
 
-		function populateCourse(course, isEnrolled) {
+		function getYouTubeEmbedUrl(url) {
+			if (!url) return null;
+			var m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([\w-]{11})/);
+			return m ? 'https://www.youtube.com/embed/' + m[1] + '?rel=0' : null;
+		}
+
+		var _currentEmbedUrl = null;
+
+		window.openVideoModal = function openVideoModal(e) {
+			if (e) e.preventDefault();
+			if (!_currentEmbedUrl) return;
+			var iframe = document.getElementById('youtubeIframe');
+			var modal = document.getElementById('videoModal');
+			if (iframe) iframe.src = _currentEmbedUrl + '&autoplay=1';
+			if (modal) modal.style.display = 'flex';
+		};
+
+				function populateCourse(course, isEnrolled) {
 			// Thumbnail
-			if (course.thumbnail) {
-				var thumbEl = document.getElementById('cd-thumbnail');
-				if (thumbEl) thumbEl.src = course.thumbnail;
+			var thumbEl = document.getElementById('cd-thumbnail');
+			if (thumbEl) {
+				if (course.thumbnail) { thumbEl.src = course.thumbnail; thumbEl.style.display = ''; }
+				else thumbEl.style.display = 'none';
 			}
+
+			// Preview video - always show thumbnail, only show play btn if previewVideo exists
+			_currentEmbedUrl = getYouTubeEmbedUrl(course.previewVideo);
+			var thumbImg = document.getElementById('cd-preview-thumb');
+			if (thumbImg) {
+				if (_currentEmbedUrl) {
+					// Prefer YouTube thumbnail in the video preview section
+					var _ytIdMatch = _currentEmbedUrl.match(/embed\/([\w-]{11})/);
+					if (_ytIdMatch) thumbImg.src = 'https://img.youtube.com/vi/' + _ytIdMatch[1] + '/maxresdefault.jpg';
+				} else if (course.thumbnail) {
+					thumbImg.src = course.thumbnail;
+				}
+			}
+			var playBtn = document.getElementById('cd-play-btn');
+			if (playBtn) playBtn.style.display = _currentEmbedUrl ? '' : 'none';
 
 			// Title & descriptions
 			setText('cd-title', course.title);
 			var _descEl = document.getElementById('cd-description');
 			var _shortEl = document.getElementById('cd-short-desc');
-			if (_descEl) _descEl.innerHTML = course.description || course.shortDescription || '';
-			if (_shortEl) _shortEl.innerHTML = course.shortDescription || course.description || '';
+			if (_descEl) _descEl.innerHTML = (course.description || course.shortDescription || '').replace(/\n/g, '<br>');
+			if (_shortEl) _shortEl.textContent = course.shortDescription || '';
 			setText('cd-category', course.category || '');
 			setText('cd-enrollment-count', course.enrollmentCount || 0);
 
@@ -644,13 +660,29 @@
 			// Instructor
 			if (course.instructor) {
 				var name = ((course.instructor.firstName || '') + ' ' + (course.instructor.lastName || '')).trim();
+				var insUrl = '/instructor/instructor-details?id=' + course.instructor.id;
 				var nameEl = document.getElementById('cd-instructor-name');
-				if (nameEl) nameEl.innerHTML = '<a href="/instructor/instructor-details">' + name + '</a>';
+				if (nameEl) nameEl.innerHTML = '<a href="' + insUrl + '">' + name + '</a>';
 				var avatarEl = document.getElementById('cd-instructor-avatar');
 				if (avatarEl && course.instructor.profileImage) avatarEl.src = course.instructor.profileImage;
 			}
 
-			// Outcomes (What you'll learn)
+			// Rating stars
+			var ratingWrap = document.getElementById('cd-rating-stars-wrap');
+			if (ratingWrap) {
+				var ratingVal = parseFloat(course.rating) || 0;
+				var ratingCount = course.ratingCount || course.reviewCount || 0;
+				var starsHtml = '';
+				for (var s = 1; s <= 5; s++) {
+					if (ratingVal >= s) starsHtml += '<i class="fa-solid fa-star text-warning me-1"></i>';
+					else if (ratingVal >= s - 0.5) starsHtml += '<i class="fa-solid fa-star-half-stroke text-warning me-1"></i>';
+					else starsHtml += '<i class="fa-regular fa-star text-warning me-1"></i>';
+				}
+				starsHtml += '<p class="fs-14 mb-0 ms-1"><span class="text-gray-9">'+ ratingVal.toFixed(1) +'</span>'+ (ratingCount ? ' ('+ratingCount+')' : '') +'</p>';
+				ratingWrap.innerHTML = starsHtml;
+			}
+
+						// Outcomes (What you'll learn)
 			var outcomesEl = document.getElementById('cd-outcomes');
 			var outcomes = course.outcomes || course.learningOutcomes;
 			if (outcomesEl && Array.isArray(outcomes) && outcomes.length > 0) {
@@ -735,8 +767,9 @@
 				var aboutDesig = document.getElementById('cd-about-designation');
 				var aboutBio = document.getElementById('cd-about-bio');
 				var fullName = ((course.instructor.firstName || '') + ' ' + (course.instructor.lastName || '')).trim();
+				var insDetailUrl = '/instructor/instructor-details?id=' + course.instructor.id;
 				if (aboutAvatar && course.instructor.profileImage) aboutAvatar.src = course.instructor.profileImage;
-				if (aboutName) aboutName.textContent = fullName;
+				if (aboutName) { aboutName.textContent = fullName; aboutName.href = insDetailUrl; }
 				if (aboutDesig) aboutDesig.textContent = course.instructor.designation || 'Instructor';
 				if (aboutBio) aboutBio.textContent = course.instructor.bio || '';
 			}
@@ -770,7 +803,8 @@
 			document.title = (course.title || 'Course Details') + ' | Al-Kahaf Online Academy';
 		}
 
-		// Read ?id= from URL
+
+				// Read ?id= from URL
 		var params = new URLSearchParams(window.location.search);
 		var courseId = params.get('id');
 
@@ -782,7 +816,7 @@
 			.then(function(r) { if (!r.ok) throw new Error('Course not found'); return r.json(); });
 
 		var enrollFetch = token
-			? fetch(API_CONFIG.BASE_URL + '/enrollments', { headers: { 'Authorization': 'Bearer ' + token } })
+			? fetch(API_CONFIG.BASE_URL + '/enrollments/my-enrollments?limit=200', { headers: { 'Authorization': 'Bearer ' + token } })
 				.then(function(r) { return r.json(); }).catch(function() { return {}; })
 			: Promise.resolve({});
 
@@ -805,11 +839,13 @@
 						var enrolled = res.success ? true : isEnrolled;
 						populateCourse(course, enrolled);
 						setupEnrollButton(course, enrolled, courseId, token);
+						initReviewSection(enrolled);
 						document.getElementById('cd-skeleton').style.display = 'none';
 						document.getElementById('cd-real-content').style.display = '';
 					}).catch(function() {
 						populateCourse(course, isEnrolled);
 						setupEnrollButton(course, isEnrolled, courseId, token);
+						initReviewSection(isEnrolled);
 						document.getElementById('cd-skeleton').style.display = 'none';
 						document.getElementById('cd-real-content').style.display = '';
 					});
@@ -817,6 +853,7 @@
 				}
 				populateCourse(course, isEnrolled);
 				setupEnrollButton(course, isEnrolled, courseId, token);
+				initReviewSection(isEnrolled);
 				document.getElementById('cd-skeleton').style.display = 'none';
 				document.getElementById('cd-real-content').style.display = '';
 			})
@@ -877,19 +914,23 @@
 					body: JSON.stringify({ courseId: courseId })
 				}).then(function(r) { return r.json(); }).then(function(res) {
 					if (res.success) {
+						if (res.tokens) {
+							localStorage.setItem('accessToken', res.tokens.accessToken);
+							localStorage.setItem('refreshToken', res.tokens.refreshToken);
+						}
 						btn.innerHTML = '<i class="fa fa-check me-2"></i>Enrolled!';
 						btn.classList.remove('btn-primary');
 						btn.classList.add('btn-success');
-						setTimeout(function() { window.location.reload(); }, 1200);
+						showEnrollSuccess();
 					} else {
 						btn.disabled = false;
 						btn.innerHTML = '<i class="fa fa-paper-plane me-2"></i>Enroll Now';
-						alert(res.message || 'Enrollment failed. Please try again.');
+						showCdToast(res.message || 'Enrollment failed. Please try again.', 'error');
 					}
 				}).catch(function() {
 					btn.disabled = false;
 					btn.innerHTML = '<i class="fa fa-paper-plane me-2"></i>Enroll Now';
-					alert('Network error. Please try again.');
+					showCdToast('Network error. Please try again.', 'error');
 				});
 			});
 		} else {
@@ -928,6 +969,86 @@
 		},
 		clear: function() { localStorage.removeItem(this._key); }
 	};
+
+	function initReviewSection(isEnrolled) {
+		var gate = document.getElementById('review-gate');
+		var form = document.getElementById('review-form');
+		if (!gate || !form) return;
+
+		var token = localStorage.getItem('accessToken');
+		if (!token) {
+			var redirect = encodeURIComponent(window.location.pathname + window.location.search);
+			gate.innerHTML = '<p class="text-muted">Please <a href="/auth/login?redirect=' + redirect + '">login</a> to leave a review.</p>';
+			return;
+		}
+
+		var payload;
+		try { payload = JSON.parse(atob(token.split('.')[1])); } catch(e) { return; }
+
+		if (payload.role !== 'student') {
+			gate.innerHTML = '<p class="text-muted">Only enrolled students can submit a review.</p>';
+			return;
+		}
+
+		if (!isEnrolled) {
+			gate.innerHTML = '<p class="text-muted">Enroll in this course to leave a review.</p>';
+			return;
+		}
+
+		form.style.display = '';
+
+		var stars = document.querySelectorAll('#star-rating span');
+		var ratingInput = document.getElementById('review-rating');
+
+		function paintStars(n) {
+			stars.forEach(function(s) {
+				s.style.color = parseInt(s.getAttribute('data-val')) <= n ? '#f5a623' : '#ccc';
+			});
+		}
+
+		stars.forEach(function(s) {
+			s.addEventListener('mouseover', function() { paintStars(parseInt(s.getAttribute('data-val'))); });
+			s.addEventListener('mouseout', function() { paintStars(parseInt(ratingInput.value) || 0); });
+			s.addEventListener('click', function() {
+				ratingInput.value = s.getAttribute('data-val');
+				paintStars(parseInt(ratingInput.value));
+			});
+		});
+
+		form.addEventListener('submit', function(e) {
+			e.preventDefault();
+			var rating = parseInt(ratingInput.value);
+			var message = document.getElementById('review-message').value.trim();
+			if (!rating) { showCdToast('Please select a star rating.', 'warn'); return; }
+			if (!message) { showCdToast('Please write your review.', 'warn'); return; }
+
+			var submitBtn = form.querySelector('button[type="submit"]');
+			submitBtn.disabled = true;
+			submitBtn.textContent = 'Submitting...';
+
+			fetch(API_CONFIG.BASE_URL + '/reviews', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+				body: JSON.stringify({ message: message, rating: rating })
+			})
+			.then(function(r) { return r.json(); })
+			.then(function(res) {
+				if (res.success) {
+					form.style.display = 'none';
+					document.getElementById('review-success').style.display = '';
+				} else {
+					showCdToast(res.message || 'Failed to submit review. Please try again.', 'error');
+					submitBtn.disabled = false;
+					submitBtn.textContent = 'Submit Review';
+				}
+			})
+			.catch(function() {
+				showCdToast('Network error. Please try again.', 'error');
+				submitBtn.disabled = false;
+				submitBtn.textContent = 'Submit Review';
+			});
+		});
+	}
 	</script>
 	<!-- Enroll to unlock modal -->
 	<div class="modal fade" id="enrollModal" tabindex="-1" aria-hidden="true">
@@ -944,6 +1065,29 @@
 			</div>
 		</div>
 	</div>
+	<!-- Enrollment success popup -->
+	<div id="enrollSuccessModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);align-items:center;justify-content:center;">
+		<div style="background:#fff;border-radius:14px;padding:36px 32px;max-width:400px;width:90%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.25);animation:popIn .25s ease;">
+			<div style="width:64px;height:64px;background:#d8f0e8;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+				<i class="fa fa-check" style="font-size:28px;color:#28a745;"></i>
+			</div>
+			<h5 style="font-weight:700;margin-bottom:8px;">You're Enrolled!</h5>
+			<p style="color:#666;margin-bottom:24px;">You are enrolled in this course. Check your Student Dashboard to start learning.</p>
+			<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+				<a href="/student/student-courses" class="btn btn-primary px-4"><i class="fa fa-play-circle me-2"></i>Go to My Courses</a>
+				<button onclick="document.getElementById('enrollSuccessModal').style.display='none';window.location.reload();" class="btn btn-outline-secondary px-4">Stay Here</button>
+			</div>
+		</div>
+	</div>
+	<!-- Toast for errors/warnings -->
+	<div id="cd-toast" style="display:none;position:fixed;bottom:28px;right:24px;z-index:10000;min-width:280px;max-width:400px;background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.18);padding:14px 18px;align-items:flex-start;gap:12px;">
+		<span id="cd-toast-icon" style="font-size:20px;flex-shrink:0;"></span>
+		<span id="cd-toast-msg" style="font-size:14px;line-height:1.5;flex:1;"></span>
+		<button onclick="clearTimeout(window._cdToastTimer);document.getElementById('cd-toast').style.display='none';" style="background:none;border:none;cursor:pointer;color:#999;font-size:16px;padding:0;flex-shrink:0;">&times;</button>
+	</div>
+	<style>
+	@keyframes popIn { from { transform:scale(.85); opacity:0; } to { transform:scale(1); opacity:1; } }
+	</style>
 	<script>
 	function showEnrollModal() {
 		var redirect = encodeURIComponent(window.location.pathname + window.location.search);
@@ -951,6 +1095,42 @@
 		document.getElementById('enroll-modal-register').href = '/auth/register?redirect=' + redirect;
 		new bootstrap.Modal(document.getElementById('enrollModal')).show();
 	}
+	function showEnrollSuccess() {
+		document.getElementById('enrollSuccessModal').style.display = 'flex';
+	}
+	function showCdToast(msg, type) {
+		var toast = document.getElementById('cd-toast');
+		var icon = document.getElementById('cd-toast-icon');
+		var msgEl = document.getElementById('cd-toast-msg');
+		icon.innerHTML = type === 'error' ? '<i class="fa fa-times-circle" style="color:#dc3545;"></i>' : '<i class="fa fa-exclamation-circle" style="color:#f5a623;"></i>';
+		msgEl.textContent = msg;
+		toast.style.display = 'flex';
+		toast.style.alignItems = 'flex-start';
+		clearTimeout(window._cdToastTimer);
+		window._cdToastTimer = setTimeout(function() { toast.style.display = 'none'; }, 5000);
+	}
+	</script>
+
+	<!-- YouTube video modal -->
+	<div id="videoModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);align-items:center;justify-content:center;">
+		<div style="position:relative;width:90%;max-width:900px;aspect-ratio:16/9;">
+			<iframe id="youtubeIframe" style="width:100%;height:100%;border:0;" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+			<button id="videoModalClose" style="position:absolute;top:-40px;right:0;background:none;border:none;color:#fff;font-size:32px;line-height:1;cursor:pointer;">&times;</button>
+		</div>
+	</div>
+	<script>
+	(function() {
+		var modal = document.getElementById('videoModal');
+		var iframe = document.getElementById('youtubeIframe');
+		function closeModal() {
+			if (modal) modal.style.display = 'none';
+			if (iframe) iframe.src = '';
+		}
+		var closeBtn = document.getElementById('videoModalClose');
+		if (closeBtn) closeBtn.addEventListener('click', closeModal);
+		if (modal) modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+		document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+	})();
 	</script>
 
 </body>
