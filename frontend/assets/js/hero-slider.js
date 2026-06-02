@@ -76,29 +76,19 @@
 		}
 	});
 
-	// Custom Cursor Follower (Optional Enhancement)
+	// Custom Cursor Follower
 	if (window.innerWidth >= 1024) {
 		const cursor = document.querySelector('.cursor-follower');
-		
+
 		if (cursor) {
 			document.addEventListener('mousemove', (e) => {
 				cursor.style.left = e.clientX + 'px';
 				cursor.style.top = e.clientY + 'px';
 			});
 
-			// Cursor interactions
-			const interactiveElements = document.querySelectorAll('a, button, .swiper-slide');
-			
-			interactiveElements.forEach(el => {
-				el.addEventListener('mouseenter', () => {
-					cursor.style.transform = 'scale(1.5)';
-					cursor.style.borderColor = 'rgba(255, 255, 255, 0.8)';
-				});
-				
-				el.addEventListener('mouseleave', () => {
-					cursor.style.transform = 'scale(1)';
-					cursor.style.borderColor = 'rgba(255, 255, 255, 0.5)';
-				});
+			document.querySelectorAll('a, button, .swiper-slide').forEach(el => {
+				el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+				el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 			});
 		}
 	}
