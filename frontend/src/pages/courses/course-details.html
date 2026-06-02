@@ -839,13 +839,13 @@
 						var enrolled = res.success ? true : isEnrolled;
 						populateCourse(course, enrolled);
 						setupEnrollButton(course, enrolled, courseId, token);
-						initReviewSection(enrolled);
+						initReviewSection(enrolled, courseId);
 						document.getElementById('cd-skeleton').style.display = 'none';
 						document.getElementById('cd-real-content').style.display = '';
 					}).catch(function() {
 						populateCourse(course, isEnrolled);
 						setupEnrollButton(course, isEnrolled, courseId, token);
-						initReviewSection(isEnrolled);
+						initReviewSection(isEnrolled, courseId);
 						document.getElementById('cd-skeleton').style.display = 'none';
 						document.getElementById('cd-real-content').style.display = '';
 					});
@@ -853,7 +853,7 @@
 				}
 				populateCourse(course, isEnrolled);
 				setupEnrollButton(course, isEnrolled, courseId, token);
-				initReviewSection(isEnrolled);
+				initReviewSection(isEnrolled, courseId);
 				document.getElementById('cd-skeleton').style.display = 'none';
 				document.getElementById('cd-real-content').style.display = '';
 			})
@@ -970,7 +970,7 @@
 		clear: function() { localStorage.removeItem(this._key); }
 	};
 
-	function initReviewSection(isEnrolled) {
+	function initReviewSection(isEnrolled, courseId) {
 		var gate = document.getElementById('review-gate');
 		var form = document.getElementById('review-form');
 		if (!gate || !form) return;
@@ -1029,7 +1029,7 @@
 			fetch(API_CONFIG.BASE_URL + '/reviews', {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
-				body: JSON.stringify({ message: message, rating: rating })
+				body: JSON.stringify({ message: message, rating: rating, courseId: courseId || null })
 			})
 			.then(function(r) { return r.json(); })
 			.then(function(res) {

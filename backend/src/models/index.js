@@ -109,6 +109,8 @@ InstructorCourse.belongsTo(PredefinedCourse, { foreignKey: 'predefinedCourseId',
 // Review associations
 Review.belongsTo(User, { foreignKey: 'userId', as: 'student' });
 User.hasMany(Review, { foreignKey: 'userId', as: 'reviews' });
+Review.belongsTo(Course, { foreignKey: 'courseId', as: 'course' });
+Course.hasMany(Review, { foreignKey: 'courseId', as: 'reviews' });
 
 // Welfare associations
 WelfareDonation.belongsTo(WelfareProgram, { foreignKey: 'programId', as: 'program' });

@@ -690,10 +690,14 @@
 			var statusBadge=enr.status==='completed'?'<span class="badge text-bg-success ms-auto">Completed</span>':
 				(enr.status==='in_progress'?'<span class="badge text-bg-primary ms-auto">In Progress</span>':
 				(enr.status==='dropped'?'<span class="badge text-bg-danger ms-auto">Dropped</span>':'<span class="badge text-bg-secondary ms-auto">Enrolled</span>'));
+			var isNew=cr.createdAt&&(Date.now()-new Date(cr.createdAt).getTime()<30*24*60*60*1000);
+			var overlayBadges='';
+			if(cr.isFeatured)overlayBadges+='<span style="background:#d8ac27;color:#1a0a00;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase;">&#9733; Featured</span>';
+			if(isNew)overlayBadges+='<span style="background:#28a745;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase;'+(cr.isFeatured?'margin-left:6px;':'')+'">New</span>';
 			return '<div class="col-xl-4 col-md-6">'
 				+'<div class="course-item-two course-item mx-0">'
-				+'<div class="course-img"><a href="'+href+'"><img src="'+thumb+'" alt="img" class="img-fluid" onerror="this.src=\'/assets/img/course/course-01.jpg\'"></a>'
-				+'<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">'+statusBadge+'</div></div>'
+				+'<div class="course-img" style="position:relative;"><a href="'+href+'"><img src="'+thumb+'" alt="img" class="img-fluid" onerror="this.src=\'/assets/img/course/course-01.jpg\'"></a>'
+				+'<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-3">'+statusBadge+(overlayBadges?'<div style="position:absolute;top:10px;left:10px;">'+overlayBadges+'</div>':'')+'</div></div>'
 				+'<div class="course-content">'
 				+'<div class="d-flex justify-content-between mb-2">'
 				+(instr?'<div class="d-flex align-items-center"><span class="link-default fs-14">'+instr+'</span></div>':'<div></div>')

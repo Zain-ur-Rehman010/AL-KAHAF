@@ -7,6 +7,7 @@ const Review = sequelize.define('Review', {
   message: { type: DataTypes.TEXT, allowNull: false },
   rating: { type: DataTypes.TINYINT, allowNull: false, defaultValue: 5,
     validate: { min: 1, max: 5 } },
+  courseId: { type: DataTypes.UUID, allowNull: true },
   location: { type: DataTypes.STRING(100), allowNull: true },
   status: { type: DataTypes.ENUM('pending', 'approved', 'rejected'),
     defaultValue: 'pending' },

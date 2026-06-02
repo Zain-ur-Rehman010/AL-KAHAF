@@ -684,9 +684,16 @@
 			var courseUrl = course.id ? '/courses/course-details?id=' + course.id : '/courses/course-grid';
 			var titleSafe = (course.title || '').replace(/"/g, '&quot;');
 
+			var isNew = course.createdAt && (Date.now() - new Date(course.createdAt).getTime() < 30 * 24 * 60 * 60 * 1000);
+			var badges = '';
+			if (course.isFeatured) badges += '<span style="background:#d8ac27;color:#1a0a00;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase;line-height:1;">&#9733; Featured</span>';
+			if (isNew)            badges += '<span style="background:#28a745;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase;line-height:1;' + (course.isFeatured ? 'margin-left:6px;' : '') + '">New</span>';
+			var badgeOverlay = badges ? '<div style="position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:6px;z-index:2;">' + badges + '</div>' : '';
+
 			return '<div class="col-xl-4 col-md-6">' +
 				'<div class="course-item-two course-item mx-0" style="cursor:pointer;position:relative;" onclick="window.location.href=\'' + courseUrl + '\'" role="link" tabindex="0" aria-label="' + titleSafe + '" onkeydown="if(event.key===\'Enter\')window.location.href=\'' + courseUrl + '\'">' +
-					'<div class="course-img">' +
+					'<div class="course-img" style="position:relative;">' +
+						badgeOverlay +
 						'<img src="' + imgSrc + '" alt="' + titleSafe + '" class="img-fluid" onerror="this.src=\'' + FALLBACK_IMG + '\'">' +
 					'</div>' +
 					'<div class="course-content">' +
@@ -698,7 +705,7 @@
 							'<span class="course-cat-badge ' + getCatClass(course.category) + '">' + (course.category || '') + '</span>' +
 						'</div>' +
 						'<h6 class="title mb-2">' + (course.title || '') + '</h6>' +
-						'<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' + ratingDisplay + '</p>' +
+						(rating > 0 ? '<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' + rating.toFixed(1) + ' (' + (course.enrollmentCount || 0) + ' Students)</p>' : '') +
 						'<div class="d-flex align-items-center justify-content-between">' +
 							'<span class="text-secondary fw-bold lh-1" style="font-size:1.25rem">' + priceDisplay + '</span>' +
 							'<button type="button" onclick="event.stopPropagation();window.location.href=\'' + courseUrl + '\'" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></button>' +

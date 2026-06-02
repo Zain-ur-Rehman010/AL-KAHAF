@@ -1,4 +1,5 @@
-const { Review, User } = require('../models');
+const { Review, User, Course } = require('../models');
+const { Op } = require('sequelize');
 
 const studentAttrs = ['id', 'firstName', 'lastName', 'profileImage'];
 
@@ -33,7 +34,7 @@ exports.getMyReviews = async (req, res) => {
 // STUDENT — submit new review
 exports.createReview = async (req, res) => {
   try {
-    const { message, rating, location } = req.body;
+    const { message, rating, location, courseId } = req.body;
     if (!message || !rating) {
       return res.status(400).json({ success: false, message: 'Message and rating are required' });
     }
@@ -42,6 +43,7 @@ exports.createReview = async (req, res) => {
       message,
       rating: parseInt(rating),
       location: location || null,
+      courseId: courseId || null,
       status: 'pending',
     });
     res.status(201).json({ success: true, data: review, message: 'Review submitted for approval' });
@@ -104,6 +106,22 @@ exports.updateReviewStatus = async (req, res) => {
       return res.status(400).json({ success: false, message: 'Invalid status' });
     }
     await review.update({ status });
+
+    // Recalculate course rating when a course review is approved or rejected
+    if (review.courseId) {
+      const approved = await Review.findAll({
+        where: { courseId: review.courseId, status: 'approved' },
+        attributes: ['rating'],
+      });
+      const avg = approved.length
+        ? approved.reduce((sum, r) => sum + r.rating, 0) / approved.length
+        : 0;
+      await Course.update(
+        { rating: Math.round(avg * 10) / 10 },
+        { where: { id: review.courseId } }
+      );
+    }
+
     res.json({ success: true, data: review });
   } catch (e) {
     res.status(500).json({ success: false, message: e.message });
