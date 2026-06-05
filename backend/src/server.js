@@ -37,7 +37,7 @@ const swaggerDefinition = {
   servers: [
     { url: "http://localhost:5000/api/v1", description: "Development" },
     {
-      url: "https://alkahafonlineacademy.com/api/v1",
+      url: "https://api.alkahafonlineacademy.com/api/v1",
       description: "Production",
     },
   ],
@@ -122,12 +122,8 @@ app.use(morgan("combined"));
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 
-// Serve static files from the parent directory (frontend)
-const path = require("path");
-const staticPath = path.join(__dirname, "../../");
-app.use(express.static(staticPath));
-
-// Note: Local /uploads folder removed — images now served via Cloudinary CDN
+// Note: Static files served by Apache/cPanel — not needed here
+// Images served via Cloudinary CDN
 
 // ── Swagger UI (/api-docs) ─────────────────────────────────────────────────────
 app.use(
@@ -199,9 +195,6 @@ async function startServer() {
 
     await sequelize.authenticate();
     console.log("Database connected successfully");
-
-    await sequelize.sync({ alter: false });
-    console.log("Database synchronized");
 
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
