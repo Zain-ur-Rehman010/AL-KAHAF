@@ -6,11 +6,9 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js",
-    "migrate": "node migrations/migrate.js",
-    "migrate:rollback": "node migrations/rollback.js",
-    "seed:admin": "node seed-admin.js",
+    "migrate": "node migrations/00-fresh-setup.js",
+    "seed:admin": "node migrations/seed-admin.js",
     "seed:courses": "node seed-courses.js",
-    "seed": "node migrations/seed.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },

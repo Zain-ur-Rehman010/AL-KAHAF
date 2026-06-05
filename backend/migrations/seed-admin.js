@@ -10,9 +10,9 @@ async function seedAdmin() {
     const hash = await bcrypt.hash("Admin@123", 10);
 
     await sequelize.query(`
-      INSERT INTO Users (id, firstName, lastName, email, password, role, status, createdAt, updatedAt)
-      VALUES (UUID(), 'Admin', 'AlKahaf', 'admin@alkahaf.com', '${hash}', 'admin', 'active', NOW(), NOW())
-      ON DUPLICATE KEY UPDATE updatedAt = NOW();
+      INSERT INTO Users (id, firstName, lastName, email, password, role, status, emailVerified, createdAt, updatedAt)
+      VALUES (UUID(), 'Admin', 'AlKahaf', 'admin@alkahaf.com', '${hash}', 'admin', 'active', 1, NOW(), NOW())
+      ON DUPLICATE KEY UPDATE emailVerified = 1, updatedAt = NOW();
     `);
 
     console.log("Admin user created!");
