@@ -8,7 +8,7 @@ const API_CONFIG = {
     // Auto-switch API URL for local development vs production.
     BASE_URL: isLocalhost
         ? 'http://localhost:5000/api/v1'
-        : 'https://alkahafonlineacademy.com/api/v1',
+        : 'https://api.alkahafonlineacademy.com/api/v1',
 
     // Endpoints
     ENDPOINTS: {
