@@ -954,7 +954,7 @@
 		var tbody = document.getElementById('free-trial-tbody');
 		if (!tbody) return;
 		var token = localStorage.getItem('accessToken');
-		var url = 'http://localhost:5000/api/v1/free-trial?limit=10&page=1';
+		var url = (typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1') + '/free-trial?limit=10&page=1';
 		if (statusFilter) url += '&status=' + statusFilter;
 		fetch(url, { headers: { 'Authorization': 'Bearer ' + token } })
 			.then(function(r) { return r.json(); })
@@ -1008,7 +1008,7 @@
 
 	function updateFtStatus(id, status) {
 		var token = localStorage.getItem('accessToken');
-		fetch('http://localhost:5000/api/v1/free-trial/' + id + '/status', {
+		fetch((typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1') + '/free-trial/' + id + '/status', {
 			method: 'PATCH',
 			headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
 			body: JSON.stringify({ status: status }),
