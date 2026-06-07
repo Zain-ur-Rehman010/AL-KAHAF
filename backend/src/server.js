@@ -75,6 +75,8 @@ const envConfiguredOrigins = (
   .filter(Boolean);
 
 const allowedOrigins = [
+  "https://alkahafonlineacademy.com",
+  "https://www.alkahafonlineacademy.com",
   "http://localhost:3000",
   "http://localhost:5000",
   "http://localhost:8000",
