@@ -37,5 +37,7 @@
   "dangerColor": "#dc3545",
   "customCSS": "",
   "darkModeAvailable": false,
-  "breadcrumbsVisible": true
+  "breadcrumbsVisible": true,
+  "notificationRetentionReadDays": 30,
+  "notificationRetentionUnreadDays": 90
 }

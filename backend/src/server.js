@@ -24,6 +24,7 @@ const contactRoutes = require("./routes/contactRoutes");
 const instructorApplicationRoutes = require("./routes/instructorApplicationRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const { startTrialEmailJob } = require("./jobs/trialEmailJob");
+const { startNotificationCleanupJob } = require("./jobs/notificationCleanupJob");
 
 // Swagger UI
 const swaggerUi = require("swagger-ui-express");
@@ -202,6 +203,7 @@ async function startServer() {
       console.log(`Server running on http://localhost:${PORT}`);
       console.log(`API Documentation: http://localhost:${PORT}/api/v1`);
       startTrialEmailJob();
+      startNotificationCleanupJob();
     });
   } catch (error) {
     console.error("Failed to start server:", error);
