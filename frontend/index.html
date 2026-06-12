@@ -126,126 +126,31 @@ Dependencies:
 			   Features 4 colored cards with icons
 			   Background: Islamic geometric pattern
 			   ========================================== */
+      /* ── Why Choose Us — Modern Redesign ── */
       .skills-section {
-        background: linear-gradient(
-          135deg,
-          #f8f4e9 0%,
-          #faf6ed 50%,
-          #f5f0e3 100%
-        );
+        background: linear-gradient(160deg, #0a6558 0%, #053a44 100%);
         position: relative;
         overflow: hidden;
+        padding: 100px 0;
       }
 
       .skills-section::before {
         content: "";
         position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-image: 
-					/* 8-pointed star pattern - traditional Islamic geometry */
-          radial-gradient(
-            circle at 50% 50%,
-            transparent 25%,
-            rgba(82, 40, 17, 0.04) 25.5%,
-            rgba(82, 40, 17, 0.04) 26%,
-            transparent 26.5%
-          ),
-          radial-gradient(
-            circle at 0% 0%,
-            transparent 25%,
-            rgba(82, 40, 17, 0.04) 25.5%,
-            rgba(82, 40, 17, 0.04) 26%,
-            transparent 26.5%
-          ),
-          radial-gradient(
-            circle at 100% 0%,
-            transparent 25%,
-            rgba(82, 40, 17, 0.04) 25.5%,
-            rgba(82, 40, 17, 0.04) 26%,
-            transparent 26.5%
-          ),
-          radial-gradient(
-            circle at 0% 100%,
-            transparent 25%,
-            rgba(82, 40, 17, 0.04) 25.5%,
-            rgba(82, 40, 17, 0.04) 26%,
-            transparent 26.5%
-          ),
-          radial-gradient(
-            circle at 100% 100%,
-            transparent 25%,
-            rgba(82, 40, 17, 0.04) 25.5%,
-            rgba(82, 40, 17, 0.04) 26%,
-            transparent 26.5%
-          ),
-          /* Connecting lines */
-          linear-gradient(
-              45deg,
-              transparent 48.5%,
-              rgba(216, 172, 39, 0.08) 49%,
-              rgba(216, 172, 39, 0.08) 51%,
-              transparent 51.5%
-            ),
-          linear-gradient(
-            -45deg,
-            transparent 48.5%,
-            rgba(216, 172, 39, 0.08) 49%,
-            rgba(216, 172, 39, 0.08) 51%,
-            transparent 51.5%
-          ),
-          linear-gradient(
-            0deg,
-            transparent 49%,
-            rgba(82, 40, 17, 0.03) 49.5%,
-            rgba(82, 40, 17, 0.03) 50.5%,
-            transparent 51%
-          ),
-          linear-gradient(
-            90deg,
-            transparent 49%,
-            rgba(82, 40, 17, 0.03) 49.5%,
-            rgba(82, 40, 17, 0.03) 50.5%,
-            transparent 51%
-          );
-        background-size: 80px 80px;
-        z-index: 0;
+        top: -200px; right: -200px;
+        width: 500px; height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(216,172,39,0.12) 0%, transparent 70%);
         pointer-events: none;
-        opacity: 1;
       }
 
       .skills-section::after {
         content: "";
         position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
-        background-image: 
-					/* Decorative corner crescents - Islamic motif */
-          radial-gradient(
-            ellipse 80px 40px at 0% 0%,
-            rgba(216, 172, 39, 0.06) 0%,
-            transparent 70%
-          ),
-          radial-gradient(
-            ellipse 80px 40px at 100% 0%,
-            rgba(216, 172, 39, 0.06) 0%,
-            transparent 70%
-          ),
-          radial-gradient(
-            ellipse 80px 40px at 0% 100%,
-            rgba(216, 172, 39, 0.06) 0%,
-            transparent 70%
-          ),
-          radial-gradient(
-            ellipse 80px 40px at 100% 100%,
-            rgba(216, 172, 39, 0.06) 0%,
-            transparent 70%
-          );
-        z-index: 0;
+        bottom: -150px; left: -150px;
+        width: 400px; height: 400px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
         pointer-events: none;
       }
 
@@ -254,118 +159,111 @@ Dependencies:
         z-index: 1;
       }
 
+      /* Section header on dark bg */
+      .skills-section .section-header h2 {
+        color: #fff;
+        font-size: 42px;
+        font-weight: 800;
+      }
+
+      .skills-section .section-header p {
+        color: rgba(255,255,255,0.65);
+        font-size: 16px;
+      }
+
+      /* Cards */
       .skills-card {
         height: 100%;
-        border: none;
-        border-radius: 15px;
-        padding: 30px 25px;
-        transition: all 0.3s ease;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        border-radius: 24px;
+        padding: 36px 28px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         position: relative;
         overflow: hidden;
+        background: rgba(255,255,255,0.07);
+        border: 1px solid rgba(255,255,255,0.12);
+        backdrop-filter: blur(10px);
       }
 
       .skills-card::before {
         content: "";
         position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 4px;
+        top: 0; left: 0;
+        width: 100%; height: 3px;
+        border-radius: 24px 24px 0 0;
       }
+
+      .skills-card-blue::before   { background: linear-gradient(90deg, #d8ac27, #f0c842); }
+      .skills-card-green::before  { background: linear-gradient(90deg, #1d8f7f, #0a6558); }
+      .skills-card-yellow::before { background: linear-gradient(90deg, #d8ac27, #f0c842); }
+      .skills-card-pink::before   { background: linear-gradient(90deg, #1d8f7f, #0a6558); }
 
       .skills-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        transform: translateY(-12px);
+        background: rgba(255,255,255,0.12);
+        border-color: rgba(216,172,39,0.4);
+        box-shadow: 0 24px 60px rgba(0,0,0,0.25);
       }
 
-      .skills-card-blue {
-        background: linear-gradient(135deg, #e8f4ff 0%, #f0faff 100%);
+      /* Big bg number */
+      .skills-card-num {
+        position: absolute;
+        bottom: 16px; right: 20px;
+        font-size: 80px;
+        font-weight: 900;
+        color: rgba(255,255,255,0.04);
+        line-height: 1;
+        pointer-events: none;
+        user-select: none;
       }
 
-      .skills-card-blue::before {
-        background: linear-gradient(90deg, #87ceeb 0%, #4a9fbe 100%);
-      }
-
-      .skills-card-green {
-        background: linear-gradient(135deg, #d4f5e9 0%, #e8f9f3 100%);
-      }
-
-      .skills-card-green::before {
-        background: linear-gradient(90deg, #56c596 0%, #2e8b6f 100%);
-      }
-
-      .skills-card-yellow {
-        background: linear-gradient(135deg, #fffacd 0%, #ffffeb 100%);
-      }
-
-      .skills-card-yellow::before {
-        background: linear-gradient(90deg, #ffd700 0%, #ffc700 100%);
-      }
-
-      .skills-card-pink {
-        background: linear-gradient(135deg, #ffe4e1 0%, #fff0f5 100%);
-      }
-
-      .skills-card-pink::before {
-        background: linear-gradient(90deg, #ff69b4 0%, #db7093 100%);
-      }
-
-      .skills-card-body {
-        text-align: center;
-      }
+      .skills-card-body { text-align: left; }
 
       .skills-icon {
-        width: 70px;
-        height: 70px;
-        margin: 0 auto 20px;
+        width: 64px;
+        height: 64px;
+        margin-bottom: 24px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 36px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.7);
+        font-size: 28px;
+        border-radius: 18px;
+        transition: transform 1s ease;
       }
 
-      .skills-card-blue .skills-icon {
-        color: #4a9fbe;
+      .skills-card:hover .skills-icon i {
+        transform: rotate(360deg);
       }
 
-      .skills-card-green .skills-icon {
-        color: #2e8b6f;
-      }
-
-      .skills-card-yellow .skills-icon {
-        color: #ffc700;
-      }
-
-      .skills-card-pink .skills-icon {
-        color: #db7093;
-      }
+      .skills-card-blue .skills-icon   { background: rgba(216,172,39,0.2); color: #f0c842; }
+      .skills-card-green .skills-icon  { background: rgba(29,143,127,0.25); color: #4dd9c8; }
+      .skills-card-yellow .skills-icon { background: rgba(216,172,39,0.2); color: #f0c842; }
+      .skills-card-pink .skills-icon   { background: rgba(29,143,127,0.25); color: #4dd9c8; }
 
       .skills-card h5 {
         font-size: 20px;
         font-weight: 700;
-        margin-bottom: 15px;
-        color: #1a1a1a;
+        margin-bottom: 12px;
+        color: #fff;
       }
 
       .skills-card p {
         font-size: 14px;
-        color: #555;
-        line-height: 1.6;
+        color: rgba(255,255,255,0.65);
+        line-height: 1.75;
         margin: 0;
       }
 
       @media (max-width: 768px) {
+        .skills-section { padding: 70px 0; }
         .skills-card {
-          padding: 25px 20px;
+          padding: 28px 22px;
+          margin-bottom: 16px;
         }
 
         .skills-icon {
-          width: 60px !important;
-          height: 60px !important;
-          font-size: 28px !important;
+          width: 56px !important;
+          height: 56px !important;
+          font-size: 24px !important;
         }
 
         .skills-card h5 {
@@ -382,105 +280,197 @@ Dependencies:
 			   4-step process guide for new students
 			   Steps: Fill Form > Confirm > Download Zoom > Payment
 			   ========================================== */
+      /* ── How It Works — Modern Redesign ── */
       .how-it-works-section {
-        background: #fff;
-        padding: 80px 0;
-      }
-
-      .how-it-works-section .section-header h2 {
-        font-size: 42px;
-        color: #1a1a1a;
-      }
-
-      .how-it-works-section .section-header p {
-        font-size: 16px;
-        color: #666;
-      }
-
-      .step-card {
+        background: linear-gradient(160deg, #fbf5e6 0%, #fdf9f2 100%);
+        padding: 100px 0;
         position: relative;
-        padding: 30px 25px;
-        padding-top: 50px;
-        border-radius: 15px;
-        height: 100%;
-        transition: all 0.3s ease;
+        overflow: hidden;
       }
 
-      .step-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .step-card-purple {
-        background: linear-gradient(135deg, #f3e8ff 0%, #faf5ff 100%);
-        border-left: 3px solid #8b5cf6;
-      }
-
-      .step-card-light {
-        background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-        border-left: 3px solid #e2e8f0;
-      }
-
-      .step-number {
+      .how-it-works-section::before {
+        content: '';
         position: absolute;
-        top: -20px;
-        left: 25px;
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d8ac27' stroke-opacity='0.05' stroke-width='1'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: 60px 60px;
+        pointer-events: none;
+      }
+
+      .how-it-works-section .hiw-badge,
+      .hiw-badge {
+        display: inline-block;
+        background: rgba(216,172,39,0.12);
+        color: #b8860b;
+        font-size: 12px;
         font-weight: 700;
-        color: #fff;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 6px 18px;
+        border-radius: 50px;
+        border: 1px solid rgba(216,172,39,0.25);
+        margin-bottom: 16px;
       }
 
-      .step-number-purple {
-        background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
-      }
-
-      .step-number-dark {
-        background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-      }
-
-      .step-content h5 {
-        font-size: 20px;
-        font-weight: 700;
+      .how-it-works-section .hiw-title {
+        font-size: 42px;
+        font-weight: 800;
         color: #1a1a1a;
-        margin-bottom: 15px;
-        line-height: 1.3;
+        margin-bottom: 12px;
+        line-height: 1.2;
       }
 
-      .step-content p {
-        font-size: 14px;
-        color: #64748b;
+      .how-it-works-section .hiw-sub {
+        font-size: 16px;
+        color: #777;
+        max-width: 500px;
+        margin: 0 auto;
         line-height: 1.7;
-        margin-bottom: 15px;
       }
 
-      .step-link {
-        font-size: 14px;
-        font-weight: 600;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        transition: all 0.3s ease;
+      /* Connector line */
+      .hiw-steps-row {
+        position: relative;
       }
 
-      .step-link:hover {
-        gap: 10px;
+      .hiw-steps-row::before {
+        content: '';
+        position: absolute;
+        top: 52px;
+        left: calc(12.5% + 24px);
+        right: calc(12.5% + 24px);
+        height: 2px;
+        background: linear-gradient(to right, #d8ac27, #0a6558, #d8ac27, #0a6558);
+        opacity: 0.25;
+        z-index: 0;
       }
 
       @media (max-width: 991px) {
-        .how-it-works-section {
-          padding: 60px 0;
-        }
+        .hiw-steps-row::before { display: none; }
+      }
 
-        .step-card {
-          margin-bottom: 30px;
-        }
+      /* Step card */
+      .hiw-card {
+        background: #fff;
+        border-radius: 22px;
+        padding: 36px 28px 30px;
+        height: 100%;
+        position: relative;
+        z-index: 1;
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+        box-shadow: 0 4px 20px rgba(82,40,17,0.07);
+        border: 1px solid rgba(216,172,39,0.12);
+        overflow: hidden;
+      }
+
+      .hiw-card::after {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 4px;
+        border-radius: 22px 22px 0 0;
+      }
+
+      .hiw-card-gold::after  { background: linear-gradient(to right, #d8ac27, #f0c842); }
+      .hiw-card-teal::after  { background: linear-gradient(to right, #0a6558, #1d8f7f); }
+
+      .hiw-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 50px rgba(82,40,17,0.13);
+      }
+
+      /* Icon circle */
+      .hiw-icon-wrap {
+        width: 64px;
+        height: 64px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        margin-bottom: 22px;
+        position: relative;
+        z-index: 1;
+        transition: transform 0.5s ease;
+      }
+
+      .hiw-icon-wrap i {
+        transition: transform 1.2s ease;
+      }
+
+      .hiw-card:hover .hiw-icon-wrap i {
+        transform: rotate(360deg);
+      }
+
+      .hiw-icon-gold { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92610a; }
+      .hiw-icon-teal { background: linear-gradient(135deg, #d1faf5, #a7f3e4); color: #065f54; }
+
+      /* Step number badge */
+      .hiw-step-num {
+        position: absolute;
+        top: 20px; right: 22px;
+        font-size: 52px;
+        font-weight: 900;
+        line-height: 1;
+        opacity: 0.06;
+        color: #522811;
+        pointer-events: none;
+        user-select: none;
+      }
+
+      .hiw-card h5 {
+        font-size: 18px;
+        font-weight: 800;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+        line-height: 1.35;
+      }
+
+      .hiw-card p {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.75;
+        margin-bottom: 18px;
+      }
+
+      .hiw-link {
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 18px;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+      }
+
+      .hiw-link-gold {
+        background: rgba(216,172,39,0.1);
+        color: #92610a;
+        border: 1px solid rgba(216,172,39,0.3);
+      }
+
+      .hiw-link-gold:hover {
+        background: #d8ac27;
+        color: #fff;
+      }
+
+      .hiw-link-teal {
+        background: rgba(10,101,88,0.08);
+        color: #0a6558;
+        border: 1px solid rgba(10,101,88,0.2);
+      }
+
+      .hiw-link-teal:hover {
+        background: #0a6558;
+        color: #fff;
+      }
+
+      @media (max-width: 991px) {
+        .how-it-works-section { padding: 70px 0; }
+        .how-it-works-section .hiw-title { font-size: 32px; }
+        .hiw-card { margin-bottom: 20px; }
       }
 
       @media (max-width: 768px) {
@@ -506,7 +496,7 @@ Dependencies:
           #fff9f0 50%,
           #fffdf9 100%
         );
-        padding: 20px 0 80px;
+        padding: 80px 0 80px;
         position: relative;
         overflow: hidden;
       }
@@ -538,14 +528,13 @@ Dependencies:
         z-index: 1;
       }
 
-      .featured-courses-section .section-header span {
-        background: linear-gradient(135deg, #d8ac27 0%, #f0c850 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-size: 16px;
-        font-weight: 600;
-        letter-spacing: 1px;
+      .featured-courses-section .section-header span.hiw-badge {
+        background: rgba(216,172,39,0.12);
+        -webkit-text-fill-color: #b8860b;
+        color: #b8860b;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
         text-transform: uppercase;
         text-decoration: none !important;
       }
@@ -559,12 +548,12 @@ Dependencies:
       }
 
       .featured-courses-section .course-item {
-        background: #fff;
+        background: #fdf9f2;
         border-radius: 20px;
         overflow: hidden;
         box-shadow: 0 10px 40px rgba(82, 40, 17, 0.08);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        border: 1px solid rgba(216, 172, 39, 0.1);
+        border: 1px solid rgba(216, 172, 39, 0.2);
         position: relative;
       }
 
@@ -1104,12 +1093,7 @@ Dependencies:
 			   Background: Islamic geometric pattern overlay
 			   ========================================== */
       .projects-section {
-        background: linear-gradient(
-          135deg,
-          #522811 0%,
-          #3a1c0a 40%,
-          #2a1408 100%
-        );
+        background: #fbf5e6;
         padding: 100px 0;
         position: relative;
         overflow: hidden;
@@ -1164,7 +1148,7 @@ Dependencies:
       }
 
       .projects-section .section-header span {
-        color: #d8ac27;
+        color: #b8860b;
         font-size: 14px;
         font-weight: 600;
         letter-spacing: 2px;
@@ -1174,7 +1158,7 @@ Dependencies:
       .projects-section .section-header h2 {
         font-size: 42px;
         font-weight: 800;
-        color: #fff;
+        color: #1a1a1a;
         margin-top: 10px;
       }
 
@@ -1191,8 +1175,8 @@ Dependencies:
 
       .project-tab-btn {
         background: transparent;
-        border: 2px solid rgba(216, 172, 39, 0.3);
-        color: #fff;
+        border: 2px solid rgba(180, 130, 0, 0.3);
+        color: #522811;
         padding: 12px 24px;
         border-radius: 30px;
         font-size: 14px;
@@ -1205,8 +1189,8 @@ Dependencies:
       }
 
       .project-tab-btn:hover {
-        border-color: #d8ac27;
-        color: #d8ac27;
+        border-color: #b8860b;
+        color: #b8860b;
       }
 
       .project-tab-btn.active {
@@ -1229,10 +1213,11 @@ Dependencies:
       }
 
       .project-card {
-        background: #fff;
+        background: #fdf9f2;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        box-shadow: 0 8px 32px rgba(82, 40, 17, 0.12);
+        border: 1px solid rgba(10, 101, 88, 0.15);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         display: none;
       }
@@ -1255,7 +1240,8 @@ Dependencies:
 
       .project-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 20px 50px rgba(82, 40, 17, 0.18);
+        border-color: rgba(216, 172, 39, 0.5);
       }
 
       .project-card-img {
@@ -1527,7 +1513,11 @@ Dependencies:
             <div class="main-menu-wrapper">
               <div class="menu-header">
                 <a href="/" class="menu-logo">
-                  <img src="assets/img/white-logo.png" class="img-fluid site-logo" alt="Logo" />
+                  <img
+                    src="assets/img/white-logo.png"
+                    class="img-fluid site-logo"
+                    alt="Logo"
+                  />
                 </a>
                 <a
                   id="menu_close"
@@ -1543,13 +1533,25 @@ Dependencies:
                 <li><a href="/shared/about-us">About Us</a></li>
                 <li><a href="/shared/free-trial">Free Trial</a></li>
                 <li><a href="/shared/welfare-programs">Projects</a></li>
-                <li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
+                <li>
+                  <a href="/shared/become-an-instructor"
+                    >Become an Instructor</a
+                  >
+                </li>
               </ul>
 
               <div class="menu-login">
-                <a href="/auth/login" class="btn btn-primary w-100 mb-2"><i class="isax isax-user me-2"></i>Sign In</a>
-                <a href="/auth/register" class="btn btn-dark w-100 mb-2"><i class="isax isax-user-edit me-2"></i>Register</a>
-                <a href="/shared/welfare-programs" class="btn btn-secondary w-100"><i class="isax isax-heart5 me-1"></i>Donate</a>
+                <a href="/auth/login" class="btn btn-primary w-100 mb-2"
+                  ><i class="isax isax-user me-2"></i>Sign In</a
+                >
+                <a href="/auth/register" class="btn btn-dark w-100 mb-2"
+                  ><i class="isax isax-user-edit me-2"></i>Register</a
+                >
+                <a
+                  href="/shared/welfare-programs"
+                  class="btn btn-secondary w-100"
+                  ><i class="isax isax-heart5 me-1"></i>Donate</a
+                >
               </div>
             </div>
             <div class="header-btn d-flex align-items-center">
@@ -1641,7 +1643,7 @@ Dependencies:
             <!-- Slide 1: Main Academy Promotion -->
             <div class="swiper-slide">
               <div class="slide-bg">
-                <img src="assets/img/bg/DJI_0004.JPG" />
+                <img src="assets/img/bg/hero_background.webp" />
               </div>
               <div class="slide-overlay"></div>
               <div class="shape shape-1"></div>
@@ -1651,11 +1653,23 @@ Dependencies:
                 <div class="slide-text-content">
                   <div class="modern-badge">
                     <span class="badge-icon"></span>
-                    <span>Featured Course</span>
+                    <span>Pakistan's Best Courses</span>
                   </div>
                   <h1 class="modern-title">
                     Learn Quran with
-                    <span class="title-gradient">Alkahaf Academy</span>
+                    <span class="title-gradient">Alkahaf Academy</span
+                    ><i
+                      class="fas fa-graduation-cap"
+                      style="
+                        font-size: 36px;
+                        color: #d8ac27;
+                        transform: rotate(15deg);
+                        display: inline-block;
+                        vertical-align: super;
+                        margin-left: 8px;
+                        filter: drop-shadow(0 3px 8px rgba(216, 172, 39, 0.6));
+                      "
+                    ></i>
                   </h1>
                   <p class="modern-description">
                     The sad people in the universe are so many .. but in Islam
@@ -1663,13 +1677,16 @@ Dependencies:
                   </p>
                   <div class="modern-buttons">
                     <a
-                      href="/courses/course-grid" class="modern-btn btn-primary-modern"
+                      href="/courses/course-grid"
+                      class="modern-btn btn-primary-modern"
                     >
                       <span>Start Learning</span>
                       <i class="fas fa-arrow-right"></i>
                     </a>
                     <a
-                      href="https://www.youtube.com/watch?v=a7rTLpjJ4FA" data-fancybox="" class="modern-btn btn-secondary-modern"
+                      href="https://www.youtube.com/watch?v=a7rTLpjJ4FA"
+                      data-fancybox=""
+                      class="modern-btn btn-secondary-modern"
                     >
                       <span>Watch Preview</span>
                       <i class="fas fa-play"></i>
@@ -1681,7 +1698,7 @@ Dependencies:
             <!-- Slide 2 -->
             <div class="swiper-slide">
               <div class="slide-bg">
-                <img src="assets/img/bg/DJI_0004.JPG" />
+                <img src="assets/img/bg/wallpaper.webp" />
               </div>
               <div class="slide-overlay"></div>
               <div class="shape shape-1"></div>
@@ -1691,25 +1708,41 @@ Dependencies:
                 <div class="slide-text-content">
                   <div class="modern-badge">
                     <span class="badge-icon"></span>
-                    <span>Featured Course</span>
+                    <span>Join 10,000+ Students</span>
                   </div>
                   <h1 class="modern-title">
-                    Learn Quran with
-                    <span class="title-gradient">Alkahaf Academy</span>
+                    Learn from Pakistan's
+                    <span class="title-gradient-logo">Most Trusted Academy</span
+                    ><i
+                      class="fas fa-graduation-cap"
+                      style="
+                        font-size: 36px;
+                        color: #0a6558;
+                        transform: rotate(15deg);
+                        display: inline-block;
+                        vertical-align: super;
+                        margin-left: 8px;
+                        filter: drop-shadow(0 3px 8px rgba(10, 101, 88, 0.6));
+                      "
+                    ></i>
                   </h1>
                   <p class="modern-description">
-                    The sad people in the universe are so many .. but in Islam
-                    you move from happiness to happiness
+                    Our certified instructors bring years of experience in
+                    Quran, Tajweed, and Islamic Studies — all from the comfort
+                    of your home.
                   </p>
                   <div class="modern-buttons">
                     <a
-                      href="/courses/course-grid" class="modern-btn btn-primary-modern"
+                      href="/courses/course-grid"
+                      class="modern-btn btn-teal-modern"
                     >
                       <span>Start Learning</span>
                       <i class="fas fa-arrow-right"></i>
                     </a>
                     <a
-                      href="https://www.youtube.com/watch?v=a7rTLpjJ4FA" data-fancybox="" class="modern-btn btn-secondary-modern"
+                      href="https://www.youtube.com/watch?v=a7rTLpjJ4FA"
+                      data-fancybox=""
+                      class="modern-btn btn-secondary-modern btn-secondary-teal"
                     >
                       <span>Watch Preview</span>
                       <i class="fas fa-play"></i>
@@ -1731,7 +1764,7 @@ Dependencies:
                 <div class="slide-text-content">
                   <div class="modern-badge">
                     <span class="badge-icon"></span>
-                    <span>Featured Course</span>
+                    <span>Pakistan's Best Courses</span>
                   </div>
                   <h1 class="modern-title">
                     Learn Quran with
@@ -1743,13 +1776,16 @@ Dependencies:
                   </p>
                   <div class="modern-buttons">
                     <a
-                      href="/courses/course-grid" class="modern-btn btn-primary-modern"
+                      href="/courses/course-grid"
+                      class="modern-btn btn-primary-modern"
                     >
                       <span>Start Learning</span>
                       <i class="fas fa-arrow-right"></i>
                     </a>
                     <a
-                      href="https://www.youtube.com/watch?v=a7rTLpjJ4FA" data-fancybox="" class="modern-btn btn-secondary-modern"
+                      href="https://www.youtube.com/watch?v=a7rTLpjJ4FA"
+                      data-fancybox=""
+                      class="modern-btn btn-secondary-modern"
                     >
                       <span>Watch Preview</span>
                       <i class="fas fa-play"></i>
@@ -2095,10 +2131,7 @@ Dependencies:
       <section class="featured-courses-section">
         <div class="container">
           <div class="section-header text-center">
-            <span
-              class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block"
-              >Featured Courses</span
-            >
+            <span class="hiw-badge" style="margin-bottom:16px;">Featured Courses</span>
             <h3>Unlock The Treasures Of Arabic And The Quran</h3>
           </div>
           <div class="feature-course-slider-2">
@@ -2533,7 +2566,7 @@ Dependencies:
         <div class="container">
           <!-- Section Header -->
           <div class="section-header text-center">
-            <span>Our Initiatives</span>
+            <span class="hiw-badge" style="margin-bottom:16px;">Our Initiatives</span>
             <h2>Current Projects & Welfare Programs</h2>
           </div>
 
@@ -2561,7 +2594,18 @@ Dependencies:
 
           <!-- Projects Card Grid (Loaded dynamically from API) -->
           <div class="projects-grid" id="projects-grid">
-            <div id="projects-loading" style="width:100%;text-align:center;padding:40px 0;color:#888;font-size:15px;"><i class="fa fa-spinner fa-spin"></i> Loading programs…</div>
+            <div
+              id="projects-loading"
+              style="
+                width: 100%;
+                text-align: center;
+                padding: 40px 0;
+                color: #888;
+                font-size: 15px;
+              "
+            >
+              <i class="fa fa-spinner fa-spin"></i> Loading programs…
+            </div>
             <!-- ========== STATIC FALLBACK (removed – cards loaded via JS) ========== -->
           </div>
 
@@ -2589,63 +2633,47 @@ Dependencies:
             </p>
           </div>
           <div class="row g-4">
-            <!-- Card 1 - Certified Tutors (Blue Theme) -->
+            <!-- Card 1 -->
             <div class="col-lg-3 col-md-6">
               <div class="skills-card skills-card-blue">
+                <span class="skills-card-num">01</span>
                 <div class="skills-card-body">
-                  <div class="skills-icon">
-                    <i class="isax isax-user-tick"></i>
-                  </div>
+                  <div class="skills-icon"><i class="fas fa-user-check"></i></div>
                   <h5>Certified Tutors</h5>
-                  <p>
-                    All of our tutors are certified by Al-Azhar, ensuring the
-                    highest standards of Islamic education.
-                  </p>
+                  <p>All tutors are certified by Al-Azhar, ensuring the highest standards of authentic Islamic education.</p>
                 </div>
               </div>
             </div>
-            <!-- Card 2 - 1 on 1 Online Classes -->
+            <!-- Card 2 -->
             <div class="col-lg-3 col-md-6">
               <div class="skills-card skills-card-green">
+                <span class="skills-card-num">02</span>
                 <div class="skills-card-body">
-                  <div class="skills-icon">
-                    <i class="isax isax-video"></i>
-                  </div>
+                  <div class="skills-icon"><i class="fas fa-video"></i></div>
                   <h5>1 on 1 Online Classes</h5>
-                  <p>
-                    Enjoy personalized, 1-on-1 learning experiences tailored to
-                    your needs and schedule.
-                  </p>
+                  <p>Enjoy personalized, 1-on-1 learning experiences tailored to your needs and schedule.</p>
                 </div>
               </div>
             </div>
-            <!-- Card 3 - Flexible Schedule -->
+            <!-- Card 3 -->
             <div class="col-lg-3 col-md-6">
               <div class="skills-card skills-card-yellow">
+                <span class="skills-card-num">03</span>
                 <div class="skills-card-body">
-                  <div class="skills-icon">
-                    <i class="isax isax-clock"></i>
-                  </div>
+                  <div class="skills-icon"><i class="fas fa-clock"></i></div>
                   <h5>Flexible Schedule</h5>
-                  <p>
-                    Our flexible scheduling options allow you to choose the best
-                    time to study, fitting seamlessly into your life.
-                  </p>
+                  <p>Choose the best time to study from our flexible scheduling options that fit seamlessly into your life.</p>
                 </div>
               </div>
             </div>
-            <!-- Card 4 - Trending Courses -->
+            <!-- Card 4 -->
             <div class="col-lg-3 col-md-6">
               <div class="skills-card skills-card-pink">
+                <span class="skills-card-num">04</span>
                 <div class="skills-card-body">
-                  <div class="skills-icon">
-                    <i class="isax isax-trend-up"></i>
-                  </div>
+                  <div class="skills-icon"><i class="fas fa-chart-line"></i></div>
                   <h5>Trending Courses</h5>
-                  <p>
-                    Stay ahead with our trending courses, taught in innovative
-                    ways that keep you engaged and informed.
-                  </p>
+                  <p>Stay ahead with our trending courses, taught in innovative ways that keep you engaged and informed.</p>
                 </div>
               </div>
             </div>
@@ -2713,7 +2741,7 @@ Dependencies:
                   <div class="avatar avatar-lg flex-shrink-0">
                     <img
                       class="rounded-pill"
-                      src="/assets/img/user/user-28.jpg"
+                      src="/assets/img/user/Untitled_design.png"
                       alt="img"
                     />
                   </div>
@@ -2730,87 +2758,79 @@ Dependencies:
       <!-- /trust -->
 
       <!-- How It Works Section -->
-      <section class="how-it-works-section py-5">
+      <section class="how-it-works-section">
         <div class="container">
-          <div class="section-header text-center mb-5">
-            <h2 class="fw-bold mb-3">How It Works</h2>
-            <p class="text-muted">
-              How to start learning at Al-Kahaf Academy in 4 easy steps
-            </p>
+          <!-- Header -->
+          <div class="text-center mb-5">
+            <span class="hiw-badge">Simple Process</span>
+            <h2 class="hiw-title">How It Works</h2>
+            <p class="hiw-sub">Start your Quranic journey at Al-Kahaf Academy in 4 easy steps</p>
           </div>
-          <div class="row g-4">
+
+          <!-- Steps -->
+          <div class="row g-4 hiw-steps-row">
+
             <!-- Step 1 -->
             <div class="col-lg-3 col-md-6">
-              <div class="step-card step-card-purple">
-                <div class="step-number step-number-purple">1</div>
-                <div class="step-content">
-                  <h5>Fill in The Free Trial Form</h5>
-                  <p>
-                    Fill in this form, so that our support could contact you and
-                    confirm the appointment you selected for the free trial
-                    session.
-                  </p>
-                  <a href="/auth/register" class="step-link text-primary"
-                    >Free Trial Form <i class="isax isax-arrow-right-3"></i
-                  ></a>
+              <div class="hiw-card hiw-card-gold">
+                <span class="hiw-step-num">01</span>
+                <div class="hiw-icon-wrap hiw-icon-gold">
+                  <i class="fas fa-file-alt"></i>
                 </div>
+                <h5>Fill in the Free Trial Form</h5>
+                <p>Fill in our quick form so our team can contact you and schedule your free trial session.</p>
+                <a href="/shared/free-trial" class="hiw-link hiw-link-gold">
+                  Free Trial Form <i class="fas fa-arrow-right"></i>
+                </a>
               </div>
             </div>
+
             <!-- Step 2 -->
             <div class="col-lg-3 col-md-6">
-              <div class="step-card step-card-light">
-                <div class="step-number step-number-purple">2</div>
-                <div class="step-content">
-                  <h5>Confirm The Appointment</h5>
-                  <p>
-                    Once you submit your free trial request, the assigned tutor
-                    from Al-Kahaf Academy will contact you within 24Hrs via
-                    email, Phone Call, or WhatsApp to confirm the appointment
-                    and further details.
-                  </p>
+              <div class="hiw-card hiw-card-teal">
+                <span class="hiw-step-num">02</span>
+                <div class="hiw-icon-wrap hiw-icon-teal">
+                  <i class="fas fa-calendar-check"></i>
                 </div>
+                <h5>Confirm Your Appointment</h5>
+                <p>Our assigned tutor will contact you within 24 hours via email, phone, or WhatsApp to confirm details.</p>
               </div>
             </div>
+
             <!-- Step 3 -->
             <div class="col-lg-3 col-md-6">
-              <div class="step-card step-card-light">
-                <div class="step-number step-number-dark">3</div>
-                <div class="step-content">
-                  <h5>Download Online Meeting App</h5>
-                  <p>
-                    Download Zoom app to start taking the class at the scheduled
-                    appointment. (Zoom room link is provided upon appointment
-                    confirmation)
-                  </p>
-                  <a
-                    href="https://zoom.us/download"
-                    target="_blank"
-                    class="step-link text-primary"
-                    >Download Zoom <i class="isax isax-arrow-right-3"></i
-                  ></a>
+              <div class="hiw-card hiw-card-gold">
+                <span class="hiw-step-num">03</span>
+                <div class="hiw-icon-wrap hiw-icon-gold">
+                  <i class="fas fa-video"></i>
                 </div>
+                <h5>Join Your Online Class</h5>
+                <p>Download Zoom and attend your trial class at the scheduled time. The room link is sent upon confirmation.</p>
+                <a href="https://zoom.us/download" target="_blank" class="hiw-link hiw-link-gold">
+                  Download Zoom <i class="fas fa-arrow-right"></i>
+                </a>
               </div>
             </div>
+
             <!-- Step 4 -->
             <div class="col-lg-3 col-md-6">
-              <div class="step-card step-card-light">
-                <div class="step-number step-number-dark">4</div>
-                <div class="step-content">
-                  <h5>Make Payment for The Chosen Course</h5>
-                  <p>
-                    Once you have done the trial sessions and you are satisfied
-                    with the courses & tutors, you may proceed with paying for
-                    the chosen learning package, and you are all set to start
-                    the course the same day.
-                  </p>
+              <div class="hiw-card hiw-card-teal">
+                <span class="hiw-step-num">04</span>
+                <div class="hiw-icon-wrap hiw-icon-teal">
+                  <i class="fas fa-graduation-cap"></i>
                 </div>
+                <h5>Enroll & Start Learning</h5>
+                <p>Satisfied with your trial? Choose your course package, make payment, and start learning the same day.</p>
+                <a href="/courses/course-grid" class="hiw-link hiw-link-teal">
+                  Browse Courses <i class="fas fa-arrow-right"></i>
+                </a>
               </div>
             </div>
+
           </div>
         </div>
       </section>
       <!-- /How It Works Section -->
-
 
       <!-- how it works -->
       <div class="how-it-works-sec-two">
@@ -2828,10 +2848,7 @@ Dependencies:
             <div class="col-lg-6">
               <div class="how-it-works-content aos" data-aos="fade-up">
                 <div class="section-header">
-                  <span
-                    class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block"
-                    >How it Works</span
-                  >
+                  <span class="hiw-badge" style="margin-bottom:16px;">How it Works</span>
                   <h2 class="mb-1">Start your Learning Journey Today!</h2>
                   <p>
                     Unlock Your Potential and Achieve Your Dreams with Our
@@ -2892,9 +2909,12 @@ Dependencies:
       <div class="featured-instructor-sec">
         <div class="container">
           <div class="section-header text-center" data-aos="fade-up">
-            <span class="fw-medium text-light text-decoration-underline mb-2 d-inline-block">Featured Instructors</span>
+            <span class="hiw-badge" style="margin-bottom:16px;">Featured Instructors</span>
             <h2 class="text-white">Top Class &amp; Professional Instructors</h2>
-            <p class="text-light">Meet our certified scholars dedicated to authentic Islamic education</p>
+            <p class="text-light">
+              Meet our certified scholars dedicated to authentic Islamic
+              education
+            </p>
           </div>
 
           <!-- Loading state -->
@@ -2905,12 +2925,20 @@ Dependencies:
           </div>
 
           <!-- Empty state -->
-          <div id="instructors-empty" class="text-center py-4" style="display:none;">
+          <div
+            id="instructors-empty"
+            class="text-center py-4"
+            style="display: none"
+          >
             <p class="text-light">No instructors available at the moment.</p>
           </div>
 
           <!-- Slider (populated dynamically) -->
-          <div class="featured-instructor-slider" id="instructorSlider" style="display:none;"></div>
+          <div
+            class="featured-instructor-slider"
+            id="instructorSlider"
+            style="display: none"
+          ></div>
         </div>
       </div>
 
@@ -2919,26 +2947,120 @@ Dependencies:
       <!-- testimonials -->
       <section class="ft-testimonials-section" id="reviews-section">
         <style>
-          .ft-testimonials-section { padding: 80px 0; background: linear-gradient(135deg, #2c1506 0%, #522811 50%, #3d1d0a 100%); position: relative; overflow: hidden; }
-          .ft-testimonials-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d8ac27' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); pointer-events: none; }
-          .ft-testimonials-section .section-title-white { font-size: 34px; font-weight: 800; color: #fff; margin-bottom: 8px; }
-          .ft-testimonials-section .section-sub-white { font-size: 15px; color: rgba(255,255,255,0.65); margin-bottom: 48px; }
-          .hp-testimonial-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(216,172,39,0.2); border-radius: 16px; padding: 30px 28px; height: 100%; backdrop-filter: blur(4px); transition: all 0.3s ease; }
-          .hp-testimonial-card:hover { background: rgba(216,172,39,0.1); border-color: rgba(216,172,39,0.5); transform: translateY(-4px); }
-          .hp-testimonial-card .quote-icon { font-size: 36px; color: #d8ac27; line-height: 1; margin-bottom: 16px; opacity: 0.8; }
-          .hp-testimonial-card .review-text { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
-          .hp-testimonial-card .stars { color: #d8ac27; font-size: 13px; margin-bottom: 14px; letter-spacing: 2px; }
-          .hp-testimonial-card .reviewer-info { display: flex; align-items: center; gap: 12px; }
-          .hp-testimonial-card .reviewer-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #d8ac27, #f0c842); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: #fff; flex-shrink: 0; }
-          .hp-testimonial-card .reviewer-avatar img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
-          .hp-testimonial-card .reviewer-name { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 2px; }
-          .hp-testimonial-card .reviewer-loc { font-size: 12px; color: rgba(255,255,255,0.5); }
-          .hp-testimonial-card .review-badge { font-size: 11px; color: rgba(216,172,39,0.7); margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
+          .ft-testimonials-section {
+            padding: 80px 0;
+            background: linear-gradient(
+              135deg,
+              #2c1506 0%,
+              #522811 50%,
+              #3d1d0a 100%
+            );
+            position: relative;
+            overflow: hidden;
+          }
+          .ft-testimonials-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d8ac27' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+          }
+          .ft-testimonials-section .section-title-white {
+            font-size: 34px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+          }
+          .ft-testimonials-section .section-sub-white {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.65);
+            margin-bottom: 48px;
+          }
+          .hp-testimonial-card {
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(216, 172, 39, 0.2);
+            border-radius: 16px;
+            padding: 30px 28px;
+            height: 100%;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+          }
+          .hp-testimonial-card:hover {
+            background: rgba(216, 172, 39, 0.1);
+            border-color: rgba(216, 172, 39, 0.5);
+            transform: translateY(-4px);
+          }
+          .hp-testimonial-card .quote-icon {
+            font-size: 36px;
+            color: #d8ac27;
+            line-height: 1;
+            margin-bottom: 16px;
+            opacity: 0.8;
+          }
+          .hp-testimonial-card .review-text {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-style: italic;
+          }
+          .hp-testimonial-card .stars {
+            color: #d8ac27;
+            font-size: 13px;
+            margin-bottom: 14px;
+            letter-spacing: 2px;
+          }
+          .hp-testimonial-card .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+          }
+          .hp-testimonial-card .reviewer-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d8ac27, #f0c842);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            flex-shrink: 0;
+          }
+          .hp-testimonial-card .reviewer-avatar img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+          .hp-testimonial-card .reviewer-name {
+            font-size: 14px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 2px;
+          }
+          .hp-testimonial-card .reviewer-loc {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+          }
+          .hp-testimonial-card .review-badge {
+            font-size: 11px;
+            color: rgba(216, 172, 39, 0.7);
+            margin-bottom: 4px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+          }
         </style>
         <div class="container">
           <div class="text-center">
             <h2 class="section-title-white">What Our Students Say</h2>
-            <p class="section-sub-white">Real experiences shared by students from the Al-Kahaf dashboard</p>
+            <p class="section-sub-white">
+              Real experiences shared by students from the Al-Kahaf dashboard
+            </p>
           </div>
           <div class="row g-4" id="hp-reviews-grid">
             <div class="col-12 text-center py-5">
@@ -2951,40 +3073,86 @@ Dependencies:
 
       <script src="/assets/js/api-config.js"></script>
       <script>
-      (function(){
-        var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
-        function initials(name){ return name ? name.split(' ').map(function(w){return w[0];}).join('').toUpperCase().slice(0,2) : 'AK'; }
-        function stars(n){ return '★'.repeat(n) + '☆'.repeat(5-n); }
-        function render(reviews){
-          var grid = document.getElementById('hp-reviews-grid');
-          if(!reviews.length){
-            grid.innerHTML = '<div class="col-12 text-center py-4"><p style="color:rgba(255,255,255,0.5)">Be the first to leave a review!</p></div>';
-            return;
+        (function () {
+          var API_BASE =
+            typeof API_CONFIG !== "undefined"
+              ? API_CONFIG.BASE_URL
+              : "https://api.alkahafonlineacademy.com/api/v1";
+          function initials(name) {
+            return name
+              ? name
+                  .split(" ")
+                  .map(function (w) {
+                    return w[0];
+                  })
+                  .join("")
+                  .toUpperCase()
+                  .slice(0, 2)
+              : "AK";
           }
-          grid.innerHTML = reviews.map(function(r){
-            var name = r.student ? ((r.student.firstName||'') + ' ' + (r.student.lastName||'')).trim() : 'Al-Kahaf Student';
-            var avatar = r.student && r.student.profileImage
-              ? '<img src="'+r.student.profileImage+'" alt="'+name+'">'
-              : initials(name);
-            var loc = r.location ? r.location : '';
-            return '<div class="col-lg-4 col-md-6 d-flex">'
-              + '<div class="hp-testimonial-card w-100">'
-              + '<div class="review-badge">Verified Student Review</div>'
-              + '<div class="quote-icon">&ldquo;</div>'
-              + '<div class="stars">'+stars(r.rating||5)+'</div>'
-              + '<p class="review-text">'+r.message+'</p>'
-              + '<div class="reviewer-info">'
-              + '<div class="reviewer-avatar">'+avatar+'</div>'
-              + '<div><div class="reviewer-name">'+name+'</div>'
-              + (loc ? '<div class="reviewer-loc">'+loc+'</div>' : '')
-              + '</div></div></div></div>';
-          }).join('');
-        }
-        fetch(API_BASE + '/reviews')
-          .then(function(r){ return r.json(); })
-          .then(function(d){ render(d.data || []); })
-          .catch(function(){ document.getElementById('hp-reviews-grid').innerHTML = ''; });
-      }());
+          function stars(n) {
+            return "★".repeat(n) + "☆".repeat(5 - n);
+          }
+          function render(reviews) {
+            var grid = document.getElementById("hp-reviews-grid");
+            if (!reviews.length) {
+              grid.innerHTML =
+                '<div class="col-12 text-center py-4"><p style="color:rgba(255,255,255,0.5)">Be the first to leave a review!</p></div>';
+              return;
+            }
+            grid.innerHTML = reviews
+              .map(function (r) {
+                var name = r.student
+                  ? (
+                      (r.student.firstName || "") +
+                      " " +
+                      (r.student.lastName || "")
+                    ).trim()
+                  : "Al-Kahaf Student";
+                var avatar =
+                  r.student && r.student.profileImage
+                    ? '<img src="' +
+                      r.student.profileImage +
+                      '" alt="' +
+                      name +
+                      '">'
+                    : initials(name);
+                var loc = r.location ? r.location : "";
+                return (
+                  '<div class="col-lg-4 col-md-6 d-flex">' +
+                  '<div class="hp-testimonial-card w-100">' +
+                  '<div class="review-badge">Verified Student Review</div>' +
+                  '<div class="quote-icon">&ldquo;</div>' +
+                  '<div class="stars">' +
+                  stars(r.rating || 5) +
+                  "</div>" +
+                  '<p class="review-text">' +
+                  r.message +
+                  "</p>" +
+                  '<div class="reviewer-info">' +
+                  '<div class="reviewer-avatar">' +
+                  avatar +
+                  "</div>" +
+                  '<div><div class="reviewer-name">' +
+                  name +
+                  "</div>" +
+                  (loc ? '<div class="reviewer-loc">' + loc + "</div>" : "") +
+                  "</div></div></div></div>"
+                );
+              })
+              .join("");
+          }
+          fetch(API_BASE + "/reviews")
+            .then(function (r) {
+              return r.json();
+            })
+            .then(function (d) {
+              render(d.data || []);
+            })
+            .catch(function () {
+              document.getElementById("hp-reviews-grid").innerHTML = "";
+            });
+        })();
       </script>
 
       <!-- faq -->
@@ -3014,12 +3182,9 @@ Dependencies:
             <div class="col-lg-6">
               <div class="faq-content">
                 <div class="section-header" data-aos="fade-up">
-                  <span
-                    class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block"
-                    >Your Questions are Answered</span
-                  >
+                  <span class="hiw-badge" style="margin-bottom:16px;">Your Questions are Answered</span>
                   <h2 class="mb-1">Frequently Asked Questions</h2>
-                  <p>
+                  <p class="mb-4">
                     Explore detailed answers to the most common questions about
                     our platform.
                   </p>
@@ -3769,101 +3934,158 @@ Dependencies:
 			     Contains: Logo, About, Quick Links, Social Icons, Copyright
 			     ============================================================ -->
       <footer class="footer">
-				<div class="footer-bg">
-					<img src="/assets/img/bg/footer-bg-01.png" class="footer-bg-1" alt="">
-					<img src="/assets/img/bg/footer-bg-02.png" class="footer-bg-2" alt="">
-				</div>
-				<div class="footer-top">
-					<div class="container">
-						<div class="row row-gap-4">
-							<div class="col-lg-4">
-								<div class="footer-about">
-									<div class="footer-logo">
-										<img src="/assets/img/white-logo.png" style="width: 200px;height: 150px;" alt="">
-									</div>
-									<p>Al-Kahaf Online Academy — providing authentic Quranic and Islamic education to students worldwide.</p>
-									<div class="d-flex align-items-center">
-										<a href="#" class="me-2"><img src="/assets/img/icon/appstore.svg" alt=""></a>
-										<a href="#"><img src="/assets/img/icon/googleplay.svg" alt=""></a>
-									</div>
-								</div>
-							</div>
-							<div class="col-lg-8">
-								<div class="row row-gap-4">
-									<div class="col-lg-4">
-										<div class="footer-widget footer-menu">
-											<h5 class="footer-title">Explore</h5>
-											<ul>
-												<li><a href="/shared/about-us">About Us</a></li>
-												<li><a href="/courses/course-grid">Courses</a></li>
-												<li><a href="/shared/welfare-programs">Projects</a></li>
-												<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
-											<li><a href="/shared/welfare-programs">Welfare Program</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="footer-widget footer-menu">
-											<h5 class="footer-title">Support</h5>
-											<ul>
-												<li><a href="/shared/contact-us">Contact Us</a></li>
-												<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
-												<li><a href="/shared/terms-and-conditions">Terms &amp; Conditions</a></li>
-												<li><a href="/auth/login">Login</a></li>
-												<li><a href="/auth/register">Register</a></li>
-											</ul>
-										</div>
-									</div>
-									<div class="col-lg-4">
-										<div class="footer-widget footer-contact">
-											<h5 class="footer-title">Newsletter</h5>
-											<div class="subscribe-input">
-												<form action="javascript:void(0);">
-													<input type="email" class="form-control" placeholder="Enter your Email Address">
-													<button type="submit" class="btn btn-primary btn-sm inline-flex align-items-center"><i class="isax isax-send-2 me-1"></i>Subscribe</button>
-												</form>
-											</div>
-											<div class="footer-contact-info">
-												<div class="footer-address d-flex align-items-center">
-													<img src="/assets/img/icon/icon-20.svg" alt="Img" class="img-fluid me-2">
-													<p>Lahore, Punjab,<br>Pakistan</p>
-												</div>
-												<div class="footer-address d-flex align-items-center">
-													<img src="/assets/img/icon/icon-19.svg" alt="Img" class="img-fluid me-2">
-													<p>info@alkahafonlineacademy.com</p>
-												</div>
-												<div class="footer-address d-flex align-items-center">
-													<img src="/assets/img/icon/icon-21.svg" alt="Img" class="img-fluid me-2">
-													<p>+92 311 4567890</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="footer-bottom">
-					<div class="container">
-						<div class="row row-gap-2">
-							<div class="col-md-6">
-								<div class="text-center text-md-start">
-									<p class="text-white">Copyright 2025 <span class="text-secondary">Al-KahafOnlineAcademy</span>. All rights reserved.</p>
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div>
-									<ul class="d-flex align-items-center justify-content-center justify-content-md-end footer-link">
-										<li><a href="/shared/terms-and-conditions">Terms &amp; Conditions</a></li>
-										<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</footer>
+        <div class="footer-bg">
+          <img
+            src="/assets/img/bg/footer-bg-01.png"
+            class="footer-bg-1"
+            alt=""
+          />
+          <img
+            src="/assets/img/bg/footer-bg-02.png"
+            class="footer-bg-2"
+            alt=""
+          />
+        </div>
+        <div class="footer-top">
+          <div class="container">
+            <div class="row row-gap-4">
+              <div class="col-lg-4">
+                <div class="footer-about">
+                  <div class="footer-logo">
+                    <img
+                      src="/assets/img/white-logo.png"
+                      style="width: 200px; height: 150px"
+                      alt=""
+                    />
+                  </div>
+                  <p>
+                    Al-Kahaf Online Academy — providing authentic Quranic and
+                    Islamic education to students worldwide.
+                  </p>
+                  <div class="d-flex align-items-center">
+                    <a href="#" class="me-2"
+                      ><img src="/assets/img/icon/appstore.svg" alt=""
+                    /></a>
+                    <a href="#"
+                      ><img src="/assets/img/icon/googleplay.svg" alt=""
+                    /></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="row row-gap-4">
+                  <div class="col-lg-4">
+                    <div class="footer-widget footer-menu">
+                      <h5 class="footer-title">Explore</h5>
+                      <ul>
+                        <li><a href="/shared/about-us">About Us</a></li>
+                        <li><a href="/courses/course-grid">Courses</a></li>
+                        <li><a href="/shared/welfare-programs">Projects</a></li>
+                        <li>
+                          <a href="/shared/become-an-instructor"
+                            >Become an Instructor</a
+                          >
+                        </li>
+                        <li>
+                          <a href="/shared/welfare-programs">Welfare Program</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="footer-widget footer-menu">
+                      <h5 class="footer-title">Support</h5>
+                      <ul>
+                        <li><a href="/shared/contact-us">Contact Us</a></li>
+                        <li>
+                          <a href="/shared/privacy-policy">Privacy Policy</a>
+                        </li>
+                        <li>
+                          <a href="/shared/terms-and-conditions"
+                            >Terms &amp; Conditions</a
+                          >
+                        </li>
+                        <li><a href="/auth/login">Login</a></li>
+                        <li><a href="/auth/register">Register</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="footer-widget footer-contact">
+                      <h5 class="footer-title">Newsletter</h5>
+                      <div class="subscribe-input">
+                        <form action="javascript:void(0);">
+                          <input
+                            type="email"
+                            class="form-control"
+                            placeholder="Enter your Email Address"
+                          />
+                          <button
+                            type="submit"
+                            class="btn btn-primary btn-sm inline-flex align-items-center"
+                          >
+                            <i class="isax isax-send-2 me-1"></i>Subscribe
+                          </button>
+                        </form>
+                      </div>
+                      <div class="footer-contact-info">
+                        <div class="footer-address d-flex align-items-center">
+                          <img
+                            src="/assets/img/icon/icon-20.svg"
+                            alt="Img"
+                            class="img-fluid me-2"
+                          />
+                          <p>Lahore, Punjab,<br />Pakistan</p>
+                        </div>
+                        <div class="footer-address d-flex align-items-center">
+                          <img
+                            src="/assets/img/icon/icon-19.svg"
+                            alt="Img"
+                            class="img-fluid me-2"
+                          />
+                          <p>info@alkahafonlineacademy.com</p>
+                        </div>
+                        <div class="footer-address d-flex align-items-center">
+                          <img
+                            src="/assets/img/icon/icon-21.svg"
+                            alt="Img"
+                            class="img-fluid me-2"
+                          />
+                          <p>+92 311 4567890</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="container">
+            <div class="row row-gap-2">
+              <div class="col-md-6">
+                <div class="text-center text-md-start">
+                  <p class="text-white">
+                    Copyright 2025
+                    <span class="text-secondary">Al-KahafOnlineAcademy</span>.
+                    All rights reserved.
+                  </p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="d-flex align-items-center justify-content-center justify-content-md-end gap-2">
+                  <a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+                  <a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-instagram"></i></a>
+                  <a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                  <a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-youtube"></i></a>
+                  <a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
       <!-- /Footer -->
     </div>
     <!-- /Main Wrapper -->
@@ -3900,82 +4122,127 @@ Dependencies:
     <!-- Main Site Script (Slick Initializations, General Functions) -->
     <script src="assets/js/script.js"></script>
     <script>
-    // Featured Instructors — dynamic load
-    (function() {
-      var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+      // Featured Instructors — dynamic load
+      (function () {
+        var API_BASE =
+          typeof API_CONFIG !== "undefined"
+            ? API_CONFIG.BASE_URL
+            : "https://api.alkahafonlineacademy.com/api/v1";
 
-      function renderStars(rating) {
-        var r = parseFloat(rating) || 5;
-        var full = Math.min(5, Math.floor(r));
-        var half = (r - full) >= 0.5 ? 1 : 0;
-        var empty = 5 - full - half;
-        var html = '';
-        for (var i = 0; i < full; i++) html += '<i class="fas fa-star"></i>';
-        if (half) html += '<i class="fas fa-star-half-alt"></i>';
-        for (var i = 0; i < empty; i++) html += '<i class="far fa-star"></i>';
-        return html;
-      }
+        function renderStars(rating) {
+          var r = parseFloat(rating) || 5;
+          var full = Math.min(5, Math.floor(r));
+          var half = r - full >= 0.5 ? 1 : 0;
+          var empty = 5 - full - half;
+          var html = "";
+          for (var i = 0; i < full; i++) html += '<i class="fas fa-star"></i>';
+          if (half) html += '<i class="fas fa-star-half-alt"></i>';
+          for (var i = 0; i < empty; i++) html += '<i class="far fa-star"></i>';
+          return html;
+        }
 
-      function buildCard(ins) {
-        var name = ((ins.firstName || '') + ' ' + (ins.lastName || '')).trim() || 'Instructor';
-        var initials = ((ins.firstName || ' ')[0] + (ins.lastName || ' ')[0]).toUpperCase();
-        var designation = ins.designation || 'Islamic Instructor';
-        var ratingVal = ins.rating ? parseFloat(ins.rating).toFixed(1) : '5.0';
+        function buildCard(ins) {
+          var name =
+            ((ins.firstName || "") + " " + (ins.lastName || "")).trim() ||
+            "Instructor";
+          var initials = (
+            (ins.firstName || " ")[0] + (ins.lastName || " ")[0]
+          ).toUpperCase();
+          var designation = ins.designation || "Islamic Instructor";
+          var ratingVal = ins.rating
+            ? parseFloat(ins.rating).toFixed(1)
+            : "5.0";
 
-        var avatarHtml = ins.profileImage
-          ? '<img src="' + ins.profileImage + '" alt="' + name + '"/>'
-          : '<div class="ins-initials">' + initials + '</div>';
+          var avatarHtml = ins.profileImage
+            ? '<img src="' + ins.profileImage + '" alt="' + name + '"/>'
+            : '<div class="ins-initials">' + initials + "</div>";
 
-        var verifiedBadge = ins.isVerified
-          ? '<span class="ins-verified-badge"><i class="fas fa-check"></i></span>'
-          : '';
+          var verifiedBadge = ins.isVerified
+            ? '<span class="ins-verified-badge"><i class="fas fa-check"></i></span>'
+            : "";
 
-        return '<div class="instructor-item instructor-item-three">'
-          + '<div class="ins-top-band"></div>'
-          + '<div class="ins-avatar-wrap">'
-          +   '<div class="ins-avatar">' + avatarHtml + '</div>'
-          +   verifiedBadge
-          + '</div>'
-          + '<div class="ins-body">'
-          +   '<h3 class="ins-name"><a href="/instructor/instructor-details?id=' + ins.id + '">' + name + '</a></h3>'
-          +   '<p class="ins-role">' + designation + '</p>'
-          +   '<div class="ins-rating">' + renderStars(ratingVal) + '<span class="ins-rating-val">' + ratingVal + '</span></div>'
-          +   '<a href="/instructor/instructor-details?id=' + ins.id + '" class="ins-btn">View Profile <i class="fas fa-arrow-right"></i></a>'
-          + '</div>'
-          + '</div>';
-      }
+          return (
+            '<div class="instructor-item instructor-item-three">' +
+            '<div class="ins-top-band"></div>' +
+            '<div class="ins-avatar-wrap">' +
+            '<div class="ins-avatar">' +
+            avatarHtml +
+            "</div>" +
+            verifiedBadge +
+            "</div>" +
+            '<div class="ins-body">' +
+            '<h3 class="ins-name"><a href="/instructor/instructor-details?id=' +
+            ins.id +
+            '">' +
+            name +
+            "</a></h3>" +
+            '<p class="ins-role">' +
+            designation +
+            "</p>" +
+            '<div class="ins-rating">' +
+            renderStars(ratingVal) +
+            '<span class="ins-rating-val">' +
+            ratingVal +
+            "</span></div>" +
+            '<a href="/instructor/instructor-details?id=' +
+            ins.id +
+            '" class="ins-btn">View Profile <i class="fas fa-arrow-right"></i></a>' +
+            "</div>" +
+            "</div>"
+          );
+        }
 
-      fetch(API_BASE + '/users/instructors?limit=8')
-        .then(function(r) { return r.json(); })
-        .then(function(data) {
-          var instructors = data.instructors || [];
-          var loading = document.getElementById('instructors-loading');
-          var empty = document.getElementById('instructors-empty');
-          var slider = document.getElementById('instructorSlider');
-          if (loading) loading.style.display = 'none';
-          if (!instructors.length) { if (empty) empty.style.display = 'block'; return; }
-          slider.innerHTML = instructors.map(buildCard).join('');
-          slider.style.display = 'block';
-          var total = instructors.length;
-          var show = Math.min(4, total);
-          $(slider).slick({
-            infinite: total > show,
-            slidesToShow: show,
-            slidesToScroll: 1,
-            arrows: true,
-            dots: total > show,
-            responsive: [
-              { breakpoint: 1200, settings: { slidesToShow: Math.min(3, total), dots: total > 3 } },
-              { breakpoint: 992,  settings: { slidesToShow: Math.min(2, total), dots: total > 2 } },
-              { breakpoint: 576,  settings: { slidesToShow: 1, dots: total > 1 } }
-            ]
+        fetch(API_BASE + "/users/instructors?limit=8")
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (data) {
+            var instructors = data.instructors || [];
+            var loading = document.getElementById("instructors-loading");
+            var empty = document.getElementById("instructors-empty");
+            var slider = document.getElementById("instructorSlider");
+            if (loading) loading.style.display = "none";
+            if (!instructors.length) {
+              if (empty) empty.style.display = "block";
+              return;
+            }
+            slider.innerHTML = instructors.map(buildCard).join("");
+            slider.style.display = "block";
+            var total = instructors.length;
+            var show = Math.min(4, total);
+            $(slider).slick({
+              infinite: total > show,
+              slidesToShow: show,
+              slidesToScroll: 1,
+              arrows: true,
+              dots: total > show,
+              responsive: [
+                {
+                  breakpoint: 1200,
+                  settings: {
+                    slidesToShow: Math.min(3, total),
+                    dots: total > 3,
+                  },
+                },
+                {
+                  breakpoint: 992,
+                  settings: {
+                    slidesToShow: Math.min(2, total),
+                    dots: total > 2,
+                  },
+                },
+                {
+                  breakpoint: 576,
+                  settings: { slidesToShow: 1, dots: total > 1 },
+                },
+              ],
+            });
+          })
+          .catch(function () {
+            var loading = document.getElementById("instructors-loading");
+            if (loading) loading.style.display = "none";
           });
-        })
-        .catch(function() {
-          var loading = document.getElementById('instructors-loading');
-          if (loading) loading.style.display = 'none';
-        });
-    })();
+      })();
     </script>
 
     <!-- Hero Slider Initialization -->
@@ -3988,11 +4255,11 @@ Dependencies:
 
         // category mapping: API category value → tab data-category
         var CAT_MAP = {
-          "quran": "quran",
-          "arabic": "arabic",
-          "community": "community",
-          "sponsorship": "sponsorship",
-          "urgent": "urgent"
+          quran: "quran",
+          arabic: "arabic",
+          community: "community",
+          sponsorship: "sponsorship",
+          urgent: "urgent",
         };
 
         function formatPKR(n) {
@@ -4002,10 +4269,10 @@ Dependencies:
 
         function buildCard(p) {
           var raised = Number(p.raisedAmount) || 0;
-          var goal   = Number(p.goalAmount)   || 1;
-          var pct    = Math.min(100, Math.round((raised / goal) * 100));
-          var img    = p.imageUrl || "assets/img/course/course-37.jpg";
-          var slug   = p.slug || p.id;
+          var goal = Number(p.goalAmount) || 1;
+          var pct = Math.min(100, Math.round((raised / goal) * 100));
+          var img = p.imageUrl || "assets/img/course/course-37.jpg";
+          var slug = p.slug || p.id;
           var detailUrl = "/shared/welfare-program-detail?id=" + slug;
           var catVal = (p.category || "").toLowerCase();
           var tabCat = CAT_MAP[catVal] || "community";
@@ -4016,67 +4283,105 @@ Dependencies:
             : "";
           var catLabel = p.category || "General";
 
-          return '<div class="project-card show" data-category="' + tabCat + '">' +
+          return (
+            '<div class="project-card show" data-category="' +
+            tabCat +
+            '">' +
             '<div class="project-card-img">' +
-              '<img src="' + img + '" alt="' + p.title + '" onerror="this.src=\'assets/img/course/course-37.jpg\'">' +
-              '<span class="project-card-category">' + catLabel + '</span>' +
-              urgentBadge +
-            '</div>' +
+            '<img src="' +
+            img +
+            '" alt="' +
+            p.title +
+            '" onerror="this.src=\'assets/img/course/course-37.jpg\'">' +
+            '<span class="project-card-category">' +
+            catLabel +
+            "</span>" +
+            urgentBadge +
+            "</div>" +
             '<div class="project-card-body">' +
-              '<h4 class="project-card-title"><a href="' + detailUrl + '">' + p.title + '</a></h4>' +
-              '<p class="project-card-desc">' + (p.description || '').slice(0, 130) + '</p>' +
-              '<div class="project-card-progress">' +
-                '<div class="progress-info">' +
-                  '<span class="progress-raised">Rs ' + formatPKR(raised) + ' raised</span>' +
-                  '<span class="progress-goal">of Rs ' + formatPKR(goal) + '</span>' +
-                '</div>' +
-                '<div class="progress-bar-wrapper"><div class="progress-bar-fill" style="width:' + pct + '%"></div></div>' +
-              '</div>' +
-              '<div class="project-card-footer">' +
-                '<a href="' + detailUrl + '" class="btn-donate">Donate Now</a>' +
-                '<a href="' + detailUrl + '" class="btn-details">Details</a>' +
-              '</div>' +
-            '</div>' +
-          '</div>';
+            '<h4 class="project-card-title"><a href="' +
+            detailUrl +
+            '">' +
+            p.title +
+            "</a></h4>" +
+            '<p class="project-card-desc">' +
+            (p.description || "").slice(0, 130) +
+            "</p>" +
+            '<div class="project-card-progress">' +
+            '<div class="progress-info">' +
+            '<span class="progress-raised">Rs ' +
+            formatPKR(raised) +
+            " raised</span>" +
+            '<span class="progress-goal">of Rs ' +
+            formatPKR(goal) +
+            "</span>" +
+            "</div>" +
+            '<div class="progress-bar-wrapper"><div class="progress-bar-fill" style="width:' +
+            pct +
+            '%"></div></div>' +
+            "</div>" +
+            '<div class="project-card-footer">' +
+            '<a href="' +
+            detailUrl +
+            '" class="btn-donate">Donate Now</a>' +
+            '<a href="' +
+            detailUrl +
+            '" class="btn-details">Details</a>' +
+            "</div>" +
+            "</div>" +
+            "</div>"
+          );
         }
 
         function applyFilter(category) {
-          document.querySelectorAll(".project-tab-btn").forEach(function(t) {
-            t.classList.toggle("active", t.getAttribute("data-category") === category);
+          document.querySelectorAll(".project-tab-btn").forEach(function (t) {
+            t.classList.toggle(
+              "active",
+              t.getAttribute("data-category") === category,
+            );
           });
-          document.querySelectorAll(".project-card").forEach(function(card) {
-            var match = category === "all" || card.getAttribute("data-category") === category;
+          document.querySelectorAll(".project-card").forEach(function (card) {
+            var match =
+              category === "all" ||
+              card.getAttribute("data-category") === category;
             card.style.display = match ? "" : "none";
           });
         }
 
         // Wire tab clicks
-        document.querySelectorAll(".project-tab-btn").forEach(function(btn) {
-          btn.addEventListener("click", function() {
+        document.querySelectorAll(".project-tab-btn").forEach(function (btn) {
+          btn.addEventListener("click", function () {
             applyFilter(this.getAttribute("data-category"));
           });
         });
 
         // Fetch programs from API
         fetch(API_BASE + "/welfare/programs?status=active&limit=12")
-          .then(function(r) { return r.json(); })
-          .then(function(d) {
-            var grid    = document.getElementById("projects-grid");
+          .then(function (r) {
+            return r.json();
+          })
+          .then(function (d) {
+            var grid = document.getElementById("projects-grid");
             var loading = document.getElementById("projects-loading");
             if (loading) loading.remove();
 
             if (!d.success || !d.programs || !d.programs.length) {
-              grid.innerHTML = '<div style="width:100%;text-align:center;padding:40px 0;color:#888;">No active programs found.</div>';
+              grid.innerHTML =
+                '<div style="width:100%;text-align:center;padding:40px 0;color:#888;">No active programs found.</div>';
               return;
             }
 
             var html = "";
-            d.programs.forEach(function(p) { html += buildCard(p); });
+            d.programs.forEach(function (p) {
+              html += buildCard(p);
+            });
             grid.innerHTML = html;
           })
-          .catch(function() {
+          .catch(function () {
             var loading = document.getElementById("projects-loading");
-            if (loading) loading.innerHTML = '<span style="color:#c00">Could not load programs.</span>';
+            if (loading)
+              loading.innerHTML =
+                '<span style="color:#c00">Could not load programs.</span>';
           });
       })();
     </script>
@@ -4138,7 +4443,11 @@ Dependencies:
             '" class="img-fluid" onerror="this.src=\'' +
             FALLBACK_IMG +
             "'\">" +
-            (course.category ? '<span style="position:absolute;top:8px;left:8px;background:#522811;color:#d8ac27;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.3px;">' + course.category + '</span>' : '') +
+            (course.category
+              ? '<span style="position:absolute;top:8px;left:8px;background:#522811;color:#d8ac27;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.3px;">' +
+                course.category +
+                "</span>"
+              : "") +
             "</div>" +
             '<div class="course-content">' +
             '<div class="d-flex align-items-center mb-2" style="min-width:0">' +
@@ -4154,7 +4463,11 @@ Dependencies:
             '<h6 class="title mb-2">' +
             course.title +
             "</h6>" +
-            (rating > 0 ? '<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' + ratingDisplay + "</p>" : '') +
+            (rating > 0
+              ? '<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' +
+                ratingDisplay +
+                "</p>"
+              : "") +
             '<div class="d-flex align-items-center justify-content-between">' +
             '<span class="text-secondary fw-bold lh-1" style="font-size:1.25rem">' +
             priceDisplay +

@@ -130,17 +130,17 @@
 								</span>
 							</a>
 							<div class="navbar-logo">
-								<a class="logo-white header-logo" href="/shared/index">
+								<a class="logo-white header-logo" href="/">
 									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
 								</a>
-								<a class="logo-dark header-logo" href="/shared/index">
+								<a class="logo-dark header-logo" href="/">
 									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
 								</a>
 							</div>
 						</div>
 						<div class="main-menu-wrapper">								
 							<div class="menu-header">
-								<a href="/shared/index" class="menu-logo">
+								<a href="/" class="menu-logo">
 									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="img-fluid" alt="Logo">
 								</a>
 								<a id="menu_close" class="menu-close" href="javascript:void(0);">
@@ -217,10 +217,9 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12 col-12">
-							<h2 class="breadcrumb-title mb-2">About Us</h2>
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb justify-content-center mb-0">
-									<li class="breadcrumb-item"><a href="/shared/index">Home</a></li>
+									<li class="breadcrumb-item"><a href="/">Home</a></li>
 									<li class="breadcrumb-item active" aria-current="page">About Us</li>
 								</ol>
 							</nav>
@@ -236,24 +235,16 @@
 					<div class="row align-items-center">
 						<div class="col-lg-6">
 						<div class="p-3 p-sm-4 position-relative">
-							<div class="position-absolute top-0 start-0 z-n1">
-								<img src="/assets/img/shapes/shape-1.svg" alt="img">
-							</div>
-							<div class="position-absolute bottom-0 end-0 z-n1">
-								<img src="/assets/img/shapes/shape-2.svg" alt="img">
-							</div>
-							<div class="position-absolute bottom-0 start-0 mb-md-5 ms-md-n5">
-								<img src="/assets/img/icons/icon-1.svg" alt="img">
-							</div>
-							<img class="img-fluid img-radius" src="/assets/img/about/about-2.svg" alt="img">
+							
+							
+							<img class="img-fluid img-radius" src="/assets/img/about/about-2.png" alt="img">
 						</div>
 						</div>
 						<div class="col-lg-6">
 							<div class="ps-0 ps-lg-2 pt-4 pt-lg-0 ps-xl-5">
 								<div class="section-header">
-									<span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">About Us</span>
-									<h2>Nurturing Hearts Through Authentic Islamic Knowledge</h2>
-									<p>Al-Kahaf Online Academy is dedicated to providing authentic Quranic and Islamic education to students worldwide. Learn from certified scholars in a flexible, structured online environment — anytime, anywhere.</p>
+																		<h2>Nurturing Hearts Through Authentic Islamic Knowledge</h2>
+									<p class="mb-4">Al-Kahaf Online Academy is dedicated to providing authentic Quranic and Islamic education to students worldwide. Learn from certified scholars in a flexible, structured online environment — anytime, anywhere.</p>
 								</div>
 								<div class="d-flex align-items-center about-us-banner">
 									<div>
@@ -285,12 +276,12 @@
 			<!-- about -->
 			
 			<!-- benefits -->
-			<section class="benefit-section">
+			<section class="benefit-section" style="position:relative;z-index:1;">
 				<div class="container">
 					<div class="section-header text-center">
-						<span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Why Choose Us</span>
+						<span class="hiw-badge" style="margin-bottom:16px;">Why Choose Us</span>
 						<h2>Your Path to Authentic Islamic Education</h2>
-						<p>We combine the tradition of classical Islamic scholarship with the convenience of modern online learning.</p>
+						<p class="mb-5">We combine the tradition of classical Islamic scholarship with the convenience of modern online learning.</p>
 					</div>
 					<div class="row">
 						<div class="col-lg-4 col-md-6">
@@ -344,65 +335,151 @@
 
 
 			<!-- counter -->
-			<section class="counter-sec">
-				<div class="container">
-					<div class="row gy-3">
-						<div class="col-xl-3 col-md-6">
-							<div class="card border-0 mb-0">
-								<div class="card-body">
-									<div class="d-flex align-items-center">
-										<div class="counter-icon">
-											<img src="/assets/img/icons/counter-icon1.svg" alt="img">
-										</div>
-										<div class="count-content">
-											<h4 class="text-primary"><span class="count-digit">150</span>+</h4>
-											<p>Online Courses</p>
-										</div>
-									</div>
+			<section class="ak-stats-section">
+				<style>
+					.ak-stats-section {
+						padding: 80px 0;
+						background: linear-gradient(135deg, #3d1d0a 0%, #522811 50%, #6b3515 100%);
+						position: relative;
+						overflow: hidden;
+					}
+					.ak-stats-section::before {
+						content: '';
+						position: absolute;
+						inset: 0;
+						background: radial-gradient(ellipse at 20% 50%, rgba(216,172,39,0.08) 0%, transparent 60%),
+						            radial-gradient(ellipse at 80% 50%, rgba(216,172,39,0.05) 0%, transparent 60%);
+						pointer-events: none;
+					}
+					.ak-stats-section .section-label {
+						font-size: 13px;
+						font-weight: 600;
+						letter-spacing: 2px;
+						text-transform: uppercase;
+						color: #d8ac27;
+						margin-bottom: 8px;
+					}
+					.ak-stats-section .section-title {
+						font-size: 32px;
+						font-weight: 800;
+						color: #fff;
+						margin-bottom: 56px;
+					}
+					.ak-stat-card {
+						background: rgba(255,255,255,0.06);
+						border: 1px solid rgba(216,172,39,0.18);
+						border-radius: 20px;
+						padding: 40px 24px 32px;
+						text-align: center;
+						transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+						position: relative;
+						overflow: hidden;
+					}
+					.ak-stat-card::before {
+						content: '';
+						position: absolute;
+						top: 0; left: 0; right: 0;
+						height: 3px;
+						border-radius: 20px 20px 0 0;
+						background: linear-gradient(90deg, #d8ac27, #f0c84a);
+						opacity: 0;
+						transition: opacity 0.3s ease;
+					}
+					.ak-stat-card:hover {
+						transform: translateY(-6px);
+						background: rgba(255,255,255,0.10);
+						border-color: rgba(216,172,39,0.45);
+					}
+					.ak-stat-card:hover::before {
+						opacity: 1;
+					}
+					.ak-stat-icon {
+						width: 64px;
+						height: 64px;
+						border-radius: 50%;
+						background: rgba(216,172,39,0.12);
+						border: 1px solid rgba(216,172,39,0.25);
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						margin: 0 auto 20px;
+						font-size: 26px;
+						color: #d8ac27;
+						transition: background 0.3s ease, transform 0.3s ease;
+					}
+					.ak-stat-card:hover .ak-stat-icon {
+						background: rgba(216,172,39,0.22);
+						transform: scale(1.08);
+					}
+					.ak-stat-number {
+						font-size: 44px;
+						font-weight: 800;
+						color: #fff;
+						line-height: 1;
+						margin-bottom: 8px;
+						letter-spacing: -1px;
+					}
+					.ak-stat-number span {
+						color: #d8ac27;
+					}
+					.ak-stat-label {
+						font-size: 14px;
+						color: rgba(255,255,255,0.6);
+						font-weight: 500;
+						letter-spacing: 0.3px;
+						margin: 0;
+					}
+					.ak-stat-divider {
+						width: 1px;
+						background: rgba(216,172,39,0.2);
+						align-self: stretch;
+					}
+					@media (max-width: 767px) {
+						.ak-stat-divider { display: none; }
+						.ak-stats-section { padding: 56px 0; }
+						.ak-stat-number { font-size: 36px; }
+					}
+				</style>
+				<div class="container position-relative">
+					<div class="text-center mb-2">
+						<p class="section-label">Our Impact</p>
+						<h2 class="section-title">Numbers That Speak for Themselves</h2>
+					</div>
+					<div class="row g-4">
+						<div class="col-lg-3 col-md-6">
+							<div class="ak-stat-card">
+								<div class="ak-stat-icon">
+									<i class="fas fa-book-open"></i>
 								</div>
+								<div class="ak-stat-number"><span class="count-digit">150</span>+</div>
+								<p class="ak-stat-label">Online Courses</p>
 							</div>
 						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="card border-0 mb-0">
-								<div class="card-body">
-									<div class="d-flex align-items-center">
-										<div class="counter-icon">
-											<img src="/assets/img/icons/counter-icon2.svg" alt="img">
-										</div>
-										<div class="count-content">
-											<h4 class="text-secondary"><span class="count-digit">50</span>+</h4>
-											<p>Expert Tutors</p>
-										</div>
-									</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="ak-stat-card">
+								<div class="ak-stat-icon">
+									<i class="fas fa-chalkboard-teacher"></i>
 								</div>
+								<div class="ak-stat-number"><span class="count-digit">50</span>+</div>
+								<p class="ak-stat-label">Expert Tutors</p>
 							</div>
 						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="card border-0 mb-0">
-								<div class="card-body">
-									<div class="d-flex align-items-center">
-										<div class="counter-icon">
-											<img src="/assets/img/icons/counter-icon3.svg" alt="img">
-										</div>
-										<div class="count-content">
-											<h4 class="text-skyblue"><span class="count-digit">5</span>K+</h4>
-											<p>Certified Courses</p>
-										</div>
-									</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="ak-stat-card">
+								<div class="ak-stat-icon">
+									<i class="fas fa-certificate"></i>
 								</div>
+								<div class="ak-stat-number"><span class="count-digit">5</span><span style="color:#d8ac27;">K+</span></div>
+								<p class="ak-stat-label">Certified Students</p>
 							</div>
 						</div>
-						<div class="col-xl-3 col-md-6">
-							<div class="card border-0 mb-0">
-								<div class="card-body d-flex align-items-center">
-									<div class="counter-icon">
-									<img src="/assets/img/icons/counter-icon4.svg" alt="img">
-									</div>
-									<div class="count-content">
-									<h4 class="text-lightgreen"><span class="count-digit">30</span>+</h4>
-										<p>Online Students</p>
-									</div>
+						<div class="col-lg-3 col-md-6">
+							<div class="ak-stat-card">
+								<div class="ak-stat-icon">
+									<i class="fas fa-user-graduate"></i>
 								</div>
+								<div class="ak-stat-number"><span class="count-digit">30</span>+</div>
+								<p class="ak-stat-label">Online Students</p>
 							</div>
 						</div>
 					</div>
@@ -410,186 +487,127 @@
 			</section>
 			<!-- counter -->
 
-			<!-- testimonials -->
-			<section class="testimonials-section text-center">
+
+			<!-- featured instructor -->
+			<div class="featured-instructor-sec">
 				<div class="container">
 					<div class="section-header text-center">
-						<span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">Featured Instructors</span>
-						<h2>Top Class & Professional Instructors</h2>
-						<p>Words from Those Who’ve Experienced Real Growth.</p>
+						<span class="hiw-badge" style="margin-bottom:16px;">Featured Instructors</span>
+						<h2 class="text-white">Top Class &amp; Professional Instructors</h2>
+						<p class="text-light">Meet our certified scholars dedicated to authentic Islamic education</p>
 					</div>
-					<div class="testimonials-slider mt-4" id="aboutTestimonials">
-						<div>
-							<div class="testimonials-item rounded-3 bg-white">
-								<div class="position-relative d-inline-flex mb-2">
-									<div class="avatar rounded-circle avatar-xxl border border-white border-3">
-										<a href="/instructor/instructor-details"><img class="img-fluid rounded-circle" src="/assets/img/user/user-41.jpg" alt="img"></a>
-									</div>
-									<i class="isax isax-quote-up5 bg-secondary quote rounded-pill fs-16 p-1"></i>
-								</div>
-								<h6 class="mb-1"><a href="/instructor/instructor-details">Brenda Slaton</a></h6>
-								<p class="fs-14 mb-3">Designer</p>
-								<p class="mb-3 text-truncate line-clamb-2">This mentor helped me understand concepts that I had been struggling with for weeks.</p>
-								<div>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-								</div>
-							</div>
+					<div id="instructors-loading" class="text-center py-4">
+						<div class="spinner-border text-light" role="status">
+							<span class="visually-hidden">Loading...</span>
 						</div>
-						<div>
-							<div class="testimonials-item rounded-3 bg-white">
-								<div class="position-relative d-inline-flex mb-2">
-									<div class="avatar rounded-circle avatar-xxl border border-white border-3">
-										<a href="/instructor/instructor-details"><img class="img-fluid rounded-circle" src="/assets/img/user/user-42.jpg" alt="img"></a>
-									</div>
-									<i class="isax isax-quote-up5 bg-secondary quote rounded-pill fs-16 p-1"></i>
-								</div>
-								<h6 class="mb-1"><a href="/instructor/instructor-details">Adrian Dennis</a></h6>
-								<p class="fs-14 mb-3">Developer</p>
-								<p class="mb-3 text-truncate line-clamb-2">I’ve learned so much from my mentor’s personal experience.</p>
-								<div>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-								</div>
-							</div>
-						</div>
-						<div>
-							<div class="testimonials-item rounded-3 bg-white">
-								<div class="position-relative d-inline-flex mb-2">
-									<div class="avatar rounded-circle avatar-xxl border border-white border-3">
-										<a href="/instructor/instructor-details"><img class="img-fluid rounded-circle" src="/assets/img/user/user-43.jpg" alt="img"></a>
-									</div>
-									<i class="isax isax-quote-up5 bg-secondary quote rounded-pill fs-16 p-1"></i>
-								</div>
-								<h6 class="mb-1"><a href="/instructor/instructor-details">Adrian Coztanza</a></h6>
-								<p class="fs-14 mb-3">Architect</p>
-								<p class="mb-3 text-truncate line-clamb-2">The advice was useful, but I wish my mentor had been more available for follow-up discussions.</p>
-								<div>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-								</div>
-							</div>  
-						</div>  
-						<div>
-							<div class="testimonials-item rounded-3 bg-white">
-								<div class="position-relative d-inline-flex mb-2">
-									<div class="avatar rounded-circle avatar-xxl border border-white border-3">
-										<a href="/instructor/instructor-details"><img class="img-fluid rounded-circle" src="/assets/img/user/user-43.jpg" alt="img"></a>
-									</div>
-									<i class="isax isax-quote-up5 bg-secondary quote rounded-pill fs-16 p-1"></i>
-								</div>
-								<h6 class="mb-1"><a href="/instructor/instructor-details">Adrian Coztanza</a></h6>
-								<p class="fs-14 mb-3">Architect</p>
-								<p class="mb-3 text-truncate line-clamb-2">The advice was useful, but I wish my mentor had been more available for follow-up discussions.</p>
-								<div>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-									<i class="fa-solid fa-star text-warning"></i>
-								</div>
-							</div>  
-						</div>  
 					</div>
+					<div id="instructors-empty" class="text-center py-4" style="display:none">
+						<p class="text-light">No instructors available at the moment.</p>
+					</div>
+					<div class="featured-instructor-slider" id="instructorSlider" style="display:none"></div>
 				</div>
-			</section>
-			<!-- testimonials -->
+			</div>
+			<!-- /featured instructor -->
 
 			<!-- faq -->
-			<section class="faq-section">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-5 pe-md-5">
-							<div class="position-relative">
-								<img class="img-fluid rounded-4" src="/assets/img/about/about-1.jpg" alt="img">
-								<div class="bg-warning text-center p-3 rounded-5 position-absolute top-0 end-0 z-index-1 d-none d-sm-block my-3 mx-3">
-									<i class="isax isax-message-question5 heading-color fs-46"></i>
-								</div>
+			<div class="faq-section faq-banner-bg" style="padding-top:60px;">
+				<img src="/assets/img/bg/bg-21.svg" alt="img" class="d-lg-flex d-none faq-bg2"/>
+				<img src="/assets/img/bg/bg-22.svg" alt="img" class="d-lg-flex d-none faq-bg3"/>
+				<div class="container">
+					<div class="row align-items-center">
+						<div class="col-lg-6">
+							<div class="faq-img" data-aos="fade-up">
+								<img class="img-fluid rounded-5" src="/assets/img/feature/feature-5.png" alt="img">
+								<span><i class="isax isax-message-question5"></i></span>
 							</div>
-                        </div>
-                        <div class="col-lg-7">
-							<div class="section-header">
-								<span class="fw-medium text-secondary text-decoration-underline mb-2 d-inline-block">FAQs</span>
-							<h2>Frequently Asked Questions</h2>
-							<p>Common questions about Al-Kahaf Online Academy and our Islamic learning programs.</p>
 						</div>
-						<div class="faq-content">
-						<div class="accordion accordion-customicon1 accordions-items-seperate" id="accordioncustomicon1Example">
-							<div class="accordion-item" data-aos="fade-up">
-								<h2 class="accordion-header" id="headingcustomicon1One">
-									<a href="#" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1One" aria-expanded="true" aria-controls="collapsecustomicon1One">
-									 What courses does Al-Kahaf Online Academy offer? <i class="isax isax-add fs-20 fw-semibold ms-1"></i>
-									</a>
-								</h2>
-								<div id="collapsecustomicon1One" class="accordion-collapse collapse show" aria-labelledby="headingcustomicon1One" data-bs-parent="#accordioncustomicon1Example">
-									<div class="accordion-body pt-0">
-									 <p>We offer a comprehensive range of Islamic courses including Noorani Qaida, Quran Recitation with Tajweed, Hifz-ul-Quran (Quran Memorization), Islamic Studies, Arabic Language, and more. All courses are taught by certified Islamic scholars.</p>
+						<div class="col-lg-6">
+							<div class="faq-content">
+								<div class="section-header" data-aos="fade-up">
+									<span class="hiw-badge" style="margin-bottom:16px;">Your Questions Answered</span>
+									<h2 class="mb-1">Frequently Asked Questions</h2>
+									<p class="mb-4">Everything you need to know about learning at Al-Kahaf Online Academy.</p>
+								</div>
+								<div class="accordion accordion-customicon1 accordions-items-seperate" id="aboutFaqAccordion">
+									<div class="accordion-item" data-aos="fade-up">
+										<h2 class="accordion-header" id="aboutFaqHeading1">
+											<a href="#" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#aboutFaqCollapse1" aria-expanded="true" aria-controls="aboutFaqCollapse1">
+												How do I book a free trial class? <i class="isax isax-add fs-20 fw-semibold ms-1"></i>
+											</a>
+										</h2>
+										<div id="aboutFaqCollapse1" class="accordion-collapse collapse show" aria-labelledby="aboutFaqHeading1" data-bs-parent="#aboutFaqAccordion">
+											<div class="accordion-body pt-0">
+												<p>Simply visit our Free Trial page, fill in your name, contact details, and preferred time slot. Our team will reach out within 24 hours to confirm your session with a certified instructor.</p>
+											</div>
+										</div>
+									</div>
+									<div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+										<h2 class="accordion-header" id="aboutFaqHeading2">
+											<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#aboutFaqCollapse2" aria-expanded="false" aria-controls="aboutFaqCollapse2">
+												What is the class schedule and how flexible is it? <i class="isax isax-add fs-20 fw-semibold ms-1"></i>
+											</a>
+										</h2>
+										<div id="aboutFaqCollapse2" class="accordion-collapse collapse" aria-labelledby="aboutFaqHeading2" data-bs-parent="#aboutFaqAccordion">
+											<div class="accordion-body pt-0">
+												<p>Classes are fully flexible and scheduled around your availability. You can choose morning, afternoon, or evening slots, 7 days a week. Once you select a time, it becomes your recurring weekly slot with the same instructor.</p>
+											</div>
+										</div>
+									</div>
+									<div class="accordion-item" data-aos="fade-up" data-aos-delay="150">
+										<h2 class="accordion-header" id="aboutFaqHeading3">
+											<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#aboutFaqCollapse3" aria-expanded="false" aria-controls="aboutFaqCollapse3">
+												Do I need prior knowledge to start learning Quran? <i class="isax isax-add fs-20 fw-semibold ms-1"></i>
+											</a>
+										</h2>
+										<div id="aboutFaqCollapse3" class="accordion-collapse collapse" aria-labelledby="aboutFaqHeading3" data-bs-parent="#aboutFaqAccordion">
+											<div class="accordion-body pt-0">
+												<p>No prior knowledge is required. We welcome complete beginners, including young children. During the free trial, your instructor will assess your level and place you in the right course — whether that's Noorani Qaida or an advanced Tajweed program.</p>
+											</div>
+										</div>
+									</div>
+									<div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+										<h2 class="accordion-header" id="aboutFaqHeading4">
+											<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#aboutFaqCollapse4" aria-expanded="false" aria-controls="aboutFaqCollapse4">
+												Are classes one-on-one or in a group? <i class="isax isax-add fs-20 fw-semibold ms-1"></i>
+											</a>
+										</h2>
+										<div id="aboutFaqCollapse4" class="accordion-collapse collapse" aria-labelledby="aboutFaqHeading4" data-bs-parent="#aboutFaqAccordion">
+											<div class="accordion-body pt-0">
+												<p>We offer both one-on-one and small group sessions. One-on-one classes are recommended for faster progress and personalized feedback, while group classes are a more affordable option for families or friends learning together.</p>
+											</div>
+										</div>
+									</div>
+									<div class="accordion-item" data-aos="fade-up" data-aos-delay="250">
+										<h2 class="accordion-header" id="aboutFaqHeading5">
+											<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#aboutFaqCollapse5" aria-expanded="false" aria-controls="aboutFaqCollapse5">
+												What happens if I miss a class? <i class="isax isax-add fs-20 fw-semibold ms-1"></i>
+											</a>
+										</h2>
+										<div id="aboutFaqCollapse5" class="accordion-collapse collapse" aria-labelledby="aboutFaqHeading5" data-bs-parent="#aboutFaqAccordion">
+											<div class="accordion-body pt-0">
+												<p>We understand life can be unpredictable. If you need to miss a class, inform your instructor at least 2 hours in advance and we will reschedule it at a convenient time. Missed classes are not deducted from your enrolled sessions.</p>
+											</div>
+										</div>
+									</div>
+									<div class="accordion-item" data-aos="fade-up" data-aos-delay="300">
+										<h2 class="accordion-header" id="aboutFaqHeading6">
+											<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#aboutFaqCollapse6" aria-expanded="false" aria-controls="aboutFaqCollapse6">
+												Do you offer a Welfare Program for students in need? <i class="isax isax-add fs-20 fw-semibold ms-1"></i>
+											</a>
+										</h2>
+										<div id="aboutFaqCollapse6" class="accordion-collapse collapse" aria-labelledby="aboutFaqHeading6" data-bs-parent="#aboutFaqAccordion">
+											<div class="accordion-body pt-0">
+												<p>Yes. Al-Kahaf Online Academy has a dedicated Welfare Program for students who cannot afford course fees. We believe Islamic education should be accessible to everyone. You can apply through our Projects page or contact us directly to discuss your situation confidentially.</p>
+											</div>
+										</div>
 									</div>
 								</div>
 							</div>
-							<div class="accordion-item" data-aos="fade-up" data-aos-delay="250">
-								<h2 class="accordion-header" id="headingcustomicon1Two">
-								<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Two" aria-expanded="false" aria-controls="collapsecustomicon1One">
-									Are your instructors qualified Islamic scholars? <i class="isax isax-add fs-20 fw-semibold ms-1"></i>
-								</a>
-								</h2>
-								<div id="collapsecustomicon1Two" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Two" data-bs-parent="#accordioncustomicon1Example">
-								 <div class="accordion-body pt-0">
-									 <p>Yes. All our instructors hold authentic ijazah in their respective subjects and have graduated from recognized Islamic institutions. We thoroughly verify credentials before onboarding any instructor.</p>
-								</div>
-								</div>
-							</div>
-							<div class="accordion-item" data-aos="fade-up" data-aos-delay="250">
-								<h2 class="accordion-header" id="headingcustomicon1Three">
-								<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Three" aria-expanded="false" aria-controls="collapsecustomicon1One">
-								Can children join the courses? <i class="isax isax-add fs-20 fw-semibold ms-1"></i>
-								</a>
-								</h2>
-								<div id="collapsecustomicon1Three" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Three" data-bs-parent="#accordioncustomicon1Example">
-								 <div class="accordion-body pt-0">
-									 <p>Absolutely. We have courses designed for children from age 5 and above. A parent or guardian will need to create the account. Our instructors are specifically trained to teach young learners in a comfortable and engaging way.</p>
-								</div>
-								</div>
-							</div>
-							<div class="accordion-item" data-aos="fade-up" data-aos-delay="250">
-								<h2 class="accordion-header" id="headingcustomicon1Four">
-								<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Four" aria-expanded="false" aria-controls="collapsecustomicon1One">
-									What are the course fees and payment options? <i class="isax isax-add fs-20 fw-semibold ms-1"></i>
-								</a>
-								</h2>
-								<div id="collapsecustomicon1Four" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Four" data-bs-parent="#accordioncustomicon1Example">
-								 <div class="accordion-body pt-0">
-									 <p>Course fees vary by program and are priced in PKR. We offer flexible monthly and semester-based plans. Payments can be made via JazzCash or card. We also have a Welfare Program for students who cannot afford fees — contact us to apply.</p>
-								</div>
-								</div>
-							</div>
-							<div class="accordion-item" data-aos="fade-up" data-aos-delay="250">
-								<h2 class="accordion-header" id="headingcustomicon1Five">
-								<a href="#" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Five" aria-expanded="false" aria-controls="collapsecustomicon1One">
-								Will I receive a certificate after completing a course? <i class="isax isax-add fs-20 fw-semibold ms-1"></i>
-								</a>
-								</h2>
-								<div id="collapsecustomicon1Five" class="accordion-collapse collapse" aria-labelledby="headingcustomicon1Five" data-bs-parent="#accordioncustomicon1Example">
-								 <div class="accordion-body pt-0">
-									 <p>Yes. Upon successful completion, you will receive a verified digital certificate from Al-Kahaf Online Academy, available for download directly from your student dashboard.</p>
-								</div>
-								</div>
-							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			</div>
-           </section>
-           <!-- faq -->
+			<!-- faq -->
 
 			<!-- Footer -->
 			<footer class="footer">
@@ -677,11 +695,12 @@
 								</div>
 							</div>
 							<div class="col-md-6">
-								<div>
-									<ul class="d-flex align-items-center justify-content-center justify-content-md-end footer-link">
-										<li><a href="/shared/terms-and-conditions">Terms &amp; Conditions</a></li>
-										<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
-									</ul>
+								<div class="d-flex align-items-center justify-content-center justify-content-md-end gap-2">
+									<a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+									<a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-instagram"></i></a>
+									<a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+									<a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-youtube"></i></a>
+									<a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-linkedin"></i></a>
 								</div>
 							</div>
 						</div>
@@ -711,26 +730,85 @@
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
 
-		<!-- Init testimonials slider directly -->
+		<!-- Featured Instructors — dynamic load -->
 		<script>
-		$(document).ready(function(){
-			if($('#aboutTestimonials').length > 0) {
-				$('#aboutTestimonials').slick({
-					infinite: true,
-					slidesToShow: 3,
-					slidesToScroll: 1,
-					arrows: true,
-					dots: false,
-					responsive: [
-						{ breakpoint: 992, settings: { slidesToShow: 2 } },
-						{ breakpoint: 768, settings: { slidesToShow: 1 } }
-					]
-				});
+		(function () {
+			var API_BASE = typeof API_CONFIG !== "undefined" ? API_CONFIG.BASE_URL : "https://api.alkahafonlineacademy.com/api/v1";
+
+			function renderStars(rating) {
+				var r = parseFloat(rating) || 5;
+				var full = Math.min(5, Math.floor(r));
+				var half = r - full >= 0.5 ? 1 : 0;
+				var empty = 5 - full - half;
+				var html = "";
+				for (var i = 0; i < full; i++) html += '<i class="fas fa-star"></i>';
+				if (half) html += '<i class="fas fa-star-half-alt"></i>';
+				for (var i = 0; i < empty; i++) html += '<i class="far fa-star"></i>';
+				return html;
 			}
-		});
+
+			function buildCard(ins) {
+				var name = ((ins.firstName || "") + " " + (ins.lastName || "")).trim() || "Instructor";
+				var initials = ((ins.firstName || " ")[0] + (ins.lastName || " ")[0]).toUpperCase();
+				var designation = ins.designation || "Islamic Instructor";
+				var ratingVal = ins.rating ? parseFloat(ins.rating).toFixed(1) : "5.0";
+				var avatarHtml = ins.profileImage
+					? '<img src="' + ins.profileImage + '" alt="' + name + '"/>'
+					: '<div class="ins-initials">' + initials + "</div>";
+				var verifiedBadge = ins.isVerified ? '<span class="ins-verified-badge"><i class="fas fa-check"></i></span>' : "";
+				return (
+					'<div class="instructor-item instructor-item-three">' +
+					'<div class="ins-top-band"></div>' +
+					'<div class="ins-avatar-wrap">' +
+					'<div class="ins-avatar">' + avatarHtml + "</div>" +
+					verifiedBadge +
+					"</div>" +
+					'<div class="ins-body">' +
+					'<h3 class="ins-name"><a href="/instructor/instructor-details?id=' + ins.id + '">' + name + "</a></h3>" +
+					'<p class="ins-role">' + designation + "</p>" +
+					'<div class="ins-rating">' + renderStars(ratingVal) + '<span class="ins-rating-val">' + ratingVal + "</span></div>" +
+					'<a href="/instructor/instructor-details?id=' + ins.id + '" class="ins-btn">View Profile <i class="fas fa-arrow-right"></i></a>' +
+					"</div></div>"
+				);
+			}
+
+			fetch(API_BASE + "/users/instructors?limit=8")
+				.then(function (r) { return r.json(); })
+				.then(function (data) {
+					var instructors = data.instructors || [];
+					var loading = document.getElementById("instructors-loading");
+					var empty = document.getElementById("instructors-empty");
+					var slider = document.getElementById("instructorSlider");
+					if (loading) loading.style.display = "none";
+					if (!instructors.length) {
+						if (empty) empty.style.display = "block";
+						return;
+					}
+					slider.innerHTML = instructors.map(buildCard).join("");
+					slider.style.display = "block";
+					var total = instructors.length;
+					var show = Math.min(4, total);
+					$(slider).slick({
+						infinite: total > show,
+						slidesToShow: show,
+						slidesToScroll: 1,
+						arrows: true,
+						dots: total > show,
+						responsive: [
+							{ breakpoint: 1200, settings: { slidesToShow: Math.min(3, total), dots: total > 3 } },
+							{ breakpoint: 992, settings: { slidesToShow: Math.min(2, total), dots: total > 2 } },
+							{ breakpoint: 576, settings: { slidesToShow: 1, dots: total > 1 } }
+						]
+					});
+				})
+				.catch(function () {
+					var loading = document.getElementById("instructors-loading");
+					if (loading) loading.style.display = "none";
+				});
+		})();
 		</script>
 
-	<!-- Scroll to Top Button -->
+<!-- Scroll to Top Button -->
 	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
 		<i class="fas fa-arrow-up"></i>
 	</button>

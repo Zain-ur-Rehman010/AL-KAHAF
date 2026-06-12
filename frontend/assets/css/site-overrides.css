@@ -1,5 +1,73 @@
 /* AlKahaf Site Overrides — loaded on every page */
 
+/* Footer contact icons — white with zoom on hover */
+.footer-contact-info .footer-address img {
+	filter: brightness(0) invert(1);
+	transition: transform 0.3s ease;
+}
+.footer-contact-info .footer-address:hover img {
+	transform: scale(1.3);
+}
+
+/* Footer bottom social icons */
+.footer-social-icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: 10px;
+	background: rgba(255,255,255,0.08);
+	color: #fff;
+	font-size: 14px;
+	transition: background 0.3s ease, transform 0.2s ease;
+	text-decoration: none;
+}
+.footer-social-icon:hover {
+	background: rgba(216,172,39,0.25);
+	color: #d8ac27;
+	transform: translateY(-2px);
+}
+
+/* Global pill badge — used for section labels across all pages */
+.hiw-badge {
+	display: inline-block;
+	background: rgba(216,172,39,0.12);
+	color: #b8860b;
+	-webkit-text-fill-color: #b8860b;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+	padding: 6px 18px;
+	border-radius: 50px;
+	border: 1px solid rgba(216,172,39,0.25);
+	margin-bottom: 16px;
+	text-decoration: none !important;
+}
+
+/* About section — icon rotate on banner hover */
+.about-us-banner .about-icon i {
+	transition: transform 1.2s ease;
+}
+.about-us-banner:hover .about-icon i {
+	transform: rotate(360deg);
+}
+
+/* Benefit section — icon rotate on card hover (matches home page How It Works) */
+.benefit-section .card .rounded-pill i {
+	transition: transform 1.2s ease;
+}
+.benefit-section .card:hover .rounded-pill i {
+	transform: rotate(360deg);
+}
+
+/* Course card background */
+.course-item {
+	background: #fdf9f2 !important;
+	border-color: rgba(216, 172, 39, 0.2) !important;
+}
+
 /* ── Responsive Site Logo ───────────────────────────────────────────────── */
 /* Override style.css 32px max-height cap */
 header .header-logo .logo a img.site-logo,

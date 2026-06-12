@@ -286,7 +286,7 @@
     function renderRows(rows) {
         const tbody = document.getElementById('payments-body');
         if (!rows.length) {
-            tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">No payments found.</td></tr>';
+            tbody.innerHTML = '';
             return;
         }
         tbody.innerHTML = rows.map(function (e, i) {
@@ -339,9 +339,10 @@
                 pageLength: 25,
                 order: [[6, 'desc']],
                 columnDefs: [{ orderable: false, targets: [1, 2, 4, 5] }],
-                language: { search: 'Search payments:' }
+                language: { search: 'Search payments:', emptyTable: 'No payments found.' }
             });
         } catch (e) {
+            if (dtInstance) { dtInstance.destroy(); dtInstance = null; }
             document.getElementById('payments-body').innerHTML =
                 '<tr><td colspan="7" class="text-center py-4 text-danger">Failed to load payments. ' + e.message + '</td></tr>';
         }
@@ -356,7 +357,7 @@
     document.getElementById('status-filter').addEventListener('change', function () {
         if (dtInstance) { dtInstance.destroy(); dtInstance = null; }
         applyFilter();
-        dtInstance = $('#payments-table').DataTable({ pageLength: 25, order: [[6, 'desc']] });
+        dtInstance = $('#payments-table').DataTable({ pageLength: 25, order: [[6, 'desc']], language: { search: 'Search payments:', emptyTable: 'No payments found.' } });
     });
 
     // Load admin info
