@@ -15797,23 +15797,26 @@ h2.main-title {
 /* ── Instructor Card — Featured Slider (homepage) ── */
 .instructor-item.instructor-item-three {
   display: block;
-  background: linear-gradient(160deg, #3a1608 0%, #522811 100%);
+  background: #fff;
   border: 1px solid rgba(216, 172, 39, 0.2);
   border-radius: 20px;
   overflow: hidden;
   margin: 0 10px 30px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 8px 30px rgba(82, 40, 17, 0.06);
   position: relative;
 }
 .instructor-item.instructor-item-three:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 48px rgba(139, 69, 19, 0.6);
-  border-color: rgba(216, 172, 39, 0.5);
+  box-shadow: 0 20px 48px rgba(82, 40, 17, 0.14);
+  border-color: rgba(216, 172, 39, 0.45);
 }
 
 /* gradient header band */
 .instructor-item.instructor-item-three .ins-top-band {
   height: 84px;
+  margin: 14px 14px 0;
+  border-radius: 14px;
   background: linear-gradient(135deg, #522811 0%, #8B4513 50%, #d8ac27 100%);
   position: relative;
 }
@@ -15836,11 +15839,11 @@ h2.main-title {
   width: 92px;
   height: 92px;
   border-radius: 50%;
-  border: 3px solid #3a1608;
+  border: 4px solid #fff;
   overflow: hidden;
   position: relative;
-  background: #522811;
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
+  background: #fdf6ee;
+  box-shadow: 0 6px 20px rgba(82, 40, 17, 0.18);
   flex-shrink: 0;
 }
 .instructor-item.instructor-item-three .ins-avatar img {
@@ -15856,8 +15859,8 @@ h2.main-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #6b2f00;
-  color: #d8ac27;
+  background: linear-gradient(135deg, #f7ede1, #fdf6ee);
+  color: #92610a;
   font-size: 30px;
   font-weight: 700;
 }
@@ -15871,14 +15874,14 @@ h2.main-title {
   height: 22px;
   border-radius: 50%;
   background: #d8ac27;
-  color: #3a1608;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 10px;
   font-weight: 900;
-  border: 2px solid #3a1608;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  border: 2px solid #fff;
+  box-shadow: 0 2px 6px rgba(82, 40, 17, 0.25);
   z-index: 3;
 }
 
@@ -15891,7 +15894,7 @@ h2.main-title {
 .instructor-item.instructor-item-three .ins-name {
   font-size: 16px;
   font-weight: 700;
-  color: #fff;
+  color: #2c1506;
   margin-bottom: 4px;
   line-height: 1.35;
   white-space: nowrap;
@@ -15899,17 +15902,17 @@ h2.main-title {
   text-overflow: ellipsis;
 }
 .instructor-item.instructor-item-three .ins-name a {
-  color: #fff;
+  color: #2c1506;
   text-decoration: none;
   transition: color 0.2s;
 }
 .instructor-item.instructor-item-three .ins-name a:hover {
-  color: #d8ac27;
+  color: #b8860b;
 }
 
 .instructor-item.instructor-item-three .ins-role {
   font-size: 12.5px;
-  color: #d4b896;
+  color: #8a7669;
   margin-bottom: 12px;
   white-space: nowrap;
   overflow: hidden;
@@ -15922,8 +15925,8 @@ h2.main-title {
   align-items: center;
   justify-content: center;
   gap: 2px;
-  background: rgba(216, 172, 39, 0.15);
-  border: 1px solid rgba(216, 172, 39, 0.35);
+  background: rgba(216, 172, 39, 0.1);
+  border: 1px solid rgba(216, 172, 39, 0.3);
   padding: 5px 12px;
   border-radius: 50px;
   margin-bottom: 16px;
@@ -15934,12 +15937,12 @@ h2.main-title {
 }
 .instructor-item.instructor-item-three .ins-rating i.far {
   font-size: 11px;
-  color: #6b3a18;
+  color: #e3d4be;
 }
 .instructor-item.instructor-item-three .ins-rating .ins-rating-val {
   font-size: 12.5px;
   font-weight: 700;
-  color: #fff;
+  color: #2c1506;
   margin-left: 5px;
 }
 
@@ -15951,7 +15954,7 @@ h2.main-title {
   padding: 8px 22px;
   border-radius: 50px;
   border: 1.5px solid rgba(216, 172, 39, 0.5);
-  color: #d4b896;
+  color: #92610a;
   font-size: 13px;
   font-weight: 500;
   text-decoration: none;
@@ -15960,7 +15963,7 @@ h2.main-title {
 .instructor-item.instructor-item-three .ins-btn:hover {
   background: #d8ac27;
   border-color: #d8ac27;
-  color: #3a1608;
+  color: #fff;
 }
 .instructor-item.instructor-item-three .ins-btn i {
   font-size: 11px;
@@ -19234,11 +19237,33 @@ fieldset .quiz-attempt-card {
 
 .featured-instructor-sec {
   position: relative;
-  background-color: #522811;
+  background: linear-gradient(180deg, #fdfbf7 0%, #fff9f0 50%, #fffdf9 100%);
   padding: 80px 0;
+  overflow: hidden;
+}
+.featured-instructor-sec::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 10% 20%, rgba(216, 172, 39, 0.08) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(82, 40, 17, 0.06) 0%, transparent 50%);
+  pointer-events: none;
+}
+.featured-instructor-sec .container {
+  position: relative;
+  z-index: 1;
 }
 .featured-instructor-sec .section-header {
   margin-bottom: 40px;
+}
+.featured-instructor-sec .section-header h2 {
+  color: #2c1506;
+  font-weight: 800;
+}
+.featured-instructor-sec .section-header p {
+  color: #8a7669;
 }
 @media (max-width: 991.98px) {
   .featured-instructor-sec {
