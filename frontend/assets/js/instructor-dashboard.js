@@ -29,7 +29,19 @@
 
   // Format currency
   function formatCurrency(amount) {
-    return '$' + parseFloat(amount || 0).toFixed(2);
+    return 'Rs ' + parseFloat(amount || 0).toLocaleString('en-PK', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  }
+
+  // Fetch count of students assigned to this instructor by admin
+  function loadAssignedStudentsCount() {
+    fetch(BASE_URL + '/instructor-students/my/students', { headers: getHeaders() })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        setStat('stat-students', data.success ? (data.total || (data.data || []).length) : 0);
+      })
+      .catch(function () {
+        setStat('stat-students', '0');
+      });
   }
 
   // Render the recently created courses table
@@ -101,8 +113,7 @@
         setStat('stat-active-courses', '0');
         setStat('stat-completed-courses', '0');
         setStat('stat-enrolled-courses', '0');
-        setStat('stat-students', '0');
-        setStat('stat-earnings', '$0.00');
+        setStat('stat-earnings', formatCurrency(0));
         renderCourses([]);
         return;
       }
@@ -149,7 +160,6 @@
 
       // Update student and earnings stats
       setStat('stat-enrolled-courses', totalStudents);
-      setStat('stat-students', totalStudents);
       setStat('stat-earnings', formatCurrency(totalEarnings));
 
       // Render most recent 5 courses in the table
@@ -162,8 +172,7 @@
       setStat('stat-active-courses', '0');
       setStat('stat-completed-courses', '0');
       setStat('stat-enrolled-courses', '0');
-      setStat('stat-students', '0');
-      setStat('stat-earnings', '$0.00');
+      setStat('stat-earnings', formatCurrency(0));
       renderCourses([]);
     }
   }
@@ -243,6 +252,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     loadProfileCompletion();
     loadDashboard();
+    loadAssignedStudentsCount();
   });
 
 })();
