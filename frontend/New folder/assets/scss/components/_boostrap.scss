@@ -1,0 +1,135 @@
+@use "../utils";
+
+.bootstrap-datetimepicker-widget table td.active,
+.bootstrap-datetimepicker-widget table td.active:hover {
+	background-color: utils.$primary;
+	text-shadow: unset;
+}
+.bootstrap-datetimepicker-widget table {
+	th {
+		font-size: utils.$font-size-14;
+		font-weight: utils.$font-weight-semibold;
+		color: utils.$gray-900;
+		width: 30px;
+		height: 30px;
+		line-height: 30px;
+		&.prev, &.next {
+			padding-bottom: 16px;
+			span {
+				width: 24px;
+				height: 24px;
+				font-size: utils.$font-size-12;
+				border: 1px solid utils.$light-900;
+				@include utils.rounded(50%);
+				display: -webkit-inline-box;
+				display: -ms-inline-flexbox;
+				display: inline-flex;
+				align-items: center;
+				-webkit-box-align: center;
+				-ms-flex-align: center;
+				justify-content: center;
+				-webkit-justify-content: center;
+				-ms-flex-pack: center;
+				&:hover {
+					background: utils.$dark;
+					border-color: utils.$dark;
+					color: utils.$white;
+				}
+			}
+		}
+	}
+	td {
+		font-size: utils.$font-size-14;
+		color: utils.$gray-500;
+		&.day {
+			width: 30px;
+			height: 32px;
+			line-height: 32px;
+		}
+	}
+} 
+.bootstrap-datetimepicker-widget {
+	z-index: 999 !important;
+	.picker-switch {
+		padding-bottom: 16px;
+	}
+}
+.bootstrap-datetimepicker-widget table td.today:before {
+	border-bottom-color: utils.$primary;
+}
+.bootstrap-datetimepicker-widget table thead tr:first-child th:hover {
+    background: transparent;
+}
+.border-success {
+	border-color: utils.$success !important;
+}
+.shadow-sm {
+    box-shadow: utils.$box-shadow-sm !important;
+}
+.shadow-md {
+    box-shadow: utils.$box-shadow-md !important;
+}
+.list-group-item {
+	border-color: utils.$light-900 !important;
+	color: inherit;
+}
+.list-group {
+    a {
+        &.active {
+            background: utils.$primary-100;
+            color: utils.$primary;
+        }
+        &:hover {
+            background: utils.$primary-100;
+            color: utils.$primary;
+        }
+    }
+}
+.list-styled-dotted {
+    li {
+        list-style-type: disc;
+    }
+}
+.link-default {
+	color: utils.$gray-500;
+	&:hover {
+		color: utils.$primary;
+	}
+}
+.custom-offcanvas {
+    &.offcanvas.offcanvas-end {
+        width: 600px !important;
+        .offcanvas-header {
+            .close-btn {
+                width: 20px;
+                height: 20px;
+                color: utils.$white;
+                @include utils.rounded(50%);
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                align-items: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                justify-content: center;
+                -webkit-justify-content: center;
+                -ms-flex-pack: center;
+                background-color: utils.$gray-500;
+                border: 1px solid utils.$gray-500;
+                &:hover {
+                    background: utils.$danger;
+                    border-color: utils.$danger;
+                }
+            }
+        }
+    }
+}
+.w-40 {
+    width: 40%;
+    @include utils.respond-below(md) {
+        width: 100%;
+    }
+}
+hr {
+    border-color: utils.$light-900;
+}

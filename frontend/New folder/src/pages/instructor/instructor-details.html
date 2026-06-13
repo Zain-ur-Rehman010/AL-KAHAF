@@ -1,0 +1,621 @@
+<!DOCTYPE html> 
+<html lang="en">
+	<head>
+	
+		<!-- Meta Tags -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Al-Kahaf LMS is a powerful Learning Management System template designed for educators, training institutions, and businesses. Manage courses, track student progress, conduct virtual classes, and enhance e-learning experiences with an intuitive and feature-rich platform.">
+		<meta name="keywords" content="LMS template, Learning Management System, e-learning software, online course platform, student management, education portal, virtual classroom, training management system, course tracking, online education">
+		<meta name="author" content="Dreams Technologies">
+		<meta name="robots" content="index, follow">
+		
+		<title>Instructor Details | Al-Kahaf Online Academy</title>
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="/assets/img/favicon.svg"> 
+		<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+
+		<!-- Theme Settings Js -->
+		<script src="/assets/js/theme-script.js"></script>
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+		
+		<!-- Rangeslider CSS -->
+	   <link rel="stylesheet" href="/assets/plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
+		
+		<!-- Feathericon CSS -->
+        <link rel="stylesheet" href="/assets/plugins/feather/feather.css">
+
+		<!-- Tabler Icon CSS -->
+		<link rel="stylesheet" href="/assets/plugins/tabler-icons/tabler-icons.css">
+
+		<!-- Slick CSS -->
+		<link rel="stylesheet" href="/assets/plugins/slick/slick.css">
+		<link rel="stylesheet" href="/assets/plugins/slick/slick-theme.css">
+
+		<!-- Iconsax CSS -->
+		<link rel="stylesheet" href="/assets/css/iconsax.css">
+
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/site-overrides.css">
+	
+		<style>
+	.profile-dropdown>a::after{display:none!important}
+	.header-inst-name{color:#fff!important}
+	</style>
+</head>
+	<body>
+
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+
+			<!-- Header -->
+			<header class="header-one">
+				<div class="container">
+					<div class="header-nav">
+						<div class="navbar-header">
+							<a id="mobile_btn" href="javascript:void(0);">
+								<span class="bar-icon"><i class="isax isax-menu"></i></span>
+							</a>
+							<div class="navbar-logo">
+								<a class="logo-white header-logo" href="/">
+									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
+								</a>
+								<a class="logo-dark header-logo" href="/">
+									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
+								</a>
+							</div>
+						</div>
+						
+						<div class="header-btn d-flex align-items-center">
+
+
+							<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
+								<i class="isax isax-lock-circle me-2"></i>Sign In
+							</a>
+							<a href="/auth/register" class="btn btn-secondary me-0">
+								<i class="isax isax-user-edit me-2"></i>Register
+							</a>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- /Header -->
+
+			<!-- Breadcrumb -->
+			<div class="breadcrumb-bar text-center">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 col-12">
+							<h2 class="breadcrumb-title mb-2">Instructor Details</h2>
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb justify-content-center mb-0">
+									<li class="breadcrumb-item"><a href="/">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Instructor Details</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Breadcrumb -->
+			
+			<!-- Instructor -->
+			<div class="instructor-detail-content">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-8">
+							<div class="card bg-light mb-4">
+								<div class="card-body instructor-details">
+									<div class="instructor-img">
+										<a href="javascript:void(0);">
+											<img id="instructor-profile-image" src="/assets/img/user/user-61.jpg" alt="Instructor" class="img-fluid">
+										</a>
+										
+									</div>
+									<div class="flex-fill">
+										<div class="pb-3 border-bottom mb-3">
+											<div class="d-flex align-items-center justify-content-between mb-1">
+												<h6 class="fw-bold"><a id="instructor-name" href="javascript:void(0);">Loading...</a></h6>
+											</div>
+											<div class="d-flex align-items-center mb-1">
+												<a id="instructor-designation" href="javascript:void(0);" class="fs-14 me-2">-</a>
+												<span class="me-2">
+													<i class="fa-solid fa-star text-warning"></i>
+												</span>
+												<span id="instructor-rating" class="fs-14">-</span>
+											</div>
+											<div>
+												<p id="instructor-short-bio">Loading instructor profile...</p>
+											</div>
+										</div>
+										<div class="d-flex align-items-center justify-content-between flex-wrap">
+											<div class="d-flex align-items-center counts-details">
+												<span class="d-flex align-items-center me-4">
+													<span class="d-flex align-items-center"><i class="isax isax-book-saved5 fs-16 text-secondary me-2"></i></span>
+													<span id="instructor-lessons">-</span>
+												</span>
+												<span class="d-flex align-items-center">
+													<span class="d-flex align-items-center"><i class="isax isax-profile-2user5 fs-16 text-secondary me-2"></i></span>
+													<span id="instructor-students">-</span>
+												</span>
+											</div>
+											<div class="d-flex align-items-center">
+												<span>
+													<a id="instructor-facebook" href="javascript:void(0);" target="_blank" rel="noopener noreferrer" class="rounded-circle d-inline-flex align-items-center justify-content-center me-2">
+														<i class="fa-brands fa-facebook-f"></i>
+													</a>
+												</span>
+												<span>
+													<a id="instructor-instagram" href="javascript:void(0);" target="_blank" rel="noopener noreferrer" class="rounded-circle d-inline-flex align-items-center justify-content-center me-2">
+														<i class="fa-brands fa-instagram"></i>
+													</a>
+												</span>
+												<span>
+													<a id="instructor-twitter" href="javascript:void(0);" target="_blank" rel="noopener noreferrer" class="rounded-circle d-inline-flex align-items-center justify-content-center me-2">
+														<i class="fa-brands fa-x-twitter"></i>
+													</a>
+												</span>
+												<span>
+													<a id="instructor-youtube" href="javascript:void(0);" target="_blank" rel="noopener noreferrer" class="rounded-circle d-inline-flex align-items-center justify-content-center me-2">
+														<i class="fa-brands fa-youtube"></i>
+													</a>
+												</span>
+												<span>
+													<a id="instructor-linkedin" href="javascript:void(0);" target="_blank" rel="noopener noreferrer" class="rounded-circle d-inline-flex align-items-center justify-content-center">
+														<i class="fa-brands fa-linkedin-in"></i>
+													</a>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="card">
+								<div class="card-body">
+									<h5 class="mb-3">About Me</h5>
+									<p id="instructor-about-bio" class="mb-3">Loading detailed profile...</p>
+									<a href="javascript:void(0);" class="read-more-btn">Read More</a>
+								</div>
+							</div>
+
+							<div class="card">
+								<div class="card-body">
+									<h5 class="mb-3">Education</h5>
+									<div id="instructor-education" class="education-flow">
+										<div class="ps-4 pb-4 timeline-flow">
+											<div>
+												<h6 class="mb-1">BCA - Bachelor of Computer Applications</h6>
+												<p class="fs-14">International University - (2004 - 2010)</p>
+											</div>
+										</div>
+										<div class="ps-4 pb-4 timeline-flow">
+											<div>
+												<h6 class="mb-1">MCA - Master of Computer Application</h6>
+												<p class="fs-14">International University - (2010 - 2012)</p>
+											</div>
+										</div>
+										<div class="ps-4 timeline-flow">
+											<div>
+												<h6 class="mb-1">Design Communication Visual</h6>
+												<p class="fs-14">International University - (2012-2015)</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="card">
+								<div class="card-body">
+									<h5 class="mb-3">Experience</h5>
+									<div id="instructor-experience-list"></div>
+								</div>
+							</div>
+
+							<div class="card border-0">
+								<div class="card-body p-0">
+									<h5 class="mb-3">Courses</h5>
+									<div id="instructor-courses-list">
+										<p class="text-muted">Loading courses...</p>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="col-lg-4">
+							<div class="card">
+								<div class="card-body">
+									<h5 class="mb-3">Certifications</h5>
+									<div class="d-flex align-items-center">
+										<div class="certificate-img rounded-circle me-2">
+											<img src="/assets/img/certificates/certificate-01.svg" alt="img" class="img-fluid">
+										</div>
+										<div class="certificate-img rounded-circle me-2">
+											<img src="/assets/img/certificates/certificate-02.svg" alt="img" class="img-fluid">
+										</div>
+										<div class="certificate-img rounded-circle me-2">
+											<img src="/assets/img/certificates/certificate-03.svg" alt="img" class="img-fluid">
+										</div>
+										<div class="certificate-img rounded-circle">
+											<img src="/assets/img/certificates/certificate-01.svg" alt="img" class="img-fluid">
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="card">
+								<div class="card-body">
+									<h5 class="mb-3">Contact Details</h5>
+									<div class="d-flex align-items-center mb-4">
+										<span class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+											<i class="fa-regular fa-envelope"></i>
+										</span>
+										<div>
+											<h6 class="mb-0">Email</h6>
+											<p id="instructor-email" class="mb-0">-</p>
+										</div>
+									</div>
+									<div class="d-flex align-items-center mb-4">
+										<span class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+											<i class="isax isax-location"></i>
+										</span>
+										<div>
+											<h6 class="fs-16 fw-medium text-gray-9 mb-0">Address</h6>
+											<p id="instructor-address" class="mb-0 text-truncate">-</p>
+										</div>
+									</div>
+									<div class="d-flex align-items-center">
+										<span class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
+											<i class="isax isax-call"></i>
+										</span>
+										<div>
+											<h6 class="fs-16 fw-medium text-gray-9 mb-0">Phone</h6>
+											<p id="instructor-phone" class="mb-0">-</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Course -->
+			
+			<!-- Footer -->
+			<footer class="footer">
+				<div class="footer-bg">
+					<img src="/assets/img/bg/footer-bg-01.png" class="footer-bg-1" alt="">
+					<img src="/assets/img/bg/footer-bg-02.png" class="footer-bg-2" alt="">
+				</div>
+				<div class="footer-top">
+					<div class="container">
+						<div class="row row-gap-4">
+							<div class="col-lg-4">
+								<div class="footer-about">
+									<div class="footer-logo"><img src="/assets/img/white-logo.png" style="width: 200px;height: 150px;" alt="">
+									</div>
+									<p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
+									<div class="d-flex align-items-center">
+										<a href="#" class="me-2"><img src="/assets/img/icon/appstore.svg" alt=""></a>
+										<a href="#"><img src="/assets/img/icon/googleplay.svg" alt=""></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8">
+								<div class="row row-gap-4">
+									<div class="col-lg-3">
+										<div class="footer-widget footer-menu">
+											<h5 class="footer-title">For Instructor</h5>
+											<ul>
+                                            <li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
+                                            <li><a href="/instructor/instructor-dashboard">Instructor Dashboard</a></li>
+                                            <li><a href="/courses/add-course">Add New Course</a></li>
+                                            <li><a href="/auth/login">Login</a></li>
+                                            <li><a href="/auth/register">Register</a></li>
+                                        </ul>
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="footer-widget footer-menu">
+											<h5 class="footer-title">For Student</h5>
+											<ul>
+                                            <li><a href="/courses/course-grid">Browse Courses</a></li>
+                                            <li><a href="/student/student-dashboard">Student Dashboard</a></li>
+                                            <li><a href="/student/student-certificates">My Certificates</a></li>
+                                            <li><a href="/auth/login">Login</a></li>
+                                            <li><a href="/auth/register">Register</a></li>
+                                        </ul>
+										</div>
+									</div>
+									<div class="col-lg-6">
+										<div class="footer-widget footer-contact">
+											<h5 class="footer-title">Newsletter</h5>
+											<div class="subscribe-input">
+												<form action="javascript:void(0);">
+													<input type="email" class="form-control" placeholder="Enter your Email Address">
+													<button type="submit" class="btn btn-primary btn-sm inline-flex align-items-center"><i class="isax isax-send-2 me-1"></i>Subscribe</button>
+												</form>
+											</div>
+											<div class="footer-contact-info">
+												<div class="footer-address d-flex align-items-center">
+													<img src="/assets/img/icon/icon-20.svg" alt="Img" class="img-fluid me-2">
+													<p> 3556  Beech Street, San Francisco,<br> California, CA 94108 </p>
+												</div>
+												<div class="footer-address d-flex align-items-center">
+													<img src="/assets/img/icon/icon-19.svg" alt="Img" class="img-fluid me-2">
+													<p>Al-Kahaf LMS@example.com</p>
+												</div>
+												<div class="footer-address d-flex align-items-center">
+													<img src="/assets/img/icon/icon-21.svg" alt="Img" class="img-fluid me-2">
+													<p>+19 123-456-7890</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<div class="container">
+						<div class="row row-gap-2">
+							<div class="col-md-6">
+								<div class="text-center text-md-start">
+									<p class="text-white">Copyright 2025  <span class="text-secondary">Al-KahafOnlineAcademy</span>. All rights reserved.</p>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div>
+									<ul class="d-flex align-items-center justify-content-center justify-content-md-end footer-link">
+										<li><a href="/shared/terms-and-conditions">Terms & Conditions</a></li>
+										<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<!-- /Footer -->
+		   
+		</div>
+	   <!-- /Main Wrapper -->
+	  
+		<!-- jQuery -->
+		<script src="/assets/js/jquery-3.7.1.min.js"></script>
+		
+		<!-- Bootstrap Core JS -->
+		<script src="/assets/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- Select2 JS -->
+	  	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+
+		<!-- Rangeslider JS -->
+		<script src="/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+		<script src="/assets/plugins/ion-rangeslider/js/custom-rangeslider.js"></script>
+
+		
+
+		<!-- feather js -->
+		 <script src="/assets/plugins/feather/feather.min.js"></script>
+
+		 <!-- Slick Slider -->
+		<script src="/assets/plugins/slick/slick.js"></script>
+		
+		<!-- Sticky Sidebar JS -->
+        <script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+        <script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="/assets/js/script.js"></script>
+		<script src="/assets/js/api-config.js"></script>
+	<script src="/assets/js/auth-guard.js"></script>
+		<script>
+			function safeText(value, fallback = '-') {
+				if (value === null || value === undefined || value === '') return fallback;
+				return String(value);
+			}
+
+			function parseYearRange(item) {
+				const from = safeText(item.from, '');
+				const to = safeText(item.to, '');
+				if (!from && !to) return '';
+				if (from && to) return `(${from} - ${to})`;
+				return `(${from || to})`;
+			}
+
+			function linkOrVoid(value) {
+				return value && value.startsWith('http') ? value : 'javascript:void(0);';
+			}
+
+			function populateEducation(education) {
+				const container = document.getElementById('instructor-education');
+				if (!container) return;
+
+				const list = Array.isArray(education) ? education : [];
+				if (list.length === 0) {
+					container.innerHTML = '<p class="fs-14 mb-0">Education details not provided yet.</p>';
+					return;
+				}
+
+				container.innerHTML = list.map((item, idx) => `
+					<div class="ps-4 ${idx !== list.length - 1 ? 'pb-4' : ''} timeline-flow">
+						<div>
+							<h6 class="mb-1">${safeText(item.degree || item.title)}</h6>
+							<p class="fs-14">${safeText(item.university || item.institute || item.school, '')} ${parseYearRange(item)}</p>
+						</div>
+					</div>
+				`).join('');
+			}
+
+			function populateExperience(experience) {
+				const container = document.getElementById('instructor-experience-list');
+				if (!container) return;
+
+				const list = Array.isArray(experience) ? experience : [];
+				if (list.length === 0) {
+					container.innerHTML = '<p class="fs-14 mb-0">Experience details not provided yet.</p>';
+					return;
+				}
+
+				container.innerHTML = list.map((item, idx) => `
+					<div class="d-flex align-items-center ${idx !== list.length - 1 ? 'mb-4' : ''}">
+						<span class="bg-light border avatar avatar-lg text-gray-9 flex-shrink-0 me-3"><i class="isax isax-briefcase"></i></span>
+						<div>
+							<h6 class="mb-1">${safeText(item.position || item.role)}</h6>
+							<p>${safeText(item.company || item.organization, '')} ${parseYearRange(item)}</p>
+						</div>
+					</div>
+				`).join('');
+			}
+
+			function populateInstructor(user, fallbackStats) {
+				document.getElementById('instructor-profile-image').src = safeText(user.profileImage, '/assets/img/user/user-61.jpg');
+				document.getElementById('instructor-name').textContent = `${safeText(user.firstName, '')} ${safeText(user.lastName, '')}`.trim() || 'Instructor';
+				document.getElementById('instructor-designation').textContent = safeText(user.designation, 'Instructor');
+				document.getElementById('instructor-rating').textContent = user.rating ? `${user.rating} Rating` : 'Not rated yet';
+				document.getElementById('instructor-short-bio').textContent = safeText(user.bio, 'Profile description not provided yet.');
+				document.getElementById('instructor-about-bio').textContent = safeText(user.bio, 'Profile description not provided yet.');
+				document.getElementById('instructor-email').textContent = safeText(user.email);
+				document.getElementById('instructor-phone').textContent = safeText(user.phone, 'Not provided');
+				document.getElementById('instructor-address').textContent = 'Online Instructor';
+				document.getElementById('instructor-lessons').textContent = `${fallbackStats.lessons}+ Lesson`;
+				document.getElementById('instructor-students').textContent = `${fallbackStats.students} Students`;
+
+				const social = user.socialLinks || {};
+				document.getElementById('instructor-facebook').href = linkOrVoid(social.facebook);
+				document.getElementById('instructor-instagram').href = linkOrVoid(social.instagram);
+				document.getElementById('instructor-twitter').href = linkOrVoid(social.twitter);
+				document.getElementById('instructor-youtube').href = linkOrVoid(social.youtube);
+				document.getElementById('instructor-linkedin').href = linkOrVoid(social.linkedin || social.website);
+
+				populateEducation(user.education);
+				populateExperience(user.workExperience);
+			}
+
+			async function getInstructorFromList() {
+				const response = await fetch(`${API_CONFIG.BASE_URL}/users/instructors?limit=1&page=1`);
+				if (!response.ok) throw new Error('Could not fetch instructors list');
+				const result = await response.json();
+				const firstInstructor = (result.instructors || [])[0];
+				if (!firstInstructor) throw new Error('No active instructor found');
+				return firstInstructor;
+			}
+
+			async function loadInstructorCourses(instructorId) {
+				const container = document.getElementById('instructor-courses-list');
+				if (!container) return;
+				try {
+					const res = await fetch(API_CONFIG.BASE_URL + '/courses?instructorId=' + instructorId + '&limit=20');
+					if (!res.ok) throw new Error();
+					const data = await res.json();
+					const courses = data.courses || [];
+					if (!courses.length) {
+						container.innerHTML = '<p class="text-muted">No published courses yet.</p>';
+						return;
+					}
+					var instructorName = '';
+					var instructorAvatar = '';
+					if (courses[0] && courses[0].instructor) {
+						var ins = courses[0].instructor;
+						instructorName = ((ins.firstName || '') + ' ' + (ins.lastName || '')).trim();
+						instructorAvatar = ins.profileImage || '';
+					}
+					container.innerHTML = '<div class="course-carousal" id="instructor-course-slider">' +
+						courses.map(function(c) {
+							var price = parseFloat(c.price);
+							var priceHtml = (!price || price === 0) ? '<h6 class="fs-16 text-secondary">Free</h6>' : '<h6 class="fs-16 text-secondary">Rs ' + price.toLocaleString() + '</h6>';
+							var thumb = c.thumbnail || '/assets/img/course/course-02.jpg';
+							var rating = parseFloat(c.rating) || 0;
+							var insName = (c.instructor) ? ((c.instructor.firstName || '') + ' ' + (c.instructor.lastName || '')).trim() : instructorName;
+							var insAvatar = (c.instructor && c.instructor.profileImage) ? c.instructor.profileImage : instructorAvatar;
+							var avatarHtml = insAvatar
+								? '<img class="img-fluid rounded-circle object-fit-cover" src="' + insAvatar + '" alt="img">'
+								: '<img class="img-fluid rounded-circle object-fit-cover" src="/assets/img/avatar/avatar2.jpg" alt="img">';
+							return '<div>' +
+								'<div class="course-item course-item-three mx-2 mb-0">' +
+								'<div class="course-carousal-img position-relative overflow-hidden rounded-3 mb-3">' +
+								'<a href="/courses/course-details?id=' + c.id + '"><img class="img-fluid rounded-3" src="' + thumb + '" alt="' + c.title + '"></a>' +
+								'</div>' +
+								'<div class="d-flex flex-wrap align-items-center justify-content-between">' +
+								'<div class="d-flex align-items-center">' +
+								'<div class="avatar avatar-sm rounded-circle">' + avatarHtml + '</div>' +
+								'<p class="ms-2"><a href="#">' + insName + '</a></p>' +
+								'</div>' +
+								'<span class="tag-btn">' + (c.category || '') + '</span>' +
+								'</div>' +
+								'<h5 class="mt-3 mb-2 text-truncate line-clamb-2"><a href="/courses/course-details?id=' + c.id + '">' + c.title + '</a></h5>' +
+								'<div class="d-flex align-items-center"><i class="ti ti-star-filled text-warning"></i><p class="ms-2">' + rating.toFixed(1) + '</p></div>' +
+								'<div class="d-flex justify-content-between mt-3 align-items-center">' +
+								priceHtml +
+								'<a href="/courses/course-details?id=' + c.id + '" class="btn view-course-btn">View Course<i class="fs-8 fas fa-angle-right ms-2"></i></a>' +
+								'</div></div></div>';
+						}).join('') +
+					'</div>';
+					if (typeof $ !== 'undefined' && $.fn.slick) {
+						$('#instructor-course-slider').slick({
+							infinite: true,
+							slidesToShow: Math.min(2, courses.length),
+							slidesToScroll: 1,
+							autoplay: true,
+							responsive: [{ breakpoint: 768, settings: { slidesToShow: 1, infinite: true, dots: false } }]
+						});
+					}
+				} catch(e) {
+					container.innerHTML = '<p class="text-muted">Could not load courses.</p>';
+				}
+			}
+
+			async function loadInstructorDetails() {
+				try {
+					const params = new URLSearchParams(window.location.search);
+					let instructorId = params.get('id');
+					let fallbackStats = { lessons: 0, students: 0 };
+
+					// If no id provided, auto-load the first active instructor.
+					if (!instructorId) {
+						const first = await getInstructorFromList();
+						instructorId = first.id;
+						fallbackStats = {
+							lessons: (first.instructedCourses || []).length || 0,
+							students: first.totalStudents || 0
+						};
+					}
+
+					const profileResponse = await fetch(`${API_CONFIG.BASE_URL}/users/${instructorId}/profile`);
+					if (!profileResponse.ok) throw new Error('Failed to load instructor profile');
+
+					const profile = await profileResponse.json();
+					populateInstructor(profile, fallbackStats);
+					await loadInstructorCourses(instructorId);
+				} catch (error) {
+					console.error('Error loading instructor details:', error);
+					document.getElementById('instructor-short-bio').textContent = 'Unable to load instructor data right now.';
+					document.getElementById('instructor-about-bio').textContent = 'Unable to load instructor data right now.';
+				}
+			}
+
+			document.addEventListener('DOMContentLoaded', loadInstructorDetails);
+		</script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
+		
+	</body>
+</html>

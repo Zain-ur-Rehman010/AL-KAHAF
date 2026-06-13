@@ -1,0 +1,1106 @@
+<!DOCTYPE html> 
+<html lang="en">
+	<head>
+	
+		<!-- Meta Tags -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Al-Kahaf LMS is a powerful Learning Management System template designed for educators, training institutions, and businesses. Manage courses, track student progress, conduct virtual classes, and enhance e-learning experiences with an intuitive and feature-rich platform.">
+		<meta name="keywords" content="LMS template, Learning Management System, e-learning software, online course platform, student management, education portal, virtual classroom, training management system, course tracking, online education">
+		<meta name="author" content="Dreams Technologies">
+		<meta name="robots" content="index, follow">
+		
+		<title>Course Details | Al-Kahaf Online Academy</title>
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="/assets/img/favicon.svg"> 
+		<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+
+		<!-- Theme Settings Js -->
+		<script src="/assets/js/theme-script.js"></script>
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+		
+		<!-- Rangeslider CSS -->
+	     <link rel="stylesheet" href="/assets/plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
+		
+		<!-- Feathericon CSS -->
+        <link rel="stylesheet" href="/assets/plugins/feather/feather.css">
+
+		<!-- Tabler Icon CSS -->
+		<link rel="stylesheet" href="/assets/plugins/tabler-icons/tabler-icons.css">
+
+        <!-- Iconsax CSS -->
+		<link rel="stylesheet" href="/assets/css/iconsax.css">
+
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/site-overrides.css">
+
+		<style>
+			.sk {
+				background: linear-gradient(90deg, #f0f0f0 25%, #e8e8e8 50%, #f0f0f0 75%);
+				background-size: 200% 100%;
+				animation: sk-shimmer 1.4s infinite;
+				border-radius: 6px;
+				display: block;
+			}
+			@keyframes sk-shimmer {
+				0%   { background-position: 200% 0; }
+				100% { background-position: -200% 0; }
+			}
+			.sk-text  { height: 14px; margin-bottom: 10px; }
+			.sk-title { height: 28px; margin-bottom: 14px; }
+			.sk-img   { width: 100%; border-radius: 8px; }
+		</style>
+
+	</head>
+	<body>
+
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+
+			<!-- Header -->
+			<header class="header-one">
+				<div class="container">
+					<div class="header-nav">
+						<div class="navbar-header">
+							<a id="mobile_btn" href="javascript:void(0);">
+								<span class="bar-icon">
+									<i class="isax isax-menu"></i>
+								</span>
+							</a>
+							<div class="navbar-logo">
+								<a class="logo-white header-logo" href="/">
+									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
+								</a>
+								<a class="logo-dark header-logo" href="/">
+									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
+								</a>
+							</div>
+						</div>
+						<div class="main-menu-wrapper">								
+							<div class="menu-header">
+								<a href="/" class="menu-logo">
+									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="img-fluid" alt="Logo">
+								</a>
+								<a id="menu_close" class="menu-close" href="javascript:void(0);">
+									<i class="fas fa-times"></i>
+								</a>
+							</div>
+														<ul class="main-nav">
+								<li><a href="/">Home</a></li>
+								<li><a href="/courses/course-grid">Courses</a></li>
+								<li><a href="/shared/about-us">About Us</a></li>
+								<li><a href="/shared/free-trial">Free Trial</a></li>
+								<li><a href="/shared/welfare-programs">Projects</a></li>
+								<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
+							</ul>
+							
+							
+							<div class="menu-login">
+								<a href="/auth/login" class="btn btn-primary w-100 mb-2"><i class="isax isax-user me-2"></i>Sign In</a>
+								<a href="/auth/register" class="btn btn-secondary w-100"><i class="isax isax-user-edit me-2"></i>Register</a>
+							</div>
+						</div>
+						<div class="header-btn d-flex align-items-center">
+							<!-------Language changer-------->							
+							<div class="dropdown language-dropdown">
+								<a href="javascript:void(0);" class="dropdown-toggle lang-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
+									<img src="/assets/img/flags/us-flag.svg" class="lang-flag" alt="flag">
+									<span class="lang-text">EN</span>
+								</a>
+								<ul class="dropdown-menu lang-menu">
+									<li>
+										<a class="dropdown-item lang-item active" href="javascript:void(0);">
+											<img src="/assets/img/flags/us-flag.svg" alt="flag">
+											<span>English</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item lang-item" href="javascript:void(0);">
+											<img src="/assets/img/flags/arab-flag.svg" alt="flag">
+											<span>العربية</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
+									<li>
+										<a class="dropdown-item lang-item" href="javascript:void(0);">
+											<img src="/assets/img/flags/france-flag.svg" alt="flag">
+											<span>Français</span>
+											<i class="isax isax-tick-circle5 check-icon"></i>
+										</a>
+									</li>
+								</ul>
+							</div>
+
+
+							<!--SigIn || Register-->
+														<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
+								<i class="isax isax-user me-2"></i>Sign In
+							</a>
+<a href="/auth/register" class="btn btn-dark d-inline-flex align-items-center me-2">
+	<i class="isax isax-user-edit me-2"></i>Register
+</a>
+							<a href="/shared/welfare-programs" class="btn btn-secondary btn-donate me-0">
+								<i class="isax isax-heart5 me-1"></i>Donate
+							</a>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- /Header -->		
+
+			<!-- Breadcrumb -->
+			<div class="breadcrumb-bar text-center">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 col-12">
+							<h2 class="breadcrumb-title mb-2">Course Detail</h2>
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb justify-content-center mb-0">
+									<li class="breadcrumb-item"><a href="/">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Course Detail</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Breadcrumb -->
+
+			<!-- Course detail -->
+			<section class="course-details-two">
+				<div class="container">
+
+					<!-- Skeleton loader - visible while API is loading -->
+					<div id="cd-skeleton">
+						<div class="row mb-0">
+							<div class="col-12">
+								<div class="card bg-light">
+									<div class="card-body d-lg-flex align-items-center gap-4">
+										<span class="sk sk-img flex-shrink-0" style="width:200px;height:130px;"></span>
+										<div class="w-100">
+											<span class="sk sk-title" style="width:70%;"></span>
+											<span class="sk sk-text" style="width:90%;"></span>
+											<span class="sk sk-text" style="width:55%;"></span>
+											<div class="d-flex gap-3 mt-3 align-items-center">
+												<span class="sk" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></span>
+												<div style="flex:1">
+													<span class="sk sk-text" style="width:40%;"></span>
+													<span class="sk sk-text mb-0" style="width:25%;"></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="row mt-4">
+							<div class="col-lg-8">
+								<span class="sk sk-img mb-4" style="height:260px;"></span>
+								<div class="card mb-4"><div class="card-body">
+									<span class="sk sk-text" style="width:80%;"></span>
+									<span class="sk sk-text" style="width:95%;"></span>
+									<span class="sk sk-text" style="width:90%;"></span>
+									<span class="sk sk-text mb-0" style="width:60%;"></span>
+								</div></div>
+								<div class="card mb-4"><div class="card-body">
+									<span class="sk sk-text" style="width:40%;margin-bottom:16px;"></span>
+									<span class="sk sk-text" style="width:100%;height:44px;border-radius:8px;margin-bottom:8px;"></span>
+									<span class="sk sk-text" style="width:100%;height:44px;border-radius:8px;margin-bottom:8px;"></span>
+									<span class="sk sk-text mb-0" style="width:100%;height:44px;border-radius:8px;"></span>
+								</div></div>
+								<div class="card mb-4"><div class="card-body">
+									<span class="sk sk-text" style="width:35%;margin-bottom:16px;"></span>
+									<div class="d-flex align-items-center gap-3">
+										<span class="sk" style="width:48px;height:48px;border-radius:50%;flex-shrink:0;"></span>
+										<div style="flex:1"><span class="sk sk-text" style="width:45%;"></span><span class="sk sk-text mb-0" style="width:30%;"></span></div>
+									</div>
+									<span class="sk sk-text mt-3" style="width:95%;"></span>
+									<span class="sk sk-text mb-0" style="width:80%;"></span>
+								</div></div>
+							</div>
+							<div class="col-lg-4">
+								<div class="card mb-4"><div class="card-body">
+									<span class="sk sk-title" style="width:50%;"></span>
+									<span class="sk sk-text" style="width:100%;height:40px;border-radius:8px;margin-bottom:8px;"></span>
+									<span class="sk sk-text mb-0" style="width:100%;height:40px;border-radius:8px;"></span>
+								</div></div>
+								<div class="card mb-4"><div class="card-body">
+									<span class="sk sk-text" style="width:40%;margin-bottom:14px;"></span>
+									<span class="sk sk-text" style="width:80%;"></span>
+									<span class="sk sk-text" style="width:70%;"></span>
+									<span class="sk sk-text mb-0" style="width:60%;"></span>
+								</div></div>
+								<div class="card"><div class="card-body">
+									<span class="sk sk-text" style="width:55%;margin-bottom:14px;"></span>
+									<span class="sk sk-text" style="width:75%;"></span>
+									<span class="sk sk-text" style="width:65%;"></span>
+									<span class="sk sk-text" style="width:70%;"></span>
+									<span class="sk sk-text" style="width:60%;"></span>
+									<span class="sk sk-text mb-0" style="width:50%;"></span>
+								</div></div>
+							</div>
+						</div>
+					</div>
+					<!-- /Skeleton loader -->
+
+					<!-- Error state -->
+					<div id="cd-error" style="display:none;" class="text-center py-5">
+						<i class="fas fa-exclamation-circle fs-1 text-danger mb-3 d-block"></i>
+						<h5>Could not load course</h5>
+						<p class="text-muted">Please check your connection and try again.</p>
+						<a href="/courses/course-grid" class="btn btn-primary mt-2">Browse Courses</a>
+					</div>
+
+					<!-- Real content (shown after API responds) -->
+					<div id="cd-real-content" style="display:none;">
+                     <div class="row">
+                        <div class="col-12">
+                            <div class="card bg-light">
+                                <div class="card-body d-lg-flex align-items-center">
+                                    <div class="position-relative" id="cd-preview-video-wrap">
+                                        <img class="img-fluid rounded-2" id="cd-preview-thumb" src="/assets/img/course/_Yvideoimg.png" alt="img">
+                                        <div class="play-icon" id="cd-play-btn" style="display:none;">
+                                            <a href="#" id="openVideoBtn" onclick="openVideoModal(event)" style="display:flex;align-items:center;justify-content:center;width:100%;height:100%;">
+                                                <i class="ti ti-player-play-filled" style="font-size:28px;color:#fff;margin-left:4px;"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 ps-lg-4">
+                                        <h3 class="mb-2" id="cd-title"></h3>
+                                        <p class="fs-14 mb-3" id="cd-short-desc"></p>
+                                        <div class="d-flex align-items-center gap-2 gap-sm-3 gap-xl-4 flex-wrap my-3 my-sm-0">
+                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/book.svg" alt="img"><span id="cd-lesson-count">—</span> Lesson</p>
+                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/timer-start.svg" alt="img"><span id="cd-duration">—</span></p>
+                                            <p class="fw-medium d-flex align-items-center mb-0"><img class="me-2" src="/assets/img/icons/people.svg" alt="img"><span id="cd-enrollment-count">—</span> students enrolled</p>
+                                            <span class="badge badge-sm rounded-pill bg-warning fs-12" id="cd-category">Web Development</span>
+                                        </div>
+                                        <div class="d-sm-flex align-items-center justify-content-sm-between mt-3">
+                                            <div class="d-flex align-items-center">
+                                                <div class="avatar avatar-lg">
+                                                    <img class="rounded-circle" src="/assets/img/instructor/_instructor-600_600.jpeg" alt="img" id="cd-instructor-avatar">
+                                                </div>
+                                                <div class="ms-2">
+                                                <h5 class="fs-18 fw-semibold" id="cd-instructor-name"><a href="/instructor/instructor-details">Nicole Brown</a></h5>
+                                                <p class="fs-14">Instructor</p>
+                                            </div>
+                                            </div>
+                                            <div class="d-flex mt-sm-0 mt-2 align-items-center" id="cd-rating-stars-wrap">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                     </div>
+                    <div class="row mt-4">
+                        <div class="col-lg-8">
+							<div>
+								<img id="cd-thumbnail" src="/assets/img/course/_course-detail-856 x 482.jpeg" alt="img" class="img-fluid mb-4">
+							</div>
+                           <div class="course-page-content pt-0">
+                              <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="mb-3">Overview</h5>
+                                    <h6 class="mb-2">Course Description</h6>
+                                    <p id="cd-description"></p>
+                                    <h6 id="cd-outcomes-heading" class="mb-2" style="display:none;">What you'll learn</h6>
+                                    <ul class="custom-list mb-3" id="cd-outcomes"></ul>
+                                    <h6 id="cd-requirements-heading" class="mb-2" style="display:none;">Requirements</h6>
+                                    <ul class="custom-list mb-0" id="cd-requirements"></ul>
+                                </div>
+                              </div>
+                              <div class="card mb-4">
+                                <div class="card-body">
+                                <div class="d-flex justify-content-between flex-wrap">
+                              <h5 class="subs-title mb-2 mb-sm-3">Course Content</h5>
+                              <h6 class="fs-16 fw-medium text-gray-7 mb-3" id="cd-content-summary"></h6>
+                            </div>
+                            <div class="accordion accordion-customicon1 accordions-items-seperate p-0" id="accordioncustomicon1Example"></div>
+                            </div>
+                              </div>
+                              <div class="card mb-4">
+                                <div class="card-body">
+                                <h5 class="subs-title mb-4">About the instructor</h5>
+                                <div class="d-flex align-items-center justify-content-between mt-4 gap-2 flex-wrap">
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar avatar-lg">
+                                            <img class="rounded-circle" id="cd-about-avatar" src="/assets/img/instructor/_instructor-600_600.jpeg" alt="img">
+                                        </div>
+                                        <div class="ms-2">
+                                            <a href="/instructor/instructor-details" class="name-link" id="cd-about-name">Instructor</a>
+                                            <p class="mb-0 fs-14" id="cd-about-designation">Instructor</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mt-3" id="cd-about-bio"></p>
+                            </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-body">
+                                  <h5 class="subs-title mb-3">Leave a Review</h5>
+                                  <div id="review-gate"></div>
+                                  <form id="review-form" class="course-details-form" style="display:none;">
+                                    <div class="row">
+                                      <div class="col-12 mb-3">
+                                        <label class="form-label">Your Rating</label>
+                                        <div id="star-rating" style="font-size:28px;cursor:pointer;line-height:1;user-select:none;">
+                                          <span data-val="1" style="color:#ccc;">&#9733;</span>
+                                          <span data-val="2" style="color:#ccc;">&#9733;</span>
+                                          <span data-val="3" style="color:#ccc;">&#9733;</span>
+                                          <span data-val="4" style="color:#ccc;">&#9733;</span>
+                                          <span data-val="5" style="color:#ccc;">&#9733;</span>
+                                        </div>
+                                        <input type="hidden" id="review-rating" value="0">
+                                      </div>
+                                      <div class="col-12 mb-3">
+                                        <label class="form-label">Your Review</label>
+                                        <textarea id="review-message" class="form-control" rows="4" placeholder="Share your experience with this course..."></textarea>
+                                      </div>
+                                      <div class="col-12">
+                                        <button type="submit" class="btn post-btn">Submit Review</button>
+                                      </div>
+                                    </div>
+                                  </form>
+                                  <div id="review-success" style="display:none;" class="alert alert-success mt-2">
+                                    Thank you! Your review has been submitted and is pending approval.
+                                  </div>
+                                </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="course-sidebar-sec mt-0">
+                              <div class="card mb-4">
+                                <div class="card-body">
+                                 <div class="d-flex justify-content-between align-items-center mb-4">
+                                      <h2 class="text-success fs-30" id="cd-price">FREE</h2>
+                                    </div>
+                                    <div class="d-flex gap-3">
+                                       <a class="btn d-flex btn-wish" href="#"><i class="ti ti-share me-1 fs-18"></i>Share</a>
+                                    </div>
+                                    <a href="/shared/cart" class="btn btn-primary w-100 mt-3 btn-enroll"><i class="fa fa-paper-plane me-2"></i>Enroll Now</a>
+                                </div>
+                              </div>
+                              <div class="card mb-4">
+                                <div class="card-body">
+                                    <h5 class="subs-title mb-4">Includes</h5>
+                                    <p class="mb-3" id="cd-incl-duration" style="display:none;"><img class="me-2" src="/assets/img/icons/play.svg" alt="img"><span id="cd-incl-duration-text"></span> hours on-demand video</p>
+                                    <p class="mb-3"><img class="me-2" src="/assets/img/icons/key.svg" alt="img">Full lifetime access</p>
+                                    <p class="mb-3"><img class="me-2" src="/assets/img/icons/monitor-mobbile.svg" alt="img">Access on mobile and TV</p>
+                                    <p class="mb-0" id="cd-incl-certificate" style="display:none;"><img class="me-2" src="/assets/img/icons/teacher.svg" alt="img">Certificate of Completion</p>
+                                </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-body cou-features">
+                                    <h5 class="subs-title">Course Features</h5>
+                                    <ul>
+                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/people2.svg" alt="img">Enrolled: <span id="cd-feat-enrolled">0</span> students</p></li>
+                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/timer-start3.svg" alt="img">Duration: <span id="cd-feat-duration">-</span></p></li>
+                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/note.svg" alt="img">Modules: <span id="cd-feat-modules">0</span></p></li>
+                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/play3.svg" alt="img">Lessons: <span id="cd-feat-lessons">0</span></p></li>
+                                        <li><p class="mb-0"><img class="me-2" src="/assets/img/icons/chart.svg" alt="img">Level: <span id="cd-feat-level">-</span></p></li>
+                                    </ul>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+				
+					</div><!-- /cd-real-content --></div>
+			</section>
+			<!-- /Course detail -->
+			
+            <!-- Footer -->
+			<footer class="footer">
+				<div class="footer-bg">
+					<img src="/assets/img/bg/footer-bg-01.png" class="footer-bg-1" alt="">
+					<img src="/assets/img/bg/footer-bg-02.png" class="footer-bg-2" alt="">
+				</div>
+				<div class="footer-top">
+					<div class="container">
+						<div class="row row-gap-4">
+							<div class="col-lg-4">
+								<div class="footer-about">
+									<div class="footer-logo">
+										<img src="/assets/img/white-logo.png" style="width: 200px;height: 150px;" alt="">
+									</div>
+									<p>Al-Kahaf Online Academy — providing authentic Quranic and Islamic education to students worldwide.</p>
+									<div class="d-flex align-items-center">
+										<a href="#" class="me-2"><img src="/assets/img/icon/appstore.svg" alt=""></a>
+										<a href="#"><img src="/assets/img/icon/googleplay.svg" alt=""></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8">
+								<div class="row row-gap-4">
+									<div class="col-lg-4">
+										<div class="footer-widget footer-menu">
+											<h5 class="footer-title">Explore</h5>
+											<ul>
+												<li><a href="/shared/about-us">About Us</a></li>
+												<li><a href="/courses/course-grid">Courses</a></li>
+												<li><a href="/shared/welfare-programs">Projects</a></li>
+												<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
+											<li><a href="/shared/welfare-programs">Welfare Program</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="footer-widget footer-menu">
+											<h5 class="footer-title">Support</h5>
+											<ul>
+												<li><a href="/shared/contact-us">Contact Us</a></li>
+												<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
+												<li><a href="/shared/terms-and-conditions">Terms &amp; Conditions</a></li>
+												<li><a href="/auth/login">Login</a></li>
+												<li><a href="/auth/register">Register</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="footer-widget footer-contact">
+											<h5 class="footer-title">Newsletter</h5>
+											<div class="subscribe-input">
+												<form action="javascript:void(0);">
+													<input type="email" class="form-control" placeholder="Enter your Email Address">
+													<button type="submit" class="btn btn-primary btn-sm inline-flex align-items-center"><i class="isax isax-send-2 me-1"></i>Subscribe</button>
+												</form>
+											</div>
+											<div class="footer-contact-info">
+												<div class="footer-address d-flex align-items-center">
+													<img src="/assets/img/icon/icon-20.svg" alt="Img" class="img-fluid me-2">
+													<p>Lahore, Punjab,<br>Pakistan</p>
+												</div>
+												<div class="footer-address d-flex align-items-center">
+													<img src="/assets/img/icon/icon-19.svg" alt="Img" class="img-fluid me-2">
+													<p>info@alkahafonlineacademy.com</p>
+												</div>
+												<div class="footer-address d-flex align-items-center">
+													<img src="/assets/img/icon/icon-21.svg" alt="Img" class="img-fluid me-2">
+													<p>+92 311 4567890</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<div class="container">
+						<div class="row row-gap-2">
+							<div class="col-md-6">
+								<div class="text-center text-md-start">
+									<p class="text-white">Copyright 2025 <span class="text-secondary">Al-KahafOnlineAcademy</span>. All rights reserved.</p>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="d-flex align-items-center justify-content-center justify-content-md-end gap-2">
+									<a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+									<a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-instagram"></i></a>
+									<a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+									<a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-youtube"></i></a>
+									<a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-linkedin"></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<!-- /Footer -->
+		   
+		</div>
+	   <!-- /Main Wrapper -->
+	  
+		<!-- jQuery -->
+		<script src="/assets/js/jquery-3.7.1.min.js"></script>
+		
+		<!-- Bootstrap Core JS -->
+		<script src="/assets/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- Select2 JS -->
+	  	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+
+		<!-- Rangeslider JS -->
+        <script src="/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+        <script src="/assets/plugins/ion-rangeslider/js/custom-rangeslider.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="/assets/js/script.js"></script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
+		
+	
+	<!-- API Config -->
+	<script src="/assets/js/api-config.js"></script>
+
+	<script>
+	(function () {
+		function setText(id, value) {
+			var el = document.getElementById(id);
+			if (el && value !== undefined && value !== null) el.textContent = value;
+		}
+
+		function getYouTubeEmbedUrl(url) {
+			if (!url) return null;
+			var m = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([\w-]{11})/);
+			return m ? 'https://www.youtube.com/embed/' + m[1] + '?rel=0' : null;
+		}
+
+		var _currentEmbedUrl = null;
+
+		window.openVideoModal = function openVideoModal(e) {
+			if (e) e.preventDefault();
+			if (!_currentEmbedUrl) return;
+			var iframe = document.getElementById('youtubeIframe');
+			var modal = document.getElementById('videoModal');
+			if (iframe) iframe.src = _currentEmbedUrl + '&autoplay=1';
+			if (modal) modal.style.display = 'flex';
+		};
+
+				function populateCourse(course, isEnrolled) {
+			// Thumbnail
+			var thumbEl = document.getElementById('cd-thumbnail');
+			if (thumbEl) {
+				if (course.thumbnail) { thumbEl.src = course.thumbnail; thumbEl.style.display = ''; }
+				else thumbEl.style.display = 'none';
+			}
+
+			// Preview video - always show thumbnail, only show play btn if previewVideo exists
+			_currentEmbedUrl = getYouTubeEmbedUrl(course.previewVideo);
+			var thumbImg = document.getElementById('cd-preview-thumb');
+			if (thumbImg) {
+				if (_currentEmbedUrl) {
+					// Prefer YouTube thumbnail in the video preview section
+					var _ytIdMatch = _currentEmbedUrl.match(/embed\/([\w-]{11})/);
+					if (_ytIdMatch) thumbImg.src = 'https://img.youtube.com/vi/' + _ytIdMatch[1] + '/maxresdefault.jpg';
+				} else if (course.thumbnail) {
+					thumbImg.src = course.thumbnail;
+				}
+			}
+			var playBtn = document.getElementById('cd-play-btn');
+			if (playBtn) playBtn.style.display = _currentEmbedUrl ? '' : 'none';
+
+			// Title & descriptions
+			setText('cd-title', course.title);
+			var _descEl = document.getElementById('cd-description');
+			var _shortEl = document.getElementById('cd-short-desc');
+			if (_descEl) _descEl.innerHTML = (course.description || course.shortDescription || '').replace(/\n/g, '<br>');
+			if (_shortEl) _shortEl.textContent = course.shortDescription || '';
+			setText('cd-category', course.category || '');
+			setText('cd-enrollment-count', course.enrollmentCount || 0);
+
+			// Duration (stored in hours as integer)
+			var durEl = document.getElementById('cd-duration');
+			if (durEl) {
+				durEl.textContent = course.duration ? course.duration + 'hr' : '';
+			}
+
+			// Price
+			var priceEl = document.getElementById('cd-price');
+			if (priceEl) {
+				var p = parseFloat(course.price);
+				if (!p || p === 0) {
+					priceEl.textContent = 'Free';
+					priceEl.className = 'text-success fs-30';
+				} else {
+					priceEl.textContent = 'Rs' + p.toLocaleString();
+					priceEl.className = 'fw-bold fs-30';
+				}
+			}
+
+			// Instructor
+			if (course.instructor) {
+				var name = ((course.instructor.firstName || '') + ' ' + (course.instructor.lastName || '')).trim();
+				var insUrl = '/instructor/instructor-details?id=' + course.instructor.id;
+				var nameEl = document.getElementById('cd-instructor-name');
+				if (nameEl) nameEl.innerHTML = '<a href="' + insUrl + '">' + name + '</a>';
+				var avatarEl = document.getElementById('cd-instructor-avatar');
+				if (avatarEl && course.instructor.profileImage) avatarEl.src = course.instructor.profileImage;
+			}
+
+			// Rating stars
+			var ratingWrap = document.getElementById('cd-rating-stars-wrap');
+			if (ratingWrap) {
+				var ratingVal = parseFloat(course.rating) || 0;
+				var ratingCount = course.ratingCount || course.reviewCount || 0;
+				var starsHtml = '';
+				for (var s = 1; s <= 5; s++) {
+					if (ratingVal >= s) starsHtml += '<i class="fa-solid fa-star text-warning me-1"></i>';
+					else if (ratingVal >= s - 0.5) starsHtml += '<i class="fa-solid fa-star-half-stroke text-warning me-1"></i>';
+					else starsHtml += '<i class="fa-regular fa-star text-warning me-1"></i>';
+				}
+				starsHtml += '<p class="fs-14 mb-0 ms-1"><span class="text-gray-9">'+ ratingVal.toFixed(1) +'</span>'+ (ratingCount ? ' ('+ratingCount+')' : '') +'</p>';
+				ratingWrap.innerHTML = starsHtml;
+			}
+
+						// Outcomes (What you'll learn)
+			var outcomesEl = document.getElementById('cd-outcomes');
+			var outcomes = course.outcomes || course.learningOutcomes;
+			if (outcomesEl && Array.isArray(outcomes) && outcomes.length > 0) {
+				outcomesEl.innerHTML = outcomes.map(function (o) {
+					return '<li class="list-item">' + o + '</li>';
+				}).join('');
+			}
+
+			// Requirements
+			var reqEl = document.getElementById('cd-requirements');
+			var requirements = course.requirements;
+			if (reqEl && Array.isArray(requirements) && requirements.length > 0) {
+				reqEl.innerHTML = requirements.map(function (r) {
+					return '<li class="list-item">' + r + '</li>';
+				}).join('');
+			}
+
+			// Modules & Lessons accordion
+			var modules = course.modules;
+			if (Array.isArray(modules) && modules.length > 0) {
+				var totalLessons = 0;
+				modules.forEach(function (m) { totalLessons += (m.lessons || []).length; });
+
+				// Update lesson count
+				var lcEl = document.getElementById('cd-lesson-count');
+				if (lcEl) lcEl.textContent = totalLessons + '+';
+
+				// Update content summary
+				var summaryEl = document.getElementById('cd-content-summary');
+				if (summaryEl) summaryEl.innerHTML = totalLessons + ' Lessons &nbsp;|&nbsp; ' + modules.length + ' Modules';
+
+				// Rebuild accordion
+				var accordion = document.getElementById('accordioncustomicon1Example');
+				if (accordion) {
+					accordion.innerHTML = modules.map(function (mod, i) {
+						var uid = 'cdMod' + i;
+						var lessonsHtml = (mod.lessons || []).map(function (les, j) {
+							if (isEnrolled || les.isPreview) {
+								return '<li class="p-4 px-3 d-flex justify-content-between">' +
+									'<p class="mb-0"><img class="me-2" src="/assets/img/icons/play.svg" alt="img">' + les.title +
+									(les.isPreview && !isEnrolled ? ' <span class="badge ms-1" style="background:#d8ac27;font-size:10px;">Free Preview</span>' : '') +
+									'</p>' +
+									'<div class="d-flex gap-xl-5 gap-3">' +
+									(les.videoUrl ? '<a href="' + les.videoUrl + '" target="_blank" class="preview-link">Preview</a>' : '') +
+									'<p class="mb-0">' + (les.duration ? les.duration + ' min' : '') + '</p>' +
+									'</div></li>';
+							} else {
+								return '<li class="p-4 px-3 d-flex justify-content-between lesson-locked" onclick="showEnrollModal()" style="cursor:pointer;">' +
+									'<p class="mb-0 text-muted"><i class="fa fa-lock me-2" style="color:#d8ac27;"></i>' + les.title + '</p>' +
+									'<div class="d-flex gap-xl-5 gap-3 align-items-center">' +
+									'<span class="text-muted fst-italic" style="font-size:12px;">Members only</span>' +
+									'<p class="mb-0 text-muted">' + (les.duration ? les.duration + ' min' : '') + '</p>' +
+									'</div></li>';
+							}
+						}).join('');
+
+						return '<div class="accordion-item">' +
+							'<h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#' + uid + '" aria-expanded="false">' +
+							mod.title + ' <span class="ms-2 text-muted fs-13">(' + (mod.lessons || []).length + ' lessons)</span>' +
+							'<i class="fa-solid fa-chevron-down ms-auto"></i></button></h2>' +
+							'<div id="' + uid + '" class="accordion-collapse collapse" data-bs-parent="#accordioncustomicon1Example">' +
+							'<div class="accordion-body p-0"><ul>' + (lessonsHtml || '<li class="p-3 text-muted">No lessons yet</li>') + '</ul></div>' +
+							'</div></div>';
+					}).join('');
+				}
+			}
+
+			// Show/hide outcomes heading
+			var outcomesHeading = document.getElementById('cd-outcomes-heading');
+			var outcomes = course.outcomes || course.learningOutcomes;
+			if (outcomesHeading) outcomesHeading.style.display = (Array.isArray(outcomes) && outcomes.length > 0) ? '' : 'none';
+
+			// Show/hide requirements heading
+			var reqHeading = document.getElementById('cd-requirements-heading');
+			var requirements = course.requirements;
+			if (reqHeading) reqHeading.style.display = (Array.isArray(requirements) && requirements.length > 0) ? '' : 'none';
+
+			// About instructor card
+			if (course.instructor) {
+				var aboutAvatar = document.getElementById('cd-about-avatar');
+				var aboutName = document.getElementById('cd-about-name');
+				var aboutDesig = document.getElementById('cd-about-designation');
+				var aboutBio = document.getElementById('cd-about-bio');
+				var fullName = ((course.instructor.firstName || '') + ' ' + (course.instructor.lastName || '')).trim();
+				var insDetailUrl = '/instructor/instructor-details?id=' + course.instructor.id;
+				if (aboutAvatar && course.instructor.profileImage) aboutAvatar.src = course.instructor.profileImage;
+				if (aboutName) { aboutName.textContent = fullName; aboutName.href = insDetailUrl; }
+				if (aboutDesig) aboutDesig.textContent = course.instructor.designation || 'Instructor';
+				if (aboutBio) aboutBio.textContent = course.instructor.bio || '';
+			}
+
+			// Course features sidebar
+			var totalModules = Array.isArray(course.modules) ? course.modules.length : 0;
+			var totalLessonsCount = 0;
+			if (Array.isArray(course.modules)) course.modules.forEach(function(m){ totalLessonsCount += (m.lessons||[]).length; });
+			var featEnrolled = document.getElementById('cd-feat-enrolled');
+			var featDuration = document.getElementById('cd-feat-duration');
+			var featModules = document.getElementById('cd-feat-modules');
+			var featLessons = document.getElementById('cd-feat-lessons');
+			var featLevel = document.getElementById('cd-feat-level');
+			if (featEnrolled) featEnrolled.textContent = course.enrollmentCount || 0;
+			if (featDuration) featDuration.textContent = course.duration ? course.duration + ' hours' : '-';
+			if (featModules) featModules.textContent = totalModules;
+			if (featLessons) featLessons.textContent = totalLessonsCount;
+			if (featLevel) featLevel.textContent = course.level || '-';
+
+			// Includes sidebar — duration
+			var inclDuration = document.getElementById('cd-incl-duration');
+			if (inclDuration && course.duration) {
+				document.getElementById('cd-incl-duration-text').textContent = course.duration;
+				inclDuration.style.display = '';
+			}
+			// Includes sidebar — certificate
+			var certEl = document.getElementById('cd-incl-certificate');
+			if (certEl) certEl.style.display = course.certificateAvailable ? '' : 'none';
+
+			// Page title
+			document.title = (course.title || 'Course Details') + ' | Al-Kahaf Online Academy';
+		}
+
+
+				// Read ?id= from URL
+		var params = new URLSearchParams(window.location.search);
+		var courseId = params.get('id');
+
+		if (!courseId) return;
+
+		var token = localStorage.getItem('accessToken');
+
+		var courseFetch = fetch(API_CONFIG.BASE_URL + '/courses/' + courseId)
+			.then(function(r) { if (!r.ok) throw new Error('Course not found'); return r.json(); });
+
+		var enrollFetch = token
+			? fetch(API_CONFIG.BASE_URL + '/enrollments/my-enrollments?limit=200', { headers: { 'Authorization': 'Bearer ' + token } })
+				.then(function(r) { return r.json(); }).catch(function() { return {}; })
+			: Promise.resolve({});
+
+		Promise.all([courseFetch, enrollFetch])
+			.then(function(results) {
+				var course = results[0].data || results[0];
+				var enrollData = results[1].data || results[1].enrollments || results[1] || [];
+				var isEnrolled = Array.isArray(enrollData) && enrollData.some(function(e) {
+					return String(e.courseId) === String(courseId) || (e.course && String(e.course.id) === String(courseId));
+				});
+				var urlParams = new URLSearchParams(window.location.search);
+				if (urlParams.get('autoEnroll') === '1' && token && !isEnrolled && (!course.price || parseFloat(course.price) === 0)) {
+					urlParams.delete('autoEnroll');
+					history.replaceState(null, '', window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : ''));
+					fetch(API_CONFIG.BASE_URL + '/enrollments', {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+						body: JSON.stringify({ courseId: courseId })
+					}).then(function(r) { return r.json(); }).then(function(res) {
+						var enrolled = res.success ? true : isEnrolled;
+						populateCourse(course, enrolled);
+						setupEnrollButton(course, enrolled, courseId, token);
+						initReviewSection(enrolled, courseId);
+						document.getElementById('cd-skeleton').style.display = 'none';
+						document.getElementById('cd-real-content').style.display = '';
+					}).catch(function() {
+						populateCourse(course, isEnrolled);
+						setupEnrollButton(course, isEnrolled, courseId, token);
+						initReviewSection(isEnrolled, courseId);
+						document.getElementById('cd-skeleton').style.display = 'none';
+						document.getElementById('cd-real-content').style.display = '';
+					});
+					return;
+				}
+				populateCourse(course, isEnrolled);
+				setupEnrollButton(course, isEnrolled, courseId, token);
+				initReviewSection(isEnrolled, courseId);
+				document.getElementById('cd-skeleton').style.display = 'none';
+				document.getElementById('cd-real-content').style.display = '';
+			})
+			.catch(function(err) {
+				console.warn('Could not load course:', err.message);
+				document.getElementById('cd-skeleton').style.display = 'none';
+				document.getElementById('cd-error').style.display = '';
+			});
+	})();
+
+	function setupEnrollButton(course, isEnrolled, courseId, token) {
+		var btn = document.querySelector('.btn-enroll');
+		if (!btn) return;
+		var isFree = !course.price || parseFloat(course.price) === 0;
+
+		if (isEnrolled) {
+			btn.innerHTML = '<i class="fa fa-play-circle me-2"></i>Continue Learning';
+			btn.href = '/student/student-courses';
+			btn.classList.remove('btn-primary');
+			btn.classList.add('btn-success');
+			return;
+		}
+
+		var redirect = encodeURIComponent(window.location.pathname + window.location.search);
+
+		if (!token && isFree) {
+			// Not logged in, free course: go to login; on return auto-enroll
+			var courseUrl = window.location.pathname + window.location.search;
+			var sep = courseUrl.indexOf('?') !== -1 ? '&' : '?';
+			var redirectWithEnroll = encodeURIComponent(courseUrl + sep + 'autoEnroll=1');
+			btn.href = '/auth/login?redirect=' + redirectWithEnroll;
+		} else if (!token && !isFree) {
+			// Not logged in, paid course: add to cart (no login needed) then go to cart
+			btn.addEventListener('click', function(e) {
+				e.preventDefault();
+				CartManager.add({
+					id: courseId,
+					title: course.title,
+					thumbnail: course.thumbnail || course.image || '',
+					price: course.price,
+					instructor: (course.instructor && (course.instructor.firstName || course.instructor.name))
+						? ((course.instructor.firstName || '') + ' ' + (course.instructor.lastName || course.instructor.name || '')).trim()
+						: 'Instructor',
+					level: course.level || ''
+				});
+				window.location.href = '/shared/cart';
+			});
+		} else if (isFree) {
+			btn.removeAttribute('href');
+			btn.style.cursor = 'pointer';
+			btn.addEventListener('click', function(e) {
+				e.preventDefault();
+				btn.disabled = true;
+				btn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Enrolling...';
+				fetch(API_CONFIG.BASE_URL + '/enrollments', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+					body: JSON.stringify({ courseId: courseId })
+				}).then(function(r) { return r.json(); }).then(function(res) {
+					if (res.success) {
+						if (res.tokens) {
+							localStorage.setItem('accessToken', res.tokens.accessToken);
+							localStorage.setItem('refreshToken', res.tokens.refreshToken);
+						}
+						btn.innerHTML = '<i class="fa fa-check me-2"></i>Enrolled!';
+						btn.classList.remove('btn-primary');
+						btn.classList.add('btn-success');
+						showEnrollSuccess();
+					} else {
+						btn.disabled = false;
+						btn.innerHTML = '<i class="fa fa-paper-plane me-2"></i>Enroll Now';
+						showCdToast(res.message || 'Enrollment failed. Please try again.', 'error');
+					}
+				}).catch(function() {
+					btn.disabled = false;
+					btn.innerHTML = '<i class="fa fa-paper-plane me-2"></i>Enroll Now';
+					showCdToast('Network error. Please try again.', 'error');
+				});
+			});
+		} else {
+			btn.addEventListener('click', function(e) {
+				e.preventDefault();
+				CartManager.add({
+					id: courseId,
+					title: course.title,
+					thumbnail: course.thumbnail || course.image || '',
+					price: course.price,
+					instructor: (course.instructor && (course.instructor.firstName || course.instructor.name))
+						? ((course.instructor.firstName || '') + ' ' + (course.instructor.lastName || course.instructor.name || '')).trim()
+						: 'Instructor',
+					level: course.level || ''
+				});
+				window.location.href = '/shared/cart';
+			});
+		}
+	}
+
+	var CartManager = {
+		_key: 'alkahaf_cart',
+		get: function() {
+			try { return JSON.parse(localStorage.getItem(this._key) || '[]'); } catch(e) { return []; }
+		},
+		add: function(item) {
+			var items = this.get();
+			if (!items.some(function(i) { return String(i.id) === String(item.id); })) {
+				items.push(item);
+				localStorage.setItem(this._key, JSON.stringify(items));
+			}
+		},
+		remove: function(id) {
+			var items = this.get().filter(function(i) { return String(i.id) !== String(id); });
+			localStorage.setItem(this._key, JSON.stringify(items));
+		},
+		clear: function() { localStorage.removeItem(this._key); }
+	};
+
+	function initReviewSection(isEnrolled, courseId) {
+		var gate = document.getElementById('review-gate');
+		var form = document.getElementById('review-form');
+		if (!gate || !form) return;
+
+		var token = localStorage.getItem('accessToken');
+		if (!token) {
+			var redirect = encodeURIComponent(window.location.pathname + window.location.search);
+			gate.innerHTML = '<p class="text-muted">Please <a href="/auth/login?redirect=' + redirect + '">login</a> to leave a review.</p>';
+			return;
+		}
+
+		var payload;
+		try { payload = JSON.parse(atob(token.split('.')[1])); } catch(e) { return; }
+
+		if (payload.role !== 'student') {
+			gate.innerHTML = '<p class="text-muted">Only enrolled students can submit a review.</p>';
+			return;
+		}
+
+		if (!isEnrolled) {
+			gate.innerHTML = '<p class="text-muted">Enroll in this course to leave a review.</p>';
+			return;
+		}
+
+		form.style.display = '';
+
+		var stars = document.querySelectorAll('#star-rating span');
+		var ratingInput = document.getElementById('review-rating');
+
+		function paintStars(n) {
+			stars.forEach(function(s) {
+				s.style.color = parseInt(s.getAttribute('data-val')) <= n ? '#f5a623' : '#ccc';
+			});
+		}
+
+		stars.forEach(function(s) {
+			s.addEventListener('mouseover', function() { paintStars(parseInt(s.getAttribute('data-val'))); });
+			s.addEventListener('mouseout', function() { paintStars(parseInt(ratingInput.value) || 0); });
+			s.addEventListener('click', function() {
+				ratingInput.value = s.getAttribute('data-val');
+				paintStars(parseInt(ratingInput.value));
+			});
+		});
+
+		form.addEventListener('submit', function(e) {
+			e.preventDefault();
+			var rating = parseInt(ratingInput.value);
+			var message = document.getElementById('review-message').value.trim();
+			if (!rating) { showCdToast('Please select a star rating.', 'warn'); return; }
+			if (!message) { showCdToast('Please write your review.', 'warn'); return; }
+
+			var submitBtn = form.querySelector('button[type="submit"]');
+			submitBtn.disabled = true;
+			submitBtn.textContent = 'Submitting...';
+
+			fetch(API_CONFIG.BASE_URL + '/reviews', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+				body: JSON.stringify({ message: message, rating: rating, courseId: courseId || null })
+			})
+			.then(function(r) { return r.json(); })
+			.then(function(res) {
+				if (res.success) {
+					form.style.display = 'none';
+					document.getElementById('review-success').style.display = '';
+				} else {
+					showCdToast(res.message || 'Failed to submit review. Please try again.', 'error');
+					submitBtn.disabled = false;
+					submitBtn.textContent = 'Submit Review';
+				}
+			})
+			.catch(function() {
+				showCdToast('Network error. Please try again.', 'error');
+				submitBtn.disabled = false;
+				submitBtn.textContent = 'Submit Review';
+			});
+		});
+	}
+	</script>
+	<!-- Enroll to unlock modal -->
+	<div class="modal fade" id="enrollModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content text-center p-4">
+				<div class="mb-3"><i class="fa fa-lock" style="font-size:48px;color:#d8ac27;"></i></div>
+				<h5 class="fw-bold mb-2">This Content is Locked</h5>
+				<p class="text-muted mb-4">Login to enroll in this course and unlock all lessons.</p>
+				<div class="d-flex justify-content-center gap-3 flex-wrap">
+					<a id="enroll-modal-login" href="/auth/login" class="btn btn-primary px-4"><i class="fa fa-sign-in-alt me-2"></i>Login</a>
+					<a id="enroll-modal-register" href="/auth/register" class="btn btn-outline-primary px-4"><i class="fa fa-user-plus me-2"></i>New user? Register</a>
+				</div>
+				<button type="button" class="btn btn-link text-muted mt-2" data-bs-dismiss="modal">Cancel</button>
+			</div>
+		</div>
+	</div>
+	<!-- Enrollment success popup -->
+	<div id="enrollSuccessModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);align-items:center;justify-content:center;">
+		<div style="background:#fff;border-radius:14px;padding:36px 32px;max-width:400px;width:90%;text-align:center;box-shadow:0 8px 40px rgba(0,0,0,.25);animation:popIn .25s ease;">
+			<div style="width:64px;height:64px;background:#d8f0e8;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+				<i class="fa fa-check" style="font-size:28px;color:#28a745;"></i>
+			</div>
+			<h5 style="font-weight:700;margin-bottom:8px;">You're Enrolled!</h5>
+			<p style="color:#666;margin-bottom:24px;">You are enrolled in this course. Check your Student Dashboard to start learning.</p>
+			<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+				<a href="/student/student-courses" class="btn btn-primary px-4"><i class="fa fa-play-circle me-2"></i>Go to My Courses</a>
+				<button onclick="document.getElementById('enrollSuccessModal').style.display='none';window.location.reload();" class="btn btn-outline-secondary px-4">Stay Here</button>
+			</div>
+		</div>
+	</div>
+	<!-- Toast for errors/warnings -->
+	<div id="cd-toast" style="display:none;position:fixed;bottom:28px;right:24px;z-index:10000;min-width:280px;max-width:400px;background:#fff;border-radius:10px;box-shadow:0 4px 24px rgba(0,0,0,.18);padding:14px 18px;align-items:flex-start;gap:12px;">
+		<span id="cd-toast-icon" style="font-size:20px;flex-shrink:0;"></span>
+		<span id="cd-toast-msg" style="font-size:14px;line-height:1.5;flex:1;"></span>
+		<button onclick="clearTimeout(window._cdToastTimer);document.getElementById('cd-toast').style.display='none';" style="background:none;border:none;cursor:pointer;color:#999;font-size:16px;padding:0;flex-shrink:0;">&times;</button>
+	</div>
+	<style>
+	@keyframes popIn { from { transform:scale(.85); opacity:0; } to { transform:scale(1); opacity:1; } }
+	</style>
+	<script>
+	function showEnrollModal() {
+		var redirect = encodeURIComponent(window.location.pathname + window.location.search);
+		document.getElementById('enroll-modal-login').href = '/auth/login?redirect=' + redirect;
+		document.getElementById('enroll-modal-register').href = '/auth/register?redirect=' + redirect;
+		new bootstrap.Modal(document.getElementById('enrollModal')).show();
+	}
+	function showEnrollSuccess() {
+		document.getElementById('enrollSuccessModal').style.display = 'flex';
+	}
+	function showCdToast(msg, type) {
+		var toast = document.getElementById('cd-toast');
+		var icon = document.getElementById('cd-toast-icon');
+		var msgEl = document.getElementById('cd-toast-msg');
+		icon.innerHTML = type === 'error' ? '<i class="fa fa-times-circle" style="color:#dc3545;"></i>' : '<i class="fa fa-exclamation-circle" style="color:#f5a623;"></i>';
+		msgEl.textContent = msg;
+		toast.style.display = 'flex';
+		toast.style.alignItems = 'flex-start';
+		clearTimeout(window._cdToastTimer);
+		window._cdToastTimer = setTimeout(function() { toast.style.display = 'none'; }, 5000);
+	}
+	</script>
+
+	<!-- YouTube video modal -->
+	<div id="videoModal" style="display:none;position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.88);align-items:center;justify-content:center;">
+		<div style="position:relative;width:90%;max-width:900px;aspect-ratio:16/9;">
+			<iframe id="youtubeIframe" style="width:100%;height:100%;border:0;" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+			<button id="videoModalClose" style="position:absolute;top:-40px;right:0;background:none;border:none;color:#fff;font-size:32px;line-height:1;cursor:pointer;">&times;</button>
+		</div>
+	</div>
+	<script>
+	(function() {
+		var modal = document.getElementById('videoModal');
+		var iframe = document.getElementById('youtubeIframe');
+		function closeModal() {
+			if (modal) modal.style.display = 'none';
+			if (iframe) iframe.src = '';
+		}
+		var closeBtn = document.getElementById('videoModalClose');
+		if (closeBtn) closeBtn.addEventListener('click', closeModal);
+		if (modal) modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+		document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+	})();
+	</script>
+
+</body>
+</html>

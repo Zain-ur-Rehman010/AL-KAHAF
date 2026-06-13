@@ -1,0 +1,993 @@
+@use "../utils";
+
+/*============================
+  15.forms
+============================*/
+
+.form-control {
+  border-color: utils.$input-border;
+  color: utils.$gray-900;
+  background-color: utils.$form-control-bg;
+  font-size: utils.$font-size-14;
+  padding: 0.5rem 1rem;
+  min-height: 40px;
+  &:focus {
+    box-shadow: none;
+    border-color: utils.$input-border;
+    background: utils.$white;
+  }
+}
+textarea {
+  &.form-control {
+    min-height: 90px;
+    height: auto;
+  }
+  resize: none;
+}
+.form-control[type="file"] {
+  padding: 0.3rem 0.5rem;
+  &.form-control-sm {
+    padding: 0.25rem 0.5rem !important;
+  }
+  &.form-control-lg {
+    padding: 0.5rem 1rem !important;
+  }
+}
+.form-text {
+  color: utils.$text-muted;
+}
+.form-control-light {
+  background-color: utils.$light;
+  border: 0;
+
+  &:focus {
+    background-color: utils.$light;
+  }
+}
+.form-control-primary {
+  background-color: rgba(utils.$primary, 0.1);
+  border: 0;
+  color: utils.$primary;
+
+  &:focus {
+    background-color: rgba(utils.$primary, 0.1);
+    color: utils.$primary;
+  }
+}
+.form-input-color {
+  height: 2.25rem;
+  width: 2.25rem;
+  border-radius: utils.$border-radius;
+  overflow: hidden;
+  padding: 0;
+}
+.form-floating > .form-control-plaintext ~ label,
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+  color: utils.$text-muted;
+
+}
+.form-floating > .form-control:not(:placeholder-shown) ~ label::after {
+  background-color: transparent;
+}
+.form-select {
+  background-color: utils.$form-control-bg;
+  border: 1px solid utils.$input-border;
+  color: utils.$text-color;
+  font-size: utils.$font-size-base;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-size: 1.25rem;
+  line-height: 2;
+  option {
+    background-color: utils.$white;
+    padding: 0.35rem 0.75rem;
+    border-radius: 0.25rem;
+    margin-block-end: 0.25rem;
+    &:last-child {
+      margin-block-end: 0;
+    }
+  }
+  option:checked {
+    background-color: rgba(var(utils.$primary), 0.2);
+    color: utils.$primary;
+  }
+  option:select {
+    background-color: rgba(var(utils.$primary), 0.2);
+    color: utils.$primary;
+  }
+  option:hover {
+    background-color: rgba(var(utils.$primary), 0.2);
+    color: utils.$primary;
+  }
+  option:focus {
+    background-color: rgba(var(utils.$primary), 0.2);
+    color: utils.$primary;
+  }
+}
+.form-check-label {
+  font-size: utils.$font-size-14;
+  color: utils.$gray-600;
+}
+.form-check-input {
+  width: 0.9rem;
+  height: 0.9rem;
+  background-color: utils.$white;
+  border: 1px solid utils.$input-border;
+  &:checked {
+    background-color: utils.$secondary;
+    border-color: utils.$secondary;
+    ~ .form-check-label {
+      color: utils.$gray-900;
+    }
+  }
+  &.form-checked-outline {
+    &:checked {
+      background-color: transparent;
+      border-color: utils.$primary;
+    }
+  }
+  &.form-checked-secondary {
+    &:checked {
+      background-color: utils.$secondary;
+      border-color: utils.$secondary;
+    }
+  }
+  &.form-checked-warning {
+    &:checked {
+      background-color: utils.$warning;
+      border-color: utils.$warning;
+    }
+  }
+  &.form-checked-info {
+    &:checked {
+      background-color: utils.$info;
+      border-color: utils.$info;
+    }
+  }
+  &.form-checked-success {
+    &:checked {
+      background-color: utils.$success;
+      border-color: utils.$success;
+    }
+  }
+  &.form-checked-danger {
+    &:checked {
+      background-color: utils.$danger;
+      border-color: utils.$danger;
+    }
+  }
+  &.form-checked-light {
+    &:checked {
+      background-color: utils.$light;
+      border-color: utils.$light;
+    }
+  }
+  &.form-checked-dark {
+    &:checked {
+      background-color: utils.$dark;
+      border-color: utils.$dark;
+    }
+  }
+  &:focus {
+    box-shadow: none;
+  }
+}
+.form-checked-outline:checked[type="checkbox"] {
+  background-image: none;
+  position: relative;
+  background-color: transparent;
+
+  &:before {
+    content: "\F633";
+    font-family: bootstrap-icons !important;
+    position: absolute;
+    color: utils.$primary;
+    width: 0.625rem;
+    height: 0.625rem;
+    inset-block-start: -1px;
+    inset-inline-start: 0px;
+    font-size: 0.688rem;
+  }
+
+  &.form-checked-secondary {
+    &:before {
+      color: utils.$secondary;
+    }
+  }
+  &.form-checked-warning {
+    &:before {
+      color: utils.$warning;
+    }
+  }
+  &.form-checked-info {
+    &:before {
+      color: utils.$info;
+    }
+  }
+  &.form-checked-success {
+    &:before {
+      color: utils.$success;
+    }
+  }
+  &.form-checked-danger {
+    &:before {
+      color: utils.$danger;
+    }
+  }
+  &.form-checked-light {
+    &:before {
+      color: utils.$light;
+    }
+  }
+  &.form-checked-dark {
+    &:before {
+      color: utils.$dark;
+    }
+  }
+}
+.form-checked-outline:checked[type="radio"] {
+  background-image: none;
+  position: relative;
+  background-color: transparent;
+  &:before {
+    content: "\F309";
+    font-family: bootstrap-icons !important;
+    position: absolute;
+    color: utils.$primary;
+    width: 0.625rem;
+    height: 0.625rem;
+    inset-block-start: -1.13rem;
+    inset-inline-start: -0.6rem;
+    font-size: 2rem;
+  }
+  &.form-checked-secondary {
+    &:before {
+      color: utils.$secondary;
+    }
+  }
+  &.form-checked-warning {
+    &:before {
+      color: utils.$warning;
+    }
+  }
+  &.form-checked-info {
+    &:before {
+      color: utils.$info;
+    }
+  }
+  &.form-checked-success {
+    &:before {
+      color: utils.$success;
+    }
+  }
+  &.form-checked-danger {
+    &:before {
+      color: utils.$danger;
+    }
+  }
+  &.form-checked-light {
+    &:before {
+      color: utils.$light;
+    }
+  }
+  &.form-checked-dark {
+    &:before {
+      color: utils.$dark;
+    }
+  }
+}
+fieldset:disabled .btn {
+  color: utils.$white;
+  background-color: utils.$primary;
+  border-color: utils.$primary;
+}
+.form-select:focus {
+  border-color: rgba(var(utils.$primary), 0.5);
+  outline: 0;
+  box-shadow: none;
+}
+.btn-check:focus + .btn,
+.btn:focus {
+  background-color: none;
+  border-color: none;
+  outline: 0;
+}
+.btn-check:active + .btn:focus,
+.btn-check:checked + .btn:focus,
+.btn.active:focus,
+.btn.show:focus,
+.btn:active:focus {
+  box-shadow: none;
+}
+.form-control,
+.form-select {
+    &:disabled {
+      background-color: utils.$light;
+      color: utils.$text-color;
+  }
+}
+.form-control-plaintext {
+  color: utils.$text-color;
+}
+.form-control::-webkit-file-upload-button {
+  color: utils.$text-color;
+  background-color: utils.$default-background;
+}
+.form-control:hover:not(:disabled):not([readonly])::-webkit-file-upload-button {
+  background-color: utils.$default-background;
+}
+.form-control {
+  &:focus {
+      color: utils.$gray-900;
+    &::-webkit-input-placeholder,
+    &::placeholder {
+      color: utils.$gray-300;
+      padding-inline-start: 0;
+    }
+  }
+  &::-webkit-input-placeholder {
+    color: utils.$gray-300;
+    padding-inline-start: 0px;
+    transition: padding-inline-start 0.1s ease-in;
+  }
+  &:-moz-placeholder {
+    color: utils.$gray-300;
+  }
+  &::-moz-placeholder {
+    color: utils.$gray-300;
+  }
+  &:-ms-input-placeholder {
+    color: utils.$gray-300;
+  }
+}
+.form-control-sm {
+  font-size: 0.8rem;
+  padding: 0.25rem 0.8rem;
+  height: auto;
+}
+.form-control-lg {
+  font-size: 1rem;
+  padding: 0.66rem 1rem;
+}
+
+.form-check-md {
+  .form-check-input {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  &.form-switch {
+    .form-check-input {
+      width: 2.25rem;
+    }
+  }
+
+  label {
+    margin-inline-start: 0.5rem;
+    font-size: 0.95rem;
+    margin-block-start: 3px;
+  }
+}
+.form-check-lg {
+  .form-check-input {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+
+  &.form-switch {
+    .form-check-input {
+      width: 2.5rem;
+    }
+  }
+
+  label {
+    margin-inline-start: 0.5rem;
+    font-size: 1rem;
+    margin-block-start: 3px;
+  }
+}
+.label-primary {
+  background: utils.$primary;
+  color: utils.$white;
+}
+.label-secondary {
+  background: utils.$secondary;
+  color: utils.$white;
+}
+.label-warning {
+  background: utils.$warning;
+  color: utils.$white;
+}
+.label-info {
+  background: utils.$info;
+  color: utils.$white;
+}
+.label-success {
+  background: utils.$success;
+  color: utils.$white;
+}
+.label-danger {
+  background: utils.$danger;
+  color: utils.$white;
+}
+.label-light {
+  background: utils.$light;
+  color: utils.$white;
+}
+.label-dark {
+  background: utils.$dark;
+  color: utils.$white;
+}
+.form-floating > {
+  .form-control-plaintext,
+  .form-control {
+    &::placeholder {
+      color: transparent !important;
+    }
+  }
+}
+.form-floating > .form-control,
+.form-floating > .form-control-plaintext,
+.form-floating > .form-select {
+  height: calc(3.5rem - 4px);
+}
+.form-floating {
+  &.floating-primary {
+    label {
+      color: utils.$primary;
+      opacity: 1;
+    }
+
+    input {
+      border: 1px solid utils.$primary;
+    }
+    & > .form-control:focus ~ label {
+      color: utils.$primary !important;
+    }
+  }
+
+  &.floating-secondary {
+    label {
+      color: utils.$secondary;
+      opacity: 1;
+    }
+
+    input {
+      border: 1px solid utils.$secondary;
+    }
+    & > .form-control:focus ~ label {
+      color: utils.$secondary !important;
+    }
+  }
+
+  &.floating-warning {
+    label {
+      color: utils.$warning;
+      opacity: 1;
+    }
+
+    input {
+      border: 1px solid utils.$warning;
+    }
+    & > .form-control:focus ~ label {
+      color: utils.$warning !important;
+    }
+  }
+
+  &.floating-info {
+    label {
+      color: utils.$info;
+      opacity: 1;
+    }
+
+    input {
+      border: 1px solid utils.$info;
+    }
+    & > .form-control:focus ~ label {
+      color: utils.$info !important;
+    }
+  }
+
+  &.floating-success {
+    label {
+      color: utils.$success;
+      opacity: 1;
+    }
+
+    input {
+      border: 1px solid utils.$success;
+    }
+    & > .form-control:focus ~ label {
+      color: utils.$success !important;
+    }
+  }
+
+  &.floating-danger {
+    label {
+      color: utils.$danger;
+      opacity: 1;
+    }
+
+    input {
+      border: 1px solid utils.$danger;
+    }
+    & > .form-control:focus ~ label {
+      color: utils.$danger !important;
+    }
+  }
+}
+.form-floating > .form-control-plaintext ~ label::after,
+.form-floating > .form-control:focus ~ label::after,
+.form-floating > .form-control:not(:placeholder-shown) ~ label::after,
+.form-floating > .form-select ~ label::after {
+  background-color: utils.$white;
+  border-radius: utils.$border-radius;
+}
+.form-control.is-valid:focus,
+.was-validated .form-control:valid:focus {
+  border-color: utils.$success;
+  box-shadow: none;
+}
+.form-control.is-valid,
+.was-validated .form-control:valid {
+  border-color: utils.$success;
+}
+.form-control-color {
+  width: 1.75rem;
+  height: 1.75rem;
+  overflow: hidden;
+  padding: 0;
+}
+.bootstrap-tagsinput {
+  border-color: utils.$input-border;
+  color: utils.$text-color;
+  background-color: utils.$form-control-bg;
+  font-size: utils.$font-size-15;
+  font-weight: utils.$font-weight-normal;
+  border-radius: 5px;
+  padding: 0.45rem 0.625rem;
+  height: 40px;
+  box-shadow: none;
+  overflow-y: auto;
+  width: 100%;
+  .tag {
+    background: utils.$light;
+    border: 1px solid utils.$border-color;
+    border-radius: 3px;
+    padding: 0 5px;
+    font-size: utils.$font-size-14;
+    color: utils.$gray-700;
+    display: inline-flex;
+    align-items: center;
+    span {
+        &::after {
+            color: utils.$gray-900;
+        }
+    }
+    [data-role="remove"]:hover {
+      box-shadow: none;
+      &:active {
+        box-shadow: none; 
+      }
+    }
+}
+}
+[dir="rtl"] {
+  [type="email"],
+  [type="number"],
+  [type="tel"],
+  [type="url"] {
+    direction: rtl;
+  }
+}
+.form-select.is-invalid:not([multiple]):not([size]) {
+  padding-right: 1.125rem;
+  background-size: 16px 28px, calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: utils.$light;
+}
+[dir="rtl"] {
+  .form-checked-outline:checked[type="checkbox"]:before {
+    inset-inline-start: 1px;
+  }
+}
+.form-check {
+  min-height: inherit !important;
+}
+.col-form-label-lg,
+.col-form-label-sm,
+.col-form-label {
+  font-weight: utils.$font-weight-semibold;
+}
+.col-form-label {
+    font-size: utils.$font-size-15;
+    font-weight: utils.$font-weight-medium;
+    color: utils.$title-color;
+}
+.form-label {
+  font-size: utils.$font-size-14;
+  font-weight: utils.$font-weight-medium;
+  color: utils.$gray-900;
+  margin-bottom: 5px;
+}
+.input-group-text {
+  border-radius: utils.$border-radius;
+}
+[data-theme-mode="dark"] {
+  input {
+    &[type="week"],
+    &[type="month"],
+    &[type="date"],
+    &[type="datetime-local"],
+    &[type="time"] {
+      &::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+      }
+    }
+  }
+}
+[dir="rtl"] {
+  input {
+    &[type="week"],
+    &[type="month"],
+    &[type="date"],
+    &[type="datetime-local"],
+    &[type="time"] {
+      text-align: end;
+    }
+  }
+}
+.input-group-text {
+  border-color: utils.$light-900;
+}
+        /**
+Form help
+ */
+ .form-help {
+  display: inline-flex;
+  font-weight: utils.$font-weight-bold;
+  align-items: center;
+  justify-content: center;
+  width: 1.125rem;
+  height: 1.125rem;
+  font-size: .75rem;
+  color: utils.$white;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  background: utils.$secondary;
+  border-radius: 4px;
+
+  &:hover,
+  &[aria-describedby] {
+    color: utils.$white;
+    background: utils.$primary;
+  }
+}
+ .input-icon {
+  position: relative;  
+  .form-control:not(:last-child),
+  .form-select:not(:last-child) {
+    padding-right: 2.5rem;
+  }
+}
+
+
+/* Input Group */
+
+.input-group-link {
+  font-size: utils.$font-size-12;
+}
+.input-group-flat {
+  &:focus-within {
+    border-radius: utils.$border-radius;
+
+    .form-control,
+    .input-group-text {
+      border-color: utils.$border-color !important;
+    }
+  }
+
+  .form-control {
+    &:focus {
+      box-shadow: none;
+    }
+
+    &:not(:last-child) {
+      border-right: 0;
+    }
+
+    &:not(:first-child) {
+      border-left: 0;
+    }
+  }
+
+  .input-group-text {
+    &:first-child {
+      padding-right: 0;
+    }
+
+    &:last-child {
+      padding-left: 0;
+    }
+  }
+}
+.custom-radio {
+  display: block;
+  position: relative;
+  padding-left: 25px;
+  cursor: pointer;
+  font-size: utils.$font-size-15;
+  color: utils.$gray-700;
+  text-transform: capitalize;
+  input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+      &:checked {
+          ~ .checkmark {
+              border-color: utils.$primary;
+              background: utils.$primary;
+              &::after {
+                  opacity: 1;
+                  visibility: visible;
+              }
+          }
+      }
+  }
+  .checkmark {
+      width: 20px;
+      height: 20px;
+      border: 1px solid utils.$light-900;
+      border-radius: 50%;
+      -webkit-transition: all 0.3s;
+      -ms-transition: all 0.3s;
+      transition: all 0.3s;
+      margin: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      &::after {
+          content: "";
+          width: 8px;
+          height: 8px;
+          background-color: utils.$white;
+          opacity: 0;
+          visibility: hidden;
+          border-radius: 50%;
+          -webkit-transition: all 0.3s;
+          -ms-transition: all 0.3s;
+          transition: all 0.3s;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+          
+      }
+  }
+} 
+.check-radio-group {
+  flex-wrap: wrap;
+  row-gap: 10px;
+  .custom-radio {
+      margin-right: 15px;
+  }
+}
+.check {
+  display: block;
+  margin: 0;
+  padding: 0;
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+}
+.checktoggle {
+  background-color: rgba(115, 103, 240, 0.2);
+  border-radius: 12px;
+  cursor: pointer;
+  display: block;
+  font-size: 0;
+  height: 24px;
+  margin-bottom: 0;
+  position: relative;
+  width: 46px;
+}
+.status-toggle.modal-status label {
+  height: 16px;
+  width: 30px;
+  background-color: utils.$white;
+  border: 1px solid utils.$light-900;
+  margin-bottom: 0;
+}
+.check:checked + .checktoggle {
+  background-color: utils.$white;
+}
+.checktoggle:after {
+  content: " ";
+  display: block;
+  transform: translate(2px, -50%);
+  width: 10px;
+  height: 10px;
+  background-color: utils.$gray-300;
+  transition: left 300ms ease, transform 300ms ease;
+  border-radius: 50%;
+  transform: translate(2px, -50%);
+  -webkit-transform: translate(4px, -50%);
+  -ms-transform: translate(2px, -50%);
+  position: absolute;
+  top: 45%;
+  left: 0;
+}
+.check:checked + .checktoggle:after {
+  background-color: utils.$primary;
+  left: 100%;
+  transform: translate(calc(-90% - 4px), -50%);
+}
+.input-icon {
+  position: relative;
+}
+.input-icon-addon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  color: utils.$gray-700;
+  pointer-events: none;
+  font-size: 1.2em;
+  &:last-child {
+    right: 0;
+    left: auto;
+  }
+}
+.input-icon-start {
+  .form-control {
+      padding-left: 28px;
+  }
+}
+.icon-addon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  color: utils.$gray-700;
+  pointer-events: none;
+  font-size: 1.2em;
+}
+input-icon {
+  position: relative
+}
+
+.input-icon .form-control:not(:last-child),.input-icon .form-select:not(:last-child) {
+  padding-right: 2.5rem
+}
+
+.input-icon .form-control:not(:first-child),.input-icon .form-select:not(:last-child) {
+  padding-left: 2.2rem
+}
+
+.input-icon-addon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  color: utils.$text-color;
+  pointer-events: none;
+  font-size: 16px;
+}
+
+.input-icon-addon:last-child {
+  right: 0;
+  left: auto
+}
+.form-wrap {
+    .form-wrap-icon {
+        position: relative;
+        i {
+            font-size: utils.$font-size-18;
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+        }
+    }
+}
+.toggle-password {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: utils.$gray-900;
+    font-size: utils.$font-size-18;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    @include utils.rounded(50%);
+    @include utils.transform(translateY(-50%));
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    pointer-events: auto;
+    &:hover{
+        color: utils.$primary;
+    }
+}
+.pass-group {
+    position: relative;
+}
+.toggle-passwords,.toggle-passworda {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    color: utils.$gray-900;
+    font-size: utils.$font-size-18;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    @include utils.rounded(50%);
+    @include utils.transform(translateY(-50%));
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    &:hover{
+        color:utils.$primary;
+    }
+}
+.drag-upload-btn {
+  font-size: utils.$font-size-12;
+  font-weight: utils.$font-weight-semibold;
+  background: utils.$white;
+  border: 1px dashed utils.$light-900;
+  @include utils.rounded(54px);
+  padding:6px 16px ;
+  position: relative;
+  transition: all 0.5s;
+  input {
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+  }
+  &:hover {
+      background: utils.$primary;
+      border-color: utils.$primary;
+      color: utils.$white;
+      transition: all 0.5s;
+  }
+}
+.bookingrange{
+  padding:4px 8px 4px 30px;
+}

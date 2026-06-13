@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="AlKahaf LMS - Add Instructor">
+	<meta name="keywords" content="LMS, Add Instructor">
+	<meta name="author" content="AlKahaf Academy">
+	<meta name="robots" content="noindex, nofollow">
+
+	<title>Add Instructor | Al-Kahaf Online Academy</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/assets/img/favicon.svg">
+	<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+
+	<!-- Theme Settings Js -->
+	<script src="/assets/js/theme-script.js"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Feather CSS -->
+	<link rel="stylesheet" href="/assets/css/feather.css">
+
+	<!-- Iconsax CSS -->
+	<link rel="stylesheet" href="/assets/css/iconsax.css">
+
+	<!-- Select2 CSS -->
+	<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/site-overrides.css">
+
+	<style>
+		.image-preview {
+			width: 150px;
+			height: 150px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 3px solid #f0f0f0;
+		}
+		.upload-area {
+			border: 2px dashed #ddd;
+			border-radius: 10px;
+			padding: 30px;
+			text-align: center;
+			cursor: pointer;
+			transition: all 0.3s;
+		}
+		.upload-area:hover {
+			border-color: #d8ac27;
+			background-color: #fff5f0;
+		}
+		.required-field::after {
+			content: " *";
+			color: red;
+		}
+	</style>
+
+</head>
+<body>
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header (Admin Navigation) -->
+		<header class="header">
+			<div class="header-fixed">
+				<nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a id="mobile_btn" href="javascript:void(0);">
+								<span class="bar-icon">
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
+							</a>
+							<a href="/" class="navbar-brand logo"><img src="/assets/img/white-logo.png" class="img-fluid" alt="Logo" style="width:120px;"></a>
+						</div>
+						<div class="main-menu-wrapper">
+							<div class="menu-header">
+								<a href="/" class="menu-logo"><img src="/assets/img/logo.svg" class="img-fluid" alt="Logo"></a>
+								<a id="menu_close" class="menu-close" href="javascript:void(0);"><i class="fas fa-times"></i></a>
+							</div>
+							<ul class="main-nav">
+								<li><a href="/admin/admin-dashboard"><i class="isax isax-home me-2"></i>Dashboard</a></li>
+								<li class="has-submenu active">
+									<a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
+									<ul class="submenu">
+										<li><a href="/admin/users-list">All Users</a></li>
+										<li class="active"><a href="/admin/instructors-list">Instructors</a></li>
+										<li><a href="/admin/students-list">Students</a></li>
+										<li><a href="/admin/user-add">Add New User</a></li>
+									</ul>
+								</li>
+								<li class="has-submenu">
+									<a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
+									<ul class="submenu">
+										<li><a href="/admin/courses-list">All Courses</a></li>
+										<li><a href="/admin/course-add">Add Course</a></li>
+										<li><a href="/admin/predefined-courses">Predefined Catalog</a></li>
+									</ul>
+								</li>
+								<li><a href="/admin/blog-list"><i class="isax isax-document-text me-2"></i>Blog Posts</a></li>
+								<li><a href="/admin/enrollments-list"><i class="isax isax-note-2 me-2"></i>Enrollments</a></li>
+								<li><a href="/admin/payments-list"><i class="isax isax-wallet me-2"></i>Payments</a></li>
+								<li><a href="/admin/welfare-programs"><i class="isax isax-heart me-2"></i>Welfare</a></li>
+								<li><a href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+							</ul>
+						</div>
+						<div class="d-flex align-items-center" style="gap:16px;">
+								<!-- Notification Bell -->
+								<a href="/admin/notifications" class="position-relative" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#522811;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);color:#d8ac27;text-decoration:none;">
+									<i class="isax isax-notification" style="font-size:20px;color:#d8ac27;"></i>
+									<span id="notif-badge" style="position:absolute;top:0;right:0;background:#e53935;color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 3px;line-height:1;border:2px solid #522811;">0</span>
+								</a>
+								<!-- Profile Dropdown -->
+								<div class="dropdown profile-dropdown">
+									<a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
+										<span style="width:42px;height:42px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:#522811;color:#d8ac27;font-weight:700;font-size:16px;cursor:pointer;border:2px solid rgba(255,255,255,0.3);">
+											<img src="/assets/img/user/user-01.jpg" id="admin-avatar-img" alt="Admin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';document.getElementById('admin-initials').style.display='flex';">
+											<span id="admin-initials" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#d8ac27;">A</span>
+										</span>
+									</a>
+									<div class="dropdown-menu dropdown-menu-end" style="min-width:220px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15);border:none;padding:0;overflow:hidden;">
+										<div class="profile-header d-flex align-items-center" style="padding:16px;background:#f8f9fa;border-bottom:1px solid #eee;">
+											<div style="width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#522811;display:flex;align-items:center;justify-content:center;" class="me-3">
+												<img src="/assets/img/user/user-01.jpg" alt="Admin" style="width:100%;height:100%;object-fit:cover;">
+											</div>
+											<div>
+												<h6 class="mb-0 fw-semibold" id="admin-name">Administrator</h6>
+												<small class="text-muted">Admin</small>
+											</div>
+										</div>
+										<ul class="profile-body list-unstyled mb-0" style="padding:8px 0 8px 8px;">
+											<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-profile"><i class="isax isax-security-user me-2"></i>My Profile</a></li>
+											<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+										</ul>
+										<div style="padding:12px 16px;border-top:1px solid #eee;">
+											<a href="/auth/login" id="logoutBtn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!-- /Header -->
+
+		<!-- Breadcrumb -->
+		<div class="breadcrumb-bar text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-12">
+						<h2 class="breadcrumb-title">Add New Instructor</h2>
+						<nav aria-label="breadcrumb" class="page-breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+								<li class="breadcrumb-item"><a href="/admin/admin-dashboard">Admin</a></li>
+								<li class="breadcrumb-item"><a href="/admin/instructors-list">Instructors</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Add Instructor</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Breadcrumb -->
+
+		<!-- Page Content -->
+		<div class="content">
+			<div class="container">
+
+				<form id="instructor-form">
+					<!-- Basic Information -->
+					<div class="card bg-white rounded-3 shadow-sm mb-4">
+						<div class="card-header bg-primary text-white">
+							<h5 class="mb-0 text-white" style="color:#fff!important"><i class="isax isax-user me-2" style="color:#fff!important"></i>Basic Information</h5>
+						</div>
+						<div class="card-body">
+							<div class="row g-3">
+								<div class="col-md-6">
+									<label class="form-label required-field">First Name</label>
+									<input type="text" class="form-control" id="firstName" name="firstName" required placeholder="Enter first name">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label required-field">Last Name</label>
+									<input type="text" class="form-control" id="lastName" name="lastName" required placeholder="Enter last name">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label required-field">Email Address</label>
+									<input type="email" class="form-control" id="email" name="email" required placeholder="instructor@example.com">
+									<div class="form-text">This will be used for login</div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label required-field">Password</label>
+									<div class="position-relative">
+										<input type="password" class="form-control" id="password" name="password" required placeholder="Enter password">
+										<span class="toggle-password position-absolute top-50 end-0 translate-middle-y me-3" onclick="togglePassword()">
+											<i class="isax isax-eye-slash" id="password-icon"></i>
+										</span>
+									</div>
+									<div class="form-text">Minimum 8 characters</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Professional Information -->
+					<div class="card bg-white rounded-3 shadow-sm mb-4">
+						<div class="card-header bg-success text-white">
+							<h5 class="mb-0 text-white" style="color:#fff!important"><i class="isax isax-briefcase me-2" style="color:#fff!important"></i>Professional Information</h5>
+						</div>
+						<div class="card-body">
+							<div class="row g-3">
+								<div class="col-md-6">
+									<label class="form-label required-field">Designation/Title</label>
+									<input type="text" class="form-control" id="designation" name="designation" required placeholder="e.g., Lead Designer, Accountant">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label">Phone Number</label>
+									<input type="tel" class="form-control" id="phone" name="phone" placeholder="+1 234 567 8900">
+								</div>
+								<div class="col-12">
+									<label class="form-label">Bio/Description</label>
+									<textarea class="form-control" id="bio" name="bio" rows="4" placeholder="Write a brief bio about the instructor..."></textarea>
+									<div class="form-text">This will be displayed on instructor profile</div>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label">Qualification</label>
+									<select class="form-select" id="specialization" name="specialization" multiple>
+										<option value="Matric">Matric (Secondary School Certificate)</option>
+										<option value="Intermediate">Intermediate (Higher Secondary Certificate)</option>
+										<option value="Diploma">Diploma</option>
+										<option value="Bachelors">Bachelor's Degree</option>
+										<option value="Masters">Master's Degree</option>
+										<option value="MPhil">M.Phil</option>
+										<option value="PhD">PhD / Doctorate</option>
+										<option value="Certification">Professional Certification</option>
+									</select>
+								</div>
+								<div class="col-md-6">
+									<label class="form-label">Years of Experience</label>
+									<input type="number" class="form-control" id="experience" name="experience" min="0" placeholder="5">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Profile Image -->
+					<div class="card bg-white rounded-3 shadow-sm mb-4">
+						<div class="card-header bg-info text-white">
+							<h5 class="mb-0 text-white" style="color:#fff!important"><i class="isax isax-image me-2" style="color:#fff!important"></i>Profile Image</h5>
+						</div>
+						<div class="card-body">
+							<div class="row">
+								<div class="col-md-6">
+									<div class="upload-area" onclick="document.getElementById('profileImage').click()">
+										<i class="isax isax-gallery-add fs-1 text-muted mb-3 d-block"></i>
+										<h6>Click to upload profile image</h6>
+										<p class="text-muted mb-0">Required: Square image (1:1 ratio), min 300×300px, Max 5MB</p>
+									</div>
+									<input type="file" id="profileImage" name="profileImage" accept="image/*" class="d-none" onchange="previewImage(event)" onclick="event.stopPropagation()">
+								</div>
+								<div class="col-md-6 text-center">
+									<p class="text-muted mb-3">Preview</p>
+									<img id="image-preview" src="/assets/img/instructor/instructor-01.jpg" alt="Preview" class="image-preview">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Account Settings -->
+					<div class="card bg-white rounded-3 shadow-sm mb-4">
+						<div class="card-header bg-warning text-dark">
+							<h5 class="mb-0"><i class="isax isax-setting-2 me-2"></i>Account Settings</h5>
+						</div>
+						<div class="card-body">
+							<div class="row g-3">
+								<div class="col-md-4">
+									<label class="form-label">Account Status</label>
+									<select class="form-select" id="status" name="status">
+										<option value="active" selected>Active</option>
+										<option value="inactive">Inactive</option>
+										<option value="banned">Banned</option>
+									</select>
+								</div>
+								<div class="col-md-4">
+									<label class="form-label">Verification Status</label>
+									<div class="form-check form-switch mt-2">
+										<input class="form-check-input" type="checkbox" id="isVerified" name="isVerified" checked>
+										<label class="form-check-label" for="isVerified">
+											Verified Instructor
+										</label>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<label class="form-label">Initial Rating</label>
+									<input type="number" class="form-control" id="rating" name="rating" min="0" max="5" step="0.1" value="5.0">
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Social Links (Optional) -->
+					<div class="card bg-white rounded-3 shadow-sm mb-4">
+						<div class="card-header">
+							<h5 class="mb-0"><i class="isax isax-link me-2"></i>Social Links (Optional)</h5>
+						</div>
+						<div class="card-body">
+							<div class="row g-3">
+								<div class="col-md-6">
+									<label class="form-label"><i class="fab fa-linkedin me-2"></i>LinkedIn</label>
+									<input type="url" class="form-control" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/username">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label"><i class="fab fa-twitter me-2"></i>Twitter</label>
+									<input type="url" class="form-control" id="twitter" name="twitter" placeholder="https://twitter.com/username">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label"><i class="fab fa-facebook me-2"></i>Facebook</label>
+									<input type="url" class="form-control" id="facebook" name="facebook" placeholder="https://facebook.com/username">
+								</div>
+								<div class="col-md-6">
+									<label class="form-label"><i class="fas fa-globe me-2"></i>Website</label>
+									<input type="url" class="form-control" id="website" name="website" placeholder="https://yourwebsite.com">
+								</div>
+							</div>
+						</div>
+					</div>
+
+				<!-- Course Assignments -->
+				<div class="card bg-white rounded-3 shadow-sm mb-4">
+					<div class="card-header" style="background:linear-gradient(135deg,#522811 0%,#7a3d1a 100%);">
+						<h5 class="mb-0 text-white"><i class="isax isax-book me-2"></i>Course Assignments</h5>
+					</div>
+					<div class="card-body">
+						<div id="courses-loading" class="text-center text-muted py-2">
+							<i class="fas fa-spinner fa-spin me-2"></i>Loading courses...
+						</div>
+						<div id="courses-field" class="d-none">
+							<label class="form-label">Assign Courses <span class="text-muted fw-normal">(optional)</span></label>
+							<select class="form-select" id="assignedCourses" name="assignedCourses" multiple></select>
+							<div class="form-text">Select one or more courses this instructor will teach. You can update anytime from the edit page.</div>
+							<div class="mt-2">
+								<a href="/admin/predefined-courses" class="text-primary small">
+									<i class="isax isax-setting-2 me-1"></i>Manage predefined course catalog
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Student Assignments -->
+				<div class="card bg-white rounded-3 shadow-sm mb-4">
+					<div class="card-header" style="background:linear-gradient(135deg,#1a5276 0%,#2e86c1 100%);">
+						<h5 class="mb-0 text-white"><i class="isax isax-people me-2"></i>Student Assignments</h5>
+					</div>
+					<div class="card-body">
+						<div id="students-loading" class="text-center text-muted py-2">
+							<i class="fas fa-spinner fa-spin me-2"></i>Loading students...
+						</div>
+						<div id="students-field" class="d-none">
+							<label class="form-label">Assign Students <span class="text-muted fw-normal">(optional)</span></label>
+							<select class="form-select" id="assignedStudents" name="assignedStudents" multiple></select>
+							<div class="form-text">Assign students directly to this instructor. You can update anytime from the edit page.</div>
+						</div>
+					</div>
+				</div>
+
+					<!-- Form Actions -->
+					<div class="card bg-white rounded-3 shadow-sm">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-12 text-end">
+									<a href="/admin/instructors-list" class="btn btn-secondary me-2">
+										<i class="isax isax-arrow-left me-2"></i>Cancel
+									</a>
+									<button type="button" class="btn btn-outline-primary me-2" onclick="resetForm()">
+										<i class="isax isax-refresh me-2"></i>Reset
+									</button>
+									<button type="submit" class="btn btn-primary" id="submit-btn">
+										<i class="isax isax-add-circle me-2"></i>Create Instructor
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+		<!-- /Page Content -->
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="text-center">
+								<p class="mb-0">� 2025 AlKahaf Academy. All rights reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- /Footer -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- Feedback Modal -->
+	<div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="feedback-title">Status</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body text-center">
+					<div id="feedback-icon-wrap" class="mx-auto mb-2 d-inline-flex align-items-center justify-content-center rounded-circle" style="width:56px;height:56px;background:rgba(25,135,84,.12);color:#198754;">
+						<i id="feedback-icon" class="isax isax-tick-circle" style="font-size:24px;"></i>
+					</div>
+					<div id="feedback-message"></div>
+				</div>
+				<div class="modal-footer gap-2">
+					<button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+					<a href="/auth/login" id="feedback-login-btn" class="btn btn-secondary d-none ms-2"><i class="isax isax-logout me-1"></i>Go to Login</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script src="/assets/js/jquery-3.7.1.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Select2 JS -->
+	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="/assets/js/script.js"></script>
+
+	<!-- API Configuration -->
+	<script src="/assets/js/api-config.js"></script>
+	<script src="/assets/js/auth-guard.js"></script>
+	<!-- Admin Header: dynamic notifications + user info -->
+	<script src="/assets/js/admin-header.js"></script>
+
+	<!-- Add Instructor JS -->
+	<script>
+		let newProfileImageUrl = null;
+		let feedbackModal = null;
+		const PROFILE_IMAGE_TARGET_BYTES = 100 * 1024; // ~100KB
+		const PROFILE_IMAGE_MAX_DIMENSION = 900;
+		const PROFILE_IMAGE_MIN_QUALITY = 0.45;
+
+		async function uploadImage(file, folder) {
+			const formData = new FormData();
+			formData.append('image', file);
+			const token = localStorage.getItem('accessToken');
+			const res = await fetch(API_CONFIG.BASE_URL + '/upload?folder=' + folder, {
+				method: 'POST',
+				headers: { 'Authorization': 'Bearer ' + token },
+				body: formData
+			});
+			const data = await res.json();
+			if (!data.success) throw new Error(data.message || 'Upload failed');
+			return data.url;
+		}
+
+		function loadImageFromFile(file) {
+			return new Promise((resolve, reject) => {
+				const reader = new FileReader();
+				reader.onload = function(e) {
+					const img = new Image();
+					img.onload = () => resolve(img);
+					img.onerror = () => reject(new Error('Could not read image.'));
+					img.src = e.target.result;
+				};
+				reader.onerror = () => reject(new Error('Could not read image file.'));
+				reader.readAsDataURL(file);
+			});
+		}
+
+		function canvasToBlob(canvas, type, quality) {
+			return new Promise((resolve, reject) => {
+				canvas.toBlob((blob) => {
+					if (!blob) reject(new Error('Image compression failed.'));
+					else resolve(blob);
+				}, type, quality);
+			});
+		}
+
+		function buildUploadFile(blob, originalName, mimeType) {
+			const baseName = (originalName || 'profile').replace(/\.[^.]+$/, '');
+			const ext = mimeType === 'image/webp' ? 'webp' : 'jpg';
+			const fileName = baseName + '.' + ext;
+			try {
+				return new File([blob], fileName, { type: mimeType });
+			} catch (_) {
+				blob.name = fileName;
+				return blob;
+			}
+		}
+
+		async function optimizeInstructorImage(file) {
+			if (!file || !file.type || !file.type.startsWith('image/')) {
+				throw new Error('Please select a valid image file.');
+			}
+			if (file.size > 5 * 1024 * 1024) {
+				throw new Error('Image size must be less than 5MB.');
+			}
+			if (file.type === 'image/gif') {
+				if (file.size > PROFILE_IMAGE_TARGET_BYTES) {
+					throw new Error('GIF stays large. Use PNG/WebP for around 100KB.');
+				}
+				return file;
+			}
+
+			const img = await loadImageFromFile(file);
+
+			// Dimension validation — must be at least 300×300px and roughly square (1:1 ratio)
+			const MIN_DIM = 300;
+			const MAX_RATIO_DIFF = 0.15; // allow up to 15% difference between width and height
+			if (img.width < MIN_DIM || img.height < MIN_DIM) {
+				throw new Error('Image must be at least 300×300 pixels. Your image is ' + img.width + '×' + img.height + 'px. Please upload a larger square image.');
+			}
+			const aspectRatio = img.width / img.height;
+			if (aspectRatio < (1 - MAX_RATIO_DIFF) || aspectRatio > (1 + MAX_RATIO_DIFF)) {
+				throw new Error('Image must be roughly square (1:1 ratio). Your image is ' + img.width + '×' + img.height + 'px. Please crop it to a square before uploading.');
+			}
+
+			const ratio = Math.min(1, PROFILE_IMAGE_MAX_DIMENSION / Math.max(img.width, img.height));
+			let width = Math.max(1, Math.round(img.width * ratio));
+			let height = Math.max(1, Math.round(img.height * ratio));
+
+			let canvas = document.createElement('canvas');
+			let ctx = canvas.getContext('2d', { alpha: true });
+			canvas.width = width;
+			canvas.height = height;
+			ctx.drawImage(img, 0, 0, width, height);
+
+			const outputType = 'image/webp'; // keeps transparency and usually smaller size
+			let quality = 0.9;
+			let blob = await canvasToBlob(canvas, outputType, quality);
+
+			while (blob.size > PROFILE_IMAGE_TARGET_BYTES && quality > PROFILE_IMAGE_MIN_QUALITY) {
+				quality = Math.max(PROFILE_IMAGE_MIN_QUALITY, quality - 0.1);
+				blob = await canvasToBlob(canvas, outputType, quality);
+			}
+
+			// If still large, reduce dimensions gradually.
+			while (blob.size > PROFILE_IMAGE_TARGET_BYTES && canvas.width > 260 && canvas.height > 260) {
+				width = Math.max(260, Math.round(canvas.width * 0.88));
+				height = Math.max(260, Math.round(canvas.height * 0.88));
+				const nextCanvas = document.createElement('canvas');
+				const nextCtx = nextCanvas.getContext('2d', { alpha: true });
+				nextCanvas.width = width;
+				nextCanvas.height = height;
+				nextCtx.drawImage(canvas, 0, 0, width, height);
+				canvas = nextCanvas;
+				blob = await canvasToBlob(canvas, outputType, quality);
+			}
+
+			return buildUploadFile(blob, file.name, outputType);
+		}
+
+		document.addEventListener('DOMContentLoaded', function() {
+			// Check if user is admin
+			const user = JSON.parse(localStorage.getItem('user') || '{}');
+			if (!user || user.role !== 'admin') {
+				window.location.href = '/auth/login';
+				return;
+			}
+
+			// Set admin name
+			if (user.firstName && user.lastName) {
+				document.getElementById('admin-name').textContent = user.firstName + ' ' + user.lastName;
+			}
+
+			// Logout functionality
+			
+
+			// Initialize Select2 for qualifications
+			$('#specialization').select2({
+				placeholder: 'Select qualifications',
+				allowClear: true
+			});
+
+			// Load predefined course catalog
+			loadPredefinedCourses();
+			loadStudents();
+
+			// Form submission
+			document.getElementById('instructor-form').addEventListener('submit', handleSubmit);
+			feedbackModal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+		});
+
+		async function handleSubmit(e) {
+			e.preventDefault();
+
+			const submitBtn = document.getElementById('submit-btn');
+			const originalText = submitBtn.innerHTML;
+			submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Creating...';
+			submitBtn.disabled = true;
+
+			try {
+				const formData = new FormData(e.target);
+				const data = {
+					firstName: formData.get('firstName'),
+					lastName: formData.get('lastName'),
+					email: formData.get('email'),
+					password: formData.get('password'),
+					role: 'instructor',
+					designation: formData.get('designation'),
+					phone: formData.get('phone'),
+					bio: formData.get('bio'),
+					specialization: $('#specialization').val(),
+					experience: formData.get('experience'),
+					status: formData.get('status'),
+					isVerified: document.getElementById('isVerified').checked,
+					rating: parseFloat(formData.get('rating')),
+					socialLinks: {
+						linkedin: formData.get('linkedin'),
+						twitter: formData.get('twitter'),
+						facebook: formData.get('facebook'),
+						website: formData.get('website')
+					}
+				};
+
+				// Include profile image URL if one was uploaded to Cloudinary
+				if (newProfileImageUrl) {
+					data.profileImage = newProfileImageUrl;
+				}
+
+				const token = localStorage.getItem('accessToken');
+				const response = await fetch(API_CONFIG.BASE_URL + '/auth/register', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'Authorization': `Bearer ${token}`
+					},
+					body: JSON.stringify(data)
+				});
+
+				const result = await response.json();
+
+				if (result.success) {
+					// Assign selected courses if any
+					const selectedCourses = $('#assignedCourses').val() || [];
+					const newInstructorId = result.data?.user?.id || result.data?.id;
+					if (selectedCourses.length > 0 && newInstructorId) {
+						try {
+							await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + newInstructorId + '/courses', {
+								method: 'POST',
+								headers: API_CONFIG.getHeaders(true),
+								body: JSON.stringify({ courseIds: selectedCourses })
+							});
+						} catch (e) {
+							console.warn('Course assignment failed (non-critical):', e);
+						}
+					}
+					// Assign selected students if any
+					const selectedStudents = $('#assignedStudents').val() || [];
+					if (selectedStudents.length > 0 && newInstructorId) {
+						try {
+							await fetch(API_CONFIG.BASE_URL + '/instructor-students/assign', {
+								method: 'POST',
+								headers: API_CONFIG.getHeaders(true),
+								body: JSON.stringify({ instructorId: newInstructorId, studentIds: selectedStudents })
+							});
+						} catch (e) {
+							console.warn('Student assignment failed (non-critical):', e);
+						}
+					}
+					showAlert('success', 'Instructor created successfully!');
+					setTimeout(() => {
+						window.location.href = '/admin/instructors-list';
+					}, 1500);
+				} else {
+					throw new Error(result.message || 'Failed to create instructor');
+				}
+
+			} catch (error) {
+				console.error('Error creating instructor:', error);
+				showAlert('error', error.message || 'Failed to create instructor');
+				submitBtn.innerHTML = originalText;
+				submitBtn.disabled = false;
+			}
+		}
+
+		async function loadPredefinedCourses() {
+			try {
+				const response = await fetch(API_CONFIG.BASE_URL + '/admin/predefined-courses', {
+					headers: API_CONFIG.getHeaders(true)
+				});
+				const result = await response.json();
+				if (!result.success) throw new Error(result.message);
+
+				const select = document.getElementById('assignedCourses');
+				const grouped = result.data.grouped;
+
+				Object.keys(grouped).sort().forEach(category => {
+					const group = document.createElement('optgroup');
+					group.label = category;
+					grouped[category].forEach(course => {
+						const opt = document.createElement('option');
+						opt.value = course.id;
+						opt.textContent = course.courseName;
+						group.appendChild(opt);
+					});
+					select.appendChild(group);
+				});
+
+				document.getElementById('courses-loading').classList.add('d-none');
+				document.getElementById('courses-field').classList.remove('d-none');
+
+				$('#assignedCourses').select2({
+					placeholder: 'Select courses to assign...',
+					allowClear: true,
+					width: '100%'
+				});
+			} catch (err) {
+				console.warn('Could not load predefined courses:', err);
+				document.getElementById('courses-loading').textContent = 'Courses unavailable — assign them later from the edit page.';
+			}
+		}
+
+		async function previewImage(event) {
+			const file = event.target.files[0];
+			if (!file) return;
+			newProfileImageUrl = null;
+			let optimizedFile;
+			try {
+				optimizedFile = await optimizeInstructorImage(file);
+			} catch (error) {
+				showAlert('error', error.message || 'Could not process selected image.');
+				event.target.value = '';
+				return;
+			}
+
+			// Show local preview immediately
+			const reader = new FileReader();
+			reader.onload = function(e) {
+				document.getElementById('image-preview').src = e.target.result;
+			};
+			reader.readAsDataURL(optimizedFile);
+
+			// Upload to Cloudinary in background
+			try {
+				newProfileImageUrl = await uploadImage(optimizedFile, 'instructors');
+			} catch (err) {
+				showAlert('error', 'Image upload failed: ' + err.message);
+			}
+		}
+
+		function togglePassword() {
+			const passwordInput = document.getElementById('password');
+			const passwordIcon = document.getElementById('password-icon');
+
+			if (passwordInput.type === 'password') {
+				passwordInput.type = 'text';
+				passwordIcon.className = 'isax isax-eye';
+			} else {
+				passwordInput.type = 'password';
+				passwordIcon.className = 'isax isax-eye-slash';
+			}
+		}
+
+		async function loadStudents() {
+		try {
+			const res = await fetch(API_CONFIG.BASE_URL + '/users?role=student&limit=200', {
+				headers: API_CONFIG.getHeaders(true)
+			});
+			const result = await res.json();
+			const select = document.getElementById('assignedStudents');
+			const students = result.data || result.users || [];
+			students.forEach(function(s) {
+				const opt = document.createElement('option');
+				opt.value = s.id;
+				opt.textContent = (s.firstName || '') + ' ' + (s.lastName || '') + ' (' + (s.email || '') + ')';
+				select.appendChild(opt);
+			});
+			document.getElementById('students-loading').classList.add('d-none');
+			document.getElementById('students-field').classList.remove('d-none');
+			$('#assignedStudents').select2({ placeholder: 'Select students to assign...', allowClear: true, width: '100%' });
+		} catch (err) {
+			console.warn('Could not load students:', err);
+			document.getElementById('students-loading').textContent = 'Students unavailable — assign them later from the edit page.';
+		}
+	}
+
+	function resetForm() {
+			document.getElementById('instructor-form').reset();
+			document.getElementById('image-preview').src = '/assets/img/instructor/instructor-01.jpg';
+			$('#specialization').val(null).trigger('change');
+			$('#assignedCourses').val(null).trigger('change');
+		}
+
+		function showAlert(type, message) {
+			const isSuccess = type === 'success';
+			const title = isSuccess ? 'Success' : 'Error';
+			const iconWrap = document.getElementById('feedback-icon-wrap');
+			const icon = document.getElementById('feedback-icon');
+			const msg = document.getElementById('feedback-message');
+			document.getElementById('feedback-title').textContent = title;
+
+			iconWrap.style.background = isSuccess ? 'rgba(25,135,84,.12)' : 'rgba(220,53,69,.12)';
+			iconWrap.style.color = isSuccess ? '#198754' : '#dc3545';
+			icon.className = isSuccess ? 'isax isax-tick-circle' : 'isax isax-close-circle';
+			msg.innerHTML = `<div class="${isSuccess ? 'text-success' : 'text-danger'}">${escapeHtml(message)}</div>`;
+			(feedbackModal || bootstrap.Modal.getOrCreateInstance(document.getElementById('feedbackModal'))).show();
+		}
+
+		function escapeHtml(str) {
+			return String(str || '')
+				.replace(/&/g, '&amp;')
+				.replace(/</g, '&lt;')
+				.replace(/>/g, '&gt;')
+				.replace(/"/g, '&quot;')
+				.replace(/'/g, '&#39;');
+		}
+	</script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
+
+</body>
+</html>

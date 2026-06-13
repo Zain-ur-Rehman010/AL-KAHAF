@@ -1,0 +1,266 @@
+@use "../utils";
+
+/*=============================
+    Category
+===============================*/
+
+
+.categories {
+    &-item {
+        border: 1px solid utils.$border-color;
+        padding: 16px;
+        text-align: center;
+        @include utils.rounded(10px);
+        margin-bottom: 24px;
+        background: utils.$white;
+        .categories-img {
+            width: 68px;
+            height: 68px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 20px;
+            background: utils.$light-900;
+            margin-bottom: 16px;
+            border: 1px solid utils.$white;
+        }
+        h6 {
+            font-size: utils.$font-size-16;
+        }
+        &:hover {
+            cursor: pointer;
+            .categories-img {
+                animation: verticalRotate 0.5s linear 1;
+            }        
+        }
+        p {
+            font-size: utils.$font-size-14;
+        }
+        &-two {
+            padding: 20px;
+            @include utils.transition(all 0.3s ease 0s);    
+            .categories-icon {
+                display: block;
+                margin-bottom: 24px;
+                img {
+                    margin: 0 auto;
+                }
+            }
+            h5 {
+                margin-bottom: 4px;
+            }
+            p {
+                font-size: utils.$font-size-14;
+                font-weight: utils.$font-weight-medium;
+            }
+            &:hover {
+                background: utils.$primary;
+                @include utils.transition(all 0.3s ease 0s);    
+                h5 {
+                    a {
+                        color: utils.$white;
+                    }
+                }
+                p {
+                    color: utils.$white;
+                }
+            }
+        }
+        &-three {
+            padding: 20px;
+            border: 1px solid utils.$gray-100;
+            img {
+                margin-bottom: 20px;
+            }
+            .title {
+                font-weight: utils.$font-weight-medium;
+                text-align: center;
+            }
+            &:hover {
+                img {
+                    animation: verticalRotate 0.5s linear 1;
+                }
+            }
+        }
+        &-four {
+            box-shadow: utils.$box-shadow;
+            padding: 24px;
+            margin-bottom: 24px;
+            @include utils.transition(0.7s);	
+            position: relative;	
+            text-align: left;
+            z-index: 1;
+            &::before {
+                background: url('../img/bg/category-bg.png') no-repeat;
+                content: "";
+                position: absolute;
+                top: 0;
+                right: 0;
+                width: 100px;
+                height: 100%;
+                z-index: -1;
+            }
+            .categories-icon {
+                margin-bottom: 24px;
+                img {
+                    width: 53px;
+                }
+            }	
+            .title {
+                font-size: utils.$font-size-20;
+                @include utils.transition(0.7s);	
+                margin-bottom: 4px;
+                @include utils.respond-below(lg) {
+                    font-size: utils.$font-size-18;
+                }
+                @include utils.respond-below(md) {
+                    font-size: utils.$font-size-16;
+                }
+            }
+            &:hover {
+                background: utils.$gray-400;
+                cursor: pointer;
+                border: 1px solid utils.$gray-400;
+                @include utils.transition(0.7s);	
+                .title {
+                    a {
+                        color: utils.$white;
+                        @include utils.transition(0.7s);	
+                    }
+                }
+                p {
+                    color: utils.$white;
+                    @include utils.transition(0.7s);	
+                }
+            }
+        }
+        &-five {
+            display: flex;
+            padding: 20px;
+            align-items: center;
+            @include utils.transition(0.7s);
+            text-align: center;
+            margin-bottom: 40px;
+            .categories-icon {
+                width: 65px;
+                height: 65px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: utils.$light-900;
+                border-radius: 5px;
+                margin: 0 auto 12px;
+            }
+            h3 {
+                font-weight: utils.$font-weight-bold;
+			    font-size: utils.$font-size-18;
+            }
+            &:hover {
+                background: utils.$primary;
+                cursor: pointer;
+                border: 1px solid utils.$primary;
+                box-shadow: 0px 1px 4px rgb(0 0 0 / 20%);
+                @include utils.transition(0.7s);
+                h3 {
+                    color: utils.$white;
+                    @include utils.transition(0.7s);
+                    a {
+                        color: utils.$white;
+                    }
+                }
+                .instructors-info {
+                    p {
+                        color: utils.$white;
+                        @include utils.transition(0.7s);
+                    }
+                }
+            }
+            .instructors-info {
+                display: flex;
+                display: -ms-flexbox;
+                align-items: center;
+                justify-content: center;
+                p {
+                    font-weight: 500;
+                    font-size: 14px;
+                    margin-bottom: 0;
+                    @include utils.transition(0.7s);
+                }
+            }
+            .category-info {
+                border-bottom: 1px solid utils.$border-color;
+                margin-bottom: 15px;
+                padding-bottom: 15px;
+            }
+        }
+        &-six {            
+            background: utils.$light-900;
+            border: 1px solid transparent;
+            padding: 24px;
+            margin-bottom: 0;
+            .categories-icon {
+                margin-bottom: 24px;
+                text-align: center;
+                .icon-bg {
+                    position: relative;
+                    background: utils.$primary;
+                    border-radius: 75px 30px 75px 30px;
+                    width: 90px;
+                    margin: auto auto 0;
+                }
+                img {
+                    background: utils.$white;
+                    padding: 20px;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.4s ease 0s;
+                    border-radius: 50%;
+                }
+            }
+            .title {
+                font-size: utils.$font-size-20;
+                @include utils.respond-below(md) {
+                    font-size: utils.$font-size-18;
+                }
+            }
+            p {
+                margin-bottom: 20px;
+            }
+            .view-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.4s ease 0s;
+                width: 30px;
+                height: 30px;
+                background: utils.$primary;
+                border-radius: 50%;
+                -webkit-transition: 0.7s;
+                -moz-transition: 0.7s;
+                -o-transition: 0.7s;
+                transition: 0.7s;
+                margin: 0 auto;
+                color: utils.$white;
+                font-size: utils.$font-size-12;
+            }
+            &:hover {
+                border: 1px solid utils.$primary;
+                background: utils.$primary;
+                border-radius: 10px;
+                transition-duration: 0s;
+                .icon-bg {
+                    background: utils.$secondary;
+                }
+                h3 {
+                    color: utils.$white;
+                }
+                p{
+                    color: utils.$light;
+                }
+                .view-icon {
+                    background: utils.$secondary;
+                }
+            }
+        }
+    }
+}

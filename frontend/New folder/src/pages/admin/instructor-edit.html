@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Edit Instructor | Al-Kahaf Online Academy</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.svg">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/iconsax.css">
+    <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/site-overrides.css">
+
+    <style>
+        /* ── Skeleton ─────────────────────────────── */
+        .sk-box {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e4e4e4 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: sk-shimmer 1.4s infinite;
+            border-radius: 6px;
+        }
+        @keyframes sk-shimmer {
+            0%   { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .sk-label    { height: 13px; width: 45%; margin-bottom: 8px; }
+        .sk-input    { height: 38px; }
+        .sk-textarea { height: 90px; }
+        .sk-text     { height: 13px; border-radius: 4px; }
+        .sk-circle   { border-radius: 50% !important; }
+        .sk-btn      { height: 36px; border-radius: 8px; }
+
+        /* ── Layout ───────────────────────────────── */
+        .page-content   { padding: 32px 0 64px; }
+        .sidebar-sticky { position: sticky; top: 80px; }
+
+        /* ── Cards ────────────────────────────────── */
+        .form-card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid #eef0f3;
+            box-shadow: 0 1px 6px rgba(0,0,0,.05);
+        }
+        .form-card-header {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1D2026;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #d8ac27;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .form-card-header i { color: #522811; font-size: 18px; }
+
+        /* ── Sub-section divider inside a card ──── */
+        .subsection-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: .7px;
+            margin: 24px 0 14px;
+            padding-top: 18px;
+            border-top: 1px solid #f0f2f5;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* ── Inputs ───────────────────────────────── */
+        .required-label::after { content: " *"; color: #dc3545; }
+        .form-control, .form-select {
+            border-radius: 8px;
+            border-color: #e2e6ea;
+            font-size: 14px;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: #d8ac27;
+            box-shadow: 0 0 0 3px rgba(216,172,39,.15);
+        }
+
+        /* ── Assignment tabs ──────────────────────── */
+        .assign-tabs .nav-link {
+            color: #6c757d;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 7px 18px;
+            border-radius: 8px;
+            border: 1.5px solid #e2e6ea;
+            margin-right: 6px;
+        }
+        .assign-tabs .nav-link.active {
+            background: #522811;
+            color: #fff;
+            border-color: #522811;
+        }
+        .assign-tabs { margin-bottom: 16px; gap: 0; }
+
+        /* ── Profile photo ────────────────────────── */
+        .photo-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+        .photo-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #eef0f3;
+            background: #fff;
+        }
+        .btn-upload {
+            border: 1.5px solid #522811;
+            color: #522811;
+            background: #fff;
+            padding: 7px 18px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .btn-upload:hover { background: #fff5f0; }
+        .upload-btn-wrapper {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+        .upload-btn-wrapper input[type=file] {
+            position: absolute;
+            left: 0; top: 0;
+            opacity: 0;
+            cursor: pointer;
+            width: 100%; height: 100%;
+        }
+
+        /* ── Toggle rows ──────────────────────────── */
+        .toggle-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f6f8;
+        }
+        .toggle-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .toggle-label {
+            font-size: 14px;
+            color: #1D2026;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+        .toggle-label i { color: #522811; }
+        .form-check-input:checked { background-color: #522811; border-color: #522811; }
+
+        /* ── Stats ────────────────────────────────── */
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f6f8;
+            font-size: 14px;
+        }
+        .stat-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .stat-row .s-label { color: #6c757d; }
+        .stat-row .s-value { font-weight: 600; color: #1D2026; }
+
+        /* ── Action buttons ───────────────────────── */
+        .btn-save {
+            background: linear-gradient(135deg, #522811, #7a3d1a);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            width: 100%;
+            cursor: pointer;
+            transition: transform .15s, box-shadow .15s;
+        }
+        .btn-save:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 16px rgba(82,40,17,.35);
+            color: #fff;
+        }
+        .btn-cancel {
+            display: block;
+            text-align: center;
+            padding: 11px;
+            border-radius: 10px;
+            border: 1.5px solid #dee2e6;
+            color: #6c757d;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: border-color .15s, color .15s;
+        }
+        .btn-cancel:hover { border-color: #522811; color: #522811; }
+
+        /* ── Loading overlay ──────────────────────── */
+        .loading-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,.5); z-index: 9999;
+            justify-content: center; align-items: center;
+        }
+        .loading-overlay.show { display: flex; }
+
+        /* ── Responsive ───────────────────────────── */
+        @media (max-width: 991px) {
+            .sidebar-sticky { position: static; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <div class="main-wrapper">
+
+        <!-- Header -->
+        <header class="header header-page">
+            <div class="header-fixed">
+                <nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a id="mobile_btn" href="javascript:void(0);">
+                                <span class="bar-icon"><span></span><span></span><span></span></span>
+                            </a>
+                            <a href="/" class="navbar-brand logo"><img src="/assets/img/white-logo.png" class="img-fluid" alt="Logo" style="width:120px;"></a>
+                        </div>
+                        <div class="main-menu-wrapper">
+                            <div class="menu-header">
+                                <a href="/" class="menu-logo"><img src="/assets/img/logo.svg" class="img-fluid" alt="Logo"></a>
+                                <a id="menu_close" class="menu-close" href="javascript:void(0);"><i class="fas fa-times"></i></a>
+                            </div>
+                            <ul class="main-nav">
+                                <li><a href="/admin/admin-dashboard"><i class="isax isax-home me-2"></i>Dashboard</a></li>
+                                <li class="has-submenu active">
+                                    <a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
+                                    <ul class="submenu">
+                                        <li><a href="/admin/users-list">All Users</a></li>
+                                        <li class="active"><a href="/admin/instructors-list">Instructors</a></li>
+                                        <li><a href="/admin/students-list">Students</a></li>
+                                        <li><a href="/admin/user-add">Add New User</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-submenu">
+                                    <a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
+                                    <ul class="submenu">
+                                        <li><a href="/admin/courses-list">All Courses</a></li>
+                                        <li><a href="/admin/course-add">Add Course</a></li>
+                                        <li><a href="/admin/predefined-courses">Predefined Catalog</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/admin/blog-list"><i class="isax isax-document-text me-2"></i>Blog Posts</a></li>
+                                <li><a href="/admin/enrollments-list"><i class="isax isax-note-2 me-2"></i>Enrollments</a></li>
+                                <li><a href="/admin/payments-list"><i class="isax isax-wallet me-2"></i>Payments</a></li>
+                                <li><a href="/admin/welfare-programs"><i class="isax isax-heart me-2"></i>Welfare</a></li>
+                                <li><a href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+                            </ul>
+                        </div>
+                        <div class="d-flex align-items-center" style="gap:16px;">
+                            <!-- Bell -->
+                            <a href="/admin/notifications" class="position-relative" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#522811;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);text-decoration:none;">
+                                <i class="isax isax-notification" style="font-size:20px;color:#d8ac27;"></i>
+                                <span id="notif-badge" style="position:absolute;top:0;right:0;background:#e53935;color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 3px;line-height:1;border:2px solid #522811;">0</span>
+                            </a>
+                            <!-- Avatar dropdown -->
+                            <div class="dropdown profile-dropdown">
+                                <a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
+                                    <span style="width:42px;height:42px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:#522811;cursor:pointer;border:2px solid rgba(255,255,255,.3);">
+                                        <img src="/assets/img/user/user-01.jpg" id="admin-avatar-img" alt="Admin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';document.getElementById('admin-initials').style.display='flex';">
+                                        <span id="admin-initials" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#d8ac27;">A</span>
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end" style="min-width:220px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15);border:none;padding:0;overflow:hidden;">
+                                    <div class="d-flex align-items-center" style="padding:16px;background:#f8f9fa;border-bottom:1px solid #eee;">
+                                        <div style="width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#522811;display:flex;align-items:center;justify-content:center;" class="me-3">
+                                            <img src="/assets/img/user/user-01.jpg" alt="Admin" style="width:100%;height:100%;object-fit:cover;">
+                                        </div>
+                                        <div>
+                                            <h6 class="mb-0 fw-semibold" id="admin-name">Administrator</h6>
+                                            <small class="text-muted" id="dropdown-role-label">Admin</small>
+                                        </div>
+                                    </div>
+                                    <ul class="list-unstyled mb-0" style="padding:8px 0 8px 8px;">
+                                        <li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-profile"><i class="isax isax-security-user me-2"></i>My Profile</a></li>
+                                        <li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+                                    </ul>
+                                    <div style="padding:12px 16px;border-top:1px solid #eee;">
+                                        <a href="/auth/login" id="logoutBtn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- /Header -->
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-bar breadcrumb-bar-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="breadcrumb-list">
+                            <h2 class="breadcrumb-title">Edit Instructor</h2>
+                            <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin/admin-dashboard">Admin</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin/instructors-list">Instructors</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Edit Instructor</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Breadcrumb -->
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <div class="container">
+                <div class="row g-4">
+
+                    <!-- ══════════ Main Column ══════════ -->
+                    <div class="col-lg-8">
+
+                        <!-- ── Basic Information ── -->
+                        <div class="form-card">
+                            <h3 class="form-card-header">
+                                <i class="isax isax-user-edit"></i> Basic Information
+                            </h3>
+
+                            <!-- Skeleton -->
+                            <div id="sk-basic">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-input"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-input"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-input"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-input"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Real content -->
+                            <form id="editInstructorForm" class="d-none" onsubmit="return false;">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label required-label">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" name="firstName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label required-label">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" name="lastName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label required-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email" required>
+                                        <small class="text-muted">Used for login</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="+92 300 0000000">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- ── Professional + Social (merged) ── -->
+                        <div class="form-card">
+                            <h3 class="form-card-header">
+                                <i class="isax isax-briefcase"></i> Professional Information
+                            </h3>
+
+                            <!-- Skeleton -->
+                            <div id="sk-professional">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-input"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-input"></div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-input"></div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-textarea"></div>
+                                    </div>
+                                </div>
+                                <div class="subsection-title">Social Links</div>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-input"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-input"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-input"></div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="sk-box sk-label mb-2"></div>
+                                        <div class="sk-box sk-input"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Real content -->
+                            <div id="real-professional" class="d-none">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">Designation</label>
+                                        <input type="text" class="form-control" id="designation" name="designation" placeholder="e.g., Lead Designer">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">Years of Experience</label>
+                                        <input type="number" class="form-control" id="experience" name="experience" min="0" placeholder="0">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Specialization</label>
+                                        <select class="form-select" id="specialization" name="specialization" multiple>
+                                            <option value="Web Development">Web Development</option>
+                                            <option value="Mobile Development">Mobile Development</option>
+                                            <option value="Data Science">Data Science</option>
+                                            <option value="UI/UX Design">UI/UX Design</option>
+                                            <option value="Digital Marketing">Digital Marketing</option>
+                                            <option value="Business">Business</option>
+                                            <option value="Photography">Photography</option>
+                                            <option value="Programming">Programming</option>
+                                            <option value="Graphic Design">Graphic Design</option>
+                                            <option value="Video Editing">Video Editing</option>
+                                        </select>
+                                        <small class="text-muted">Hold Ctrl/Cmd to select multiple</small>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Bio</label>
+                                        <textarea class="form-control" id="bio" name="bio" rows="4" placeholder="Brief description about the instructor..."></textarea>
+                                    </div>
+                                </div>
+
+                                <!-- Social Links sub-section -->
+                                <div class="subsection-title">
+                                    <i class="fas fa-share-alt"></i> Social Links
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label">
+                                            <i class="fab fa-linkedin" style="color:#0077b5;"></i> LinkedIn
+                                        </label>
+                                        <input type="url" class="form-control" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/...">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">
+                                            <i class="fab fa-twitter" style="color:#1da1f2;"></i> Twitter
+                                        </label>
+                                        <input type="url" class="form-control" id="twitter" name="twitter" placeholder="https://twitter.com/...">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">
+                                            <i class="fab fa-facebook" style="color:#1877f2;"></i> Facebook
+                                        </label>
+                                        <input type="url" class="form-control" id="facebook" name="facebook" placeholder="https://facebook.com/...">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label">
+                                            <i class="fas fa-globe text-secondary"></i> Website
+                                        </label>
+                                        <input type="url" class="form-control" id="website" name="website" placeholder="https://yourwebsite.com">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ── Assignments (tabbed) ── -->
+                        <div class="form-card">
+                            <h3 class="form-card-header">
+                                <i class="isax isax-task-square"></i> Assignments
+                            </h3>
+
+                            <!-- Skeleton -->
+                            <div id="sk-assignments">
+                                <div class="d-flex gap-2 mb-3">
+                                    <div class="sk-box sk-btn" style="width:110px;"></div>
+                                    <div class="sk-box sk-btn" style="width:110px;"></div>
+                                </div>
+                                <div class="sk-box sk-label mb-2"></div>
+                                <div class="sk-box sk-input" style="height:72px;"></div>
+                            </div>
+
+                            <!-- Real content -->
+                            <div id="real-assignments" class="d-none">
+                                <!-- Tabs -->
+                                <ul class="nav assign-tabs" id="assignTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" href="#courses-panel" data-bs-toggle="tab" role="tab">
+                                            <i class="isax isax-book me-1"></i> Courses
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" href="#students-panel" data-bs-toggle="tab" role="tab">
+                                            <i class="isax isax-people me-1"></i> Students
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panels -->
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="courses-panel" role="tabpanel">
+                                        <div id="courses-loading" class="text-center text-muted py-3">
+                                            <i class="fas fa-spinner fa-spin me-2"></i>Loading courses...
+                                        </div>
+                                        <div id="courses-field" class="d-none">
+                                            <label class="form-label">Assigned Courses <span class="text-muted fw-normal">(optional)</span></label>
+                                            <select class="form-select" id="assignedCourses" name="assignedCourses" multiple></select>
+                                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                                <small class="text-muted">Saved when you click "Save Changes".</small>
+                                                <a href="/admin/predefined-courses" class="small" style="color:#522811;">
+                                                    <i class="isax isax-setting-2 me-1"></i>Manage catalog
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="students-panel" role="tabpanel">
+                                        <div id="students-loading" class="text-center text-muted py-3">
+                                            <i class="fas fa-spinner fa-spin me-2"></i>Loading students...
+                                        </div>
+                                        <div id="students-field" class="d-none">
+                                            <label class="form-label">Assigned Students <span class="text-muted fw-normal">(optional)</span></label>
+                                            <select class="form-select" id="assignedStudents" name="assignedStudents" multiple></select>
+                                            <small class="text-muted d-block mt-2">Saved when you click "Save Changes".</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /Main Column -->
+
+                    <!-- ══════════ Sidebar ══════════ -->
+                    <div class="col-lg-4">
+                        <div class="sidebar-sticky">
+
+                            <!-- Profile Photo -->
+                            <div class="form-card">
+                                <h3 class="form-card-header">
+                                    <i class="isax isax-gallery"></i> Profile Photo
+                                </h3>
+                                <!-- Skeleton -->
+                                <div id="sk-photo" class="photo-wrap">
+                                    <div class="sk-box sk-circle" style="width:110px;height:110px;"></div>
+                                    <div class="sk-box sk-btn" style="width:130px;"></div>
+                                    <div class="sk-box sk-text" style="width:160px;height:11px;"></div>
+                                </div>
+                                <!-- Real -->
+                                <div id="real-photo" class="photo-wrap d-none">
+                                    <img id="imagePreview" src="/assets/img/instructor/instructor-01.jpg" alt="Profile" class="photo-avatar">
+                                    <div class="upload-btn-wrapper">
+                                        <button class="btn-upload">
+                                            <i class="isax isax-gallery-add me-1"></i> Change Photo
+                                        </button>
+                                        <input type="file" id="profileImage" name="profileImage" accept="image/*" onchange="previewImage(event)">
+                                    </div>
+                                    <small class="text-muted text-center" style="font-size:12px;">Required: Square (1:1), min 300×300px · Max 5MB</small>
+                                </div>
+                            </div>
+
+                            <!-- Account Settings -->
+                            <div class="form-card">
+                                <h3 class="form-card-header">
+                                    <i class="isax isax-setting-2"></i> Account Settings
+                                </h3>
+                                <!-- Skeleton -->
+                                <div id="sk-settings">
+                                    <div class="sk-box sk-label mb-2"></div>
+                                    <div class="sk-box sk-input mb-3"></div>
+                                    <div class="sk-box sk-label mb-2"></div>
+                                    <div class="sk-box sk-input mb-3"></div>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div class="sk-box sk-text" style="width:55%;height:13px;"></div>
+                                        <div class="sk-box sk-text" style="width:36px;height:20px;border-radius:12px;"></div>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="sk-box sk-text" style="width:55%;height:13px;"></div>
+                                        <div class="sk-box sk-text" style="width:36px;height:20px;border-radius:12px;"></div>
+                                    </div>
+                                </div>
+                                <!-- Real -->
+                                <div id="real-settings" class="d-none">
+                                    <div class="mb-3">
+                                        <label class="form-label">Status</label>
+                                        <select class="form-select" id="status" name="status">
+                                            <option value="active">Active</option>
+                                            <option value="inactive">Inactive</option>
+                                            <option value="banned">Banned</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Rating</label>
+                                        <input type="number" class="form-control" id="rating" name="rating" min="0" max="5" step="0.1" value="5.0">
+                                        <small class="text-muted">0.0 — 5.0</small>
+                                    </div>
+                                    <div class="toggle-row">
+                                        <span class="toggle-label">
+                                            <i class="isax isax-shield-tick"></i> Verified Instructor
+                                        </span>
+                                        <div class="form-check form-switch mb-0">
+                                            <input class="form-check-input" type="checkbox" id="isVerified" name="isVerified" role="switch">
+                                        </div>
+                                    </div>
+                                    <div class="toggle-row">
+                                        <span class="toggle-label">
+                                            <i class="isax isax-tick-circle"></i> Email Verified
+                                        </span>
+                                        <div class="form-check form-switch mb-0">
+                                            <input class="form-check-input" type="checkbox" id="emailVerified" name="emailVerified" role="switch">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Statistics -->
+                            <div class="form-card">
+                                <h3 class="form-card-header">
+                                    <i class="isax isax-chart-2"></i> Statistics
+                                </h3>
+                                <!-- Skeleton -->
+                                <div id="sk-stats">
+                                    <div class="stat-row">
+                                        <div class="sk-box sk-text" style="width:48%;height:13px;"></div>
+                                        <div class="sk-box sk-text" style="width:22%;height:13px;"></div>
+                                    </div>
+                                    <div class="stat-row">
+                                        <div class="sk-box sk-text" style="width:48%;height:13px;"></div>
+                                        <div class="sk-box sk-text" style="width:22%;height:13px;"></div>
+                                    </div>
+                                    <div class="stat-row">
+                                        <div class="sk-box sk-text" style="width:48%;height:13px;"></div>
+                                        <div class="sk-box sk-text" style="width:32%;height:13px;"></div>
+                                    </div>
+                                    <div class="stat-row">
+                                        <div class="sk-box sk-text" style="width:48%;height:13px;"></div>
+                                        <div class="sk-box sk-text" style="width:28%;height:13px;"></div>
+                                    </div>
+                                </div>
+                                <!-- Real -->
+                                <div id="real-stats" class="d-none">
+                                    <div class="stat-row">
+                                        <span class="s-label">Total Courses</span>
+                                        <span class="s-value" id="totalCourses">—</span>
+                                    </div>
+                                    <div class="stat-row">
+                                        <span class="s-label">Total Students</span>
+                                        <span class="s-value" id="totalStudents">—</span>
+                                    </div>
+                                    <div class="stat-row">
+                                        <span class="s-label">Member Since</span>
+                                        <span class="s-value" id="memberSince">—</span>
+                                    </div>
+                                    <div class="stat-row">
+                                        <span class="s-label">Last Login</span>
+                                        <span class="s-value" id="lastLogin">—</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="d-grid gap-2">
+                                <button type="button" class="btn-save" onclick="saveInstructor()">
+                                    <i class="isax isax-tick-circle me-2"></i> Save Changes
+                                </button>
+                                <a href="/admin/instructors-list" class="btn-cancel">
+                                    <i class="isax isax-arrow-left me-1"></i> Back to List
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- /Sidebar -->
+
+                </div>
+            </div>
+        </div>
+        <!-- /Page Content -->
+
+    </div>
+    <!-- /Main Wrapper -->
+
+    <!-- Feedback Modal -->
+    <div class="modal fade" id="feedbackModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedback-title">Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <div id="feedback-icon-wrap" class="mx-auto mb-2 d-inline-flex align-items-center justify-content-center rounded-circle" style="width:56px;height:56px;background:rgba(25,135,84,.12);color:#198754;">
+                        <i id="feedback-icon" class="isax isax-tick-circle" style="font-size:24px;"></i>
+                    </div>
+                    <div id="feedback-message"></div>
+                </div>
+                <div class="modal-footer gap-2">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                    <a href="/auth/login" id="feedback-login-btn" class="btn btn-secondary d-none ms-2">
+                        <i class="isax isax-logout me-1"></i>Go to Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/plugins/select2/js/select2.min.js"></script>
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/api-config.js"></script>
+	<script src="/assets/js/auth-guard.js"></script>
+
+    <script>
+        let instructorId       = null;
+        let newProfileImageUrl = null;
+        let feedbackModal      = null;
+        let originalStudentIds = []; // tracks IDs loaded from server so we can diff on save
+
+        const PROFILE_IMAGE_TARGET_BYTES  = 100 * 1024;
+        const PROFILE_IMAGE_MAX_DIMENSION = 900;
+        const PROFILE_IMAGE_MIN_QUALITY   = 0.45;
+
+        /* ── Reveal content once data is loaded ── */
+        function revealContent() {
+            ['sk-basic','sk-professional','sk-assignments','sk-photo','sk-settings','sk-stats']
+                .forEach(function(id) {
+                    var el = document.getElementById(id);
+                    if (el) el.classList.add('d-none');
+                });
+            ['editInstructorForm','real-professional','real-assignments','real-photo','real-settings','real-stats']
+                .forEach(function(id) {
+                    var el = document.getElementById(id);
+                    if (el) el.classList.remove('d-none');
+                });
+        }
+
+        /* ── Image utilities ── */
+        async function uploadImage(file, folder) {
+            const formData = new FormData();
+            formData.append('image', file);
+            const token = localStorage.getItem('accessToken');
+            const res = await fetch(API_CONFIG.BASE_URL + '/upload?folder=' + folder, {
+                method: 'POST',
+                headers: { 'Authorization': 'Bearer ' + token },
+                body: formData
+            });
+            const data = await res.json();
+            if (!data.success) throw new Error(data.message || 'Upload failed');
+            return data.url;
+        }
+
+        function loadImageFromFile(file) {
+            return new Promise(function(resolve, reject) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() { resolve(img); };
+                    img.onerror = function() { reject(new Error('Could not read image.')); };
+                    img.src = e.target.result;
+                };
+                reader.onerror = function() { reject(new Error('Could not read image file.')); };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function canvasToBlob(canvas, type, quality) {
+            return new Promise(function(resolve, reject) {
+                canvas.toBlob(function(blob) {
+                    if (!blob) reject(new Error('Image compression failed.'));
+                    else resolve(blob);
+                }, type, quality);
+            });
+        }
+
+        function buildUploadFile(blob, originalName, mimeType) {
+            const baseName = (originalName || 'profile').replace(/\.[^.]+$/, '');
+            const ext = mimeType === 'image/webp' ? 'webp' : 'jpg';
+            try { return new File([blob], baseName + '.' + ext, { type: mimeType }); }
+            catch (_) { blob.name = baseName + '.' + ext; return blob; }
+        }
+
+        async function optimizeInstructorImage(file) {
+            if (!file || !file.type || !file.type.startsWith('image/'))
+                throw new Error('Please select a valid image file.');
+            if (file.size > 5 * 1024 * 1024)
+                throw new Error('Image size must be less than 5MB.');
+            if (file.type === 'image/gif') {
+                if (file.size > PROFILE_IMAGE_TARGET_BYTES)
+                    throw new Error('GIF stays large. Use PNG/WebP for around 100KB.');
+                return file;
+            }
+            const img = await loadImageFromFile(file);
+
+            // Dimension validation — must be at least 300×300px and roughly square
+            if (img.width < 300 || img.height < 300) {
+                throw new Error('Image must be at least 300×300 pixels. Your image is ' + img.width + '×' + img.height + 'px. Please upload a larger square image.');
+            }
+            const aspectRatio = img.width / img.height;
+            if (aspectRatio < 0.85 || aspectRatio > 1.15) {
+                throw new Error('Image must be roughly square (1:1 ratio). Your image is ' + img.width + '×' + img.height + 'px. Please crop it to a square before uploading.');
+            }
+
+            const ratio = Math.min(1, PROFILE_IMAGE_MAX_DIMENSION / Math.max(img.width, img.height));
+            let width   = Math.max(1, Math.round(img.width  * ratio));
+            let height  = Math.max(1, Math.round(img.height * ratio));
+            let canvas  = document.createElement('canvas');
+            canvas.width = width; canvas.height = height;
+            canvas.getContext('2d', { alpha: true }).drawImage(img, 0, 0, width, height);
+            const outputType = 'image/webp';
+            let quality = 0.9;
+            let blob = await canvasToBlob(canvas, outputType, quality);
+            while (blob.size > PROFILE_IMAGE_TARGET_BYTES && quality > PROFILE_IMAGE_MIN_QUALITY) {
+                quality = Math.max(PROFILE_IMAGE_MIN_QUALITY, quality - 0.1);
+                blob = await canvasToBlob(canvas, outputType, quality);
+            }
+            while (blob.size > PROFILE_IMAGE_TARGET_BYTES && canvas.width > 260 && canvas.height > 260) {
+                width  = Math.max(260, Math.round(canvas.width  * 0.88));
+                height = Math.max(260, Math.round(canvas.height * 0.88));
+                const nc = document.createElement('canvas');
+                nc.width = width; nc.height = height;
+                nc.getContext('2d').drawImage(canvas, 0, 0, width, height);
+                canvas = nc;
+                blob = await canvasToBlob(canvas, outputType, quality);
+            }
+            return buildUploadFile(blob, file.name, outputType);
+        }
+
+        /* ── Init ── */
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            feedbackModal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+
+            const urlParams = new URLSearchParams(window.location.search);
+            instructorId = urlParams.get('id');
+
+            if (!instructorId) {
+                showFeedbackModal('error', 'Missing ID', 'No instructor ID provided.');
+                setTimeout(function() { window.location.href = '/admin/instructors-list'; }, 1200);
+                return;
+            }
+
+            loadPredefinedCourses().then(function() { loadInstructorCourses(); });
+            loadStudents().then(function() { loadInstructorStudents(); });
+            loadInstructorData();
+            initializeSelect2();
+        });
+
+        function checkAuth() {
+            const token = localStorage.getItem('accessToken');
+            const user  = JSON.parse(localStorage.getItem('user') || '{}');
+            if (!token || user.role !== 'admin') { window.location.href = '/auth/login'; return; }
+            const nameEl = document.getElementById('admin-name');
+            if (nameEl) nameEl.textContent = (user.firstName || '') + ' ' + (user.lastName || '');
+        }
+
+        function initializeSelect2() {
+            $('#specialization').select2({ placeholder: 'Select specializations', allowClear: true });
+        }
+
+        async function loadInstructorData() {
+            showLoading();
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + instructorId, {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.success) {
+                        populateForm(result.data);
+                    } else {
+                        showFeedbackModal('error', 'Load Failed', result.message || 'Failed to load instructor data.');
+                        setTimeout(function() { window.location.href = '/admin/instructors-list'; }, 1200);
+                    }
+                } else if (response.status === 404) {
+                    showFeedbackModal('error', 'Not Found', 'Instructor not found.');
+                    setTimeout(function() { window.location.href = '/admin/instructors-list'; }, 1200);
+                } else {
+                    showFeedbackModal('error', 'Load Failed', 'Failed to load instructor data.');
+                }
+            } catch (error) {
+                console.error('Error loading instructor:', error);
+                showFeedbackModal('error', 'Load Failed', 'Failed to load instructor data.');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        function populateForm(instructor) {
+            document.getElementById('firstName').value   = instructor.firstName   || '';
+            document.getElementById('lastName').value    = instructor.lastName    || '';
+            document.getElementById('email').value       = instructor.email       || '';
+            document.getElementById('phone').value       = instructor.phone       || '';
+            document.getElementById('designation').value = instructor.designation || '';
+            document.getElementById('experience').value  = instructor.experience  || '';
+            document.getElementById('bio').value         = instructor.bio         || '';
+
+            if (instructor.specialization && Array.isArray(instructor.specialization)) {
+                $('#specialization').val(instructor.specialization).trigger('change');
+            }
+            if (instructor.socialLinks) {
+                document.getElementById('linkedin').value = instructor.socialLinks.linkedin || '';
+                document.getElementById('twitter').value  = instructor.socialLinks.twitter  || '';
+                document.getElementById('facebook').value = instructor.socialLinks.facebook || '';
+                document.getElementById('website').value  = instructor.socialLinks.website  || '';
+            }
+            if (instructor.profileImage) {
+                document.getElementById('imagePreview').src = instructor.profileImage;
+            }
+
+            document.getElementById('status').value          = instructor.status       || 'active';
+            document.getElementById('rating').value          = instructor.rating       || 5.0;
+            document.getElementById('isVerified').checked    = instructor.isVerified   || false;
+            document.getElementById('emailVerified').checked = instructor.emailVerified || false;
+
+            document.getElementById('totalCourses').textContent  = instructor.stats?.totalCourses  || instructor.totalCourses  || 0;
+            document.getElementById('totalStudents').textContent = instructor.stats?.totalStudents || instructor.totalStudents || 0;
+            document.getElementById('memberSince').textContent   = new Date(instructor.createdAt).toLocaleDateString();
+            document.getElementById('lastLogin').textContent     = instructor.lastLogin
+                ? new Date(instructor.lastLogin).toLocaleDateString() : 'Never';
+
+            revealContent();
+        }
+
+        async function previewImage(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            newProfileImageUrl = null;
+            let optimizedFile;
+            try {
+                optimizedFile = await optimizeInstructorImage(file);
+            } catch (error) {
+                showFeedbackModal('error', 'Invalid File', error.message || 'Could not process image.');
+                event.target.value = '';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(e) { document.getElementById('imagePreview').src = e.target.result; };
+            reader.readAsDataURL(optimizedFile);
+            try {
+                newProfileImageUrl = await uploadImage(optimizedFile, 'instructors');
+            } catch (err) {
+                showFeedbackModal('error', 'Upload Failed', 'Image upload failed: ' + err.message);
+            }
+        }
+
+        async function saveInstructor() {
+            const form = document.getElementById('editInstructorForm');
+            if (!form.checkValidity()) { form.reportValidity(); return; }
+            showLoading();
+
+            const instructorData = {
+                firstName:    document.getElementById('firstName').value,
+                lastName:     document.getElementById('lastName').value,
+                email:        document.getElementById('email').value,
+                phone:        document.getElementById('phone').value,
+                designation:  document.getElementById('designation').value,
+                experience:   parseInt(document.getElementById('experience').value) || 0,
+                bio:          document.getElementById('bio').value,
+                specialization: $('#specialization').val(),
+                status:       document.getElementById('status').value,
+                rating:       parseFloat(document.getElementById('rating').value),
+                isVerified:   document.getElementById('isVerified').checked,
+                emailVerified: document.getElementById('emailVerified').checked,
+                socialLinks: {
+                    linkedin: document.getElementById('linkedin').value,
+                    twitter:  document.getElementById('twitter').value,
+                    facebook: document.getElementById('facebook').value,
+                    website:  document.getElementById('website').value
+                }
+            };
+            if (newProfileImageUrl) instructorData.profileImage = newProfileImageUrl;
+
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + instructorId, {
+                    method: 'PUT',
+                    headers: API_CONFIG.getHeaders(true),
+                    body: JSON.stringify(instructorData)
+                });
+                const result = await response.json();
+                if (result.success) {
+                    const selectedCourses = $('#assignedCourses').val() || [];
+                    try {
+                        await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + instructorId + '/courses', {
+                            method: 'POST',
+                            headers: API_CONFIG.getHeaders(true),
+                            body: JSON.stringify({ courseIds: selectedCourses })
+                        });
+                    } catch (e) { console.warn('Course sync failed (non-critical):', e); }
+
+                    // Sync student assignments via diff (add new, remove deselected)
+                    const selectedStudents = ($('#assignedStudents').val() || []).map(String);
+                    const toRemove = originalStudentIds.filter(function(id) { return selectedStudents.indexOf(id) === -1; });
+                    const toAdd    = selectedStudents.filter(function(id) { return originalStudentIds.indexOf(id) === -1; });
+                    try {
+                        // Remove deselected students one by one
+                        for (var i = 0; i < toRemove.length; i++) {
+                            await fetch(API_CONFIG.BASE_URL + '/instructor-students/' + instructorId + '/' + toRemove[i], {
+                                method: 'DELETE',
+                                headers: API_CONFIG.getHeaders(true)
+                            });
+                        }
+                        // Add newly selected students (only if there are any)
+                        if (toAdd.length > 0) {
+                            await fetch(API_CONFIG.BASE_URL + '/instructor-students/assign', {
+                                method: 'POST',
+                                headers: API_CONFIG.getHeaders(true),
+                                body: JSON.stringify({ instructorId: instructorId, studentIds: toAdd })
+                            });
+                        }
+                        // Update snapshot so a second save works correctly
+                        originalStudentIds = selectedStudents.slice();
+                    } catch (e) { console.warn('Student sync failed (non-critical):', e); }
+
+                    showFeedbackModal('success', 'Updated', 'Instructor updated successfully.');
+                    setTimeout(function() { window.location.href = '/admin/instructors-list'; }, 1000);
+                } else {
+                    showFeedbackModal('error', 'Update Failed', result.message || 'Failed to update instructor.');
+                }
+            } catch (error) {
+                console.error('Error updating instructor:', error);
+                showFeedbackModal('error', 'Update Failed', 'Failed to update instructor.');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function loadPredefinedCourses() {
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/predefined-courses', {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+                const result = await response.json();
+                if (!result.success) throw new Error(result.message);
+                const select = document.getElementById('assignedCourses');
+                const grouped = result.data.grouped;
+                Object.keys(grouped).sort().forEach(function(category) {
+                    const group = document.createElement('optgroup');
+                    group.label = category;
+                    grouped[category].forEach(function(course) {
+                        const opt = document.createElement('option');
+                        opt.value = course.id;
+                        opt.textContent = course.courseName;
+                        group.appendChild(opt);
+                    });
+                    select.appendChild(group);
+                });
+                document.getElementById('courses-loading').classList.add('d-none');
+                document.getElementById('courses-field').classList.remove('d-none');
+                $('#assignedCourses').select2({ placeholder: 'Select courses to assign...', allowClear: true, width: '100%' });
+            } catch (err) {
+                console.warn('Could not load predefined courses:', err);
+                document.getElementById('courses-loading').textContent = 'Courses unavailable.';
+            }
+        }
+
+        async function loadInstructorCourses() {
+            if (!instructorId) return;
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + instructorId + '/courses', {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+                const result = await response.json();
+                if (result.success && Array.isArray(result.data)) {
+                    $('#assignedCourses').val(result.data.map(function(c) { return c.id; })).trigger('change');
+                }
+            } catch (err) { console.warn('Could not load instructor courses:', err); }
+        }
+
+        async function loadStudents() {
+            try {
+                const res = await fetch(API_CONFIG.BASE_URL + '/users?role=student&limit=200', {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+                const result = await res.json();
+                const select   = document.getElementById('assignedStudents');
+                const students = result.data || result.users || [];
+                students.forEach(function(s) {
+                    const opt = document.createElement('option');
+                    opt.value = s.id;
+                    opt.textContent = (s.firstName || '') + ' ' + (s.lastName || '') + ' (' + (s.email || '') + ')';
+                    select.appendChild(opt);
+                });
+                document.getElementById('students-loading').classList.add('d-none');
+                document.getElementById('students-field').classList.remove('d-none');
+                $('#assignedStudents').select2({ placeholder: 'Select students to assign...', allowClear: true, width: '100%' });
+            } catch (err) {
+                console.warn('Could not load students:', err);
+                document.getElementById('students-loading').textContent = 'Students unavailable.';
+            }
+        }
+
+        async function loadInstructorStudents() {
+            if (!instructorId) return;
+            try {
+                const res = await fetch(API_CONFIG.BASE_URL + '/instructor-students/' + instructorId, {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+                const result = await res.json();
+                if (result.success && Array.isArray(result.data)) {
+                    const ids = result.data.map(function(s) { return s.id; });
+                    originalStudentIds = ids.slice(); // snapshot for diff on save
+                    $('#assignedStudents').val(ids).trigger('change');
+                }
+            } catch (err) { console.warn('Could not load instructor students:', err); }
+        }
+
+        function showLoading() { document.getElementById('loadingOverlay').classList.add('show'); }
+        function hideLoading() { document.getElementById('loadingOverlay').classList.remove('show'); }
+
+        function showFeedbackModal(type, title, message) {
+            const isSuccess = type === 'success';
+            const iconWrap  = document.getElementById('feedback-icon-wrap');
+            const icon      = document.getElementById('feedback-icon');
+            document.getElementById('feedback-title').textContent = title || (isSuccess ? 'Success' : 'Error');
+            iconWrap.style.background = isSuccess ? 'rgba(25,135,84,.12)' : 'rgba(220,53,69,.12)';
+            iconWrap.style.color      = isSuccess ? '#198754' : '#dc3545';
+            icon.className = isSuccess ? 'isax isax-tick-circle' : 'isax isax-close-circle';
+            icon.style.fontSize = '24px';
+            document.getElementById('feedback-message').innerHTML =
+                '<div class="' + (isSuccess ? 'text-success' : 'text-danger') + '">' + escapeHtml(message || '') + '</div>';
+            (feedbackModal || bootstrap.Modal.getOrCreateInstance(document.getElementById('feedbackModal'))).show();
+        }
+
+        function escapeHtml(str) {
+            return String(str || '')
+                .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+                .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('user');
+            window.location.href = '/auth/login';
+        });
+    </script>
+
+    <!-- Scroll to Top -->
+    <button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="/assets/js/admin-header.js"></script>
+</body>
+
+</html>

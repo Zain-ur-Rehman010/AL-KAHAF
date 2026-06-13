@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Payments | Al-Kahaf Online Academy</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/assets/img/favicon.svg">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Iconsax CSS -->
+    <link rel="stylesheet" href="/assets/css/iconsax.css">
+
+    <!-- Datatables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/site-overrides.css">
+
+    <style>
+        .sk { background: linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%); background-size: 200% 100%; animation: sk-shimmer 1.4s infinite; border-radius: 6px; }
+        @keyframes sk-shimmer { 0% { background-position: 200% 0 } 100% { background-position: -200% 0 } }
+        .stat-card { border-radius: 12px; border: none; }
+        .badge-completed { background: #d4edda; color: #155724; }
+        .badge-pending { background: #fff3cd; color: #856404; }
+        .badge-failed { background: #f8d7da; color: #721c24; }
+        .badge-free { background: #e2e3e5; color: #383d41; }
+    </style>
+<script src="/assets/js/auth-guard.js"></script>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="header-fixed">
+            <nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a id="mobile_btn" href="javascript:void(0);">
+                            <span class="bar-icon"><span></span><span></span><span></span></span>
+                        </a>
+                        <a href="/" class="navbar-brand logo">
+                            <img src="/assets/img/white-logo.png" class="img-fluid" alt="Logo" style="width:120px;">
+                        </a>
+                    </div>
+                    <div class="main-menu-wrapper">
+                        <div class="menu-header">
+                            <a href="/" class="menu-logo"><img src="/assets/img/logo.svg" class="img-fluid" alt="Logo"></a>
+                            <a id="menu_close" class="menu-close" href="javascript:void(0);"><i class="fas fa-times"></i></a>
+                        </div>
+                        <ul class="main-nav">
+                            <li><a href="/admin/admin-dashboard"><i class="isax isax-home me-2"></i>Dashboard</a></li>
+                            <li class="has-submenu">
+                                <a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="/admin/users-list">All Users</a></li>
+                                    <li><a href="/admin/instructors-list">Instructors</a></li>
+                                    <li><a href="/admin/students-list">Students</a></li>
+                                    <li><a href="/admin/user-add">Add New User</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="/admin/courses-list">All Courses</a></li>
+                                    <li><a href="/admin/course-add">Add Course</a></li>
+                                    <li><a href="/admin/predefined-courses">Predefined Catalog</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="/admin/blog-list"><i class="isax isax-document-text me-2"></i>Blog Posts</a></li>
+                            <li><a href="/admin/enrollments-list"><i class="isax isax-note-2 me-2"></i>Enrollments</a></li>
+                            <li class="active"><a href="/admin/payments-list"><i class="isax isax-wallet me-2"></i>Payments</a></li>
+                            <li><a href="/admin/welfare-programs"><i class="isax isax-heart me-2"></i>Welfare</a></li>
+                            <li><a href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+                        </ul>
+                    </div>
+                    <div class="d-flex align-items-center" style="gap:16px;">
+                        <a href="/admin/notifications" class="position-relative" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#522811;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);color:#d8ac27;text-decoration:none;">
+                            <i class="isax isax-notification" style="font-size:20px;color:#d8ac27;"></i>
+                            <span id="notif-badge" style="position:absolute;top:0;right:0;background:#e53935;color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 3px;line-height:1;border:2px solid #522811;">0</span>
+                        </a>
+                        <div class="dropdown profile-dropdown">
+                            <a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
+                                <span style="width:42px;height:42px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:#522811;color:#d8ac27;font-weight:700;font-size:16px;cursor:pointer;border:2px solid rgba(255,255,255,0.3);">
+                                    <img src="/assets/img/user/user-01.jpg" id="admin-avatar-img" alt="Admin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';document.getElementById('admin-initials').style.display='flex';">
+                                    <span id="admin-initials" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#d8ac27;">A</span>
+                                </span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end" style="min-width:220px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15);border:none;padding:0;overflow:hidden;">
+                                <div class="profile-header d-flex align-items-center" style="padding:16px;background:#f8f9fa;border-bottom:1px solid #eee;">
+                                    <div style="width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#522811;display:flex;align-items:center;justify-content:center;" class="me-3">
+                                        <img src="/assets/img/user/user-01.jpg" alt="Admin" style="width:100%;height:100%;object-fit:cover;">
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-0 fw-semibold" id="admin-name">Administrator</h6>
+                                        <small class="text-muted">Admin</small>
+                                    </div>
+                                </div>
+                                <ul class="profile-body list-unstyled mb-0" style="padding:8px 0 8px 8px;">
+                                    <li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-profile"><i class="isax isax-security-user me-2"></i>My Profile</a></li>
+                                    <li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+                                </ul>
+                                <div style="padding:12px 16px;border-top:1px solid #eee;">
+                                    <a href="/auth/login" id="logoutBtn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- /Header -->
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <h2 class="breadcrumb-title">Payments</h2>
+                    <nav aria-label="breadcrumb" class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/">Home</a></li>
+                            <li class="breadcrumb-item"><a href="/admin/admin-dashboard">Dashboard</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Payments</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Breadcrumb -->
+
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container">
+
+            <!-- Stats -->
+            <div class="row mb-4 g-3">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card stat-card shadow-sm" style="background:#522811;color:#fff;">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div>
+                                <p class="mb-1 small" style="opacity:.7;">Total Revenue</p>
+                                <h4 class="mb-0 fw-bold">PKR <span id="stat-revenue">—</span></h4>
+                            </div>
+                            <i class="isax isax-wallet fs-1" style="opacity:.4;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card stat-card shadow-sm bg-success text-white">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div>
+                                <p class="mb-1 small text-white-50">Completed</p>
+                                <h4 class="mb-0 fw-bold" id="stat-completed">—</h4>
+                            </div>
+                            <i class="isax isax-tick-circle fs-1" style="opacity:.4;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card stat-card shadow-sm bg-warning text-dark">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div>
+                                <p class="mb-1 small" style="opacity:.7;">Pending</p>
+                                <h4 class="mb-0 fw-bold" id="stat-pending">—</h4>
+                            </div>
+                            <i class="isax isax-clock fs-1" style="opacity:.4;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card stat-card shadow-sm bg-danger text-white">
+                        <div class="card-body d-flex align-items-center justify-content-between">
+                            <div>
+                                <p class="mb-1 small text-white-50">Failed</p>
+                                <h4 class="mb-0 fw-bold" id="stat-failed">—</h4>
+                            </div>
+                            <i class="isax isax-close-circle fs-1" style="opacity:.4;"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter + Table -->
+            <div class="card shadow-sm rounded-3">
+                <div class="card-body">
+                    <div class="d-flex flex-wrap align-items-center justify-content-between mb-3 gap-2">
+                        <h5 class="mb-0">All Payments</h5>
+                        <div class="d-flex gap-2 flex-wrap">
+                            <select id="status-filter" class="form-select form-select-sm" style="width:auto;">
+                                <option value="">All Statuses</option>
+                                <option value="completed">Completed</option>
+                                <option value="pending">Pending</option>
+                                <option value="failed">Failed</option>
+                                <option value="free">Free</option>
+                            </select>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="loadPayments()">
+                                <i class="isax isax-refresh me-1"></i>Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table id="payments-table" class="table table-hover align-middle">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>#</th>
+                                    <th>Student</th>
+                                    <th>Course</th>
+                                    <th>Amount (PKR)</th>
+                                    <th>Method</th>
+                                    <th>Status</th>
+                                    <th>Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payments-body">
+                                <tr><td colspan="7" class="text-center py-4"><div class="spinner-border spinner-border-sm text-secondary"></div> Loading...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /Page Content -->
+
+</div>
+<!-- /Main Wrapper -->
+
+<!-- jQuery -->
+<script src="/assets/js/jquery-3.7.1.min.js"></script>
+<!-- Bootstrap Core JS -->
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+<!-- Datatables JS -->
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+<!-- Custom JS -->
+<script src="/assets/js/script.js"></script>
+
+<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+(function () {
+    const API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+    const token = localStorage.getItem('accessToken');
+    if (!token) { window.location.href = '/auth/login'; return; }
+
+    function authHeaders() {
+        return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token };
+    }
+
+    let dtInstance = null;
+    let allRows = [];
+
+    function statusBadge(status) {
+        const map = {
+            completed: '<span class="badge badge-completed px-2 py-1">Completed</span>',
+            pending:   '<span class="badge badge-pending px-2 py-1">Pending</span>',
+            failed:    '<span class="badge badge-failed px-2 py-1">Failed</span>',
+            free:      '<span class="badge badge-free px-2 py-1">Free</span>',
+        };
+        return map[status] || '<span class="badge bg-secondary px-2 py-1">' + (status || '—') + '</span>';
+    }
+
+    function formatDate(dt) {
+        if (!dt) return '—';
+        return new Date(dt).toLocaleDateString('en-PK', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function renderRows(rows) {
+        const tbody = document.getElementById('payments-body');
+        if (!rows.length) {
+            tbody.innerHTML = '';
+            return;
+        }
+        tbody.innerHTML = rows.map(function (e, i) {
+            const student = e.student || e.User || {};
+            const course  = e.course  || e.Course  || {};
+            const studentName = ((student.firstName || '') + ' ' + (student.lastName || '')).trim() || '—';
+            const courseName  = course.title || '—';
+            const amount      = parseFloat(course.price || 0);
+            const payStatus   = e.paymentStatus || 'free';
+            const method      = e.paymentMethod || (amount === 0 ? 'Free' : 'Online');
+
+            return '<tr>'
+                + '<td>' + (i + 1) + '</td>'
+                + '<td><div class="fw-semibold">' + studentName + '</div><small class="text-muted">' + (student.email || '') + '</small></td>'
+                + '<td>' + courseName + '</td>'
+                + '<td class="fw-semibold">' + (amount === 0 ? '<span class="text-muted">Free</span>' : 'PKR ' + amount.toLocaleString()) + '</td>'
+                + '<td>' + method + '</td>'
+                + '<td>' + statusBadge(payStatus) + '</td>'
+                + '<td>' + formatDate(e.createdAt) + '</td>'
+                + '</tr>';
+        }).join('');
+    }
+
+    function updateStats(rows) {
+        let revenue = 0, completed = 0, pending = 0, failed = 0;
+        rows.forEach(function (e) {
+            const status = e.paymentStatus || 'free';
+            const price = parseFloat((e.course || e.Course || {}).price || 0);
+            if (status === 'completed') { completed++; revenue += price; }
+            if (status === 'pending') pending++;
+            if (status === 'failed') failed++;
+        });
+        document.getElementById('stat-revenue').textContent = revenue.toLocaleString();
+        document.getElementById('stat-completed').textContent = completed;
+        document.getElementById('stat-pending').textContent = pending;
+        document.getElementById('stat-failed').textContent = failed;
+    }
+
+    async function loadPayments() {
+        try {
+            const res = await fetch(API_BASE + '/admin/enrollments', { headers: authHeaders() });
+            const data = await res.json();
+            if (!data.success) throw new Error(data.message);
+            allRows = Array.isArray(data.data) ? data.data : [];
+            updateStats(allRows);
+            applyFilter();
+
+            if (dtInstance) { dtInstance.destroy(); dtInstance = null; }
+            dtInstance = $('#payments-table').DataTable({
+                pageLength: 25,
+                order: [[6, 'desc']],
+                columnDefs: [{ orderable: false, targets: [1, 2, 4, 5] }],
+                language: { search: 'Search payments:', emptyTable: 'No payments found.' }
+            });
+        } catch (e) {
+            if (dtInstance) { dtInstance.destroy(); dtInstance = null; }
+            document.getElementById('payments-body').innerHTML =
+                '<tr><td colspan="7" class="text-center py-4 text-danger">Failed to load payments. ' + e.message + '</td></tr>';
+        }
+    }
+
+    function applyFilter() {
+        const filter = document.getElementById('status-filter').value;
+        const filtered = filter ? allRows.filter(e => (e.paymentStatus || 'free') === filter) : allRows;
+        renderRows(filtered);
+    }
+
+    document.getElementById('status-filter').addEventListener('change', function () {
+        if (dtInstance) { dtInstance.destroy(); dtInstance = null; }
+        applyFilter();
+        dtInstance = $('#payments-table').DataTable({ pageLength: 25, order: [[6, 'desc']], language: { search: 'Search payments:', emptyTable: 'No payments found.' } });
+    });
+
+    // Load admin info
+    fetch(API_BASE + '/auth/me', { headers: authHeaders() }).then(r => r.json()).then(function (d) {
+        if (d.success && d.data) {
+            const name = ((d.data.firstName || '') + ' ' + (d.data.lastName || '')).trim() || 'Administrator';
+            document.getElementById('admin-name').textContent = name;
+            if (d.data.profileImage) {
+                document.getElementById('admin-avatar-img').src = d.data.profileImage;
+            }
+        }
+    }).catch(() => {});
+
+    document.getElementById('logoutBtn').addEventListener('click', function (e) {
+        e.preventDefault();
+        localStorage.clear();
+        window.location.href = '/auth/login';
+    });
+
+    loadPayments();
+    window.loadPayments = loadPayments;
+})();
+</script>
+</body>
+</html>

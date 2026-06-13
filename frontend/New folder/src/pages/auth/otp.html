@@ -1,0 +1,325 @@
+﻿<!DOCTYPE html> 
+<html lang="en">
+	<head>
+	
+		<!-- Meta Tags -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Al-Kahaf LMS is a powerful Learning Management System template designed for educators, training institutions, and businesses. Manage courses, track student progress, conduct virtual classes, and enhance e-learning experiences with an intuitive and feature-rich platform.">
+		<meta name="keywords" content="LMS template, Learning Management System, e-learning software, online course platform, student management, education portal, virtual classroom, training management system, course tracking, online education">
+		<meta name="author" content="Dreams Technologies">
+		<meta name="robots" content="index, follow">
+		
+		<title>OTP Verification | Al-Kahaf Online Academy</title>
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="/assets/img/favicon.svg"> 
+		<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+        
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+		
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+		
+        <!-- Slick CSS -->
+		<link rel="stylesheet" href="/assets/plugins/slick/slick.css">
+		<link rel="stylesheet" href="/assets/plugins/slick/slick-theme.css">
+		
+		<!-- Feathericon CSS -->
+        <link rel="stylesheet" href="/assets/plugins/feather/feather.css">
+
+		<!-- Tabler Icon CSS -->
+		<link rel="stylesheet" href="/assets/plugins/tabler-icons/tabler-icons.css">
+
+        <!-- Iconsax CSS -->
+		<link rel="stylesheet" href="/assets/css/iconsax.css">
+
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/site-overrides.css">
+	
+
+		<style>
+		/* Back to Home modern button */
+		.back-home-btn {
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+			padding: 8px 16px;
+			border-radius: 50px;
+			border: 1.5px solid #d8ac27;
+			color: #d8ac27;
+			font-size: 13px;
+			font-weight: 500;
+			text-decoration: none;
+			transition: all 0.25s ease;
+			background: transparent;
+			white-space: nowrap;
+		}
+		.back-home-btn:hover {
+			background: #d8ac27;
+			color: #fff;
+			transform: translateX(-3px);
+			text-decoration: none;
+		}
+		.back-home-btn i {
+			font-size: 11px;
+			transition: transform 0.25s ease;
+		}
+		.back-home-btn:hover i {
+			transform: translateX(-2px);
+		}
+		</style>
+	</head>
+	<body>
+
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+            <div class="login-content">
+                <div class="row">
+                    <!-- Login Banner -->
+                    <div class="col-md-6 login-bg d-none d-lg-flex">
+                        <div class="login-carousel">
+                            <div>
+                                <div class="login-carousel-section mb-3">
+                                    <div class="login-banner">
+                                        <img src="/assets/img/auth/auth-1.svg" class="img-fluid" alt="Logo">
+                                    </div>
+                                    <div class="mentor-course text-center">
+                                        <h3 class="mb-2">Welcome to <br>Al-Kahaf<span class="text-secondary"> LMS</span> Courses.</h3>
+                                        <p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="login-carousel-section mb-3">
+                                    <div class="login-banner">
+                                        <img src="/assets/img/auth/auth-1.svg" class="img-fluid" alt="Logo">
+                                    </div>
+                                    <div class="mentor-course text-center">
+                                        <h3 class="mb-2">Welcome to <br>Al-Kahaf<span class="text-secondary"> LMS</span> Courses.</h3>
+                                        <p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="login-carousel-section mb-3">
+                                    <div class="login-banner">
+                                        <img src="/assets/img/auth/auth-1.svg" class="img-fluid" alt="Logo">
+                                    </div>
+                                    <div class="mentor-course text-center">
+                                        <h3 class="mb-2">Welcome to <br>Al-Kahaf<span class="text-secondary"> LMS</span> Courses.</h3>
+                                        <p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Login Banner -->
+        
+                    <div class="col-md-6 login-wrap-bg">
+                        <!-- Login -->
+                        <div class="login-wrapper">
+                            <div class="loginbox">
+                                <div class="w-100">
+                                    <div class="d-flex align-items-center justify-content-between login-header">
+                                        <img src="/assets/img/white-logo.png" style="width: 150px;height: 130px;object-fit:contain;object-position:left center;margin-left:-30px;" class="img-fluid" alt="Logo">
+                                        <a href="/" class="back-home-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+                                    </div>
+                                    <div class="topic">
+                                        <h1 class="fs-32 fw-bold mb-3">Email OTP</h1>
+                                        <p class="fs-14 fw-normal mb-0">OTP sent to <span id="email-display" class="fw-semibold"></span></p>
+                                    </div>
+                                    <div id="alert-box" class="alert d-none mb-3" role="alert"></div>
+                                    <form id="otp-form" class="mb-3 pb-3">
+                                        <div class="d-flex align-items-center justify-content-between mb-3" style="gap: 8px;">
+                                            <input type="text" class="form-control otp-input text-center fw-bold fs-20" maxlength="1" inputmode="numeric">
+                                            <input type="text" class="form-control otp-input text-center fw-bold fs-20" maxlength="1" inputmode="numeric">
+                                            <input type="text" class="form-control otp-input text-center fw-bold fs-20" maxlength="1" inputmode="numeric">
+                                            <input type="text" class="form-control otp-input text-center fw-bold fs-20" maxlength="1" inputmode="numeric">
+                                            <input type="text" class="form-control otp-input text-center fw-bold fs-20" maxlength="1" inputmode="numeric">
+                                            <input type="text" class="form-control otp-input text-center fw-bold fs-20" maxlength="1" inputmode="numeric">
+                                        </div>
+                                        <div class="timer-cover d-flex align-items-center justify-content-center mb-3">
+                                            <div class="badge badge-soft-danger rounded-pill d-flex align-items-center"><i class="isax isax-clock me-1"></i><span id="otp_timer">10:00</span></div>
+                                        </div>
+                                        <div class="d-grid">
+                                            <button id="verify-btn" class="btn btn-secondary btn-lg" type="submit">Verify &amp; Proceed<i class="isax isax-arrow-right-3 ms-1"></i></button>
+                                        </div>
+                                    </form>
+
+                                    <div class="fs-14 fw-normal d-flex align-items-center justify-content-center">
+                                        Didn't get the OTP?<a href="javascript:void(0);" id="resend-btn" class="link-2 ms-1">Resend OTP</a>
+                                    </div>
+    
+                                    <!-- /Login -->
+        
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	   <!-- /Main Wrapper -->
+	  
+		<!-- jQuery -->
+		<script src="/assets/js/jquery-3.7.1.min.js"></script>
+		
+		<!-- Bootstrap Core JS -->
+		<script src="/assets/js/bootstrap.bundle.min.js"></script>
+		
+		<!-- Select2 JS -->
+	  	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+
+        <!-- Slick Slider -->
+		<script src="/assets/plugins/slick/slick.js"></script>
+		
+		<!-- Custom JS -->
+		<script src="/assets/js/script.js"></script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
+		
+	
+	<script>
+		(function () {
+			const API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+			const params = new URLSearchParams(window.location.search);
+			const email = params.get('email') || '';
+			const mode = params.get('mode') || 'verify'; // 'verify' = registration, 'reset' = forgot password
+
+			// Show masked email
+			document.getElementById('email-display').textContent = email
+				? email.replace(/(.{2}).+(@.+)/, '$1****$2')
+				: 'your email';
+
+			// OTP input auto-focus behaviour
+			const inputs = document.querySelectorAll('.otp-input');
+			inputs.forEach((input, i) => {
+				input.addEventListener('input', () => {
+					input.value = input.value.replace(/[^0-9]/g, '');
+					if (input.value && i < inputs.length - 1) inputs[i + 1].focus();
+				});
+				input.addEventListener('keydown', (e) => {
+					if (e.key === 'Backspace' && !input.value && i > 0) inputs[i - 1].focus();
+				});
+				input.addEventListener('paste', (e) => {
+					e.preventDefault();
+					const pasted = (e.clipboardData || window.clipboardData).getData('text').replace(/[^0-9]/g, '');
+					if (!pasted) return;
+					[...pasted].slice(0, 6).forEach((digit, j) => {
+						if (inputs[j]) inputs[j].value = digit;
+					});
+					const nextEmpty = Math.min(pasted.length, inputs.length - 1);
+					inputs[nextEmpty].focus();
+				});
+			});
+
+			// Timer
+			let seconds = 600;
+			const timerEl = document.getElementById('otp_timer');
+			const resendBtn = document.getElementById('resend-btn');
+			resendBtn.style.pointerEvents = 'none';
+			resendBtn.style.opacity = '0.5';
+
+			const countdown = setInterval(() => {
+				seconds--;
+				const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+				const s = (seconds % 60).toString().padStart(2, '0');
+				timerEl.textContent = m + ':' + s;
+				if (seconds <= 0) {
+					clearInterval(countdown);
+					timerEl.textContent = '00:00';
+					resendBtn.style.pointerEvents = 'auto';
+					resendBtn.style.opacity = '1';
+				}
+			}, 1000);
+
+			function showAlert(message, type) {
+				const box = document.getElementById('alert-box');
+				box.className = 'alert alert-' + type;
+				box.textContent = message;
+			}
+
+			// Verify OTP
+			document.getElementById('otp-form').addEventListener('submit', async function (e) {
+				e.preventDefault();
+				const otp = Array.from(inputs).map(i => i.value).join('');
+				if (otp.length < 6) {
+					showAlert('Please enter the complete 6-digit OTP.', 'warning');
+					return;
+				}
+				const btn = document.getElementById('verify-btn');
+				btn.disabled = true;
+				btn.textContent = 'Verifying...';
+				try {
+					const endpoint = mode === 'reset' ? '/auth/verify-reset-otp' : '/auth/verify-otp';
+					const res = await fetch(API_BASE + endpoint, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ email, otp }),
+					});
+					const data = await res.json();
+					if (data.success) {
+						if (mode === 'reset') {
+							localStorage.setItem('passwordResetToken', data.data.resetToken);
+							showAlert('OTP verified! Redirecting to set new password...', 'success');
+							setTimeout(() => {
+								window.location.href = '/auth/set-password';
+							}, 1500);
+						} else {
+							localStorage.setItem('registeredEmail', email);
+							showAlert('Email verified! Redirecting to login...', 'success');
+							setTimeout(() => {
+								window.location.href = '/auth/login';
+							}, 1500);
+						}
+					} else {
+						showAlert(data.message || 'Invalid OTP. Please try again.', 'danger');
+						btn.disabled = false;
+						btn.innerHTML = 'Verify &amp; Proceed<i class="isax isax-arrow-right-3 ms-1"></i>';
+					}
+				} catch (err) {
+					showAlert('Something went wrong. Please try again.', 'danger');
+					btn.disabled = false;
+					btn.innerHTML = 'Verify &amp; Proceed<i class="isax isax-arrow-right-3 ms-1"></i>';
+				}
+			});
+
+			// Resend OTP
+			document.getElementById('resend-btn').addEventListener('click', async function () {
+				try {
+					const resendEndpoint = mode === 'reset' ? '/auth/forgot-password' : '/auth/resend-otp';
+					const res = await fetch(API_BASE + resendEndpoint, {
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({ email }),
+					});
+					const data = await res.json();
+					if (data.success) {
+						showAlert('OTP resent! Check your email.', 'success');
+						inputs.forEach(i => i.value = '');
+						inputs[0].focus();
+						seconds = 600;
+						resendBtn.style.pointerEvents = 'none';
+						resendBtn.style.opacity = '0.5';
+					} else {
+						showAlert(data.message || 'Could not resend OTP.', 'danger');
+					}
+				} catch (err) {
+					showAlert('Something went wrong. Please try again.', 'danger');
+				}
+			});
+		})();
+	</script>
+	</body>
+</html>

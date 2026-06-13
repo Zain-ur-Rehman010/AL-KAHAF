@@ -1,0 +1,1270 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>Admin Settings | Al-Kahaf Online Academy</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.svg">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+    <!-- Fontawesome CSS -->
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+    <link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+    <!-- Feather & Iconsax -->
+    <link rel="stylesheet" href="/assets/css/feather.css">
+    <link rel="stylesheet" href="/assets/css/iconsax.css">
+
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/site-overrides.css">
+
+    <style>
+        .settings-section {
+            background: #fff;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid #E9ECEF;
+        }
+
+        .settings-section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1D2026;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #d8ac27;
+            display: inline-block;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #4E5566;
+            margin-bottom: 8px;
+        }
+
+        .form-control, .form-select {
+            border: 1px solid #E9ECEF;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #d8ac27;
+            box-shadow: 0 0 0 0.2rem rgba(216, 172, 39, 0.2);
+        }
+
+        .form-text {
+            font-size: 12px;
+            color: #6C757D;
+        }
+
+        .image-upload-wrapper {
+            position: relative;
+            width: 200px;
+            height: 80px;
+            border: 2px dashed #E9ECEF;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .image-upload-wrapper:hover {
+            border-color: #d8ac27;
+            background: #fdf8ec;
+        }
+
+        .image-upload-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 6px;
+        }
+
+        .image-upload-placeholder {
+            text-align: center;
+            color: #6C757D;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #522811 0%, #7a3d1a 100%);
+            color: white;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-save:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(82, 40, 17, 0.35);
+            color: white;
+        }
+
+        .btn-reset {
+            background: white;
+            color: #6C757D;
+            border: 1px solid #E9ECEF;
+            padding: 12px 32px;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-reset:hover {
+            background: #F8F9FA;
+            border-color: #DEE2E6;
+        }
+
+        .color-picker-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .color-preview {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            border: 2px solid #E9ECEF;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #522811;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        .settings-tabs {
+            border-bottom: 2px solid #E9ECEF;
+            margin-bottom: 24px;
+        }
+
+        .settings-tab {
+            background: none;
+            border: none;
+            padding: 12px 24px;
+            font-weight: 500;
+            color: #6C757D;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .settings-tab.active {
+            color: #522811;
+            border-bottom-color: #d8ac27;
+        }
+
+        .settings-tab:hover {
+            color: #522811;
+        }
+
+        .tab-content-item {
+            display: none;
+        }
+
+        .tab-content-item.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <!-- Toast Notification -->
+    <div class="position-fixed top-0 end-0 p-3" style="z-index: 9999">
+        <div id="settingsToast" class="toast align-items-center text-white border-0" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body" id="settingsToastMsg">Settings saved.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Wrapper -->
+    <div class="main-wrapper">
+
+        <!-- Header -->
+        <header class="header header-page">
+            <div class="header-fixed">
+                <nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a id="mobile_btn" href="javascript:void(0);">
+                                <span class="bar-icon">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </a>
+                            <a href="/" class="navbar-brand logo"><img src="/assets/img/white-logo.png" class="img-fluid" alt="Logo" style="width:120px;"></a>
+                        </div>
+                        <div class="main-menu-wrapper">
+                            <div class="menu-header">
+                                <a href="/" class="menu-logo"><img src="/assets/img/logo.svg" class="img-fluid" alt="Logo"></a>
+                                <a id="menu_close" class="menu-close" href="javascript:void(0);"><i class="fas fa-times"></i></a>
+                            </div>
+                            <ul class="main-nav">
+                                <li><a href="/admin/admin-dashboard"><i class="isax isax-home me-2"></i>Dashboard</a></li>
+                                <li class="has-submenu">
+                                    <a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
+                                    <ul class="submenu">
+                                        <li><a href="/admin/users-list">All Users</a></li>
+                                        <li><a href="/admin/instructors-list">Instructors</a></li>
+                                        <li><a href="/admin/students-list">Students</a></li>
+                                        <li><a href="/admin/user-add">Add New User</a></li>
+                                    </ul>
+                                </li>
+                                <li class="has-submenu">
+                                    <a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
+                                    <ul class="submenu">
+                                        <li><a href="/admin/courses-list">All Courses</a></li>
+                                        <li><a href="/admin/course-add">Add Course</a></li>
+                                        <li><a href="/admin/predefined-courses">Predefined Catalog</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/admin/blog-list"><i class="isax isax-document-text me-2"></i>Blog Posts</a></li>
+                                <li><a href="/admin/enrollments-list"><i class="isax isax-note-2 me-2"></i>Enrollments</a></li>
+                                <li><a href="/admin/payments-list"><i class="isax isax-wallet me-2"></i>Payments</a></li>
+                                <li><a href="/admin/welfare-programs"><i class="isax isax-heart me-2"></i>Welfare</a></li>
+                                <li class="active"><a href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+                            </ul>
+                        </div>
+                        <div class="d-flex align-items-center" style="gap:16px;">
+								<!-- Notification Bell -->
+								<a href="/admin/notifications" class="position-relative" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#522811;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);color:#d8ac27;text-decoration:none;">
+									<i class="isax isax-notification" style="font-size:20px;color:#d8ac27;"></i>
+									<span id="notif-badge" style="position:absolute;top:0;right:0;background:#e53935;color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 3px;line-height:1;border:2px solid #522811;">0</span>
+								</a>
+								<!-- Profile Dropdown -->
+								<div class="dropdown profile-dropdown">
+									<a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
+										<span style="width:42px;height:42px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:#522811;color:#d8ac27;font-weight:700;font-size:16px;cursor:pointer;border:2px solid rgba(255,255,255,0.3);">
+											<img src="/assets/img/user/user-01.jpg" id="admin-avatar-img" alt="Admin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';document.getElementById('admin-initials').style.display='flex';">
+											<span id="admin-initials" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#d8ac27;">A</span>
+										</span>
+									</a>
+									<div class="dropdown-menu dropdown-menu-end" style="min-width:220px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15);border:none;padding:0;overflow:hidden;">
+										<div class="profile-header d-flex align-items-center" style="padding:16px;background:#f8f9fa;border-bottom:1px solid #eee;">
+											<div style="width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#522811;display:flex;align-items:center;justify-content:center;" class="me-3">
+												<img src="/assets/img/user/user-01.jpg" alt="Admin" style="width:100%;height:100%;object-fit:cover;">
+											</div>
+											<div>
+												<h6 class="mb-0 fw-semibold" id="admin-name">Administrator</h6>
+												<small class="text-muted">Admin</small>
+											</div>
+										</div>
+										<ul class="profile-body list-unstyled mb-0" style="padding:8px 0 8px 8px;">
+											<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-profile"><i class="isax isax-security-user me-2"></i>My Profile</a></li>
+											<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+										</ul>
+										<div style="padding:12px 16px;border-top:1px solid #eee;">
+											<a href="/auth/login" id="logoutBtn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+										</div>
+									</div>
+								</div>
+							</div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- /Header -->
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb-bar breadcrumb-bar-info">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-12">
+                        <div class="breadcrumb-list">
+                            <h2 class="breadcrumb-title">Settings</h2>
+                            <nav aria-label="breadcrumb" class="page-breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="/admin/admin-dashboard">Admin</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">Settings</li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Breadcrumb -->
+
+        <!-- Page Content -->
+        <div class="page-content" style="position: relative;">
+
+            <!-- Settings Loading Overlay -->
+            <div id="settingsLoader" style="position:absolute;inset:0;background:rgba(255,255,255,0.85);z-index:100;display:flex;align-items:center;justify-content:center;border-radius:8px;">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status" style="width:2.5rem;height:2.5rem;"></div>
+                    <p class="mt-2 text-muted">Loading settings...</p>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <!-- Settings Navigation Tabs -->
+                    <div class="col-12">
+                        <div class="settings-tabs">
+                            <button class="settings-tab active" data-tab="general">
+                                <i class="iconsax me-2" data-icon="setting-2"></i> General
+                            </button>
+                            <button class="settings-tab" data-tab="email">
+                                <i class="iconsax me-2" data-icon="sms"></i> Email
+                            </button>
+                            <button class="settings-tab" data-tab="payment">
+                                <i class="iconsax me-2" data-icon="card"></i> Payment
+                            </button>
+                            <button class="settings-tab" data-tab="security">
+                                <i class="iconsax me-2" data-icon="shield-tick"></i> Security
+                            </button>
+                            <button class="settings-tab" data-tab="appearance">
+                                <i class="iconsax me-2" data-icon="brush-2"></i> Appearance
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="col-12">
+
+                        <!-- General Settings Tab -->
+                        <div class="tab-content-item active" id="general">
+
+                            <!-- Site Information -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Site Information</h3>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Site Name</label>
+                                        <input type="text" class="form-control" id="siteName" value="AlKahaf Online Academy">
+                                        <small class="form-text">The name of your learning platform</small>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Site Tagline</label>
+                                        <input type="text" class="form-control" id="siteTagline" value="Learn, Grow, Succeed">
+                                        <small class="form-text">Short description of your site</small>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Site Logo</label>
+                                        <div class="image-upload-wrapper" onclick="document.getElementById('logoUpload').click()">
+                                            <img id="logoPreview" src="/assets/img/white-logo.png" alt="Al-Kahaf Academy" style="max-height:70px;">
+                                        </div>
+                                        <input type="file" id="logoUpload" accept="image/*" style="display: none;">
+                                        <small class="form-text d-block mt-2">Recommended size: 200x60px, PNG or SVG format</small>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Favicon</label>
+                                        <div class="image-upload-wrapper" style="width: 64px; height: 64px;" onclick="document.getElementById('faviconUpload').click()">
+                                            <img id="faviconPreview" src="/assets/img/favicon.svg" alt="Favicon">
+                                        </div>
+                                        <input type="file" id="faviconUpload" accept="image/*" style="display: none;">
+                                        <small class="form-text d-block mt-2">Recommended size: 32x32px or 64x64px</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Contact Information -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Contact Information</h3>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Admin Email</label>
+                                        <input type="email" class="form-control" id="adminEmail" value="admin@alkahafonlineacademy.com">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Support Email</label>
+                                        <input type="email" class="form-control" id="supportEmail" value="support@alkahafonlineacademy.com">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Phone Number</label>
+                                        <input type="text" class="form-control" id="phoneNumber" value="+1 234 567 8900">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Address</label>
+                                        <input type="text" class="form-control" id="address" value="123 Learning Street, Education City">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Regional Settings -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Regional Settings</h3>
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Timezone</label>
+                                        <select class="form-select" id="timezone">
+                                            <option value="UTC">UTC (GMT+0:00)</option>
+                                            <option value="America/New_York">Eastern Time (GMT-5:00)</option>
+                                            <option value="America/Chicago">Central Time (GMT-6:00)</option>
+                                            <option value="America/Denver">Mountain Time (GMT-7:00)</option>
+                                            <option value="America/Los_Angeles">Pacific Time (GMT-8:00)</option>
+                                            <option value="Europe/London">London (GMT+0:00)</option>
+                                            <option value="Europe/Paris">Paris (GMT+1:00)</option>
+                                            <option value="Asia/Dubai" selected>Dubai (GMT+4:00)</option>
+                                            <option value="Asia/Karachi">Karachi (GMT+5:00)</option>
+                                            <option value="Asia/Kolkata">India (GMT+5:30)</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Language</label>
+                                        <select class="form-select" id="language">
+                                            <option value="en" selected>English</option>
+                                            <option value="ar">Arabic</option>
+                                            <option value="ur">Urdu</option>
+                                            <option value="es">Spanish</option>
+                                            <option value="fr">French</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Currency</label>
+                                        <select class="form-select" id="currency">
+                                            <option value="USD" selected>USD - US Dollar</option>
+                                            <option value="EUR">EUR - Euro</option>
+                                            <option value="GBP">GBP - British Pound</option>
+                                            <option value="AED">AED - UAE Dirham</option>
+                                            <option value="PKR">PKR - Pakistani Rupee</option>
+                                            <option value="INR">INR - Indian Rupee</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Email Settings Tab -->
+                        <div class="tab-content-item" id="email">
+
+                            <!-- SMTP Configuration -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">SMTP Configuration</h3>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">SMTP Host</label>
+                                        <input type="text" class="form-control" id="smtpHost" placeholder="smtp.gmail.com">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">SMTP Port</label>
+                                        <input type="number" class="form-control" id="smtpPort" placeholder="587">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">SMTP Username</label>
+                                        <input type="text" class="form-control" id="smtpUsername" placeholder="your-email@gmail.com">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">SMTP Password</label>
+                                        <input type="password" class="form-control" id="smtpPassword" placeholder="Enter SMTP password">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">From Name</label>
+                                        <input type="text" class="form-control" id="emailFromName" value="AlKahaf Academy">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">From Email</label>
+                                        <input type="email" class="form-control" id="emailFromAddress" value="noreply@alkahafonlineacademy.com">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button class="btn btn-outline-primary" onclick="testEmailConnection()">
+                                            <i class="iconsax me-2" data-icon="send-2"></i> Test Email Connection
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Email Notifications -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Email Notifications</h3>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Welcome Email</label>
+                                                <small class="form-text d-block">Send welcome email to new users</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="welcomeEmail" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Enrollment Confirmation</label>
+                                                <small class="form-text d-block">Notify students on enrollment</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="enrollmentEmail" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Certificate Email</label>
+                                                <small class="form-text d-block">Send certificate on completion</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="certificateEmail" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Payment Receipt</label>
+                                                <small class="form-text d-block">Send receipt after payment</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="paymentEmail" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Payment Settings Tab -->
+                        <div class="tab-content-item" id="payment">
+
+                            <!-- Stripe Configuration -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Stripe Configuration</h3>
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Enable Stripe</label>
+                                                <small class="form-text d-block">Accept payments via Stripe</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="stripeEnabled" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Stripe Publishable Key</label>
+                                        <input type="text" class="form-control" id="stripePublishableKey" placeholder="pk_live_...">
+                                        <small class="form-text">Your Stripe publishable key</small>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Stripe Secret Key</label>
+                                        <input type="password" class="form-control" id="stripeSecretKey" placeholder="sk_live_...">
+                                        <small class="form-text">Your Stripe secret key (keep confidential)</small>
+                                    </div>
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Webhook Secret</label>
+                                        <input type="password" class="form-control" id="stripeWebhookSecret" placeholder="whsec_...">
+                                        <small class="form-text">For verifying webhook events</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Payment Options -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Payment Options</h3>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Commission Rate (%)</label>
+                                        <input type="number" class="form-control" id="commissionRate" value="20" min="0" max="100" step="0.5">
+                                        <small class="form-text">Platform commission on course sales</small>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Minimum Payout Amount</label>
+                                        <input type="number" class="form-control" id="minPayout" value="50" min="0" step="1">
+                                        <small class="form-text">Minimum amount for instructor payout</small>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Free Courses Allowed</label>
+                                                <small class="form-text d-block">Allow instructors to create free courses</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="freeCoursesAllowed" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Refunds Enabled</label>
+                                                <small class="form-text d-block">Allow students to request refunds</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="refundsEnabled" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Security Settings Tab -->
+                        <div class="tab-content-item" id="security">
+
+                            <!-- Admin Change Password -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Change Password</h3>
+                                <div id="admin-cp-alert" class="alert d-none mb-3" role="alert"></div>
+                                <form id="admin-change-password-form">
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Current Password <span class="text-danger">*</span></label>
+                                            <input type="password" id="adminCurrentPassword" class="form-control" placeholder="Enter current password">
+                                            <div class="mt-1">
+                                                <a href="/auth/forgot-password" class="fs-13 text-decoration-underline text-muted">Forgot current password?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">New Password <span class="text-danger">*</span></label>
+                                            <input type="password" id="adminNewPassword" class="form-control" placeholder="Enter new password">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label class="form-label">Confirm Password <span class="text-danger">*</span></label>
+                                            <input type="password" id="adminConfirmPassword" class="form-control" placeholder="Confirm new password">
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-secondary">Update Password</button>
+                                </form>
+                            </div>
+
+                            <!-- Password Requirements -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Password Requirements</h3>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Minimum Password Length</label>
+                                        <input type="number" class="form-control" id="minPasswordLength" value="8" min="6" max="20">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Require Uppercase</label>
+                                                <small class="form-text d-block">Password must have uppercase letter</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="requireUppercase" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Require Number</label>
+                                                <small class="form-text d-block">Password must have a number</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="requireNumber" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Require Special Character</label>
+                                                <small class="form-text d-block">Password must have special char (!@#$%)</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="requireSpecial">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Session & Security -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Session & Security</h3>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Session Timeout (minutes)</label>
+                                        <input type="number" class="form-control" id="sessionTimeout" value="60" min="5" max="1440">
+                                        <small class="form-text">Auto logout after inactivity</small>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Max Login Attempts</label>
+                                        <input type="number" class="form-control" id="maxLoginAttempts" value="5" min="3" max="10">
+                                        <small class="form-text">Lock account after failed attempts</small>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Two-Factor Authentication</label>
+                                                <small class="form-text d-block">Require 2FA for admins</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="require2FA">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Email Verification Required</label>
+                                                <small class="form-text d-block">Users must verify email</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="emailVerificationRequired" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Appearance Settings Tab -->
+                        <div class="tab-content-item" id="appearance">
+
+                            <!-- Theme Colors -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Theme Colors</h3>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Primary Color</label>
+                                        <div class="color-picker-wrapper">
+                                            <input type="color" class="form-control" id="primaryColor" value="#522811">
+                                            <div class="color-preview" id="primaryColorPreview" style="background-color: #522811;"></div>
+                                            <span class="small text-muted">#522811</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Secondary Color</label>
+                                        <div class="color-picker-wrapper">
+                                            <input type="color" class="form-control" id="secondaryColor" value="#1D2026">
+                                            <div class="color-preview" id="secondaryColorPreview" style="background-color: #1D2026;"></div>
+                                            <span class="small text-muted">#1D2026</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Success Color</label>
+                                        <div class="color-picker-wrapper">
+                                            <input type="color" class="form-control" id="successColor" value="#28a745">
+                                            <div class="color-preview" id="successColorPreview" style="background-color: #28a745;"></div>
+                                            <span class="small text-muted">#28a745</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Danger Color</label>
+                                        <div class="color-picker-wrapper">
+                                            <input type="color" class="form-control" id="dangerColor" value="#dc3545">
+                                            <div class="color-preview" id="dangerColorPreview" style="background-color: #dc3545;"></div>
+                                            <span class="small text-muted">#dc3545</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Custom CSS -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Custom CSS</h3>
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <label class="form-label">Additional CSS</label>
+                                        <textarea class="form-control" id="customCSS" rows="10" placeholder="/* Add your custom CSS here */"></textarea>
+                                        <small class="form-text">Add custom CSS to override default styles</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- UI Options -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">UI Options</h3>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Dark Mode Available</label>
+                                                <small class="form-text d-block">Allow users to switch to dark mode</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="darkModeAvailable">
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Breadcrumbs Visible</label>
+                                                <small class="form-text d-block">Show breadcrumbs navigation</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="breadcrumbsVisible" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="col-12">
+                        <div class="settings-section">
+                            <div class="d-flex justify-content-end gap-3">
+                                <button class="btn btn-reset" onclick="resetSettings()">
+                                    <i class="iconsax me-2" data-icon="refresh"></i> Reset to Default
+                                </button>
+                                <button class="btn btn-save" onclick="saveSettings()">
+                                    <i class="iconsax me-2" data-icon="tick-circle"></i> Save Settings
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /Page Content -->
+
+    </div>
+    <!-- /Main Wrapper -->
+
+    <!-- jQuery -->
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+
+    <!-- Bootstrap Bundle JS -->
+    <script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Select2 JS -->
+    <script src="/assets/plugins/select2/js/select2.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="/assets/js/script.js"></script>
+    <script src="/assets/js/api-config.js"></script>
+	<script src="/assets/js/auth-guard.js"></script>
+    <script src="/assets/js/admin-header.js"></script>
+
+    <script>
+        // Check authentication on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            checkAuth();
+            initializeTabs();
+            initializeColorPickers();
+            initializeImageUploads();
+            loadSettings();
+        });
+
+        // Check if user is logged in and is admin
+        function checkAuth() {
+            const token = localStorage.getItem('accessToken');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+            if (!token || user.role !== 'admin') {
+                window.location.href = '/auth/login';
+                return;
+            }
+
+            // Display admin name
+            const nameEl = document.getElementById('adminName') || document.getElementById('admin-name');
+            if (nameEl) nameEl.textContent = user.firstName + ' ' + user.lastName;
+        }
+
+        // Initialize tabs
+        function initializeTabs() {
+            const tabs = document.querySelectorAll('.settings-tab');
+            const contents = document.querySelectorAll('.tab-content-item');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetId = this.getAttribute('data-tab');
+
+                    // Remove active class from all tabs and contents
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.remove('active'));
+
+                    // Add active class to clicked tab and target content
+                    this.classList.add('active');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        }
+
+        // Initialize color pickers
+        function initializeColorPickers() {
+            const colorInputs = document.querySelectorAll('input[type="color"]');
+            colorInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const previewId = this.id + 'Preview';
+                    const preview = document.getElementById(previewId);
+                    if (preview) {
+                        preview.style.backgroundColor = this.value;
+                    }
+                    // Update the hex text
+                    const textSpan = this.parentElement.querySelector('.text-muted');
+                    if (textSpan) {
+                        textSpan.textContent = this.value;
+                    }
+                });
+            });
+        }
+
+        // Initialize image uploads
+        function initializeImageUploads() {
+            document.getElementById('logoUpload').addEventListener('change', function(e) {
+                previewImage(e, 'logoPreview');
+            });
+
+            document.getElementById('faviconUpload').addEventListener('change', function(e) {
+                previewImage(e, 'faviconPreview');
+            });
+        }
+
+        // Preview uploaded image
+        function previewImage(event, previewId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById(previewId).src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Load settings from API
+        async function loadSettings() {
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/settings', {
+                    headers: API_CONFIG.getHeaders(true)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    if (result.success) {
+                        populateSettings(result.data);
+                    }
+                } else if (response.status === 404) {
+                    console.log('Settings endpoint not yet implemented - using defaults');
+                }
+            } catch (error) {
+                console.log('Settings endpoint not available - using defaults');
+            } finally {
+                document.getElementById('settingsLoader').style.display = 'none';
+            }
+        }
+
+        // Populate form with settings data
+        function populateSettings(settings) {
+            // General settings
+            if (settings.siteName) document.getElementById('siteName').value = settings.siteName;
+            if (settings.siteTagline) document.getElementById('siteTagline').value = settings.siteTagline;
+            if (settings.adminEmail) document.getElementById('adminEmail').value = settings.adminEmail;
+            if (settings.supportEmail) document.getElementById('supportEmail').value = settings.supportEmail;
+            if (settings.phoneNumber) document.getElementById('phoneNumber').value = settings.phoneNumber;
+            if (settings.address) document.getElementById('address').value = settings.address;
+            if (settings.timezone) document.getElementById('timezone').value = settings.timezone;
+            if (settings.language) document.getElementById('language').value = settings.language;
+            if (settings.currency) document.getElementById('currency').value = settings.currency;
+
+            // Email settings
+            if (settings.smtpHost) document.getElementById('smtpHost').value = settings.smtpHost;
+            if (settings.smtpPort) document.getElementById('smtpPort').value = settings.smtpPort;
+            if (settings.smtpUsername) document.getElementById('smtpUsername').value = settings.smtpUsername;
+            if (settings.emailFromName) document.getElementById('emailFromName').value = settings.emailFromName;
+            if (settings.emailFromAddress) document.getElementById('emailFromAddress').value = settings.emailFromAddress;
+
+            // Toggles
+            if (settings.welcomeEmail !== undefined) document.getElementById('welcomeEmail').checked = settings.welcomeEmail;
+            if (settings.enrollmentEmail !== undefined) document.getElementById('enrollmentEmail').checked = settings.enrollmentEmail;
+            if (settings.certificateEmail !== undefined) document.getElementById('certificateEmail').checked = settings.certificateEmail;
+            if (settings.paymentEmail !== undefined) document.getElementById('paymentEmail').checked = settings.paymentEmail;
+
+            // Payment settings
+            if (settings.stripeEnabled !== undefined) document.getElementById('stripeEnabled').checked = settings.stripeEnabled;
+            if (settings.commissionRate) document.getElementById('commissionRate').value = settings.commissionRate;
+            if (settings.minPayout) document.getElementById('minPayout').value = settings.minPayout;
+            if (settings.freeCoursesAllowed !== undefined) document.getElementById('freeCoursesAllowed').checked = settings.freeCoursesAllowed;
+            if (settings.refundsEnabled !== undefined) document.getElementById('refundsEnabled').checked = settings.refundsEnabled;
+
+            // Security settings
+            if (settings.minPasswordLength) document.getElementById('minPasswordLength').value = settings.minPasswordLength;
+            if (settings.sessionTimeout) document.getElementById('sessionTimeout').value = settings.sessionTimeout;
+            if (settings.maxLoginAttempts) document.getElementById('maxLoginAttempts').value = settings.maxLoginAttempts;
+
+            // Appearance settings
+            if (settings.primaryColor) {
+                document.getElementById('primaryColor').value = settings.primaryColor;
+                document.getElementById('primaryColorPreview').style.backgroundColor = settings.primaryColor;
+            }
+            if (settings.customCSS) document.getElementById('customCSS').value = settings.customCSS;
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toastEl = document.getElementById('settingsToast');
+            const toastMsg = document.getElementById('settingsToastMsg');
+            toastMsg.textContent = message;
+            toastEl.className = 'toast align-items-center text-white border-0';
+            if (type === 'success') toastEl.classList.add('bg-success');
+            else if (type === 'danger') toastEl.classList.add('bg-danger');
+            else if (type === 'warning') toastEl.classList.add('bg-warning');
+            else toastEl.classList.add('bg-primary');
+            const toast = new bootstrap.Toast(toastEl, { delay: 4000 });
+            toast.show();
+        }
+
+        // Save settings
+        async function saveSettings() {
+            const saveBtn = document.querySelector('.btn-save');
+            const originalHtml = saveBtn.innerHTML;
+            saveBtn.disabled = true;
+            saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving...';
+
+            const settings = {
+                // General
+                siteName: document.getElementById('siteName').value,
+                siteTagline: document.getElementById('siteTagline').value,
+                adminEmail: document.getElementById('adminEmail').value,
+                supportEmail: document.getElementById('supportEmail').value,
+                phoneNumber: document.getElementById('phoneNumber').value,
+                address: document.getElementById('address').value,
+                timezone: document.getElementById('timezone').value,
+                language: document.getElementById('language').value,
+                currency: document.getElementById('currency').value,
+
+                // Email
+                smtpHost: document.getElementById('smtpHost').value,
+                smtpPort: document.getElementById('smtpPort').value,
+                smtpUsername: document.getElementById('smtpUsername').value,
+                smtpPassword: document.getElementById('smtpPassword').value,
+                emailFromName: document.getElementById('emailFromName').value,
+                emailFromAddress: document.getElementById('emailFromAddress').value,
+                welcomeEmail: document.getElementById('welcomeEmail').checked,
+                enrollmentEmail: document.getElementById('enrollmentEmail').checked,
+                certificateEmail: document.getElementById('certificateEmail').checked,
+                paymentEmail: document.getElementById('paymentEmail').checked,
+
+                // Payment
+                stripeEnabled: document.getElementById('stripeEnabled').checked,
+                stripePublishableKey: document.getElementById('stripePublishableKey').value,
+                stripeSecretKey: document.getElementById('stripeSecretKey').value,
+                stripeWebhookSecret: document.getElementById('stripeWebhookSecret').value,
+                commissionRate: parseFloat(document.getElementById('commissionRate').value),
+                minPayout: parseFloat(document.getElementById('minPayout').value),
+                freeCoursesAllowed: document.getElementById('freeCoursesAllowed').checked,
+                refundsEnabled: document.getElementById('refundsEnabled').checked,
+
+                // Security
+                minPasswordLength: parseInt(document.getElementById('minPasswordLength').value),
+                requireUppercase: document.getElementById('requireUppercase').checked,
+                requireNumber: document.getElementById('requireNumber').checked,
+                requireSpecial: document.getElementById('requireSpecial').checked,
+                sessionTimeout: parseInt(document.getElementById('sessionTimeout').value),
+                maxLoginAttempts: parseInt(document.getElementById('maxLoginAttempts').value),
+                require2FA: document.getElementById('require2FA').checked,
+                emailVerificationRequired: document.getElementById('emailVerificationRequired').checked,
+
+                // Appearance
+                primaryColor: document.getElementById('primaryColor').value,
+                secondaryColor: document.getElementById('secondaryColor').value,
+                successColor: document.getElementById('successColor').value,
+                dangerColor: document.getElementById('dangerColor').value,
+                customCSS: document.getElementById('customCSS').value,
+                darkModeAvailable: document.getElementById('darkModeAvailable').checked,
+                breadcrumbsVisible: document.getElementById('breadcrumbsVisible').checked
+            };
+
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/settings', {
+                    method: 'PUT',
+                    headers: API_CONFIG.getHeaders(true),
+                    body: JSON.stringify(settings)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showToast('Settings saved successfully!', 'success');
+                } else {
+                    showToast('Error: ' + result.message, 'danger');
+                }
+            } catch (error) {
+                console.error('Save settings error:', error);
+                showToast('Failed to save settings. Please try again.', 'danger');
+            } finally {
+                saveBtn.disabled = false;
+                saveBtn.innerHTML = originalHtml;
+            }
+        }
+
+        // Reset settings to default
+        function resetSettings() {
+            if (confirm('Are you sure you want to reset all settings to default values?')) {
+                location.reload();
+            }
+        }
+
+        // Test email connection
+        async function testEmailConnection() {
+            const smtpConfig = {
+                host: document.getElementById('smtpHost').value,
+                port: document.getElementById('smtpPort').value,
+                username: document.getElementById('smtpUsername').value,
+                password: document.getElementById('smtpPassword').value
+            };
+
+            if (!smtpConfig.host || !smtpConfig.port) {
+                showToast('Please fill in SMTP host and port first.', 'warning');
+                return;
+            }
+
+            try {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/test-email', {
+                    method: 'POST',
+                    headers: API_CONFIG.getHeaders(true),
+                    body: JSON.stringify(smtpConfig)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showToast('Email connection successful!', 'success');
+                } else {
+                    showToast('Email connection failed: ' + result.message, 'danger');
+                }
+            } catch (error) {
+                console.error('Test email error:', error);
+                showToast('Failed to test email connection.', 'danger');
+            }
+        }
+
+        // Logout
+        document.getElementById('logoutBtn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            localStorage.removeItem('user');
+            window.location.href = '/auth/login';
+        });
+    </script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
+
+
+<script>
+(function () {
+	const API_BASE = (typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : null) || window.API_BASE_URL || 'https://api.alkahafonlineacademy.com/api/v1';
+	const form = document.getElementById('admin-change-password-form');
+	if (!form) return;
+
+	form.addEventListener('submit', async function (e) {
+		e.preventDefault();
+		const currentPassword = document.getElementById('adminCurrentPassword').value.trim();
+		const newPassword     = document.getElementById('adminNewPassword').value.trim();
+		const confirmPassword = document.getElementById('adminConfirmPassword').value.trim();
+		const box = document.getElementById('admin-cp-alert');
+
+		if (!currentPassword || !newPassword || !confirmPassword) {
+			box.className = 'alert alert-warning'; box.textContent = 'Please fill in all fields.'; return;
+		}
+		if (newPassword.length < 6) {
+			box.className = 'alert alert-warning'; box.textContent = 'New password must be at least 6 characters.'; return;
+		}
+		if (newPassword !== confirmPassword) {
+			box.className = 'alert alert-warning'; box.textContent = 'Passwords do not match.'; return;
+		}
+
+		const btn = form.querySelector('[type="submit"]');
+		btn.disabled = true; btn.textContent = 'Saving...';
+
+		try {
+			const token = localStorage.getItem('accessToken');
+			const res = await fetch(API_BASE + '/auth/change-password', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+				body: JSON.stringify({ currentPassword, newPassword }),
+			});
+			const data = await res.json();
+			const ok = res.ok && data.message === 'Password changed successfully';
+			box.className = 'alert alert-' + (ok ? 'success' : 'danger');
+			box.textContent = ok ? 'Password updated successfully!' : (data.message || 'Failed to update password.');
+			if (ok) form.reset();
+		} catch (err) {
+			box.className = 'alert alert-danger'; box.textContent = 'Something went wrong. Please try again.';
+		}
+		btn.disabled = false; btn.textContent = 'Update Password';
+	});
+})();
+</script>
+</body>
+
+</html>

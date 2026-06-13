@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<!-- Meta Tags -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="AlKahaf LMS - Admin Dashboard">
+	<meta name="keywords" content="LMS, Admin Dashboard, Learning Management System">
+	<meta name="author" content="AlKahaf Academy">
+	<meta name="robots" content="noindex, nofollow">
+
+	<title>Admin Dashboard | Al-Kahaf Online Academy</title>
+
+	<!-- Favicon -->
+	<link rel="shortcut icon" href="/assets/img/favicon.svg">
+	<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+
+	<!-- Theme Settings Js -->
+	<script src="/assets/js/theme-script.js"></script>
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Feather CSS -->
+	<link rel="stylesheet" href="/assets/css/feather.css">
+
+	<!-- Iconsax CSS -->
+	<link rel="stylesheet" href="/assets/css/iconsax.css">
+
+	<!-- Select2 CSS -->
+	<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+
+	<!-- Apexcharts CSS -->
+	<link rel="stylesheet" href="/assets/plugins/apexchart/apexcharts.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/site-overrides.css">
+
+	<style>
+		/* Skeleton shimmer */
+		.sk{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sk-shimmer 1.4s infinite;border-radius:6px;}
+		@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+		.dashboard-content {
+			padding-top: 34px;
+			background: linear-gradient(180deg, #f6f8fb 0%, #f9fbfd 62%, #ffffff 100%);
+		}
+		@media (max-width: 991.98px) {
+			.dashboard-content {
+				padding-top: 24px;
+			}
+		}
+
+		.dashboard-content .card {
+			border: 1px solid #dfe7f1;
+			border-radius: 16px !important;
+			box-shadow: 0 12px 26px rgba(13, 29, 44, 0.08) !important;
+			transition: transform .25s ease, box-shadow .25s ease;
+		}
+		.dashboard-content .card:hover {
+			transform: translateY(-3px);
+			box-shadow: 0 18px 34px rgba(13, 29, 44, 0.12) !important;
+		}
+		.dashboard-content .card .card-header {
+			padding: 1rem 1.1rem 0;
+			background: transparent;
+		}
+		.dashboard-content .card .card-body {
+			padding: 1.1rem;
+		}
+
+		.metric-card .card-body {
+			padding: 1rem 1rem;
+		}
+		.metric-card h3 {
+			font-size: 1.85rem;
+			line-height: 1;
+			margin-bottom: .3rem;
+			color: #111827;
+		}
+		.metric-card p {
+			margin-bottom: .1rem;
+			color: #4b5563;
+			font-weight: 500;
+		}
+		.metric-card small {
+			font-weight: 600;
+		}
+		.metric-card .metric-icon {
+			width: 52px;
+			height: 52px;
+			border-radius: 14px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			background: #eaf2ff;
+			flex-shrink: 0;
+		}
+		.metric-card .metric-icon i {
+			font-size: 1.6rem;
+		}
+
+		.metric-card-users { background: linear-gradient(135deg, #f8fbff, #f0f6ff); }
+		.metric-card-courses { background: linear-gradient(135deg, #f8fff9, #eefaf1); }
+		.metric-card-enrollments { background: linear-gradient(135deg, #fffdf6, #fef8e9); }
+		.metric-card-revenue { background: linear-gradient(135deg, #f6fcff, #edf8fe); }
+
+		.metric-card-users .metric-icon { background: #e6f0ff; }
+		.metric-card-courses .metric-icon { background: #e7f7ea; }
+		.metric-card-enrollments .metric-icon { background: #fff1dc; }
+		.metric-card-revenue .metric-icon { background: #e7f6fb; }
+
+		.metric-card-success {
+			background: linear-gradient(135deg, #2e7d32, #43a047);
+			color: #fff;
+		}
+		.metric-card-warning {
+			background: linear-gradient(135deg, #b8860b, #d8ac27);
+			color: #fff;
+		}
+		.metric-card-success p,
+		.metric-card-success h3,
+		.metric-card-success small,
+		.metric-card-warning p,
+		.metric-card-warning h3,
+		.metric-card-warning small {
+			color: rgba(255,255,255,0.92) !important;
+		}
+		.metric-card-success p,
+		.metric-card-warning p {
+			color: rgba(255,255,255,0.75) !important;
+		}
+		.metric-card .metric-icon-soft {
+			background: rgba(255,255,255,0.16);
+		}
+
+		.dashboard-cards-row > [class*="col-"] {
+			margin-bottom: 1rem;
+		}
+		@media (min-width: 1200px) {
+			.dashboard-cards-row > [class*="col-"] {
+				margin-bottom: 1.25rem;
+			}
+		}
+
+		@media (max-width: 575.98px) {
+			.dashboard-content {
+				padding-top: 18px;
+			}
+			.dashboard-content .card {
+				border-radius: 14px !important;
+			}
+			.dashboard-content .card .card-header {
+				padding: .85rem .85rem 0;
+			}
+			.dashboard-content .card .card-body {
+				padding: .85rem;
+			}
+			.metric-card .card-body {
+				padding: .85rem;
+			}
+			.metric-card h3 {
+				font-size: 1.55rem;
+			}
+			.metric-card .metric-icon {
+				width: 44px;
+				height: 44px;
+				border-radius: 12px;
+			}
+			.metric-card .metric-icon i {
+				font-size: 1.3rem;
+			}
+			.dashboard-cards-row {
+				margin-bottom: .75rem !important;
+			}
+			.dashboard-cards-row > [class*="col-"] {
+				margin-bottom: .75rem;
+			}
+			.card .d-grid.gap-2 .btn {
+				width: 100%;
+			}
+		}
+	</style>
+</head>
+<body>
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header (Admin Navigation) -->
+		<header class="header">
+			<div class="header-fixed">
+				<nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+					<div class="container-fluid">
+						<div class="navbar-header">
+							<a id="mobile_btn" href="javascript:void(0);">
+								<span class="bar-icon">
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
+							</a>
+							<a href="/index.html" class="navbar-brand logo">
+								<img src="/assets/img/white-logo.png" class="img-fluid" alt="Logo" style="width: 120px;">
+							</a>
+						</div>
+						<div class="main-menu-wrapper">
+							<div class="menu-header">
+								<a href="/index.html" class="menu-logo">
+									<img src="/assets/img/logo.svg" class="img-fluid" alt="Logo">
+								</a>
+								<a id="menu_close" class="menu-close" href="javascript:void(0);">
+									<i class="fas fa-times"></i>
+								</a>
+							</div>
+							<ul class="main-nav">
+								<li class="active">
+									<a href="/admin/admin-dashboard"><i class="isax isax-home me-2"></i>Dashboard</a>
+								</li>
+								<li class="has-submenu">
+									<a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
+									<ul class="submenu">
+										<li><a href="/admin/users-list">All Users</a></li>
+										<li><a href="/admin/instructors-list">Instructors</a></li>
+										<li><a href="/admin/students-list">Students</a></li>
+										<li><a href="/admin/user-add">Add New User</a></li>
+									</ul>
+								</li>
+								<li class="has-submenu">
+									<a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
+									<ul class="submenu">
+										<li><a href="/admin/courses-list">All Courses</a></li>
+										<li><a href="/admin/course-add">Add Course</a></li>
+										<li><a href="/admin/predefined-courses">Predefined Catalog</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="/admin/blog-list"><i class="isax isax-document-text me-2"></i>Blog Posts</a>
+								</li>
+								<li>
+									<a href="/admin/enrollments-list"><i class="isax isax-note-2 me-2"></i>Enrollments</a>
+								</li>
+								<li>
+									<a href="/admin/payments-list"><i class="isax isax-wallet me-2"></i>Payments</a>
+								</li>
+								<li>
+									<a href="/admin/welfare-programs">Welfare Programs</a>
+								</li>
+								<li>
+									<a href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a>
+								</li>
+							</ul>
+						</div>
+						<div class="d-flex align-items-center" style="gap:16px;">
+							<!-- Notification Bell -->
+							<a href="/admin/notifications" class="position-relative" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#522811;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);color:#d8ac27;text-decoration:none;">
+								<i class="isax isax-notification" style="font-size:20px;color:#d8ac27;"></i>
+								<span id="notif-badge" style="position:absolute;top:0;right:0;background:#e53935;color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 3px;line-height:1;border:2px solid #522811;">0</span>
+							</a>
+							<!-- Profile Dropdown -->
+							<div class="dropdown profile-dropdown">
+								<a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
+									<span style="width:42px;height:42px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:#522811;color:#d8ac27;font-weight:700;font-size:16px;cursor:pointer;border:2px solid rgba(255,255,255,0.3);">
+										<img src="/assets/img/user/user-01.jpg" id="admin-avatar-img" alt="Admin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';document.getElementById('admin-initials').style.display='flex';">
+										<span id="admin-initials" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#d8ac27;">A</span>
+									</span>
+								</a>
+								<div class="dropdown-menu dropdown-menu-end" style="min-width:220px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15);border:none;padding:0;overflow:hidden;">
+									<div class="profile-header d-flex align-items-center" style="padding:16px;background:#f8f9fa;border-bottom:1px solid #eee;">
+										<div style="width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#522811;display:flex;align-items:center;justify-content:center;" class="me-3">
+											<img src="/assets/img/user/user-01.jpg" alt="Admin" style="width:100%;height:100%;object-fit:cover;">
+										</div>
+										<div>
+											<h6 class="mb-0 fw-semibold" id="admin-name">Administrator</h6>
+											<small class="text-muted">Admin</small>
+										</div>
+									</div>
+									<ul class="profile-body list-unstyled mb-0" style="padding:8px 0 8px 8px;">
+										<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-profile"><i class="isax isax-security-user me-2"></i>My Profile</a></li>
+										<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+									</ul>
+									<div style="padding:12px 16px;border-top:1px solid #eee;">
+										<a href="/auth/login" id="logoutBtn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+		</header>
+		<!-- /Header -->
+
+		<!-- Breadcrumb -->
+		<div class="breadcrumb-bar text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12 col-12">
+						<h2 class="breadcrumb-title">Admin Dashboard</h2>
+						<nav aria-label="breadcrumb" class="page-breadcrumb">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="/index.html">Home</a></li>
+								<li class="breadcrumb-item active" aria-current="page">Admin Dashboard</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Breadcrumb -->
+
+		<!-- Page Content -->
+		<div class="content dashboard-content">
+			<div class="container">
+
+				<!-- Statistics Cards -->
+				<div class="row mb-4 dashboard-cards-row">
+					<!-- Total Users -->
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-users flex-fill">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-muted mb-2 small">Total Users</p>
+										<h3 class="mb-0" id="total-users"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
+										<div class="mt-2" id="user-growth-text"><small class="text-muted">Loading...</small></div>
+									</div>
+									<div class="metric-icon">
+										<i class="isax isax-user fs-3 text-primary"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Total Courses -->
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-courses flex-fill">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-muted mb-2 small">Total Courses</p>
+										<h3 class="mb-0" id="total-courses"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
+										<div class="mt-2" id="course-growth-text"><small class="text-muted">Loading...</small></div>
+									</div>
+									<div class="metric-icon">
+										<i class="isax isax-book fs-3 text-success"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Total Enrollments -->
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-enrollments flex-fill">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-muted mb-2 small">Total Enrollments</p>
+										<h3 class="mb-0" id="total-enrollments"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
+										<div class="mt-2" id="enrollment-growth-text"><small class="text-muted">Loading...</small></div>
+									</div>
+									<div class="metric-icon">
+										<i class="isax isax-note-2 fs-3 text-warning"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Total Revenue -->
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-revenue flex-fill">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-muted mb-2 small">Total Revenue</p>
+										<h3 class="mb-0" id="total-revenue"><span class="spinner-border spinner-border-sm text-muted"></span></h3>
+										<div class="mt-2" id="revenue-growth-text"><small class="text-muted">Loading...</small></div>
+									</div>
+									<div class="metric-icon">
+										<i class="isax isax-wallet fs-3 text-info"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Completion Rate -->
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-success flex-fill">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-white-50 mb-2 small">Completion Rate</p>
+										<h3 class="mb-0 text-white" id="completion-rate"><span class="spinner-border spinner-border-sm text-white-50"></span></h3>
+										<small class="text-white-50">Avg course completion</small>
+									</div>
+									<div class="metric-icon metric-icon-soft">
+										<i class="isax isax-medal fs-3 text-white"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Draft Courses -->
+					<div class="col-xxl-2 col-xl-4 col-md-6 d-flex mb-3">
+						<div class="card metric-card metric-card-warning flex-fill">
+							<div class="card-body">
+								<div class="d-flex align-items-center justify-content-between">
+									<div>
+										<p class="text-white-50 mb-2 small">Draft Courses</p>
+										<h3 class="mb-0 text-white" id="draft-courses"><span class="spinner-border spinner-border-sm text-white-50"></span></h3>
+										<small class="text-white-50">Pending publication</small>
+									</div>
+									<div class="metric-icon metric-icon-soft">
+										<i class="isax isax-edit fs-3 text-white"></i>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Charts Row -->
+				<div class="row mb-4 dashboard-cards-row">
+					<!-- Enrollment Chart -->
+					<div class="col-lg-8 mb-4 mb-lg-0">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 pb-0">
+								<div class="d-flex align-items-center justify-content-between">
+									<h5 class="mb-0">Enrollment Overview</h5>
+									<div class="dropdown">
+										<button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+											Last 7 Days
+										</button>
+										<ul class="dropdown-menu dropdown-menu-end">
+											<li><a class="dropdown-item" href="#">Last 7 Days</a></li>
+											<li><a class="dropdown-item" href="#">Last 30 Days</a></li>
+											<li><a class="dropdown-item" href="#">Last 90 Days</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="card-body">
+								<div id="enrollment-chart"></div>
+							</div>
+						</div>
+					</div>
+
+					<!-- User Distribution -->
+					<div class="col-lg-4 mb-4 mb-lg-0">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 pb-0">
+								<h5 class="mb-0">User Distribution</h5>
+							</div>
+							<div class="card-body">
+								<div id="user-distribution-chart"></div>
+								<div class="mt-4">
+									<div class="d-flex align-items-center justify-content-between mb-3">
+										<div class="d-flex align-items-center">
+											<span class="badge bg-primary me-2" style="width: 12px; height: 12px;"></span>
+											<span>Students</span>
+										</div>
+										<strong id="students-count">—</strong>
+									</div>
+									<div class="d-flex align-items-center justify-content-between mb-3">
+										<div class="d-flex align-items-center">
+											<span class="badge bg-success me-2" style="width: 12px; height: 12px;"></span>
+											<span>Instructors</span>
+										</div>
+										<strong id="instructors-count">—</strong>
+									</div>
+									<div class="d-flex align-items-center justify-content-between">
+										<div class="d-flex align-items-center">
+											<span class="badge bg-warning me-2" style="width: 12px; height: 12px;"></span>
+											<span>Admins</span>
+										</div>
+										<strong id="admins-count">—</strong>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tables Row -->
+				<div class="row dashboard-cards-row">
+					<!-- Recent Enrollments -->
+					<div class="col-lg-8 mb-4 mb-lg-0">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 d-flex align-items-center justify-content-between">
+								<h5 class="mb-0">Recent Enrollments</h5>
+								<a href="/admin/enrollments-list" class="btn btn-sm btn-primary">View All</a>
+							</div>
+							<div class="card-body">
+								<div class="table-responsive">
+									<table class="table table-hover">
+										<thead>
+											<tr>
+												<th>Student</th>
+												<th>Course</th>
+												<th>Date</th>
+												<th>Status</th>
+												<th>Progress</th>
+											</tr>
+										</thead>
+										<tbody id="recent-enrollments-tbody">
+											<tr><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;display:inline-block;"></span><div><span class="sk" style="width:100px;height:13px;border-radius:4px;display:block;"></span><span class="sk" style="width:70px;height:10px;border-radius:4px;display:block;margin-top:4px;"></span></div></div></td><td><span class="sk" style="width:130px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:90px;height:10px;border-radius:4px;display:block;"></span></td></tr>
+											<tr><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;display:inline-block;"></span><div><span class="sk" style="width:100px;height:13px;border-radius:4px;display:block;"></span><span class="sk" style="width:70px;height:10px;border-radius:4px;display:block;margin-top:4px;"></span></div></div></td><td><span class="sk" style="width:130px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:90px;height:10px;border-radius:4px;display:block;"></span></td></tr>
+											<tr><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;display:inline-block;"></span><div><span class="sk" style="width:100px;height:13px;border-radius:4px;display:block;"></span><span class="sk" style="width:70px;height:10px;border-radius:4px;display:block;margin-top:4px;"></span></div></div></td><td><span class="sk" style="width:130px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:90px;height:10px;border-radius:4px;display:block;"></span></td></tr>
+											<tr><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;display:inline-block;"></span><div><span class="sk" style="width:100px;height:13px;border-radius:4px;display:block;"></span><span class="sk" style="width:70px;height:10px;border-radius:4px;display:block;margin-top:4px;"></span></div></div></td><td><span class="sk" style="width:130px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:90px;height:10px;border-radius:4px;display:block;"></span></td></tr>
+											<tr><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:32px;height:32px;border-radius:50%;flex-shrink:0;display:inline-block;"></span><div><span class="sk" style="width:100px;height:13px;border-radius:4px;display:block;"></span><span class="sk" style="width:70px;height:10px;border-radius:4px;display:block;margin-top:4px;"></span></div></div></td><td><span class="sk" style="width:130px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:90px;height:10px;border-radius:4px;display:block;"></span></td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<!-- Quick Actions & Recent Activity -->
+					<div class="col-lg-4 mb-4 mb-lg-0">
+						<!-- Quick Actions -->
+						<div class="card bg-white rounded-3 shadow-sm mb-4">
+							<div class="card-header border-0">
+								<h5 class="mb-0">Quick Actions</h5>
+							</div>
+							<div class="card-body">
+								<div class="d-grid gap-2">
+									<a href="/admin/user-add" class="btn btn-primary">
+										<i class="isax isax-user-add me-2"></i>Add New User
+									</a>
+									<a href="/admin/course-add" class="btn btn-success">
+										<i class="isax isax-add-circle me-2"></i>Add New Course
+									</a>
+									<a href="/admin/instructors-list" class="btn btn-warning">
+										<i class="isax isax-teacher me-2"></i>Manage Instructors
+									</a>
+									<a href="/admin/predefined-courses" class="btn btn-outline-dark">
+										<i class="isax isax-book-saved me-2"></i>Predefined Courses
+									</a>
+									<a href="/admin/admin-settings" class="btn btn-info">
+										<i class="isax isax-setting-2 me-2"></i>Site Settings
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<!-- New Registrations -->
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 d-flex align-items-center justify-content-between">
+								<h5 class="mb-0">New Registrations</h5>
+								<a href="/admin/users-list" class="btn btn-sm btn-outline-primary">View All</a>
+							</div>
+							<div class="card-body p-0" id="recent-registrations-list" style="max-height:320px;overflow-y:auto;">
+								<div class="text-center py-4"><span class="spinner-border spinner-border-sm text-muted me-2"></span>Loading...</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- Free Trial Requests -->
+				<div class="row mt-4 dashboard-cards-row">
+					<div class="col-12">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 d-flex align-items-center justify-content-between">
+								<div class="d-flex align-items-center gap-2">
+									<h5 class="mb-0">Free Trial Requests</h5>
+									<span id="ft-pending-badge" class="badge bg-warning text-dark" style="display:none"></span>
+								</div>
+								<div class="d-flex gap-2">
+									<select id="ft-status-filter" class="form-select form-select-sm" style="width:130px">
+										<option value="">All Status</option>
+										<option value="pending">Pending</option>
+										<option value="contacted">Contacted</option>
+										<option value="enrolled">Enrolled</option>
+										<option value="cancelled">Cancelled</option>
+									</select>
+								</div>
+							</div>
+							<div class="card-body p-0">
+								<div class="table-responsive">
+									<table class="table table-hover mb-0">
+										<thead class="table-light">
+											<tr>
+												<th class="ps-4">Name</th>
+												<th>Email / Phone</th>
+												<th>Course Interest</th>
+												<th>Country</th>
+												<th>Date</th>
+												<th>Status</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody id="free-trial-tbody">
+											<tr><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:30px;height:30px;border-radius:50%;flex-shrink:0;display:inline-block;"></span><div><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span><span class="sk" style="width:110px;height:10px;border-radius:4px;display:block;margin-top:4px;"></span></div></div></td><td><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:110px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:60px;height:22px;border-radius:20px;display:block;"></span></td></tr>
+											<tr><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:30px;height:30px;border-radius:50%;flex-shrink:0;display:inline-block;"></span><div><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span><span class="sk" style="width:110px;height:10px;border-radius:4px;display:block;margin-top:4px;"></span></div></div></td><td><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:110px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:60px;height:22px;border-radius:20px;display:block;"></span></td></tr>
+											<tr><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:30px;height:30px;border-radius:50%;flex-shrink:0;display:inline-block;"></span><div><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span><span class="sk" style="width:110px;height:10px;border-radius:4px;display:block;margin-top:4px;"></span></div></div></td><td><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:110px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:60px;height:22px;border-radius:20px;display:block;"></span></td></tr>
+											<tr><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:30px;height:30px;border-radius:50%;flex-shrink:0;display:inline-block;"></span><div><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span><span class="sk" style="width:110px;height:10px;border-radius:4px;display:block;margin-top:4px;"></span></div></div></td><td><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:110px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:60px;height:22px;border-radius:20px;display:block;"></span></td></tr>
+											<tr><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:30px;height:30px;border-radius:50%;flex-shrink:0;display:inline-block;"></span><div><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span><span class="sk" style="width:110px;height:10px;border-radius:4px;display:block;margin-top:4px;"></span></div></div></td><td><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:110px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:60px;height:22px;border-radius:20px;display:block;"></span></td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Free Trial Requests -->
+
+				<!-- Welfare Programs Widget -->
+				<div class="row mt-4 dashboard-cards-row">
+					<div class="col-12">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 d-flex align-items-center justify-content-between">
+								<div class="d-flex align-items-center gap-2">
+									
+									<h5 class="mb-0">Welfare Programs</h5>
+								</div>
+								<a href="/admin/welfare-programs" class="btn btn-sm btn-outline-secondary">View All</a>
+							</div>
+							<div class="card-body">
+								<!-- Mini Stats -->
+								<div class="row g-3 mb-4">
+									<div class="col-md-3 col-6">
+										<div class="rounded-3 p-3 text-center" style="background:#fff5f0;border:1px solid #ffd7c4;">
+											<p class="mb-1 small text-muted">Total Raised</p>
+											<h6 class="mb-0 fw-bold" style="color:#522811;">PKR <span id="wf-total-raised">—</span></h6>
+										</div>
+									</div>
+									<div class="col-md-3 col-6">
+										<div class="rounded-3 p-3 text-center" style="background:#f0fff4;border:1px solid #b7ebc8;">
+											<p class="mb-1 small text-muted">Active Programs</p>
+											<h6 class="mb-0 fw-bold text-success" id="wf-active">—</h6>
+										</div>
+									</div>
+									<div class="col-md-3 col-6">
+										<div class="rounded-3 p-3 text-center" style="background:#fffbf0;border:1px solid #fae9a0;">
+											<p class="mb-1 small text-muted">Total Donors</p>
+											<h6 class="mb-0 fw-bold text-warning" id="wf-donors">—</h6>
+										</div>
+									</div>
+									<div class="col-md-3 col-6">
+										<div class="rounded-3 p-3 text-center" style="background:#f0f8ff;border:1px solid #b3d9f7;">
+											<p class="mb-1 small text-muted">Total Programs</p>
+											<h6 class="mb-0 fw-bold text-info" id="wf-total">—</h6>
+										</div>
+									</div>
+								</div>
+								<!-- Programs Progress List -->
+								<div id="wf-prog-list">
+									<div class="text-center py-3"><span class="spinner-border spinner-border-sm text-muted"></span> Loading...</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Welfare Programs Widget -->
+
+				<!-- Top Performing Courses -->
+				<div class="row mt-4 dashboard-cards-row">
+					<div class="col-12">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 d-flex align-items-center justify-content-between">
+								<h5 class="mb-0">Top Performing Courses</h5>
+								<a href="/admin/courses-list" class="btn btn-sm btn-primary">View All</a>
+							</div>
+							<div class="card-body p-0">
+								<div class="table-responsive">
+									<table class="table table-hover mb-0">
+										<thead class="table-light">
+											<tr>
+												<th class="ps-4" style="width:40px">#</th>
+												<th>Course Name</th>
+												<th>Category</th>
+												<th>Price</th>
+												<th>Enrollments</th>
+												<th>Status</th>
+											</tr>
+										</thead>
+										<tbody id="top-courses-tbody">
+											<tr><td><span class="sk" style="width:20px;height:13px;border-radius:4px;display:block;"></span></td><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:40px;height:30px;border-radius:4px;flex-shrink:0;"></span><span class="sk" style="width:120px;height:13px;border-radius:4px;display:block;"></span></div></td><td><span class="sk" style="width:75px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:50px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:50px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td></tr>
+											<tr><td><span class="sk" style="width:20px;height:13px;border-radius:4px;display:block;"></span></td><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:40px;height:30px;border-radius:4px;flex-shrink:0;"></span><span class="sk" style="width:120px;height:13px;border-radius:4px;display:block;"></span></div></td><td><span class="sk" style="width:75px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:50px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:50px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td></tr>
+											<tr><td><span class="sk" style="width:20px;height:13px;border-radius:4px;display:block;"></span></td><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:40px;height:30px;border-radius:4px;flex-shrink:0;"></span><span class="sk" style="width:120px;height:13px;border-radius:4px;display:block;"></span></div></td><td><span class="sk" style="width:75px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:50px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:50px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td></tr>
+											<tr><td><span class="sk" style="width:20px;height:13px;border-radius:4px;display:block;"></span></td><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:40px;height:30px;border-radius:4px;flex-shrink:0;"></span><span class="sk" style="width:120px;height:13px;border-radius:4px;display:block;"></span></div></td><td><span class="sk" style="width:75px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:50px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:50px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td></tr>
+											<tr><td><span class="sk" style="width:20px;height:13px;border-radius:4px;display:block;"></span></td><td><div class="d-flex align-items-center gap-2"><span class="sk" style="width:40px;height:30px;border-radius:4px;flex-shrink:0;"></span><span class="sk" style="width:120px;height:13px;border-radius:4px;display:block;"></span></div></td><td><span class="sk" style="width:75px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:50px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:50px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /Page Content -->
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer-top">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="text-center">
+								<p class="mb-0">© 2025 AlKahaf Academy. All rights reserved.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- /Footer -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="/assets/js/jquery-3.7.1.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Select2 JS -->
+	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+
+	<!-- Apexcharts JS -->
+	<script src="/assets/plugins/apexchart/apexcharts.min.js"></script>
+
+	<!-- Custom JS -->
+	<script src="/assets/js/script.js"></script>
+
+	<!-- API Configuration -->
+	<script src="/assets/js/api-config.js"></script>
+	<script src="/assets/js/auth-guard.js"></script>
+
+	<!-- Admin Dashboard JS -->
+	<script>
+		document.addEventListener('DOMContentLoaded', function() {
+			var user = JSON.parse(localStorage.getItem('user') || '{}');
+			if (!user || user.role !== 'admin') { window.location.href = '/auth/login'; return; }
+
+			var lastLoginEl = document.getElementById('last-login');
+			if (lastLoginEl) {
+				var now = new Date();
+				lastLoginEl.textContent = now.toLocaleDateString('en-US', { weekday:'short', month:'short', day:'numeric' }) + ', ' + now.toLocaleTimeString('en-US', { hour:'2-digit', minute:'2-digit' });
+			}
+
+			if (user.firstName && user.lastName) {
+				var fullName = user.firstName + ' ' + user.lastName;
+				var nameEl = document.getElementById('admin-name');
+				var welcomeEl = document.getElementById('welcome-admin-name');
+				if (nameEl) nameEl.textContent = fullName;
+				if (welcomeEl) welcomeEl.textContent = fullName;
+			}
+
+			var logoutBtn = document.getElementById('logoutBtn');
+			if (logoutBtn) {
+				logoutBtn.addEventListener('click', function(e) {
+					e.preventDefault();
+					localStorage.removeItem('accessToken');
+					localStorage.removeItem('refreshToken');
+					localStorage.removeItem('user');
+					window.location.href = '/auth/login';
+				});
+			}
+
+			// Load notification unread count into bell badge
+			var _token = localStorage.getItem('accessToken');
+			if (_token) {
+				fetch(API_CONFIG.BASE_URL + '/notifications?limit=1', {
+					headers: { 'Authorization': 'Bearer ' + _token }
+				}).then(function(r){ return r.json(); }).then(function(data) {
+					var badge = document.getElementById('notif-badge');
+					if (badge && data.unreadCount > 0) {
+						badge.textContent = data.unreadCount > 99 ? '99+' : data.unreadCount;
+						badge.style.display = 'flex';
+					} else if (badge) {
+						badge.style.display = 'none';
+					}
+				}).catch(function(){});
+			}
+
+			var enrollmentChart = new ApexCharts(document.querySelector('#enrollment-chart'), {
+				series: [{ name: 'Enrollments', data: [0,0,0,0,0,0,0] }],
+				chart: { height: 300, type: 'area', toolbar: { show: false } },
+				dataLabels: { enabled: false },
+				stroke: { curve: 'smooth', width: 2 },
+				colors: ['#522811'],
+				fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.1 } },
+				xaxis: { categories: ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'] },
+				yaxis: { min: 0, forceNiceScale: true, labels: { formatter: function(v){ return Math.round(v); } } },
+				tooltip: { theme: 'dark' }
+			});
+			enrollmentChart.render();
+
+			var userDistChart = new ApexCharts(document.querySelector('#user-distribution-chart'), {
+				series: [1, 1, 1],
+				chart: { type: 'donut', height: 200 },
+				labels: ['Students', 'Instructors', 'Admins'],
+				colors: ['#522811', '#2e7d32', '#d8ac27'],
+				legend: { show: false },
+				plotOptions: { pie: { donut: { size: '70%' } } }
+			});
+			userDistChart.render();
+
+			loadDashboardData(enrollmentChart, userDistChart);
+		});
+
+		function clearSpinners() {
+			['total-users','total-courses','total-enrollments','total-revenue','completion-rate','draft-courses'].forEach(function(id) {
+				var el = document.getElementById(id); if (el) el.textContent = '---';
+			});
+			['user-growth-text','course-growth-text','enrollment-growth-text','revenue-growth-text'].forEach(function(id) {
+				var el = document.getElementById(id);
+				if (el) el.innerHTML = '<small class="text-danger">Backend offline</small>';
+			});
+		}
+
+		async function loadDashboardData(enrollmentChart, userDistChart) {
+			var token = localStorage.getItem('accessToken');
+			if (!token) { window.location.href = '/auth/login'; return; }
+
+			try {
+				var statsRes = await fetch(API_CONFIG.BASE_URL + '/admin/statistics', { headers: API_CONFIG.getHeaders(true) });
+				if (statsRes.status === 401 || statsRes.status === 403) { window.location.href = '/auth/login'; return; }
+				var statsData = await statsRes.json();
+				if (statsData.success) updateDashboardStats(statsData.data, userDistChart);
+				else clearSpinners();
+			} catch(e) { console.error('Stats failed:', e); clearSpinners(); }
+
+			try {
+				var trendRes = await fetch(API_CONFIG.BASE_URL + '/admin/enrollment-trends', { headers: API_CONFIG.getHeaders(true) });
+				var trendData = await trendRes.json();
+				if (trendData.success) {
+					enrollmentChart.updateOptions({ xaxis: { categories: trendData.data.labels } });
+					enrollmentChart.updateSeries([{ name: 'Enrollments', data: trendData.data.counts }]);
+				}
+			} catch(e) { console.error('Trends failed:', e); }
+
+			try {
+				var enrollRes = await fetch(API_CONFIG.BASE_URL + '/admin/recent-enrollments?limit=5', { headers: API_CONFIG.getHeaders(true) });
+				var enrollData = await enrollRes.json();
+				updateRecentEnrollments(enrollData.success ? enrollData.data : []);
+			} catch(e) {
+				var tbody = document.getElementById('recent-enrollments-tbody');
+				if (tbody) tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-danger">Could not connect to server</td></tr>';
+			}
+
+			try {
+				var topRes = await fetch(API_CONFIG.BASE_URL + '/admin/top-courses', { headers: API_CONFIG.getHeaders(true) });
+				var topData = await topRes.json();
+				if (topData.success) renderTopCourses(topData.data);
+				else { var tb = document.getElementById('top-courses-tbody'); if (tb) tb.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted">No data available</td></tr>'; }
+			} catch(e) { var tb = document.getElementById('top-courses-tbody'); if (tb) tb.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-danger">Could not connect</td></tr>'; }
+
+			try {
+				var regRes = await fetch(API_CONFIG.BASE_URL + '/admin/recent-registrations', { headers: API_CONFIG.getHeaders(true) });
+				var regData = await regRes.json();
+				if (regData.success) renderRecentRegistrations(regData.data);
+				else { var rc = document.getElementById('recent-registrations-list'); if (rc) rc.innerHTML = '<p class="text-center text-muted py-3">No recent registrations</p>'; }
+			} catch(e) { var rc = document.getElementById('recent-registrations-list'); if (rc) rc.innerHTML = '<p class="text-center text-danger py-3">Could not connect</p>'; }
+		}
+
+		function updateDashboardStats(data, userDistChart) {
+			var o = data.overview || {};
+			var d = data.userDistribution || {};
+			function set(id, val) { var el = document.getElementById(id); if (el) el.textContent = val; }
+			set('total-users',       (o.totalUsers || 0).toLocaleString());
+			set('total-courses',     (o.totalCourses || 0).toLocaleString());
+			set('total-enrollments', (o.totalEnrollments || 0).toLocaleString());
+			set('total-revenue',     '$' + parseFloat(o.totalRevenue || 0).toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}));
+			set('completion-rate',   (o.completionRate || 0) + '%');
+			set('draft-courses',     o.draftCourses || 0);
+			function growthHtml(pct) {
+				var num = parseFloat(pct) || 0;
+				var cls = num >= 0 ? 'text-success' : 'text-danger';
+				var arrow = num >= 0 ? '&#8593;' : '&#8595;';
+				return '<small class="' + cls + '">' + arrow + ' ' + Math.abs(num) + '% this month</small>';
+			}
+			function setGrowth(id, pct) { var el = document.getElementById(id); if (el) el.innerHTML = growthHtml(pct); }
+			setGrowth('user-growth-text',       o.userGrowth);
+			setGrowth('course-growth-text',     o.courseGrowth);
+			setGrowth('enrollment-growth-text', o.enrollmentGrowth);
+			var revEl = document.getElementById('revenue-growth-text');
+			if (revEl) revEl.innerHTML = '<small class="text-muted">All time</small>';
+			set('students-count',    d.students    || 0);
+			set('instructors-count', d.instructors || 0);
+			set('admins-count',      d.admins      || 0);
+			if (userDistChart) userDistChart.updateSeries([parseInt(d.students||0), parseInt(d.instructors||0), parseInt(d.admins||0)]);
+		}
+
+		function updateRecentEnrollments(enrollments) {
+			var tbody = document.getElementById('recent-enrollments-tbody');
+			if (!tbody) return;
+			if (!enrollments || !enrollments.length) {
+				tbody.innerHTML = '<tr><td colspan="5" class="text-center py-4 text-muted">No recent enrollments found</td></tr>';
+				return;
+			}
+			var sc = function(s) { return s==='completed'?'success':s==='in_progress'?'warning':s==='dropped'?'danger':'primary'; };
+			var ago = function(dt) {
+				var d = Math.floor((Date.now()-new Date(dt))/1000);
+				return d<3600?Math.floor(d/60)+' min ago':d<86400?Math.floor(d/3600)+' hr ago':Math.floor(d/86400)+' days ago';
+			};
+			tbody.innerHTML = enrollments.map(function(e) {
+				var name = e.student?((e.student.firstName||'')+' '+(e.student.lastName||'')).trim():'Unknown';
+				var ini  = e.student?((e.student.firstName||'')[0]||'')+((e.student.lastName||'')[0]||''):'?';
+				var av = (e.student&&e.student.profileImage)
+					? '<img src="'+e.student.profileImage+'" class="rounded-circle me-2" style="width:32px;height:32px;object-fit:cover" alt="">'
+					: '<span class="rounded-circle me-2 d-inline-flex align-items-center justify-content-center fw-bold" style="width:32px;height:32px;min-width:32px;background:#522811;color:#fff;font-size:11px">'+ini.toUpperCase()+'</span>';
+				var c = sc(e.status);
+				var lbl = (e.status||'enrolled').replace('_',' ').replace(/\b\w/g,function(x){return x.toUpperCase();});
+				return '<tr>'+'<td><div class="d-flex align-items-center">'+av+'<span>'+name+'</span></div></td>'
+					+'<td>'+(e.course?e.course.title:'N/A')+'</td>'
+					+'<td class="text-muted small">'+ago(e.createdAt)+'</td>'
+					+'<td><span class="badge bg-'+c+'-light text-'+c+'">'+lbl+'</span></td>'
+					+'<td class="text-muted small">'+(e.progress||0)+'%</td></tr>';
+			}).join('');
+		}
+
+		function renderTopCourses(courses) {
+			var tbody = document.getElementById('top-courses-tbody');
+			if (!tbody) return;
+			if (!courses||!courses.length) {
+				tbody.innerHTML='<tr><td colspan="6" class="text-center py-4 text-muted">No courses found</td></tr>';
+				return;
+			}
+			tbody.innerHTML = courses.map(function(c,i) {
+				var sc2 = c.status==='published'?'success':c.status==='draft'?'warning':'secondary';
+				var sl  = (c.status||'draft').charAt(0).toUpperCase()+(c.status||'draft').slice(1);
+				var pr  = c.price>0?'$'+parseFloat(c.price).toFixed(2):'<span class="badge bg-success-light text-success">Free</span>';
+				var bar = Math.min(100,(c.enrollmentCount/(courses[0].enrollmentCount||1))*100).toFixed(0);
+				return '<tr>'
+					+'<td class="ps-4"><strong class="text-muted">'+(i+1)+'</strong></td>'
+					+'<td><div class="fw-semibold" style="max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="'+c.title+'">'+c.title+'</div>'
+					+'<div class="progress mt-1" style="height:4px;max-width:180px;"><div class="progress-bar" style="width:'+bar+'%;background:#522811;"></div></div></td>'
+					+'<td><span class="badge bg-light text-dark">'+(c.category||'General')+'</span></td>'
+					+'<td>'+pr+'</td>'
+					+'<td><strong>'+c.enrollmentCount+'</strong> <span class="text-muted small">students</span></td>'
+					+'<td><span class="badge bg-'+sc2+'-light text-'+sc2+'">'+sl+'</span></td></tr>';
+			}).join('');
+		}
+
+		// ---- FREE TRIAL REQUESTS ----
+	function loadFreeTrialRequests(statusFilter) {
+		var tbody = document.getElementById('free-trial-tbody');
+		if (!tbody) return;
+		var token = localStorage.getItem('accessToken');
+		var url = (typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1') + '/free-trial?limit=10&page=1';
+		if (statusFilter) url += '&status=' + statusFilter;
+		fetch(url, { headers: { 'Authorization': 'Bearer ' + token } })
+			.then(function(r) { return r.json(); })
+			.then(function(d) { renderFreeTrialRequests(d.data || []); })
+			.catch(function() {
+				tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">Unable to load requests</td></tr>';
+			});
+	}
+
+	function renderFreeTrialRequests(requests) {
+		var tbody = document.getElementById('free-trial-tbody');
+		var badge = document.getElementById('ft-pending-badge');
+		if (!tbody) return;
+		if (!requests || !requests.length) {
+			tbody.innerHTML = '<tr><td colspan="7" class="text-center py-4 text-muted">No free trial requests yet</td></tr>';
+			if (badge) badge.style.display = 'none';
+			return;
+		}
+		var pending = requests.filter(function(r) { return r.status === 'pending'; }).length;
+		if (badge) {
+			badge.textContent = pending + ' Pending';
+			badge.style.display = pending > 0 ? 'inline-block' : 'none';
+		}
+		var statusColors = { pending: 'warning', contacted: 'info', enrolled: 'success', cancelled: 'secondary' };
+		var ago = function(dt) {
+			var d = Math.floor((Date.now() - new Date(dt)) / 1000);
+			return d < 3600 ? Math.floor(d / 60) + 'm ago' : d < 86400 ? Math.floor(d / 3600) + 'h ago' : Math.floor(d / 86400) + 'd ago';
+		};
+		tbody.innerHTML = requests.map(function(r) {
+			var ini = (r.fullName || 'FT').split(' ').map(function(w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
+			var sc = statusColors[r.status] || 'secondary';
+			var sl = (r.status || 'pending').charAt(0).toUpperCase() + (r.status || 'pending').slice(1);
+			return '<tr>'
+				+ '<td class="ps-4"><div class="d-flex align-items-center gap-2">'
+				+ '<span class="rounded-circle d-inline-flex align-items-center justify-content-center fw-bold text-white flex-shrink-0" style="width:32px;height:32px;min-width:32px;background:#522811;font-size:11px">' + ini + '</span>'
+				+ '<span class="fw-semibold">' + (r.fullName || '') + '</span></div></td>'
+				+ '<td><div class="small">' + (r.email || '') + '</div><div class="text-muted small">' + (r.phone || '') + '</div></td>'
+				+ '<td><span class="badge bg-light text-dark">' + (r.courseInterest || '') + '</span></td>'
+				+ '<td class="text-muted small">' + (r.country || '—') + '</td>'
+				+ '<td class="text-muted small">' + ago(r.createdAt) + '</td>'
+				+ '<td><span class="badge bg-' + sc + '-light text-' + sc + '">' + sl + '</span></td>'
+				+ '<td><select class="form-select form-select-sm" style="width:120px" onchange="updateFtStatus(\'' + r.id + '\', this.value)">'
+				+ '<option value="pending"' + (r.status==='pending'?' selected':'') + '>Pending</option>'
+				+ '<option value="contacted"' + (r.status==='contacted'?' selected':'') + '>Contacted</option>'
+				+ '<option value="enrolled"' + (r.status==='enrolled'?' selected':'') + '>Enrolled</option>'
+				+ '<option value="cancelled"' + (r.status==='cancelled'?' selected':'') + '>Cancelled</option>'
+				+ '</select></td>'
+				+ '</tr>';
+		}).join('');
+	}
+
+	function updateFtStatus(id, status) {
+		var token = localStorage.getItem('accessToken');
+		fetch((typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1') + '/free-trial/' + id + '/status', {
+			method: 'PATCH',
+			headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+			body: JSON.stringify({ status: status }),
+		})
+		.then(function(r) { return r.json(); })
+		.then(function() { loadFreeTrialRequests(document.getElementById('ft-status-filter').value); })
+		.catch(function() {});
+	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+		loadFreeTrialRequests('');
+		var filter = document.getElementById('ft-status-filter');
+		if (filter) filter.addEventListener('change', function() { loadFreeTrialRequests(this.value); });
+	});
+	// ---- END FREE TRIAL REQUESTS ----
+
+	function renderRecentRegistrations(users) {
+			var el = document.getElementById('recent-registrations-list');
+			if (!el) return;
+			if (!users||!users.length) { el.innerHTML='<p class="text-center text-muted py-3">No recent registrations</p>'; return; }
+			var rc = {student:'primary',instructor:'success',admin:'danger'};
+			var ago = function(dt) {
+				var d = Math.floor((Date.now()-new Date(dt))/1000);
+				return d<3600?Math.floor(d/60)+'m ago':d<86400?Math.floor(d/3600)+'h ago':Math.floor(d/86400)+'d ago';
+			};
+			el.innerHTML = users.map(function(u) {
+				var ini = ((u.firstName||'')[0]||'')+((u.lastName||'')[0]||'');
+				var role = u.role||'student';
+				var rclr = rc[role]||'secondary';
+				return '<div class="d-flex align-items-center px-3 py-2" style="border-bottom:1px solid #f5f5f5;">'
+					+'<div class="me-3 d-flex align-items-center justify-content-center fw-bold text-white rounded-circle flex-shrink-0" style="width:38px;height:38px;background:#522811;font-size:13px;">'+ini.toUpperCase()+'</div>'
+					+'<div class="flex-fill overflow-hidden"><div class="fw-semibold text-truncate">'+((u.firstName||'')+' '+(u.lastName||'')).trim()+'</div>'
+					+'<div class="text-muted small text-truncate">'+( u.email||'')+'</div></div>'
+					+'<div class="ms-2 text-end flex-shrink-0"><span class="badge bg-'+rclr+'-light text-'+rclr+' d-block mb-1">'+role.charAt(0).toUpperCase()+role.slice(1)+'</span>'
+					+'<small class="text-muted">'+ago(u.createdAt)+'</small></div></div>';
+			}).join('');
+		}
+	</script>
+
+	<!-- Welfare Widget Script -->
+	<script>
+		(async function loadWelfareWidget() {
+			var token = localStorage.getItem('accessToken');
+			if (!token) return;
+			var hdr = { 'Authorization': 'Bearer ' + token };
+
+			function wfClearSpinner(msg) {
+				var el = document.getElementById('wf-dash-cards');
+				if (el) el.innerHTML = '<div class="col-12 text-center text-muted py-3 small">' + msg + '</div>';
+				var le = document.getElementById('wf-prog-list');
+				if (le) le.innerHTML = '<p class="text-muted text-center py-2 small">' + msg + '</p>';
+			}
+
+			try {
+				var r = await fetch(API_CONFIG.BASE_URL + '/welfare/stats', { headers: hdr });
+				if (!r.ok) { wfClearSpinner('Welfare data unavailable — start backend server.'); return; }
+				var d = await r.json();
+				if (!d.success) { wfClearSpinner('Could not load welfare stats.'); return; }
+
+				var s = d.stats;
+				document.getElementById('wf-total-raised').textContent = Number(s.totalRaised).toLocaleString();
+				document.getElementById('wf-active').textContent        = s.activePrograms;
+				document.getElementById('wf-donors').textContent        = s.totalDonations;
+				document.getElementById('wf-total').textContent         = s.totalPrograms;
+
+				// Programs data (shared between both sections)
+				var rp = await fetch(API_CONFIG.BASE_URL + '/welfare/programs?limit=6&status=active', { headers: hdr });
+				var dp = await rp.json();
+
+				// ── Bottom widget: progress list ─────────────────────────────
+				var listEl = document.getElementById('wf-prog-list');
+				if (!dp.success || !dp.programs.length) {
+					if (listEl) listEl.innerHTML = '<p class="text-muted text-center py-2">No active programs. <a href="/admin/welfare-programs">Add one</a>.</p>';
+				} else {
+					if (listEl) listEl.innerHTML = dp.programs.map(function(p) {
+						var raised = parseFloat(p.raised) || 0;
+						var goal   = parseFloat(p.goal)   || 1;
+						var pct    = Math.min(100, Math.round((raised / goal) * 100));
+						var left   = Math.max(0, goal - raised);
+						var barColor = pct >= 80 ? '#28a745' : pct >= 40 ? '#d8ac27' : '#522811';
+						return '<div class="mb-3 pb-3 border-bottom">' +
+							'<div class="d-flex justify-content-between align-items-center mb-1">' +
+								'<span class="fw-semibold small">' + escW(p.title) + '</span>' +
+								'<span class="small fw-bold" style="color:' + barColor + ';">' + pct + '%</span>' +
+							'</div>' +
+							'<div style="height:8px;border-radius:4px;background:#eee;">' +
+								'<div style="width:' + pct + '%;height:100%;border-radius:4px;background:' + barColor + ';transition:width .5s;"></div>' +
+							'</div>' +
+							'<div class="d-flex justify-content-between mt-1">' +
+								'<small class="text-muted">PKR ' + Number(raised).toLocaleString() + ' raised</small>' +
+								'<small class="text-muted">PKR ' + Number(left).toLocaleString() + ' left</small>' +
+							'</div>' +
+						'</div>';
+					}).join('') + '<div class="text-end"><a href="/admin/welfare-programs" class="btn btn-sm btn-outline-secondary">Manage Programs &rarr;</a></div>';
+				}
+
+				// ── Inline cards (next to New Registrations) ─────────────────
+				var cardsEl = document.getElementById('wf-dash-cards');
+				if (cardsEl) {
+					var catIcons = { 'food-relief':'fa-utensils', 'education':'fa-graduation-cap', 'healthcare':'fa-heartbeat', 'microfinance':'fa-hand-holding-usd', 'clean-water':'fa-tint', 'other':'fa-hands-helping' };
+					var catColors= { 'food-relief':'#e8520a', 'education':'#3d5afe', 'healthcare':'#e53935', 'microfinance':'#228B22', 'clean-water':'#0288d1', 'other':'#7b1fa2' };
+
+					if (!dp.success || !dp.programs.length) {
+						cardsEl.innerHTML = '<div class="col-12 text-center text-muted py-3">No active programs. <a href="/admin/welfare-programs">Add one</a>.</div>';
+					} else {
+						cardsEl.innerHTML = dp.programs.map(function(p) {
+							var raised   = parseFloat(p.raised) || 0;
+							var goal     = parseFloat(p.goal)   || 1;
+							var pct      = Math.min(100, Math.round((raised / goal) * 100));
+							var left     = Math.max(0, goal - raised);
+							var color    = catColors[p.category] || '#522811';
+							var icon     = catIcons[p.category]  || 'fa-hands-helping';
+							var barColor = pct >= 80 ? '#28a745' : pct >= 40 ? '#d8ac27' : '#e53935';
+							return '<div class="col-md-6 col-xl-4">' +
+								'<div class="card border-0 shadow-sm h-100" style="border-radius:14px;overflow:hidden;">' +
+									'<div style="height:5px;background:' + color + ';"></div>' +
+									'<div class="card-body p-3">' +
+										'<div class="d-flex align-items-start gap-2 mb-2">' +
+											'<div style="width:36px;height:36px;border-radius:10px;background:' + color + '22;flex-shrink:0;display:flex;align-items:center;justify-content:center;">' +
+												'<i class="fas ' + icon + ' fa-sm" style="color:' + color + ';"></i>' +
+											'</div>' +
+											'<div style="min-width:0;">' +
+												'<p class="mb-0 fw-semibold small text-truncate" style="max-width:160px;" title="' + escW(p.title) + '">' + escW(p.title) + '</p>' +
+												'<small class="text-muted">' + (p.location || 'Pakistan') + '</small>' +
+											'</div>' +
+										'</div>' +
+										'<div class="d-flex justify-content-between align-items-center mb-1">' +
+											'<small class="text-muted">Raised</small>' +
+											'<small class="fw-bold" style="color:' + barColor + ';">' + pct + '%</small>' +
+										'</div>' +
+										'<div style="height:6px;border-radius:3px;background:#eee;">' +
+											'<div style="width:' + pct + '%;height:100%;border-radius:3px;background:' + barColor + ';"></div>' +
+										'</div>' +
+										'<div class="d-flex justify-content-between mt-1">' +
+											'<small class="text-muted" style="font-size:10px;">PKR ' + Number(raised).toLocaleString() + '</small>' +
+											'<small class="text-muted" style="font-size:10px;">PKR ' + Number(left).toLocaleString() + ' left</small>' +
+										'</div>' +
+									'</div>' +
+								'</div>' +
+							'</div>';
+						}).join('');
+					}
+				}
+
+			} catch(e) {
+				wfClearSpinner('Welfare data unavailable — start backend server.');
+			}
+
+			function escW(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+		})();
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,141 @@
+@use "../utils";
+
+/*============================
+  32.breadcrumb
+============================*/
+
+.breadcrumb-bar {
+    padding: 140px 0 50px;
+    position: relative;
+    z-index: 1;
+    background: linear-gradient(135deg, #522811 0%, #7a3d1a 50%, #522811 100%);
+    overflow: hidden;
+    
+    // Decorative pattern overlay
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        z-index: -1;
+    }
+    
+    // Gradient accent line at bottom
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, utils.$secondary 0%, #f0c040 50%, utils.$secondary 100%);
+    }
+    
+    .breadcrumb-title {
+        font-size: utils.$font-size-36;
+        color: utils.$white;
+        font-weight: utils.$font-weight-bold;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        margin-bottom: 12px;
+        @include utils.respond-below(lg) {
+            font-size: utils.$font-size-26;
+        }
+        @include utils.respond-below(md) {
+            font-size: utils.$font-size-22;
+            padding-top: 20px;
+        }
+    }
+}
+
+.breadcrumb {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: inline-flex;
+    backdrop-filter: blur(5px);
+    
+    .breadcrumb-item {
+        color: utils.$white;
+        position: relative;
+        font-size: utils.$font-size-14;
+        font-weight: utils.$font-weight-medium;
+        
+        a {
+            color: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+            
+            &:hover {
+                color: utils.$secondary;
+            }
+        }
+        
+        & +.breadcrumb-item {
+            margin-left: 26px;
+            &:before {
+                content: "";
+                width: 15px;
+                height: 5px;
+                border-radius: 5px;
+                background: utils.$secondary;
+                position: absolute;
+                left: -16px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+        }
+        
+        &.active {
+            color: utils.$secondary;
+            font-weight: utils.$font-weight-semibold;
+        }
+    }
+}
+.breadcrumb-bg-01 {
+    background: url('../img/bg/breadcrumb.jpg') no-repeat;
+    background-size: cover;
+}
+.breadcrumb-bg-02 {
+    background: url('../img/bg/breadcrumb-02.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.breadcrumb-bg-03{
+    background: url('../img/bg/breadcrumb-03.jpg') no-repeat;
+    background-size: cover;
+}
+.breadcrumb-bg-04{
+    background-color: utils.$gray-900;
+}
+.breadcrumb-bg-05{
+    background: url('../img/bg/breadcrumb-05.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.breadcrumb-bg-06{
+    background: url('../img/bg/breadcrumb-04.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+// ── Admin page breadcrumb: compact + centered ────────────────
+.breadcrumb-bar.text-center,
+.breadcrumb-bar.breadcrumb-bar-info {
+    padding: 22px 0 22px;
+    margin-bottom: 30px;
+    text-align: center;
+
+    .breadcrumb-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .breadcrumb-title {
+        font-size: 24px;
+        margin-bottom: 8px;
+        padding-top: 0;
+    }
+}

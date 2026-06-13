@@ -1,0 +1,994 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Projects | Al-Kahaf Online Academy</title>
+    
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #522811;
+            --secondary-color: #d8ac27;
+            --accent-green: #2e7d32;
+            --dark-bg: #1a1a2e;
+            --light-bg: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light-bg);
+            color: #333;
+        }
+        
+        /* Header */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #3d1e0d 100%);
+            padding: 100px 0 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15L30 0z' fill='none' stroke='%23d8ac27' stroke-opacity='0.1' stroke-width='1'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .page-header .container {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .page-header h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .breadcrumb-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .breadcrumb-wrapper a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .breadcrumb-wrapper a:hover {
+            color: #fff;
+        }
+        
+        .breadcrumb-wrapper span {
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            background: #fff;
+            padding: 30px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .filter-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-tab {
+            padding: 10px 20px;
+            border: 2px solid #e0e0e0;
+            background: transparent;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .filter-tab:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .filter-tab.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .filter-tab i {
+            font-size: 0.85rem;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #f5f5f5;
+            padding: 10px 20px;
+            border-radius: 50px;
+            min-width: 280px;
+        }
+        
+        .search-box input {
+            border: none;
+            background: transparent;
+            outline: none;
+            flex: 1;
+            font-size: 0.95rem;
+        }
+        
+        .search-box i {
+            color: #888;
+        }
+        
+        /* Projects Section */
+        .projects-page-section {
+            padding: 60px 0;
+        }
+        
+        .projects-page-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        /* Project Card */
+        .project-card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .project-card-img {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-card-img img {
+            transform: scale(1.1);
+        }
+        
+        .project-card-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .project-card-urgent {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #dc3545;
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .project-card-body {
+            padding: 25px;
+        }
+        
+        .project-card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+        
+        .project-card-title a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .project-card-title a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .project-card-desc {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .project-card-progress {
+            margin-bottom: 20px;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+        }
+        
+        .progress-raised {
+            color: var(--accent-green);
+            font-weight: 600;
+        }
+        
+        .progress-goal {
+            color: #888;
+        }
+        
+        .progress-bar-wrapper {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-green), #4caf50);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        .project-card-footer {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn-donate {
+            flex: 1;
+            padding: 12px 20px;
+            background: var(--accent-green);
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-donate:hover {
+            background: #1b5e20;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        
+        .btn-details {
+            padding: 12px 20px;
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            text-align: center;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-details:hover {
+            background: var(--primary-color);
+            color: #fff;
+        }
+        
+        /* Pagination */
+        .pagination-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 50px;
+            padding: 20px 0;
+        }
+        
+        .pagination-btn {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #e0e0e0;
+            background: #fff;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .pagination-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .pagination-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .pagination-btn.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination-info {
+            color: #888;
+            font-size: 0.9rem;
+            margin: 0 20px;
+        }
+        
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            grid-column: 1 / -1;
+        }
+        
+        .no-results i {
+            font-size: 4rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+        
+        .no-results h3 {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .no-results p {
+            color: #888;
+        }
+        
+        /* Footer */
+        .page-footer {
+            background: var(--primary-color);
+            padding: 30px 0;
+            text-align: center;
+        }
+        
+        .page-footer p {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        .page-footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .projects-page-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .filter-wrapper {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .projects-page-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .filter-tabs {
+                justify-content: center;
+            }
+            
+            .filter-tab {
+                padding: 8px 15px;
+                font-size: 0.8rem;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1>All Projects & Welfare Programs</h1>
+            <div class="breadcrumb-wrapper">
+                <a href="/"><i class="fa-solid fa-home"></i> Home</a>
+                <span>/</span>
+                <span>All Projects</span>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-wrapper">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-category="all">
+                        <i class="fa-solid fa-grid-2"></i> All
+                    </button>
+                    <button class="filter-tab" data-category="urgent">
+                        <i class="fa-solid fa-star"></i> Urgent
+                    </button>
+                    <button class="filter-tab" data-category="quran">
+                        <i class="fa-solid fa-book-quran"></i> Quran
+                    </button>
+                    <button class="filter-tab" data-category="arabic">
+                        <i class="fa-solid fa-language"></i> Arabic
+                    </button>
+                    <button class="filter-tab" data-category="community">
+                        <i class="fa-solid fa-hands-holding-child"></i> Community
+                    </button>
+                    <button class="filter-tab" data-category="sponsorship">
+                        <i class="fa-solid fa-graduation-cap"></i> Sponsorship
+                    </button>
+                </div>
+                <div class="search-box">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" id="projectSearch" placeholder="Search projects...">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Section -->
+    <section class="projects-page-section">
+        <div class="container">
+            <div class="projects-page-grid" id="projectsGrid">
+                <!-- Page 1 Projects -->
+                
+                <!-- Urgent Projects -->
+                <div class="project-card" data-category="urgent" data-page="1">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/course/course-37.jpg" alt="Emergency Quran Classes">
+                        <span class="project-card-category">Quran Education</span>
+                        <span class="project-card-urgent"><i class="fa-solid fa-bolt"></i> Urgent</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Emergency Quran Classes for Orphans</a>
+                        </h4>
+                        <p class="project-card-desc">Providing free Quran education to 50 orphan children in underprivileged communities who have no access to Islamic education.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 45,000 raised</span>
+                                <span class="progress-goal">of Rs 100,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 45%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="urgent" data-page="1">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/course/course-38.jpg" alt="Ramadan Food">
+                        <span class="project-card-category">Community</span>
+                        <span class="project-card-urgent"><i class="fa-solid fa-bolt"></i> Urgent</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Ramadan Food Package Distribution</a>
+                        </h4>
+                        <p class="project-card-desc">Distributing essential food packages to 200 families during the blessed month of Ramadan in rural areas.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 78,000 raised</span>
+                                <span class="progress-goal">of Rs 150,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 52%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quran Education Projects -->
+                <div class="project-card" data-category="quran" data-page="1">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/course/course-39.jpg" alt="Hifz Program">
+                        <span class="project-card-category">Quran Education</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Complete Hifz Program Sponsorship</a>
+                        </h4>
+                        <p class="project-card-desc">Sponsor a student's complete Quran memorization journey with certified Hafiz teachers over 3 years.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 120,000 raised</span>
+                                <span class="progress-goal">of Rs 300,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="quran" data-page="1">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/course/_course1.jpeg" alt="Tajweed Classes">
+                        <span class="project-card-category">Quran Education</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Free Tajweed Classes for Women</a>
+                        </h4>
+                        <p class="project-card-desc">Weekly Tajweed classes for sisters who want to perfect their Quran recitation with female instructors.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 25,000 raised</span>
+                                <span class="progress-goal">of Rs 50,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 50%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Arabic Learning Projects -->
+                <div class="project-card" data-category="arabic" data-page="1">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/course/coursee-24.jpg" alt="Arabic for Kids">
+                        <span class="project-card-category">Arabic Learning</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Arabic Language for Kids Program</a>
+                        </h4>
+                        <p class="project-card-desc">Interactive Arabic language learning program designed specifically for children aged 5-12 years.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 35,000 raised</span>
+                                <span class="progress-goal">of Rs 80,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 44%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="arabic" data-page="1">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/course/coursee-25.jpg" alt="Classical Arabic">
+                        <span class="project-card-category">Arabic Learning</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Classical Arabic (Fusha) Scholarship</a>
+                        </h4>
+                        <p class="project-card-desc">Scholarships for students to learn classical Arabic to understand Quran and Islamic texts directly.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 60,000 raised</span>
+                                <span class="progress-goal">of Rs 120,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 50%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Page 2 Projects -->
+                
+                <!-- Community Support Projects -->
+                <div class="project-card" data-category="community" data-page="2">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/blog/blog-06.jpg" alt="Widow Support">
+                        <span class="project-card-category">Community</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Widow & Single Mother Support Fund</a>
+                        </h4>
+                        <p class="project-card-desc">Monthly financial assistance for widows and single mothers to support their families with dignity.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 90,000 raised</span>
+                                <span class="progress-goal">of Rs 200,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 45%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="community" data-page="2">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/blog/blog-07.jpg" alt="Eid Gifts">
+                        <span class="project-card-category">Community</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Eid Gifts for Underprivileged Children</a>
+                        </h4>
+                        <p class="project-card-desc">Bringing joy to 500 underprivileged children with new clothes and gifts during Eid celebrations.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 55,000 raised</span>
+                                <span class="progress-goal">of Rs 100,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 55%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Student Sponsorship Projects -->
+                <div class="project-card" data-category="sponsorship" data-page="2">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/instructor/instructor-01.jpg" alt="Student Sponsorship">
+                        <span class="project-card-category">Sponsorship</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Sponsor a Quran Student for 1 Year</a>
+                        </h4>
+                        <p class="project-card-desc">Full annual sponsorship covering tuition, books, and materials for one dedicated Quran student.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 15,000 raised</span>
+                                <span class="progress-goal">of Rs 36,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 42%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="sponsorship" data-page="2">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/instructor/instructor-02.jpg" alt="Teacher Training">
+                        <span class="project-card-category">Sponsorship</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Teacher Training & Certification Fund</a>
+                        </h4>
+                        <p class="project-card-desc">Help train and certify new Quran teachers who will serve communities that lack qualified instructors.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 85,000 raised</span>
+                                <span class="progress-goal">of Rs 150,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 57%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- More Urgent Projects for Page 2 -->
+                <div class="project-card" data-category="urgent" data-page="2">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/course/course-01.jpg" alt="Winter Relief">
+                        <span class="project-card-category">Community</span>
+                        <span class="project-card-urgent"><i class="fa-solid fa-bolt"></i> Urgent</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Winter Relief Blanket Distribution</a>
+                        </h4>
+                        <p class="project-card-desc">Providing warm blankets to 300 families facing harsh winter conditions in mountain regions.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 32,000 raised</span>
+                                <span class="progress-goal">of Rs 75,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 43%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card" data-category="quran" data-page="2">
+                    <div class="project-card-img">
+                        <img src="../../../assets/img/course/course-02.jpg" alt="Quran Distribution">
+                        <span class="project-card-category">Quran Education</span>
+                    </div>
+                    <div class="project-card-body">
+                        <h4 class="project-card-title">
+                            <a href="/projects/project-details">Quran Distribution to New Muslims</a>
+                        </h4>
+                        <p class="project-card-desc">Providing free translated Qurans to new Muslims and those seeking to learn about Islam.</p>
+                        <div class="project-card-progress">
+                            <div class="progress-info">
+                                <span class="progress-raised">Rs 18,000 raised</span>
+                                <span class="progress-goal">of Rs 40,000</span>
+                            </div>
+                            <div class="progress-bar-wrapper">
+                                <div class="progress-bar-fill" style="width: 45%;"></div>
+                            </div>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="/projects/donate" class="btn-donate">Donate Now</a>
+                            <a href="/projects/project-details" class="btn-details">Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination-wrapper" id="pagination">
+                <button class="pagination-btn" id="prevBtn" disabled>
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="pagination-btn active" data-page="1">1</button>
+                <button class="pagination-btn" data-page="2">2</button>
+                <span class="pagination-info">Page <span id="currentPage">1</span> of <span id="totalPages">2</span></span>
+                <button class="pagination-btn" id="nextBtn">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="page-footer">
+        <div class="container">
+            <p>&copy; 2024 <a href="/">Al-Kahaf Academy</a>. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- jQuery -->
+    <script src="../../../assets/js/jquery-3.7.1.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="../../../assets/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+    (function() {
+        const filterTabs = document.querySelectorAll('.filter-tab');
+        const projectCards = document.querySelectorAll('.project-card');
+        const searchInput = document.getElementById('projectSearch');
+        const paginationBtns = document.querySelectorAll('.pagination-btn[data-page]');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const currentPageSpan = document.getElementById('currentPage');
+        
+        let currentPage = 1;
+        let currentCategory = 'all';
+        const totalPages = 2;
+        const itemsPerPage = 6;
+        
+        // Filter by category
+        function filterByCategory(category) {
+            currentCategory = category;
+            projectCards.forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                const cardPage = parseInt(card.getAttribute('data-page'));
+                
+                const categoryMatch = category === 'all' || cardCategory === category;
+                const pageMatch = cardPage === currentPage;
+                
+                if (categoryMatch && pageMatch) {
+                    card.style.display = '';
+                    card.style.animation = 'fadeInUp 0.5s ease forwards';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Filter by search
+        function filterBySearch(searchTerm) {
+            projectCards.forEach(card => {
+                const title = card.querySelector('.project-card-title').textContent.toLowerCase();
+                const desc = card.querySelector('.project-card-desc').textContent.toLowerCase();
+                const cardPage = parseInt(card.getAttribute('data-page'));
+                const cardCategory = card.getAttribute('data-category');
+                
+                const searchMatch = title.includes(searchTerm) || desc.includes(searchTerm);
+                const categoryMatch = currentCategory === 'all' || cardCategory === currentCategory;
+                
+                if (searchMatch && categoryMatch && cardPage === currentPage) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+        
+        // Change page
+        function changePage(page) {
+            currentPage = page;
+            currentPageSpan.textContent = page;
+            
+            // Update pagination buttons
+            paginationBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (parseInt(btn.getAttribute('data-page')) === page) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Update prev/next buttons
+            prevBtn.disabled = page === 1;
+            nextBtn.disabled = page === totalPages;
+            
+            // Re-filter cards
+            filterByCategory(currentCategory);
+            
+            // Scroll to top
+            window.scrollTo({ top: 300, behavior: 'smooth' });
+        }
+        
+        // Event listeners
+        filterTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                filterTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                filterByCategory(this.getAttribute('data-category'));
+            });
+        });
+        
+        searchInput.addEventListener('input', function() {
+            filterBySearch(this.value.toLowerCase());
+        });
+        
+        paginationBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                changePage(parseInt(this.getAttribute('data-page')));
+            });
+        });
+        
+        prevBtn.addEventListener('click', function() {
+            if (currentPage > 1) {
+                changePage(currentPage - 1);
+            }
+        });
+        
+        nextBtn.addEventListener('click', function() {
+            if (currentPage < totalPages) {
+                changePage(currentPage + 1);
+            }
+        });
+        
+        // Initial filter
+        filterByCategory('all');
+    })();
+    </script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
+</body>
+</html>

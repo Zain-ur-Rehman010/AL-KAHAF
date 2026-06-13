@@ -1,0 +1,277 @@
+# AlKahaf Online Academy - Production .htaccess
+# Upload this file to public_html and rename to .htaccess
+# Optimized for cPanel/shared hosting Apache
+
+# Enable Rewrite Engine
+RewriteEngine On
+RewriteBase /
+
+#########################
+# FORCE HTTPS (SSL)
+#########################
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+#########################
+# SERVE STATIC FILES DIRECTLY (CSS, JS, images)
+#########################
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+#########################
+# CLEAN URL REWRITES
+#########################
+
+# Home
+RewriteRule ^home/?$ index.html [L]
+RewriteRule ^shared/index/?$ index.html [L]
+
+# Auth
+RewriteRule ^auth/login/?$ src/pages/auth/login.html [L]
+RewriteRule ^auth/register/?$ src/pages/auth/register.html [L]
+RewriteRule ^auth/forgot-password/?$ src/pages/auth/forgot-password.html [L]
+RewriteRule ^auth/otp/?$ src/pages/auth/otp.html [L]
+RewriteRule ^auth/set-password/?$ src/pages/auth/set-password.html [L]
+RewriteRule ^login/?$ src/pages/auth/login.html [L]
+RewriteRule ^register/?$ src/pages/auth/register.html [L]
+RewriteRule ^forgot-password/?$ src/pages/auth/forgot-password.html [L]
+
+# Shared pages
+RewriteRule ^shared/about-us/?$ src/pages/shared/about-us.html [L]
+RewriteRule ^shared/contact-us/?$ src/pages/shared/contact-us.html [L]
+RewriteRule ^shared/free-trial/?$ src/pages/shared/free-trial.html [L]
+RewriteRule ^shared/welfare-programs/?$ src/pages/shared/welfare-programs.html [L]
+RewriteRule ^shared/welfare-program-detail/?$ src/pages/shared/welfare-program-detail.html [L]
+RewriteRule ^shared/become-an-instructor/?$ src/pages/shared/become-an-instructor.html [L]
+RewriteRule ^shared/privacy-policy/?$ src/pages/shared/privacy-policy.html [L]
+RewriteRule ^shared/terms-and-conditions/?$ src/pages/shared/terms-and-conditions.html [L]
+RewriteRule ^shared/faq/?$ src/pages/shared/faq.html [L]
+RewriteRule ^shared/cart/?$ src/pages/shared/cart.html [L]
+RewriteRule ^shared/checkout/?$ src/pages/shared/checkout.html [L]
+RewriteRule ^shared/notifications/?$ src/pages/shared/notifications.html [L]
+RewriteRule ^shared/pricing-plan/?$ src/pages/shared/pricing-plan.html [L]
+RewriteRule ^shared/testimonials/?$ src/pages/shared/testimonials.html [L]
+RewriteRule ^shared/error-404/?$ src/pages/shared/error-404.html [L]
+RewriteRule ^shared/error-500/?$ src/pages/shared/error-500.html [L]
+# Short aliases
+RewriteRule ^about/?$ src/pages/shared/about-us.html [L]
+RewriteRule ^contact/?$ src/pages/shared/contact-us.html [L]
+RewriteRule ^free-trial/?$ src/pages/shared/free-trial.html [L]
+RewriteRule ^welfare-programs/?$ src/pages/shared/welfare-programs.html [L]
+RewriteRule ^privacy-policy/?$ src/pages/shared/privacy-policy.html [L]
+RewriteRule ^terms/?$ src/pages/shared/terms-and-conditions.html [L]
+RewriteRule ^faq/?$ src/pages/shared/faq.html [L]
+RewriteRule ^become-instructor/?$ src/pages/shared/become-an-instructor.html [L]
+
+# Courses
+RewriteRule ^courses/?$ src/pages/courses/course-grid.html [L]
+RewriteRule ^courses/course-grid/?$ src/pages/courses/course-grid.html [L]
+RewriteRule ^courses/course-list/?$ src/pages/courses/course-list.html [L]
+RewriteRule ^courses/course-details/?$ src/pages/courses/course-details.html [L]
+RewriteRule ^courses/course-category/?$ src/pages/courses/course-category.html [L]
+RewriteRule ^courses/course-watch/?$ src/pages/courses/course-watch.html [L]
+RewriteRule ^courses/add-course/?$ src/pages/courses/add-course.html [L]
+RewriteRule ^course-details/?$ src/pages/courses/course-details.html [L]
+
+# Blog
+RewriteRule ^blog/?$ src/pages/blog/blog-grid.html [L]
+RewriteRule ^blog/blog-grid/?$ src/pages/blog/blog-grid.html [L]
+RewriteRule ^blog/blog-details/?$ src/pages/blog/blog-details.html [L]
+
+# Projects
+RewriteRule ^projects/all-projects/?$ src/pages/projects/all-projects.html [L]
+
+# Student
+RewriteRule ^student/?$ src/pages/student/student-dashboard.html [L]
+RewriteRule ^student/dashboard/?$ src/pages/student/student-dashboard.html [L]
+RewriteRule ^student/student-dashboard/?$ src/pages/student/student-dashboard.html [L]
+RewriteRule ^student/courses/?$ src/pages/student/student-courses.html [L]
+RewriteRule ^student/student-courses/?$ src/pages/student/student-courses.html [L]
+RewriteRule ^student/student-profile/?$ src/pages/student/student-profile.html [L]
+RewriteRule ^student/student-settings/?$ src/pages/student/student-settings.html [L]
+RewriteRule ^student/student-notifications/?$ src/pages/student/student-notifications.html [L]
+RewriteRule ^student/student-messages/?$ src/pages/student/student-messages.html [L]
+RewriteRule ^student/student-reviews/?$ src/pages/student/student-reviews.html [L]
+RewriteRule ^student/student-quiz/?$ src/pages/student/student-quiz.html [L]
+RewriteRule ^student/student-quiz-questions/?$ src/pages/student/student-quiz-questions.html [L]
+RewriteRule ^student/student-billing-address/?$ src/pages/student/student-billing-address.html [L]
+RewriteRule ^student/student-change-password/?$ src/pages/student/student-change-password.html [L]
+RewriteRule ^student/student-order-history/?$ src/pages/student/student-order-history.html [L]
+RewriteRule ^student/student-linked-accounts/?$ src/pages/student/student-linked-accounts.html [L]
+RewriteRule ^student/student-social-profile/?$ src/pages/student/student-social-profile.html [L]
+RewriteRule ^student/student-referral/?$ src/pages/student/student-referral.html [L]
+RewriteRule ^student/student-tickets/?$ src/pages/student/student-tickets.html [L]
+RewriteRule ^student/quiz/?$ src/pages/student/student-quiz.html [L]
+RewriteRule ^student/quiz/questions/?$ src/pages/student/student-quiz-questions.html [L]
+RewriteRule ^student/profile/?$ src/pages/student/student-profile.html [L]
+RewriteRule ^student/student-profile/?$ src/pages/student/student-profile.html [L]
+RewriteRule ^student/settings/?$ src/pages/student/student-settings.html [L]
+RewriteRule ^student/certificates/?$ src/pages/student/student-certificates.html [L]
+RewriteRule ^student/student-certificates/?$ src/pages/student/student-certificates.html [L]
+RewriteRule ^student/notifications/?$ src/pages/student/student-notifications.html [L]
+RewriteRule ^student/messages/?$ src/pages/student/student-messages.html [L]
+RewriteRule ^student/reviews/?$ src/pages/student/student-reviews.html [L]
+RewriteRule ^student/referral/?$ src/pages/student/student-referral.html [L]
+RewriteRule ^student/tickets/?$ src/pages/student/student-tickets.html [L]
+RewriteRule ^student/billing/?$ src/pages/student/student-billing-address.html [L]
+RewriteRule ^student/change-password/?$ src/pages/student/student-change-password.html [L]
+RewriteRule ^student/order-history/?$ src/pages/student/student-order-history.html [L]
+RewriteRule ^student/linked-accounts/?$ src/pages/student/student-linked-accounts.html [L]
+RewriteRule ^student/social-profile/?$ src/pages/student/student-social-profile.html [L]
+RewriteRule ^student/details/?$ src/pages/student/student-details.html [L]
+RewriteRule ^student/student-details/?$ src/pages/student/student-details.html [L]
+RewriteRule ^student/list/?$ src/pages/student/student-list.html [L]
+
+# Instructor
+RewriteRule ^instructor/?$ src/pages/instructor/instructor-dashboard.html [L]
+RewriteRule ^instructor/dashboard/?$ src/pages/instructor/instructor-dashboard.html [L]
+RewriteRule ^instructor/instructor-dashboard/?$ src/pages/instructor/instructor-dashboard.html [L]
+RewriteRule ^instructor/courses/?$ src/pages/instructor/instructor-course.html [L]
+RewriteRule ^instructor/instructor-course/?$ src/pages/instructor/instructor-course.html [L]
+RewriteRule ^instructor/course/edit/?$ src/pages/instructor/course-edit.html [L]
+RewriteRule ^instructor/course-edit/?$ src/pages/instructor/course-edit.html [L]
+RewriteRule ^instructor/profile/?$ src/pages/instructor/instructor-profile.html [L]
+RewriteRule ^instructor/instructor-profile/?$ src/pages/instructor/instructor-profile.html [L]
+RewriteRule ^instructor/settings/?$ src/pages/instructor/instructor-settings.html [L]
+RewriteRule ^instructor/instructor-settings/?$ src/pages/instructor/instructor-settings.html [L]
+RewriteRule ^instructor/earnings/?$ src/pages/instructor/instructor-earnings.html [L]
+RewriteRule ^instructor/instructor-earnings/?$ src/pages/instructor/instructor-earnings.html [L]
+RewriteRule ^instructor/quiz/?$ src/pages/instructor/instructor-quiz.html [L]
+RewriteRule ^instructor/instructor-quiz/?$ src/pages/instructor/instructor-quiz.html [L]
+RewriteRule ^instructor/quiz/questions/?$ src/pages/instructor/instructor-quiz-questions.html [L]
+RewriteRule ^instructor/quiz/results/?$ src/pages/instructor/instructor-quiz-results.html [L]
+RewriteRule ^instructor/assignment/?$ src/pages/instructor/instructor-assignment.html [L]
+RewriteRule ^instructor/instructor-assignment/?$ src/pages/instructor/instructor-assignment.html [L]
+RewriteRule ^instructor/announcements/?$ src/pages/instructor/instructor-announcements.html [L]
+RewriteRule ^instructor/instructor-announcements/?$ src/pages/instructor/instructor-announcements.html [L]
+RewriteRule ^instructor/certificate/?$ src/pages/instructor/instructor-certificate.html [L]
+RewriteRule ^instructor/instructor-certificate/?$ src/pages/instructor/instructor-certificate.html [L]
+RewriteRule ^instructor/notifications/?$ src/pages/instructor/instructor-notifications.html [L]
+RewriteRule ^instructor/instructor-notifications/?$ src/pages/instructor/instructor-notifications.html [L]
+RewriteRule ^instructor/messages/?$ src/pages/instructor/instructor-message.html [L]
+RewriteRule ^instructor/instructor-message/?$ src/pages/instructor/instructor-message.html [L]
+RewriteRule ^instructor/tickets/?$ src/pages/instructor/instructor-tickets.html [L]
+RewriteRule ^instructor/instructor-tickets/?$ src/pages/instructor/instructor-tickets.html [L]
+RewriteRule ^instructor/payout/?$ src/pages/instructor/instructor-payout.html [L]
+RewriteRule ^instructor/instructor-payout/?$ src/pages/instructor/instructor-payout.html [L]
+RewriteRule ^instructor/withdraw/?$ src/pages/instructor/instructor-withdraw.html [L]
+RewriteRule ^instructor/instructor-withdraw/?$ src/pages/instructor/instructor-withdraw.html [L]
+RewriteRule ^instructor/statements/?$ src/pages/instructor/instructor-statements.html [L]
+RewriteRule ^instructor/instructor-statements/?$ src/pages/instructor/instructor-statements.html [L]
+RewriteRule ^instructor/plans/?$ src/pages/instructor/instructor-plans.html [L]
+RewriteRule ^instructor/instructor-plans/?$ src/pages/instructor/instructor-plans.html [L]
+RewriteRule ^instructor/integrations/?$ src/pages/instructor/instructor-integrations.html [L]
+RewriteRule ^instructor/instructor-integrations/?$ src/pages/instructor/instructor-integrations.html [L]
+RewriteRule ^instructor/linked-accounts/?$ src/pages/instructor/instructor-linked-accounts.html [L]
+RewriteRule ^instructor/instructor-linked-accounts/?$ src/pages/instructor/instructor-linked-accounts.html [L]
+RewriteRule ^instructor/social-profiles/?$ src/pages/instructor/instructor-social-profiles.html [L]
+RewriteRule ^instructor/instructor-social-profiles/?$ src/pages/instructor/instructor-social-profiles.html [L]
+RewriteRule ^instructor/change-password/?$ src/pages/instructor/instructor-change-password.html [L]
+RewriteRule ^instructor/instructor-change-password/?$ src/pages/instructor/instructor-change-password.html [L]
+RewriteRule ^instructor/details/?$ src/pages/instructor/instructor-details.html [L]
+RewriteRule ^instructor/instructor-details/?$ src/pages/instructor/instructor-details.html [L]
+RewriteRule ^instructor/grid/?$ src/pages/instructor/instructor-grid.html [L]
+RewriteRule ^instructor/instructor-grid/?$ src/pages/instructor/instructor-grid.html [L]
+RewriteRule ^instructor/list/?$ src/pages/instructor/instructor-list.html [L]
+RewriteRule ^instructor/instructor-list/?$ src/pages/instructor/instructor-list.html [L]
+
+# Admin
+RewriteRule ^admin/?$ src/pages/admin/admin-dashboard.html [L]
+RewriteRule ^admin/dashboard/?$ src/pages/admin/admin-dashboard.html [L]
+RewriteRule ^admin/admin-dashboard/?$ src/pages/admin/admin-dashboard.html [L]
+RewriteRule ^admin/profile/?$ src/pages/admin/admin-profile.html [L]
+RewriteRule ^admin/admin-profile/?$ src/pages/admin/admin-profile.html [L]
+RewriteRule ^admin/settings/?$ src/pages/admin/admin-settings.html [L]
+RewriteRule ^admin/admin-settings/?$ src/pages/admin/admin-settings.html [L]
+RewriteRule ^admin/courses/?$ src/pages/admin/courses-list.html [L]
+RewriteRule ^admin/courses-list/?$ src/pages/admin/courses-list.html [L]
+RewriteRule ^admin/course/add/?$ src/pages/admin/course-add.html [L]
+RewriteRule ^admin/course-add/?$ src/pages/admin/course-add.html [L]
+RewriteRule ^admin/course/edit/?$ src/pages/admin/course-edit.html [L]
+RewriteRule ^admin/course-edit/?$ src/pages/admin/course-edit.html [L]
+RewriteRule ^admin/instructors/?$ src/pages/admin/instructors-list.html [L]
+RewriteRule ^admin/instructors-list/?$ src/pages/admin/instructors-list.html [L]
+RewriteRule ^admin/instructor/add/?$ src/pages/admin/instructor-add.html [L]
+RewriteRule ^admin/instructor-add/?$ src/pages/admin/instructor-add.html [L]
+RewriteRule ^admin/instructor/edit/?$ src/pages/admin/instructor-edit.html [L]
+RewriteRule ^admin/instructor-edit/?$ src/pages/admin/instructor-edit.html [L]
+RewriteRule ^admin/students/?$ src/pages/admin/students-list.html [L]
+RewriteRule ^admin/students-list/?$ src/pages/admin/students-list.html [L]
+RewriteRule ^admin/users/?$ src/pages/admin/users-list.html [L]
+RewriteRule ^admin/users-list/?$ src/pages/admin/users-list.html [L]
+RewriteRule ^admin/user/add/?$ src/pages/admin/user-add.html [L]
+RewriteRule ^admin/user-add/?$ src/pages/admin/user-add.html [L]
+RewriteRule ^admin/enrollments/?$ src/pages/admin/enrollments-list.html [L]
+RewriteRule ^admin/enrollments-list/?$ src/pages/admin/enrollments-list.html [L]
+RewriteRule ^admin/payments/?$ src/pages/admin/payments-list.html [L]
+RewriteRule ^admin/payments-list/?$ src/pages/admin/payments-list.html [L]
+RewriteRule ^admin/blog/?$ src/pages/admin/blog-list.html [L]
+RewriteRule ^admin/blog-list/?$ src/pages/admin/blog-list.html [L]
+RewriteRule ^admin/blogs/?$ src/pages/admin/blog-list.html [L]
+RewriteRule ^admin/notifications/?$ src/pages/admin/notifications.html [L]
+RewriteRule ^admin/predefined-courses/?$ src/pages/admin/predefined-courses.html [L]
+RewriteRule ^admin/welfare-programs/?$ src/pages/admin/welfare-programs.html [L]
+RewriteRule ^admin/welfare-program/add/?$ src/pages/admin/welfare-program-add.html [L]
+RewriteRule ^admin/welfare-program-add/?$ src/pages/admin/welfare-program-add.html [L]
+
+#########################
+# REDIRECT OLD DIRECT HTML URLS (301 Permanent)
+#########################
+RewriteRule ^src/pages/courses/course-grid\.html$ /courses [R=301,L]
+RewriteRule ^src/pages/courses/course-list\.html$ /courses/course-list [R=301,L]
+RewriteRule ^src/pages/courses/course-details\.html$ /courses/course-details [R=301,L]
+RewriteRule ^src/pages/auth/login\.html$ /auth/login [R=301,L]
+RewriteRule ^src/pages/auth/register\.html$ /auth/register [R=301,L]
+RewriteRule ^src/pages/student/(.+)\.html$ /student/$1 [R=301,L]
+RewriteRule ^src/pages/instructor/(.+)\.html$ /instructor/$1 [R=301,L]
+RewriteRule ^src/pages/admin/(.+)\.html$ /admin/$1 [R=301,L]
+RewriteRule ^src/pages/shared/(.+)\.html$ /shared/$1 [R=301,L]
+RewriteRule ^src/pages/blog/(.+)\.html$ /blog/$1 [R=301,L]
+
+#########################
+# SECURITY
+#########################
+Options -Indexes
+ServerSignature Off
+
+<FilesMatch "^\.">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+#########################
+# PERFORMANCE
+#########################
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# Default to index.html for root
+RewriteRule ^$ index.html [L]
+
+# 404 fallback
+ErrorDocument 404 /src/pages/shared/error-404.html

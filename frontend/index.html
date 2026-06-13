@@ -137,20 +137,32 @@ Dependencies:
       .skills-section::before {
         content: "";
         position: absolute;
-        top: -200px; right: -200px;
-        width: 500px; height: 500px;
+        top: -200px;
+        right: -200px;
+        width: 500px;
+        height: 500px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(216,172,39,0.12) 0%, transparent 70%);
+        background: radial-gradient(
+          circle,
+          rgba(216, 172, 39, 0.12) 0%,
+          transparent 70%
+        );
         pointer-events: none;
       }
 
       .skills-section::after {
         content: "";
         position: absolute;
-        bottom: -150px; left: -150px;
-        width: 400px; height: 400px;
+        bottom: -150px;
+        left: -150px;
+        width: 400px;
+        height: 400px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.05) 0%,
+          transparent 70%
+        );
         pointer-events: none;
       }
 
@@ -167,7 +179,7 @@ Dependencies:
       }
 
       .skills-section .section-header p {
-        color: rgba(255,255,255,0.65);
+        color: rgba(255, 255, 255, 0.65);
         font-size: 16px;
       }
 
@@ -179,44 +191,57 @@ Dependencies:
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         position: relative;
         overflow: hidden;
-        background: rgba(255,255,255,0.07);
-        border: 1px solid rgba(255,255,255,0.12);
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.12);
         backdrop-filter: blur(10px);
       }
 
       .skills-card::before {
         content: "";
         position: absolute;
-        top: 0; left: 0;
-        width: 100%; height: 3px;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 3px;
         border-radius: 24px 24px 0 0;
       }
 
-      .skills-card-blue::before   { background: linear-gradient(90deg, #d8ac27, #f0c842); }
-      .skills-card-green::before  { background: linear-gradient(90deg, #1d8f7f, #0a6558); }
-      .skills-card-yellow::before { background: linear-gradient(90deg, #d8ac27, #f0c842); }
-      .skills-card-pink::before   { background: linear-gradient(90deg, #1d8f7f, #0a6558); }
+      .skills-card-blue::before {
+        background: linear-gradient(90deg, #d8ac27, #f0c842);
+      }
+      .skills-card-green::before {
+        background: linear-gradient(90deg, #1d8f7f, #0a6558);
+      }
+      .skills-card-yellow::before {
+        background: linear-gradient(90deg, #d8ac27, #f0c842);
+      }
+      .skills-card-pink::before {
+        background: linear-gradient(90deg, #1d8f7f, #0a6558);
+      }
 
       .skills-card:hover {
         transform: translateY(-12px);
-        background: rgba(255,255,255,0.12);
-        border-color: rgba(216,172,39,0.4);
-        box-shadow: 0 24px 60px rgba(0,0,0,0.25);
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(216, 172, 39, 0.4);
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
       }
 
       /* Big bg number */
       .skills-card-num {
         position: absolute;
-        bottom: 16px; right: 20px;
+        bottom: 16px;
+        right: 20px;
         font-size: 80px;
         font-weight: 900;
-        color: rgba(255,255,255,0.04);
+        color: rgba(255, 255, 255, 0.04);
         line-height: 1;
         pointer-events: none;
         user-select: none;
       }
 
-      .skills-card-body { text-align: left; }
+      .skills-card-body {
+        text-align: left;
+      }
 
       .skills-icon {
         width: 64px;
@@ -234,10 +259,22 @@ Dependencies:
         transform: rotate(360deg);
       }
 
-      .skills-card-blue .skills-icon   { background: rgba(216,172,39,0.2); color: #f0c842; }
-      .skills-card-green .skills-icon  { background: rgba(29,143,127,0.25); color: #4dd9c8; }
-      .skills-card-yellow .skills-icon { background: rgba(216,172,39,0.2); color: #f0c842; }
-      .skills-card-pink .skills-icon   { background: rgba(29,143,127,0.25); color: #4dd9c8; }
+      .skills-card-blue .skills-icon {
+        background: rgba(216, 172, 39, 0.2);
+        color: #f0c842;
+      }
+      .skills-card-green .skills-icon {
+        background: rgba(29, 143, 127, 0.25);
+        color: #4dd9c8;
+      }
+      .skills-card-yellow .skills-icon {
+        background: rgba(216, 172, 39, 0.2);
+        color: #f0c842;
+      }
+      .skills-card-pink .skills-icon {
+        background: rgba(29, 143, 127, 0.25);
+        color: #4dd9c8;
+      }
 
       .skills-card h5 {
         font-size: 20px;
@@ -248,13 +285,15 @@ Dependencies:
 
       .skills-card p {
         font-size: 14px;
-        color: rgba(255,255,255,0.65);
+        color: rgba(255, 255, 255, 0.65);
         line-height: 1.75;
         margin: 0;
       }
 
       @media (max-width: 768px) {
-        .skills-section { padding: 70px 0; }
+        .skills-section {
+          padding: 70px 0;
+        }
         .skills-card {
           padding: 28px 22px;
           margin-bottom: 16px;
@@ -289,9 +328,12 @@ Dependencies:
       }
 
       .how-it-works-section::before {
-        content: '';
+        content: "";
         position: absolute;
-        top: 0; left: 0; right: 0; bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23d8ac27' stroke-opacity='0.05' stroke-width='1'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E");
         background-size: 60px 60px;
         pointer-events: none;
@@ -300,7 +342,7 @@ Dependencies:
       .how-it-works-section .hiw-badge,
       .hiw-badge {
         display: inline-block;
-        background: rgba(216,172,39,0.12);
+        background: rgba(216, 172, 39, 0.12);
         color: #b8860b;
         font-size: 12px;
         font-weight: 700;
@@ -308,7 +350,7 @@ Dependencies:
         text-transform: uppercase;
         padding: 6px 18px;
         border-radius: 50px;
-        border: 1px solid rgba(216,172,39,0.25);
+        border: 1px solid rgba(216, 172, 39, 0.25);
         margin-bottom: 16px;
       }
 
@@ -334,19 +376,27 @@ Dependencies:
       }
 
       .hiw-steps-row::before {
-        content: '';
+        content: "";
         position: absolute;
         top: 52px;
         left: calc(12.5% + 24px);
         right: calc(12.5% + 24px);
         height: 2px;
-        background: linear-gradient(to right, #d8ac27, #0a6558, #d8ac27, #0a6558);
+        background: linear-gradient(
+          to right,
+          #d8ac27,
+          #0a6558,
+          #d8ac27,
+          #0a6558
+        );
         opacity: 0.25;
         z-index: 0;
       }
 
       @media (max-width: 991px) {
-        .hiw-steps-row::before { display: none; }
+        .hiw-steps-row::before {
+          display: none;
+        }
       }
 
       /* Step card */
@@ -357,26 +407,34 @@ Dependencies:
         height: 100%;
         position: relative;
         z-index: 1;
-        transition: transform 0.35s ease, box-shadow 0.35s ease;
-        box-shadow: 0 4px 20px rgba(82,40,17,0.07);
-        border: 1px solid rgba(216,172,39,0.12);
+        transition:
+          transform 0.35s ease,
+          box-shadow 0.35s ease;
+        box-shadow: 0 4px 20px rgba(82, 40, 17, 0.07);
+        border: 1px solid rgba(216, 172, 39, 0.12);
         overflow: hidden;
       }
 
       .hiw-card::after {
-        content: '';
+        content: "";
         position: absolute;
-        top: 0; left: 0; right: 0;
+        top: 0;
+        left: 0;
+        right: 0;
         height: 4px;
         border-radius: 22px 22px 0 0;
       }
 
-      .hiw-card-gold::after  { background: linear-gradient(to right, #d8ac27, #f0c842); }
-      .hiw-card-teal::after  { background: linear-gradient(to right, #0a6558, #1d8f7f); }
+      .hiw-card-gold::after {
+        background: linear-gradient(to right, #d8ac27, #f0c842);
+      }
+      .hiw-card-teal::after {
+        background: linear-gradient(to right, #0a6558, #1d8f7f);
+      }
 
       .hiw-card:hover {
         transform: translateY(-10px);
-        box-shadow: 0 20px 50px rgba(82,40,17,0.13);
+        box-shadow: 0 20px 50px rgba(82, 40, 17, 0.13);
       }
 
       /* Icon circle */
@@ -402,13 +460,20 @@ Dependencies:
         transform: rotate(360deg);
       }
 
-      .hiw-icon-gold { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92610a; }
-      .hiw-icon-teal { background: linear-gradient(135deg, #d1faf5, #a7f3e4); color: #065f54; }
+      .hiw-icon-gold {
+        background: linear-gradient(135deg, #fef3c7, #fde68a);
+        color: #92610a;
+      }
+      .hiw-icon-teal {
+        background: linear-gradient(135deg, #d1faf5, #a7f3e4);
+        color: #065f54;
+      }
 
       /* Step number badge */
       .hiw-step-num {
         position: absolute;
-        top: 20px; right: 22px;
+        top: 20px;
+        right: 22px;
         font-size: 52px;
         font-weight: 900;
         line-height: 1;
@@ -446,9 +511,9 @@ Dependencies:
       }
 
       .hiw-link-gold {
-        background: rgba(216,172,39,0.1);
+        background: rgba(216, 172, 39, 0.1);
         color: #92610a;
-        border: 1px solid rgba(216,172,39,0.3);
+        border: 1px solid rgba(216, 172, 39, 0.3);
       }
 
       .hiw-link-gold:hover {
@@ -457,9 +522,9 @@ Dependencies:
       }
 
       .hiw-link-teal {
-        background: rgba(10,101,88,0.08);
+        background: rgba(10, 101, 88, 0.08);
         color: #0a6558;
-        border: 1px solid rgba(10,101,88,0.2);
+        border: 1px solid rgba(10, 101, 88, 0.2);
       }
 
       .hiw-link-teal:hover {
@@ -468,9 +533,15 @@ Dependencies:
       }
 
       @media (max-width: 991px) {
-        .how-it-works-section { padding: 70px 0; }
-        .how-it-works-section .hiw-title { font-size: 32px; }
-        .hiw-card { margin-bottom: 20px; }
+        .how-it-works-section {
+          padding: 70px 0;
+        }
+        .how-it-works-section .hiw-title {
+          font-size: 32px;
+        }
+        .hiw-card {
+          margin-bottom: 20px;
+        }
       }
 
       @media (max-width: 768px) {
@@ -529,7 +600,7 @@ Dependencies:
       }
 
       .featured-courses-section .section-header span.hiw-badge {
-        background: rgba(216,172,39,0.12);
+        background: rgba(216, 172, 39, 0.12);
         -webkit-text-fill-color: #b8860b;
         color: #b8860b;
         font-size: 12px;
@@ -1751,49 +1822,6 @@ Dependencies:
                 </div>
               </div>
             </div>
-            <!-- Slide 3 -->
-            <div class="swiper-slide">
-              <div class="slide-bg">
-                <img src="assets/img/bg/DJI_0004.JPG" />
-              </div>
-              <div class="slide-overlay"></div>
-              <div class="shape shape-1"></div>
-              <div class="shape shape-2"></div>
-
-              <div class="slide-content-wrapper mt-5">
-                <div class="slide-text-content">
-                  <div class="modern-badge">
-                    <span class="badge-icon"></span>
-                    <span>Pakistan's Best Courses</span>
-                  </div>
-                  <h1 class="modern-title">
-                    Learn Quran with
-                    <span class="title-gradient">Alkahaf Academy</span>
-                  </h1>
-                  <p class="modern-description">
-                    The sad people in the universe are so many .. but in Islam
-                    you move from happiness to happiness
-                  </p>
-                  <div class="modern-buttons">
-                    <a
-                      href="/courses/course-grid"
-                      class="modern-btn btn-primary-modern"
-                    >
-                      <span>Start Learning</span>
-                      <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a
-                      href="https://www.youtube.com/watch?v=a7rTLpjJ4FA"
-                      data-fancybox=""
-                      class="modern-btn btn-secondary-modern"
-                    >
-                      <span>Watch Preview</span>
-                      <i class="fas fa-play"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           <!-- Modern Navigation -->
@@ -2131,11 +2159,17 @@ Dependencies:
       <section class="featured-courses-section">
         <div class="container">
           <div class="section-header text-center">
-            <span class="hiw-badge" style="margin-bottom:16px;">Featured Courses</span>
+            <span class="hiw-badge" style="margin-bottom: 16px"
+              >Featured Courses</span
+            >
             <h3>Unlock The Treasures Of Arabic And The Quran</h3>
           </div>
           <div class="feature-course-slider-2"></div>
-          <div id="no-courses-message" class="text-center py-5" style="display: none;">
+          <div
+            id="no-courses-message"
+            class="text-center py-5"
+            style="display: none"
+          >
             <p class="fs-16 text-muted mb-0">Courses not uploaded yet.</p>
           </div>
           <div class="d-flex align-items-center justify-content-center">
@@ -2283,7 +2317,9 @@ Dependencies:
         <div class="container">
           <!-- Section Header -->
           <div class="section-header text-center">
-            <span class="hiw-badge" style="margin-bottom:16px;">Our Initiatives</span>
+            <span class="hiw-badge" style="margin-bottom: 16px"
+              >Our Initiatives</span
+            >
             <h2>Current Projects & Welfare Programs</h2>
           </div>
 
@@ -2355,9 +2391,14 @@ Dependencies:
               <div class="skills-card skills-card-blue">
                 <span class="skills-card-num">01</span>
                 <div class="skills-card-body">
-                  <div class="skills-icon"><i class="fas fa-user-check"></i></div>
+                  <div class="skills-icon">
+                    <i class="fas fa-user-check"></i>
+                  </div>
                   <h5>Certified Tutors</h5>
-                  <p>All tutors are certified by Al-Azhar, ensuring the highest standards of authentic Islamic education.</p>
+                  <p>
+                    All tutors are certified by Al-Azhar, ensuring the highest
+                    standards of authentic Islamic education.
+                  </p>
                 </div>
               </div>
             </div>
@@ -2368,7 +2409,10 @@ Dependencies:
                 <div class="skills-card-body">
                   <div class="skills-icon"><i class="fas fa-video"></i></div>
                   <h5>1 on 1 Online Classes</h5>
-                  <p>Enjoy personalized, 1-on-1 learning experiences tailored to your needs and schedule.</p>
+                  <p>
+                    Enjoy personalized, 1-on-1 learning experiences tailored to
+                    your needs and schedule.
+                  </p>
                 </div>
               </div>
             </div>
@@ -2379,7 +2423,10 @@ Dependencies:
                 <div class="skills-card-body">
                   <div class="skills-icon"><i class="fas fa-clock"></i></div>
                   <h5>Flexible Schedule</h5>
-                  <p>Choose the best time to study from our flexible scheduling options that fit seamlessly into your life.</p>
+                  <p>
+                    Choose the best time to study from our flexible scheduling
+                    options that fit seamlessly into your life.
+                  </p>
                 </div>
               </div>
             </div>
@@ -2388,9 +2435,14 @@ Dependencies:
               <div class="skills-card skills-card-pink">
                 <span class="skills-card-num">04</span>
                 <div class="skills-card-body">
-                  <div class="skills-icon"><i class="fas fa-chart-line"></i></div>
+                  <div class="skills-icon">
+                    <i class="fas fa-chart-line"></i>
+                  </div>
                   <h5>Trending Courses</h5>
-                  <p>Stay ahead with our trending courses, taught in innovative ways that keep you engaged and informed.</p>
+                  <p>
+                    Stay ahead with our trending courses, taught in innovative
+                    ways that keep you engaged and informed.
+                  </p>
                 </div>
               </div>
             </div>
@@ -2481,12 +2533,13 @@ Dependencies:
           <div class="text-center mb-5">
             <span class="hiw-badge">Simple Process</span>
             <h2 class="hiw-title">How It Works</h2>
-            <p class="hiw-sub">Start your Quranic journey at Al-Kahaf Academy in 4 easy steps</p>
+            <p class="hiw-sub">
+              Start your Quranic journey at Al-Kahaf Academy in 4 easy steps
+            </p>
           </div>
 
           <!-- Steps -->
           <div class="row g-4 hiw-steps-row">
-
             <!-- Step 1 -->
             <div class="col-lg-3 col-md-6">
               <div class="hiw-card hiw-card-gold">
@@ -2495,7 +2548,10 @@ Dependencies:
                   <i class="fas fa-file-alt"></i>
                 </div>
                 <h5>Fill in the Free Trial Form</h5>
-                <p>Fill in our quick form so our team can contact you and schedule your free trial session.</p>
+                <p>
+                  Fill in our quick form so our team can contact you and
+                  schedule your free trial session.
+                </p>
                 <a href="/shared/free-trial" class="hiw-link hiw-link-gold">
                   Free Trial Form <i class="fas fa-arrow-right"></i>
                 </a>
@@ -2510,7 +2566,10 @@ Dependencies:
                   <i class="fas fa-calendar-check"></i>
                 </div>
                 <h5>Confirm Your Appointment</h5>
-                <p>Our assigned tutor will contact you within 24 hours via email, phone, or WhatsApp to confirm details.</p>
+                <p>
+                  Our assigned tutor will contact you within 24 hours via email,
+                  phone, or WhatsApp to confirm details.
+                </p>
               </div>
             </div>
 
@@ -2522,8 +2581,15 @@ Dependencies:
                   <i class="fas fa-video"></i>
                 </div>
                 <h5>Join Your Online Class</h5>
-                <p>Download Zoom and attend your trial class at the scheduled time. The room link is sent upon confirmation.</p>
-                <a href="https://zoom.us/download" target="_blank" class="hiw-link hiw-link-gold">
+                <p>
+                  Download Zoom and attend your trial class at the scheduled
+                  time. The room link is sent upon confirmation.
+                </p>
+                <a
+                  href="https://zoom.us/download"
+                  target="_blank"
+                  class="hiw-link hiw-link-gold"
+                >
                   Download Zoom <i class="fas fa-arrow-right"></i>
                 </a>
               </div>
@@ -2537,13 +2603,15 @@ Dependencies:
                   <i class="fas fa-graduation-cap"></i>
                 </div>
                 <h5>Enroll & Start Learning</h5>
-                <p>Satisfied with your trial? Choose your course package, make payment, and start learning the same day.</p>
+                <p>
+                  Satisfied with your trial? Choose your course package, make
+                  payment, and start learning the same day.
+                </p>
                 <a href="/courses/course-grid" class="hiw-link hiw-link-teal">
                   Browse Courses <i class="fas fa-arrow-right"></i>
                 </a>
               </div>
             </div>
-
           </div>
         </div>
       </section>
@@ -2565,7 +2633,9 @@ Dependencies:
             <div class="col-lg-6">
               <div class="how-it-works-content aos" data-aos="fade-up">
                 <div class="section-header">
-                  <span class="hiw-badge" style="margin-bottom:16px;">How it Works</span>
+                  <span class="hiw-badge" style="margin-bottom: 16px"
+                    >How it Works</span
+                  >
                   <h2 class="mb-1">Start your Learning Journey Today!</h2>
                   <p>
                     Unlock Your Potential and Achieve Your Dreams with Our
@@ -2626,7 +2696,9 @@ Dependencies:
       <div class="featured-instructor-sec">
         <div class="container">
           <div class="section-header text-center" data-aos="fade-up">
-            <span class="hiw-badge" style="margin-bottom:16px;">Featured Instructors</span>
+            <span class="hiw-badge" style="margin-bottom: 16px"
+              >Featured Instructors</span
+            >
             <h2>Top Class &amp; Professional Instructors</h2>
             <p>
               Meet our certified scholars dedicated to authentic Islamic
@@ -2636,7 +2708,7 @@ Dependencies:
 
           <!-- Loading state -->
           <div id="instructors-loading" class="text-center py-4">
-            <div class="spinner-border" style="color: #d8ac27;" role="status">
+            <div class="spinner-border" style="color: #d8ac27" role="status">
               <span class="visually-hidden">Loading...</span>
             </div>
           </div>
@@ -2647,7 +2719,9 @@ Dependencies:
             class="text-center py-4"
             style="display: none"
           >
-            <p style="color: #8a7669;">No instructors available at the moment.</p>
+            <p style="color: #8a7669">
+              No instructors available at the moment.
+            </p>
           </div>
 
           <!-- Slider (populated dynamically) -->
@@ -2668,9 +2742,9 @@ Dependencies:
             padding: 80px 0;
             background: linear-gradient(
               135deg,
-              #2c1506 0%,
-              #522811 50%,
-              #3d1d0a 100%
+              #0a6558 0%,
+              #0d4f47 50%,
+              #06342f 100%
             );
             position: relative;
             overflow: hidden;
@@ -2682,8 +2756,22 @@ Dependencies:
             left: 0;
             right: 0;
             bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d8ac27' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-image:
+              radial-gradient(
+                circle at 90% 10%,
+                rgba(216, 172, 39, 0.08) 0%,
+                transparent 50%
+              ),
+              radial-gradient(
+                circle at 5% 90%,
+                rgba(255, 255, 255, 0.04) 0%,
+                transparent 50%
+              );
             pointer-events: none;
+          }
+          .ft-testimonials-section .container {
+            position: relative;
+            z-index: 1;
           }
           .ft-testimonials-section .section-title-white {
             font-size: 34px;
@@ -2697,16 +2785,18 @@ Dependencies:
             margin-bottom: 48px;
           }
           .hp-testimonial-card {
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(216, 172, 39, 0.2);
             border-radius: 16px;
             padding: 30px 28px;
             height: 100%;
-            backdrop-filter: blur(4px);
+            backdrop-filter: blur(6px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
             transition: all 0.3s ease;
           }
           .hp-testimonial-card:hover {
-            background: rgba(216, 172, 39, 0.1);
+            background: rgba(216, 172, 39, 0.08);
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
             border-color: rgba(216, 172, 39, 0.5);
             transform: translateY(-4px);
           }
@@ -2715,7 +2805,7 @@ Dependencies:
             color: #d8ac27;
             line-height: 1;
             margin-bottom: 16px;
-            opacity: 0.8;
+            opacity: 0.85;
           }
           .hp-testimonial-card .review-text {
             font-size: 14px;
@@ -2765,11 +2855,17 @@ Dependencies:
             color: rgba(255, 255, 255, 0.5);
           }
           .hp-testimonial-card .review-badge {
+            display: inline-block;
             font-size: 11px;
-            color: rgba(216, 172, 39, 0.7);
-            margin-bottom: 4px;
+            color: #f0cf6e;
+            background: rgba(216, 172, 39, 0.12);
+            border: 1px solid rgba(216, 172, 39, 0.3);
+            padding: 4px 12px;
+            border-radius: 50px;
+            margin-bottom: 12px;
             letter-spacing: 1px;
             text-transform: uppercase;
+            font-weight: 700;
           }
         </style>
         <div class="container">
@@ -2781,7 +2877,11 @@ Dependencies:
           </div>
           <div class="row g-4" id="hp-reviews-grid">
             <div class="col-12 text-center py-5">
-              <div class="spinner-border text-warning" role="status"></div>
+              <div
+                class="spinner-border"
+                style="color: #d8ac27"
+                role="status"
+              ></div>
             </div>
           </div>
         </div>
@@ -2890,7 +2990,7 @@ Dependencies:
               <div class="faq-img" data-aos="fade-up">
                 <img
                   class="img-fluid rounded-5"
-                  src="assets/img/feature/feature-5.png"
+                  src="assets/img/feature/feature-5.webp"
                   alt="img"
                 />
                 <span><i class="isax isax-message-question5"></i></span>
@@ -2899,7 +2999,9 @@ Dependencies:
             <div class="col-lg-6">
               <div class="faq-content">
                 <div class="section-header" data-aos="fade-up">
-                  <span class="hiw-badge" style="margin-bottom:16px;">Your Questions are Answered</span>
+                  <span class="hiw-badge" style="margin-bottom: 16px"
+                    >Your Questions are Answered</span
+                  >
                   <h2 class="mb-1">Frequently Asked Questions</h2>
                   <p class="mb-4">
                     Explore detailed answers to the most common questions about
@@ -3650,6 +3752,36 @@ Dependencies:
 			     FOOTER SECTION
 			     Contains: Logo, About, Quick Links, Social Icons, Copyright
 			     ============================================================ -->
+      <style>
+        /* Footer contact icons — white with zoom on hover */
+        .footer-contact-info .footer-address img {
+          filter: brightness(0) invert(1);
+          transition: transform 0.3s ease;
+        }
+        .footer-contact-info .footer-address:hover img {
+          transform: scale(1.3);
+        }
+
+        /* Footer bottom social icons */
+        .footer-social-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 36px;
+          height: 36px;
+          border-radius: 10px;
+          background: rgba(255, 255, 255, 0.08);
+          color: #fff;
+          font-size: 14px;
+          transition: background 0.3s ease, transform 0.2s ease;
+          text-decoration: none;
+        }
+        .footer-social-icon:hover {
+          background: rgba(216, 172, 39, 0.25);
+          color: #d8ac27;
+          transform: translateY(-2px);
+        }
+      </style>
       <footer class="footer">
         <div class="footer-bg">
           <img
@@ -3791,12 +3923,24 @@ Dependencies:
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="d-flex align-items-center justify-content-center justify-content-md-end gap-2">
-                  <a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-facebook-f"></i></a>
-                  <a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-instagram"></i></a>
-                  <a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-x-twitter"></i></a>
-                  <a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-youtube"></i></a>
-                  <a href="javascript:void(0);" class="footer-social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                <div
+                  class="d-flex align-items-center justify-content-center justify-content-md-end gap-2"
+                >
+                  <a href="javascript:void(0);" class="footer-social-icon"
+                    ><i class="fa-brands fa-facebook-f"></i
+                  ></a>
+                  <a href="javascript:void(0);" class="footer-social-icon"
+                    ><i class="fa-brands fa-instagram"></i
+                  ></a>
+                  <a href="javascript:void(0);" class="footer-social-icon"
+                    ><i class="fa-brands fa-x-twitter"></i
+                  ></a>
+                  <a href="javascript:void(0);" class="footer-social-icon"
+                    ><i class="fa-brands fa-youtube"></i
+                  ></a>
+                  <a href="javascript:void(0);" class="footer-social-icon"
+                    ><i class="fa-brands fa-linkedin"></i
+                  ></a>
                 </div>
               </div>
             </div>

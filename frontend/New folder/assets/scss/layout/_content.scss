@@ -1,0 +1,95 @@
+@use "../utils";
+
+/*============================
+  23.content
+============================*/
+.content {
+    padding: 60px 0;
+    @include utils.respond-below(lg) {
+        padding: 40px 0;
+    }
+    &.content-two {
+        padding-bottom: 36px;
+        @include utils.respond-below(md) {
+            padding-bottom: 16px;
+        }
+    }
+}
+.page-header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    justify-content: space-between;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    .breadcrumb {
+        margin-bottom: 0;
+    }
+    @include utils.respond-below(sm) {
+        flex-direction: column;
+        align-items: self-start;
+    }
+    .page-title {
+        margin-bottom: 10px;
+    }
+    h3{
+        font-weight: utils.$font-weight-bold;
+        color: utils.$gray-900;
+        font-size: utils.$font-size-18;
+        @include utils.respond-below(lg) {
+            font-size: utils.$font-size-base;
+        }
+    }
+    h4 {
+        font-weight: utils.$font-weight-semibold;
+        color: utils.$gray-900;
+        font-size: utils.$font-size-18;
+        margin-bottom: 5px;
+        @include utils.respond-below(lg) {
+            font-size: utils.$font-size-18;
+        }
+    }
+    h6 {
+        font-size: utils.$font-size-base;
+        color: utils.$gray-700;
+        font-weight: utils.$font-weight-normal;
+        @include utils.respond-below(lg) {
+            font-size: utils.$font-size-12;
+        }
+        @include utils.respond-below(sm) {
+            font-size: utils.$font-size-12;
+            margin-bottom: 20px;
+        }
+    }
+}
+.back-to-top-icon {
+    position: fixed;
+    right: 15px;
+    bottom: 30px;
+    z-index: 9999;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+	border-radius: 0 10px 0 10px;
+	background: utils.$primary;
+    color: utils.$white;
+    cursor: pointer;
+    border: 0;
+    text-decoration: none;
+    transition: opacity 0.2s ease-out;
+    opacity: 0;
+    @include utils.transition(all 0.5s ease);
+    &:hover {
+        color: utils.$white;
+        background: utils.$primary;
+    }
+    &.show {
+        opacity: 1;
+        @include utils.transition(all 0.5s ease);
+    }
+}
