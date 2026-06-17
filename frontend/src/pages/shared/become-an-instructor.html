@@ -1025,8 +1025,8 @@
                       </div>
                     </div>
 
-                    <!-- CV Upload -->
-                    <div class="col-12">
+                    <!-- CV Upload (postponed — re-enable once upload issue is resolved) -->
+                    <div class="col-12" style="display: none">
                       <label class="form-label"
                         >CV / Resume <span class="text-danger">*</span>
                         <small class="text-muted fw-normal"
@@ -1608,20 +1608,7 @@
             markValid("motivation");
             motErr.style.display = "none";
           }
-          // Terms
-          // CV required
-          var cvErr = document.getElementById("cv-error");
-          if (!_cvUrl) {
-            cvErr.textContent = "Please upload your CV before submitting.";
-            cvErr.style.display = "block";
-            document.getElementById("cv-upload-zone").style.borderColor =
-              "#dc3545";
-            ok = false;
-          } else {
-            cvErr.style.display = "none";
-            document.getElementById("cv-upload-zone").style.borderColor =
-              "#d8ac27";
-          }
+          // CV upload postponed — not required for now
 
           if (!document.getElementById("terms").checked) {
             document.getElementById("terms").classList.add("is-invalid");

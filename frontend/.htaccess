@@ -1,35 +1,42 @@
-# AlKahaf LMS - Frontend & Backend Routing Configuration
-# This file ensures proper routing between static frontend files and backend API
+# AlKahaf LMS - Frontend Routing Configuration
 
-# Enable Rewrite Engine
 RewriteEngine On
-
-# Set default index file
 DirectoryIndex index.html
 
-# ========================================
-# BACKEND API ROUTING
-# ========================================
-# Route all /api/ requests to the backend Node.js app on port 5000
+# ── Backend API proxy ─────────────────────────────────────────────────────────
 RewriteCond %{REQUEST_URI} ^/api/
 RewriteRule ^(.*)$ http://localhost:5000/$1 [P,L]
 
-# ========================================
-# FRONTEND STATIC FILE SERVING
-# ========================================
-# Serve static files directly if they exist
+# ── Serve real files/directories as-is ───────────────────────────────────────
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# ========================================
-# DEFAULT HOMEPAGE
-# ========================================
-# Redirect root domain to index.html
+# ── Section routing: clean URL → src/pages/<section>/<page>.html ─────────────
+
+# /instructor/<page>  →  src/pages/instructor/<page>.html
+RewriteRule ^instructor/([^/]+)/?$ /src/pages/instructor/$1.html [L]
+
+# /student/<page>  →  src/pages/student/<page>.html
+RewriteRule ^student/([^/]+)/?$ /src/pages/student/$1.html [L]
+
+# /admin/<page>  →  src/pages/admin/<page>.html
+RewriteRule ^admin/([^/]+)/?$ /src/pages/admin/$1.html [L]
+
+# /courses/<page>  →  src/pages/courses/<page>.html
+RewriteRule ^courses/([^/]+)/?$ /src/pages/courses/$1.html [L]
+
+# /auth/<page>  →  src/pages/auth/<page>.html
+RewriteRule ^auth/([^/]+)/?$ /src/pages/auth/$1.html [L]
+
+# /shared/<page>  →  src/pages/shared/<page>.html
+RewriteRule ^shared/([^/]+)/?$ /src/pages/shared/$1.html [L]
+
+# /blog/<page>  →  src/pages/blog/<page>.html
+RewriteRule ^blog/([^/]+)/?$ /src/pages/blog/$1.html [L]
+
+# ── Homepage ──────────────────────────────────────────────────────────────────
 RewriteRule ^$ /index.html [L]
 
-# ========================================
-# ERROR HANDLING
-# ========================================
-# Custom error pages (optional)
+# ── 404 fallback ─────────────────────────────────────────────────────────────
 ErrorDocument 404 /index.html

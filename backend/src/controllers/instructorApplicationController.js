@@ -10,9 +10,7 @@ exports.submitApplication = async (req, res) => {
     if (!firstName || !lastName || !email) {
       return res.status(400).json({ success: false, message: 'First name, last name and email are required.' });
     }
-    if (!cvUrl) {
-      return res.status(400).json({ success: false, message: 'CV is required. Please upload your CV before submitting.' });
-    }
+    // CV upload temporarily postponed — not required for now
 
     // Prevent duplicate pending applications
     const existing = await InstructorApplication.findOne({ where: { email, status: 'pending' } });

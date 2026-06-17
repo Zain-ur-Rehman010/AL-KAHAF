@@ -3604,7 +3604,7 @@ Dependencies:
 
       <script>
         (function () {
-          var API_BASE = "http://localhost:5000/api/v1";
+          var API_BASE = typeof API_CONFIG !== "undefined" ? API_CONFIG.BASE_URL : "http://localhost:5000/api/v1";
           var DEFAULT_THUMB = "/assets/img/blog/blog-35.jpg";
           var DEFAULT_AVATAR = "/assets/img/user/user-07.jpg";
 
@@ -4112,7 +4112,7 @@ Dependencies:
     <!-- Projects Section: dynamic API loader + tab filtering -->
     <script>
       (function () {
-        var API_BASE = "http://localhost:5000/api/v1";
+        var API_BASE = typeof API_CONFIG !== "undefined" ? API_CONFIG.BASE_URL : "http://localhost:5000/api/v1";
 
         // category mapping: API category value → tab data-category
         var CAT_MAP = {
@@ -4252,90 +4252,74 @@ Dependencies:
     </button>
 
     <!-- Dynamic Featured Courses Loader -->
+    <style>
+      .course-cat-badge { display:inline-flex;align-items:center;padding:3px 12px;border-radius:50px;font-size:12px;font-weight:500;white-space:nowrap; }
+      .course-cat-IslamicStudies { background:#e8f5e9;color:#2e7d32; }
+      .course-cat-Arabic         { background:#fff3e0;color:#e65100; }
+      .course-cat-Quran          { background:#e3f2fd;color:#1565c0; }
+      .course-cat-Tajweed        { background:#f3e5f5;color:#6a1b9a; }
+      .course-cat-default        { background:#f5f5f5;color:#555; }
+    </style>
     <script>
       (function () {
         "use strict";
 
-        var API_BASE = "http://localhost:5000/api/v1";
+        var API_BASE = typeof API_CONFIG !== "undefined" ? API_CONFIG.BASE_URL : "http://localhost:5000/api/v1";
         var FALLBACK_IMG = "assets/img/course/_course1.jpeg";
 
         function formatPrice(price) {
           var p = parseFloat(price);
           if (isNaN(p) || p === 0) return "Free";
-          return "Rs" + Math.round(p);
+          return "PKR " + Math.round(p).toLocaleString();
         }
 
         function getInitial(name) {
-          return name ? name.charAt(0).toUpperCase() : "I";
+          return (name || "I").charAt(0).toUpperCase();
+        }
+
+        function getCatClass(cat) {
+          var map = { IslamicStudies: "course-cat-IslamicStudies", Arabic: "course-cat-Arabic", Quran: "course-cat-Quran", Tajweed: "course-cat-Tajweed" };
+          return map[cat] || "course-cat-default";
         }
 
         function buildSlideHTML(course) {
           var imgSrc = course.thumbnail || FALLBACK_IMG;
           var instructorName = course.instructor
-            ? course.instructor.firstName + " " + course.instructor.lastName
+            ? ((course.instructor.firstName || "") + " " + (course.instructor.lastName || "")).trim()
             : "Instructor";
           var rating = parseFloat(course.rating) || 0;
-          var ratingDisplay =
-            rating > 0
-              ? rating.toFixed(1) +
-                " (" +
-                (course.enrollmentCount || 0) +
-                " Students)"
-              : "New Course";
           var priceDisplay = formatPrice(course.price);
           var courseUrl = course.id
             ? "/courses/course-details?id=" + course.id
             : "/courses/course-grid";
+          var titleSafe = (course.title || "").replace(/"/g, "&quot;");
+
+          var isNew = course.createdAt && (Date.now() - new Date(course.createdAt).getTime() < 30 * 24 * 60 * 60 * 1000);
+          var badges = "";
+          if (course.isFeatured) badges += '<span style="background:#d8ac27;color:#1a0a00;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase;line-height:1;">&#9733; Featured</span>';
+          if (isNew)             badges += '<span style="background:#28a745;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase;line-height:1;' + (course.isFeatured ? "margin-left:6px;" : "") + '">New</span>';
+          var badgeOverlay = badges ? '<div style="position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:6px;z-index:2;">' + badges + "</div>" : "";
 
           return (
             "<div>" +
-            '<div class="course-item-two course-item mb-0" style="cursor:pointer;position:relative;" onclick="window.location.href=\'' +
-            courseUrl +
-            '\'" role="link" tabindex="0" aria-label="' +
-            course.title.replace(/"/g, "&quot;") +
-            "\" onkeydown=\"if(event.key==='Enter')window.location.href='" +
-            courseUrl +
-            "'\">" +
-            '<div class="course-img" style="position:relative">' +
-            '<img src="' +
-            imgSrc +
-            '" alt="' +
-            course.title.replace(/"/g, "&quot;") +
-            '" class="img-fluid" onerror="this.src=\'' +
-            FALLBACK_IMG +
-            "'\">" +
-            (course.category
-              ? '<span style="position:absolute;top:8px;left:8px;background:#522811;color:#d8ac27;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;letter-spacing:.3px;">' +
-                course.category +
-                "</span>"
-              : "") +
+            '<div class="course-item-two course-item mb-0" style="cursor:pointer;position:relative;" onclick="window.location.href=\'' + courseUrl + '\'" role="link" tabindex="0" aria-label="' + titleSafe + "\" onkeydown=\"if(event.key==='Enter')window.location.href='" + courseUrl + "'\">" +
+            '<div class="course-img" style="position:relative;">' +
+            badgeOverlay +
+            '<img src="' + imgSrc + '" alt="' + titleSafe + '" class="img-fluid" onerror="this.src=\'' + FALLBACK_IMG + "'\">" +
             "</div>" +
             '<div class="course-content">' +
-            '<div class="d-flex align-items-center mb-2" style="min-width:0">' +
-            '<div class="avatar avatar-sm rounded-circle d-flex align-items-center justify-content-center text-white fw-bold flex-shrink-0" style="background:#522811;width:32px;height:32px;font-size:14px">' +
-            getInitial(instructorName) +
+            '<div class="d-flex justify-content-between align-items-center mb-2">' +
+            '<div class="d-flex align-items-center">' +
+            '<div class="avatar avatar-sm rounded-circle d-flex align-items-center justify-content-center text-white fw-bold" style="background:#522811;min-width:32px;height:32px;font-size:14px">' + getInitial(instructorName) + "</div>" +
+            '<span class="link-default fs-14 ms-2">' + instructorName + "</span>" +
             "</div>" +
-            '<div class="ms-2" style="min-width:0;overflow:hidden">' +
-            '<span class="link-default fs-14 d-block text-truncate">' +
-            instructorName +
-            "</span>" +
+            '<span class="course-cat-badge ' + getCatClass(course.category) + '">' + (course.category || "") + "</span>" +
             "</div>" +
-            "</div>" +
-            '<h6 class="title mb-2">' +
-            course.title +
-            "</h6>" +
-            (rating > 0
-              ? '<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' +
-                ratingDisplay +
-                "</p>"
-              : "") +
+            '<h6 class="title mb-2">' + (course.title || "") + "</h6>" +
+            (rating > 0 ? '<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' + rating.toFixed(1) + " (" + (course.enrollmentCount || 0) + " Students)</p>" : "") +
             '<div class="d-flex align-items-center justify-content-between">' +
-            '<span class="text-secondary fw-bold lh-1" style="font-size:1.25rem">' +
-            priceDisplay +
-            "</span>" +
-            '<button type="button" onclick="event.stopPropagation();window.location.href=\'' +
-            courseUrl +
-            '\'" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></button>' +
+            '<span class="text-secondary fw-bold lh-1" style="font-size:1.25rem">' + priceDisplay + "</span>" +
+            '<button type="button" onclick="event.stopPropagation();window.location.href=\'' + courseUrl + '\'" class="btn btn-dark btn-sm d-inline-flex align-items-center">View Course<i class="isax isax-arrow-right-3 ms-1"></i></button>' +
             "</div>" +
             "</div>" +
             "</div>" +

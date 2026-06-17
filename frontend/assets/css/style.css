@@ -19451,12 +19451,12 @@ fieldset .quiz-attempt-card {
   width: 80px;
   height: 80px;
   border-radius: 30px;
-  background-color: #8c6c0f;
+  background-color: #522811;
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 48px;
-  color: var(--gray-900);
+  color: #d8ac27;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);

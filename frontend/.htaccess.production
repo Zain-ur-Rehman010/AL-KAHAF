@@ -175,6 +175,10 @@ RewriteRule ^instructor/grid/?$ src/pages/instructor/instructor-grid.html [L]
 RewriteRule ^instructor/instructor-grid/?$ src/pages/instructor/instructor-grid.html [L]
 RewriteRule ^instructor/list/?$ src/pages/instructor/instructor-list.html [L]
 RewriteRule ^instructor/instructor-list/?$ src/pages/instructor/instructor-list.html [L]
+RewriteRule ^instructor/students/?$ src/pages/instructor/instructor-students.html [L]
+RewriteRule ^instructor/instructor-students/?$ src/pages/instructor/instructor-students.html [L]
+RewriteRule ^instructor/student-list/?$ src/pages/instructor/instructor-student-list.html [L]
+RewriteRule ^instructor/instructor-student-list/?$ src/pages/instructor/instructor-student-list.html [L]
 
 # Admin
 RewriteRule ^admin/?$ src/pages/admin/admin-dashboard.html [L]
@@ -214,6 +218,8 @@ RewriteRule ^admin/predefined-courses/?$ src/pages/admin/predefined-courses.html
 RewriteRule ^admin/welfare-programs/?$ src/pages/admin/welfare-programs.html [L]
 RewriteRule ^admin/welfare-program/add/?$ src/pages/admin/welfare-program-add.html [L]
 RewriteRule ^admin/welfare-program-add/?$ src/pages/admin/welfare-program-add.html [L]
+RewriteRule ^admin/reviews/?$ src/pages/admin/reviews-list.html [L]
+RewriteRule ^admin/reviews-list/?$ src/pages/admin/reviews-list.html [L]
 
 #########################
 # REDIRECT OLD DIRECT HTML URLS (301 Permanent)

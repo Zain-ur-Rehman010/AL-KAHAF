@@ -9,7 +9,9 @@
     "migrate": "node migrations/00-fresh-setup.js",
     "seed:admin": "node migrations/seed-admin.js",
     "seed:courses": "node seed-courses.js",
+    "seed:welfare-programs": "node seed-welfare-programs.js",
     "seed:predefined-courses": "node migrations/seed-predefined-courses.js",
+    "seed:test-data": "node migrations/seed-test-data.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },

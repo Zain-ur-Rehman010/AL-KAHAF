@@ -1,4 +1,7 @@
-const { User, Course, Enrollment } = require('../models');
+const {
+  User, Course, Enrollment, Payment, Notification, Certificate,
+  Review, InstructorCourse, InstructorStudent, InstructorApplication, TrialEmailLog,
+} = require('../models');
 const { notifyAdmins } = require('../services/notificationService');
 
 exports.getUserProfile = async (req, res) => {
@@ -226,6 +229,30 @@ exports.deleteUser = async (req, res) => {
     }
 
     const userName = `${user.firstName} ${user.lastName}`;
+    const uid = user.id;
+
+    // Delete all related records before removing the user to avoid FK constraint errors.
+    // Order matters: dependents of dependents first.
+    await Enrollment.destroy({ where: { studentId: uid } });
+    await Payment.destroy({ where: { studentId: uid } });
+    await Certificate.destroy({ where: { studentId: uid } });
+    await Review.destroy({ where: { userId: uid } });
+    await Notification.destroy({ where: { userId: uid } });
+    await InstructorStudent.destroy({ where: { studentId: uid } });
+    await InstructorStudent.destroy({ where: { instructorId: uid } });
+    await InstructorCourse.destroy({ where: { instructorId: uid } });
+    if (TrialEmailLog) await TrialEmailLog.destroy({ where: { userId: uid } });
+    if (InstructorApplication) await InstructorApplication.destroy({ where: { userId: uid } });
+    // If instructor: delete their courses and related course enrollments first
+    if (user.role === 'instructor') {
+      const instructorCourses = await Course.findAll({ where: { instructorId: uid }, attributes: ['id'] });
+      const courseIds = instructorCourses.map(c => c.id);
+      if (courseIds.length) {
+        await Enrollment.destroy({ where: { courseId: courseIds } });
+        await Course.destroy({ where: { id: courseIds } });
+      }
+    }
+
     await user.destroy();
 
     notifyAdmins({
