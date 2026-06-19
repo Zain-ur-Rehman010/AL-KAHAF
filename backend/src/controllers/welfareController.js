@@ -53,7 +53,7 @@ exports.getProgramById = async (req, res) => {
 
 exports.createProgram = async (req, res) => {
   try {
-    const { title, category, description, goal, location, beneficiaries, banner, gallery, impact, fundUse, milestones, urgent, status, startedDate } = req.body;
+    const { title, category, description, goal, location, beneficiaries, thumbnail, banner, gallery, impact, fundUse, milestones, urgent, status, startedDate } = req.body;
     if (!title || !category || !goal) {
       return res.status(400).json({ success: false, message: 'title, category and goal are required' });
     }
@@ -68,7 +68,7 @@ exports.createProgram = async (req, res) => {
 
     const prog = await WelfareProgram.create({
       title, slug, category, description, goal,
-      location, beneficiaries, banner,
+      location, beneficiaries, thumbnail: thumbnail || null, banner,
       gallery:    Array.isArray(gallery)    ? gallery    : [],
       impact:     Array.isArray(impact)     ? impact     : [],
       fundUse:    fundUse    || null,
@@ -90,7 +90,7 @@ exports.updateProgram = async (req, res) => {
     const prog = await WelfareProgram.findByPk(req.params.id);
     if (!prog) return res.status(404).json({ success: false, message: 'Program not found' });
 
-    const allowed = ['title', 'category', 'description', 'goal', 'raised', 'donors', 'location', 'beneficiaries', 'banner', 'gallery', 'impact', 'fundUse', 'milestones', 'urgent', 'status', 'startedDate'];
+    const allowed = ['title', 'category', 'description', 'goal', 'raised', 'donors', 'location', 'beneficiaries', 'thumbnail', 'banner', 'gallery', 'impact', 'fundUse', 'milestones', 'urgent', 'status', 'startedDate'];
     for (const key of allowed) {
       if (req.body[key] !== undefined) prog[key] = req.body[key];
     }

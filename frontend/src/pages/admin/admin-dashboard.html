@@ -617,6 +617,49 @@
 				</div>
 				<!-- /Free Trial Requests -->
 
+				<!-- Contact Messages -->
+				<div class="row mt-4 dashboard-cards-row">
+					<div class="col-12">
+						<div class="card bg-white rounded-3 shadow-sm">
+							<div class="card-header border-0 d-flex align-items-center justify-content-between flex-wrap gap-2">
+								<div class="d-flex align-items-center gap-2 flex-wrap">
+									<h5 class="mb-0">Contact Messages</h5>
+									<span id="contact-new-badge" class="badge bg-danger" style="display:none"></span>
+									<span id="contact-total-count" class="text-muted small"></span>
+								</div>
+								<div class="d-flex gap-2">
+									<select id="contact-status-filter" class="form-select form-select-sm" style="width:120px">
+										<option value="">All Status</option>
+										<option value="new">New</option>
+										<option value="read">Read</option>
+										<option value="replied">Replied</option>
+									</select>
+								</div>
+							</div>
+							<div class="card-body p-0">
+								<div class="table-responsive">
+									<table class="table table-hover mb-0">
+										<thead class="table-light">
+											<tr>
+												<th class="ps-4">Name</th>
+												<th>Email / Phone</th>
+												<th>Subject</th>
+												<th>Message</th>
+												<th>Date</th>
+												<th>Status</th>
+											</tr>
+										</thead>
+										<tbody id="contact-tbody">
+											<tr><td colspan="6" class="text-center py-4 text-muted">Loading…</td></tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Contact Messages -->
+
 				<!-- Welfare Programs Widget -->
 				<div class="row mt-4 dashboard-cards-row">
 					<div class="col-12">
@@ -1024,6 +1067,83 @@
 		if (filter) filter.addEventListener('change', function() { loadFreeTrialRequests(this.value); });
 	});
 	// ---- END FREE TRIAL REQUESTS ----
+
+	// ---- CONTACT MESSAGES ----
+	function loadContactMessages(statusFilter) {
+		var tbody = document.getElementById('contact-tbody');
+		if (!tbody) return;
+		var token = localStorage.getItem('accessToken');
+		var url = (typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1') + '/contact?limit=50&page=1';
+		if (statusFilter) url += '&status=' + encodeURIComponent(statusFilter);
+		fetch(url, { headers: { 'Authorization': 'Bearer ' + token } })
+			.then(function(r) { return r.json(); })
+			.then(function(d) { renderContactMessages(d.data || [], d.pagination); })
+			.catch(function() {
+				tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted">Unable to load messages</td></tr>';
+			});
+	}
+
+	function renderContactMessages(messages, pagination) {
+		var tbody = document.getElementById('contact-tbody');
+		var badge = document.getElementById('contact-new-badge');
+		var countEl = document.getElementById('contact-total-count');
+		if (!tbody) return;
+		if (countEl && pagination) countEl.textContent = 'Showing ' + messages.length + ' of ' + pagination.total;
+		if (!messages || !messages.length) {
+			tbody.innerHTML = '<tr><td colspan="6" class="text-center py-4 text-muted">No contact messages yet</td></tr>';
+			if (badge) badge.style.display = 'none';
+			return;
+		}
+		var newCount = messages.filter(function(m) { return m.status === 'new'; }).length;
+		if (badge) {
+			badge.textContent = newCount + ' New';
+			badge.style.display = newCount > 0 ? 'inline-block' : 'none';
+		}
+		var statusColors = { new: 'danger', read: 'secondary', replied: 'success' };
+		var ago = function(dt) {
+			var d = Math.floor((Date.now() - new Date(dt)) / 1000);
+			return d < 3600 ? Math.floor(d / 60) + 'm ago' : d < 86400 ? Math.floor(d / 3600) + 'h ago' : Math.floor(d / 86400) + 'd ago';
+		};
+		tbody.innerHTML = messages.map(function(m) {
+			var ini = (m.name || 'C').split(' ').map(function(w) { return w[0]; }).join('').substring(0, 2).toUpperCase();
+			var sc = statusColors[m.status] || 'secondary';
+			var sl = (m.status || 'new').charAt(0).toUpperCase() + (m.status || 'new').slice(1);
+			var shortMsg = (m.message || '').length > 80 ? m.message.substring(0, 80) + '…' : m.message;
+			return '<tr>'
+				+ '<td class="ps-4"><div class="d-flex align-items-center gap-2">'
+				+ '<span class="rounded-circle d-inline-flex align-items-center justify-content-center fw-bold text-white flex-shrink-0" style="width:32px;height:32px;min-width:32px;background:#522811;font-size:11px">' + ini + '</span>'
+				+ '<span class="fw-semibold">' + (m.name || '') + '</span></div></td>'
+				+ '<td><div class="small">' + (m.email || '') + '</div><div class="text-muted small">' + (m.phone || '—') + '</div></td>'
+				+ '<td class="small">' + (m.subject || '—') + '</td>'
+				+ '<td class="small text-muted" style="max-width:240px">' + shortMsg + '</td>'
+				+ '<td class="text-muted small">' + ago(m.createdAt) + '</td>'
+				+ '<td><select class="form-select form-select-sm" style="width:110px" onchange="updateContactStatus(\'' + m.id + '\', this.value)">'
+				+ '<option value="new"' + (m.status==='new'?' selected':'') + '>New</option>'
+				+ '<option value="read"' + (m.status==='read'?' selected':'') + '>Read</option>'
+				+ '<option value="replied"' + (m.status==='replied'?' selected':'') + '>Replied</option>'
+				+ '</select></td>'
+				+ '</tr>';
+		}).join('');
+	}
+
+	function updateContactStatus(id, status) {
+		var token = localStorage.getItem('accessToken');
+		fetch((typeof API_CONFIG !== 'undefined' ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1') + '/contact/' + id + '/status', {
+			method: 'PATCH',
+			headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+			body: JSON.stringify({ status: status }),
+		})
+		.then(function(r) { return r.json(); })
+		.then(function() { loadContactMessages(document.getElementById('contact-status-filter') ? document.getElementById('contact-status-filter').value : ''); })
+		.catch(function() {});
+	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+		loadContactMessages('');
+		var cf = document.getElementById('contact-status-filter');
+		if (cf) cf.addEventListener('change', function() { loadContactMessages(this.value); });
+	});
+	// ---- END CONTACT MESSAGES ----
 
 	function renderRecentRegistrations(users) {
 			var el = document.getElementById('recent-registrations-list');

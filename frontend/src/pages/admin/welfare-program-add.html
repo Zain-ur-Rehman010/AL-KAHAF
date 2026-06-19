@@ -210,9 +210,34 @@
                     <textarea class="form-control" id="pm-description" rows="6" placeholder="Describe the program — what it does, who it serves, and why it matters..."></textarea>
                 </div>
 
+                <!-- Card Thumbnail -->
+                <div class="form-card">
+                    <h6><i class="fas fa-image"></i> Card Thumbnail <small class="text-muted fw-normal ms-1">(shown on listing cards)</small></h6>
+                    <div class="upload-zone" id="thumb-upload-zone" onclick="document.getElementById('thumb-file').click()">
+                        <i class="isax isax-image fs-1 text-muted d-block mb-2"></i>
+                        <p class="mb-1 fw-semibold text-muted">Click to upload or drag &amp; drop</p>
+                        <p class="text-muted small mb-0">JPG, PNG, WebP — max 5 MB · Recommended: 800×570</p>
+                    </div>
+                    <input type="file" id="thumb-file" accept="image/jpeg,image/png,image/webp" style="display:none;">
+                    <div id="thumb-upload-progress" style="display:none;" class="mt-2">
+                        <div class="progress" style="height:6px;">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width:100%;background:#522811;"></div>
+                        </div>
+                        <p class="text-muted small mt-1 mb-0">Uploading to Cloudinary…</p>
+                    </div>
+                    <div class="banner-preview-wrap" id="thumb-preview-wrap">
+                        <img id="thumb-preview" class="banner-preview" src="" alt="Thumbnail Preview">
+                        <button type="button" class="banner-remove-btn" onclick="removeThumbnail()" title="Remove image">&times;</button>
+                    </div>
+                    <div class="mt-2">
+                        <label class="form-label small text-muted mb-1">Or paste image URL directly:</label>
+                        <input type="text" id="pm-thumbnail" class="form-control form-control-sm" placeholder="https://images.unsplash.com/...">
+                    </div>
+                </div>
+
                 <!-- Banner Image -->
                 <div class="form-card">
-                    <h6><i class="fas fa-image"></i> Banner Image</h6>
+                    <h6><i class="fas fa-image"></i> Banner Image <small class="text-muted fw-normal ms-1">(hero image on detail page)</small></h6>
                     <div class="upload-zone" id="upload-zone" onclick="document.getElementById('banner-file').click()">
                         <i class="isax isax-image fs-1 text-muted d-block mb-2"></i>
                         <p class="mb-1 fw-semibold text-muted">Click to upload or drag &amp; drop</p>
@@ -467,6 +492,73 @@
     document.getElementById('pm-goal').addEventListener('input', updateFundingPreview);
     document.getElementById('pm-raised').addEventListener('input', updateFundingPreview);
 
+    /* ── Thumbnail upload ────────────────────────────────────── */
+    var thumbnailUrl = '';
+    document.getElementById('thumb-file').addEventListener('change', function() {
+        if (this.files && this.files[0]) uploadThumbnail(this.files[0]);
+    });
+    var thumbZone = document.getElementById('thumb-upload-zone');
+    thumbZone.addEventListener('dragover',  function(e){ e.preventDefault(); thumbZone.style.borderColor='#d8ac27'; });
+    thumbZone.addEventListener('dragleave', function(){ thumbZone.style.borderColor=''; });
+    thumbZone.addEventListener('drop',      function(e){ e.preventDefault(); thumbZone.style.borderColor=''; if (e.dataTransfer.files[0]) uploadThumbnail(e.dataTransfer.files[0]); });
+
+    function uploadThumbnail(file) {
+        if (file.size > 5 * 1024 * 1024) { showAlert('danger', 'Image too large — max 5 MB.'); return; }
+        var progress = document.getElementById('thumb-upload-progress');
+        progress.style.display = 'block';
+        thumbZone.style.display = 'none';
+        var fd = new FormData();
+        fd.append('image', file);
+        fetch(API_CONFIG.BASE_URL + '/upload?folder=welfare', {
+            method: 'POST',
+            headers: { 'Authorization': 'Bearer ' + localStorage.getItem('accessToken') },
+            body: fd,
+        })
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+            progress.style.display = 'none';
+            if (res.success && res.url) {
+                thumbnailUrl = res.url;
+                document.getElementById('pm-thumbnail').value = res.url;
+                showThumbPreview(res.url);
+            } else {
+                showAlert('danger', res.message || 'Upload failed');
+                thumbZone.style.display = '';
+            }
+        })
+        .catch(function() {
+            progress.style.display = 'none';
+            thumbZone.style.display = '';
+            showAlert('danger', 'Upload failed — check your connection.');
+        });
+    }
+
+    document.getElementById('pm-thumbnail').addEventListener('input', function() {
+        if (this.value) showThumbPreview(this.value);
+    });
+
+    function showThumbPreview(url) {
+        var img = document.getElementById('thumb-preview');
+        var wrap = document.getElementById('thumb-preview-wrap');
+        img.src = url;
+        img.style.display = 'block';
+        wrap.style.display = 'block';
+        document.getElementById('thumb-upload-zone').style.display = 'none';
+        thumbnailUrl = url;
+    }
+
+    function removeThumbnail() {
+        var img = document.getElementById('thumb-preview');
+        var wrap = document.getElementById('thumb-preview-wrap');
+        img.src = '';
+        img.style.display = 'none';
+        wrap.style.display = 'none';
+        document.getElementById('thumb-upload-zone').style.display = '';
+        document.getElementById('pm-thumbnail').value = '';
+        document.getElementById('thumb-file').value = '';
+        thumbnailUrl = '';
+    }
+
     /* ── Banner upload ───────────────────────────────────────── */
     var bannerUrl = '';
     document.getElementById('banner-file').addEventListener('change', function() {
@@ -695,6 +787,7 @@
             raised:        parseFloat(document.getElementById('pm-raised').value) || 0,
             location:      document.getElementById('pm-location').value.trim(),
             beneficiaries: document.getElementById('pm-beneficiaries').value.trim(),
+            thumbnail:     document.getElementById('pm-thumbnail').value.trim() || thumbnailUrl,
             banner:        document.getElementById('pm-banner').value.trim() || bannerUrl,
             startedDate:   document.getElementById('pm-started').value || null,
             status:        document.getElementById('pm-status-sidebar').value,
@@ -764,6 +857,10 @@
             syncCatPills(p.category || 'food-relief');
             updateFundingPreview();
 
+            if (p.thumbnail) {
+                document.getElementById('pm-thumbnail').value = p.thumbnail;
+                showThumbPreview(p.thumbnail);
+            }
             if (p.banner) {
                 document.getElementById('pm-banner').value = p.banner;
                 showBannerPreview(p.banner);

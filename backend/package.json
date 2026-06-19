@@ -12,6 +12,7 @@
     "seed:welfare-programs": "node seed-welfare-programs.js",
     "seed:predefined-courses": "node migrations/seed-predefined-courses.js",
     "seed:test-data": "node migrations/seed-test-data.js",
+    "migrate:contacts": "node migrations/add-contacts-welfare-thumbnail.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },

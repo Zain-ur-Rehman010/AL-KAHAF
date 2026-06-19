@@ -48,6 +48,10 @@ const WelfareProgram = sequelize.define('WelfareProgram', {
     type: DataTypes.STRING(100),
     allowNull: true,
   },
+  thumbnail: {
+    type: DataTypes.TEXT,
+    allowNull: true,
+  },
   banner: {
     type: DataTypes.TEXT,
     allowNull: true,

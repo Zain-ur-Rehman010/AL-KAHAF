@@ -1516,7 +1516,7 @@
         var pct = Math.min(100, Math.round((raised / goal) * 100));
         var catLabel = CAT_LABEL[p.category] || p.category;
         var catFilter = CAT_FILTER[p.category] || "other";
-        var img = p.banner || "/assets/img/course/course-01.jpg";
+        var img = p.thumbnail || p.banner || "/assets/img/course/course-01.jpg";
         var urgentBadge = p.urgent
           ? '<span class="card-urgent"><i class="fa fa-bolt"></i> Urgent</span>'
           : "";

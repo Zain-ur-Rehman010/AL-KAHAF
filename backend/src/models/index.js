@@ -20,6 +20,7 @@ const WelfareProgram = require('./WelfareProgram');
 const WelfareDonation = require('./WelfareDonation');
 const InstructorApplication = require('./InstructorApplication');
 const Review = require('./Review');
+const Contact = require('./Contact');
 
 // User associations
 User.hasMany(Course, { foreignKey: 'instructorId', as: 'instructedCourses' });
@@ -153,4 +154,5 @@ module.exports = {
   InstructorStudent,
   InstructorApplication,
   Review,
+  Contact,
 };
