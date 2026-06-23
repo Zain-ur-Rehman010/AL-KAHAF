@@ -2292,7 +2292,7 @@ Version      : 1.0
 	}
 
 	function isDashboardPage() {
-		return /\/src\/pages\/(admin|student|instructor)\//.test(window.location.pathname);
+		return /^\/(admin|student|instructor)\//.test(window.location.pathname);
 	}
 
 	function initWhatsAppWidget() {
