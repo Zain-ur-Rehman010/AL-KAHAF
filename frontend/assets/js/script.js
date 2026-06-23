@@ -2258,3 +2258,30 @@ Version      : 1.0
 		applyPkrLocalization();
 	}
 })();
+
+(function () {
+	function initWhatsAppWidget() {
+		if (document.getElementById('wa-float-btn')) return;
+
+		var link = document.createElement('a');
+		link.id = 'wa-float-btn';
+		link.href = 'https://wa.me/923076660985';
+		link.target = '_blank';
+		link.rel = 'noopener';
+		link.title = 'Chat with us on WhatsApp';
+		link.setAttribute('aria-label', 'Chat with us on WhatsApp');
+		link.innerHTML = '<i class="fa-brands fa-whatsapp"></i>';
+		link.style.cssText = 'position:fixed;bottom:24px;right:24px;width:56px;height:56px;' +
+			'background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;' +
+			'justify-content:center;font-size:28px;box-shadow:0 4px 12px rgba(0,0,0,0.25);' +
+			'z-index:9999;text-decoration:none;line-height:1;';
+
+		document.body.appendChild(link);
+	}
+
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', initWhatsAppWidget);
+	} else {
+		initWhatsAppWidget();
+	}
+})();
