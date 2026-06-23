@@ -2291,7 +2291,12 @@ Version      : 1.0
 		document.head.appendChild(style);
 	}
 
+	function isDashboardPage() {
+		return /\/src\/pages\/(admin|student|instructor)\//.test(window.location.pathname);
+	}
+
 	function initWhatsAppWidget() {
+		if (isDashboardPage()) return;
 		if (document.getElementById('wa-float-btn')) return;
 
 		injectWhatsAppStyles();
