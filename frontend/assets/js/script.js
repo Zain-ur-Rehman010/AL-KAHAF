@@ -2260,8 +2260,41 @@ Version      : 1.0
 })();
 
 (function () {
+	function injectWhatsAppStyles() {
+		if (document.getElementById('wa-float-btn-style')) return;
+
+		var style = document.createElement('style');
+		style.id = 'wa-float-btn-style';
+		style.textContent =
+			'@keyframes wa-shake {' +
+			'0%, 80%, 100% { transform: rotate(0deg) scale(1); }' +
+			'82% { transform: rotate(-16deg) scale(1.05); }' +
+			'85% { transform: rotate(14deg) scale(1.05); }' +
+			'88% { transform: rotate(-11deg) scale(1.05); }' +
+			'91% { transform: rotate(9deg) scale(1.05); }' +
+			'94% { transform: rotate(-6deg) scale(1.02); }' +
+			'97% { transform: rotate(3deg) scale(1); }' +
+			'}' +
+			'@keyframes wa-pulse-ring {' +
+			'0% { box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 0 0 0 rgba(37,211,102,0.55); }' +
+			'100% { box-shadow: 0 4px 12px rgba(0,0,0,0.25), 0 0 0 16px rgba(37,211,102,0); }' +
+			'}' +
+			'#wa-float-btn {' +
+			'animation: wa-shake 4.5s ease-in-out infinite, wa-pulse-ring 2.2s ease-out infinite;' +
+			'transition: transform 0.2s ease;' +
+			'}' +
+			'#wa-float-btn:hover {' +
+			'animation-play-state: paused;' +
+			'transform: scale(1.1);' +
+			'}';
+
+		document.head.appendChild(style);
+	}
+
 	function initWhatsAppWidget() {
 		if (document.getElementById('wa-float-btn')) return;
+
+		injectWhatsAppStyles();
 
 		var link = document.createElement('a');
 		link.id = 'wa-float-btn';
@@ -2271,7 +2304,7 @@ Version      : 1.0
 		link.title = 'Chat with us on WhatsApp';
 		link.setAttribute('aria-label', 'Chat with us on WhatsApp');
 		link.innerHTML = '<i class="fa-brands fa-whatsapp"></i>';
-		link.style.cssText = 'position:fixed;bottom:24px;right:24px;width:56px;height:56px;' +
+		link.style.cssText = 'position:fixed;bottom:24px;left:24px;width:56px;height:56px;' +
 			'background:#25D366;color:#fff;border-radius:50%;display:flex;align-items:center;' +
 			'justify-content:center;font-size:28px;box-shadow:0 4px 12px rgba(0,0,0,0.25);' +
 			'z-index:9999;text-decoration:none;line-height:1;';
