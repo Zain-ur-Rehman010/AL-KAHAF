@@ -15909,7 +15909,8 @@ h2.main-title {
 
 /* star rating pill */
 .instructor-item.instructor-item-three .ins-rating {
-  display: inline-flex;
+  display: flex;
+  width: fit-content;
   align-items: center;
   justify-content: center;
   gap: 2px;
@@ -15917,7 +15918,7 @@ h2.main-title {
   border: 1px solid rgba(216, 172, 39, 0.3);
   padding: 5px 12px;
   border-radius: 50px;
-  margin-bottom: 16px;
+  margin: 0 auto 16px;
 }
 .instructor-item.instructor-item-three .ins-rating i.fas {
   font-size: 11px;
