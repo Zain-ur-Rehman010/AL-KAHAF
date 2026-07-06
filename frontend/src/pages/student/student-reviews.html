@@ -147,11 +147,11 @@
 								<div class="dropdown-menu dropdown-menu-end">
 									<div class="profile-header d-flex align-items-center">
 										<div class="avatar">
-											<img src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
+											<img id="dropdown-avatar" src="/assets/img/user/user-02.jpg" alt="Img" class="img-fluid rounded-circle">
 										</div>
 										<div>
-											<h6>Ronald Richard</h6>
-											<p>studentdemo@example.com</p>
+											<h6 id="dropdown-name">Ronald Richard</h6>
+											<p id="dropdown-email">studentdemo@example.com</p>
 										</div>
 									</div>
 									<ul class="profile-body">
@@ -203,11 +203,11 @@
 									<div class="col-lg-6">
 										<div class="d-flex align-items-center">
 											<span class="avatar avatar-xxl avatar-rounded me-3 border border-white border-2 position-relative">
-												<img src="/assets/img/user/user-02.jpg" alt="">
+												<img id="prof-card-avatar" src="/assets/img/user/user-02.jpg" alt="">
 												<span class="verify-tick"><i class="isax isax-verify5"></i></span>
 											</span>
 											<div>
-												<h5 class="mb-1 text-white d-inline-flex align-items-center">Ronald Richard<a href="/instructor/instructor-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
+												<h5 class="mb-1 text-white d-inline-flex align-items-center"><span id="prof-card-name">Ronald Richard</span><a href="/student/student-profile" class="link-light fs-16 ms-2"><i class="isax isax-edit-2"></i></a></h5>
 												<p class="text-light">Student</p>
 											</div>
 										</div>
@@ -507,6 +507,18 @@
 
 		var nameEl = document.getElementById('adminName') || document.querySelector('.header-inst-name');
 		if (nameEl) nameEl.textContent = (user.firstName || '') + ' ' + (user.lastName || '');
+
+		(function fillProfileFromUser() {
+			function el(id) { return document.getElementById(id); }
+			var fullName = ((user.firstName || '') + ' ' + (user.lastName || '')).trim();
+			var avatar = user.profileImage || user.avatar || '/assets/img/user/user-02.jpg';
+			if (el('header-avatar')) el('header-avatar').src = avatar;
+			if (el('dropdown-avatar')) el('dropdown-avatar').src = avatar;
+			if (el('dropdown-name')) el('dropdown-name').textContent = fullName;
+			if (el('dropdown-email')) el('dropdown-email').textContent = user.email || '';
+			if (el('prof-card-avatar')) el('prof-card-avatar').src = avatar;
+			if (el('prof-card-name')) el('prof-card-name').textContent = fullName;
+		})();
 
 		function authHeaders() {
 			return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token };

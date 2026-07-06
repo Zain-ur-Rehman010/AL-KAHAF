@@ -4,6 +4,12 @@
 (function () {
   var path = window.location.pathname;
 
+  // Pages that live under a role folder but are actually public
+  // (e.g. instructor-details is a public instructor profile page,
+  // linked from course listings for anyone, logged in or not)
+  var publicPages = ['/instructor/instructor-details'];
+  if (publicPages.indexOf(path.replace(/\/$/, '')) !== -1) return;
+
   // Determine required role from URL segment
   var required = null;
   if (path.indexOf('/admin/') !== -1)      required = 'admin';

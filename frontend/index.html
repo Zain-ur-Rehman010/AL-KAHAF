@@ -706,7 +706,7 @@ Dependencies:
       }
 
       .featured-courses-section .course-item > div:not(.course-img) {
-        padding: 0 20px;
+        padding: 0;
       }
 
       .featured-courses-section
@@ -726,6 +726,10 @@ Dependencies:
         font-weight: 700;
         line-height: 1.4;
         margin: 0;
+        min-height: 50px;
+      }
+
+      .featured-courses-section .course-item .course-content .title {
         min-height: 50px;
       }
 
@@ -4266,14 +4270,14 @@ Dependencies:
             '<div class="course-img" style="position:relative;">' +
             badgeOverlay +
             '<img src="' + imgSrc + '" alt="' + titleSafe + '" class="img-fluid" onerror="this.src=\'' + FALLBACK_IMG + "'\">" +
+            '<div style="position:absolute;bottom:10px;left:10px;z-index:2;">' +
+            '<span class="course-cat-badge ' + getCatClass(course.category) + '">' + (course.category || "") + "</span>" +
+            "</div>" +
             "</div>" +
             '<div class="course-content">' +
-            '<div class="d-flex justify-content-between align-items-center mb-2">' +
-            '<div class="d-flex align-items-center">' +
-            '<div class="avatar avatar-sm rounded-circle d-flex align-items-center justify-content-center text-white fw-bold" style="background:#522811;min-width:32px;height:32px;font-size:14px">' + getInitial(instructorName) + "</div>" +
-            '<span class="link-default fs-14 ms-2">' + instructorName + "</span>" +
-            "</div>" +
-            '<span class="course-cat-badge ' + getCatClass(course.category) + '">' + (course.category || "") + "</span>" +
+            '<div class="d-flex align-items-center mb-2">' +
+            '<div class="avatar avatar-sm rounded-circle d-flex align-items-center justify-content-center text-white fw-bold flex-shrink-0" style="background:#522811;min-width:32px;height:32px;font-size:14px">' + getInitial(instructorName) + "</div>" +
+            '<span class="link-default fs-14 ms-2 text-truncate">' + instructorName + "</span>" +
             "</div>" +
             '<h6 class="title mb-2">' + (course.title || "") + "</h6>" +
             (rating > 0 ? '<p class="d-flex align-items-center mb-3"><i class="fa-solid fa-star text-warning me-2"></i>' + rating.toFixed(1) + " (" + (course.enrollmentCount || 0) + " Students)</p>" : "") +
