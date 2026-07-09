@@ -64,4 +64,11 @@ router.post(
   lessonController.createLesson
 );
 
+router.put(
+  '/:courseId/modules/:moduleId/lessons/:lessonId',
+  authMiddleware,
+  roleMiddleware(['instructor', 'admin']),
+  lessonController.updateLesson
+);
+
 module.exports = router;

@@ -376,7 +376,7 @@
                                 <div class="image-upload-box" id="uploadBox" onclick="document.getElementById('thumbnailImage').click()">
                                     <i class="iconsax fs-1 text-muted mb-2" data-icon="gallery-add"></i>
                                     <h6>Click to upload thumbnail</h6>
-                                    <p class="text-muted mb-0 small">Recommended: 1200x675px (16:9) · JPEG, PNG, WebP · Max 2MB</p>
+                                    <p class="text-muted mb-0 small">Used on course listing cards. Recommended: 600x360px · JPEG, PNG, WebP · Max 2MB</p>
                                 </div>
                                 <input type="file" id="thumbnailImage" accept="image/*" style="display:none;" onchange="previewThumbnail(event)" onclick="event.stopPropagation()">
                                 <div id="thumbnailPreviewWrapper" style="display:none; position:relative; width:fit-content; margin-top:12px;">
@@ -384,6 +384,23 @@
                                     <button type="button" onclick="removeThumbnail()" style="position:absolute; top:-10px; right:-10px; width:28px; height:28px; border-radius:50%; background:#dc3545; border:none; color:white; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2);">&times;</button>
                                 </div>
                                 <div id="thumbnailUploadStatus" class="mt-2" style="display:none;">
+                                    <span class="spinner-border spinner-border-sm text-warning me-2"></span>
+                                    <small class="text-muted">Uploading to Cloudinary...</small>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Course Detail Banner</label>
+                                <div class="image-upload-box" id="bannerUploadBox" onclick="document.getElementById('bannerImage').click()">
+                                    <i class="iconsax fs-1 text-muted mb-2" data-icon="gallery-add"></i>
+                                    <h6>Click to upload banner</h6>
+                                    <p class="text-muted mb-0 small">Shown at the top of the course details page. Recommended: 1200x500px · JPEG, PNG, WebP · Max 2MB</p>
+                                </div>
+                                <input type="file" id="bannerImage" accept="image/*" style="display:none;" onchange="previewBanner(event)" onclick="event.stopPropagation()">
+                                <div id="bannerPreviewWrapper" style="display:none; position:relative; width:fit-content; margin-top:12px;">
+                                    <img id="bannerPreview" class="image-preview" style="max-width:100%; border-radius:8px; display:block;">
+                                    <button type="button" onclick="removeBanner()" style="position:absolute; top:-10px; right:-10px; width:28px; height:28px; border-radius:50%; background:#dc3545; border:none; color:white; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2);">&times;</button>
+                                </div>
+                                <div id="bannerUploadStatus" class="mt-2" style="display:none;">
                                     <span class="spinner-border spinner-border-sm text-warning me-2"></span>
                                     <small class="text-muted">Uploading to Cloudinary...</small>
                                 </div>
@@ -545,6 +562,7 @@
         let outcomeCounter = 1;
         let reqCounter = 1;
         let thumbnailUrl = null;   // current thumbnail URL (existing or newly uploaded)
+        let bannerUrl = null;      // current banner URL (existing or newly uploaded)
         let courseId = null;
 
         // ── Init ─────────────────────────────────────────────────────────────
@@ -636,6 +654,14 @@
                 document.getElementById('thumbnailPreview').src = thumbnailUrl;
                 document.getElementById('thumbnailPreviewWrapper').style.display = 'block';
                 document.getElementById('uploadBox').style.display = 'none';
+            }
+
+            // Step 3 — banner
+            bannerUrl = course.bannerImage || null;
+            if (bannerUrl) {
+                document.getElementById('bannerPreview').src = bannerUrl;
+                document.getElementById('bannerPreviewWrapper').style.display = 'block';
+                document.getElementById('bannerUploadBox').style.display = 'none';
             }
 
             // Step 4 — outcomes
@@ -804,6 +830,37 @@
             document.getElementById('uploadBox').style.display = '';
         }
 
+        async function previewBanner(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            bannerUrl = null;
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('bannerPreview').src = e.target.result;
+                document.getElementById('bannerPreviewWrapper').style.display = 'block';
+                document.getElementById('bannerUploadBox').style.display = 'none';
+                document.getElementById('bannerUploadStatus').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+
+            try {
+                bannerUrl = await uploadImage(file, 'courses');
+                document.getElementById('bannerUploadStatus').style.display = 'none';
+            } catch (err) {
+                document.getElementById('bannerUploadStatus').style.display = 'none';
+                showToast('Banner upload failed: ' + err.message, 'error');
+            }
+        }
+
+        function removeBanner() {
+            bannerUrl = null;
+            document.getElementById('bannerPreview').src = '';
+            document.getElementById('bannerPreviewWrapper').style.display = 'none';
+            document.getElementById('bannerImage').value = '';
+            document.getElementById('bannerUploadBox').style.display = '';
+        }
+
         // ── Module / Lesson helpers ──────────────────────────────────────────
         function addModule() {
             const container = document.getElementById('modulesContainer');
@@ -956,7 +1013,8 @@
                 certificateAvailable: document.getElementById('certificateAvailable').checked,
                 outcomes: outcomes,
                 requirements: requirements,
-                thumbnail: thumbnailUrl
+                thumbnail: thumbnailUrl,
+                bannerImage: bannerUrl
             };
         }
 

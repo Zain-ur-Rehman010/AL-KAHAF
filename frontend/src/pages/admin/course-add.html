@@ -442,15 +442,28 @@
                             <div class="step-title"><h5><i class="iconsax me-2" data-icon="image"></i> Course Media</h5></div>
                             <div class="mb-3">
                                 <label class="form-label">Course Thumbnail</label>
-                                <div class="image-upload-box" onclick="document.getElementById('thumbnailImage').click()">
+                                <div class="image-upload-box" id="thumbnailUploadBox" onclick="document.getElementById('thumbnailImage').click()">
                                     <i class="iconsax fs-1 text-muted mb-2" data-icon="gallery-add"></i>
                                     <h6>Click to upload thumbnail</h6>
-                                    <p class="text-muted mb-0 small">Recommended: 1200x675px (16:9) · JPEG, PNG, WebP · Max 2MB</p>
+                                    <p class="text-muted mb-0 small">Used on course listing cards. Recommended: 600x360px · JPEG, PNG, WebP · Max 2MB</p>
                                 </div>
                                 <input type="file" id="thumbnailImage" accept="image/*" style="display:none;" onchange="previewThumbnail(event)" onclick="event.stopPropagation()">
                                 <div id="thumbnailPreviewWrapper" style="display:none; position:relative; width:fit-content; margin-top:12px;">
                                     <img id="thumbnailPreview" class="image-preview" style="max-width:100%; border-radius:8px; display:block;">
                                     <button type="button" onclick="removeThumbnail()" style="position:absolute; top:-10px; right:-10px; width:28px; height:28px; border-radius:50%; background:#dc3545; border:none; color:white; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2);">&times;</button>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Course Detail Banner</label>
+                                <div class="image-upload-box" id="bannerUploadBox" onclick="document.getElementById('bannerImage').click()">
+                                    <i class="iconsax fs-1 text-muted mb-2" data-icon="gallery-add"></i>
+                                    <h6>Click to upload banner</h6>
+                                    <p class="text-muted mb-0 small">Shown at the top of the course details page. Recommended: 1200x500px · JPEG, PNG, WebP · Max 2MB</p>
+                                </div>
+                                <input type="file" id="bannerImage" accept="image/*" style="display:none;" onchange="previewBanner(event)" onclick="event.stopPropagation()">
+                                <div id="bannerPreviewWrapper" style="display:none; position:relative; width:fit-content; margin-top:12px;">
+                                    <img id="bannerPreview" class="image-preview" style="max-width:100%; border-radius:8px; display:block;">
+                                    <button type="button" onclick="removeBanner()" style="position:absolute; top:-10px; right:-10px; width:28px; height:28px; border-radius:50%; background:#dc3545; border:none; color:white; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2);">&times;</button>
                                 </div>
                             </div>
                             <div class="mb-3">
@@ -608,6 +621,7 @@
         const totalSteps = 5;
         let moduleCounter = 0;
         let thumbnailUrl = null;
+        let bannerUrl = null;
         const predefinedCourseById = new Map();
 
         async function uploadImage(file, folder) {
@@ -852,8 +866,7 @@
             reader.onload = function (e) {
                 document.getElementById('thumbnailPreview').src = e.target.result;
                 document.getElementById('thumbnailPreviewWrapper').style.display = 'block';
-                document.getElementById('thumbnailImage').closest('.image-upload-box') &&
-                    (document.querySelector('.image-upload-box').style.display = 'none');
+                document.getElementById('thumbnailUploadBox').style.display = 'none';
             };
             reader.readAsDataURL(file);
 
@@ -870,7 +883,37 @@
             document.getElementById('thumbnailPreview').src = '';
             document.getElementById('thumbnailPreviewWrapper').style.display = 'none';
             document.getElementById('thumbnailImage').value = '';
-            document.querySelector('.image-upload-box').style.display = '';
+            document.getElementById('thumbnailUploadBox').style.display = '';
+        }
+
+        async function previewBanner(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            bannerUrl = null;
+
+            // Show local preview immediately
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('bannerPreview').src = e.target.result;
+                document.getElementById('bannerPreviewWrapper').style.display = 'block';
+                document.getElementById('bannerUploadBox').style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+
+            // Upload to Cloudinary
+            try {
+                bannerUrl = await uploadImage(file, 'courses');
+            } catch (err) {
+                alert('Banner upload failed: ' + err.message);
+            }
+        }
+
+        function removeBanner() {
+            bannerUrl = null;
+            document.getElementById('bannerPreview').src = '';
+            document.getElementById('bannerPreviewWrapper').style.display = 'none';
+            document.getElementById('bannerImage').value = '';
+            document.getElementById('bannerUploadBox').style.display = '';
         }
 
         function addModule() {
@@ -972,7 +1015,8 @@
                 certificateAvailable: document.getElementById('certificateAvailable').checked,
                 learningOutcomes: outcomes,
                 requirements: requirements,
-                thumbnail: thumbnailUrl || null
+                thumbnail: thumbnailUrl || null,
+                bannerImage: bannerUrl || null
             };
         }
 

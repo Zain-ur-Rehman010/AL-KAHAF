@@ -4,7 +4,7 @@ const { notifyAdmins, notifyUser } = require('../services/notificationService');
 
 exports.createCourse = async (req, res) => {
   try {
-    const { title, description, detailedDescription, category, price, discountPrice, level, language, duration, thumbnail, previewVideo, learningOutcomes, outcomes, requirements, tags, faqs, isFeatured, certificateAvailable, maxStudents, accessDuration, visibility, instructorId } = req.body;
+    const { title, description, detailedDescription, category, price, discountPrice, level, language, duration, thumbnail, bannerImage, previewVideo, learningOutcomes, outcomes, requirements, tags, faqs, isFeatured, certificateAvailable, maxStudents, accessDuration, visibility, instructorId } = req.body;
     const isAdminCreator = req.user.role === 'admin';
     const assignedInstructorId = instructorId || req.user.userId;
     const isAssignedToAnotherInstructor = Boolean(isAdminCreator && instructorId && instructorId !== req.user.userId);
@@ -22,6 +22,7 @@ exports.createCourse = async (req, res) => {
       language,
       duration,
       thumbnail,
+      bannerImage: bannerImage || null,
       previewVideo: previewVideo || null,
       outcomes: outcomes || learningOutcomes,
       requirements,

@@ -290,12 +290,12 @@
 									<label class="form-label fw-semibold">Course Thumbnail</label>
 									<div class="alert alert-info py-2 px-3 mb-2" style="font-size:13px;">
 										<i class="fa-solid fa-circle-info me-1"></i>
-										<strong>Required size: 1280x720px (16:9 ratio)</strong> &middot; JPEG, PNG, or WebP &middot; Max 5MB. Images outside this ratio will be rejected.
+										<strong>Required size: 600x360px (16:9 ratio)</strong> &middot; JPEG, PNG, or WebP &middot; Max 5MB. Images outside this ratio will be rejected.
 									</div>
 									<div class="image-upload-box" id="uploadBox" onclick="document.getElementById('thumbnailImage').click()">
 										<i class="isax isax-gallery-add fs-1 text-muted mb-2"></i>
 										<h6>Click to upload thumbnail</h6>
-										<p class="text-muted mb-0 small">1280x720px (16:9) &middot; JPEG / PNG / WebP &middot; Max 5MB</p>
+										<p class="text-muted mb-0 small">600x360px (16:9) &middot; JPEG / PNG / WebP &middot; Max 5MB</p>
 									</div>
 									<input type="file" id="thumbnailImage" accept="image/*" style="display:none;" onchange="previewThumbnail(event)" onclick="event.stopPropagation()">
 									<div id="thumbnailError" class="text-danger mt-1" style="font-size:13px;display:none;"></div>
@@ -304,6 +304,29 @@
 										<button type="button" onclick="removeThumbnail()" style="position:absolute; top:-10px; right:-10px; width:28px; height:28px; border-radius:50%; background:#dc3545; border:none; color:white; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2);">&times;</button>
 									</div>
 									<div id="thumbnailUploadStatus" class="mt-2" style="display:none;">
+										<span class="spinner-border spinner-border-sm text-warning me-2"></span>
+										<small class="text-muted">Uploading to Cloudinary...</small>
+									</div>
+								</div>
+
+								<!-- Banner -->
+								<div class="mb-4">
+									<label class="form-label fw-semibold">Course Detail Banner</label>
+									<div class="alert alert-info py-2 px-3 mb-2" style="font-size:13px;">
+										<i class="fa-solid fa-circle-info me-1"></i>
+										Shown at the top of the course details page. Recommended: 1200x500px &middot; JPEG, PNG, or WebP &middot; Max 5MB.
+									</div>
+									<div class="image-upload-box" id="bannerUploadBox" onclick="document.getElementById('bannerImage').click()">
+										<i class="isax isax-gallery-add fs-1 text-muted mb-2"></i>
+										<h6>Click to upload banner</h6>
+										<p class="text-muted mb-0 small">1200x500px &middot; JPEG / PNG / WebP &middot; Max 5MB</p>
+									</div>
+									<input type="file" id="bannerImage" accept="image/*" style="display:none;" onchange="previewBanner(event)" onclick="event.stopPropagation()">
+									<div id="bannerPreviewWrapper" style="display:none; position:relative; width:fit-content; margin-top:12px;">
+										<img id="bannerPreview" class="image-preview" style="max-width:100%; border-radius:8px; display:block;">
+										<button type="button" onclick="removeBanner()" style="position:absolute; top:-10px; right:-10px; width:28px; height:28px; border-radius:50%; background:#dc3545; border:none; color:white; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow:0 2px 6px rgba(0,0,0,0.2);">&times;</button>
+									</div>
+									<div id="bannerUploadStatus" class="mt-2" style="display:none;">
 										<span class="spinner-border spinner-border-sm text-warning me-2"></span>
 										<small class="text-muted">Uploading to Cloudinary...</small>
 									</div>
@@ -469,6 +492,7 @@
         let outcomeCounter = 1;
         let reqCounter = 1;
         let thumbnailUrl = null;
+        let bannerUrl = null;
         let courseId = null;
 
         // ── Init ─────────────────────────────────────────────────────────────
@@ -563,6 +587,14 @@
                 document.getElementById('thumbnailPreview').src = thumbnailUrl;
                 document.getElementById('thumbnailPreviewWrapper').style.display = 'block';
                 document.getElementById('uploadBox').style.display = 'none';
+            }
+
+            // Step 2 — banner
+            bannerUrl = course.bannerImage || null;
+            if (bannerUrl) {
+                document.getElementById('bannerPreview').src = bannerUrl;
+                document.getElementById('bannerPreviewWrapper').style.display = 'block';
+                document.getElementById('bannerUploadBox').style.display = 'none';
             }
 
             // Step 2 — preview video
@@ -667,6 +699,65 @@
             return data.url;
         }
 
+        async function uploadDocument(file, folder) {
+            var formData = new FormData();
+            formData.append('file', file);
+            var token = localStorage.getItem('accessToken');
+            var res = await fetch(API_CONFIG.BASE_URL + '/upload/document?folder=' + folder, {
+                method: 'POST',
+                headers: { 'Authorization': 'Bearer ' + token },
+                body: formData
+            });
+            var data = await res.json();
+            if (!data.success) throw new Error(data.message || 'Upload failed');
+            return { name: file.name, url: data.url };
+        }
+
+        // ── Lesson attachments ─────────────────────────────────────────────────
+        function getLessonAttachments(lessonItemEl) {
+            var wrap = lessonItemEl.querySelector('.lesson-attachments');
+            try { return JSON.parse(wrap.getAttribute('data-attachments') || '[]'); }
+            catch (e) { return []; }
+        }
+
+        function renderAttachmentChips(lessonItemEl, attachments) {
+            var wrap = lessonItemEl.querySelector('.lesson-attachments');
+            wrap.setAttribute('data-attachments', JSON.stringify(attachments));
+            var chipsEl = wrap.querySelector('.attachment-chips');
+            chipsEl.innerHTML = attachments.map(function (a, idx) {
+                return '<span class="badge bg-light text-dark border d-inline-flex align-items-center" style="font-weight:400;">'
+                    + '<i class="fa-solid fa-paperclip me-1"></i>' + escHtml(a.name)
+                    + '<i class="fa-solid fa-xmark ms-2" style="cursor:pointer" onclick="removeLessonAttachment(this, ' + idx + ')"></i>'
+                    + '</span>';
+            }).join('');
+        }
+
+        async function handleLessonAttachmentUpload(inputEl) {
+            var file = inputEl.files[0];
+            if (!file) return;
+            var lessonItemEl = inputEl.closest('.lesson-item');
+            var statusEl = lessonItemEl.querySelector('.lesson-attachment-status');
+            statusEl.style.display = 'inline';
+            try {
+                var uploaded = await uploadDocument(file, 'courses');
+                var attachments = getLessonAttachments(lessonItemEl);
+                attachments.push(uploaded);
+                renderAttachmentChips(lessonItemEl, attachments);
+            } catch (err) {
+                showToast('Material upload failed: ' + err.message, 'error');
+            } finally {
+                statusEl.style.display = 'none';
+                inputEl.value = '';
+            }
+        }
+
+        function removeLessonAttachment(iconEl, idx) {
+            var lessonItemEl = iconEl.closest('.lesson-item');
+            var attachments = getLessonAttachments(lessonItemEl);
+            attachments.splice(idx, 1);
+            renderAttachmentChips(lessonItemEl, attachments);
+        }
+
 
         // ── YouTube video helpers ─────────────────────────────────────────────
         function getYouTubeEmbedUrl(url) {
@@ -723,8 +814,8 @@
                         var img = new Image();
                         img.onload = function() {
                             var ratio = img.width / img.height;
-                            if (img.width < 640 || img.height < 360) {
-                                reject(new Error("Image too small: " + img.width + "x" + img.height + "px. Minimum is 640x360px (16:9)."));
+                            if (img.width < 600 || img.height < 360) {
+                                reject(new Error("Image too small: " + img.width + "x" + img.height + "px. Minimum is 600x360px (16:9)."));
                             } else if (ratio < 1.6 || ratio > 1.9) {
                                 reject(new Error("Image must be 16:9 ratio. Your image is " + img.width + "x" + img.height + "px (ratio " + ratio.toFixed(2) + "). Please crop to 16:9."));
                             } else { resolve(); }
@@ -764,6 +855,37 @@
             document.getElementById('thumbnailPreviewWrapper').style.display = 'none';
             document.getElementById('thumbnailImage').value = '';
             document.getElementById('uploadBox').style.display = '';
+        }
+
+        async function previewBanner(event) {
+            var file = event.target.files[0];
+            if (!file) return;
+            bannerUrl = null;
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('bannerPreview').src = e.target.result;
+                document.getElementById('bannerPreviewWrapper').style.display = 'block';
+                document.getElementById('bannerUploadBox').style.display = 'none';
+                document.getElementById('bannerUploadStatus').style.display = 'block';
+            };
+            reader.readAsDataURL(file);
+
+            try {
+                bannerUrl = await uploadImage(file, 'courses');
+                document.getElementById('bannerUploadStatus').style.display = 'none';
+            } catch (err) {
+                document.getElementById('bannerUploadStatus').style.display = 'none';
+                showToast('Banner upload failed: ' + err.message, 'error');
+            }
+        }
+
+        function removeBanner() {
+            bannerUrl = null;
+            document.getElementById('bannerPreview').src = '';
+            document.getElementById('bannerPreviewWrapper').style.display = 'none';
+            document.getElementById('bannerImage').value = '';
+            document.getElementById('bannerUploadBox').style.display = '';
         }
 
         // ── Module / Lesson helpers ──────────────────────────────────────────
@@ -809,6 +931,16 @@
             if (el) el.remove();
         }
 
+        function lessonAttachmentsHTML() {
+            return '<div class="lesson-attachments mt-2" data-attachments="[]">'
+                + '<div class="attachment-chips d-flex flex-wrap gap-2 mb-1"></div>'
+                + '<input type="file" class="lesson-attachment-input" style="display:none" onchange="handleLessonAttachmentUpload(this)">'
+                + '<span class="text-primary small" style="cursor:pointer" onclick="this.parentElement.querySelector(\'.lesson-attachment-input\').click()">'
+                + '<i class="fa-solid fa-paperclip me-1"></i>Add material</span>'
+                + '<span class="lesson-attachment-status text-muted small ms-2" style="display:none;">Uploading...</span>'
+                + '</div>';
+        }
+
         function addLesson(moduleIndex) {
             var container = document.querySelector('[data-module-lessons="' + moduleIndex + '"]');
             var count = container.children.length;
@@ -816,7 +948,8 @@
                 + '<div class="d-flex justify-content-between align-items-center">'
                 + '<input type="text" class="form-control form-control-sm me-2" placeholder="Lesson Title">'
                 + '<span class="remove-btn" onclick="removeLesson(\'' + moduleIndex + '-' + count + '\')">'
-                + '<i class="isax isax-trash"></i></span></div></div>';
+                + '<i class="isax isax-trash"></i></span></div>'
+                + lessonAttachmentsHTML() + '</div>';
             container.insertAdjacentHTML('beforeend', html);
         }
 
@@ -827,8 +960,13 @@
                 + '<div class="d-flex justify-content-between align-items-center">'
                 + '<input type="text" class="form-control form-control-sm me-2" placeholder="Lesson Title" value="' + escHtml(lesson.title || '') + '">'
                 + '<span class="remove-btn" onclick="removeLesson(\'' + moduleIndex + '-' + count + '\')">'
-                + '<i class="isax isax-trash"></i></span></div></div>';
+                + '<i class="isax isax-trash"></i></span></div>'
+                + lessonAttachmentsHTML() + '</div>';
             container.insertAdjacentHTML('beforeend', html);
+            if (Array.isArray(lesson.attachments) && lesson.attachments.length) {
+                var lessonItemEl = container.querySelector('[data-lesson-index="' + moduleIndex + '-' + count + '"]');
+                renderAttachmentChips(lessonItemEl, lesson.attachments);
+            }
         }
 
         function removeLesson(index) {
@@ -899,6 +1037,7 @@
                 outcomes: outcomes,
                 requirements: requirements,
                 thumbnail: thumbnailUrl,
+                bannerImage: bannerUrl,
                 previewVideo: (document.getElementById("videoUrl").value || "").trim() || undefined
             };
         }
@@ -973,18 +1112,19 @@
                         var lessonEl = lessonItems[j];
                         var existingLessonId = lessonEl.getAttribute('data-lesson-id');
                         var lessonTitle = (lessonEl.querySelector('input[type="text"]') || {}).value || ('Lesson ' + (j + 1));
+                        var lessonAttachments = getLessonAttachments(lessonEl);
 
                         if (existingLessonId) {
                             await fetch(API_CONFIG.BASE_URL + '/courses/' + courseId + '/modules/' + moduleId + '/lessons/' + existingLessonId, {
                                 method: 'PUT',
                                 headers: API_CONFIG.getHeaders(true),
-                                body: JSON.stringify({ title: lessonTitle, order: j + 1 })
+                                body: JSON.stringify({ title: lessonTitle, order: j + 1, attachments: lessonAttachments })
                             });
                         } else {
                             await fetch(API_CONFIG.BASE_URL + '/courses/' + courseId + '/modules/' + moduleId + '/lessons', {
                                 method: 'POST',
                                 headers: API_CONFIG.getHeaders(true),
-                                body: JSON.stringify({ title: lessonTitle, status: 'draft', order: j + 1 })
+                                body: JSON.stringify({ title: lessonTitle, status: 'draft', order: j + 1, attachments: lessonAttachments })
                             });
                         }
                     }

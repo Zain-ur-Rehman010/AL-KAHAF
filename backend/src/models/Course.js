@@ -29,6 +29,10 @@ const Course = sequelize.define('Course', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  bannerImage: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
   price: {
     type: DataTypes.DECIMAL(10, 2),
     allowNull: false,

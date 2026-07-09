@@ -382,24 +382,24 @@
 											</div>
 											<div class="row">
 												<div class="col-md-12">
-													<div class="input-block">
-														<div class="row align-items-center">
-															<div class="col-md-12">
-																<label class="form-label">Course Thumbnail<span class="text-danger ms-1">*</span></label>
-															</div>
-															<div class="col-md-10">
-																<input type="text" class="form-control" placeholder="No File Selected">
-															</div>
-															<div class="col-md-2 d-grid">
-																<label for="file-upload" class="file-upload-btn text-center">Upload File</label>
-																<input type="file" id="file-upload" name="file">
-															</div>
+													<label class="form-label">Course Thumbnail<span class="text-danger ms-1">*</span></label>
+													<p class="text-muted small mb-2">Used on course listing cards. Recommended: 600x360px</p>
+													<div class="upload-img-section d-flex align-items-center justify-content-center" id="upload-img-section">
+														<input type="file" id="upload-img-input" style="display: none;" accept="image/jpeg, image/png, image/gif, image/webp" onchange="handleThumbnailUpload(this.files[0])">
+														<div class="upload-content">
+															<span class="d-flex align-items-center justify-content-center mb-1">
+															<i class="isax isax-image5 text-secondary fs-24 text-center"></i>
+															</span>
+															<p class="text-center fw-medium mb-1">Upload Image</p>
+															<span class="text-center">JPEG, PNG, GIF, and WebP formats, up to 2 MB</span>
 														</div>
 													</div>
 												</div>
-												<div class="col-md-12">
-													<div class="upload-img-section d-flex align-items-center justify-content-center" id="upload-img-section">
-														<input type="file" id="upload-img-input" style="display: none;" accept="image/jpeg, image/png, image/gif, image/webp" onchange="handleThumbnailUpload(this.files[0])">
+												<div class="col-md-12 mt-3">
+													<label class="form-label">Course Detail Banner</label>
+													<p class="text-muted small mb-2">Shown at the top of the course details page.</p>
+													<div class="upload-img-section d-flex align-items-center justify-content-center" id="upload-banner-section">
+														<input type="file" id="upload-banner-input" style="display: none;" accept="image/jpeg, image/png, image/gif, image/webp" onchange="handleBannerUpload(this.files[0])">
 														<div class="upload-content">
 															<span class="d-flex align-items-center justify-content-center mb-1">
 															<i class="isax isax-image5 text-secondary fs-24 text-center"></i>
@@ -920,6 +920,7 @@
 	var topicCount = 0;
 	var targetModuleIndex = null;
 	var courseThumbnailUrl = null;
+	var courseBannerUrl = null;
 
 	function getYouTubeVideoId(url) {
 		if (!url) return null;
@@ -994,10 +995,6 @@
 		if (!file || !(file instanceof File)) return;
 		courseThumbnailUrl = null;
 
-		// Update filename text input
-		var filenameInput = document.querySelector('.col-md-10 .form-control');
-		if (filenameInput) filenameInput.value = file.name;
-
 		// Show local preview
 		var reader = new FileReader();
 		reader.onload = function(e) {
@@ -1020,6 +1017,31 @@
 		}
 	}
 
+	// ── Banner upload handler ─────────────────────────────────────────────────
+	async function handleBannerUpload(file) {
+		if (!file || !(file instanceof File)) return;
+		courseBannerUrl = null;
+
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			var section = document.getElementById('upload-banner-section');
+			if (section) {
+				section.style.backgroundImage = 'url(' + e.target.result + ')';
+				section.style.backgroundSize = 'cover';
+				section.style.backgroundPosition = 'center';
+				var uc = section.querySelector('.upload-content');
+				if (uc) uc.style.display = 'none';
+			}
+		};
+		reader.readAsDataURL(file);
+
+		try {
+			courseBannerUrl = await uploadImage(file, 'courses');
+		} catch (err) {
+			alert('Banner upload failed: ' + err.message);
+		}
+	}
+
 	// ── Wire upload inputs (strips script.js alert handler) ──────────────────
 	document.addEventListener('DOMContentLoaded', function () {
 		// Clone the upload-img-section to remove script.js click listener
@@ -1027,12 +1049,10 @@
 		if (oldSection) {
 			var newSection = oldSection.cloneNode(true);
 			oldSection.parentNode.replaceChild(newSection, oldSection);
-			// Clicking the drag-drop area triggers the Upload File input
 			newSection.addEventListener('click', function () {
-				var fi = document.getElementById('file-upload');
+				var fi = document.getElementById('upload-img-input');
 				if (fi) fi.click();
 			});
-			// Drag-and-drop support
 			newSection.addEventListener('dragover', function (e) {
 				e.preventDefault();
 				newSection.classList.add('drag-over');
@@ -1047,11 +1067,28 @@
 				if (f) handleThumbnailUpload(f);
 			});
 		}
-		// Wire the "Upload File" button input
-		var fileUploadInp = document.getElementById('file-upload');
-		if (fileUploadInp) {
-			fileUploadInp.addEventListener('change', function (e) {
-				handleThumbnailUpload(e.target.files[0]);
+
+		// Clone the upload-banner-section similarly
+		var oldBannerSection = document.getElementById('upload-banner-section');
+		if (oldBannerSection) {
+			var newBannerSection = oldBannerSection.cloneNode(true);
+			oldBannerSection.parentNode.replaceChild(newBannerSection, oldBannerSection);
+			newBannerSection.addEventListener('click', function () {
+				var fi = document.getElementById('upload-banner-input');
+				if (fi) fi.click();
+			});
+			newBannerSection.addEventListener('dragover', function (e) {
+				e.preventDefault();
+				newBannerSection.classList.add('drag-over');
+			});
+			newBannerSection.addEventListener('dragleave', function () {
+				newBannerSection.classList.remove('drag-over');
+			});
+			newBannerSection.addEventListener('drop', function (e) {
+				e.preventDefault();
+				newBannerSection.classList.remove('drag-over');
+				var f = e.dataTransfer.files[0];
+				if (f) handleBannerUpload(f);
 			});
 		}
 	});
@@ -1351,6 +1388,7 @@
 						language:           language && language !== 'Select' ? language : 'en',
 						duration:           duration ? parseFloat(duration) : undefined,
 						thumbnail:          courseThumbnailUrl || null,
+					bannerImage:        courseBannerUrl || null,
 						previewVideo:       (document.getElementById('course-preview-video') ? document.getElementById('course-preview-video').value.trim() : '') || undefined,
 						isFeatured:         isFeatured,
 						outcomes:           outcomes.length ? outcomes : undefined,
