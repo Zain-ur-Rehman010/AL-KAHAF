@@ -198,13 +198,13 @@
 										<div class="col-md-6">
 											<div class="input-block">
 												<label class="form-label">First Name<span class="text-danger ms-1">*</span></label>
-												<input type="text" class="form-control">
+												<input type="text" id="co-firstName" class="form-control">
 											</div>
 										</div>
 										<div class="col-md-6">
 											<div class="input-block">
 												<label class="form-label">Last Name<span class="text-danger ms-1">*</span></label>
-												<input type="text" class="form-control">
+												<input type="text" id="co-lastName" class="form-control">
 											</div>
 										</div>
 										<div class="col-md-12">
@@ -547,6 +547,20 @@
 
 		// Hide account section + pre-fill for logged-in users
 		var token = localStorage.getItem('accessToken');
+		// Stale/expired tokens must not count as "logged in" — otherwise the
+		// account-creation fields stay hidden with no way for a guest to check out
+		if(token){
+			try {
+				var parts = token.split('.');
+				var payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
+				if(!payload.exp || Date.now() / 1000 > payload.exp){ throw new Error('expired'); }
+			} catch(e) {
+				localStorage.removeItem('accessToken');
+				localStorage.removeItem('refreshToken');
+				localStorage.removeItem('user');
+				token = null;
+			}
+		}
 		var acctSec = el('co-account-section');
 		if(token && acctSec){
 			acctSec.style.display = 'none';

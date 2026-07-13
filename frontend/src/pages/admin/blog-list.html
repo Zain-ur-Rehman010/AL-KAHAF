@@ -7,6 +7,7 @@
 	<title>Blog Management | Al-Kahaf Online Academy</title>
 	<link rel="shortcut icon" href="/assets/img/favicon.svg">
 	<script src="/assets/js/theme-script.js"></script>
+			<script src="/assets/js/auth-guard.js"></script>
 	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
 	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
@@ -446,7 +447,6 @@
 <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
 
 <script src="/assets/js/api-config.js"></script>
-	<script src="/assets/js/auth-guard.js"></script>
     <script>
 var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
 var token = localStorage.getItem('accessToken') || '';
