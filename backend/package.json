@@ -13,6 +13,8 @@
     "seed:predefined-courses": "node migrations/seed-predefined-courses.js",
     "seed:test-data": "node migrations/seed-test-data.js",
     "migrate:contacts": "node migrations/add-contacts-welfare-thumbnail.js",
+    "migrate:course-banner": "node migrations/add-course-banner-image.js",
+    "migrate:trusted-devices": "node migrations/add-user-trusted-devices.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },

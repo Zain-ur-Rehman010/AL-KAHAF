@@ -109,6 +109,10 @@ const User = sequelize.define('User', {
     type: DataTypes.DATE,
     allowNull: true,
   },
+  trustedDevices: {
+    type: DataTypes.JSON,
+    allowNull: true,
+  },
   passwordResetToken: {
     type: DataTypes.STRING(64),
     allowNull: true,
