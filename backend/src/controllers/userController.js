@@ -264,6 +264,9 @@ exports.deleteUser = async (req, res) => {
 
     res.json({ message: 'User deleted successfully' });
   } catch (error) {
+    if (error.name === 'SequelizeForeignKeyConstraintError') {
+      return res.status(400).json({ message: 'This user is still referenced by other records and can\'t be deleted.' });
+    }
     res.status(500).json({ message: error.message });
   }
 };

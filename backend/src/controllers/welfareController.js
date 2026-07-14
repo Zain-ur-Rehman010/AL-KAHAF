@@ -118,9 +118,21 @@ exports.deleteProgram = async (req, res) => {
   try {
     const prog = await WelfareProgram.findByPk(req.params.id);
     if (!prog) return res.status(404).json({ success: false, message: 'Program not found' });
+
+    const donationCount = await WelfareDonation.count({ where: { programId: prog.id } });
+    if (donationCount > 0) {
+      return res.status(400).json({
+        success: false,
+        message: `This program has ${donationCount} donation(s) and can't be deleted. Deactivate it instead to preserve donation records.`,
+      });
+    }
+
     await prog.destroy();
     res.json({ success: true, message: 'Program deleted' });
   } catch (err) {
+    if (err.name === 'SequelizeForeignKeyConstraintError') {
+      return res.status(400).json({ success: false, message: 'This program is still referenced by other records and can\'t be deleted.' });
+    }
     res.status(500).json({ success: false, message: 'Server error' });
   }
 };

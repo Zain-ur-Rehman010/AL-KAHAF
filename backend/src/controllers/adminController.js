@@ -556,6 +556,12 @@ exports.deleteInstructor = async (req, res) => {
 
   } catch (error) {
     console.error('Error deleting instructor:', error);
+    if (error.name === 'SequelizeForeignKeyConstraintError') {
+      return res.status(400).json({
+        success: false,
+        message: 'This instructor is still referenced by other records (students, enrollments, or payments) and can\'t be deleted.'
+      });
+    }
     res.status(500).json({
       success: false,
       message: 'Error deleting instructor',
@@ -1164,6 +1170,12 @@ exports.deleteEnrollment = async (req, res) => {
 
   } catch (error) {
     console.error('Error deleting enrollment:', error);
+    if (error.name === 'SequelizeForeignKeyConstraintError') {
+      return res.status(400).json({
+        success: false,
+        message: 'This enrollment is still referenced by other records (certificates or payments) and can\'t be deleted.'
+      });
+    }
     res.status(500).json({
       success: false,
       message: 'Error deleting enrollment',

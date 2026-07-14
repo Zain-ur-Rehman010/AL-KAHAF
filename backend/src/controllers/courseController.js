@@ -208,8 +208,24 @@ exports.deleteCourse = async (req, res) => {
       return res.status(403).json({ message: 'Unauthorized' });
     }
 
+    const enrollmentCount = await Enrollment.count({ where: { courseId: course.id } });
+    if (enrollmentCount > 0) {
+      return res.status(400).json({
+        message: `This course has ${enrollmentCount} enrollment(s) and can't be deleted. Archive it instead to hide it from listings while preserving student records.`,
+      });
+    }
+
     const courseTitle = course.title;
-    await course.destroy();
+    try {
+      await course.destroy();
+    } catch (err) {
+      if (err.name === 'SequelizeForeignKeyConstraintError') {
+        return res.status(400).json({
+          message: 'This course is still referenced by other records (modules, lessons, or payments) and can\'t be deleted. Archive it instead.',
+        });
+      }
+      throw err;
+    }
 
     notifyAdmins({
       type: 'course_update',
