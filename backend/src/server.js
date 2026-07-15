@@ -46,6 +46,11 @@ const swaggerDefinition = {
 
 const app = express();
 
+// Trust the reverse proxy in front of this server (cPanel/Apache) so req.ip
+// reflects the real client IP from X-Forwarded-For — without this, every
+// visitor collapses into one shared rate-limit bucket.
+app.set("trust proxy", 1);
+
 // Security middleware — relax CSP only for the Swagger UI path
 app.use((req, res, next) => {
   if (req.path.startsWith("/api-docs")) {
