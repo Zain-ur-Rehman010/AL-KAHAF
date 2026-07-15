@@ -128,6 +128,22 @@
 			transition: all .2s;
 		}
 		.app-filter-btn.active { border-color: #522811; background: #522811; color: #fff; }
+
+		/* Force the table to always be horizontally scrollable with a visible,
+		   draggable scrollbar rather than only scrolling when the window is
+		   narrow enough to overflow naturally. */
+		.table-responsive table { min-width: 1100px; }
+		.action-btns { flex-wrap: nowrap; }
+		.action-btns .btn { flex-shrink: 0; }
+		.table-responsive {
+			overflow-x: scroll !important;
+			scrollbar-width: auto;
+			scrollbar-color: #d8ac27 #f2ede8;
+		}
+		.table-responsive::-webkit-scrollbar { height: 12px; }
+		.table-responsive::-webkit-scrollbar-track { background: #f2ede8; border-radius: 8px; }
+		.table-responsive::-webkit-scrollbar-thumb { background: #d8ac27; border-radius: 8px; }
+		.table-responsive::-webkit-scrollbar-thumb:hover { background: #b8860b; }
 	</style>
 
 </head>
