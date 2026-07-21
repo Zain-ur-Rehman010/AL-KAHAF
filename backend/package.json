@@ -15,6 +15,10 @@
     "migrate:contacts": "node migrations/add-contacts-welfare-thumbnail.js",
     "migrate:course-banner": "node migrations/add-course-banner-image.js",
     "migrate:trusted-devices": "node migrations/add-user-trusted-devices.js",
+    "migrate:resources": "node migrations/create-resources-table.js",
+    "migrate:announcements": "node migrations/create-announcements-table.js",
+    "migrate:announcement-image": "node migrations/add-announcement-image.js",
+    "migrate:announcement-message-optional": "node migrations/make-announcement-message-optional.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },

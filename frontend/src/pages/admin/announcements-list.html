@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Announcements | Al-Kahaf Online Academy</title>
+	<link rel="shortcut icon" href="/assets/img/favicon.svg">
+	<script src="/assets/js/theme-script.js"></script>
+			<script src="/assets/js/auth-guard.js"></script>
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="/assets/css/feather.css">
+	<link rel="stylesheet" href="/assets/css/iconsax.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/site-overrides.css">
+	<style>
+		.status-badge { font-size:0.75rem;padding:4px 10px;border-radius:20px;font-weight:600; }
+		.status-active   { background:#d4edda;color:#155724; }
+		.status-inactive { background:#e2e3e5;color:#383d41; }
+		.style-badge { font-size:0.75rem;padding:4px 10px;border-radius:20px;font-weight:600; }
+		.style-info    { background:#d1ecf1;color:#0c5460; }
+		.style-success { background:#d4edda;color:#155724; }
+		.style-warning { background:#fff3cd;color:#856404; }
+		.style-urgent  { background:#f8d7da;color:#721c24; }
+		.msg-cell { max-width:320px; }
+
+		/* Skeleton shimmer */
+		.sk{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sk-shimmer 1.4s infinite;border-radius:6px;}
+		@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+		/* Force the table to always be horizontally scrollable with a visible,
+		   draggable scrollbar rather than only scrolling when the window is
+		   narrow enough to overflow naturally. */
+		.table-responsive table { min-width: 1100px; }
+		.action-btns { flex-wrap: nowrap; }
+		.action-btns .btn { flex-shrink: 0; }
+		.table-responsive {
+			overflow-x: scroll !important;
+			scrollbar-width: auto;
+			scrollbar-color: #d8ac27 #f2ede8;
+		}
+		.table-responsive::-webkit-scrollbar { height: 12px; }
+		.table-responsive::-webkit-scrollbar-track { background: #f2ede8; border-radius: 8px; }
+		.table-responsive::-webkit-scrollbar-thumb { background: #d8ac27; border-radius: 8px; }
+		.table-responsive::-webkit-scrollbar-thumb:hover { background: #b8860b; }
+	</style>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+	<!-- Header -->
+	<header class="header">
+		<div class="header-fixed">
+			<nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a id="mobile_btn" href="javascript:void(0);">
+							<span class="bar-icon"><span></span><span></span><span></span></span>
+						</a>
+						<a href="/" class="navbar-brand logo"><img src="/assets/img/white-logo.png" class="img-fluid" alt="Logo" style="width:120px;"></a>
+					</div>
+					<div class="main-menu-wrapper">
+						<div class="menu-header">
+							<a href="/" class="menu-logo"><img src="/assets/img/logo.svg" class="img-fluid" alt="Logo"></a>
+							<a id="menu_close" class="menu-close" href="javascript:void(0);"><i class="fas fa-times"></i></a>
+						</div>
+						<ul class="main-nav">
+							<li><a href="/admin/admin-dashboard"><i class="isax isax-home me-2"></i>Dashboard</a></li>
+							<li class="has-submenu">
+								<a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
+								<ul class="submenu">
+									<li><a href="/admin/users-list">All Users</a></li>
+									<li><a href="/admin/instructors-list">Instructors</a></li>
+									<li><a href="/admin/students-list">Students</a></li>
+									<li><a href="/admin/user-add">Add New User</a></li>
+								</ul>
+							</li>
+							<li class="has-submenu">
+								<a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
+								<ul class="submenu">
+									<li><a href="/admin/courses-list">All Courses</a></li>
+									<li><a href="/admin/course-add">Add Course</a></li>
+									<li><a href="/admin/predefined-courses">Predefined Catalog</a></li>
+								</ul>
+							</li>
+							<li class="has-submenu active">
+								<a href="javascript:void(0);"><i class="isax isax-category me-2"></i>Manage <i class="isax isax-arrow-down-1 ms-2"></i></a>
+								<ul class="submenu">
+									<li><a href="/admin/blog-list">Blog Posts</a></li>
+									<li><a href="/admin/enrollments-list">Enrollments</a></li>
+									<li><a href="/admin/payments-list">Payments</a></li>
+									<li><a href="/admin/welfare-programs">Welfare</a></li>
+									<li><a href="/admin/resources-list">Resources</a></li>
+									<li><a href="/admin/announcements-list" class="active">Announcements</a></li>
+									<li><a href="/admin/notifications">Notifications</a></li>
+								</ul>
+							</li>
+							<li><a href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+						</ul>
+					</div>
+					<div class="d-flex align-items-center" style="gap:16px;">
+								<!-- Notification Bell -->
+								<a href="/admin/notifications" class="position-relative" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#522811;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);color:#d8ac27;text-decoration:none;">
+									<i class="isax isax-notification" style="font-size:20px;color:#d8ac27;"></i>
+									<span id="notif-badge" style="position:absolute;top:0;right:0;background:#e53935;color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 3px;line-height:1;border:2px solid #522811;">0</span>
+								</a>
+								<!-- Profile Dropdown -->
+								<div class="dropdown profile-dropdown">
+									<a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
+										<span style="width:42px;height:42px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:#522811;color:#d8ac27;font-weight:700;font-size:16px;cursor:pointer;border:2px solid rgba(255,255,255,0.3);">
+											<img src="/assets/img/user/user-01.jpg" id="admin-avatar-img" alt="Admin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';document.getElementById('admin-initials').style.display='flex';">
+											<span id="admin-initials" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#d8ac27;">A</span>
+										</span>
+									</a>
+									<div class="dropdown-menu dropdown-menu-end" style="min-width:220px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15);border:none;padding:0;overflow:hidden;">
+										<div class="profile-header d-flex align-items-center" style="padding:16px;background:#f8f9fa;border-bottom:1px solid #eee;">
+											<div style="width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#522811;display:flex;align-items:center;justify-content:center;" class="me-3">
+												<img src="/assets/img/user/user-01.jpg" alt="Admin" style="width:100%;height:100%;object-fit:cover;">
+											</div>
+											<div>
+												<h6 class="mb-0 fw-semibold" id="admin-name">Administrator</h6>
+												<small class="text-muted">Admin</small>
+											</div>
+										</div>
+										<ul class="profile-body list-unstyled mb-0" style="padding:8px 0 8px 8px;">
+											<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-profile"><i class="isax isax-security-user me-2"></i>My Profile</a></li>
+											<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+										</ul>
+										<div style="padding:12px 16px;border-top:1px solid #eee;">
+											<a href="/auth/login" id="logoutBtn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+										</div>
+									</div>
+								</div>
+							</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<!-- /Header -->
+
+	<!-- Breadcrumb -->
+	<div class="breadcrumb-bar text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="breadcrumb-title">Announcements</h2>
+					<nav aria-label="breadcrumb" class="page-breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="/">Home</a></li>
+							<li class="breadcrumb-item"><a href="/admin/admin-dashboard">Admin</a></li>
+							<li class="breadcrumb-item active">Announcements</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Breadcrumb -->
+
+	<!-- Page Content -->
+	<div class="content">
+		<div class="container">
+
+			<!-- Page Header -->
+			<div class="row mb-4">
+				<div class="col-12">
+					<div class="card bg-white rounded-3 shadow-sm">
+						<div class="card-body">
+							<div class="row align-items-center">
+								<div class="col-md-6">
+									<h4 class="mb-0">Site Announcements</h4>
+									<p class="text-muted mb-0 mt-1">Manage the popup shown automatically when visitors load the homepage. Only the newest active, non-expired announcement is shown.</p>
+								</div>
+								<div class="col-md-6 text-md-end mt-3 mt-md-0">
+									<button class="btn btn-primary" onclick="openAddModal()">
+										<i class="isax isax-add-circle me-2"></i>Add Announcement
+									</button>
+									<button class="btn btn-outline-secondary ms-2" onclick="loadAnnouncements()">
+										<i class="isax isax-refresh me-2"></i>Refresh
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Stats -->
+			<div class="row mb-4" id="stats-row">
+				<div class="col-lg-4 col-md-6 mb-3">
+					<div class="card bg-primary text-white rounded-3 shadow-sm">
+						<div class="card-body d-flex align-items-center justify-content-between">
+							<div><p class="mb-1 text-white-50">Total</p><h3 class="mb-0" id="stat-total">—</h3></div>
+							<i class="isax isax-notification fs-1 opacity-50"></i>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-3">
+					<div class="card bg-success text-white rounded-3 shadow-sm">
+						<div class="card-body d-flex align-items-center justify-content-between">
+							<div><p class="mb-1 text-white-50">Active</p><h3 class="mb-0" id="stat-active">—</h3></div>
+							<i class="isax isax-tick-circle fs-1 opacity-50"></i>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 mb-3">
+					<div class="card bg-secondary text-white rounded-3 shadow-sm">
+						<div class="card-body d-flex align-items-center justify-content-between">
+							<div><p class="mb-1 text-white-50">Inactive</p><h3 class="mb-0" id="stat-inactive">—</h3></div>
+							<i class="isax isax-pause fs-1 opacity-50"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Announcements Table -->
+			<div class="row">
+				<div class="col-12">
+					<div class="card rounded-3 shadow-sm">
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-hover align-middle" id="announcements-table">
+									<thead class="table-light">
+										<tr>
+											<th>Message</th>
+											<th>Style</th>
+											<th>Link</th>
+											<th>Status</th>
+											<th>Expires</th>
+											<th>Created</th>
+											<th class="text-center">Actions</th>
+										</tr>
+									</thead>
+									<tbody id="announcements-tbody">
+										<tr><td><span class="sk" style="width:220px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:70px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:60px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:110px;height:28px;border-radius:4px;display:block;"></span></td></tr>
+										<tr><td><span class="sk" style="width:220px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:70px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:60px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:80px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:110px;height:28px;border-radius:4px;display:block;"></span></td></tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- /Page Content -->
+
+</div>
+<!-- /Main Wrapper -->
+
+<!-- ============================================================
+     ADD / EDIT ANNOUNCEMENT MODAL
+============================================================ -->
+<div class="modal fade" id="announcement-form-modal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-title">Add Announcement</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<form id="announcement-form" novalidate>
+					<input type="hidden" id="announcement-id">
+
+					<div class="row g-3">
+						<!-- Message -->
+						<div class="col-12">
+							<label class="form-label fw-semibold">Message <small class="text-muted">(optional if a poster image is uploaded)</small></label>
+							<textarea class="form-control" id="announcement-message" rows="2" placeholder="e.g. Winter batch enrollment is now open!"></textarea>
+						</div>
+
+						<!-- Poster Image (optional) -->
+						<div class="col-12">
+							<label class="form-label fw-semibold">Poster Image <small class="text-muted">(optional — shown full-width at the top of the popup)</small></label>
+							<input type="hidden" id="announcement-image">
+
+							<div id="image-upload-zone" style="border:2px dashed #dee2e6;border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:#fafafa;" onclick="document.getElementById('image-file-input').click()">
+								<i class="isax isax-image fs-1 text-muted d-block mb-2"></i>
+								<p class="mb-1 fw-semibold text-muted">Click to upload or drag &amp; drop</p>
+								<p class="text-muted small mb-0">JPG, PNG, WebP, GIF &mdash; max 5 MB</p>
+								<p class="text-muted small mb-0">Recommended size: 1200&times;640px (~1.9:1 ratio) &mdash; other sizes will be cropped to fit</p>
+							</div>
+							<input type="file" id="image-file-input" accept="image/jpeg,image/png,image/webp,image/gif" style="display:none;" onclick="event.stopPropagation()">
+
+							<div id="image-upload-progress" style="display:none;" class="mt-2">
+								<div class="progress" style="height:6px;">
+									<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" style="width:100%"></div>
+								</div>
+								<p class="text-muted small mt-1 mb-0">Uploading image&hellip;</p>
+							</div>
+
+							<div id="image-preview-wrap" style="display:none;margin-top:12px;position:relative;">
+								<img id="image-preview" src="" alt="Preview" style="max-height:160px;object-fit:cover;border-radius:8px;width:100%;">
+								<button type="button" onclick="removeImage()" style="position:absolute;top:8px;right:8px;border-radius:50%;width:30px;height:30px;border:none;background:rgba(220,53,69,.85);color:#fff;cursor:pointer;font-size:18px;line-height:1;" title="Remove image">&times;</button>
+							</div>
+						</div>
+
+						<!-- Style & Active -->
+						<div class="col-md-6">
+							<label class="form-label fw-semibold">Style</label>
+							<select class="form-select" id="announcement-style">
+								<option value="info">Info (blue)</option>
+								<option value="success">Success (green)</option>
+								<option value="warning">Warning (yellow)</option>
+								<option value="urgent">Urgent (red)</option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label fw-semibold d-block">Active</label>
+							<div class="form-check form-switch mt-2">
+								<input class="form-check-input" type="checkbox" id="announcement-active">
+								<label class="form-check-label" for="announcement-active">Show this popup on the homepage</label>
+							</div>
+						</div>
+
+						<!-- Link -->
+						<div class="col-md-8">
+							<label class="form-label fw-semibold">Link URL <small class="text-muted">(optional)</small></label>
+							<input type="text" class="form-control" id="announcement-link-url" placeholder="/courses/course-grid or https://…">
+						</div>
+						<div class="col-md-4">
+							<label class="form-label fw-semibold">Link Text</label>
+							<input type="text" class="form-control" id="announcement-link-text" placeholder="Learn More">
+						</div>
+
+						<!-- Expiry -->
+						<div class="col-md-6">
+							<label class="form-label fw-semibold">Expires <small class="text-muted">(optional)</small></label>
+							<input type="date" class="form-control" id="announcement-expires">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer gap-2">
+				<button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" id="save-btn" onclick="saveAnnouncement()">
+					<i class="isax isax-tick-square me-2"></i>Save Announcement
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Admin Login Modal -->
+<div class="modal fade" id="login-modal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-sm modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-body p-4">
+				<div class="text-center mb-3">
+					<i class="isax isax-lock fs-1 text-primary d-block mb-2"></i>
+					<h5 class="fw-bold">Admin Login</h5>
+					<p class="text-muted small">Sign in with your admin account to manage announcements.</p>
+				</div>
+				<div class="mb-3">
+					<input type="email" id="login-email" class="form-control" placeholder="Admin Email">
+				</div>
+				<div class="mb-3">
+					<input type="password" id="login-pass" class="form-control" placeholder="Password" onkeydown="if(event.key==='Enter') adminLogin()">
+				</div>
+				<div id="login-error" class="alert alert-danger py-2 small" style="display:none;"></div>
+				<button class="btn btn-primary w-100" id="login-btn" onclick="adminLogin()">Login</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-sm modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-body text-center p-4">
+				<i class="isax isax-trash fs-1 text-danger mb-3 d-block"></i>
+				<h5>Delete Announcement?</h5>
+				<p class="text-muted">This action cannot be undone.</p>
+				<div class="d-flex gap-2 justify-content-center mt-3">
+					<button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+					<button class="btn btn-danger" id="confirm-delete-btn">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Toast -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999">
+	<div id="toast-msg" class="toast align-items-center text-white border-0" role="alert">
+		<div class="d-flex">
+			<div class="toast-body" id="toast-text">Saved successfully</div>
+			<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+		</div>
+	</div>
+</div>
+
+<!-- Scripts -->
+<script src="/assets/js/jquery-3.7.1.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+<script src="/assets/js/api-config.js"></script>
+    <script>
+var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+var token = localStorage.getItem('accessToken') || '';
+var announcementModal, deleteModal, loginModal, toastEl, toastObj;
+var deleteTargetId = null;
+
+document.addEventListener('DOMContentLoaded', function () {
+	announcementModal = new bootstrap.Modal(document.getElementById('announcement-form-modal'));
+	deleteModal       = new bootstrap.Modal(document.getElementById('delete-modal'));
+	loginModal        = new bootstrap.Modal(document.getElementById('login-modal'), { backdrop: 'static', keyboard: false });
+	toastEl           = document.getElementById('toast-msg');
+	toastObj          = new bootstrap.Toast(toastEl, { delay: 3000 });
+
+	// Image file input change
+	document.getElementById('image-file-input').addEventListener('change', function () {
+		if (this.files && this.files[0]) uploadImage(this.files[0]);
+	});
+
+	// Drag & drop on image upload zone
+	var izone = document.getElementById('image-upload-zone');
+	izone.addEventListener('dragover', function(e) { e.preventDefault(); izone.style.borderColor='#522811'; izone.style.background='#fff8f0'; });
+	izone.addEventListener('dragleave', function() { izone.style.borderColor='#dee2e6'; izone.style.background='#fafafa'; });
+	izone.addEventListener('drop', function(e) {
+		e.preventDefault();
+		izone.style.borderColor='#dee2e6'; izone.style.background='#fafafa';
+		var file = e.dataTransfer.files[0];
+		if (file) uploadImage(file);
+	});
+
+	if (!token) { loginModal.show(); return; }
+	verifyAndLoad();
+});
+
+function verifyAndLoad() {
+	fetch(API_BASE + '/announcements?limit=1', { headers: authHeaders() })
+		.then(function(r) {
+			if (r.status === 401 || r.status === 403) {
+				loginModal.show();
+			} else {
+				loadAnnouncements();
+			}
+		})
+		.catch(function() { loadAnnouncements(); });
+}
+
+function adminLogin() {
+	var email = document.getElementById('login-email').value.trim();
+	var pass  = document.getElementById('login-pass').value.trim();
+	var btn   = document.getElementById('login-btn');
+	var err   = document.getElementById('login-error');
+	if (!email || !pass) { err.textContent = 'Please enter email and password.'; err.style.display='block'; return; }
+	btn.disabled = true; btn.textContent = 'Logging in…';
+	err.style.display = 'none';
+	fetch(API_BASE + '/auth/login', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ email: email, password: pass })
+	})
+	.then(function(r) { return r.json(); })
+	.then(function(j) {
+		btn.disabled = false; btn.textContent = 'Login';
+		if (j.success && j.data && j.data.accessToken) {
+			if (j.data.user && j.data.user.role !== 'admin') {
+				err.textContent = 'Access denied. Admin account required.';
+				err.style.display = 'block';
+				return;
+			}
+			token = j.data.accessToken;
+			localStorage.setItem('accessToken', token);
+			loginModal.hide();
+			loadAnnouncements();
+		} else {
+			err.textContent = j.message || 'Invalid credentials.';
+			err.style.display = 'block';
+		}
+	})
+	.catch(function() {
+		btn.disabled = false; btn.textContent = 'Login';
+		err.textContent = 'Cannot connect to server. Make sure backend is running.';
+		err.style.display = 'block';
+	});
+}
+
+// ── Helpers ─────────────────────────────────────────────────────────────
+function authHeaders() {
+	return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token };
+}
+
+function showToast(msg, success) {
+	toastEl.className = 'toast align-items-center text-white border-0 ' + (success !== false ? 'bg-success' : 'bg-danger');
+	document.getElementById('toast-text').textContent = msg;
+	toastObj.show();
+}
+
+function formatDate(d) {
+	if (!d) return '—';
+	return new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function statusBadge(isActive) {
+	return isActive
+		? '<span class="status-badge status-active">Active</span>'
+		: '<span class="status-badge status-inactive">Inactive</span>';
+}
+
+var STYLE_LABELS = { info: 'Info', success: 'Success', warning: 'Warning', urgent: 'Urgent' };
+
+// ── Load Announcements ───────────────────────────────────────────────────
+function loadAnnouncements() {
+	document.getElementById('announcements-tbody').innerHTML =
+		'<tr><td colspan="7" class="text-center py-4"><div class="spinner-border text-primary" role="status"></div></td></tr>';
+
+	fetch(API_BASE + '/announcements?limit=100', { headers: authHeaders() })
+		.then(function(r) { return r.json(); })
+		.then(function(json) {
+			var announcements = json.announcements || [];
+			renderTable(announcements);
+			updateStats(announcements);
+		})
+		.catch(function() {
+			document.getElementById('announcements-tbody').innerHTML =
+				'<tr><td colspan="7" class="text-center text-danger py-4">Could not connect to API. Make sure the backend is running.</td></tr>';
+		});
+}
+
+function renderTable(announcements) {
+	var tbody = document.getElementById('announcements-tbody');
+	if (!announcements.length) {
+		tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted py-4">No announcements yet. Click "Add Announcement" to create one.</td></tr>';
+		return;
+	}
+	tbody.innerHTML = announcements.map(function(a) {
+		return '<tr>' +
+			'<td class="msg-cell">' + (a.message ? (a.message.substring(0, 100) + (a.message.length > 100 ? '…' : '')) : '<span class="text-muted fst-italic">Image only</span>') + '</td>' +
+			'<td><span class="style-badge style-' + a.style + '">' + (STYLE_LABELS[a.style] || a.style) + '</span></td>' +
+			'<td>' + (a.linkUrl ? '<i class="isax isax-link text-primary" title="' + a.linkUrl + '"></i>' : '—') + '</td>' +
+			'<td>' + statusBadge(a.isActive) + '</td>' +
+			'<td>' + (a.expiresAt ? formatDate(a.expiresAt) : '—') + '</td>' +
+			'<td>' + formatDate(a.createdAt) + '</td>' +
+			'<td class="text-center">' +
+				'<div class="action-btns d-flex justify-content-center gap-1">' +
+				'<button class="btn btn-sm ' + (a.isActive ? 'btn-outline-secondary' : 'btn-outline-success') + '" onclick="toggleActive(\'' + a.id + '\', ' + !a.isActive + ')" title="' + (a.isActive ? 'Deactivate' : 'Activate') + '">' +
+					'<i class="isax isax-' + (a.isActive ? 'pause-circle' : 'play-circle') + '"></i>' +
+				'</button>' +
+				'<button class="btn btn-sm btn-outline-primary" onclick="openEditModal(\'' + a.id + '\')" title="Edit"><i class="isax isax-edit"></i></button>' +
+				'<button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(\'' + a.id + '\')" title="Delete"><i class="isax isax-trash"></i></button>' +
+				'</div>' +
+			'</td>' +
+		'</tr>';
+	}).join('');
+}
+
+function updateStats(announcements) {
+	document.getElementById('stat-total').textContent    = announcements.length;
+	document.getElementById('stat-active').textContent   = announcements.filter(function(a) { return a.isActive; }).length;
+	document.getElementById('stat-inactive').textContent = announcements.filter(function(a) { return !a.isActive; }).length;
+}
+
+// ── Open Add Modal ───────────────────────────────────────────────────────
+function openAddModal() {
+	document.getElementById('modal-title').textContent = 'Add Announcement';
+	document.getElementById('announcement-form').reset();
+	document.getElementById('announcement-id').value = '';
+	document.getElementById('announcement-style').value = 'info';
+	document.getElementById('announcement-active').checked = false;
+	removeImage();
+	announcementModal.show();
+}
+
+// ── Open Edit Modal ──────────────────────────────────────────────────────
+function openEditModal(id) {
+	fetch(API_BASE + '/announcements', { headers: authHeaders() })
+		.then(function(r) { return r.json(); })
+		.then(function(json) {
+			var a = (json.announcements || []).find(function(x) { return x.id === id; });
+			if (!a) { showToast('Could not load announcement', false); return; }
+
+			document.getElementById('modal-title').textContent = 'Edit Announcement';
+			document.getElementById('announcement-id').value        = a.id;
+			document.getElementById('announcement-message').value   = a.message || '';
+			document.getElementById('announcement-style').value     = a.style;
+			document.getElementById('announcement-active').checked  = !!a.isActive;
+			document.getElementById('announcement-link-url').value  = a.linkUrl || '';
+			document.getElementById('announcement-link-text').value = a.linkText || '';
+			document.getElementById('announcement-expires').value   = a.expiresAt ? a.expiresAt.substring(0, 10) : '';
+
+			document.getElementById('announcement-image').value = a.imageUrl || '';
+			if (a.imageUrl) {
+				document.getElementById('image-preview').src = a.imageUrl;
+				document.getElementById('image-preview-wrap').style.display = 'block';
+			} else {
+				document.getElementById('image-preview-wrap').style.display = 'none';
+			}
+
+			announcementModal.show();
+		})
+		.catch(function() { showToast('Failed to load announcement data', false); });
+}
+
+// ── Save Announcement (Create or Update) ─────────────────────────────────
+function saveAnnouncement() {
+	var id       = document.getElementById('announcement-id').value;
+	var message  = document.getElementById('announcement-message').value.trim();
+	var imageUrl = document.getElementById('announcement-image').value.trim();
+	if (!message && !imageUrl) { showToast('Add a message or an image', false); return; }
+
+	var payload = {
+		message:   message,
+		imageUrl:  imageUrl,
+		style:     document.getElementById('announcement-style').value,
+		isActive:  document.getElementById('announcement-active').checked,
+		linkUrl:   document.getElementById('announcement-link-url').value.trim(),
+		linkText:  document.getElementById('announcement-link-text').value.trim(),
+		expiresAt: document.getElementById('announcement-expires').value || null
+	};
+
+	var saveBtn = document.getElementById('save-btn');
+	saveBtn.disabled = true;
+	saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving…';
+
+	var method = id ? 'PUT' : 'POST';
+	var url    = id ? API_BASE + '/announcements/' + id : API_BASE + '/announcements';
+
+	fetch(url, { method: method, headers: authHeaders(), body: JSON.stringify(payload) })
+		.then(function(r) { return r.json(); })
+		.then(function(json) {
+			saveBtn.disabled = false;
+			saveBtn.innerHTML = '<i class="isax isax-tick-square me-2"></i>Save Announcement';
+			if (json.success) {
+				showToast(id ? 'Announcement updated successfully!' : 'Announcement created successfully!');
+				announcementModal.hide();
+				loadAnnouncements();
+			} else {
+				showToast(json.message || 'Save failed', false);
+			}
+		})
+		.catch(function() {
+			saveBtn.disabled = false;
+			saveBtn.innerHTML = '<i class="isax isax-tick-square me-2"></i>Save Announcement';
+			showToast('Network error — is the backend running?', false);
+		});
+}
+
+// ── Toggle Active ─────────────────────────────────────────────────────────
+function toggleActive(id, newState) {
+	fetch(API_BASE + '/announcements/' + id, { method: 'PUT', headers: authHeaders(), body: JSON.stringify({ isActive: newState }) })
+		.then(function(r) { return r.json(); })
+		.then(function(json) {
+			if (json.success) {
+				showToast(newState ? 'Announcement activated!' : 'Announcement deactivated!');
+				loadAnnouncements();
+			} else {
+				showToast(json.message || 'Update failed', false);
+			}
+		})
+		.catch(function() { showToast('Network error', false); });
+}
+
+// ── Delete Announcement ──────────────────────────────────────────────────
+function confirmDelete(id) {
+	deleteTargetId = id;
+	deleteModal.show();
+	document.getElementById('confirm-delete-btn').onclick = function () {
+		fetch(API_BASE + '/announcements/' + deleteTargetId, { method: 'DELETE', headers: authHeaders() })
+			.then(function(r) { return r.json(); })
+			.then(function(json) {
+				deleteModal.hide();
+				if (json.success) {
+					showToast('Announcement deleted successfully!');
+					loadAnnouncements();
+				} else {
+					showToast(json.message || 'Delete failed', false);
+				}
+			})
+			.catch(function() { deleteModal.hide(); showToast('Network error', false); });
+	};
+}
+
+// ── Poster Image Upload ───────────────────────────────────────────────────
+function removeImage() {
+	document.getElementById('announcement-image').value = '';
+	document.getElementById('image-file-input').value = '';
+	document.getElementById('image-preview-wrap').style.display = 'none';
+}
+
+function uploadImage(file) {
+	if (file.size > 5 * 1024 * 1024) {
+		showToast('Image too large. Max size is 5 MB.', false);
+		return;
+	}
+	var progress = document.getElementById('image-upload-progress');
+	var zone      = document.getElementById('image-upload-zone');
+	progress.style.display = 'block';
+	zone.style.pointerEvents = 'none';
+	zone.style.opacity = '0.6';
+
+	var formData = new FormData();
+	formData.append('image', file);
+
+	fetch(API_BASE + '/upload?folder=announcements', {
+		method: 'POST',
+		headers: { 'Authorization': 'Bearer ' + token },
+		body: formData
+	})
+	.then(function(r) { return r.json(); })
+	.then(function(json) {
+		progress.style.display = 'none';
+		zone.style.pointerEvents = '';
+		zone.style.opacity = '';
+		if (json.success && json.url) {
+			document.getElementById('announcement-image').value = json.url;
+			document.getElementById('image-preview').src = json.url;
+			document.getElementById('image-preview-wrap').style.display = 'block';
+			showToast('Image uploaded successfully!');
+		} else {
+			showToast(json.message || 'Upload failed', false);
+		}
+	})
+	.catch(function() {
+		progress.style.display = 'none';
+		zone.style.pointerEvents = '';
+		zone.style.opacity = '';
+		showToast('Upload failed — is the backend running?', false);
+	});
+}
+</script>
+
+</body>
+</html>

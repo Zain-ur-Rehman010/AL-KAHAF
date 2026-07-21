@@ -18,7 +18,7 @@ echo ""
 REMOTE_USER="your_cpanel_username"
 REMOTE_HOST="alkahafonlineacademy.com"
 REMOTE_PATH="/home/username/public_html"
-LOCAL_HTACCESS="frontend/.htaccess.production"
+LOCAL_HTACCESS="frontend/.htaccess"
 
 echo -e "${YELLOW}This script will:${NC}"
 echo "1. Backup your current .htaccess file"

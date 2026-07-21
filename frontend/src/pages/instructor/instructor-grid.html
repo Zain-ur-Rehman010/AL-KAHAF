@@ -1,71 +1,133 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 	<head>
-	
+
 		<!-- Meta Tags -->
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="description" content="Al-Kahaf LMS is a powerful Learning Management System template designed for educators, training institutions, and businesses. Manage courses, track student progress, conduct virtual classes, and enhance e-learning experiences with an intuitive and feature-rich platform.">
-		<meta name="keywords" content="LMS template, Learning Management System, e-learning software, online course platform, student management, education portal, virtual classroom, training management system, course tracking, online education">
-		<meta name="author" content="Dreams Technologies">
+		<meta name="description" content="Meet the certified scholars and instructors of Al-Kahaf Online Academy. Browse and filter by specialization and experience.">
 		<meta name="robots" content="index, follow">
-		
-		<title>Instructors | Al-Kahaf Online Academy</title>
+
+		<title>Our Instructors | Al-Kahaf Online Academy</title>
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="/assets/img/favicon.svg"> 
+		<link rel="shortcut icon" href="/assets/img/favicon.svg">
 		<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
 
 		<!-- Theme Settings Js -->
 		<script src="/assets/js/theme-script.js"></script>
-		
+
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
-		
+
 		<!-- Fontawesome CSS -->
 		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
 		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
 
 		<!-- Select2 CSS -->
 		<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
-		
-		<!-- Rangeslider CSS -->
-	    <link rel="stylesheet" href="/assets/plugins/ion-rangeslider/css/ion.rangeSlider.min.css">
 
-		
-		
 		<!-- Feathericon CSS -->
         <link rel="stylesheet" href="/assets/plugins/feather/feather.css">
 
 		<!-- Tabler Icon CSS -->
 		<link rel="stylesheet" href="/assets/plugins/tabler-icons/tabler-icons.css">
 
-		<!-- Iconsax CSS -->
+        <!-- Iconsax CSS -->
 		<link rel="stylesheet" href="/assets/css/iconsax.css">
 
 		<!-- Main CSS -->
 		<link rel="stylesheet" href="/assets/css/style.css">
 	<link rel="stylesheet" href="/assets/css/site-overrides.css">
-	
-		<style>
-	.profile-dropdown>a::after{display:none!important}
-	.header-inst-name{color:#fff!important}
+
+	<style>
+		/* ============================================================
+		   FEATURED INSTRUCTORS — animated fanned card stack
+		   ============================================================ */
+		.featured-fan-sec {
+			background: linear-gradient(160deg, #1a0f08 0%, #2c1810 45%, #1a0f08 100%);
+			padding: 80px 20px 100px;
+			position: relative;
+			overflow: hidden;
+		}
+		.featured-fan-sec::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background-image:
+				radial-gradient(circle at 12% 15%, rgba(216, 172, 39, 0.16) 0%, transparent 45%),
+				radial-gradient(circle at 88% 20%, rgba(216, 172, 39, 0.10) 0%, transparent 40%),
+				radial-gradient(circle at 50% 95%, rgba(139, 69, 19, 0.25) 0%, transparent 55%);
+			pointer-events: none;
+		}
+		.featured-fan-sec .container { position: relative; z-index: 1; }
+		.featured-fan-sec .section-header h2 { color: #fff; }
+		.featured-fan-sec .section-header p { color: rgba(255,255,255,.6); }
+		.featured-fan-wrap {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+			gap: 0;
+			max-width: 1100px;
+			margin: 40px auto 0;
+		}
+		.fan-card {
+			width: 210px;
+			margin: 0 -18px;
+			opacity: 0;
+			border-radius: 20px;
+			transition: transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease, opacity .6s ease, z-index 0s;
+			cursor: pointer;
+			position: relative;
+		}
+		.fan-card .instructor-item-three { margin: 0; }
+		.featured-fan-wrap.in-view .fan-card { opacity: 1; }
+		.fan-card:nth-child(1) { transform: rotate(-9deg) translateY(18px); transition-delay: .05s; }
+		.fan-card:nth-child(2) { transform: rotate(5deg) translateY(-6px); transition-delay: .15s; }
+		.fan-card:nth-child(3) { transform: rotate(-3deg) translateY(-14px); z-index: 2; transition-delay: .25s; }
+		.fan-card:nth-child(4) { transform: rotate(6deg) translateY(0); transition-delay: .35s; }
+		.fan-card:nth-child(5) { transform: rotate(-6deg) translateY(20px); transition-delay: .45s; }
+		.fan-card:nth-child(6) { transform: rotate(3deg) translateY(-4px); transition-delay: .55s; }
+		.fan-card:hover {
+			transform: rotate(0deg) translateY(-20px) scale(1.08) !important;
+			z-index: 10 !important;
+			box-shadow: 0 30px 60px rgba(0,0,0,.5);
+		}
+		@media (max-width: 991px) {
+			.fan-card { width: 170px; margin: 10px -10px; }
+		}
+		@media (max-width: 575px) {
+			.fan-card { width: 78%; margin: 8px auto; }
+			.fan-card:nth-child(n) { transform: rotate(0deg) !important; }
+		}
+
+		/* ============================================================
+		   FILTER TOOLBAR + FULL GRID
+		   ============================================================ */
+		.ins-filter-bar { background:#faf6ef; border-radius:16px; padding:24px; margin-bottom:34px; border:1px solid #eee0cc; }
+		.ins-filter-label { font-size:13px; font-weight:700; color:#522811; text-transform:uppercase; letter-spacing:.5px; margin-bottom:10px; display:block; }
+		.spec-chip { display:inline-flex; align-items:center; gap:6px; border:1.5px solid #e5d9c3; background:#fff; padding:6px 14px; border-radius:50px; font-size:13px; font-weight:600; color:#666; cursor:pointer; transition:.2s; margin:0 6px 8px 0; }
+		.spec-chip.active, .spec-chip:hover { border-color:#522811; background:#522811; color:#fff; }
+		.spec-chip input { display:none; }
 	</style>
-<script src="/assets/js/auth-guard.js"></script>
-</head>
+
+	</head>
 	<body>
 
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
 
-			<!-- Header -->
+            <!-- Header -->
 			<header class="header-one">
 				<div class="container">
 					<div class="header-nav">
 						<div class="navbar-header">
 							<a id="mobile_btn" href="javascript:void(0);">
-								<span class="bar-icon"><i class="isax isax-menu"></i></span>
+								<span class="bar-icon">
+											<i class="isax isax-menu"></i>
+										</span>
 							</a>
 							<div class="navbar-logo">
 								<a class="logo-white header-logo" href="/">
@@ -76,16 +138,49 @@
 								</a>
 							</div>
 						</div>
-						
+						<div class="main-menu-wrapper">
+							<div class="menu-header">
+								<a href="/" class="menu-logo">
+									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="img-fluid" alt="Logo">
+								</a>
+								<a id="menu_close" class="menu-close" href="javascript:void(0);">
+									<i class="fas fa-times"></i>
+								</a>
+							</div>
+														<ul class="main-nav">
+								<li><a href="/">Home</a></li>
+								<li><a href="/courses/course-grid">Courses</a></li>
+								<li class="has-submenu active">
+									<a href="javascript:void(0);">Explore <i class="fas fa-angle-down"></i></a>
+									<ul class="submenu">
+										<li><a href="/shared/about-us">About Us</a></li>
+										<li><a href="/shared/welfare-programs">Projects</a></li>
+										<li class="active"><a href="/instructor/instructor-grid">Instructors</a></li>
+									</ul>
+								</li>
+								<li><a href="/shared/resources">Resources</a></li>
+								<li><a href="/shared/free-trial">Free Trial</a></li>
+								<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
+							</ul>
+
+
+							<div class="menu-login">
+								<a href="/auth/login" class="btn btn-primary w-100 mb-2"><i class="isax isax-user me-2"></i>Sign In</a>
+								<a href="/auth/register" class="btn btn-secondary w-100"><i class="isax isax-user-edit me-2"></i>Register</a>
+							</div>
+						</div>
 						<div class="header-btn d-flex align-items-center">
 
 
 							<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
 								<i class="isax isax-lock-circle me-2"></i>Sign In
 							</a>
-							<a href="/auth/register" class="btn btn-secondary me-0">
+							<a href="/auth/register" class="btn btn-dark d-inline-flex align-items-center me-2">
 								<i class="isax isax-user-edit me-2"></i>Register
 							</a>
+						<a href="/shared/welfare-programs" class="btn btn-secondary btn-donate me-0">
+							<i class="isax isax-heart5 me-1"></i>Donate
+						</a>
 						</div>
 					</div>
 				</div>
@@ -97,11 +192,11 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12 col-12">
-							<h2 class="breadcrumb-title mb-2">Instructor Grid</h2>
+							<h2 class="breadcrumb-title mb-2">Our Instructors</h2>
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb justify-content-center mb-0">
 									<li class="breadcrumb-item"><a href="/">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Instructor Grid</li>
+									<li class="breadcrumb-item active" aria-current="page">Instructors</li>
 								</ol>
 							</nav>
 						</div>
@@ -109,554 +204,240 @@
 				</div>
 			</div>
 			<!-- /Breadcrumb -->
-			
-			<!-- Instructor -->
-			<section class="course-content">
+
+			<!-- Filterable directory -->
+			<div class="content">
 				<div class="container">
-					<div class="row align-items-baseline">
-						<div class="col-lg-3 theiaStickySidebar">
-							<div class="filter-clear">
-								<div class="clear-filter d-flex align-items-center justify-content-between mb-4 pb-lg-2">
-									<h5><i class="feather-filter me-2"></i>Filters</h5>
-									<div class="clear-text">
-										<a href="javascript:void(0);" class="clear-text">Clear</a>
-									</div>
-								</div>
-								<div class="accordion accordion-customicon1 accordions-items-seperate">
-									<div class="accordion-item">
-										<h2 class="accordion-header" id="headingcustomicon1One">
-											<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1One" aria-expanded="true" aria-controls="collapsecustomicon1One">
-											Categories <i class="fa-solid fa-chevron-down"></i>
-											</button>
-										</h2>
-										<div id="collapsecustomicon1One" class="accordion-collapse collapse show" aria-labelledby="headingcustomicon1One" data-bs-parent="#accordioncustomicon1Example" style="">
-											<div class="accordion-body">
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span> Backend (3)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span>  CSS (2)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>  Frontend (2)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span> General (2)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist" checked>
-														<span class="checkmark"></span> IT & Software (2)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span> Photography (2)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>  Programming Language (3)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check mb-0">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>  Technology (2)
-													</label>
-												</div>
-												<a href="javascript:void(0);" class="see-more-btn">See More</a>
-											</div>
-										</div>
-									</div>
-									<div class="accordion-item">
-										<h2 class="accordion-header" id="headingcustomicon1Two">
-											<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Two" aria-expanded="true" aria-controls="collapsecustomicon1Two">
-											Instructors<i class="fa-solid fa-chevron-down"></i>
-											</button>
-										</h2>
-										<div id="collapsecustomicon1Two" class="accordion-collapse collapse show" aria-labelledby="headingcustomicon1Two" data-bs-parent="#accordioncustomicon1Example">
-											<div class="accordion-body">
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span> Keny White (10)
-	
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span>  Hinata Hyuga (5)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>  John Doe (3)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check mb-0">
-														<input type="checkbox" name="select_specialist" checked>
-														<span class="checkmark"></span> Nicole Brown
-													</label>
-												</div>
-												<a href="javascript:void(0);" class="see-more-btn">See More</a>
-											</div>
-										</div>
-									</div>
-									<div class="accordion-item">
-										<h2 class="accordion-header" id="headingcustomicon1Three">
-											<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Three" aria-expanded="true" aria-controls="collapsecustomicon1Three">
-											Price<i class="fa-solid fa-chevron-down"></i>
-											</button>
-										</h2>
-										<div id="collapsecustomicon1Three" class="accordion-collapse collapse show" aria-labelledby="headingcustomicon1Three" data-bs-parent="#accordioncustomicon1Example">
-											<div class="accordion-body">
-												<div>
-													<label class="custom_check custom_one">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span> All (10)
-	
-													</label>
-												</div>
-												<div>
-													<label class="custom_check custom_one">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span>  Free (5) 
-	
-													</label>
-												</div>
-												<div>
-													<label class="custom_check custom_one mb-0">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>  Paid (3)
-													</label>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="accordion-item">
-										<h2 class="accordion-header" id="headingcustomicon1Four">
-											<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Four" aria-expanded="true" aria-controls="collapsecustomicon1Four">
-											Range<i class="fa-solid fa-chevron-down"></i>
-											</button>
-										</h2>
-										<div id="collapsecustomicon1Four" class="accordion-collapse collapse show" aria-labelledby="headingcustomicon1Four" data-bs-parent="#accordioncustomicon1Example">
-											<div class="accordion-body">
-												<div class="filter-range">
-													<input type="text"  class="input-range">
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="accordion-item">
-										<h2 class="accordion-header" id="headingcustomicon1Five">
-											<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapsecustomicon1Five" aria-expanded="true" aria-controls="collapsecustomicon1Five">
-											Level<i class="fa-solid fa-chevron-down"></i>
-											</button>
-										</h2>
-										<div id="collapsecustomicon1Five" class="accordion-collapse collapse show" aria-labelledby="headingcustomicon1Five" data-bs-parent="#accordioncustomicon1Example">
-											<div class="accordion-body">
-												<div>
-													<label class="custom_check custom_one">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span>Beginner (10)
-	
-													</label>
-												</div>
-												<div>
-													<label class="custom_check custom_one">
-														<input type="checkbox" name="select_specialist" >
-														<span class="checkmark"></span> Intermediate (5)
-	
-													</label>
-												</div>
-												<div>
-													<label class="custom_check custom_one">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>Advanced (21)
-													</label>
-												</div>
-												<div>
-													<label class="custom_check custom_one mb-0">
-														<input type="checkbox" name="select_specialist">
-														<span class="checkmark"></span>Expert  (3)
-													</label>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
+
+					<div class="ins-filter-bar">
+						<div class="row g-3 align-items-end">
+							<div class="col-md-4">
+								<span class="ins-filter-label">Search</span>
+								<input type="text" id="ins-search" class="form-control" placeholder="Search by name...">
+							</div>
+							<div class="col-md-3">
+								<span class="ins-filter-label">Experience</span>
+								<select id="ins-experience" class="form-select">
+									<option value="0">Any</option>
+									<option value="1">1+ years</option>
+									<option value="3">3+ years</option>
+									<option value="5">5+ years</option>
+								</select>
+							</div>
+							<div class="col-md-3">
+								<span class="ins-filter-label">Sort By</span>
+								<select id="ins-sort" class="form-select">
+									<option value="rating">Highest Rated</option>
+									<option value="experience">Most Experienced</option>
+									<option value="newest">Newest</option>
+								</select>
+							</div>
+							<div class="col-md-2">
+								<button class="btn btn-outline-secondary w-100" id="ins-clear-btn">Clear Filters</button>
 							</div>
 						</div>
-						<div class="col-lg-9">
-							<!-- Filter -->
-							<div class="showing-list mb-4">
-								<div class="row align-items-center">
-									<div class="col-lg-4">
-										<div class="show-result text-center text-lg-start">
-											<h6 class="fw-medium">Showing 1-9 of 50 results</h6>
-										</div>
-									</div>
-									<div class="col-lg-8">	
-										<div class="show-filter add-course-info">
-											<form action="#">
-												<div class="d-sm-flex justify-content-center justify-content-lg-end mb-1 mb-lg-0">
-													<div class="view-icons mb-2 mb-sm-0">
-														<a href="/instructor/instructor-grid" class="grid-view active"><i class="feather-grid"></i></a>
-														<a href="/instructor/instructor-list" class="list-view"><i class="isax isax-task"></i></a>
-													</div>
-													<select class="form-select">
-														<option>Newly Published</option>
-														<option>Trending Courses</option>
-														<option>Top Rated</option>
-														<option>Free Courses</option>
-													</select>
-													<div class=" search-group">
-														<i class="feather-search"></i>
-														<input type="text" class="form-control" placeholder="Search" >
-													</div>
-												</div>
-											</form>
-										</div>	
-									</div>
-								</div>
-							</div>
-							<!-- /Filter -->
-							<div class="row course-list-cover">
-								<div class="col-xl-4 col-md-6 d-flex">
-									<div class="instructor-item instructor-item-six flex-fill">
-										<div class="instructors-img ">
-											<a href="/instructor/instructor-details" tabindex="0">
-												<img class="img-fluid" src="/assets/img/user/user-61.jpg" alt="img">
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-												<span class="verify">
-													<img src="/assets/img/icons/verify-icon.svg" alt="img" class="img-fluid">
-												</span>
-												
-											</div>
-										</div>
-										<div class="instructor-content">
-											<div>
-												<p class="rating mb-2">
-													<i class="fas fa-star me-1"></i>4.9 (200 Reviews)
-												</p>
-												<h3 class="title mb-2">
-													<a href="/instructor/instructor-details">Hafiz Ahmad</a>
-												</h3>
-												<span class="designation">Developer</span>
-											</div>
-											<div class="d-flex justify-content-between align-items-center instructor-bottom">
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-book-saved5 fs-16 text-secondary me-2"></i>12+ Lesson</span>
-												</div>
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-timer-start5 fs-16 text-primary me-2"></i>169hr 20min</span>
-												</div>
-											</div>
-										</div>											
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6 d-flex">
-									<div class="instructor-item instructor-item-six flex-fill">
-										<div class="instructors-img ">
-											<a href="/instructor/instructor-details" tabindex="0">
-												<img class="img-fluid" src="/assets/img/instructor/instructor_canva.png" alt="img">
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-												
-											</div>
-										</div>
-										<div class="instructor-content">
-											<div>
-												<p class="rating mb-2">
-													<i class="fas fa-star me-1"></i>4.4 (130 Reviews)
-												</p>
-												<h3 class="title mb-2">
-													<a href="/instructor/instructor-details">Lisa Lopez</a>
-												</h3>
-												<span class="designation">Finance</span>
-											</div>
-											<div class="d-flex justify-content-between align-items-center instructor-bottom">
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-book-saved5  me-2 fs-16 text-secondary"></i>22+ Lesson</span>
-												</div>
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-timer-start5 me-2  fs-16 text-primary"></i>15hr 06min</span>
-												</div>
-											</div>
-										</div>											
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6 d-flex">
-									<div class="instructor-item instructor-item-six flex-fill">
-										<div class="instructors-img ">
-											<a href="/instructor/instructor-details" tabindex="0">
-												<img class="img-fluid" src="/assets/img/user/user-63.jpg" alt="img">
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-												
-											</div>
-										</div>
-										<div class="instructor-content">
-											<div>
-												<p class="rating mb-2">
-													<i class="fas fa-star me-1"></i>4.5 (120 Reviews)
-												</p>
-												<h3 class="title mb-2">
-													<a href="/instructor/instructor-details">Charles Ruiz</a>
-												</h3>
-												<span class="designation">Cloud Engineer</span>
-											</div>
-											<div class="d-flex justify-content-between align-items-center instructor-bottom">
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-book-saved5 fs-16 text-secondary me-2"></i>16+ Lesson</span>
-												</div>
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-timer-start5 fs-16 text-primary me-2"></i>2hr 25min</span>
-												</div>
-											</div>
-										</div>											
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6 d-flex">
-									<div class="instructor-item instructor-item-six flex-fill">
-										<div class="instructors-img ">
-											<a href="/instructor/instructor-details" tabindex="0">
-												<img class="img-fluid" src="/assets/img/user/user-44.jpg" alt="img">
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-												
-											</div>
-										</div>
-										<div class="instructor-content">
-											<div>
-												<p class="rating mb-2">
-													<i class="fas fa-star me-1"></i>4.6 (180 Reviews)
-												</p>
-												<h3 class="title mb-2">
-													<a href="/instructor/instructor-details">Rogerina Grogan</a>
-												</h3>
-												<span class="designation">Vocational</span>
-											</div>
-											<div class="d-flex justify-content-between align-items-center instructor-bottom">
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-book-saved5 fs-16 text-secondary me-2"></i>06+ Lesson</span>
-												</div>
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-timer-start5 fs-16 text-primary me-2"></i>19hr 30min</span>
-												</div>
-											</div>
-										</div>											
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6 d-flex">
-									<div class="instructor-item instructor-item-six flex-fill">
-										<div class="instructors-img ">
-											<a href="/instructor/instructor-details" tabindex="0">
-												<img class="img-fluid" src="/assets/img/user/user-45.jpg" alt="img">
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-												
-											</div>
-										</div>
-										<div class="instructor-content">
-											<div>
-												<p class="rating mb-2">
-													<i class="fas fa-star me-1"></i>4.2 (210 Reviews)
-												</p>
-												<h3 class="title mb-2">
-													<a href="/instructor/instructor-details">Ivana Tow</a>
-												</h3>
-												<span class="designation">Corporate Trainer</span>
-											</div>
-											<div class="d-flex justify-content-between align-items-center instructor-bottom">
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-book-saved5 fs-16 text-secondary me-2"></i>25+ Lesson</span>
-												</div>
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-timer-start5 fs-16 text-primary me-2"></i>4hr 20min</span>
-												</div>
-											</div>
-										</div>											
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6 d-flex">
-									<div class="instructor-item instructor-item-six flex-fill">
-										<div class="instructors-img ">
-											<a href="/instructor/instructor-details" tabindex="0">
-												<img class="img-fluid" src="/assets/img/user/user-46.jpg" alt="img">
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-												
-											</div>
-										</div>
-										<div class="instructor-content">
-											<div>
-												<p class="rating mb-2">
-													<i class="fas fa-star me-1"></i>4.5 (140 Reviews)
-												</p>
-												<h3 class="title mb-2">
-													<a href="/instructor/instructor-details">Kevin Leonard</a>
-												</h3>
-												<span class="designation">Developer</span>
-											</div>
-											<div class="d-flex justify-content-between align-items-center instructor-bottom">
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-book-saved5 fs-16 text-secondary me-2"></i>11+ Lesson</span>
-												</div>
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-timer-start5 fs-16 text-primary me-2"></i>7hr 10min</span>
-												</div>
-											</div>
-										</div>											
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6 d-flex">
-									<div class="instructor-item instructor-item-six flex-fill">
-										<div class="instructors-img ">
-											<a href="/instructor/instructor-details" tabindex="0">
-												<img class="img-fluid" src="/assets/img/user/user-47.jpg" alt="img">
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-												
-											</div>
-										</div>
-										<div class="instructor-content">
-											<div>
-												<p class="rating mb-2">
-													<i class="fas fa-star me-1"></i>4.3 (190 Reviews)
-												</p>
-												<h3 class="title mb-2">
-													<a href="/instructor/instructor-details">David Roccoz</a>
-												</h3>
-												<span class="designation">Sports Coach</span>
-											</div>
-											<div class="d-flex justify-content-between align-items-center instructor-bottom">
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-book-saved5 fs-16 text-secondary me-2"></i>04+ Lesson</span>
-												</div>
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-timer-start5 fs-16 text-primary me-2"></i>1hr 30min</span>
-												</div>
-											</div>
-										</div>											
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6 d-flex">
-									<div class="instructor-item instructor-item-six flex-fill">
-										<div class="instructors-img ">
-											<a href="/instructor/instructor-details" tabindex="0">
-												<img class="img-fluid" src="/assets/img/user/user-48.jpg" alt="img">
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-												
-											</div>
-										</div>
-										<div class="instructor-content">
-											<div>
-												<p class="rating mb-2">
-													<i class="fas fa-star me-1"></i>4.3 (190 Reviews)
-												</p>
-												<h3 class="title mb-2">
-													<a href="/instructor/instructor-details">Jeanette Dulaney</a>
-												</h3>
-												<span class="designation">Technical Traine</span>
-											</div>
-											<div class="d-flex justify-content-between align-items-center instructor-bottom">
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-book-saved5 fs-16 text-secondary me-2"></i>08+ Lesson</span>
-												</div>
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-timer-start5 fs-16 text-primary me-2"></i>4hr 35min</span>
-												</div>
-											</div>
-										</div>											
-									</div>
-								</div>
-								<div class="col-xl-4 col-md-6 d-flex">
-									<div class="instructor-item instructor-item-six flex-fill">
-										<div class="instructors-img ">
-											<a href="/instructor/instructor-details" tabindex="0">
-												<img class="img-fluid" src="/assets/img/user/user-49.jpg" alt="img">
-											</a>
-											<div class="position-absolute start-0 top-0 d-flex align-items-start w-100 z-index-2 p-2">
-												
-											</div>
-										</div>
-										<div class="instructor-content">
-											<div>
-												<p class="rating mb-2">
-													<i class="fas fa-star me-1"></i>4.3 (190 Reviews)
-												</p>
-												<h3 class="title mb-2">
-													<a href="/instructor/instructor-details">Debran Andrew</a>
-												</h3>
-												<span class="designation">Health and Wellness</span>
-											</div>
-											<div class="d-flex justify-content-between align-items-center instructor-bottom">
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-book-saved5 fs-16 text-secondary me-2"></i>08+ Lesson</span>
-												</div>
-												<div class="d-flex align-items-center">
-													<span class="d-flex align-items-center"><i class="isax isax-timer-start5 fs-16 text-primary me-2"></i>4hr 35min</span>
-												</div>
-											</div>
-										</div>											
-									</div>
-								</div>
-							</div>
-							
-							<!-- /pagination -->
-							<div class="row align-items-center">
-								<div class="col-md-2">
-                                  <p class="pagination-text">Page 1 of 2</p>
-								</div>
-								<div class="col-md-10">
-									<ul class="pagination lms-page justify-content-center justify-content-md-end mt-2 mt-md-0">
-										<li class="page-item prev">
-											<a class="page-link" href="javascript:void(0)" tabindex="-1"><i class="fas fa-angle-left"></i></a>
-										</li>
-										<li class="page-item first-page active">
-											<a class="page-link" href="javascript:void(0)">1</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">2</a>
-										</li>
-										<li class="page-item">
-											<a class="page-link" href="javascript:void(0)">3</a>
-										</li>
-										<li class="page-item next">
-											<a class="page-link" href="javascript:void(0)"><i class="fas fa-angle-right"></i></a>
-										</li>
-									</ul>
-								</div>
-							</div>
-							<!-- /pagination -->
-							
+						<div class="mt-3" id="spec-filter-wrap" style="display:none;">
+							<span class="ins-filter-label">Specialization</span>
+							<div id="spec-filter-list"></div>
 						</div>
 					</div>
+
+					<div id="instructors-grid-loading" class="text-center py-5">
+						<div class="spinner-border text-primary" role="status"></div>
+						<p class="mt-2">Loading instructors...</p>
+					</div>
+					<div id="instructors-grid-empty" class="text-center py-5" style="display:none;">
+						<p class="text-muted">No instructors match your filters.</p>
+					</div>
+					<div class="row justify-content-center" id="instructors-grid" style="display:none;"></div>
+
+				</div>
+			</div>
+			<!-- /Filterable directory -->
+
+			<!-- Featured Instructors — animated fan -->
+			<section class="featured-fan-sec">
+				<div class="container">
+					<div class="section-header text-center">
+						<span class="hiw-badge" style="margin-bottom:16px">Featured Instructors</span>
+						<h2>Our Top Rated Scholars</h2>
+						<p>A closer look at some of our most highly rated instructors</p>
+					</div>
+					<div class="featured-fan-wrap" id="featured-fan-wrap"></div>
 				</div>
 			</section>
-			<!-- /Instructor -->
-			
+
+<script src="/assets/js/api-config.js"></script>
+<script>
+(function () {
+	var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+	var allInstructors = [];
+
+	function renderStars(rating) {
+		var r = parseFloat(rating) || 5;
+		var full = Math.min(5, Math.floor(r));
+		var half = (r - full) >= 0.5 ? 1 : 0;
+		var empty = 5 - full - half;
+		var html = '';
+		for (var i = 0; i < full; i++) html += '<i class="fas fa-star"></i>';
+		if (half) html += '<i class="fas fa-star-half-alt"></i>';
+		for (var i = 0; i < empty; i++) html += '<i class="far fa-star"></i>';
+		return html;
+	}
+
+	function getSpecializations(ins) {
+		var s = ins.specialization;
+		if (!s) return [];
+		if (typeof s === 'string') { try { s = JSON.parse(s); } catch (e) { return [s]; } }
+		return Array.isArray(s) ? s : [];
+	}
+
+	function buildCard(ins) {
+		var name = ((ins.firstName || '') + ' ' + (ins.lastName || '')).trim() || 'Instructor';
+		var initials = ((ins.firstName || ' ')[0] + (ins.lastName || ' ')[0]).toUpperCase();
+		var designation = ins.designation || 'Islamic Instructor';
+		var ratingVal = ins.rating ? parseFloat(ins.rating).toFixed(1) : '5.0';
+		var avatarHtml = ins.profileImage
+			? '<img src="' + ins.profileImage + '" alt="' + name + '"/>'
+			: '<div class="ins-initials">' + initials + '</div>';
+		var verifiedBadge = ins.isVerified ? '<span class="ins-verified-badge"><i class="fas fa-check"></i></span>' : '';
+		return '<div class="instructor-item instructor-item-three">' +
+			'<div class="ins-top-band"></div>' +
+			'<div class="ins-avatar-wrap"><div class="ins-avatar">' + avatarHtml + '</div>' + verifiedBadge + '</div>' +
+			'<div class="ins-body">' +
+				'<h3 class="ins-name"><a href="/instructor/instructor-details?id=' + ins.id + '">' + name + '</a></h3>' +
+				'<p class="ins-role">' + designation + '</p>' +
+				'<div class="ins-rating">' + renderStars(ratingVal) + '<span class="ins-rating-val">' + ratingVal + '</span></div>' +
+				'<a href="/instructor/instructor-details?id=' + ins.id + '" class="ins-btn">View Profile <i class="fas fa-arrow-right"></i></a>' +
+			'</div>' +
+		'</div>';
+	}
+
+	// ── Featured fan section ──────────────────────────────────────────────
+	function renderFeatured(list) {
+		var top = list.slice().sort(function (a, b) { return (b.rating || 0) - (a.rating || 0); }).slice(0, 6);
+		var wrap = document.getElementById('featured-fan-wrap');
+		if (!top.length) { wrap.closest('.featured-fan-sec').style.display = 'none'; return; }
+		wrap.innerHTML = top.map(function (ins) {
+			return '<div class="fan-card">' + buildCard(ins) + '</div>';
+		}).join('');
+
+		var observer = new IntersectionObserver(function (entries) {
+			entries.forEach(function (entry) {
+				if (entry.isIntersecting) {
+					wrap.classList.add('in-view');
+					observer.disconnect();
+				}
+			});
+		}, { threshold: 0.2 });
+		observer.observe(wrap);
+	}
+
+	// ── Specialization filter chips ─────────────────────────────────────────
+	function buildSpecFilters(list) {
+		var all = {};
+		list.forEach(function (ins) { getSpecializations(ins).forEach(function (s) { if (s) all[s] = true; }); });
+		var specs = Object.keys(all).sort();
+		if (!specs.length) return;
+		var wrap = document.getElementById('spec-filter-list');
+		wrap.innerHTML = specs.map(function (s) {
+			return '<label class="spec-chip"><input type="checkbox" value="' + s + '">' + s + '</label>';
+		}).join('');
+		document.getElementById('spec-filter-wrap').style.display = 'block';
+		wrap.querySelectorAll('.spec-chip').forEach(function (chip) {
+			chip.addEventListener('click', function (e) {
+				if (e.target.tagName !== 'INPUT') { chip.querySelector('input').checked = !chip.querySelector('input').checked; }
+				chip.classList.toggle('active', chip.querySelector('input').checked);
+				applyFilters();
+			});
+		});
+	}
+
+	function getCheckedSpecs() {
+		return Array.from(document.querySelectorAll('#spec-filter-list input:checked')).map(function (i) { return i.value; });
+	}
+
+	// ── Full filterable grid ────────────────────────────────────────────────
+	function applyFilters() {
+		var search = document.getElementById('ins-search').value.trim().toLowerCase();
+		var minExp = parseInt(document.getElementById('ins-experience').value) || 0;
+		var sortBy = document.getElementById('ins-sort').value;
+		var checkedSpecs = getCheckedSpecs();
+
+		var filtered = allInstructors.filter(function (ins) {
+			var name = ((ins.firstName || '') + ' ' + (ins.lastName || '')).toLowerCase();
+			if (search && name.indexOf(search) === -1) return false;
+			if (minExp && (ins.experience || 0) < minExp) return false;
+			if (checkedSpecs.length) {
+				var specs = getSpecializations(ins);
+				if (!checkedSpecs.some(function (s) { return specs.indexOf(s) !== -1; })) return false;
+			}
+			return true;
+		});
+
+		filtered.sort(function (a, b) {
+			if (sortBy === 'experience') return (b.experience || 0) - (a.experience || 0);
+			if (sortBy === 'newest') return new Date(b.createdAt || 0) - new Date(a.createdAt || 0);
+			return (b.rating || 0) - (a.rating || 0);
+		});
+
+		renderGrid(filtered);
+	}
+
+	function renderGrid(list) {
+		var grid = document.getElementById('instructors-grid');
+		var empty = document.getElementById('instructors-grid-empty');
+		if (!list.length) {
+			grid.style.display = 'none';
+			empty.style.display = 'block';
+			return;
+		}
+		empty.style.display = 'none';
+		grid.style.display = 'flex';
+		grid.innerHTML = list.map(function (ins) {
+			return '<div class="col-lg-3 col-md-4 col-sm-6">' + buildCard(ins) + '</div>';
+		}).join('');
+	}
+
+	// ── Load ─────────────────────────────────────────────────────────────────
+	fetch(API_BASE + '/users/instructors?limit=100')
+		.then(function (r) { return r.json(); })
+		.then(function (data) {
+			allInstructors = data.instructors || [];
+			document.getElementById('instructors-grid-loading').style.display = 'none';
+
+			if (!allInstructors.length) {
+				document.getElementById('instructors-grid-empty').style.display = 'block';
+				document.querySelector('.featured-fan-sec').style.display = 'none';
+				return;
+			}
+
+			renderFeatured(allInstructors);
+			buildSpecFilters(allInstructors);
+			applyFilters();
+
+			document.getElementById('ins-search').addEventListener('input', applyFilters);
+			document.getElementById('ins-experience').addEventListener('change', applyFilters);
+			document.getElementById('ins-sort').addEventListener('change', applyFilters);
+			document.getElementById('ins-clear-btn').addEventListener('click', function () {
+				document.getElementById('ins-search').value = '';
+				document.getElementById('ins-experience').value = '0';
+				document.getElementById('ins-sort').value = 'rating';
+				document.querySelectorAll('#spec-filter-list input:checked').forEach(function (i) {
+					i.checked = false;
+					i.closest('.spec-chip').classList.remove('active');
+				});
+				applyFilters();
+			});
+		})
+		.catch(function () {
+			document.getElementById('instructors-grid-loading').style.display = 'none';
+			document.getElementById('instructors-grid-empty').style.display = 'block';
+			document.querySelector('.featured-fan-sec').style.display = 'none';
+		});
+}());
+</script>
+
 			<!-- Footer -->
 			<footer class="footer">
 				<div class="footer-bg">
@@ -668,9 +449,10 @@
 						<div class="row row-gap-4">
 							<div class="col-lg-4">
 								<div class="footer-about">
-									<div class="footer-logo"><img src="/assets/img/white-logo.png" style="width: 200px;height: 150px;" alt="">
+									<div class="footer-logo">
+										<img src="/assets/img/white-logo.png" style="width: 200px;height: 150px;" alt="">
 									</div>
-									<p>Platform designed to help organizations, educators, and learners manage, deliver, and track learning and training activities.</p>
+									<p>Al-Kahaf Online Academy — providing authentic Quranic and Islamic education to students worldwide.</p>
 									<div class="d-flex align-items-center">
 										<a href="#" class="me-2"><img src="/assets/img/icon/appstore.svg" alt=""></a>
 										<a href="#"><img src="/assets/img/icon/googleplay.svg" alt=""></a>
@@ -679,31 +461,31 @@
 							</div>
 							<div class="col-lg-8">
 								<div class="row row-gap-4">
-									<div class="col-lg-3">
+									<div class="col-lg-4">
 										<div class="footer-widget footer-menu">
-											<h5 class="footer-title">For Instructor</h5>
+											<h5 class="footer-title">Explore</h5>
 											<ul>
-                                            <li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
-                                            <li><a href="/instructor/instructor-dashboard">Instructor Dashboard</a></li>
-                                            <li><a href="/courses/add-course">Add New Course</a></li>
-                                            <li><a href="/auth/login">Login</a></li>
-                                            <li><a href="/auth/register">Register</a></li>
-                                        </ul>
+												<li><a href="/shared/about-us">About Us</a></li>
+												<li><a href="/courses/course-grid">Courses</a></li>
+												<li><a href="/shared/welfare-programs">Projects</a></li>
+												<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
+											<li><a href="/shared/welfare-programs">Welfare Program</a></li>
+											</ul>
 										</div>
 									</div>
-									<div class="col-lg-3">
+									<div class="col-lg-4">
 										<div class="footer-widget footer-menu">
-											<h5 class="footer-title">For Student</h5>
+											<h5 class="footer-title">Support</h5>
 											<ul>
-                                            <li><a href="/courses/course-grid">Browse Courses</a></li>
-                                            <li><a href="/student/student-dashboard">Student Dashboard</a></li>
-                                            <li><a href="/student/student-certificates">My Certificates</a></li>
-                                            <li><a href="/auth/login">Login</a></li>
-                                            <li><a href="/auth/register">Register</a></li>
-                                        </ul>
+												<li><a href="/shared/contact-us">Contact Us</a></li>
+												<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
+												<li><a href="/shared/terms-and-conditions">Terms &amp; Conditions</a></li>
+												<li><a href="/auth/login">Login</a></li>
+												<li><a href="/auth/register">Register</a></li>
+											</ul>
 										</div>
 									</div>
-									<div class="col-lg-6">
+									<div class="col-lg-4">
 										<div class="footer-widget footer-contact">
 											<h5 class="footer-title">Newsletter</h5>
 											<div class="subscribe-input">
@@ -715,7 +497,7 @@
 											<div class="footer-contact-info">
 												<div class="footer-address d-flex align-items-center">
 													<img src="/assets/img/icon/icon-20.svg" alt="Img" class="img-fluid me-2">
-													<p> Plot 12, Township Block 1 Sector B 1,<br>Lahore, Pakistan </p>
+													<p>Plot 12, Township Block 1 Sector B 1, Lahore,<br />Pakistan</p>
 												</div>
 												<div class="footer-address d-flex align-items-center">
 													<img src="/assets/img/icon/icon-19.svg" alt="Img" class="img-fluid me-2">
@@ -738,45 +520,33 @@
 						<div class="row row-gap-2">
 							<div class="col-md-6">
 								<div class="text-center text-md-start">
-									<p class="text-white">Copyright 2025  <span class="text-secondary">Al-KahafOnlineAcademy</span>. All rights reserved.</p>
+									<p class="text-white">Copyright 2025 <span class="text-secondary">Al-KahafOnlineAcademy</span>. All rights reserved.</p>
 								</div>
 							</div>
 							<div class="col-md-6">
-								<div>
-									<ul class="d-flex align-items-center justify-content-center justify-content-md-end footer-link">
-										<li><a href="/shared/terms-and-conditions">Terms & Conditions</a></li>
-										<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
-									</ul>
-								</div>
+								<div class="d-flex align-items-center justify-content-center justify-content-md-end gap-2">
+									<a href="https://www.facebook.com/AlKahafAcademyOnline" target="_blank" rel="noopener" class="footer-social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+									<a href="https://www.instagram.com/alkahafacademyonline" target="_blank" rel="noopener" class="footer-social-icon"><i class="fa-brands fa-instagram"></i></a>
+									<a href="https://www.youtube.com/@AlKahafAcademy2023" target="_blank" rel="noopener" class="footer-social-icon"><i class="fa-brands fa-youtube"></i></a>
+									</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</footer>
 			<!-- /Footer -->
-		   
 		</div>
 	   <!-- /Main Wrapper -->
-	  
+
 		<!-- jQuery -->
 		<script src="/assets/js/jquery-3.7.1.min.js"></script>
-		
+
 		<!-- Bootstrap Core JS -->
 		<script src="/assets/js/bootstrap.bundle.min.js"></script>
-		
+
 		<!-- Select2 JS -->
 	  	<script src="/assets/plugins/select2/js/select2.min.js"></script>
 
-		<!-- Rangeslider JS -->
-	    <script src="/assets/plugins/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
-	    <script src="/assets/plugins/ion-rangeslider/js/custom-rangeslider.js"></script>
-
-		
-		
-		<!-- Sticky Sidebar JS -->
-        <script src="/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
-        <script src="/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
-		
 		<!-- Custom JS -->
 		<script src="/assets/js/script.js"></script>
 	<!-- Scroll to Top Button -->
@@ -784,6 +554,6 @@
 		<i class="fas fa-arrow-up"></i>
 	</button>
 
-		
+
 	</body>
 </html>

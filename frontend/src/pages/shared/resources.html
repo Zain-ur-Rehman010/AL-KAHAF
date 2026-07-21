@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<!-- Meta Tags -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Download academy books, syllabus documents, forms, and other resources from Al-Kahaf Online Academy.">
+		<meta name="robots" content="index, follow">
+
+		<title>Resource Library | Al-Kahaf Online Academy</title>
+
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="/assets/img/favicon.svg">
+		<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
+
+		<!-- Theme Settings Js -->
+		<script src="/assets/js/theme-script.js"></script>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+
+		<!-- Fontawesome CSS -->
+		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+		<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+
+		<!-- Select2 CSS -->
+		<link rel="stylesheet" href="/assets/plugins/select2/css/select2.min.css">
+
+		<!-- Feathericon CSS -->
+        <link rel="stylesheet" href="/assets/plugins/feather/feather.css">
+
+		<!-- Tabler Icon CSS -->
+		<link rel="stylesheet" href="/assets/plugins/tabler-icons/tabler-icons.css">
+
+        <!-- Iconsax CSS -->
+		<link rel="stylesheet" href="/assets/css/iconsax.css">
+
+		<!-- Main CSS -->
+		<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/site-overrides.css">
+
+	<style>
+		.resource-card { background:#fff;border-radius:16px;border:1px solid #eee;box-shadow:0 2px 12px rgba(0,0,0,.05);overflow:hidden;height:100%;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s; }
+		.resource-card:hover { transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,.08); }
+		.resource-thumb { width:100%;height:170px;object-fit:cover;background:#f8f5f2; }
+		.resource-icon-wrap { width:100%;height:170px;background:#f8f5f2;display:flex;align-items:center;justify-content:center;font-size:48px;color:#d8ac27; }
+		.resource-body { padding:18px 20px;display:flex;flex-direction:column;flex:1; }
+		.resource-cat-badge { display:inline-flex;align-items:center;padding:3px 12px;border-radius:50px;font-size:12px;font-weight:600;background:rgba(216,172,39,.12);color:#b8860b;width:fit-content;margin-bottom:10px; }
+		.resource-meta { font-size:13px;color:#888;margin:10px 0 16px; }
+		.resource-filter-btn { border:1.5px solid #e5e5e5;background:#fff;padding:6px 18px;border-radius:20px;font-size:13px;font-weight:600;color:#666;cursor:pointer;transition:.2s; }
+		.resource-filter-btn.active,.resource-filter-btn:hover { border-color:#522811;background:#522811;color:#fff; }
+	</style>
+
+	</head>
+	<body>
+
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+
+            <!-- Header -->
+			<header class="header-one">
+				<div class="container">
+					<div class="header-nav">
+						<div class="navbar-header">
+							<a id="mobile_btn" href="javascript:void(0);">
+								<span class="bar-icon">
+											<i class="isax isax-menu"></i>
+										</span>
+							</a>
+							<div class="navbar-logo">
+								<a class="logo-white header-logo" href="/">
+									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
+								</a>
+								<a class="logo-dark header-logo" href="/">
+									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="logo" alt="Logo">
+								</a>
+							</div>
+						</div>
+						<div class="main-menu-wrapper">
+							<div class="menu-header">
+								<a href="/" class="menu-logo">
+									<img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="img-fluid" alt="Logo">
+								</a>
+								<a id="menu_close" class="menu-close" href="javascript:void(0);">
+									<i class="fas fa-times"></i>
+								</a>
+							</div>
+														<ul class="main-nav">
+								<li><a href="/">Home</a></li>
+								<li><a href="/courses/course-grid">Courses</a></li>
+								<li class="has-submenu">
+									<a href="javascript:void(0);">Explore <i class="fas fa-angle-down"></i></a>
+									<ul class="submenu">
+										<li><a href="/shared/about-us">About Us</a></li>
+										<li><a href="/shared/welfare-programs">Projects</a></li>
+										<li><a href="/instructor/instructor-grid">Instructors</a></li>
+									</ul>
+								</li>
+								<li class="active"><a href="/shared/resources">Resources</a></li>
+								<li><a href="/shared/free-trial">Free Trial</a></li>
+								<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
+							</ul>
+
+
+							<div class="menu-login">
+								<a href="/auth/login" class="btn btn-primary w-100 mb-2"><i class="isax isax-user me-2"></i>Sign In</a>
+								<a href="/auth/register" class="btn btn-secondary w-100"><i class="isax isax-user-edit me-2"></i>Register</a>
+							</div>
+						</div>
+						<div class="header-btn d-flex align-items-center">
+
+
+							<a href="/auth/login" class="btn btn-light d-inline-flex align-items-center me-2">
+								<i class="isax isax-lock-circle me-2"></i>Sign In
+							</a>
+							<a href="/auth/register" class="btn btn-dark d-inline-flex align-items-center me-2">
+								<i class="isax isax-user-edit me-2"></i>Register
+							</a>
+						<a href="/shared/welfare-programs" class="btn btn-secondary btn-donate me-0">
+							<i class="isax isax-heart5 me-1"></i>Donate
+						</a>
+						</div>
+					</div>
+				</div>
+			</header>
+			<!-- /Header -->
+
+			<!-- Breadcrumb -->
+			<div class="breadcrumb-bar text-center">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12 col-12">
+							<h2 class="breadcrumb-title mb-2">Resource Library</h2>
+							<nav aria-label="breadcrumb">
+								<ol class="breadcrumb justify-content-center mb-0">
+									<li class="breadcrumb-item"><a href="/">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Resources</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Breadcrumb -->
+
+            <!-- resources -->
+           <div class="content">
+            <div class="container">
+
+                <!-- Category filters -->
+                <div class="d-flex flex-wrap gap-2 justify-content-center mb-4" id="category-filters">
+                    <button class="resource-filter-btn active" data-category="">All</button>
+                    <button class="resource-filter-btn" data-category="book">Books</button>
+                    <button class="resource-filter-btn" data-category="syllabus">Syllabus</button>
+                    <button class="resource-filter-btn" data-category="form">Forms</button>
+                    <button class="resource-filter-btn" data-category="certificate">Certificates</button>
+                    <button class="resource-filter-btn" data-category="other">Other</button>
+                </div>
+
+                <div class="row justify-content-center g-4" id="resource-list">
+                    <div class="col-12 text-center py-5">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p class="mt-2">Loading resources...</p>
+                    </div>
+                </div>
+            <!-- /pagination -->
+            <div class="row align-items-center mt-4" id="pagination-wrapper" style="display:none!important;">
+                <div class="col-md-12">
+                    <ul class="pagination justify-content-center" id="pagination-list"></ul>
+                </div>
+            </div>
+            <!-- /pagination -->
+            </div>
+           </div>
+           <!-- /resources -->
+
+<script src="/assets/js/api-config.js"></script>
+<script>
+(function () {
+    var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+    var currentPage = 1;
+    var currentCategory = '';
+    var limit = 12;
+
+    var CATEGORY_LABELS = { book: 'Book', syllabus: 'Syllabus', form: 'Form', certificate: 'Certificate', other: 'Other' };
+    var FILE_ICONS = { pdf: 'isax isax-document-text', doc: 'isax isax-document', docx: 'isax isax-document', ppt: 'isax isax-document-1', pptx: 'isax isax-document-1', xls: 'isax isax-document-1', xlsx: 'isax isax-document-1', zip: 'isax isax-folder-2', txt: 'isax isax-document' };
+
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        var d = new Date(dateStr);
+        return d.toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    function formatSize(bytes) {
+        if (!bytes) return '';
+        if (bytes < 1024 * 1024) return Math.round(bytes / 1024) + ' KB';
+        return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    function renderResourceCard(res) {
+        var thumb = res.thumbnail
+            ? '<img class="resource-thumb" src="' + res.thumbnail + '" alt="' + res.title + '">'
+            : '<div class="resource-icon-wrap"><i class="' + (FILE_ICONS[res.fileType] || 'isax isax-document-text') + '"></i></div>';
+        var meta = [];
+        if (res.fileType) meta.push(res.fileType.toUpperCase());
+        if (res.fileSize) meta.push(formatSize(res.fileSize));
+        var dateStr = formatDate(res.createdAt);
+        if (dateStr) meta.push(dateStr);
+
+        return '<div class="col-lg-4 col-md-6">' +
+            '<div class="resource-card">' +
+                thumb +
+                '<div class="resource-body">' +
+                    '<span class="resource-cat-badge">' + (CATEGORY_LABELS[res.category] || res.category) + '</span>' +
+                    '<h5 class="mb-2">' + res.title + '</h5>' +
+                    (res.description ? '<p class="text-muted small mb-0">' + res.description + '</p>' : '') +
+                    '<p class="resource-meta mb-0">' + meta.join(' &middot; ') + '</p>' +
+                    '<a href="' + res.fileUrl + '" target="_blank" rel="noopener" class="btn btn-primary mt-auto" onclick="fetch(\'' + API_BASE + '/resources/' + res.id + '/download\',{method:\'POST\'})"><i class="isax isax-import me-2"></i>Download</a>' +
+                '</div>' +
+            '</div>' +
+        '</div>';
+    }
+
+    function renderPagination(total, page) {
+        var totalPages = Math.ceil(total / limit);
+        if (totalPages <= 1) { document.getElementById('pagination-wrapper').style.display = 'none'; return; }
+        document.getElementById('pagination-wrapper').style.removeProperty('display');
+        var html = '';
+        html += '<li class="page-item prev' + (page <= 1 ? ' disabled' : '') + '"><a class="page-link" href="javascript:void(0)" data-page="' + (page - 1) + '"><i class="fas fa-angle-left"></i></a></li>';
+        for (var i = 1; i <= totalPages; i++) {
+            html += '<li class="page-item' + (i === page ? ' active' : '') + '"><a class="page-link" href="javascript:void(0)" data-page="' + i + '">' + i + '</a></li>';
+        }
+        html += '<li class="page-item next' + (page >= totalPages ? ' disabled' : '') + '"><a class="page-link" href="javascript:void(0)" data-page="' + (page + 1) + '"><i class="fas fa-angle-right"></i></a></li>';
+        var paginationList = document.getElementById('pagination-list');
+        paginationList.innerHTML = html;
+        paginationList.querySelectorAll('[data-page]').forEach(function (el) {
+            el.addEventListener('click', function () {
+                var p = parseInt(this.getAttribute('data-page'));
+                if (p >= 1 && p <= totalPages) { currentPage = p; loadResources(); }
+            });
+        });
+    }
+
+    function loadResources() {
+        var container = document.getElementById('resource-list');
+        container.innerHTML = '<div class="col-12 text-center py-5"><div class="spinner-border text-primary" role="status"></div><p class="mt-2">Loading resources...</p></div>';
+        var url = API_BASE + '/resources?status=active&page=' + currentPage + '&limit=' + limit;
+        if (currentCategory) url += '&category=' + encodeURIComponent(currentCategory);
+        fetch(url)
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+                var resources = data.resources || (data.data && data.data.resources) || [];
+                var total = (data.pagination && data.pagination.total) || data.total || resources.length;
+                if (!resources.length) {
+                    container.innerHTML = '<div class="col-12 text-center py-5"><p>No resources available yet.</p></div>';
+                    document.getElementById('pagination-wrapper').style.display = 'none';
+                    return;
+                }
+                container.innerHTML = resources.map(renderResourceCard).join('');
+                renderPagination(total, currentPage);
+            })
+            .catch(function () {
+                container.innerHTML = '<div class="col-12 text-center py-5"><p>Failed to load resources. Please try again.</p></div>';
+            });
+    }
+
+    document.querySelectorAll('#category-filters .resource-filter-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('#category-filters .resource-filter-btn').forEach(function (b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            currentCategory = btn.getAttribute('data-category');
+            currentPage = 1;
+            loadResources();
+        });
+    });
+
+    loadResources();
+}());
+</script>
+
+			<!-- Footer -->
+			<footer class="footer">
+				<div class="footer-bg">
+					<img src="/assets/img/bg/footer-bg-01.png" class="footer-bg-1" alt="">
+					<img src="/assets/img/bg/footer-bg-02.png" class="footer-bg-2" alt="">
+				</div>
+				<div class="footer-top">
+					<div class="container">
+						<div class="row row-gap-4">
+							<div class="col-lg-4">
+								<div class="footer-about">
+									<div class="footer-logo">
+										<img src="/assets/img/white-logo.png" style="width: 200px;height: 150px;" alt="">
+									</div>
+									<p>Al-Kahaf Online Academy — providing authentic Quranic and Islamic education to students worldwide.</p>
+									<div class="d-flex align-items-center">
+										<a href="#" class="me-2"><img src="/assets/img/icon/appstore.svg" alt=""></a>
+										<a href="#"><img src="/assets/img/icon/googleplay.svg" alt=""></a>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-8">
+								<div class="row row-gap-4">
+									<div class="col-lg-4">
+										<div class="footer-widget footer-menu">
+											<h5 class="footer-title">Explore</h5>
+											<ul>
+												<li><a href="/shared/about-us">About Us</a></li>
+												<li><a href="/courses/course-grid">Courses</a></li>
+												<li><a href="/shared/welfare-programs">Projects</a></li>
+												<li><a href="/shared/become-an-instructor">Become an Instructor</a></li>
+											<li><a href="/shared/welfare-programs">Welfare Program</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="footer-widget footer-menu">
+											<h5 class="footer-title">Support</h5>
+											<ul>
+												<li><a href="/shared/contact-us">Contact Us</a></li>
+												<li><a href="/shared/privacy-policy">Privacy Policy</a></li>
+												<li><a href="/shared/terms-and-conditions">Terms &amp; Conditions</a></li>
+												<li><a href="/auth/login">Login</a></li>
+												<li><a href="/auth/register">Register</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-lg-4">
+										<div class="footer-widget footer-contact">
+											<h5 class="footer-title">Newsletter</h5>
+											<div class="subscribe-input">
+												<form action="javascript:void(0);">
+													<input type="email" class="form-control" placeholder="Enter your Email Address">
+													<button type="submit" class="btn btn-primary btn-sm inline-flex align-items-center"><i class="isax isax-send-2 me-1"></i>Subscribe</button>
+												</form>
+											</div>
+											<div class="footer-contact-info">
+												<div class="footer-address d-flex align-items-center">
+													<img src="/assets/img/icon/icon-20.svg" alt="Img" class="img-fluid me-2">
+													<p>Plot 12, Township Block 1 Sector B 1, Lahore,<br />Pakistan</p>
+												</div>
+												<div class="footer-address d-flex align-items-center">
+													<img src="/assets/img/icon/icon-19.svg" alt="Img" class="img-fluid me-2">
+													<p>alkahafacademy.edu@gmail.com</p>
+												</div>
+												<div class="footer-address d-flex align-items-center">
+													<img src="/assets/img/icon/icon-21.svg" alt="Img" class="img-fluid me-2">
+													<p>+92 325 4332402</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<div class="container">
+						<div class="row row-gap-2">
+							<div class="col-md-6">
+								<div class="text-center text-md-start">
+									<p class="text-white">Copyright 2025 <span class="text-secondary">Al-KahafOnlineAcademy</span>. All rights reserved.</p>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="d-flex align-items-center justify-content-center justify-content-md-end gap-2">
+									<a href="https://www.facebook.com/AlKahafAcademyOnline" target="_blank" rel="noopener" class="footer-social-icon"><i class="fa-brands fa-facebook-f"></i></a>
+									<a href="https://www.instagram.com/alkahafacademyonline" target="_blank" rel="noopener" class="footer-social-icon"><i class="fa-brands fa-instagram"></i></a>
+									<a href="https://www.youtube.com/@AlKahafAcademy2023" target="_blank" rel="noopener" class="footer-social-icon"><i class="fa-brands fa-youtube"></i></a>
+									</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<!-- /Footer -->
+		</div>
+	   <!-- /Main Wrapper -->
+
+		<!-- jQuery -->
+		<script src="/assets/js/jquery-3.7.1.min.js"></script>
+
+		<!-- Bootstrap Core JS -->
+		<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+		<!-- Select2 JS -->
+	  	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+
+		<!-- Custom JS -->
+		<script src="/assets/js/script.js"></script>
+	<!-- Scroll to Top Button -->
+	<button id="scroll-top" class="scroll-top" aria-label="Scroll to top">
+		<i class="fas fa-arrow-up"></i>
+	</button>
+
+
+	</body>
+</html>

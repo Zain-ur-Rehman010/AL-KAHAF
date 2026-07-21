@@ -6,7 +6,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-const ALLOWED_FOLDERS = ['courses', 'instructors', 'blogs', 'welfare'];
+const ALLOWED_FOLDERS = ['courses', 'instructors', 'blogs', 'welfare', 'resources', 'announcements'];
 const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
 const ALLOWED_DOCUMENT_EXTENSIONS = ['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx', '.zip', '.txt'];
 
@@ -92,10 +92,21 @@ router.post('/document', authMiddleware, uploadDocument.single('file'), async (r
 
     const cloudinaryFolder = `alkahaf/${folder}`;
 
+    // Cloudinary's raw resource_type does not automatically keep the file
+    // extension in the delivery URL (unlike images) — the public_id must
+    // include it explicitly, or downloaded files end up without one.
+    const ext = '.' + req.file.originalname.split('.').pop().toLowerCase();
+    const baseName = req.file.originalname
+      .slice(0, -ext.length)
+      .replace(/[^a-zA-Z0-9_-]/g, '_')
+      .slice(0, 80) || 'file';
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    const publicId = `${baseName}-${uniqueSuffix}${ext}`;
+
     const uploadToCloudinary = () =>
       new Promise((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
-          { folder: cloudinaryFolder, resource_type: 'raw', use_filename: true, unique_filename: true },
+          { folder: cloudinaryFolder, resource_type: 'raw', public_id: publicId },
           (error, result) => {
             if (error) reject(error);
             else resolve(result);

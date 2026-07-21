@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Resource Library | Al-Kahaf Online Academy</title>
+	<link rel="shortcut icon" href="/assets/img/favicon.svg">
+	<script src="/assets/js/theme-script.js"></script>
+			<script src="/assets/js/auth-guard.js"></script>
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="/assets/plugins/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="/assets/css/feather.css">
+	<link rel="stylesheet" href="/assets/css/iconsax.css">
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
+	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/assets/css/site-overrides.css">
+	<style>
+		.resource-thumb { width:50px;height:50px;object-fit:cover;border-radius:8px; }
+		.resource-icon { width:50px;height:50px;border-radius:8px;background:#f8f5f2;display:flex;align-items:center;justify-content:center;font-size:20px;color:#522811; }
+		.status-badge { font-size:0.75rem;padding:4px 10px;border-radius:20px;font-weight:600; }
+		.status-active   { background:#d4edda;color:#155724; }
+		.status-archived { background:#e2e3e5;color:#383d41; }
+		.preview-img { max-height:160px;object-fit:cover;border-radius:8px;width:100%; }
+
+		/* Skeleton shimmer */
+		.sk{background:linear-gradient(90deg,#f0f0f0 25%,#e8e8e8 50%,#f0f0f0 75%);background-size:200% 100%;animation:sk-shimmer 1.4s infinite;border-radius:6px;}
+		@keyframes sk-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+		/* Force the table to always be horizontally scrollable with a visible,
+		   draggable scrollbar rather than only scrolling when the window is
+		   narrow enough to overflow naturally. */
+		.table-responsive table { min-width: 1100px; }
+		.action-btns { flex-wrap: nowrap; }
+		.action-btns .btn { flex-shrink: 0; }
+		.table-responsive {
+			overflow-x: scroll !important;
+			scrollbar-width: auto;
+			scrollbar-color: #d8ac27 #f2ede8;
+		}
+		.table-responsive::-webkit-scrollbar { height: 12px; }
+		.table-responsive::-webkit-scrollbar-track { background: #f2ede8; border-radius: 8px; }
+		.table-responsive::-webkit-scrollbar-thumb { background: #d8ac27; border-radius: 8px; }
+		.table-responsive::-webkit-scrollbar-thumb:hover { background: #b8860b; }
+	</style>
+</head>
+<body>
+
+<div class="main-wrapper">
+
+	<!-- Header -->
+	<header class="header">
+		<div class="header-fixed">
+			<nav class="navbar navbar-expand-lg header-nav scroll-sticky">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a id="mobile_btn" href="javascript:void(0);">
+							<span class="bar-icon"><span></span><span></span><span></span></span>
+						</a>
+						<a href="/" class="navbar-brand logo"><img src="/assets/img/white-logo.png" class="img-fluid" alt="Logo" style="width:120px;"></a>
+					</div>
+					<div class="main-menu-wrapper">
+						<div class="menu-header">
+							<a href="/" class="menu-logo"><img src="/assets/img/logo.svg" class="img-fluid" alt="Logo"></a>
+							<a id="menu_close" class="menu-close" href="javascript:void(0);"><i class="fas fa-times"></i></a>
+						</div>
+						<ul class="main-nav">
+							<li><a href="/admin/admin-dashboard"><i class="isax isax-home me-2"></i>Dashboard</a></li>
+							<li class="has-submenu">
+								<a href="javascript:void(0);"><i class="isax isax-user me-2"></i>Users <i class="isax isax-arrow-down-1 ms-2"></i></a>
+								<ul class="submenu">
+									<li><a href="/admin/users-list">All Users</a></li>
+									<li><a href="/admin/instructors-list">Instructors</a></li>
+									<li><a href="/admin/students-list">Students</a></li>
+									<li><a href="/admin/user-add">Add New User</a></li>
+								</ul>
+							</li>
+							<li class="has-submenu">
+								<a href="javascript:void(0);"><i class="isax isax-book me-2"></i>Courses <i class="isax isax-arrow-down-1 ms-2"></i></a>
+								<ul class="submenu">
+									<li><a href="/admin/courses-list">All Courses</a></li>
+									<li><a href="/admin/course-add">Add Course</a></li>
+									<li><a href="/admin/predefined-courses">Predefined Catalog</a></li>
+								</ul>
+							</li>
+							<li class="has-submenu active">
+								<a href="javascript:void(0);"><i class="isax isax-category me-2"></i>Manage <i class="isax isax-arrow-down-1 ms-2"></i></a>
+								<ul class="submenu">
+									<li><a href="/admin/blog-list">Blog Posts</a></li>
+									<li><a href="/admin/enrollments-list">Enrollments</a></li>
+									<li><a href="/admin/payments-list">Payments</a></li>
+									<li><a href="/admin/welfare-programs">Welfare</a></li>
+									<li><a href="/admin/resources-list" class="active">Resources</a></li>
+									<li><a href="/admin/announcements-list">Announcements</a></li>
+									<li><a href="/admin/notifications">Notifications</a></li>
+								</ul>
+							</li>
+							<li><a href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+						</ul>
+					</div>
+					<div class="d-flex align-items-center" style="gap:16px;">
+								<!-- Notification Bell -->
+								<a href="/admin/notifications" class="position-relative" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;background:#522811;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,.15);color:#d8ac27;text-decoration:none;">
+									<i class="isax isax-notification" style="font-size:20px;color:#d8ac27;"></i>
+									<span id="notif-badge" style="position:absolute;top:0;right:0;background:#e53935;color:#fff;font-size:10px;font-weight:700;min-width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center;padding:0 3px;line-height:1;border:2px solid #522811;">0</span>
+								</a>
+								<!-- Profile Dropdown -->
+								<div class="dropdown profile-dropdown">
+									<a href="javascript:void(0);" class="d-flex align-items-center" data-bs-toggle="dropdown">
+										<span style="width:42px;height:42px;border-radius:50%;overflow:hidden;display:inline-flex;align-items:center;justify-content:center;background:#522811;color:#d8ac27;font-weight:700;font-size:16px;cursor:pointer;border:2px solid rgba(255,255,255,0.3);">
+											<img src="/assets/img/user/user-01.jpg" id="admin-avatar-img" alt="Admin" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" onerror="this.style.display='none';document.getElementById('admin-initials').style.display='flex';">
+											<span id="admin-initials" style="display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:16px;font-weight:700;color:#d8ac27;">A</span>
+										</span>
+									</a>
+									<div class="dropdown-menu dropdown-menu-end" style="min-width:220px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15);border:none;padding:0;overflow:hidden;">
+										<div class="profile-header d-flex align-items-center" style="padding:16px;background:#f8f9fa;border-bottom:1px solid #eee;">
+											<div style="width:44px;height:44px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#522811;display:flex;align-items:center;justify-content:center;" class="me-3">
+												<img src="/assets/img/user/user-01.jpg" alt="Admin" style="width:100%;height:100%;object-fit:cover;">
+											</div>
+											<div>
+												<h6 class="mb-0 fw-semibold" id="admin-name">Administrator</h6>
+												<small class="text-muted">Admin</small>
+											</div>
+										</div>
+										<ul class="profile-body list-unstyled mb-0" style="padding:8px 0 8px 8px;">
+											<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-profile"><i class="isax isax-security-user me-2"></i>My Profile</a></li>
+											<li><a class="dropdown-item d-inline-flex align-items-center rounded fw-medium py-2 px-3" href="/admin/admin-settings"><i class="isax isax-setting-2 me-2"></i>Settings</a></li>
+										</ul>
+										<div style="padding:12px 16px;border-top:1px solid #eee;">
+											<a href="/auth/login" id="logoutBtn" class="btn btn-secondary d-inline-flex align-items-center justify-content-center w-100"><i class="isax isax-logout me-2"></i>Logout</a>
+										</div>
+									</div>
+								</div>
+							</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<!-- /Header -->
+
+	<!-- Breadcrumb -->
+	<div class="breadcrumb-bar text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<h2 class="breadcrumb-title">Resource Library</h2>
+					<nav aria-label="breadcrumb" class="page-breadcrumb">
+						<ol class="breadcrumb">
+							<li class="breadcrumb-item"><a href="/">Home</a></li>
+							<li class="breadcrumb-item"><a href="/admin/admin-dashboard">Admin</a></li>
+							<li class="breadcrumb-item active">Resources</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /Breadcrumb -->
+
+	<!-- Page Content -->
+	<div class="content">
+		<div class="container">
+
+			<!-- Page Header -->
+			<div class="row mb-4">
+				<div class="col-12">
+					<div class="card bg-white rounded-3 shadow-sm">
+						<div class="card-body">
+							<div class="row align-items-center">
+								<div class="col-md-6">
+									<h4 class="mb-0">Books &amp; Files</h4>
+									<p class="text-muted mb-0 mt-1">Upload and manage academy books, forms, and important documents shown on the public Resources page</p>
+								</div>
+								<div class="col-md-6 text-md-end mt-3 mt-md-0">
+									<button class="btn btn-primary" onclick="openAddModal()">
+										<i class="isax isax-add-circle me-2"></i>Add Resource
+									</button>
+									<button class="btn btn-outline-secondary ms-2" onclick="loadResources()">
+										<i class="isax isax-refresh me-2"></i>Refresh
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Stats -->
+			<div class="row mb-4" id="stats-row">
+				<div class="col-lg-3 col-md-6 mb-3">
+					<div class="card bg-primary text-white rounded-3 shadow-sm">
+						<div class="card-body d-flex align-items-center justify-content-between">
+							<div><p class="mb-1 text-white-50">Total Files</p><h3 class="mb-0" id="stat-total">—</h3></div>
+							<i class="isax isax-folder-2 fs-1 opacity-50"></i>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 mb-3">
+					<div class="card bg-success text-white rounded-3 shadow-sm">
+						<div class="card-body d-flex align-items-center justify-content-between">
+							<div><p class="mb-1 text-white-50">Active</p><h3 class="mb-0" id="stat-active">—</h3></div>
+							<i class="isax isax-tick-circle fs-1 opacity-50"></i>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 mb-3">
+					<div class="card bg-secondary text-white rounded-3 shadow-sm">
+						<div class="card-body d-flex align-items-center justify-content-between">
+							<div><p class="mb-1 text-white-50">Archived</p><h3 class="mb-0" id="stat-archived">—</h3></div>
+							<i class="isax isax-archive fs-1 opacity-50"></i>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6 mb-3">
+					<div class="card bg-warning text-white rounded-3 shadow-sm">
+						<div class="card-body d-flex align-items-center justify-content-between">
+							<div><p class="mb-1 text-white-50">Total Downloads</p><h3 class="mb-0" id="stat-downloads">—</h3></div>
+							<i class="isax isax-import fs-1 opacity-50"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Resources Table -->
+			<div class="row">
+				<div class="col-12">
+					<div class="card rounded-3 shadow-sm">
+						<div class="card-body">
+							<div class="table-responsive">
+								<table class="table table-hover align-middle" id="resources-table">
+									<thead class="table-light">
+										<tr>
+											<th>File</th>
+											<th>Title</th>
+											<th>Category</th>
+											<th>Type / Size</th>
+											<th>Downloads</th>
+											<th>Status</th>
+											<th>Uploaded</th>
+											<th class="text-center">Actions</th>
+										</tr>
+									</thead>
+									<tbody id="resources-tbody">
+										<tr><td><span class="sk" style="width:50px;height:50px;border-radius:8px;display:block;"></span></td><td><span class="sk" style="width:180px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:40px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:100px;height:28px;border-radius:4px;display:block;"></span></td></tr>
+										<tr><td><span class="sk" style="width:50px;height:50px;border-radius:8px;display:block;"></span></td><td><span class="sk" style="width:180px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:40px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:100px;height:28px;border-radius:4px;display:block;"></span></td></tr>
+										<tr><td><span class="sk" style="width:50px;height:50px;border-radius:8px;display:block;"></span></td><td><span class="sk" style="width:180px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:80px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:70px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:40px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:65px;height:22px;border-radius:20px;display:block;"></span></td><td><span class="sk" style="width:90px;height:13px;border-radius:4px;display:block;"></span></td><td><span class="sk" style="width:100px;height:28px;border-radius:4px;display:block;"></span></td></tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- /Page Content -->
+
+</div>
+<!-- /Main Wrapper -->
+
+<!-- ============================================================
+     ADD / EDIT RESOURCE MODAL
+============================================================ -->
+<div class="modal fade" id="resource-form-modal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-title">Add Resource</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			</div>
+			<div class="modal-body">
+				<form id="resource-form" novalidate>
+					<input type="hidden" id="resource-id">
+
+					<div class="row g-3">
+						<!-- Title -->
+						<div class="col-12">
+							<label class="form-label fw-semibold">Title <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="resource-title" placeholder="e.g. Tajweed Rules Handbook" required>
+						</div>
+
+						<!-- Description -->
+						<div class="col-12">
+							<label class="form-label fw-semibold">Description</label>
+							<textarea class="form-control" id="resource-description" rows="2" placeholder="Short description (shown on the public page)"></textarea>
+						</div>
+
+						<!-- Category & Status -->
+						<div class="col-md-6">
+							<label class="form-label fw-semibold">Category</label>
+							<select class="form-select" id="resource-category">
+								<option value="book">Book</option>
+								<option value="syllabus">Syllabus</option>
+								<option value="form">Form</option>
+								<option value="certificate">Certificate</option>
+								<option value="other">Other</option>
+							</select>
+						</div>
+						<div class="col-md-6">
+							<label class="form-label fw-semibold">Status</label>
+							<select class="form-select" id="resource-status">
+								<option value="active">Active</option>
+								<option value="archived">Archived</option>
+							</select>
+						</div>
+
+						<!-- File Upload -->
+						<div class="col-12">
+							<label class="form-label fw-semibold">File <span class="text-danger">*</span></label>
+							<input type="hidden" id="resource-file-url">
+							<input type="hidden" id="resource-file-name">
+							<input type="hidden" id="resource-file-size">
+							<input type="hidden" id="resource-file-type">
+
+							<!-- Drop zone -->
+							<div id="file-upload-zone" style="border:2px dashed #dee2e6;border-radius:12px;padding:28px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:#fafafa;" onclick="document.getElementById('resource-file-input').click()">
+								<i class="isax isax-document-upload fs-1 text-muted d-block mb-2"></i>
+								<p class="mb-1 fw-semibold text-muted" id="file-upload-label">Click to upload or drag &amp; drop</p>
+								<p class="text-muted small mb-0">PDF, DOC, PPT, XLS, ZIP, TXT &mdash; max 52 MB</p>
+							</div>
+							<input type="file" id="resource-file-input" accept=".pdf,.doc,.docx,.ppt,.pptx,.xls,.xlsx,.zip,.txt" style="display:none;" onclick="event.stopPropagation()">
+
+							<!-- Upload progress -->
+							<div id="file-upload-progress" style="display:none;" class="mt-2">
+								<div class="progress" style="height:6px;">
+									<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" style="width:100%"></div>
+								</div>
+								<p class="text-muted small mt-1 mb-0">Uploading file&hellip;</p>
+							</div>
+						</div>
+
+						<!-- Cover Thumbnail (optional) -->
+						<div class="col-12">
+							<label class="form-label fw-semibold">Cover Thumbnail <small class="text-muted">(optional)</small></label>
+							<input type="hidden" id="resource-thumbnail">
+
+							<div id="thumb-upload-zone" style="border:2px dashed #dee2e6;border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s;background:#fafafa;" onclick="document.getElementById('thumb-file-input').click()">
+								<i class="isax isax-image fs-1 text-muted d-block mb-2"></i>
+								<p class="mb-1 fw-semibold text-muted">Click to upload a cover image</p>
+								<p class="text-muted small mb-0">JPG, PNG, WebP, GIF &mdash; max 5 MB</p>
+							</div>
+							<input type="file" id="thumb-file-input" accept="image/jpeg,image/png,image/webp,image/gif" style="display:none;" onclick="event.stopPropagation()">
+
+							<div id="thumb-upload-progress" style="display:none;" class="mt-2">
+								<div class="progress" style="height:6px;">
+									<div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" style="width:100%"></div>
+								</div>
+								<p class="text-muted small mt-1 mb-0">Uploading image&hellip;</p>
+							</div>
+
+							<div id="thumb-preview-wrap" style="display:none;margin-top:12px;position:relative;">
+								<img id="thumb-preview" src="" alt="Preview" class="preview-img">
+								<button type="button" onclick="removeThumbnail()" style="position:absolute;top:8px;right:8px;border-radius:50%;width:30px;height:30px;border:none;background:rgba(220,53,69,.85);color:#fff;cursor:pointer;font-size:18px;line-height:1;" title="Remove image">&times;</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer gap-2">
+				<button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+				<button type="button" class="btn btn-primary" id="save-btn" onclick="saveResource()">
+					<i class="isax isax-tick-square me-2"></i>Save Resource
+				</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Admin Login Modal -->
+<div class="modal fade" id="login-modal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-sm modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-body p-4">
+				<div class="text-center mb-3">
+					<i class="isax isax-lock fs-1 text-primary d-block mb-2"></i>
+					<h5 class="fw-bold">Admin Login</h5>
+					<p class="text-muted small">Sign in with your admin account to manage resources.</p>
+				</div>
+				<div class="mb-3">
+					<input type="email" id="login-email" class="form-control" placeholder="Admin Email">
+				</div>
+				<div class="mb-3">
+					<input type="password" id="login-pass" class="form-control" placeholder="Password" onkeydown="if(event.key==='Enter') adminLogin()">
+				</div>
+				<div id="login-error" class="alert alert-danger py-2 small" style="display:none;"></div>
+				<button class="btn btn-primary w-100" id="login-btn" onclick="adminLogin()">Login</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Delete Confirm Modal -->
+<div class="modal fade" id="delete-modal" tabindex="-1" aria-hidden="true">
+	<div class="modal-dialog modal-sm modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-body text-center p-4">
+				<i class="isax isax-trash fs-1 text-danger mb-3 d-block"></i>
+				<h5>Delete Resource?</h5>
+				<p class="text-muted">This action cannot be undone.</p>
+				<div class="d-flex gap-2 justify-content-center mt-3">
+					<button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+					<button class="btn btn-danger" id="confirm-delete-btn">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Toast -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index:9999">
+	<div id="toast-msg" class="toast align-items-center text-white border-0" role="alert">
+		<div class="d-flex">
+			<div class="toast-body" id="toast-text">Saved successfully</div>
+			<button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+		</div>
+	</div>
+</div>
+
+<!-- Scripts -->
+<script src="/assets/js/jquery-3.7.1.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+<script src="/assets/js/api-config.js"></script>
+    <script>
+var API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
+var token = localStorage.getItem('accessToken') || '';
+var resourceModal, deleteModal, loginModal, toastEl, toastObj;
+var deleteTargetId = null;
+
+document.addEventListener('DOMContentLoaded', function () {
+	resourceModal = new bootstrap.Modal(document.getElementById('resource-form-modal'));
+	deleteModal   = new bootstrap.Modal(document.getElementById('delete-modal'));
+	loginModal    = new bootstrap.Modal(document.getElementById('login-modal'), { backdrop: 'static', keyboard: false });
+	toastEl       = document.getElementById('toast-msg');
+	toastObj      = new bootstrap.Toast(toastEl, { delay: 3000 });
+
+	// File input change
+	document.getElementById('resource-file-input').addEventListener('change', function () {
+		if (this.files && this.files[0]) uploadResourceFile(this.files[0]);
+	});
+
+	// Thumbnail file input change
+	document.getElementById('thumb-file-input').addEventListener('change', function () {
+		if (this.files && this.files[0]) uploadThumbnail(this.files[0]);
+	});
+
+	// Drag & drop on file upload zone
+	var fzone = document.getElementById('file-upload-zone');
+	fzone.addEventListener('dragover', function(e) { e.preventDefault(); fzone.style.borderColor='#522811'; fzone.style.background='#fff8f0'; });
+	fzone.addEventListener('dragleave', function() { fzone.style.borderColor='#dee2e6'; fzone.style.background='#fafafa'; });
+	fzone.addEventListener('drop', function(e) {
+		e.preventDefault();
+		fzone.style.borderColor='#dee2e6'; fzone.style.background='#fafafa';
+		var file = e.dataTransfer.files[0];
+		if (file) uploadResourceFile(file);
+	});
+
+	// Drag & drop on thumbnail zone
+	var tzone = document.getElementById('thumb-upload-zone');
+	tzone.addEventListener('dragover', function(e) { e.preventDefault(); tzone.style.borderColor='#522811'; tzone.style.background='#fff8f0'; });
+	tzone.addEventListener('dragleave', function() { tzone.style.borderColor='#dee2e6'; tzone.style.background='#fafafa'; });
+	tzone.addEventListener('drop', function(e) {
+		e.preventDefault();
+		tzone.style.borderColor='#dee2e6'; tzone.style.background='#fafafa';
+		var file = e.dataTransfer.files[0];
+		if (file) uploadThumbnail(file);
+	});
+
+	if (!token) { loginModal.show(); return; }
+	verifyAndLoad();
+});
+
+function verifyAndLoad() {
+	fetch(API_BASE + '/resources?limit=1', { headers: authHeaders() })
+		.then(function(r) {
+			if (r.status === 401 || r.status === 403) {
+				loginModal.show();
+			} else {
+				loadResources();
+			}
+		})
+		.catch(function() { loadResources(); });
+}
+
+function adminLogin() {
+	var email = document.getElementById('login-email').value.trim();
+	var pass  = document.getElementById('login-pass').value.trim();
+	var btn   = document.getElementById('login-btn');
+	var err   = document.getElementById('login-error');
+	if (!email || !pass) { err.textContent = 'Please enter email and password.'; err.style.display='block'; return; }
+	btn.disabled = true; btn.textContent = 'Logging in…';
+	err.style.display = 'none';
+	fetch(API_BASE + '/auth/login', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ email: email, password: pass })
+	})
+	.then(function(r) { return r.json(); })
+	.then(function(j) {
+		btn.disabled = false; btn.textContent = 'Login';
+		if (j.success && j.data && j.data.accessToken) {
+			if (j.data.user && j.data.user.role !== 'admin') {
+				err.textContent = 'Access denied. Admin account required.';
+				err.style.display = 'block';
+				return;
+			}
+			token = j.data.accessToken;
+			localStorage.setItem('accessToken', token);
+			loginModal.hide();
+			loadResources();
+		} else {
+			err.textContent = j.message || 'Invalid credentials.';
+			err.style.display = 'block';
+		}
+	})
+	.catch(function() {
+		btn.disabled = false; btn.textContent = 'Login';
+		err.textContent = 'Cannot connect to server. Make sure backend is running.';
+		err.style.display = 'block';
+	});
+}
+
+// ── Helpers ─────────────────────────────────────────────────────────────
+function authHeaders() {
+	return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token };
+}
+
+function showToast(msg, success) {
+	toastEl.className = 'toast align-items-center text-white border-0 ' + (success !== false ? 'bg-success' : 'bg-danger');
+	document.getElementById('toast-text').textContent = msg;
+	toastObj.show();
+}
+
+function formatDate(d) {
+	if (!d) return '—';
+	return new Date(d).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function formatSize(bytes) {
+	if (!bytes) return '—';
+	if (bytes < 1024 * 1024) return Math.round(bytes / 1024) + ' KB';
+	return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
+
+function statusBadge(s) {
+	var map = { active: 'status-active', archived: 'status-archived' };
+	return '<span class="status-badge ' + (map[s] || '') + '">' + s + '</span>';
+}
+
+var CATEGORY_LABELS = { book: 'Book', syllabus: 'Syllabus', form: 'Form', certificate: 'Certificate', other: 'Other' };
+
+// ── Load Resources ───────────────────────────────────────────────────────
+function loadResources() {
+	document.getElementById('resources-tbody').innerHTML =
+		'<tr><td colspan="8" class="text-center py-4"><div class="spinner-border text-primary" role="status"></div></td></tr>';
+
+	fetch(API_BASE + '/resources?limit=100', { headers: authHeaders() })
+		.then(function(r) { return r.json(); })
+		.then(function(json) {
+			var resources = json.resources || [];
+			renderTable(resources);
+			updateStats(resources);
+		})
+		.catch(function() {
+			document.getElementById('resources-tbody').innerHTML =
+				'<tr><td colspan="8" class="text-center text-danger py-4">Could not connect to API. Make sure the backend is running.</td></tr>';
+		});
+}
+
+function renderTable(resources) {
+	var tbody = document.getElementById('resources-tbody');
+	if (!resources.length) {
+		tbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted py-4">No resources yet. Click "Add Resource" to upload one.</td></tr>';
+		return;
+	}
+	tbody.innerHTML = resources.map(function(r) {
+		var thumb = r.thumbnail
+			? '<img src="' + r.thumbnail + '" class="resource-thumb" onerror="this.style.display=\'none\'">'
+			: '<div class="resource-icon"><i class="isax isax-document-text"></i></div>';
+		return '<tr>' +
+			'<td>' + thumb + '</td>' +
+			'<td><strong>' + r.title + '</strong>' +
+				(r.description ? '<br><small class="text-muted">' + r.description.substring(0,60) + '…</small>' : '') + '</td>' +
+			'<td><span class="badge bg-light text-dark">' + (CATEGORY_LABELS[r.category] || r.category) + '</span></td>' +
+			'<td>' + (r.fileType ? r.fileType.toUpperCase() : '—') + ' · ' + formatSize(r.fileSize) + '</td>' +
+			'<td>' + (r.downloads || 0) + '</td>' +
+			'<td>' + statusBadge(r.status) + '</td>' +
+			'<td>' + formatDate(r.createdAt) + '</td>' +
+			'<td class="text-center">' +
+				'<div class="action-btns d-flex justify-content-center gap-1">' +
+				'<a class="btn btn-sm btn-outline-info" href="' + r.fileUrl + '" target="_blank" title="Download"><i class="isax isax-import"></i></a>' +
+				'<button class="btn btn-sm btn-outline-primary" onclick="openEditModal(\'' + r.id + '\')" title="Edit"><i class="isax isax-edit"></i></button>' +
+				'<button class="btn btn-sm btn-outline-danger" onclick="confirmDelete(\'' + r.id + '\')" title="Delete"><i class="isax isax-trash"></i></button>' +
+				'</div>' +
+			'</td>' +
+		'</tr>';
+	}).join('');
+}
+
+function updateStats(resources) {
+	document.getElementById('stat-total').textContent     = resources.length;
+	document.getElementById('stat-active').textContent    = resources.filter(function(r) { return r.status === 'active'; }).length;
+	document.getElementById('stat-archived').textContent  = resources.filter(function(r) { return r.status === 'archived'; }).length;
+	document.getElementById('stat-downloads').textContent = resources.reduce(function(sum, r) { return sum + (r.downloads || 0); }, 0);
+}
+
+// ── Open Add Modal ───────────────────────────────────────────────────────
+function openAddModal() {
+	document.getElementById('modal-title').textContent = 'Add Resource';
+	document.getElementById('resource-form').reset();
+	document.getElementById('resource-id').value = '';
+	document.getElementById('resource-file-url').value = '';
+	document.getElementById('resource-file-name').value = '';
+	document.getElementById('resource-file-size').value = '';
+	document.getElementById('resource-file-type').value = '';
+	document.getElementById('file-upload-label').textContent = 'Click to upload or drag & drop';
+	document.getElementById('resource-file-input').value = '';
+	removeThumbnail();
+	resourceModal.show();
+}
+
+// ── Open Edit Modal ──────────────────────────────────────────────────────
+function openEditModal(id) {
+	fetch(API_BASE + '/resources/' + id, { headers: authHeaders() })
+		.then(function(r) { return r.json(); })
+		.then(function(json) {
+			var res = json.resource;
+			if (!res) { showToast('Could not load resource', false); return; }
+
+			document.getElementById('modal-title').textContent = 'Edit Resource';
+			document.getElementById('resource-id').value          = res.id;
+			document.getElementById('resource-title').value       = res.title;
+			document.getElementById('resource-description').value = res.description || '';
+			document.getElementById('resource-category').value    = res.category;
+			document.getElementById('resource-status').value      = res.status;
+			document.getElementById('resource-file-url').value    = res.fileUrl;
+			document.getElementById('resource-file-name').value   = res.fileName || '';
+			document.getElementById('resource-file-size').value   = res.fileSize || '';
+			document.getElementById('resource-file-type').value   = res.fileType || '';
+			document.getElementById('file-upload-label').textContent = res.fileName ? ('Current file: ' + res.fileName) : 'Click to upload or drag & drop';
+			document.getElementById('resource-file-input').value = '';
+
+			document.getElementById('resource-thumbnail').value = res.thumbnail || '';
+			if (res.thumbnail) {
+				document.getElementById('thumb-preview').src = res.thumbnail;
+				document.getElementById('thumb-preview-wrap').style.display = 'block';
+			} else {
+				document.getElementById('thumb-preview-wrap').style.display = 'none';
+			}
+
+			resourceModal.show();
+		})
+		.catch(function() { showToast('Failed to load resource data', false); });
+}
+
+// ── Save Resource (Create or Update) ─────────────────────────────────────
+function saveResource() {
+	var id      = document.getElementById('resource-id').value;
+	var title   = document.getElementById('resource-title').value.trim();
+	var fileUrl = document.getElementById('resource-file-url').value.trim();
+	if (!title) { showToast('Title is required', false); return; }
+	if (!fileUrl) { showToast('Please upload a file', false); return; }
+
+	var payload = {
+		title:       title,
+		description: document.getElementById('resource-description').value.trim(),
+		category:    document.getElementById('resource-category').value,
+		status:      document.getElementById('resource-status').value,
+		fileUrl:     fileUrl,
+		fileName:    document.getElementById('resource-file-name').value,
+		fileSize:    parseInt(document.getElementById('resource-file-size').value) || null,
+		fileType:    document.getElementById('resource-file-type').value,
+		thumbnail:   document.getElementById('resource-thumbnail').value.trim()
+	};
+
+	var saveBtn = document.getElementById('save-btn');
+	saveBtn.disabled = true;
+	saveBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Saving…';
+
+	var method = id ? 'PUT' : 'POST';
+	var url    = id ? API_BASE + '/resources/' + id : API_BASE + '/resources';
+
+	fetch(url, { method: method, headers: authHeaders(), body: JSON.stringify(payload) })
+		.then(function(r) { return r.json(); })
+		.then(function(json) {
+			saveBtn.disabled = false;
+			saveBtn.innerHTML = '<i class="isax isax-tick-square me-2"></i>Save Resource';
+			if (json.success) {
+				showToast(id ? 'Resource updated successfully!' : 'Resource added successfully!');
+				resourceModal.hide();
+				loadResources();
+			} else {
+				showToast(json.message || 'Save failed', false);
+			}
+		})
+		.catch(function() {
+			saveBtn.disabled = false;
+			saveBtn.innerHTML = '<i class="isax isax-tick-square me-2"></i>Save Resource';
+			showToast('Network error — is the backend running?', false);
+		});
+}
+
+// ── Delete Resource ──────────────────────────────────────────────────────
+function confirmDelete(id) {
+	deleteTargetId = id;
+	deleteModal.show();
+	document.getElementById('confirm-delete-btn').onclick = function () {
+		fetch(API_BASE + '/resources/' + deleteTargetId, { method: 'DELETE', headers: authHeaders() })
+			.then(function(r) { return r.json(); })
+			.then(function(json) {
+				deleteModal.hide();
+				if (json.success) {
+					showToast('Resource deleted successfully!');
+					loadResources();
+				} else {
+					showToast(json.message || 'Delete failed', false);
+				}
+			})
+			.catch(function() { deleteModal.hide(); showToast('Network error', false); });
+	};
+}
+
+// ── Resource File Upload ─────────────────────────────────────────────────
+function uploadResourceFile(file) {
+	if (file.size > 52 * 1024 * 1024) {
+		showToast('File too large. Max size is 52 MB.', false);
+		return;
+	}
+	var progress = document.getElementById('file-upload-progress');
+	var zone      = document.getElementById('file-upload-zone');
+	progress.style.display = 'block';
+	zone.style.pointerEvents = 'none';
+	zone.style.opacity = '0.6';
+
+	var formData = new FormData();
+	formData.append('file', file);
+
+	fetch(API_BASE + '/upload/document?folder=resources', {
+		method: 'POST',
+		headers: { 'Authorization': 'Bearer ' + token },
+		body: formData
+	})
+	.then(function(r) { return r.json(); })
+	.then(function(json) {
+		progress.style.display = 'none';
+		zone.style.pointerEvents = '';
+		zone.style.opacity = '';
+		if (json.success && json.url) {
+			document.getElementById('resource-file-url').value  = json.url;
+			document.getElementById('resource-file-name').value = json.name || file.name;
+			document.getElementById('resource-file-size').value = json.size || file.size;
+			document.getElementById('resource-file-type').value = (file.name.split('.').pop() || '').toLowerCase();
+			document.getElementById('file-upload-label').textContent = 'Uploaded: ' + (json.name || file.name);
+			showToast('File uploaded successfully!');
+		} else {
+			showToast(json.message || 'Upload failed', false);
+		}
+	})
+	.catch(function() {
+		progress.style.display = 'none';
+		zone.style.pointerEvents = '';
+		zone.style.opacity = '';
+		showToast('Upload failed — is the backend running?', false);
+	});
+}
+
+// ── Thumbnail Upload ──────────────────────────────────────────────────────
+function removeThumbnail() {
+	document.getElementById('resource-thumbnail').value = '';
+	document.getElementById('thumb-file-input').value = '';
+	document.getElementById('thumb-preview-wrap').style.display = 'none';
+}
+
+function uploadThumbnail(file) {
+	if (file.size > 5 * 1024 * 1024) {
+		showToast('Image too large. Max size is 5 MB.', false);
+		return;
+	}
+	var progress = document.getElementById('thumb-upload-progress');
+	var zone      = document.getElementById('thumb-upload-zone');
+	progress.style.display = 'block';
+	zone.style.pointerEvents = 'none';
+	zone.style.opacity = '0.6';
+
+	var formData = new FormData();
+	formData.append('image', file);
+
+	fetch(API_BASE + '/upload?folder=resources', {
+		method: 'POST',
+		headers: { 'Authorization': 'Bearer ' + token },
+		body: formData
+	})
+	.then(function(r) { return r.json(); })
+	.then(function(json) {
+		progress.style.display = 'none';
+		zone.style.pointerEvents = '';
+		zone.style.opacity = '';
+		if (json.success && json.url) {
+			document.getElementById('resource-thumbnail').value = json.url;
+			document.getElementById('thumb-preview').src = json.url;
+			document.getElementById('thumb-preview-wrap').style.display = 'block';
+			showToast('Thumbnail uploaded successfully!');
+		} else {
+			showToast(json.message || 'Upload failed', false);
+		}
+	})
+	.catch(function() {
+		progress.style.display = 'none';
+		zone.style.pointerEvents = '';
+		zone.style.opacity = '';
+		showToast('Upload failed — is the backend running?', false);
+	});
+}
+</script>
+
+</body>
+</html>

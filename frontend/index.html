@@ -1605,9 +1605,16 @@ Dependencies:
               <ul class="main-nav">
                 <li><a href="/">Home</a></li>
                 <li><a href="/courses/course-grid">Courses</a></li>
-                <li><a href="/shared/about-us">About Us</a></li>
+                <li class="has-submenu">
+                	<a href="javascript:void(0);">Explore <i class="fas fa-angle-down"></i></a>
+                	<ul class="submenu">
+                		<li><a href="/shared/about-us">About Us</a></li>
+                		<li><a href="/shared/welfare-programs">Projects</a></li>
+                		<li><a href="/instructor/instructor-grid">Instructors</a></li>
+                	</ul>
+                </li>
+                <li><a href="/shared/resources">Resources</a></li>
                 <li><a href="/shared/free-trial">Free Trial</a></li>
-                <li><a href="/shared/welfare-programs">Projects</a></li>
                 <li>
                   <a href="/shared/become-an-instructor"
                     >Become an Instructor</a
@@ -4378,6 +4385,281 @@ Dependencies:
 
         // window.load ensures script.js has already initialized slick before we replace it
         window.addEventListener("load", loadFeaturedCourses);
+      })();
+    </script>
+
+    <!-- ============================================================
+         ANNOUNCEMENT POPUP — shows automatically on homepage load if
+         an active announcement exists (admin-managed). Homepage only.
+         ============================================================ -->
+    <style>
+      /* The homepage has several decorative elements with very high
+         z-index values (up to 999999) for badges/offcanvas menus — force
+         this modal and its backdrop above all of them so nothing bleeds
+         through visually. */
+      #announcement-modal { z-index: 2000000; }
+      .modal-backdrop { z-index: 1999999; }
+      #announcement-modal .modal-content {
+        position: relative;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+      }
+      .announcement-paper {
+        position: relative;
+        border-radius: 10px;
+        /* No overflow:hidden here — the icon badge (fallback, no-image case)
+           intentionally overlaps the band/body seam. clip-path below still
+           produces the folded-corner shape without needing overflow to be
+           hidden. */
+        background: #f6efd9;
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+        /* Folded paper corner, bottom-right — clipping lives here, not on
+           modal-content, so the pin (a sibling) can still poke above it. */
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 26px), calc(100% - 26px) 100%, 0 100%);
+      }
+      .announcement-paper::after {
+        /* The visible "fold" triangle shading, sitting on top of the clipped corner */
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 0 26px 26px;
+        border-color: transparent transparent #d9c99a transparent;
+        box-shadow: -3px -3px 6px rgba(0, 0, 0, 0.15);
+      }
+      #announcement-modal .modal-dialog {
+        max-width: 520px;
+      }
+      @media (max-width: 560px) {
+        #announcement-modal .modal-dialog { max-width: calc(100% - 32px); }
+      }
+      .announcement-pin {
+        position: absolute;
+        top: -22px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #d8ac27 0%, #b8860b 100%);
+        box-shadow: 0 6px 16px rgba(184, 134, 11, 0.45);
+        border: 3px solid #f6efd9;
+        color: #3a2410;
+        font-size: 17px;
+        z-index: 3;
+      }
+      .announcement-pin::before {
+        /* Soft pulsing glow ring */
+        content: "";
+        position: absolute;
+        inset: -6px;
+        border-radius: 50%;
+        border: 2px solid rgba(216, 172, 39, 0.55);
+        animation: announcementPinPulse 2s ease-out infinite;
+        z-index: -1;
+      }
+      @keyframes announcementPinPulse {
+        0%   { transform: scale(0.85); opacity: 0.9; }
+        70%  { transform: scale(1.35); opacity: 0; }
+        100% { transform: scale(1.35); opacity: 0; }
+      }
+      .announcement-image-wrap {
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        border-radius: 10px 10px 0 0;
+      }
+      @media (max-width: 560px) {
+        .announcement-image-wrap { height: 220px; }
+      }
+      .announcement-image-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .announcement-close-btn {
+        position: absolute;
+        top: 14px;
+        right: 14px;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        font-size: 15px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+        z-index: 4;
+      }
+      .announcement-close-btn:hover { background: rgba(0, 0, 0, 0.75); transform: rotate(90deg); }
+      .announcement-band {
+        position: relative;
+        padding: 34px 30px 4px;
+        text-align: center;
+      }
+      .announcement-icon-wrap {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        font-size: 22px;
+        margin-bottom: 10px;
+        background: rgba(58, 42, 30, 0.08);
+      }
+      .announcement-icon-info    { color: #0c5460; }
+      .announcement-icon-success { color: #198754; }
+      .announcement-icon-warning { color: #b8860b; }
+      .announcement-icon-urgent  { color: #dc3545; }
+      .announcement-band h4 {
+        color: #3a2a1e;
+        font-weight: 800;
+        margin: 0;
+        font-size: 22px;
+      }
+      .announcement-body {
+        padding: 20px 34px 34px;
+        text-align: center;
+      }
+      .announcement-body.no-icon-gap {
+        padding-top: 26px;
+      }
+      #announcement-message {
+        font-size: 18px;
+        line-height: 1.6;
+        color: #3a2a1e;
+        font-weight: 600;
+        margin-bottom: 20px;
+      }
+      .announcement-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      #announcement-link {
+        background: linear-gradient(135deg, #d8ac27 0%, #b8860b 100%);
+        border: none;
+        color: #3a2410;
+        font-weight: 700;
+        font-size: 16px;
+        padding: 14px 24px;
+        border-radius: 12px;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      #announcement-link:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(184, 134, 11, 0.3); color: #3a2410; }
+      #announcement-modal .modal-content { cursor: pointer; }
+      #announcement-modal.fade .modal-dialog { transform: scale(0.9) translateY(10px) rotate(-1deg); transition: transform 0.3s ease-out, opacity 0.3s ease-out; }
+      #announcement-modal.show .modal-dialog { transform: scale(1) translateY(0) rotate(-0.6deg); }
+    </style>
+    <div class="modal fade" id="announcement-modal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="announcement-pin"><i class="fas fa-bullhorn"></i></div>
+          <div class="announcement-paper">
+            <button type="button" class="announcement-close-btn" data-bs-dismiss="modal" aria-label="Close">
+              <i class="fas fa-times"></i>
+            </button>
+            <div id="announcement-band" class="announcement-band">
+              <div id="announcement-icon-wrap" class="announcement-icon-wrap announcement-icon-info">
+                <i class="isax isax-notification"></i>
+              </div>
+              <h4>Announcement</h4>
+            </div>
+            <div id="announcement-image-wrap" class="announcement-image-wrap" style="display:none;">
+              <img id="announcement-image" src="" alt="Announcement">
+            </div>
+            <div id="announcement-body" class="announcement-body">
+              <p id="announcement-message"></p>
+              <div class="announcement-actions">
+                <a id="announcement-link" href="#" class="btn d-none"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      (function () {
+        document.addEventListener("DOMContentLoaded", function () {
+          var API_BASE = (typeof API_CONFIG !== "undefined") ? API_CONFIG.BASE_URL : "https://api.alkahafonlineacademy.com/api/v1";
+
+          fetch(API_BASE + "/announcements/active")
+            .then(function (r) { return r.json(); })
+            .then(function (json) {
+              var a = json && json.announcement;
+              if (!a) return;
+
+              var style = a.style || "info";
+
+              var bandEl  = document.getElementById("announcement-band");
+              var imageWrap = document.getElementById("announcement-image-wrap");
+              var bodyEl  = document.getElementById("announcement-body");
+
+              if (a.imageUrl) {
+                // Poster image replaces the gradient band entirely.
+                document.getElementById("announcement-image").src = a.imageUrl;
+                bandEl.style.display = "none";
+                imageWrap.style.display = "block";
+                bodyEl.classList.add("no-icon-gap");
+              } else {
+                var iconMap = {
+                  info: "isax isax-info-circle",
+                  success: "isax isax-tick-circle",
+                  warning: "isax isax-warning-2",
+                  urgent: "isax isax-danger",
+                };
+                var iconWrap = document.getElementById("announcement-icon-wrap");
+                iconWrap.className = "announcement-icon-wrap announcement-icon-" + style;
+                iconWrap.innerHTML = '<i class="' + (iconMap[style] || iconMap.info) + '"></i>';
+                bandEl.style.display = "";
+                imageWrap.style.display = "none";
+                bodyEl.classList.remove("no-icon-gap");
+              }
+
+              var messageEl = document.getElementById("announcement-message");
+              if (a.message) {
+                messageEl.textContent = a.message;
+                messageEl.classList.remove("d-none");
+              } else {
+                messageEl.classList.add("d-none");
+              }
+
+              var linkEl = document.getElementById("announcement-link");
+              if (a.linkUrl) {
+                linkEl.href = a.linkUrl;
+                linkEl.textContent = a.linkText || "Learn More";
+                linkEl.classList.remove("d-none");
+              } else {
+                linkEl.classList.add("d-none");
+              }
+
+              var modalEl = document.getElementById("announcement-modal");
+              var modal = new bootstrap.Modal(modalEl);
+
+              // Clicking anywhere (image, text, backdrop) dismisses the
+              // popup — except the CTA link, which should navigate instead.
+              modalEl.addEventListener("click", function (e) {
+                if (e.target.closest("#announcement-link")) return;
+                modal.hide();
+              });
+
+              modal.show();
+            })
+            .catch(function () { /* fail silently — popup just doesn't show */ });
+        });
       })();
     </script>
   </body>
