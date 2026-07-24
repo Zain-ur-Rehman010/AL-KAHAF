@@ -58,6 +58,26 @@
     }).join('');
   }
 
+  // Render certifications list
+  function renderCertifications(list) {
+    var container = document.getElementById('prof-certification-list');
+    if (!container) return;
+    if (!list || list.length === 0) {
+      container.innerHTML = '<p class="text-muted fs-14">No certifications added yet. <a href="/instructor/instructor-settings">Add now</a></p>';
+      return;
+    }
+    container.innerHTML = '<div class="d-flex flex-wrap gap-3">' + list.map(function (item) {
+      var img = item.imageUrl || '/assets/img/certificates/certificate-01.svg';
+      return '<div class="text-center" style="width:90px;">' +
+        '<img src="' + escAttr(img) + '" alt="' + escAttr(item.title || 'Certification') + '" class="rounded-circle border mb-1" style="width:64px;height:64px;object-fit:cover;">' +
+        '<p class="fs-12 mb-0 text-truncate" title="' + escAttr(item.title || '') + '">' + escHtml(item.title || '') + '</p></div>';
+    }).join('') + '</div>';
+  }
+
+  function escAttr(text) {
+    return (text || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+  }
+
   function escHtml(text) {
     var d = document.createElement('div');
     d.appendChild(document.createTextNode(text || ''));
@@ -76,6 +96,7 @@
 
     renderEducation(user.education);
     renderExperience(user.workExperience);
+    renderCertifications(user.certifications);
 
     // Banner: name (instructor-header.js handles avatar image + name in header dropdown)
     // But the banner h5 on this page needs direct update too

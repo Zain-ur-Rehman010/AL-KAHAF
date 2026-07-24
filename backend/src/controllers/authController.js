@@ -189,7 +189,7 @@ exports.getCurrentUser = async (req, res) => {
 
 exports.updateProfile = async (req, res) => {
   try {
-    const { firstName, lastName, phone, bio, profileImage, designation, specialization, education, workExperience, socialLinks, billingAddress } = req.body;
+    const { firstName, lastName, phone, bio, profileImage, designation, specialization, education, workExperience, certifications, socialLinks, billingAddress } = req.body;
     const user = await User.findByPk(req.user.userId);
 
     if (!user) {
@@ -206,6 +206,7 @@ exports.updateProfile = async (req, res) => {
       specialization: specialization !== undefined ? specialization : user.specialization,
       education: education !== undefined ? education : user.education,
       workExperience: workExperience !== undefined ? workExperience : user.workExperience,
+      certifications: certifications !== undefined ? certifications : user.certifications,
       socialLinks: socialLinks !== undefined ? socialLinks : user.socialLinks,
       billingAddress: billingAddress !== undefined ? billingAddress : user.billingAddress,
     });

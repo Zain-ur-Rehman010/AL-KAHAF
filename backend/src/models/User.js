@@ -78,6 +78,10 @@ const User = sequelize.define('User', {
     type: DataTypes.JSON,
     allowNull: true,
   },
+  certifications: {
+    type: DataTypes.JSON,
+    allowNull: true,
+  },
   totalCourses: {
     type: DataTypes.INTEGER,
     allowNull: false,

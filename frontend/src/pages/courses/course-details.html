@@ -14,7 +14,7 @@
 		<title>Course Details | Al-Kahaf Online Academy</title>
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="/assets/img/favicon.svg"> 
+		<link rel="shortcut icon" href="/assets/img/favicon.png"> 
 		<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
 
 		<!-- Theme Settings Js -->
@@ -105,7 +105,7 @@
 									<ul class="submenu">
 										<li><a href="/shared/about-us">About Us</a></li>
 										<li><a href="/shared/welfare-programs">Projects</a></li>
-										<li><a href="/instructor/instructor-grid">Instructors</a></li>
+										<li><a href="/instructor/instructor-grid">Faculty Members</a></li>
 									</ul>
 								</li>
 								<li><a href="/shared/resources">Resources</a></li>
@@ -314,8 +314,8 @@
                      </div>
                     <div class="row mt-4">
                         <div class="col-lg-8">
-							<div>
-								<img id="cd-thumbnail" src="/assets/img/course/_course-detail-856 x 482.jpeg" alt="img" class="img-fluid mb-4">
+							<div class="rounded overflow-hidden mb-4" style="aspect-ratio:16/9;">
+								<img id="cd-thumbnail" src="/assets/img/course/_course-detail-856 x 482.jpeg" alt="img" style="width:100%;height:100%;object-fit:cover;">
 							</div>
                            <div class="course-page-content pt-0">
                               <div class="card mb-4">
@@ -584,9 +584,10 @@
 			// Detail banner (falls back to thumbnail if no banner was uploaded)
 			var thumbEl = document.getElementById('cd-thumbnail');
 			if (thumbEl) {
+				var thumbWrap = thumbEl.parentElement;
 				var heroImg = course.bannerImage || course.thumbnail;
-				if (heroImg) { thumbEl.src = heroImg; thumbEl.style.display = ''; }
-				else thumbEl.style.display = 'none';
+				if (heroImg) { thumbEl.src = heroImg; if (thumbWrap) thumbWrap.style.display = ''; }
+				else if (thumbWrap) thumbWrap.style.display = 'none';
 			}
 
 			// Preview video - always show thumbnail, only show play btn if previewVideo exists

@@ -14,7 +14,7 @@
 		<title>Instructor Details | Al-Kahaf Online Academy</title>
 
 		<!-- Favicon -->
-		<link rel="shortcut icon" href="/assets/img/favicon.svg"> 
+		<link rel="shortcut icon" href="/assets/img/favicon.png"> 
 		<link rel="apple-touch-icon" href="/assets/img/apple-icon.png">
 
 		<!-- Theme Settings Js -->
@@ -128,10 +128,10 @@
 									<div class="flex-fill">
 										<div class="pb-3 border-bottom mb-3">
 											<div class="d-flex align-items-center justify-content-between mb-1">
-												<h6 class="fw-bold"><a id="instructor-name" href="javascript:void(0);">Loading...</a></h6>
+												<h6 class="fw-bold"><span id="instructor-name" class="text-dark">Loading...</span></h6>
 											</div>
 											<div class="d-flex align-items-center mb-1">
-												<a id="instructor-designation" href="javascript:void(0);" class="fs-14 me-2">-</a>
+												<span id="instructor-designation" class="fs-14 me-2 text-dark">-</span>
 												<span class="me-2">
 													<i class="fa-solid fa-star text-warning"></i>
 												</span>
@@ -152,33 +152,6 @@
 													<span id="instructor-students">-</span>
 												</span>
 											</div>
-											<div class="d-flex align-items-center">
-												<span>
-													<a id="instructor-facebook" href="javascript:void(0);" target="_blank" rel="noopener noreferrer" class="rounded-circle d-inline-flex align-items-center justify-content-center me-2">
-														<i class="fa-brands fa-facebook-f"></i>
-													</a>
-												</span>
-												<span>
-													<a id="instructor-instagram" href="javascript:void(0);" target="_blank" rel="noopener noreferrer" class="rounded-circle d-inline-flex align-items-center justify-content-center me-2">
-														<i class="fa-brands fa-instagram"></i>
-													</a>
-												</span>
-												<span>
-													<a id="instructor-twitter" href="javascript:void(0);" target="_blank" rel="noopener noreferrer" class="rounded-circle d-inline-flex align-items-center justify-content-center me-2">
-														<i class="fa-brands fa-x-twitter"></i>
-													</a>
-												</span>
-												<span>
-													<a id="instructor-youtube" href="javascript:void(0);" target="_blank" rel="noopener noreferrer" class="rounded-circle d-inline-flex align-items-center justify-content-center me-2">
-														<i class="fa-brands fa-youtube"></i>
-													</a>
-												</span>
-												<span>
-													<a id="instructor-linkedin" href="javascript:void(0);" target="_blank" rel="noopener noreferrer" class="rounded-circle d-inline-flex align-items-center justify-content-center">
-														<i class="fa-brands fa-linkedin-in"></i>
-													</a>
-												</span>
-											</div>
 										</div>
 									</div>
 								</div>
@@ -187,8 +160,7 @@
 							<div class="card">
 								<div class="card-body">
 									<h5 class="mb-3">About Me</h5>
-									<p id="instructor-about-bio" class="mb-3">Loading detailed profile...</p>
-									<a href="javascript:void(0);" class="read-more-btn">Read More</a>
+									<p id="instructor-about-bio" class="mb-0">Loading detailed profile...</p>
 								</div>
 							</div>
 
@@ -240,19 +212,8 @@
 							<div class="card">
 								<div class="card-body">
 									<h5 class="mb-3">Certifications</h5>
-									<div class="d-flex align-items-center">
-										<div class="certificate-img rounded-circle me-2">
-											<img src="/assets/img/certificates/certificate-01.svg" alt="img" class="img-fluid">
-										</div>
-										<div class="certificate-img rounded-circle me-2">
-											<img src="/assets/img/certificates/certificate-02.svg" alt="img" class="img-fluid">
-										</div>
-										<div class="certificate-img rounded-circle me-2">
-											<img src="/assets/img/certificates/certificate-03.svg" alt="img" class="img-fluid">
-										</div>
-										<div class="certificate-img rounded-circle">
-											<img src="/assets/img/certificates/certificate-01.svg" alt="img" class="img-fluid">
-										</div>
+									<div id="instructor-certifications" class="d-flex align-items-center flex-wrap gap-2">
+										<p class="text-muted fs-14 mb-0">No certifications added yet.</p>
 									</div>
 								</div>
 							</div>
@@ -260,31 +221,13 @@
 							<div class="card">
 								<div class="card-body">
 									<h5 class="mb-3">Contact Details</h5>
-									<div class="d-flex align-items-center mb-4">
+									<div class="d-flex align-items-center">
 										<span class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
 											<i class="fa-regular fa-envelope"></i>
 										</span>
 										<div>
 											<h6 class="mb-0">Email</h6>
 											<p id="instructor-email" class="mb-0">-</p>
-										</div>
-									</div>
-									<div class="d-flex align-items-center mb-4">
-										<span class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
-											<i class="isax isax-location"></i>
-										</span>
-										<div>
-											<h6 class="fs-16 fw-medium text-gray-9 mb-0">Address</h6>
-											<p id="instructor-address" class="mb-0 text-truncate">-</p>
-										</div>
-									</div>
-									<div class="d-flex align-items-center">
-										<span class="contact-icon rounded-circle d-flex align-items-center justify-content-center me-3">
-											<i class="isax isax-call"></i>
-										</span>
-										<div>
-											<h6 class="fs-16 fw-medium text-gray-9 mb-0">Phone</h6>
-											<p id="instructor-phone" class="mb-0">-</p>
 										</div>
 									</div>
 								</div>
@@ -294,7 +237,22 @@
 				</div>
 			</div>
 			<!-- /Course -->
-			
+
+			<!-- Certification Preview Modal -->
+			<div class="modal fade" id="certification-preview-modal" tabindex="-1" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered modal-lg">
+					<div class="modal-content">
+						<div class="modal-header border-0 pb-0">
+							<h6 class="modal-title" id="certification-preview-title">Certification</h6>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body text-center pt-2">
+							<img id="certification-preview-image" src="" alt="Certification" class="img-fluid rounded">
+						</div>
+					</div>
+				</div>
+			</div>
+
 			<!-- Footer -->
 			<footer class="footer">
 				<div class="footer-bg">
@@ -430,16 +388,19 @@
 				return String(value);
 			}
 
+			function truncateText(value, maxLength) {
+				if (!value) return value;
+				const trimmed = String(value).trim();
+				if (trimmed.length <= maxLength) return trimmed;
+				return trimmed.slice(0, maxLength).replace(/\s+\S*$/, '') + '…';
+			}
+
 			function parseYearRange(item) {
 				const from = safeText(item.from, '');
 				const to = safeText(item.to, '');
 				if (!from && !to) return '';
 				if (from && to) return `(${from} - ${to})`;
 				return `(${from || to})`;
-			}
-
-			function linkOrVoid(value) {
-				return value && value.startsWith('http') ? value : 'javascript:void(0);';
 			}
 
 			function populateEducation(education) {
@@ -483,28 +444,54 @@
 				`).join('');
 			}
 
+			function escAttr(value) {
+				return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+			}
+
+			function populateCertifications(certifications) {
+				const container = document.getElementById('instructor-certifications');
+				if (!container) return;
+
+				const list = Array.isArray(certifications) ? certifications : [];
+				if (list.length === 0) {
+					container.innerHTML = '<p class="text-muted fs-14 mb-0">No certifications added yet.</p>';
+					return;
+				}
+
+				container.innerHTML = list.map((item) => {
+					const imgUrl = escAttr(safeText(item.imageUrl, '/assets/img/certificates/certificate-01.svg'));
+					const title = escAttr(safeText(item.title, 'Certification'));
+					return `
+						<div class="certificate-img rounded-circle" style="width:56px;height:56px;cursor:pointer;overflow:hidden;" title="${title}" data-cert-image="${imgUrl}" data-cert-title="${title}">
+							<img src="${imgUrl}" alt="${title}" style="width:100%;height:100%;object-fit:cover;">
+						</div>
+					`;
+				}).join('');
+
+				container.querySelectorAll('[data-cert-image]').forEach((el) => {
+					el.addEventListener('click', () => {
+						document.getElementById('certification-preview-image').src = el.getAttribute('data-cert-image');
+						document.getElementById('certification-preview-title').textContent = el.getAttribute('data-cert-title');
+						const modal = new bootstrap.Modal(document.getElementById('certification-preview-modal'));
+						modal.show();
+					});
+				});
+			}
+
 			function populateInstructor(user, fallbackStats) {
 				document.getElementById('instructor-profile-image').src = safeText(user.profileImage, '/assets/img/user/user-61.jpg');
 				document.getElementById('instructor-name').textContent = `${safeText(user.firstName, '')} ${safeText(user.lastName, '')}`.trim() || 'Instructor';
 				document.getElementById('instructor-designation').textContent = safeText(user.designation, 'Instructor');
 				document.getElementById('instructor-rating').textContent = user.rating ? `${user.rating} Rating` : 'Not rated yet';
-				document.getElementById('instructor-short-bio').textContent = safeText(user.bio, 'Profile description not provided yet.');
+				document.getElementById('instructor-short-bio').textContent = truncateText(safeText(user.bio, 'Profile description not provided yet.'), 140);
 				document.getElementById('instructor-about-bio').textContent = safeText(user.bio, 'Profile description not provided yet.');
 				document.getElementById('instructor-email').textContent = safeText(user.email);
-				document.getElementById('instructor-phone').textContent = safeText(user.phone, 'Not provided');
-				document.getElementById('instructor-address').textContent = 'Online Instructor';
 				document.getElementById('instructor-lessons').textContent = `${fallbackStats.lessons}+ Lesson`;
 				document.getElementById('instructor-students').textContent = `${fallbackStats.students} Students`;
 
-				const social = user.socialLinks || {};
-				document.getElementById('instructor-facebook').href = linkOrVoid(social.facebook);
-				document.getElementById('instructor-instagram').href = linkOrVoid(social.instagram);
-				document.getElementById('instructor-twitter').href = linkOrVoid(social.twitter);
-				document.getElementById('instructor-youtube').href = linkOrVoid(social.youtube);
-				document.getElementById('instructor-linkedin').href = linkOrVoid(social.linkedin || social.website);
-
 				populateEducation(user.education);
 				populateExperience(user.workExperience);
+				populateCertifications(user.certifications);
 			}
 
 			async function getInstructorFromList() {
@@ -535,7 +522,7 @@
 						instructorName = ((ins.firstName || '') + ' ' + (ins.lastName || '')).trim();
 						instructorAvatar = ins.profileImage || '';
 					}
-					container.innerHTML = '<div class="course-carousal" id="instructor-course-slider">' +
+					container.innerHTML = '<div class="row">' +
 						courses.map(function(c) {
 							var price = parseFloat(c.price);
 							var priceHtml = (!price || price === 0) ? '<h6 class="fs-16 text-secondary">Free</h6>' : '<h6 class="fs-16 text-secondary">Rs ' + price.toLocaleString() + '</h6>';
@@ -546,10 +533,10 @@
 							var avatarHtml = insAvatar
 								? '<img class="img-fluid rounded-circle object-fit-cover" src="' + insAvatar + '" alt="img">'
 								: '<img class="img-fluid rounded-circle object-fit-cover" src="/assets/img/avatar/avatar2.jpg" alt="img">';
-							return '<div>' +
-								'<div class="course-item course-item-three mx-2 mb-0">' +
-								'<div class="course-carousal-img position-relative overflow-hidden rounded-3 mb-3">' +
-								'<a href="/courses/course-details?id=' + c.id + '"><img class="img-fluid rounded-3" src="' + thumb + '" alt="' + c.title + '"></a>' +
+							return '<div class="col-md-6">' +
+								'<div class="course-item course-item-three mb-4">' +
+								'<div class="course-carousal-img position-relative overflow-hidden rounded-3 mb-3" style="aspect-ratio:16/9;">' +
+								'<a href="/courses/course-details?id=' + c.id + '"><img class="rounded-3" src="' + thumb + '" alt="' + c.title + '" style="width:100%;height:100%;object-fit:cover;"></a>' +
 								'</div>' +
 								'<div class="d-flex flex-wrap align-items-center justify-content-between">' +
 								'<div class="d-flex align-items-center">' +
@@ -566,15 +553,6 @@
 								'</div></div></div>';
 						}).join('') +
 					'</div>';
-					if (typeof $ !== 'undefined' && $.fn.slick) {
-						$('#instructor-course-slider').slick({
-							infinite: true,
-							slidesToShow: Math.min(2, courses.length),
-							slidesToScroll: 1,
-							autoplay: true,
-							responsive: [{ breakpoint: 768, settings: { slidesToShow: 1, infinite: true, dots: false } }]
-						});
-					}
 				} catch(e) {
 					container.innerHTML = '<p class="text-muted">Could not load courses.</p>';
 				}

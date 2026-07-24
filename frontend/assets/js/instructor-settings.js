@@ -67,6 +67,59 @@
     return div;
   }
 
+  function makeCertificationRow(data) {
+    data = data || {};
+    var div = document.createElement('div');
+    div.className = 'cert-row border rounded p-3 mb-2 position-relative';
+    div.dataset.imageUrl = data.imageUrl || '';
+    div.innerHTML =
+      '<button type="button" class="btn-close position-absolute remove-row" style="top:10px;right:10px;" aria-label="Remove"></button>' +
+      '<div class="row g-2 align-items-end">' +
+        '<div class="col-md-7">' +
+          '<label class="form-label form-label-sm">Certification Title</label>' +
+          '<input type="text" class="form-control form-control-sm cert-title" placeholder="e.g. AWS Certified Solutions Architect" value="' + esc(data.title) + '">' +
+        '</div>' +
+        '<div class="col-md-5">' +
+          '<label class="form-label form-label-sm d-block">Certificate Image</label>' +
+          '<div class="d-flex align-items-center gap-2">' +
+            '<img class="cert-preview rounded border" src="' + esc(data.imageUrl || '/assets/img/certificates/certificate-01.svg') + '" alt="" style="width:40px;height:40px;object-fit:cover;">' +
+            '<label class="btn btn-outline-secondary btn-sm mb-0">Upload<input type="file" accept="image/*" class="cert-file d-none"></label>' +
+            '<span class="cert-upload-status fs-12 text-muted"></span>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    div.querySelector('.remove-row').addEventListener('click', function () { div.remove(); });
+
+    var fileInput = div.querySelector('.cert-file');
+    fileInput.addEventListener('change', function () {
+      var file = this.files[0];
+      if (!file) return;
+      var statusEl = div.querySelector('.cert-upload-status');
+      var previewEl = div.querySelector('.cert-preview');
+      statusEl.textContent = 'Uploading...';
+      var fd = new FormData();
+      fd.append('image', file);
+      fetch(BASE_URL + '/upload?folder=certifications', {
+        method: 'POST',
+        headers: { 'Authorization': API_CONFIG.getHeaders(true).Authorization },
+        body: fd
+      }).then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (res.success && res.url) {
+            div.dataset.imageUrl = res.url;
+            previewEl.src = res.url;
+            statusEl.textContent = 'Uploaded';
+            setTimeout(function () { statusEl.textContent = ''; }, 2000);
+          } else {
+            statusEl.textContent = res.message || 'Upload failed';
+          }
+        })
+        .catch(function () { statusEl.textContent = 'Upload failed'; });
+    });
+
+    return div;
+  }
+
   // ─── Serializers ──────────────────────────────────────────────────────────
 
   function serializeEducation() {
@@ -94,6 +147,19 @@
       var to       = row.querySelector('.exp-to').value.trim();
       if (position || company) {
         result.push({ position: position, company: company, from: from, to: to });
+      }
+    });
+    return result;
+  }
+
+  function serializeCertifications() {
+    var rows = document.querySelectorAll('#certification-list .cert-row');
+    var result = [];
+    rows.forEach(function (row) {
+      var title    = row.querySelector('.cert-title').value.trim();
+      var imageUrl = row.dataset.imageUrl || '';
+      if (title || imageUrl) {
+        result.push({ title: title, imageUrl: imageUrl });
       }
     });
     return result;
@@ -130,6 +196,14 @@
       } else {
         workExp.forEach(function (item) { expList.appendChild(makeExperienceRow(item)); });
       }
+    }
+
+    // Certification rows
+    var certList = document.getElementById('certification-list');
+    if (certList) {
+      certList.innerHTML = '';
+      var certifications = user.certifications || [];
+      certifications.forEach(function (item) { certList.appendChild(makeCertificationRow(item)); });
     }
 
     // Profile image preview
@@ -212,7 +286,8 @@
       designation:    designation.trim(),
       bio:            bio.trim(),
       education:      serializeEducation(),
-      workExperience: serializeExperience()
+      workExperience: serializeExperience(),
+      certifications: serializeCertifications()
     };
 
     try {
@@ -257,6 +332,14 @@
       addExp.addEventListener('click', function () {
         var list = document.getElementById('experience-list');
         if (list) list.appendChild(makeExperienceRow());
+      });
+    }
+
+    var addCert = document.getElementById('add-certification-btn');
+    if (addCert) {
+      addCert.addEventListener('click', function () {
+        var list = document.getElementById('certification-list');
+        if (list) list.appendChild(makeCertificationRow());
       });
     }
 

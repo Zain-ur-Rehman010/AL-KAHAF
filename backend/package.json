@@ -19,6 +19,7 @@
     "migrate:announcements": "node migrations/create-announcements-table.js",
     "migrate:announcement-image": "node migrations/add-announcement-image.js",
     "migrate:announcement-message-optional": "node migrations/make-announcement-message-optional.js",
+    "migrate:certifications": "node migrations/add-user-certifications.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },
