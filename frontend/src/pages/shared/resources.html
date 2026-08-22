@@ -152,10 +152,12 @@
                 <!-- Category filters -->
                 <div class="d-flex flex-wrap gap-2 justify-content-center mb-4" id="category-filters">
                     <button class="resource-filter-btn active" data-category="">All</button>
-                    <button class="resource-filter-btn" data-category="book">Books</button>
-                    <button class="resource-filter-btn" data-category="syllabus">Syllabus</button>
-                    <button class="resource-filter-btn" data-category="form">Forms</button>
-                    <button class="resource-filter-btn" data-category="certificate">Certificates</button>
+                    <button class="resource-filter-btn" data-category="darja_ula">Darja Ula</button>
+                    <button class="resource-filter-btn" data-category="darja_sania">Darja Sania</button>
+                    <button class="resource-filter-btn" data-category="darja_salisa">Darja Salisa</button>
+                    <button class="resource-filter-btn" data-category="darja_rabia">Darja Rabia</button>
+                    <button class="resource-filter-btn" data-category="tajweed_lil_huffaz">Tajweed lil Huffaz</button>
+                    <button class="resource-filter-btn" data-category="arabic_language">Arabic Language</button>
                     <button class="resource-filter-btn" data-category="other">Other</button>
                 </div>
 
@@ -184,7 +186,7 @@
     var currentCategory = '';
     var limit = 12;
 
-    var CATEGORY_LABELS = { book: 'Book', syllabus: 'Syllabus', form: 'Form', certificate: 'Certificate', other: 'Other' };
+    var CATEGORY_LABELS = { darja_ula: 'Darja Ula', darja_sania: 'Darja Sania', darja_salisa: 'Darja Salisa', darja_rabia: 'Darja Rabia', tajweed_lil_huffaz: 'Tajweed lil Huffaz', arabic_language: 'Arabic Language', other: 'Other' };
     var FILE_ICONS = { pdf: 'isax isax-document-text', doc: 'isax isax-document', docx: 'isax isax-document', ppt: 'isax isax-document-1', pptx: 'isax isax-document-1', xls: 'isax isax-document-1', xlsx: 'isax isax-document-1', zip: 'isax isax-folder-2', txt: 'isax isax-document' };
 
     function formatDate(dateStr) {

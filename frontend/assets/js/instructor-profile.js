@@ -8,6 +8,8 @@
   'use strict';
 
   var BASE_URL = API_CONFIG.BASE_URL;
+  var currentUser = null;
+  var newCertImageUrl = '';
 
   // Format a date string like "16 Jan 2024"
   function formatDate(dateStr) {
@@ -86,6 +88,7 @@
 
   // Populate all profile fields from user object
   function populateProfile(user) {
+    currentUser = user;
     setText('prof-firstName',  user.firstName);
     setText('prof-lastName',   user.lastName);
     setText('prof-email',      user.email);
@@ -141,6 +144,108 @@
     }
   }
 
-  document.addEventListener('DOMContentLoaded', loadProfile);
+  // ─── Add Certification modal (quick-add without leaving the Profile tab) ──
+
+  function resetCertModal() {
+    newCertImageUrl = '';
+    var title = document.getElementById('cert-modal-title');
+    var preview = document.getElementById('cert-modal-preview');
+    var status = document.getElementById('cert-modal-upload-status');
+    var alertBox = document.getElementById('cert-modal-alert');
+    var fileInput = document.getElementById('cert-modal-file');
+    if (title) title.value = '';
+    if (preview) preview.src = '/assets/img/certificates/certificate-01.svg';
+    if (status) status.textContent = '';
+    if (fileInput) fileInput.value = '';
+    if (alertBox) { alertBox.classList.add('d-none'); alertBox.textContent = ''; }
+  }
+
+  function showCertModalAlert(msg) {
+    var alertBox = document.getElementById('cert-modal-alert');
+    if (!alertBox) return;
+    alertBox.className = 'alert alert-danger';
+    alertBox.textContent = msg;
+  }
+
+  function wireCertModal() {
+    var addBtn = document.getElementById('prof-add-cert-btn');
+    var modalEl = document.getElementById('add_certification_modal');
+    var fileInput = document.getElementById('cert-modal-file');
+    var saveBtn = document.getElementById('cert-modal-save-btn');
+    if (!addBtn || !modalEl || !saveBtn) return;
+
+    addBtn.addEventListener('click', function () {
+      resetCertModal();
+      var modal = bootstrap.Modal.getOrCreateInstance(modalEl);
+      modal.show();
+    });
+
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        var file = this.files[0];
+        if (!file) return;
+        var preview = document.getElementById('cert-modal-preview');
+        var status = document.getElementById('cert-modal-upload-status');
+        status.textContent = 'Uploading...';
+        var fd = new FormData();
+        fd.append('image', file);
+        fetch(BASE_URL + '/upload?folder=certifications', {
+          method: 'POST',
+          headers: { 'Authorization': API_CONFIG.getHeaders(true).Authorization },
+          body: fd
+        }).then(function (r) { return r.json(); })
+          .then(function (res) {
+            if (res.success && res.url) {
+              newCertImageUrl = res.url;
+              preview.src = res.url;
+              status.textContent = 'Uploaded';
+              setTimeout(function () { status.textContent = ''; }, 2000);
+            } else {
+              status.textContent = res.message || 'Upload failed';
+            }
+          })
+          .catch(function () { status.textContent = 'Upload failed'; });
+      });
+    }
+
+    saveBtn.addEventListener('click', function () {
+      var title = (document.getElementById('cert-modal-title') || {}).value || '';
+      title = title.trim();
+      if (!title && !newCertImageUrl) {
+        showCertModalAlert('Please enter a title or upload an image.');
+        return;
+      }
+
+      var originalText = saveBtn.textContent;
+      saveBtn.disabled = true;
+      saveBtn.textContent = 'Saving...';
+
+      var existing = (currentUser && currentUser.certifications) || [];
+      var updated = existing.concat([{ title: title, imageUrl: newCertImageUrl }]);
+
+      fetch(BASE_URL + '/auth/profile', {
+        method: 'PUT',
+        headers: API_CONFIG.getHeaders(true),
+        body: JSON.stringify({ certifications: updated })
+      }).then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+        .then(function (result) {
+          if (!result.ok || !result.data || !result.data.user) {
+            showCertModalAlert((result.data && result.data.message) || 'Failed to save certification.');
+            return;
+          }
+          currentUser = Object.assign({}, currentUser, { certifications: updated });
+          localStorage.setItem('user', JSON.stringify(currentUser));
+          renderCertifications(updated);
+          bootstrap.Modal.getOrCreateInstance(document.getElementById('add_certification_modal')).hide();
+        })
+        .catch(function () { showCertModalAlert('Network error. Please try again.'); })
+        .finally(function () { saveBtn.disabled = false; saveBtn.textContent = originalText; });
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    loadProfile();
+    wireCertModal();
+  });
 
 })();

@@ -11,7 +11,7 @@
 		<meta name="author" content="Dreams Technologies">
 		<meta name="robots" content="index, follow">
 		
-		<title>Order History | Al-Kahaf Online Academy</title>
+		<title>Payment History | Al-Kahaf Online Academy</title>
 
 		<!-- Favicon -->
 		<link rel="shortcut icon" href="/assets/img/favicon.png"> 
@@ -180,11 +180,11 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12 col-12">
-							<h2 class="breadcrumb-title mb-2">Order History</h2>
+							<h2 class="breadcrumb-title mb-2">Payment History</h2>
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb justify-content-center mb-0">
 									<li class="breadcrumb-item"><a href="/">Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Order History</li>
+									<li class="breadcrumb-item active" aria-current="page">Payment History</li>
 								</ol>
 							</nav>
 						</div>
@@ -241,6 +241,9 @@
 										<li>
 											<a href="/student/student-reviews" class="d-inline-flex align-items-center"><i class="isax isax-star5 me-2"></i>Reviews</a>
 										</li>
+										<li>
+											<a href="/student/student-order-history" class="d-inline-flex align-items-center active"><i class="isax isax-receipt me-2"></i>Payment History</a>
+										</li>
 									</ul>
 									<hr>
 									<h6 class="mb-3">Account Settings</h6>
@@ -258,7 +261,7 @@
 						<!-- sidebar -->
 						<div class="col-lg-9">
 							<div class="page-title d-flex align-items-center justify-content-between">
-								<h5>Order History</h5>
+								<h5>Payment History</h5>
 							</div>
 								<div class="row">
 									<div class="col-md-8">
@@ -421,43 +424,32 @@
                                         <div class="mb-2 invoice-logo-white">
                                             <img src="/assets/img/white-logo.png" style="width: 150px;height: 110px;" class="img-fluid" alt="logo">
                                         </div>
-                                        <p class="mb-2">3099 Kennedy Court Framingham, MA 01702</p>
+                                        <p class="mb-2">Al-Kahaf Online Academy</p>
                                     </div>
                                     <div class="col-md-6">
                                         <div class=" text-end mb-3">
-                                            <h6 class="text-default mb-1 text-secondary fs-16">#OI0010</h6>
-                                            <p class="mb-1">Created Date : <span class="text-gray-9">Aug 25, 2025</span> </p>
-                                            <p>Due Date : <span class="text-gray-9">Aug 30, 2025</span> </p>
+                                            <h6 class="text-default mb-1 text-secondary fs-16" id="inv-order-id">#ORD000000</h6>
+                                            <p class="mb-1">Date : <span class="text-gray-9" id="inv-date">—</span> </p>
+                                            <p>Method : <span class="text-gray-9" id="inv-method">—</span> </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="border-bottom mb-3">
                                 <div class="row g-4">
-                                    <div class="col-lg-5">
-                                        <span class="mb-3 d-flex">From</span>
+                                    <div class="col-lg-8">
+                                        <span class="mb-3 d-flex">Billed To</span>
                                         <div>
-                                            <h6 class="mb-2 fs-16">Thomas Lawler</h6>
-                                            <p class="fs-14 mb-1">2077 Chicago Avenue Orosi, CA 93647</p>
-                                            <p class="fs-14 mb-1">Email :thomaslawler@example.com</p>
-                                            <p class="fs-14">Phone : +1 987 654 3210</p>
+                                            <h6 class="mb-2 fs-16" id="inv-to-name">Student</h6>
+                                            <p class="fs-14 mb-1" id="inv-to-email"></p>
                                         </div>
                                     </div>
-                                    <div class="col-lg-5">
-                                        <span class="mb-3 d-flex">To</span>
-                                        <div>
-                                            <h6 class="mb-2" id="inv-to-name">Student</h6>
-                                            <p class="fs-14 mb-1">3103 Trainer Avenue Peoria, IL 61602</p>
-                                            <p class="fs-14 mb-1">Email : <a href="#">adre3@example.com</a></p>
-                                            <p class="fs-14">Phone : <a href="#">+1 987 471 6589</a></p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-2">
+                                    <div class="col-lg-4">
                                         <div class="mb-3 text-end">
                                             <span class="mb-1 d-block">Payment Status</span>
                                             <span id="inv-status"></span>
-                                            <div>
-                                                <img src="/assets/img/icon/qr.svg" class="img-fluid" alt="QR">
+                                            <div class="mt-2" id="inv-receipt-wrap" style="display:none;">
+                                                <a href="#" id="inv-receipt-link" target="_blank" rel="noopener" style="font-size:13px;"><i class="fa fa-file me-1"></i>View your receipt</a>
                                             </div>
                                         </div>
                                     </div>
@@ -470,8 +462,6 @@
                                             <tr>
                                                 <th class="w-50">Description</th>
                                                 <th class="text-center">Qty</th>
-                                                <th class="text-end">Cost</th>
-                                                <th class="text-end">Discount</th>
                                                 <th class="text-end">Total</th>
                                             </tr>
                                         </thead>
@@ -481,9 +471,7 @@
                                                     <p class="text-gray-9" id="inv-course">Course</p>
                                                 </td>
                                                 <td class="text-gray text-center">1</td>
-                                                <td class="text-gray text-end">$120</td>
-                                                <td class="text-gray text-end">$0</td>
-                                                <td class="text-gray text-end">$120</td>
+                                                <td class="text-gray text-end" id="inv-amount2">Rs 0</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -495,46 +483,22 @@
 									<div class="col-md-6">
 										<div class="d-flex justify-content-between align-items-center border-bottom my-2 pb-2 pe-3">
 											<p class="text-gray mb-0">Sub Total</p>
-											<p class="text-gray-9 fw-medium">$120</p>
-										</div>
-										<div class="d-flex justify-content-between align-items-center border-bottom my-2 pb-2 pe-3">
-											<p class="mb-0">Discount (0%)</p>
-											<p class="text-gray-9 fs-14 fw-medium">$0</p>
-										</div>
-										<div class="d-flex justify-content-between align-items-center mb-3 pe-3">
-											<p class="mb-0">VAT (5%)</p>
-											<p class="text-gray-9 fs-14 fw-medium mb-2">$0</p>
+											<p class="text-gray-9 fw-medium" id="inv-subtotal">Rs 0</p>
 										</div>
 										<div class="d-flex justify-content-between align-items-center mb-2 pe-3">
 											<h6 class="fs-16">Total Amount</h6>
-											<h6 class="fs-16">$120</h6>
+											<h6 class="fs-16" id="inv-total">Rs 0</h6>
 										</div>
-										<p>
-											Amount in Words : Dollar One Hundred Twenty 
-										</p>
 									</div>
 								</div>
 							</div>
                             <div class="row align-items-center gy-3">
-								<div class="col-lg-9">
-									<div class="mb-3">
-										<h6 class="mb-1 fs-15">Notes</h6>
-										<p>Invoice for course purchase, covering course fee, discounts, and applicable taxes.</p>
-									</div>
+								<div class="col-lg-12">
 									<div>
 										<h6 class="mb-1 fs-16">Terms and Conditions</h6>
-										<p>Full payment grants non-transferable access to the course, subject to the provider’s refund policy. </p>
+										<p>Full payment grants non-transferable access to the course, subject to the provider’s refund policy.</p>
 									</div>
 								</div>
-                                <div class="col-md-3">
-                                    <div class="text-end pe-4 mb-2">
-                                        <img src="/assets/img/icons/sign.svg" class="img-fluid" alt="sign">
-                                    </div>
-                                    <div class="text-end">
-                                        <h6 class="fs-15 pe-3 mb-2">Ted M. Davis</h6>
-                                        <p>Assistant Manager</p>
-                                    </div>
-                                </div>
                             </div>
                         </div>
 					</div>
@@ -669,6 +633,8 @@
 		}
 
 		// ── Invoice modal ───────────────────────────────────────────────
+		const methodLabels = { jazzcash: 'JazzCash', bank_transfer: 'Bank Transfer', stripe: 'Card', paypal: 'PayPal' };
+
 		window.openInvoice = function(idx) {
 			const p = window._filteredPayments[idx];
 			if (!p) return;
@@ -679,17 +645,30 @@
 			document.getElementById('inv-order-id').textContent = orderId;
 			document.getElementById('inv-date').textContent = formatDate(p.createdAt);
 			document.getElementById('inv-course').textContent = courseTitle;
-			document.getElementById('inv-amount').textContent = formatPKR(amount);
-			const inv2 = document.getElementById('inv-amount2');
-			if (inv2) inv2.textContent = formatPKR(amount);
+			document.getElementById('inv-amount2').textContent = formatPKR(amount);
 			document.getElementById('inv-subtotal').textContent = formatPKR(amount);
 			document.getElementById('inv-total').textContent = formatPKR(amount);
 			document.getElementById('inv-status').innerHTML = statusBadge(p.status);
-			document.getElementById('inv-method').textContent = p.paymentMethod || 'Online';
+			document.getElementById('inv-method').textContent = methodLabels[p.paymentMethod] || p.paymentMethod || 'Online';
+
 			const toName = document.getElementById('inv-to-name');
 			if (toName) {
 				const names = document.querySelectorAll('[data-user-name]');
 				if (names.length) toName.textContent = names[0].textContent;
+			}
+			const toEmail = document.getElementById('inv-to-email');
+			if (toEmail) {
+				const emails = document.querySelectorAll('[data-user-email]');
+				toEmail.textContent = emails.length ? emails[0].textContent : '';
+			}
+
+			const receiptWrap = document.getElementById('inv-receipt-wrap');
+			const receiptLink = document.getElementById('inv-receipt-link');
+			if (p.receiptUrl && receiptWrap && receiptLink) {
+				receiptLink.href = p.receiptUrl;
+				receiptWrap.style.display = '';
+			} else if (receiptWrap) {
+				receiptWrap.style.display = 'none';
 			}
 
 			const modal = new bootstrap.Modal(document.getElementById('view_invoice'));

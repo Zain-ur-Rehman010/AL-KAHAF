@@ -172,6 +172,17 @@
                                           <iframe id="youtubeIframe" allowfullscreen></iframe>
                                         </div>
                                       </div>
+									<div class="card mb-4" id="cw-meeting-section" style="display:none;">
+										<div class="card-body d-flex flex-wrap align-items-center justify-content-between gap-2">
+											<div>
+												<h6 class="fs-16 fw-semibold mb-1"><i class="fa-solid fa-video me-1"></i>Live Class</h6>
+												<p class="mb-0 text-muted small" id="cw-meeting-time">Schedule not announced yet.</p>
+											</div>
+											<a href="javascript:void(0);" id="cw-meeting-join-btn" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="display:none;">
+												<i class="fa-solid fa-arrow-up-right-from-square me-2"></i>Join Meeting
+											</a>
+										</div>
+									</div>
 									<div class="mb-4" id="cw-materials-section" style="display:none;">
 										<h6 class="fs-16 fw-semibold mb-2"><i class="fa-solid fa-paperclip me-1"></i>Downloadable Materials</h6>
 										<div id="cw-materials-list" class="d-flex flex-wrap gap-2"></div>
@@ -488,6 +499,28 @@
 					materialsSection.style.display = 'none';
 				}
 
+				// Live class meeting link
+				var meetingSection = document.getElementById('cw-meeting-section');
+				var meetingTimeEl = document.getElementById('cw-meeting-time');
+				var meetingJoinBtn = document.getElementById('cw-meeting-join-btn');
+				if (lesson.meetingLink && meetingSection && meetingTimeEl && meetingJoinBtn) {
+					meetingSection.style.display = '';
+					meetingJoinBtn.href = lesson.meetingLink;
+					meetingJoinBtn.style.display = '';
+					if (lesson.meetingScheduledAt) {
+						var d = new Date(lesson.meetingScheduledAt);
+						if (!isNaN(d.getTime())) {
+							meetingTimeEl.textContent = 'Live on ' + d.toLocaleDateString('en-US', { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' }) + ' at ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+						} else {
+							meetingTimeEl.textContent = 'Schedule not announced yet.';
+						}
+					} else {
+						meetingTimeEl.textContent = 'Schedule not announced yet.';
+					}
+				} else if (meetingSection) {
+					meetingSection.style.display = 'none';
+				}
+
 				// Highlight active lesson in sidebar
 				document.querySelectorAll('.cw-lesson-link').forEach(function (el) {
 					el.classList.toggle('active-lesson', el.getAttribute('data-lesson-id') === lesson.id);
@@ -617,8 +650,18 @@
 				var user = JSON.parse(localStorage.getItem('user') || '{}');
 				var isOwnerOrAdmin = user.role === 'admin' || (user.role === 'instructor' && course.instructorId === user.id);
 
-				if (!enrollment && !isOwnerOrAdmin) {
-					window.location.href = '/courses/course-details?id=' + courseId;
+				// A pending/failed payment (e.g. a bank transfer awaiting admin
+				// verification) creates the Enrollment row up front, but must not
+				// grant lesson access until paymentStatus flips to 'completed'.
+				// Free courses are always accessible once enrolled — enrollmentController
+				// marks them 'completed' immediately, but a stale/pending row (e.g. from
+				// testing bank transfer before a course's price was set to free) shouldn't block it.
+				var isFreeCourse = !course.price || parseFloat(course.price) === 0;
+				var hasAccess = enrollment && (enrollment.paymentStatus === 'completed' || isFreeCourse);
+
+				if (!hasAccess && !isOwnerOrAdmin) {
+					var reason = enrollment && enrollment.paymentStatus === 'pending' ? '&paymentPending=1' : '';
+					window.location.href = '/courses/course-details?id=' + courseId + reason;
 					return;
 				}
 

@@ -275,6 +275,7 @@
                                         <li><a href="/admin/blog-list">Blog Posts</a></li>
                                         <li><a href="/admin/enrollments-list">Enrollments</a></li>
                                         <li><a href="/admin/payments-list">Payments</a></li>
+                                        <li><a href="/admin/bank-transfers">Bank Transfers</a></li>
                                         <li><a href="/admin/welfare-programs">Welfare</a></li>
                                         <li><a href="/admin/resources-list">Resources</a></li>
                                         <li><a href="/admin/announcements-list">Announcements</a></li>
@@ -465,18 +466,13 @@
                                         <input type="number" class="form-control" id="experience" name="experience" min="0" placeholder="0">
                                     </div>
                                     <div class="col-12">
-                                        <label class="form-label">Specialization</label>
+                                        <label class="form-label">Qualification</label>
                                         <select class="form-select" id="specialization" name="specialization" multiple>
-                                            <option value="Web Development">Web Development</option>
-                                            <option value="Mobile Development">Mobile Development</option>
-                                            <option value="Data Science">Data Science</option>
-                                            <option value="UI/UX Design">UI/UX Design</option>
-                                            <option value="Digital Marketing">Digital Marketing</option>
-                                            <option value="Business">Business</option>
-                                            <option value="Photography">Photography</option>
-                                            <option value="Programming">Programming</option>
-                                            <option value="Graphic Design">Graphic Design</option>
-                                            <option value="Video Editing">Video Editing</option>
+                                            <option value="Dars e Nizami">Dars e Nizami</option>
+                                            <option value="Tajweed Lil Huffaz">Tajweed Lil Huffaz</option>
+                                            <option value="MA Islamic Study">MA Islamic Study</option>
+                                            <option value="MA Arabic">MA Arabic</option>
+                                            <option value="Other">Other</option>
                                         </select>
                                         <small class="text-muted">Hold Ctrl/Cmd to select multiple</small>
                                     </div>
@@ -486,36 +482,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Social Links sub-section -->
-                                <div class="subsection-title">
-                                    <i class="fas fa-share-alt"></i> Social Links
-                                </div>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label">
-                                            <i class="fab fa-linkedin" style="color:#0077b5;"></i> LinkedIn
-                                        </label>
-                                        <input type="url" class="form-control" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/...">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">
-                                            <i class="fab fa-twitter" style="color:#1da1f2;"></i> Twitter
-                                        </label>
-                                        <input type="url" class="form-control" id="twitter" name="twitter" placeholder="https://twitter.com/...">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">
-                                            <i class="fab fa-facebook" style="color:#1877f2;"></i> Facebook
-                                        </label>
-                                        <input type="url" class="form-control" id="facebook" name="facebook" placeholder="https://facebook.com/...">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label">
-                                            <i class="fas fa-globe text-secondary"></i> Website
-                                        </label>
-                                        <input type="url" class="form-control" id="website" name="website" placeholder="https://yourwebsite.com">
-                                    </div>
-                                </div>
                             </div>
                         </div>
 
@@ -561,8 +527,8 @@
                                             <select class="form-select" id="assignedCourses" name="assignedCourses" multiple></select>
                                             <div class="d-flex justify-content-between align-items-center mt-2">
                                                 <small class="text-muted">Saved when you click "Save Changes".</small>
-                                                <a href="/admin/predefined-courses" class="small" style="color:#522811;">
-                                                    <i class="isax isax-setting-2 me-1"></i>Manage catalog
+                                                <a href="/admin/courses-list" class="small" style="color:#522811;">
+                                                    <i class="isax isax-setting-2 me-1"></i>Manage all courses
                                                 </a>
                                             </div>
                                         </div>
@@ -769,6 +735,7 @@
         let newProfileImageUrl = null;
         let feedbackModal      = null;
         let originalStudentIds = []; // tracks IDs loaded from server so we can diff on save
+        let originalCourseIds  = []; // real Course ids currently owned by this instructor
 
         const PROFILE_IMAGE_TARGET_BYTES  = 100 * 1024;
         const PROFILE_IMAGE_MAX_DIMENSION = 900;
@@ -893,7 +860,7 @@
                 return;
             }
 
-            loadPredefinedCourses().then(function() { loadInstructorCourses(); });
+            loadAllCourses();
             loadStudents().then(function() { loadInstructorStudents(); });
             loadInstructorData();
             initializeSelect2();
@@ -908,7 +875,7 @@
         }
 
         function initializeSelect2() {
-            $('#specialization').select2({ placeholder: 'Select specializations', allowClear: true });
+            $('#specialization').select2({ placeholder: 'Select qualifications', allowClear: true });
         }
 
         async function loadInstructorData() {
@@ -950,12 +917,6 @@
 
             if (instructor.specialization && Array.isArray(instructor.specialization)) {
                 $('#specialization').val(instructor.specialization).trigger('change');
-            }
-            if (instructor.socialLinks) {
-                document.getElementById('linkedin').value = instructor.socialLinks.linkedin || '';
-                document.getElementById('twitter').value  = instructor.socialLinks.twitter  || '';
-                document.getElementById('facebook').value = instructor.socialLinks.facebook || '';
-                document.getElementById('website').value  = instructor.socialLinks.website  || '';
             }
             if (instructor.profileImage) {
                 document.getElementById('imagePreview').src = instructor.profileImage;
@@ -1015,12 +976,6 @@
                 rating:       parseFloat(document.getElementById('rating').value),
                 isVerified:   document.getElementById('isVerified').checked,
                 emailVerified: document.getElementById('emailVerified').checked,
-                socialLinks: {
-                    linkedin: document.getElementById('linkedin').value,
-                    twitter:  document.getElementById('twitter').value,
-                    facebook: document.getElementById('facebook').value,
-                    website:  document.getElementById('website').value
-                }
             };
             if (newProfileImageUrl) instructorData.profileImage = newProfileImageUrl;
 
@@ -1032,14 +987,26 @@
                 });
                 const result = await response.json();
                 if (result.success) {
+                    // Reassign ownership for newly selected real courses. A course
+                    // always needs an owner, so courses this instructor already had
+                    // that got deselected are left untouched — reassign those from
+                    // that course's own edit page instead.
                     const selectedCourses = $('#assignedCourses').val() || [];
+                    const toAssign = selectedCourses.filter(function(id) { return originalCourseIds.indexOf(id) === -1; });
+                    const skippedRemovals = originalCourseIds.filter(function(id) { return selectedCourses.indexOf(id) === -1; });
                     try {
-                        await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + instructorId + '/courses', {
-                            method: 'POST',
-                            headers: API_CONFIG.getHeaders(true),
-                            body: JSON.stringify({ courseIds: selectedCourses })
-                        });
-                    } catch (e) { console.warn('Course sync failed (non-critical):', e); }
+                        for (var ci = 0; ci < toAssign.length; ci++) {
+                            await fetch(API_CONFIG.BASE_URL + '/courses/' + toAssign[ci], {
+                                method: 'PUT',
+                                headers: API_CONFIG.getHeaders(true),
+                                body: JSON.stringify({ instructorId: instructorId })
+                            });
+                        }
+                        originalCourseIds = selectedCourses.slice();
+                    } catch (e) { console.warn('Course reassignment failed (non-critical):', e); }
+                    if (skippedRemovals.length > 0) {
+                        console.warn(skippedRemovals.length + ' course(s) left assigned to this instructor — a course can\'t be left without an owner from here.');
+                    }
 
                     // Sync student assignments via diff (add new, remove deselected)
                     const selectedStudents = ($('#assignedStudents').val() || []).map(String);
@@ -1078,46 +1045,51 @@
             }
         }
 
-        async function loadPredefinedCourses() {
+        // Lists real courses that actually exist (Course table), not the abstract
+        // PredefinedCourse naming catalog. Each course has exactly one owning
+        // instructor (Course.instructorId), so "assigning" a course here means
+        // making this instructor its owner.
+        async function loadAllCourses() {
             try {
-                const response = await fetch(API_CONFIG.BASE_URL + '/admin/predefined-courses', {
+                const response = await fetch(API_CONFIG.BASE_URL + '/admin/courses?limit=1000', {
                     headers: API_CONFIG.getHeaders(true)
                 });
                 const result = await response.json();
                 if (!result.success) throw new Error(result.message);
+                const courses = result.data || [];
                 const select = document.getElementById('assignedCourses');
-                const grouped = result.data.grouped;
+
+                const grouped = {};
+                courses.forEach(function(course) {
+                    const cat = course.category || 'Uncategorized';
+                    (grouped[cat] = grouped[cat] || []).push(course);
+                });
                 Object.keys(grouped).sort().forEach(function(category) {
                     const group = document.createElement('optgroup');
                     group.label = category;
                     grouped[category].forEach(function(course) {
+                        const owner = course.instructor;
+                        const isMine = owner && owner.id === instructorId;
                         const opt = document.createElement('option');
                         opt.value = course.id;
-                        opt.textContent = course.courseName;
+                        opt.textContent = course.title + (owner && !isMine ? ' (currently: ' + owner.firstName + ' ' + owner.lastName + ')' : '');
                         group.appendChild(opt);
                     });
                     select.appendChild(group);
                 });
+
+                originalCourseIds = courses
+                    .filter(function(c) { return c.instructor && c.instructor.id === instructorId; })
+                    .map(function(c) { return c.id; });
+
                 document.getElementById('courses-loading').classList.add('d-none');
                 document.getElementById('courses-field').classList.remove('d-none');
                 $('#assignedCourses').select2({ placeholder: 'Select courses to assign...', allowClear: true, width: '100%' });
+                $('#assignedCourses').val(originalCourseIds).trigger('change');
             } catch (err) {
-                console.warn('Could not load predefined courses:', err);
+                console.warn('Could not load courses:', err);
                 document.getElementById('courses-loading').textContent = 'Courses unavailable.';
             }
-        }
-
-        async function loadInstructorCourses() {
-            if (!instructorId) return;
-            try {
-                const response = await fetch(API_CONFIG.BASE_URL + '/admin/instructors/' + instructorId + '/courses', {
-                    headers: API_CONFIG.getHeaders(true)
-                });
-                const result = await response.json();
-                if (result.success && Array.isArray(result.data)) {
-                    $('#assignedCourses').val(result.data.map(function(c) { return c.id; })).trigger('change');
-                }
-            } catch (err) { console.warn('Could not load instructor courses:', err); }
         }
 
         async function loadStudents() {

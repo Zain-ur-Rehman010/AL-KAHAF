@@ -284,6 +284,7 @@
                                         <li><a href="/admin/blog-list">Blog Posts</a></li>
                                         <li><a href="/admin/enrollments-list">Enrollments</a></li>
                                         <li><a href="/admin/payments-list">Payments</a></li>
+                                        <li><a href="/admin/bank-transfers">Bank Transfers</a></li>
                                         <li><a href="/admin/welfare-programs">Welfare</a></li>
                                         <li><a href="/admin/resources-list">Resources</a></li>
                                         <li><a href="/admin/announcements-list">Announcements</a></li>
@@ -625,6 +626,46 @@
                                         <label class="form-label">Webhook Secret</label>
                                         <input type="password" class="form-control" id="stripeWebhookSecret" placeholder="whsec_...">
                                         <small class="form-text">For verifying webhook events</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bank Transfer Configuration -->
+                            <div class="settings-section">
+                                <h3 class="settings-section-title">Bank Transfer</h3>
+                                <div class="row">
+                                    <div class="col-md-12 mb-3">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <label class="form-label mb-0">Enable Bank Transfer</label>
+                                                <small class="form-text d-block">Let students pay by transferring to your bank account, verified manually by an admin</small>
+                                            </div>
+                                            <label class="switch">
+                                                <input type="checkbox" id="bankTransferEnabled" checked>
+                                                <span class="slider"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Account Title</label>
+                                        <input type="text" class="form-control" id="bankAccountTitle" placeholder="Al-Kahaf Online Academy">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Bank Name</label>
+                                        <input type="text" class="form-control" id="bankName" placeholder="e.g. Meezan Bank">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Account Number</label>
+                                        <input type="text" class="form-control" id="bankAccountNumber" placeholder="e.g. 01234567890123">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">IBAN</label>
+                                        <input type="text" class="form-control" id="bankIban" placeholder="e.g. PK00MEZN0000000000000000">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Branch Code</label>
+                                        <input type="text" class="form-control" id="bankBranchCode" placeholder="e.g. 0001">
+                                        <small class="form-text">Shown to students on the checkout page along with the account details above</small>
                                     </div>
                                 </div>
                             </div>
@@ -1055,6 +1096,12 @@
 
             // Payment settings
             if (settings.stripeEnabled !== undefined) document.getElementById('stripeEnabled').checked = settings.stripeEnabled;
+            if (settings.bankTransferEnabled !== undefined) document.getElementById('bankTransferEnabled').checked = settings.bankTransferEnabled;
+            if (settings.bankAccountTitle) document.getElementById('bankAccountTitle').value = settings.bankAccountTitle;
+            if (settings.bankName) document.getElementById('bankName').value = settings.bankName;
+            if (settings.bankAccountNumber) document.getElementById('bankAccountNumber').value = settings.bankAccountNumber;
+            if (settings.bankIban) document.getElementById('bankIban').value = settings.bankIban;
+            if (settings.bankBranchCode) document.getElementById('bankBranchCode').value = settings.bankBranchCode;
             if (settings.commissionRate) document.getElementById('commissionRate').value = settings.commissionRate;
             if (settings.minPayout) document.getElementById('minPayout').value = settings.minPayout;
             if (settings.freeCoursesAllowed !== undefined) document.getElementById('freeCoursesAllowed').checked = settings.freeCoursesAllowed;
@@ -1123,6 +1170,12 @@
                 stripePublishableKey: document.getElementById('stripePublishableKey').value,
                 stripeSecretKey: document.getElementById('stripeSecretKey').value,
                 stripeWebhookSecret: document.getElementById('stripeWebhookSecret').value,
+                bankTransferEnabled: document.getElementById('bankTransferEnabled').checked,
+                bankAccountTitle: document.getElementById('bankAccountTitle').value,
+                bankName: document.getElementById('bankName').value,
+                bankAccountNumber: document.getElementById('bankAccountNumber').value,
+                bankIban: document.getElementById('bankIban').value,
+                bankBranchCode: document.getElementById('bankBranchCode').value,
                 commissionRate: parseFloat(document.getElementById('commissionRate').value),
                 minPayout: parseFloat(document.getElementById('minPayout').value),
                 freeCoursesAllowed: document.getElementById('freeCoursesAllowed').checked,

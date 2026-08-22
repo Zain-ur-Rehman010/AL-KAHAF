@@ -100,6 +100,7 @@
                                     <li><a href="/admin/blog-list">Blog Posts</a></li>
                                     <li><a href="/admin/enrollments-list">Enrollments</a></li>
                                     <li><a href="/admin/payments-list" class="active">Payments</a></li>
+                                    <li><a href="/admin/bank-transfers">Bank Transfers</a></li>
                                     <li><a href="/admin/welfare-programs">Welfare</a></li>
                                     <li><a href="/admin/resources-list">Resources</a></li>
                                     <li><a href="/admin/announcements-list">Announcements</a></li>
@@ -229,8 +230,21 @@
                                 <option value="completed">Completed</option>
                                 <option value="pending">Pending</option>
                                 <option value="failed">Failed</option>
-                                <option value="free">Free</option>
+                                <option value="refunded">Refunded</option>
+                                <option value="cancelled">Cancelled</option>
                             </select>
+                            <select id="method-filter" class="form-select form-select-sm" style="width:auto;">
+                                <option value="">All Methods</option>
+                                <option value="jazzcash">JazzCash</option>
+                                <option value="bank_transfer">Bank Transfer</option>
+                                <option value="stripe">Card</option>
+                            </select>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="exportCsv()">
+                                <i class="isax isax-document-download me-1"></i>Export CSV
+                            </button>
+                            <button class="btn btn-sm btn-outline-secondary" onclick="exportPdf()">
+                                <i class="isax isax-printer me-1"></i>Export PDF
+                            </button>
                             <button class="btn btn-sm btn-outline-secondary" onclick="loadPayments()">
                                 <i class="isax isax-refresh me-1"></i>Refresh
                             </button>
@@ -246,12 +260,14 @@
                                     <th>Course</th>
                                     <th>Amount (PKR)</th>
                                     <th>Method</th>
+                                    <th>Reference</th>
                                     <th>Status</th>
+                                    <th>Proof</th>
                                     <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody id="payments-body">
-                                <tr><td colspan="7" class="text-center py-4"><div class="spinner-border spinner-border-sm text-secondary"></div> Loading...</td></tr>
+                                <tr><td colspan="9" class="text-center py-4"><div class="spinner-border spinner-border-sm text-secondary"></div> Loading...</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -279,6 +295,7 @@
     <i class="fas fa-arrow-up"></i>
 </button>
 
+<script src="/assets/js/api-config.js"></script>
 <script>
 (function () {
     const API_BASE = (typeof API_CONFIG !== 'undefined') ? API_CONFIG.BASE_URL : 'https://api.alkahafonlineacademy.com/api/v1';
@@ -297,9 +314,30 @@
             completed: '<span class="badge badge-completed px-2 py-1">Completed</span>',
             pending:   '<span class="badge badge-pending px-2 py-1">Pending</span>',
             failed:    '<span class="badge badge-failed px-2 py-1">Failed</span>',
-            free:      '<span class="badge badge-free px-2 py-1">Free</span>',
+            refunded:  '<span class="badge badge-free px-2 py-1">Refunded</span>',
+            cancelled: '<span class="badge badge-free px-2 py-1">Cancelled</span>',
         };
         return map[status] || '<span class="badge bg-secondary px-2 py-1">' + (status || '—') + '</span>';
+    }
+
+    function methodLabel(method) {
+        const map = {
+            jazzcash: 'JazzCash',
+            bank_transfer: 'Bank Transfer',
+            stripe: 'Card',
+            paypal: 'PayPal',
+        };
+        return map[method] || method || '—';
+    }
+
+    // Bank-transfer transactionIds are stored as "<ref>-<first 8 chars of courseId>"
+    // (see paymentController.submitBankTransfer) so multiple courses paid via one
+    // transfer don't collide on the unique column — strip that back off for display.
+    function displayReference(p) {
+        if (!p.transactionId) return '—';
+        if (p.paymentMethod !== 'bank_transfer') return p.transactionId;
+        const suffix = '-' + (p.courseId || '').slice(0, 8);
+        return p.transactionId.endsWith(suffix) ? p.transactionId.slice(0, -suffix.length) : p.transactionId;
     }
 
     function formatDate(dt) {
@@ -313,33 +351,35 @@
             tbody.innerHTML = '';
             return;
         }
-        tbody.innerHTML = rows.map(function (e, i) {
-            const student = e.student || e.User || {};
-            const course  = e.course  || e.Course  || {};
+        tbody.innerHTML = rows.map(function (p, i) {
+            const student = p.student || {};
+            const course  = p.course  || {};
             const studentName = ((student.firstName || '') + ' ' + (student.lastName || '')).trim() || '—';
             const courseName  = course.title || '—';
-            const amount      = parseFloat(course.price || 0);
-            const payStatus   = e.paymentStatus || 'free';
-            const method      = e.paymentMethod || (amount === 0 ? 'Free' : 'Online');
+            const amount      = parseFloat(p.amount || 0);
+            const proof       = p.receiptUrl
+                ? '<a href="' + p.receiptUrl + '" target="_blank" rel="noopener"><i class="isax isax-document-text me-1"></i>View</a>'
+                : '<span class="text-muted">—</span>';
 
             return '<tr>'
                 + '<td>' + (i + 1) + '</td>'
                 + '<td><div class="fw-semibold">' + studentName + '</div><small class="text-muted">' + (student.email || '') + '</small></td>'
                 + '<td>' + courseName + '</td>'
                 + '<td class="fw-semibold">' + (amount === 0 ? '<span class="text-muted">Free</span>' : 'PKR ' + amount.toLocaleString()) + '</td>'
-                + '<td>' + method + '</td>'
-                + '<td>' + statusBadge(payStatus) + '</td>'
-                + '<td>' + formatDate(e.createdAt) + '</td>'
+                + '<td>' + methodLabel(p.paymentMethod) + '</td>'
+                + '<td>' + displayReference(p) + '</td>'
+                + '<td>' + statusBadge(p.status) + '</td>'
+                + '<td>' + proof + '</td>'
+                + '<td>' + formatDate(p.createdAt) + '</td>'
                 + '</tr>';
         }).join('');
     }
 
     function updateStats(rows) {
         let revenue = 0, completed = 0, pending = 0, failed = 0;
-        rows.forEach(function (e) {
-            const status = e.paymentStatus || 'free';
-            const price = parseFloat((e.course || e.Course || {}).price || 0);
-            if (status === 'completed') { completed++; revenue += price; }
+        rows.forEach(function (p) {
+            const status = p.status || 'pending';
+            if (status === 'completed') { completed++; revenue += parseFloat(p.amount || 0); }
             if (status === 'pending') pending++;
             if (status === 'failed') failed++;
         });
@@ -351,7 +391,7 @@
 
     async function loadPayments() {
         try {
-            const res = await fetch(API_BASE + '/admin/enrollments', { headers: authHeaders() });
+            const res = await fetch(API_BASE + '/payments/admin/all', { headers: authHeaders() });
             const data = await res.json();
             if (!data.success) throw new Error(data.message);
             allRows = Array.isArray(data.data) ? data.data : [];
@@ -361,36 +401,130 @@
             if (dtInstance) { dtInstance.destroy(); dtInstance = null; }
             dtInstance = $('#payments-table').DataTable({
                 pageLength: 25,
-                order: [[6, 'desc']],
-                columnDefs: [{ orderable: false, targets: [1, 2, 4, 5] }],
+                order: [[8, 'desc']],
+                columnDefs: [{ orderable: false, targets: [1, 2, 4, 5, 7] }],
                 language: { search: 'Search payments:', emptyTable: 'No payments found.' }
             });
         } catch (e) {
             if (dtInstance) { dtInstance.destroy(); dtInstance = null; }
             document.getElementById('payments-body').innerHTML =
-                '<tr><td colspan="7" class="text-center py-4 text-danger">Failed to load payments. ' + e.message + '</td></tr>';
+                '<tr><td colspan="9" class="text-center py-4 text-danger">Failed to load payments. ' + e.message + '</td></tr>';
         }
     }
 
+    let currentFiltered = [];
+
     function applyFilter() {
-        const filter = document.getElementById('status-filter').value;
-        const filtered = filter ? allRows.filter(e => (e.paymentStatus || 'free') === filter) : allRows;
-        renderRows(filtered);
+        const statusFilter = document.getElementById('status-filter').value;
+        const methodFilter = document.getElementById('method-filter').value;
+        currentFiltered = allRows.filter(function (p) {
+            const matchStatus = !statusFilter || (p.status || 'pending') === statusFilter;
+            const matchMethod = !methodFilter || p.paymentMethod === methodFilter;
+            return matchStatus && matchMethod;
+        });
+        renderRows(currentFiltered);
     }
 
-    document.getElementById('status-filter').addEventListener('change', function () {
-        if (dtInstance) { dtInstance.destroy(); dtInstance = null; }
-        applyFilter();
-        dtInstance = $('#payments-table').DataTable({ pageLength: 25, order: [[6, 'desc']], language: { search: 'Search payments:', emptyTable: 'No payments found.' } });
+    // ── Export (CSV / print-to-PDF) — always reflects the currently applied filters ──
+    function csvEscape(value) {
+        const s = String(value == null ? '' : value);
+        return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    }
+
+    function exportCsv() {
+        if (!currentFiltered.length) { alert('No payments to export.'); return; }
+        const headers = ['Student', 'Email', 'Course', 'Amount (PKR)', 'Method', 'Reference', 'Status', 'Date'];
+        const lines = [headers.map(csvEscape).join(',')];
+        currentFiltered.forEach(function (p) {
+            const student = p.student || {};
+            const course = p.course || {};
+            const studentName = ((student.firstName || '') + ' ' + (student.lastName || '')).trim();
+            lines.push([
+                studentName,
+                student.email || '',
+                course.title || '',
+                parseFloat(p.amount || 0),
+                methodLabel(p.paymentMethod),
+                displayReference(p),
+                p.status || 'pending',
+                formatDate(p.createdAt),
+            ].map(csvEscape).join(','));
+        });
+
+        const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'payments-' + new Date().toISOString().slice(0, 10) + '.csv';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+    }
+
+    function exportPdf() {
+        if (!currentFiltered.length) { alert('No payments to export.'); return; }
+        const rowsHtml = currentFiltered.map(function (p) {
+            const student = p.student || {};
+            const course = p.course || {};
+            const studentName = ((student.firstName || '') + ' ' + (student.lastName || '')).trim() || '—';
+            const amount = parseFloat(p.amount || 0);
+            return '<tr>'
+                + '<td>' + studentName + '<br><small>' + (student.email || '') + '</small></td>'
+                + '<td>' + (course.title || '—') + '</td>'
+                + '<td>' + (amount === 0 ? 'Free' : 'PKR ' + amount.toLocaleString()) + '</td>'
+                + '<td>' + methodLabel(p.paymentMethod) + '</td>'
+                + '<td>' + displayReference(p) + '</td>'
+                + '<td>' + (p.status || 'pending') + '</td>'
+                + '<td>' + formatDate(p.createdAt) + '</td>'
+                + '</tr>';
+        }).join('');
+
+        const totalRevenue = currentFiltered
+            .filter(function (p) { return p.status === 'completed'; })
+            .reduce(function (sum, p) { return sum + parseFloat(p.amount || 0); }, 0);
+
+        const win = window.open('', '_blank');
+        win.document.write(
+            '<html><head><title>Payment History</title><style>' +
+            'body{font-family:Arial,sans-serif;padding:24px;color:#1a1a1a;}' +
+            'h2{margin-bottom:4px;} p.meta{color:#666;margin-top:0;margin-bottom:20px;}' +
+            'table{width:100%;border-collapse:collapse;font-size:13px;}' +
+            'th,td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top;}' +
+            'th{background:#f2ede8;} small{color:#888;}' +
+            '.totals{margin-top:16px;font-weight:bold;}' +
+            '</style></head><body>' +
+            '<h2>Al-Kahaf Online Academy — Payment History</h2>' +
+            '<p class="meta">Exported ' + new Date().toLocaleString('en-PK') + ' &middot; ' + currentFiltered.length + ' record(s)</p>' +
+            '<table><thead><tr><th>Student</th><th>Course</th><th>Amount</th><th>Method</th><th>Reference</th><th>Status</th><th>Date</th></tr></thead>' +
+            '<tbody>' + rowsHtml + '</tbody></table>' +
+            '<p class="totals">Total Revenue (Completed): PKR ' + totalRevenue.toLocaleString() + '</p>' +
+            '</body></html>'
+        );
+        win.document.close();
+        win.onload = function () {
+            win.focus();
+            win.print();
+        };
+    }
+    window.exportCsv = exportCsv;
+    window.exportPdf = exportPdf;
+
+    ['status-filter', 'method-filter'].forEach(function (id) {
+        document.getElementById(id).addEventListener('change', function () {
+            if (dtInstance) { dtInstance.destroy(); dtInstance = null; }
+            applyFilter();
+            dtInstance = $('#payments-table').DataTable({ pageLength: 25, order: [[8, 'desc']], language: { search: 'Search payments:', emptyTable: 'No payments found.' } });
+        });
     });
 
     // Load admin info
     fetch(API_BASE + '/auth/me', { headers: authHeaders() }).then(r => r.json()).then(function (d) {
-        if (d.success && d.data) {
-            const name = ((d.data.firstName || '') + ' ' + (d.data.lastName || '')).trim() || 'Administrator';
+        if (d.success && d.firstName) {
+            const name = ((d.firstName || '') + ' ' + (d.lastName || '')).trim() || 'Administrator';
             document.getElementById('admin-name').textContent = name;
-            if (d.data.profileImage) {
-                document.getElementById('admin-avatar-img').src = d.data.profileImage;
+            if (d.profileImage) {
+                document.getElementById('admin-avatar-img').src = d.profileImage;
             }
         }
     }).catch(() => {});

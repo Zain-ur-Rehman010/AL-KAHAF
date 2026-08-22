@@ -254,6 +254,9 @@
 												<li>
 													<a href="/student/student-reviews" class="d-inline-flex align-items-center"><i class="isax isax-star5 me-2"></i>Reviews</a>
 												</li>
+												<li>
+													<a href="/student/student-order-history" class="d-inline-flex align-items-center"><i class="isax isax-receipt me-2"></i>Payment History</a>
+												</li>
 											</ul>
 											<hr>
 											<h6 class="mb-3">Account Settings</h6>
@@ -642,9 +645,12 @@
 			var href='/courses/course-details'+(cid?'?id='+cid:'');
 			var watchHref='/courses/course-watch'+(cid?'?id='+cid:'');
 			var instr=cr.instructor?((cr.instructor.firstName||'')+' '+(cr.instructor.lastName||'')).trim():'';
-			var statusBadge=enr.status==='completed'?'<span class="badge text-bg-success ms-auto">Completed</span>':
+			var isFreeCourse=!cr.price||parseFloat(cr.price)===0;
+			var pendingPayment=enr.paymentStatus==='pending'&&!isFreeCourse;
+			var statusBadge=pendingPayment?'<span class="badge text-bg-warning ms-auto">Payment Pending</span>':
+				(enr.status==='completed'?'<span class="badge text-bg-success ms-auto">Completed</span>':
 				(enr.status==='in_progress'?'<span class="badge text-bg-primary ms-auto">In Progress</span>':
-				(enr.status==='dropped'?'<span class="badge text-bg-danger ms-auto">Dropped</span>':'<span class="badge text-bg-secondary ms-auto">Enrolled</span>'));
+				(enr.status==='dropped'?'<span class="badge text-bg-danger ms-auto">Dropped</span>':'<span class="badge text-bg-secondary ms-auto">Enrolled</span>')));
 			var isNew=cr.createdAt&&(Date.now()-new Date(cr.createdAt).getTime()<30*24*60*60*1000);
 			var overlayBadges='';
 			if(cr.isFeatured)overlayBadges+='<span style="background:#d8ac27;color:#1a0a00;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:.4px;text-transform:uppercase;">&#9733; Featured</span>';
@@ -661,8 +667,10 @@
 				+'<h6 class="title mb-2"><a href="'+href+'">'+title+'</a></h6>'
 				+'<div class="progress mt-2 mb-2" style="height:6px;"><div class="progress-bar bg-success" role="progressbar" style="width:'+prog+'%" aria-valuenow="'+prog+'" aria-valuemin="0" aria-valuemax="100"></div></div>'
 				+'<div class="d-flex align-items-center justify-content-between">'
-				+'<small class="text-muted">'+prog+'% Complete</small>'
-				+'<a href="'+watchHref+'" class="btn btn-dark btn-sm d-inline-flex align-items-center">Continue Learning<i class="isax isax-arrow-right-3 ms-1"></i></a>'
+				+(pendingPayment
+					? '<small class="text-warning fw-medium"><i class="fa fa-clock me-1"></i>Awaiting verification</small>'
+					: '<small class="text-muted">'+prog+'% Complete</small>'
+					+'<a href="'+watchHref+'" class="btn btn-dark btn-sm d-inline-flex align-items-center">Continue Learning<i class="isax isax-arrow-right-3 ms-1"></i></a>')
 				+'</div></div></div></div>';
 		}
 

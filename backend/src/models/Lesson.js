@@ -33,6 +33,14 @@ const Lesson = sequelize.define('Lesson', {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  meetingLink: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  meetingScheduledAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
   duration: {
     type: DataTypes.INTEGER,
     allowNull: true,

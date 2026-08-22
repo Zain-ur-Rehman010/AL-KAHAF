@@ -373,7 +373,12 @@
 
 							<div class="card mb-0">
 								<div class="card-body">
-										<h5 class="fs-18 pb-3 border-bottom mb-3">Certifications</h5>
+										<div class="d-flex align-items-center justify-content-between pb-3 border-bottom mb-3">
+											<h5 class="fs-18 mb-0">Certifications</h5>
+											<a href="javascript:void(0);" id="prof-add-cert-btn" class="d-inline-flex align-items-center text-secondary fw-medium">
+												<i class="isax isax-add me-1"></i> Add Certification
+											</a>
+										</div>
 										<div id="prof-certification-list">
 											<p class="text-muted fs-14">No certifications added yet.</p>
 										</div>
@@ -481,6 +486,40 @@
 			</div>
 		</footer>
 		<!-- /Footer -->
+
+			<!-- Add Certification -->
+			<div class="modal fade" id="add_certification_modal">
+				<div class="modal-dialog modal-dialog-centered">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5>Add Certification</h5>
+							<button type="button" class="btn-close custom-btn-close" data-bs-dismiss="modal" aria-label="Close">
+								<i class="isax isax-close-circle5"></i>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div id="cert-modal-alert" class="alert d-none" role="alert"></div>
+							<div class="mb-3">
+								<label class="form-label">Certification Title</label>
+								<input type="text" class="form-control" id="cert-modal-title" placeholder="e.g. AWS Certified Solutions Architect">
+							</div>
+							<div class="mb-3">
+								<label class="form-label d-block">Certificate Image</label>
+								<div class="d-flex align-items-center gap-2">
+									<img id="cert-modal-preview" class="rounded border" src="/assets/img/certificates/certificate-01.svg" alt="" style="width:48px;height:48px;object-fit:cover;">
+									<label class="btn btn-outline-secondary btn-sm mb-0">Upload<input type="file" accept="image/*" id="cert-modal-file" class="d-none"></label>
+									<span id="cert-modal-upload-status" class="fs-12 text-muted"></span>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn bg-gray-100 rounded-pill me-2" type="button" data-bs-dismiss="modal">Cancel</button>
+							<button class="btn btn-secondary rounded-pill" type="button" id="cert-modal-save-btn">Save Certification</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /Add Certification -->
 
 		</div>
 		<!-- /Main Wrapper -->

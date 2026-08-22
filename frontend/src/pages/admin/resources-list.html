@@ -90,6 +90,7 @@
 									<li><a href="/admin/blog-list">Blog Posts</a></li>
 									<li><a href="/admin/enrollments-list">Enrollments</a></li>
 									<li><a href="/admin/payments-list">Payments</a></li>
+									<li><a href="/admin/bank-transfers">Bank Transfers</a></li>
 									<li><a href="/admin/welfare-programs">Welfare</a></li>
 									<li><a href="/admin/resources-list" class="active">Resources</a></li>
 									<li><a href="/admin/announcements-list">Announcements</a></li>
@@ -291,10 +292,12 @@
 						<div class="col-md-6">
 							<label class="form-label fw-semibold">Category</label>
 							<select class="form-select" id="resource-category">
-								<option value="book">Book</option>
-								<option value="syllabus">Syllabus</option>
-								<option value="form">Form</option>
-								<option value="certificate">Certificate</option>
+								<option value="darja_ula">Darja Ula</option>
+								<option value="darja_sania">Darja Sania</option>
+								<option value="darja_salisa">Darja Salisa</option>
+								<option value="darja_rabia">Darja Rabia</option>
+								<option value="tajweed_lil_huffaz">Tajweed lil Huffaz</option>
+								<option value="arabic_language">Arabic Language</option>
 								<option value="other">Other</option>
 							</select>
 						</div>
@@ -549,7 +552,7 @@ function statusBadge(s) {
 	return '<span class="status-badge ' + (map[s] || '') + '">' + s + '</span>';
 }
 
-var CATEGORY_LABELS = { book: 'Book', syllabus: 'Syllabus', form: 'Form', certificate: 'Certificate', other: 'Other' };
+var CATEGORY_LABELS = { darja_ula: 'Darja Ula', darja_sania: 'Darja Sania', darja_salisa: 'Darja Salisa', darja_rabia: 'Darja Rabia', tajweed_lil_huffaz: 'Tajweed lil Huffaz', arabic_language: 'Arabic Language', other: 'Other' };
 
 // ── Load Resources ───────────────────────────────────────────────────────
 function loadResources() {

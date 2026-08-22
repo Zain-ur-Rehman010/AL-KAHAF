@@ -177,6 +177,7 @@
                                         <li><a href="/admin/blog-list">Blog Posts</a></li>
                                         <li><a href="/admin/enrollments-list">Enrollments</a></li>
                                         <li><a href="/admin/payments-list">Payments</a></li>
+                                        <li><a href="/admin/bank-transfers">Bank Transfers</a></li>
                                         <li><a href="/admin/welfare-programs">Welfare</a></li>
                                         <li><a href="/admin/resources-list">Resources</a></li>
                                         <li><a href="/admin/announcements-list">Announcements</a></li>
@@ -339,9 +340,8 @@
                                     <label class="form-label">Language</label>
                                     <select class="form-select" id="language">
                                         <option value="English">English</option>
-                                        <option value="Arabic">Arabic</option>
                                         <option value="Urdu">Urdu</option>
-                                        <option value="French">French</option>
+                                        <option value="Arabic">Arabic</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -921,6 +921,22 @@
             if (el) el.remove();
         }
 
+        function lessonMeetingHTML(meetingLink, meetingScheduledAt) {
+            let localVal = '';
+            if (meetingScheduledAt) {
+                const d = new Date(meetingScheduledAt);
+                if (!isNaN(d.getTime())) {
+                    const pad = (n) => String(n).padStart(2, '0');
+                    localVal = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + 'T' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+                }
+            }
+            return `
+                <div class="row g-2 mt-1">
+                    <div class="col-md-7"><input type="url" class="form-control form-control-sm lesson-meeting-link" placeholder="Meeting link (Zoom / Google Meet URL)" value="${escHtml(meetingLink || '')}"></div>
+                    <div class="col-md-5"><input type="datetime-local" class="form-control form-control-sm lesson-meeting-time" value="${localVal}"></div>
+                </div>`;
+        }
+
         function addLesson(moduleIndex) {
             const container = document.querySelector('[data-module-lessons="' + moduleIndex + '"]');
             const count = container.children.length;
@@ -932,6 +948,7 @@
                             <i class="iconsax" data-icon="trash"></i>
                         </span>
                     </div>
+                    ${lessonMeetingHTML()}
                 </div>`;
             container.insertAdjacentHTML('beforeend', html);
         }
@@ -947,6 +964,7 @@
                             <i class="iconsax" data-icon="trash"></i>
                         </span>
                     </div>
+                    ${lessonMeetingHTML(lesson.meetingLink, lesson.meetingScheduledAt)}
                 </div>`;
             container.insertAdjacentHTML('beforeend', html);
         }
@@ -1101,18 +1119,21 @@
                         const lessonEl = lessonItems[j];
                         const existingLessonId = lessonEl.getAttribute('data-lesson-id');
                         const lessonTitle = (lessonEl.querySelector('input[type="text"]') || {}).value || ('Lesson ' + (j + 1));
+                        const lessonMeetingLink = ((lessonEl.querySelector('.lesson-meeting-link') || {}).value || '').trim() || null;
+                        const lessonMeetingTimeRaw = (lessonEl.querySelector('.lesson-meeting-time') || {}).value || '';
+                        const lessonMeetingScheduledAt = lessonMeetingTimeRaw ? new Date(lessonMeetingTimeRaw).toISOString() : null;
 
                         if (existingLessonId) {
                             await fetch(API_CONFIG.BASE_URL + '/courses/' + courseId + '/modules/' + moduleId + '/lessons/' + existingLessonId, {
                                 method: 'PUT',
                                 headers: API_CONFIG.getHeaders(true),
-                                body: JSON.stringify({ title: lessonTitle, order: j + 1 })
+                                body: JSON.stringify({ title: lessonTitle, order: j + 1, meetingLink: lessonMeetingLink, meetingScheduledAt: lessonMeetingScheduledAt })
                             });
                         } else {
                             await fetch(API_CONFIG.BASE_URL + '/courses/' + courseId + '/modules/' + moduleId + '/lessons', {
                                 method: 'POST',
                                 headers: API_CONFIG.getHeaders(true),
-                                body: JSON.stringify({ title: lessonTitle, status: 'draft', order: j + 1 })
+                                body: JSON.stringify({ title: lessonTitle, status: 'draft', order: j + 1, meetingLink: lessonMeetingLink, meetingScheduledAt: lessonMeetingScheduledAt })
                             });
                         }
                     }

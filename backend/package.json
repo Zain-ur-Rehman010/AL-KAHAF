@@ -20,6 +20,9 @@
     "migrate:announcement-image": "node migrations/add-announcement-image.js",
     "migrate:announcement-message-optional": "node migrations/make-announcement-message-optional.js",
     "migrate:certifications": "node migrations/add-user-certifications.js",
+    "migrate:resource-classes": "node migrations/change-resource-categories-to-classes.js",
+    "migrate:lesson-meeting": "node migrations/add-lesson-meeting-fields.js",
+    "migrate:wallet-transfer": "node migrations/add-wallet-transfer-payment-method.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },

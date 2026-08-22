@@ -1032,12 +1032,12 @@
                       </div>
                     </div>
 
-                    <!-- CV Upload (postponed — re-enable once upload issue is resolved) -->
-                    <div class="col-12" style="display: none">
+                    <!-- CV Upload -->
+                    <div class="col-12">
                       <label class="form-label"
-                        >CV / Resume <span class="text-danger">*</span>
+                        >CV / Resume
                         <small class="text-muted fw-normal"
-                          >(PDF or Word, max 5MB)</small
+                          >(optional — PDF or Word, max 5MB)</small
                         ></label
                       >
                       <div class="cv-upload-zone" id="cv-upload-zone">
@@ -1383,7 +1383,10 @@
         "use strict";
 
         /* ── CV Upload ───────────────────────────────────────────── */
-        var _cvUrl = null;
+        // The file is validated and previewed client-side, then sent as
+        // multipart form data together with the rest of the fields on
+        // submit — no separate upload request, so no auth token is needed.
+        var _cvFile = null;
 
         var cvInput = document.getElementById("cv-file-input");
         var cvZone = document.getElementById("cv-upload-zone");
@@ -1428,62 +1431,25 @@
             return;
           }
           cvErr.style.display = "none";
-          uploadCv(file);
-        }
 
-        async function uploadCv(file) {
+          _cvFile = file;
           document.getElementById("cv-placeholder").style.display = "none";
-          document.getElementById("cv-preview").style.display = "none";
-          document.getElementById("cv-uploading").style.display = "flex";
-
-          try {
-            var fd = new FormData();
-            fd.append("image", file); // upload endpoint accepts 'image' key for any file
-            var token = localStorage.getItem("accessToken");
-            var headers = token ? { Authorization: "Bearer " + token } : {};
-            var res = await fetch(
-              API_CONFIG.BASE_URL + "/upload?folder=instructor-cvs",
-              {
-                method: "POST",
-                headers: headers,
-                body: fd,
-              },
-            );
-            var data = await res.json();
-
-            if (data.url || data.secure_url) {
-              _cvUrl = data.url || data.secure_url;
-              document.getElementById("cv-filename").textContent = file.name;
-              document.getElementById("cv-filesize").textContent =
-                (file.size / 1024).toFixed(0) + " KB";
-              document.getElementById("cv-uploading").style.display = "none";
-              document.getElementById("cv-preview").style.display = "flex";
-              document.getElementById("cv-error").style.display = "none";
-              cvZone.style.borderColor = "#d8ac27";
-              cvZone.classList.add("has-file");
-              // update icon based on type
-              var icon = document.querySelector("#cv-preview .fa");
-              if (icon)
-                icon.className = /pdf/i.test(file.name)
-                  ? "fa fa-file-pdf"
-                  : "fa fa-file-word";
-              if (icon && /word/i.test(file.name)) icon.style.color = "#2b579a";
-            } else {
-              throw new Error(data.message || "Upload failed");
-            }
-          } catch (err) {
-            _cvUrl = null;
-            document.getElementById("cv-uploading").style.display = "none";
-            document.getElementById("cv-placeholder").style.display = "block";
-            var cvErr = document.getElementById("cv-error");
-            cvErr.textContent =
-              "CV upload failed. You can still submit without it.";
-            cvErr.style.display = "block";
+          document.getElementById("cv-filename").textContent = file.name;
+          document.getElementById("cv-filesize").textContent =
+            (file.size / 1024).toFixed(0) + " KB";
+          document.getElementById("cv-preview").style.display = "flex";
+          cvZone.classList.add("has-file");
+          var icon = document.querySelector("#cv-preview .fa");
+          if (icon) {
+            icon.className = /pdf/i.test(file.name)
+              ? "fa fa-file-pdf"
+              : "fa fa-file-word";
+            icon.style.color = /word/i.test(file.name) ? "#2b579a" : "#dc3545";
           }
         }
 
         function removeCv() {
-          _cvUrl = null;
+          _cvFile = null;
           cvInput.value = "";
           document.getElementById("cv-preview").style.display = "none";
           document.getElementById("cv-placeholder").style.display = "block";
@@ -1643,25 +1609,23 @@
             icon.classList.add("d-none");
             label.textContent = "Submitting…";
 
-            var payload = {
-              firstName: val("firstName"),
-              lastName: val("lastName"),
-              email: val("email"),
-              phone: val("phone"),
-              specialization: val("specialization"),
-              experience: val("experience"),
-              linkedinUrl: val("linkedinUrl"),
-              motivation: val("motivation"),
-              cvUrl: _cvUrl || undefined,
-            };
+            var fd = new FormData();
+            fd.append("firstName", val("firstName"));
+            fd.append("lastName", val("lastName"));
+            fd.append("email", val("email"));
+            fd.append("phone", val("phone"));
+            fd.append("specialization", val("specialization"));
+            fd.append("experience", val("experience"));
+            fd.append("linkedinUrl", val("linkedinUrl"));
+            fd.append("motivation", val("motivation"));
+            if (_cvFile) fd.append("cv", _cvFile);
 
             try {
               var res = await fetch(
                 API_CONFIG.BASE_URL + "/instructor-applications",
                 {
                   method: "POST",
-                  headers: { "Content-Type": "application/json" },
-                  body: JSON.stringify(payload),
+                  body: fd,
                 },
               );
               var data = await res.json();

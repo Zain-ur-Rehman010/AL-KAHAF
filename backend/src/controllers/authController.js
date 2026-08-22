@@ -8,7 +8,7 @@ const emailService = require('../services/emailService');
 
 exports.register = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, role } = req.body;
+    const { firstName, lastName, email, password, role, source } = req.body;
 
     const existingUser = await User.findOne({ where: { email } });
     if (existingUser) {
@@ -16,6 +16,12 @@ exports.register = async (req, res) => {
     }
 
     const { phone, bio, profileImage, designation, specialization, experience } = req.body;
+
+    // Checkout creates an account behind the scenes purely so the payment/enrollment
+    // has somewhere to attach — the student is already proving a real, reachable
+    // email by submitting a payment reference, so skip the OTP round-trip and log
+    // them in immediately rather than blocking the purchase on a verification email.
+    const isCheckoutSignup = source === 'checkout';
 
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const otpExpiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
@@ -32,10 +38,26 @@ exports.register = async (req, res) => {
       designation: designation || null,
       specialization: specialization || null,
       experience: experience || null,
-      emailVerified: false,
-      verificationOtp: otp,
-      otpExpiresAt,
+      emailVerified: isCheckoutSignup,
+      verificationOtp: isCheckoutSignup ? null : otp,
+      otpExpiresAt: isCheckoutSignup ? null : otpExpiresAt,
     });
+
+    if (isCheckoutSignup) {
+      notifyAdmins({
+        type: 'general',
+        title: 'New User Registered',
+        message: `${user.firstName} ${user.lastName} (${user.email}) registered as ${user.role} during checkout.`,
+        actionUrl: '/admin/users-list',
+      });
+
+      const tokens = tokenService.generateTokens(user.id, user.role);
+      return res.status(201).json({
+        success: true,
+        message: 'Account created successfully.',
+        data: { user: user.toJSON(), ...tokens },
+      });
+    }
 
     const otpSent = await emailService.sendOtpEmail(user.email, user.firstName, otp);
     if (!otpSent) {

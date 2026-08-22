@@ -395,10 +395,7 @@
                                  <div class="d-flex justify-content-between align-items-center mb-4">
                                       <h2 class="text-success fs-30" id="cd-price">FREE</h2>
                                     </div>
-                                    <div class="d-flex gap-3">
-                                       <a class="btn d-flex btn-wish" href="#"><i class="ti ti-share me-1 fs-18"></i>Share</a>
-                                    </div>
-                                    <a href="/shared/cart" class="btn btn-primary w-100 mt-3 btn-enroll"><i class="fa fa-paper-plane me-2"></i>Enroll Now</a>
+                                    <a href="/shared/cart" class="btn btn-primary w-100 btn-enroll"><i class="fa fa-paper-plane me-2"></i>Enroll Now</a>
                                 </div>
                               </div>
                               <div class="card mb-4">
@@ -579,6 +576,16 @@
 			if (iframe) iframe.src = _currentEmbedUrl + '&autoplay=1';
 			if (modal) modal.style.display = 'flex';
 		};
+
+				function showPaymentPendingBanner() {
+					var container = document.querySelector('#cd-real-content .container') || document.querySelector('.container');
+					if (!container || document.getElementById('cd-payment-pending-banner')) return;
+					var banner = document.createElement('div');
+					banner.id = 'cd-payment-pending-banner';
+					banner.style.cssText = 'background:#fff3cd;color:#856404;border:1px solid #ffe69c;border-radius:10px;padding:14px 18px;margin-bottom:20px;font-size:14px;';
+					banner.innerHTML = '<i class="fa fa-clock me-2"></i>Your bank transfer is awaiting admin verification. You\'ll get full access as soon as it\'s approved.';
+					container.insertBefore(banner, container.firstChild);
+				}
 
 				function populateCourse(course, isEnrolled) {
 			// Detail banner (falls back to thumbnail if no banner was uploaded)
@@ -803,10 +810,18 @@
 			.then(function(results) {
 				var course = results[0].data || results[0];
 				var enrollData = results[1].data || results[1].enrollments || results[1] || [];
-				var isEnrolled = Array.isArray(enrollData) && enrollData.some(function(e) {
+				var enrollRecord = Array.isArray(enrollData) && enrollData.find(function(e) {
 					return String(e.courseId) === String(courseId) || (e.course && String(e.course.id) === String(courseId));
 				});
+				var isEnrolled = !!enrollRecord;
+				// A bank-transfer (or any pending) payment creates the Enrollment row
+				// immediately, but real access only starts once it's verified.
+				var isFreeCourse = !course.price || parseFloat(course.price) === 0;
+				var hasAccess = !!(enrollRecord && (enrollRecord.paymentStatus === 'completed' || isFreeCourse));
 				var urlParams = new URLSearchParams(window.location.search);
+				if (urlParams.get('paymentPending') === '1' && enrollRecord && !isFreeCourse) {
+					showPaymentPendingBanner();
+				}
 				if (urlParams.get('autoEnroll') === '1' && token && !isEnrolled && (!course.price || parseFloat(course.price) === 0)) {
 					urlParams.delete('autoEnroll');
 					history.replaceState(null, '', window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : ''));
@@ -816,23 +831,24 @@
 						body: JSON.stringify({ courseId: courseId })
 					}).then(function(r) { return r.json(); }).then(function(res) {
 						var enrolled = res.success ? true : isEnrolled;
-						populateCourse(course, enrolled);
-						setupEnrollButton(course, enrolled, courseId, token);
-						initReviewSection(enrolled, courseId);
+						var access = res.success ? true : hasAccess;
+						populateCourse(course, access);
+						setupEnrollButton(course, enrolled, access, courseId, token);
+						initReviewSection(access, courseId);
 						document.getElementById('cd-skeleton').style.display = 'none';
 						document.getElementById('cd-real-content').style.display = '';
 					}).catch(function() {
-						populateCourse(course, isEnrolled);
-						setupEnrollButton(course, isEnrolled, courseId, token);
-						initReviewSection(isEnrolled, courseId);
+						populateCourse(course, hasAccess);
+						setupEnrollButton(course, isEnrolled, hasAccess, courseId, token);
+						initReviewSection(hasAccess, courseId);
 						document.getElementById('cd-skeleton').style.display = 'none';
 						document.getElementById('cd-real-content').style.display = '';
 					});
 					return;
 				}
-				populateCourse(course, isEnrolled);
-				setupEnrollButton(course, isEnrolled, courseId, token);
-				initReviewSection(isEnrolled, courseId);
+				populateCourse(course, hasAccess);
+				setupEnrollButton(course, isEnrolled, hasAccess, courseId, token);
+				initReviewSection(hasAccess, courseId);
 				document.getElementById('cd-skeleton').style.display = 'none';
 				document.getElementById('cd-real-content').style.display = '';
 			})
@@ -843,10 +859,22 @@
 			});
 	})();
 
-	function setupEnrollButton(course, isEnrolled, courseId, token) {
+	function setupEnrollButton(course, isEnrolled, hasAccess, courseId, token) {
 		var btn = document.querySelector('.btn-enroll');
 		if (!btn) return;
 		var isFree = !course.price || parseFloat(course.price) === 0;
+
+		if (isEnrolled && !hasAccess) {
+			// Enrollment row exists (e.g. bank transfer submitted) but payment
+			// hasn't been verified yet — don't offer "Continue" or "Enroll" again.
+			btn.innerHTML = '<i class="fa fa-clock me-2"></i>Payment Pending Verification';
+			btn.removeAttribute('href');
+			btn.style.cursor = 'default';
+			btn.classList.remove('btn-primary');
+			btn.classList.add('btn-secondary');
+			btn.disabled = true;
+			return;
+		}
 
 		if (isEnrolled) {
 			btn.innerHTML = '<i class="fa fa-play-circle me-2"></i>Continue Learning';

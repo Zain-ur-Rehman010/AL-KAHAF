@@ -4103,7 +4103,7 @@ Dependencies:
           var raised = Number(p.raisedAmount) || 0;
           var goal = Number(p.goalAmount) || 1;
           var pct = Math.min(100, Math.round((raised / goal) * 100));
-          var img = p.imageUrl || "assets/img/course/course-37.jpg";
+          var img = p.thumbnail || p.banner || "assets/img/course/course-37.jpg";
           var slug = p.slug || p.id;
           var detailUrl = "/shared/welfare-program-detail?id=" + slug;
           var catVal = (p.category || "").toLowerCase();

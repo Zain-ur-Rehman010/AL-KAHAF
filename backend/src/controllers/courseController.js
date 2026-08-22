@@ -1,6 +1,21 @@
 const { Course, User, Enrollment, Module, Lesson } = require('../models');
 const { Op } = require('sequelize');
+const jwt = require('jsonwebtoken');
+const config = require('../config/config');
 const { notifyAdmins, notifyUser } = require('../services/notificationService');
+
+// Meeting links are only for students who have actually paid for the course
+// (or the course's own instructor/an admin) — this endpoint is public, so the
+// caller may not be authenticated at all.
+function decodeUserIfPresent(req) {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return null;
+  try {
+    return jwt.verify(token, config.jwtSecret);
+  } catch (e) {
+    return null;
+  }
+}
 
 exports.createCourse = async (req, res) => {
   try {
@@ -163,6 +178,27 @@ exports.getCourseById = async (req, res) => {
 
     const data = course.toJSON();
     data.enrollmentCount = data.enrollments ? data.enrollments.length : 0;
+
+    const user = decodeUserIfPresent(req);
+    let canSeeMeetingLinks = false;
+    if (user) {
+      if (user.role === 'admin' || user.userId === course.instructorId) {
+        canSeeMeetingLinks = true;
+      } else {
+        const paidEnrollment = await Enrollment.findOne({
+          where: { studentId: user.userId, courseId: course.id, paymentStatus: 'completed' },
+        });
+        canSeeMeetingLinks = !!paidEnrollment;
+      }
+    }
+    if (!canSeeMeetingLinks) {
+      (data.modules || []).forEach((mod) => {
+        (mod.lessons || []).forEach((lesson) => {
+          lesson.meetingLink = null;
+          lesson.meetingScheduledAt = null;
+        });
+      });
+    }
 
     res.json(data);
   } catch (error) {

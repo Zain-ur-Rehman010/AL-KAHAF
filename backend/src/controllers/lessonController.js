@@ -3,7 +3,7 @@ const { Lesson, Module, Course } = require('../models');
 exports.createLesson = async (req, res) => {
   try {
     const { courseId, moduleId } = req.params;
-    const { title, videoUrl, description, status, order, attachments } = req.body;
+    const { title, videoUrl, description, status, order, attachments, meetingLink, meetingScheduledAt } = req.body;
 
     const course = await Course.findByPk(courseId);
     if (!course) return res.status(404).json({ message: 'Course not found' });
@@ -23,6 +23,8 @@ exports.createLesson = async (req, res) => {
       status: status || 'draft',
       order,
       attachments: attachments || null,
+      meetingLink: meetingLink || null,
+      meetingScheduledAt: meetingScheduledAt || null,
     });
 
     res.status(201).json({ message: 'Lesson created successfully', lesson });
@@ -44,7 +46,7 @@ exports.updateLesson = async (req, res) => {
     const lesson = await Lesson.findOne({ where: { id: lessonId, moduleId, courseId } });
     if (!lesson) return res.status(404).json({ message: 'Lesson not found' });
 
-    const { title, videoUrl, description, status, order, attachments } = req.body;
+    const { title, videoUrl, description, status, order, attachments, meetingLink, meetingScheduledAt } = req.body;
     await lesson.update({
       ...(title !== undefined && { title }),
       ...(videoUrl !== undefined && { videoUrl }),
@@ -52,6 +54,8 @@ exports.updateLesson = async (req, res) => {
       ...(status !== undefined && { status }),
       ...(order !== undefined && { order }),
       ...(attachments !== undefined && { attachments }),
+      ...(meetingLink !== undefined && { meetingLink }),
+      ...(meetingScheduledAt !== undefined && { meetingScheduledAt }),
     });
 
     res.json({ message: 'Lesson updated successfully', lesson });

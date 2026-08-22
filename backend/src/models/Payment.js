@@ -35,7 +35,7 @@ const Payment = sequelize.define('Payment', {
     defaultValue: 'pending',
   },
   paymentMethod: {
-    type: DataTypes.ENUM('stripe', 'paypal', 'bank_transfer', 'jazzcash'),
+    type: DataTypes.ENUM('stripe', 'paypal', 'bank_transfer', 'jazzcash', 'wallet_transfer'),
     allowNull: false,
   },
   transactionId: {

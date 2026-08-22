@@ -6,9 +6,9 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
-const ALLOWED_FOLDERS = ['courses', 'instructors', 'blogs', 'welfare', 'resources', 'announcements', 'certifications'];
+const ALLOWED_FOLDERS = ['courses', 'instructors', 'blogs', 'welfare', 'resources', 'announcements', 'certifications', 'payment-receipts'];
 const ALLOWED_EXTENSIONS = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
-const ALLOWED_DOCUMENT_EXTENSIONS = ['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx', '.zip', '.txt'];
+const ALLOWED_DOCUMENT_EXTENSIONS = ['.pdf', '.doc', '.docx', '.ppt', '.pptx', '.xls', '.xlsx', '.zip', '.txt', '.jpg', '.jpeg', '.png'];
 
 const storage = multer.memoryStorage();
 const upload = multer({

@@ -1,21 +1,53 @@
+const streamifier = require('streamifier');
+const cloudinary = require('../config/cloudinary');
 const InstructorApplication = require('../models/InstructorApplication');
 const User = require('../models/User');
 const emailService = require('../services/emailService');
 
+function uploadCvToCloudinary(file) {
+  const ext = '.' + file.originalname.split('.').pop().toLowerCase();
+  const baseName = file.originalname
+    .slice(0, -ext.length)
+    .replace(/[^a-zA-Z0-9_-]/g, '_')
+    .slice(0, 80) || 'cv';
+  const publicId = `${baseName}-${Date.now()}-${Math.round(Math.random() * 1e9)}${ext}`;
+
+  return new Promise((resolve, reject) => {
+    const stream = cloudinary.uploader.upload_stream(
+      { folder: 'alkahaf/instructor-cvs', resource_type: 'raw', public_id: publicId },
+      (error, result) => (error ? reject(error) : resolve(result))
+    );
+    streamifier.createReadStream(file.buffer).pipe(stream);
+  });
+}
+
 // ── Public: Submit application ────────────────────────────────────────────────
 exports.submitApplication = async (req, res) => {
   try {
-    const { firstName, lastName, email, phone, specialization, experience, motivation, linkedinUrl, cvUrl } = req.body;
+    const { firstName, lastName, email, phone, specialization, experience, motivation, linkedinUrl } = req.body;
 
     if (!firstName || !lastName || !email) {
       return res.status(400).json({ success: false, message: 'First name, last name and email are required.' });
     }
-    // CV upload temporarily postponed — not required for now
 
     // Prevent duplicate pending applications
     const existing = await InstructorApplication.findOne({ where: { email, status: 'pending' } });
     if (existing) {
       return res.status(409).json({ success: false, message: 'An application with this email is already pending review.' });
+    }
+
+    let cvUrl = null;
+    if (req.file) {
+      if (!process.env.CLOUDINARY_CLOUD_NAME || !process.env.CLOUDINARY_API_KEY) {
+        return res.status(500).json({ success: false, message: 'File upload is not configured on the server.' });
+      }
+      try {
+        const result = await uploadCvToCloudinary(req.file);
+        cvUrl = result.secure_url;
+      } catch (err) {
+        console.error('CV upload error:', err);
+        return res.status(500).json({ success: false, message: 'CV upload failed. Please try again.' });
+      }
     }
 
     const application = await InstructorApplication.create({

@@ -12,7 +12,7 @@ const Resource = sequelize.define('Resource', {
     allowNull: false,
   },
   category: {
-    type: DataTypes.ENUM('book', 'syllabus', 'form', 'certificate', 'other'),
+    type: DataTypes.ENUM('darja_ula', 'darja_sania', 'darja_salisa', 'darja_rabia', 'tajweed_lil_huffaz', 'arabic_language', 'other'),
     allowNull: false,
     defaultValue: 'other',
   },

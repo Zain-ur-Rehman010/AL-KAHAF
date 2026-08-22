@@ -185,10 +185,6 @@
 											<span class="text-muted">Subtotal</span>
 											<span id="checkout-subtotal" class="fw-medium">Rs 0</span>
 										</div>
-										<div class="d-flex justify-content-between align-items-center mb-2 fs-14">
-											<span class="text-muted">Tax (5%)</span>
-											<span id="checkout-tax" class="fw-medium">Rs 0</span>
-										</div>
 										<div class="d-flex justify-content-between align-items-center fw-bold mt-2 pt-2 border-top" style="font-size:1.1rem;">
 											<span>Total</span>
 											<span id="checkout-total" style="color:#d8ac27;font-size:1.25rem;">Rs 0</span>
@@ -196,10 +192,10 @@
 									</div>
 								</div>
 
-								<!-- Billing Address -->
+								<!-- Payment Information -->
 								<div class="checkout-item-1">
 									<div class="border-bottom pb-3 mb-3">
-										<h5><i class="isax isax-location me-2" style="color:#522811;"></i>Billing Address</h5>
+										<h5><i class="isax isax-location me-2" style="color:#522811;"></i>Payment Information</h5>
 									</div>
 									<div class="row">
 										<div class="col-md-6">
@@ -216,8 +212,8 @@
 										</div>
 										<div class="col-md-12">
 											<div class="input-block">
-												<label class="form-label">Phone Number (Optional)</label>
-												<input type="text" class="form-control">
+												<label class="form-label">Phone Number<span class="text-danger ms-1">*</span></label>
+												<input type="text" id="co-phone" class="form-control" placeholder="03XX-XXXXXXX">
 											</div>
 										</div>
 										<div class="col-md-12">
@@ -250,20 +246,6 @@
 												<input type="text" class="form-control">
 											</div>
 										</div>
-										<div class="col-md-12">
-											<div class="d-flex align-items-center mb-3">
-												<div class="form-check d-flex">
-													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
-													<label class="form-check-label" for="flexCheckDefault1">Shipping address is the same as my billing address</label>
-												</div>
-											</div>
-											<div class="d-flex align-items-center">
-												<div class="form-check d-flex">
-													<input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-													<label class="form-check-label" for="flexCheckDefault">Save this information for next time</label>
-												</div>
-											</div>
-										</div>
 									</div>
 								</div>
 
@@ -284,13 +266,19 @@
 											<div class="col-md-6">
 												<div class="input-block">
 													<label class="form-label">Password<span class="text-danger ms-1">*</span></label>
-													<input type="password" id="co-password" class="form-control" placeholder="Min 6 characters">
+													<div class="position-relative">
+														<input type="password" id="co-password" class="pass-inputs form-control" placeholder="Min 6 characters">
+														<span class="isax toggle-passwords isax-eye-slash text-gray-7 fs-14"></span>
+													</div>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="input-block">
 													<label class="form-label">Confirm Password<span class="text-danger ms-1">*</span></label>
-													<input type="password" id="co-confirmPassword" class="form-control" placeholder="Repeat password">
+													<div class="position-relative">
+														<input type="password" id="co-confirmPassword" class="pass-inputa form-control" placeholder="Repeat password">
+														<span class="isax toggle-passworda isax-eye-slash text-gray-7 fs-14"></span>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -303,13 +291,18 @@
 										<h5><i class="isax isax-wallet me-2" style="color:#522811;"></i>Payment Method</h5>
 									</div>
 									<ul class="nav-tabs mb-3 nav-justified border-0 nav-style-1 d-sm-flex d-block" role="tablist">
-										<li class="nav-item active"><a class="btn nav-link p-3 active" data-bs-toggle="tab" role="tab" href="#pay-jazzcash" aria-selected="true">
+										<!-- JazzCash automated gateway tab hidden — not configured, replaced by manual QR scan-and-pay below.
+										<li class="nav-item"><a class="btn nav-link p-3" data-bs-toggle="tab" role="tab" href="#pay-jazzcash" aria-selected="false">
 											<div class="d-flex justify-content-center align-items-center gap-2"><span style="background:#cc0000;color:#fff;font-weight:700;font-size:12px;padding:2px 8px;border-radius:4px;">JazzCash</span><p class="fw-medium mb-0">JazzCash</p></div></a></li>
-										<li class="nav-item"><a class="btn nav-link p-3" data-bs-toggle="tab" role="tab" href="#pay-card" aria-selected="false">
-											<div class="d-flex justify-content-center align-items-center gap-2"><img src="/assets/img/icons/card.svg" alt="card" class="img-fluid" style="height:20px;"><p class="fw-medium mb-0">Card</p></div></a></li>
+										-->
+										<li class="nav-item active"><a class="btn nav-link p-3 active" data-bs-toggle="tab" role="tab" href="#pay-bank" aria-selected="true">
+											<div class="d-flex justify-content-center align-items-center gap-2"><i class="isax isax-bank"></i><p class="fw-medium mb-0">Bank Transfer</p></div></a></li>
+										<li class="nav-item"><a class="btn nav-link p-3" data-bs-toggle="tab" role="tab" href="#pay-wallet" aria-selected="false">
+											<div class="d-flex justify-content-center align-items-center gap-2"><i class="isax isax-scan"></i><p class="fw-medium mb-0">JazzCash / Easypaisa</p></div></a></li>
 									</ul>
 									<div class="tab-content">
-										<div class="tab-pane active show" id="pay-jazzcash" role="tabpanel">
+										<!-- JazzCash automated gateway pane hidden — not configured, replaced by manual QR scan-and-pay below.
+										<div class="tab-pane" id="pay-jazzcash" role="tabpanel">
 											<div class="p-3 rounded-3 border mb-3" style="background:#fff8f8;">
 												<div class="d-flex align-items-center gap-3 mb-3">
 													<span style="background:#cc0000;color:#fff;font-weight:700;font-size:15px;padding:3px 10px;border-radius:6px;">JazzCash</span>
@@ -327,16 +320,68 @@
 												</button>
 											</div>
 										</div>
-										<div class="tab-pane" id="pay-card" role="tabpanel">
+										-->
+										<div class="tab-pane active show" id="pay-bank" role="tabpanel">
+											<div id="bank-details-box" class="p-3 rounded-3 border mb-3" style="background:#f9f7f4;">
+												<p class="mb-0 text-muted" style="font-size:13px;">Loading bank details…</p>
+											</div>
 											<div class="row">
-												<div class="col-md-6"><div class="input-block"><label class="form-label">Card Number<span class="text-danger ms-1">*</span></label><input type="text" id="co-cardNumber" class="form-control" placeholder="1234 5678 9012 3456"></div></div>
-												<div class="col-md-6"><div class="input-block"><label class="form-label">Name on Card<span class="text-danger ms-1">*</span></label><input type="text" id="co-cardName" class="form-control"></div></div>
-												<div class="col-md-6"><div class="input-block"><label class="form-label">Expiry Date<span class="text-danger ms-1">*</span></label><input type="text" id="co-expiry" class="form-control" placeholder="MM/YY"></div></div>
-												<div class="col-md-6"><div class="input-block"><label class="form-label">CVV<span class="text-danger ms-1">*</span></label><input type="text" id="co-cvv" class="form-control" placeholder="123"></div></div>
-												<div class="col-md-12"><div class="d-flex align-items-center justify-content-end"><button id="btn-pay-card" class="btn btn-secondary rounded-pill px-4"><i class="fa fa-lock me-2"></i>Pay <span id="card-amount">Rs 0</span></button></div></div>
+												<div class="col-md-6 mb-3"><div class="input-block"><label class="form-label">Your Bank</label>
+													<select class="form-control" id="co-fromBank">
+														<option value="">— Select your bank —</option>
+														<option>HBL</option>
+														<option>UBL</option>
+														<option>MCB Bank</option>
+														<option>Meezan Bank</option>
+														<option>Allied Bank</option>
+														<option>Bank Alfalah</option>
+														<option>Bank Al Habib</option>
+														<option>Faysal Bank</option>
+														<option>Askari Bank</option>
+														<option>National Bank of Pakistan</option>
+														<option>Standard Chartered Pakistan</option>
+														<option>Habib Metropolitan Bank</option>
+														<option>JS Bank</option>
+														<option>Soneri Bank</option>
+														<option>Summit Bank</option>
+														<option>Other</option>
+													</select>
+												</div></div>
+												<div class="col-md-6 mb-3"><div class="input-block"><label class="form-label">Transaction Reference<span class="text-danger ms-1">*</span></label>
+													<input type="text" id="co-transactionRef" class="form-control" placeholder="e.g. last 6 digits or reference #">
+												</div></div>
+												<div class="col-md-12 mb-3"><div class="input-block"><label class="form-label">Upload Receipt <small class="text-muted fw-normal">(optional, image or PDF, max 5MB)</small></label>
+													<input type="file" id="co-receiptFile" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+												</div></div>
+												<div class="col-md-12"><div class="d-flex align-items-center justify-content-end">
+													<button id="btn-pay-bank" class="btn btn-secondary rounded-pill px-4"><i class="fa fa-paper-plane me-2"></i>Submit <span id="bank-amount">Rs 0</span> for Review</button>
+												</div></div>
+											</div>
+										</div>
+										<div class="tab-pane" id="pay-wallet" role="tabpanel">
+											<div class="p-3 rounded-3 border mb-3 text-center" style="background:#f9f7f4;">
+												<p class="mb-3 fw-medium" style="font-size:13px;">Scan the QR code below to send <span id="wallet-amount">Rs 0</span> via JazzCash or Easypaisa:</p>
+												<img src="/assets/img/payment/easypaisa-jazzcash-qr.jpeg" alt="JazzCash / Easypaisa QR Code" style="max-width:260px;width:100%;border-radius:12px;border:1px solid #eee;">
+												<div class="mt-3">
+													<p class="mb-0 fw-semibold" style="font-size:15px;">RUQAYYA IBRAHIM</p>
+													<p class="mb-0 text-muted" style="font-size:13px;">JazzCash / Easypaisa: 0325 4332402</p>
+												</div>
+												<p class="mb-0 mt-3 text-muted" style="font-size:12px;">After sending, enter your Transaction ID below and submit for review. Access is granted once an admin verifies the payment.</p>
+											</div>
+											<div class="row">
+												<div class="col-md-12 mb-3"><div class="input-block"><label class="form-label">Transaction ID<span class="text-danger ms-1">*</span></label>
+													<input type="text" id="co-walletTransactionRef" class="form-control" placeholder="e.g. TID / reference # from your JazzCash or Easypaisa app">
+												</div></div>
+												<div class="col-md-12 mb-3"><div class="input-block"><label class="form-label">Upload Screenshot <small class="text-muted fw-normal">(optional, image or PDF, max 5MB)</small></label>
+													<input type="file" id="co-walletReceiptFile" class="form-control" accept=".pdf,.jpg,.jpeg,.png">
+												</div></div>
+												<div class="col-md-12"><div class="d-flex align-items-center justify-content-end">
+													<button id="btn-pay-wallet" class="btn btn-secondary rounded-pill px-4"><i class="fa fa-paper-plane me-2"></i>Submit <span id="wallet-amount-2">Rs 0</span> for Review</button>
+												</div></div>
 											</div>
 										</div>
 									</div>
+								</div>
 								</div>
 
 							</div>
@@ -500,26 +545,14 @@
 					var emEl = document.getElementById('co-email');
 					if (emEl) emEl.value = don.donorEmail;
 				}
-
-				// Auto-activate JazzCash tab
-				var jzTab = document.querySelector('[href="#pay-jazzcash"]');
-				var cdTab = document.querySelector('[href="#pay-card"]');
-				if (jzTab && cdTab) {
-					jzTab.classList.add('active');
-					cdTab.classList.remove('active');
-					var jzPane = document.getElementById('pay-jazzcash');
-					var cdPane = document.getElementById('pay-card');
-					if (jzPane) jzPane.classList.add('active','show');
-					if (cdPane) cdPane.classList.remove('active','show');
-				}
 			} catch(e) {}
 		}
 
-		var CK = 'alkahaf_cart', VAT = 0.05;
+		var CK = 'alkahaf_cart';
 		function gc() { try{return JSON.parse(localStorage.getItem(CK)||'[]');}catch(e){return[];} }
 		function sc(i) { localStorage.setItem(CK, JSON.stringify(i)); }
 		function rm(id){ sc(gc().filter(function(i){return String(i.id)!==String(id);})); ro(); }
-		function gt(){ var s=gc().reduce(function(a,i){return a+(parseFloat(i.price)||0);},0); return {s:s,t:s*VAT,total:s+s*VAT}; }
+		function gt(){ var s=gc().reduce(function(a,i){return a+(parseFloat(i.price)||0);},0); return {s:s,total:s}; }
 		function f(n){return 'Rs '+Number(n||0).toLocaleString('en-PK',{maximumFractionDigits:0});}
 		function el(id){return document.getElementById(id);}
 
@@ -546,11 +579,41 @@
 				});
 			}
 			if(el('checkout-subtotal')) el('checkout-subtotal').textContent=f(t.s);
-			if(el('checkout-tax'))      el('checkout-tax').textContent=f(t.t);
 			if(el('checkout-total'))    el('checkout-total').textContent=f(t.total);
 			if(el('jazzcash-amount'))   el('jazzcash-amount').textContent=f(t.total);
-			if(el('card-amount'))       el('card-amount').textContent=f(t.total);
+			if(el('bank-amount'))       el('bank-amount').textContent=f(t.total);
+			if(el('wallet-amount'))     el('wallet-amount').textContent=f(t.total);
+			if(el('wallet-amount-2'))   el('wallet-amount-2').textContent=f(t.total);
 		}
+
+		// Load academy bank details for the Bank Transfer tab
+		(function loadBankDetails(){
+			var box = el('bank-details-box');
+			if(!box) return;
+			fetch(API_CONFIG.BASE_URL+'/payments/bank-details').then(function(r){return r.json();}).then(function(res){
+				var d = res && res.data;
+				if(!d || !d.enabled){
+					box.innerHTML = '<p class="mb-0 text-muted" style="font-size:13px;">Bank transfer is not available right now. Please use JazzCash or Card.</p>';
+					var btn = el('btn-pay-bank'); if(btn) btn.disabled = true;
+					return;
+				}
+				var rows = [
+					['Account Title', d.accountTitle],
+					['Bank Name', d.bankName],
+					['Account Number', d.accountNumber],
+					['IBAN', d.iban],
+					['Branch Code', d.branchCode],
+				].filter(function(r){ return r[1]; });
+				box.innerHTML = '<p class="mb-2 fw-medium" style="font-size:13px;">Transfer the total amount to:</p>'
+					+ rows.map(function(r){
+						return '<div class="d-flex justify-content-between align-items-center mb-1" style="font-size:13px;">'
+							+ '<span class="text-muted">'+r[0]+'</span><span class="fw-semibold">'+r[1]+'</span></div>';
+					}).join('')
+					+ '<p class="mb-0 mt-2 text-muted" style="font-size:12px;">After transferring, enter your reference number below and submit for review. Access is granted once an admin verifies the payment.</p>';
+			}).catch(function(){
+				box.innerHTML = '<p class="mb-0 text-danger" style="font-size:13px;">Could not load bank details. Please try again later.</p>';
+			});
+		})();
 
 		// Hide account section + pre-fill for logged-in users
 		var token = localStorage.getItem('accessToken');
@@ -581,6 +644,10 @@
 		}
 
 		function vg(){
+			var ph=(el('co-phone')||{}).value||'';
+			if(!ph.trim() || !/^(\+92|0)[3][0-9]{9}$/.test(ph.replace(/[\s\-]/g,''))){
+				alert('Please enter a valid Pakistani phone number (03XX-XXXXXXX).'); return false;
+			}
 			if(token) return true;
 			var fn=(el('co-firstName')||{}).value||'', ln=(el('co-lastName')||{}).value||'';
 			var em=(el('co-email')||{}).value||'', pw=(el('co-password')||{}).value||'';
@@ -592,8 +659,25 @@
 			return true;
 		}
 
+		// A stored token that's expired/invalid only surfaces once the backend
+		// rejects an authenticated call (authMiddleware replies with a bare
+		// {message:'Invalid token'|'Token expired'} — no `success` field).
+		// Clear it and reload so the guest checkout fields reappear instead of
+		// silently failing or (worse) pretending the payment succeeded.
+		function isAuthError(res){
+			return !!res && res.success === undefined && /invalid token|token expired|no token provided/i.test(res.message || '');
+		}
+		function authFailed(){
+			sbs(false);
+			alert('Your session has expired. Please log in again to continue — your cart has been saved.');
+			localStorage.removeItem('accessToken');
+			localStorage.removeItem('refreshToken');
+			localStorage.removeItem('user');
+			location.reload();
+		}
+
 		function sbs(loading){
-			['btn-pay-jazzcash','btn-pay-card'].forEach(function(id){
+			['btn-pay-jazzcash','btn-pay-bank','btn-pay-wallet'].forEach(function(id){
 				var b=el(id); if(!b) return;
 				b.disabled=loading;
 				if(loading) b.dataset.orig=b.innerHTML;
@@ -605,18 +689,19 @@
 			if(token){ cb(token); return; }
 			var fn=el('co-firstName').value.trim(), ln=el('co-lastName').value.trim();
 			var em=el('co-email').value.trim(),     pw=el('co-password').value;
+			var ph=el('co-phone').value.trim();
 			fetch(API_CONFIG.BASE_URL+'/auth/register', {
 				method:'POST',
 				headers:{'Content-Type':'application/json'},
-				body: JSON.stringify({firstName:fn,lastName:ln,email:em,password:pw,confirmPassword:pw,role:'student'})
+				body: JSON.stringify({firstName:fn,lastName:ln,email:em,phone:ph,password:pw,confirmPassword:pw,role:'student',source:'checkout'})
 			}).then(function(r){return r.json();}).then(function(res){
-				if(res.success){
+				if(res.success && res.data && res.data.accessToken){
 					localStorage.setItem('accessToken',  res.data.accessToken);
 					localStorage.setItem('refreshToken', res.data.refreshToken);
 					localStorage.setItem('user', JSON.stringify(res.data.user));
 					cb(res.data.accessToken);
 				} else {
-					alert(res.message || 'Registration failed. Please try again.');
+					alert((res.message || 'Registration failed.') + ' Please try again or log in if you already have an account.');
 					sbs(false);
 				}
 			}).catch(function(){ alert('Network error. Please check your connection.'); sbs(false); });
@@ -643,6 +728,22 @@
 			setTimeout(function(){ window.location.href = redirect; }, 2200);
 		}
 
+		function sbr(){
+			// Bank transfer submitted — pending admin verification, not an instant enroll
+			localStorage.removeItem(CK);
+			var ov = document.createElement('div');
+			ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:9999;display:flex;align-items:center;justify-content:center;';
+			ov.innerHTML = '<div style="background:#fff;border-radius:16px;padding:40px 32px;text-align:center;max-width:340px;width:90%;">'
+				+'<div style="width:72px;height:72px;background:#fff3cd;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;">'
+				+'<i class="fa fa-clock" style="font-size:32px;color:#856404;"></i></div>'
+				+'<h4 class="fw-bold mb-2">Submitted for Review</h4>'
+				+'<p class="text-muted mb-1">We\'ll verify your transfer and grant access shortly.</p>'
+				+'<p class="text-muted" style="font-size:13px;">Redirecting to your student dashboard...</p>'
+				+'<div class="spinner-border" style="width:22px;height:22px;border-width:3px;color:#856404;"></div></div>';
+			document.body.appendChild(ov);
+			setTimeout(function(){ window.location.href = '/student/student-dashboard'; }, 2500);
+		}
+
 		function ear(authToken){
 			var items = gc();
 			if(!items.length){ sar(); return; }
@@ -652,7 +753,8 @@
 					headers:{'Content-Type':'application/json','Authorization':'Bearer '+authToken},
 					body: JSON.stringify({courseId: item.id})
 				}).then(function(r){return r.json();}).catch(function(){return{};});
-			})).then(function(){
+			})).then(function(results){
+				if(results.some(isAuthError)){ authFailed(); return; }
 				localStorage.removeItem(CK);
 				sar();
 			});
@@ -671,7 +773,8 @@
 					headers:{'Content-Type':'application/json','Authorization':'Bearer '+at},
 					body: JSON.stringify({amount:gt().total.toFixed(2), courseIds:gc().map(function(i){return i.id;}), returnUrl:window.location.origin+'/shared/payment-success'})
 				}).then(function(r){return r.json();}).then(function(res){
-					if(res.success && res.redirectUrl){ window.location.href=res.redirectUrl; }
+					if(isAuthError(res)){ authFailed(); }
+					else if(res.success && res.redirectUrl){ window.location.href=res.redirectUrl; }
 					else if(res.success && res.postUrl){
 						var fo=document.createElement('form'); fo.method='POST'; fo.action=res.postUrl;
 						Object.keys(res.formData||{}).forEach(function(k){ var i=document.createElement('input'); i.type='hidden'; i.name=k; i.value=res.formData[k]; fo.appendChild(i); });
@@ -681,14 +784,90 @@
 			});
 		});
 
-		// Card button
-		var cbb = el('btn-pay-card');
-		if(cbb) cbb.addEventListener('click', function(){
+		// Bank Transfer button
+		var bbb = el('btn-pay-bank');
+		if(bbb) bbb.addEventListener('click', function(){
 			if(!vg()) return;
 			if(!gc().length){ alert('Your cart is empty.'); return; }
+			var fromBank = el('co-fromBank').value;
+			var ref = el('co-transactionRef').value.trim();
+			if(!ref){ alert('Please enter your transaction reference.'); el('co-transactionRef').focus(); return; }
+
 			sbs(true);
-			cbb.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Processing...';
-			rap(function(at){ ear(at); });
+			bbb.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Submitting...';
+
+			function submit(at, receiptUrl){
+				fetch(API_CONFIG.BASE_URL+'/payments/bank-transfer/submit', {
+					method:'POST',
+					headers:{'Content-Type':'application/json','Authorization':'Bearer '+at},
+					body: JSON.stringify({
+						courseIds: gc().map(function(i){return i.id;}),
+						fromBank: fromBank,
+						transactionRef: ref,
+						receiptUrl: receiptUrl,
+					})
+				}).then(function(r){return r.json();}).then(function(res){
+					if(res.success){ sbr(); }
+					else if(isAuthError(res)){ authFailed(); }
+					else { alert(res.message || 'Could not submit for review. Please try again.'); sbs(false); }
+				}).catch(function(){ alert('Network error. Please try again.'); sbs(false); });
+			}
+
+			rap(function(at){
+				var file = el('co-receiptFile').files[0];
+				if(!file){ submit(at, null); return; }
+				var fd = new FormData();
+				fd.append('file', file); // reuses the generic document-upload endpoint
+				fetch(API_CONFIG.BASE_URL+'/upload/document?folder=payment-receipts', {
+					method:'POST',
+					headers:{'Authorization':'Bearer '+at},
+					body: fd,
+				}).then(function(r){return r.json();}).then(function(res){
+					submit(at, res.url || null);
+				}).catch(function(){ submit(at, null); });
+			});
+		});
+
+		// JazzCash/Easypaisa wallet transfer button
+		var wbb = el('btn-pay-wallet');
+		if(wbb) wbb.addEventListener('click', function(){
+			if(!vg()) return;
+			if(!gc().length){ alert('Your cart is empty.'); return; }
+			var ref = el('co-walletTransactionRef').value.trim();
+			if(!ref){ alert('Please enter your Transaction ID.'); el('co-walletTransactionRef').focus(); return; }
+
+			sbs(true);
+			wbb.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Submitting...';
+
+			function submit(at, receiptUrl){
+				fetch(API_CONFIG.BASE_URL+'/payments/wallet-transfer/submit', {
+					method:'POST',
+					headers:{'Content-Type':'application/json','Authorization':'Bearer '+at},
+					body: JSON.stringify({
+						courseIds: gc().map(function(i){return i.id;}),
+						transactionRef: ref,
+						receiptUrl: receiptUrl,
+					})
+				}).then(function(r){return r.json();}).then(function(res){
+					if(res.success){ sbr(); }
+					else if(isAuthError(res)){ authFailed(); }
+					else { alert(res.message || 'Could not submit for review. Please try again.'); sbs(false); }
+				}).catch(function(){ alert('Network error. Please try again.'); sbs(false); });
+			}
+
+			rap(function(at){
+				var file = el('co-walletReceiptFile').files[0];
+				if(!file){ submit(at, null); return; }
+				var fd = new FormData();
+				fd.append('file', file);
+				fetch(API_CONFIG.BASE_URL+'/upload/document?folder=payment-receipts', {
+					method:'POST',
+					headers:{'Authorization':'Bearer '+at},
+					body: fd,
+				}).then(function(r){return r.json();}).then(function(res){
+					submit(at, res.url || null);
+				}).catch(function(){ submit(at, null); });
+			});
 		});
 
 		ro();
